@@ -11,7 +11,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.common.ClipboardHelper
 import eu.darken.myperm.common.observe2
 import eu.darken.myperm.common.uix.PreferenceFragment2
-import eu.darken.myperm.settings.GeneralSettings
+import eu.darken.myperm.settings.core.GeneralSettings
 import javax.inject.Inject
 
 @Keep

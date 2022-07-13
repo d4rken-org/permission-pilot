@@ -1,4 +1,4 @@
-package eu.darken.myperm.settings
+package eu.darken.myperm.settings.core
 
 import android.content.Context
 import android.content.SharedPreferences

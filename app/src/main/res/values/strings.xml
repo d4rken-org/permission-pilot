@@ -36,4 +36,6 @@
     <string name="discord_description">A place to hang out in and ask questions.</string>
     <string name="issue_tracker_label">Issue tracker</string>
     <string name="issue_tracker_description">A public issue tracker for bug reports and feature requests.</string>
+    <string name="permissions_page_label">Permissions</string>
+    <string name="apps_page_label">Apps</string>
 </resources>

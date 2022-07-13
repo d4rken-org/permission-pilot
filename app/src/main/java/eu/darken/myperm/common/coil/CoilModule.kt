@@ -23,7 +23,10 @@ import javax.inject.Singleton
 class CoilModule {
 
     @Provides
-    fun imageLoader(@ApplicationContext context: Context): ImageLoader = ImageLoader.Builder(context).apply {
+    fun imageLoader(
+        @ApplicationContext context: Context,
+        appIconFetcherFactory: AppIconFetcher.Factory,
+    ): ImageLoader = ImageLoader.Builder(context).apply {
 
         if (BuildConfigWrap.DEBUG) {
             val logger = object : Logger {
@@ -34,7 +37,9 @@ class CoilModule {
             }
             logger(logger)
         }
-
+        components {
+            add(appIconFetcherFactory)
+        }
     }.build()
 
     @Singleton

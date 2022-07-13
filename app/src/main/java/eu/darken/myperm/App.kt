@@ -1,6 +1,8 @@
 package eu.darken.myperm
 
 import android.app.Application
+import coil.Coil
+import coil.ImageLoaderFactory
 import com.getkeepsafe.relinker.ReLinker
 import dagger.hilt.android.HiltAndroidApp
 import eu.darken.myperm.common.debug.autoreport.AutoReporting
@@ -11,6 +13,7 @@ import javax.inject.Inject
 open class App : Application() {
 
     @Inject lateinit var bugReporter: AutoReporting
+    @Inject lateinit var imageLoaderFactory: ImageLoaderFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -24,6 +27,8 @@ open class App : Application() {
             .loadLibrary(this, "bugsnag-plugin-android-anr")
 
         bugReporter.setup()
+
+        Coil.setImageLoader(imageLoaderFactory)
 
         log(TAG) { "onCreate() done! ${Exception().asLog()}" }
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/appsFragment">
+
+    <action
+        android:id="@+id/action_global_appsFragment"
+        app:popUpTo="@id/bottom_navigation"
+        app:destination="@id/appsFragment" />
+    <fragment
+        android:id="@+id/appsFragment"
+        android:name="eu.darken.myperm.apps.ui.AppsFragment"
+        tools:layout="@layout/apps_fragment" />
+
+    <action
+        android:id="@+id/action_global_permissionsFragment"
+        app:popUpTo="@id/bottom_navigation"
+        app:destination="@id/permissionsFragment" />
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="eu.darken.myperm.permissions.ui.PermissionsFragment"
+        tools:layout="@layout/permissions_fragment" />
+</navigation>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="eu.darken.myperm.main.ui.main.MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_settingsContainerFragment"
+            app:destination="@id/settingsContainerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsContainerFragment"
+        android:name="eu.darken.myperm.settings.ui.SettingsFragment"
+        tools:layout="@layout/settings_fragment" />
+
+</navigation>

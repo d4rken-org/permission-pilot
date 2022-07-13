@@ -9,7 +9,7 @@ import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.preferences.Settings
 import eu.darken.myperm.common.uix.PreferenceFragment2
-import eu.darken.myperm.settings.GeneralSettings
+import eu.darken.myperm.settings.core.GeneralSettings
 import javax.inject.Inject
 
 @AndroidEntryPoint

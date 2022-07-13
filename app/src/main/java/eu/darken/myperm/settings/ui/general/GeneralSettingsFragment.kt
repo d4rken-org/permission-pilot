@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.uix.PreferenceFragment2
-import eu.darken.myperm.settings.GeneralSettings
+import eu.darken.myperm.settings.core.GeneralSettings
 import javax.inject.Inject
 
 @Keep

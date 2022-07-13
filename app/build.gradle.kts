@@ -70,8 +70,8 @@ android {
                 abortOnError = true
                 fatal.add("StopShip")
             }
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFiles(*customProguardRules.toList().toTypedArray())
         }
@@ -201,7 +201,7 @@ dependencies {
 
     // UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.5.0-rc01")
+    implementation("com.google.android.material:material:1.6.1")
 
     // Testing
     testImplementation("junit:junit:4.13.2")

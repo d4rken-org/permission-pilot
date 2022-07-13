@@ -6,7 +6,6 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.uix.ViewModel2
-import eu.darken.myperm.main.core.SomeRepo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -16,7 +15,6 @@ import javax.inject.Inject
 class MainActivityVM @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     handle: SavedStateHandle,
-    private val someRepo: SomeRepo
 ) : ViewModel2(dispatcherProvider = dispatcherProvider) {
 
     private val stateFlow = MutableStateFlow(State())
