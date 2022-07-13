@@ -75,20 +75,18 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFiles(*customProguardRules.toList().toTypedArray())
         }
-        applicationVariants.forEach { variant ->
-            if (variant.buildType.name == "debug") {
-                variant.mergedFlavor.resourceConfigurations.clear()
-                variant.mergedFlavor.resourceConfigurations.add("en")
-                variant.mergedFlavor.resourceConfigurations.add("de")
-            } else if (variant.buildType.name != "debug") {
-                variant.outputs.forEach { output ->
-                    output as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+    }
 
-                    output.outputFileName = packageName +
-                            "-v${defaultConfig.versionName}(${defaultConfig.versionCode})" +
-                            "-${variant.buildType.name.toUpperCase()}-${lastCommitHash()}.apk"
-                }
-            }
+    buildOutputs.all {
+        val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+        val variantName: String = variantOutputImpl.name
+
+        if (variantName == "release") {
+            val outputFileName = packageName +
+                    "-v${defaultConfig.versionName}(${defaultConfig.versionCode})" +
+                    "-${variantName.toUpperCase()}-${lastCommitHash()}.apk"
+
+            variantOutputImpl.outputFileName = outputFileName
         }
     }
 
