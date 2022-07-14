@@ -41,6 +41,10 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     }
 
     data class Item(
-        override val app: NormalApp
-    ) : AppDetailsAdapter.Item
+        val app: NormalApp
+    ) : AppDetailsAdapter.Item {
+        override val stableId: Long
+            get() = Item::class.hashCode().toLong()
+    }
+
 }

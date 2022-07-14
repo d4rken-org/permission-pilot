@@ -8,7 +8,7 @@ import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.core.types.NormalPermission
+import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -34,7 +34,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
             val infoItems = mutableListOf<PermissionDetailsAdapter.Item>()
 
             when (perm) {
-                is NormalPermission -> PermissionOverviewVH.Item(
+                is DeclaredPermission -> PermissionOverviewVH.Item(
                     permission = perm
                 ).run { infoItems.add(this) }
             }

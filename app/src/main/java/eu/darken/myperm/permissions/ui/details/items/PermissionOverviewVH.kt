@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
-import eu.darken.myperm.permissions.core.types.NormalPermission
+import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class PermissionOverviewVH(parent: ViewGroup) :
@@ -41,6 +41,6 @@ class PermissionOverviewVH(parent: ViewGroup) :
     }
 
     data class Item(
-        override val permission: NormalPermission
+        override val permission: DeclaredPermission
     ) : PermissionDetailsAdapter.Item
 }

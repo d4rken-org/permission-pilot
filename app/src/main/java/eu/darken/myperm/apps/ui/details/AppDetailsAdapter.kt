@@ -3,8 +3,9 @@ package eu.darken.myperm.apps.ui.details
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
-import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
+import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
+import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.common.lists.differ.AsyncDiffer
 import eu.darken.myperm.common.lists.differ.DifferItem
@@ -27,6 +28,8 @@ class AppDetailsAdapter @Inject constructor() :
     init {
         modules.add(DataBinderMod(data))
         modules.add(TypedVHCreatorMod({ data[it] is AppOverviewVH.Item }) { AppOverviewVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is DeclaredPermissionVH.Item }) { DeclaredPermissionVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is UnknownPermissionVH.Item }) { UnknownPermissionVH(it) })
     }
 
     abstract class BaseVH<Item : AppDetailsAdapter.Item, VB : ViewBinding>(
@@ -34,10 +37,6 @@ class AppDetailsAdapter @Inject constructor() :
         parent: ViewGroup
     ) : ModularAdapter.VH(layoutRes, parent), BindableVH<Item, VB>
 
-    interface Item : DifferItem {
-        val app: BaseApp
-        override val stableId: Long
-            get() = app.id.hashCode().toLong()
-    }
+    interface Item : DifferItem
 
 }

@@ -7,16 +7,16 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.common.coroutine.AppScope
-import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
+import eu.darken.myperm.common.debug.logging.Logging.Priority.*
+import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.core.types.NormalPermission
+import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.core.types.UnknownPermission
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -54,21 +54,60 @@ class PermissionRepo @Inject constructor(
             }
         }
 
-        val mappedPermissions = mutableListOf<BasePermission>()
+        val mappedPermissions = mutableSetOf<BasePermission>()
 
-        mappedPermissions.addAll(permissions.map { it.toNormalPermission(apps) })
+        // All we know from the system
+        permissions
+            .map { it.toDeclaredPermission(apps) }
+            .run { mappedPermissions.addAll(this) }
 
-        mappedPermissions.toSet()
-    }.shareLatest(TAG, appScope)
+        // All that apps have declared themselves
+        apps
+            .map { it.declaredPermissions }
+            .flatten()
+            .map { it.toDeclaredPermission(apps) }
+            .run { mappedPermissions.addAll(this) }
+
+        // All that are specified by apps via `uses-permission`
+        // It's possible that some of these are unused as no other app declares them.
+        apps
+            .map { usesPerms -> usesPerms.requestedPermissions.map { it.id }.toSet() }
+            .flatten()
+            .map { id ->
+                val info = try {
+                    packageManager.getPermissionInfo(id, PackageManager.GET_META_DATA)
+                } catch (e: PackageManager.NameNotFoundException) {
+                    log(TAG, WARN) { "Unknown permission: $id" }
+                    null
+                }
+                when {
+                    info != null -> info.toDeclaredPermission(apps)
+                    else -> id.toUnusedPermission(apps)
+                }
+            }
+            .run { mappedPermissions.addAll(this) }
+
+        mappedPermissions
+    }
+        .catch {
+            log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
+            throw it
+        }
+        .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
 
-    private fun PermissionInfo.toNormalPermission(apps: Collection<BaseApp>): NormalPermission = NormalPermission(
+    private fun PermissionInfo.toDeclaredPermission(apps: Collection<BaseApp>): DeclaredPermission = DeclaredPermission(
         permission = this,
         label = loadLabel(packageManager).toString().replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
         },
         description = (loadDescription(packageManager) ?: nonLocalizedDescription)?.toString(),
         requestingApps = apps.filter { it.requestsPermission(name) }
+    )
+
+    private fun String.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
+        id = this,
+        requestingApps = apps.filter { it.requestsPermission(this) }
     )
 
     companion object {

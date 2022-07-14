@@ -12,7 +12,8 @@ import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.DataBinderMod
 import eu.darken.myperm.common.lists.modular.mods.TypedVHCreatorMod
 import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.ui.list.permissions.NormalPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import javax.inject.Inject
 
 
@@ -26,7 +27,8 @@ class PermissionsAdapter @Inject constructor() :
 
     init {
         modules.add(DataBinderMod(data))
-        modules.add(TypedVHCreatorMod({ data[it] is NormalPermissionVH.Item }) { NormalPermissionVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is DeclaredPermissionVH.Item }) { DeclaredPermissionVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is UnknownPermissionVH.Item }) { UnknownPermissionVH(it) })
     }
 
     abstract class BaseVH<Item : PermissionsAdapter.Item, VB : ViewBinding>(

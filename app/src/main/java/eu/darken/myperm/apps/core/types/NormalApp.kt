@@ -2,11 +2,13 @@ package eu.darken.myperm.apps.core.types
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
+import android.content.pm.PermissionInfo
 
 class NormalApp(
     val packageInfo: PackageInfo,
     val label: String?,
-    val requestedPermissions: Collection<UsesPermission> = emptyList()
+    override val requestedPermissions: Collection<UsesPermission>,
+    override val declaredPermissions: Collection<PermissionInfo>,
 ) : BaseApp() {
 
     val packageName: String

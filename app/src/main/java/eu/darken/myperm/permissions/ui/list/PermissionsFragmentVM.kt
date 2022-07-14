@@ -8,8 +8,10 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.types.NormalPermission
-import eu.darken.myperm.permissions.ui.list.permissions.NormalPermissionVH
+import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -26,7 +28,7 @@ class PermissionsFragmentVM @Inject constructor(
                 .sortedByDescending { it.grantedApps.size }
                 .map { permission ->
                     when (permission) {
-                        is NormalPermission -> NormalPermissionVH.Item(
+                        is DeclaredPermission -> DeclaredPermissionVH.Item(
                             perm = permission,
                             onClickAction = {
                                 log(TAG) { "Navigating to $permission" }
@@ -35,7 +37,12 @@ class PermissionsFragmentVM @Inject constructor(
                                 ).navigate()
                             }
                         )
-                        else -> throw IllegalArgumentException()
+                        is UnknownPermission -> UnknownPermissionVH.Item(
+                            perm = permission,
+                            onClickAction = {
+
+                            }
+                        )
                     }
                 }
         }

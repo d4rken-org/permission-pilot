@@ -15,6 +15,7 @@ import eu.darken.myperm.common.hasApiLevel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.mapLatest
 import java.util.*
 import javax.inject.Inject
@@ -34,13 +35,11 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Set<BaseApp>> = refreshTrigger
-        .mapLatest {
-            val packageInfos = retrievePackageInfo()
+    val apps: Flow<Set<BaseApp>> = refreshTrigger.mapLatest {
+        val packageInfos = retrievePackageInfo()
 //                .filter { it.packageName == "eu.thedarken.sdm" }
-            packageInfos.map { it.toDefaultApp() }.toSet()
-        }
-        .shareLatest(TAG, appScope)
+        packageInfos.map { it.toDefaultApp() }.toSet()
+    }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
     private suspend fun retrievePackageInfo(): Collection<PackageInfo> {
         log(TAG) { "retrievePackageInfo()" }
@@ -66,7 +65,8 @@ class AppRepo @Inject constructor(
         return NormalApp(
             packageInfo = this,
             label = applicationInfo?.loadLabel(packageManager)?.toString(),
-            requestedPermissions = requestedPerms
+            requestedPermissions = requestedPerms,
+            declaredPermissions = permissions?.toSet() ?: emptyList()
         )
     }
 
