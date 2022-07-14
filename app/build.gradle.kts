@@ -48,7 +48,7 @@ android {
     val keyStore = System.getenv("STORE_PATH")?.let { File(it) }
         ?: signProps.getProperty("release.storePath")?.let { File(it) }
 
-    if (keyStore != null) {
+    if (keyStore?.exists() == true) {
         signingConfigs {
             getByName("release") {
                 storeFile = keyStore

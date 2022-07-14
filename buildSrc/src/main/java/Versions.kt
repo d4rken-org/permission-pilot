@@ -9,7 +9,7 @@ object Versions {
     }
 
     object Dagger {
-        const val core = "2.40.5"
+        const val core = "2.42"
     }
 
     object Moshi {
