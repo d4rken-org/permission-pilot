@@ -1,8 +1,9 @@
-package eu.darken.myperm.apps.ui
+package eu.darken.myperm.apps.ui.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.differ.update
@@ -22,6 +23,8 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
     @Inject lateinit var appsAdapter: AppsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
+
         ui.list.setupDefaults(appsAdapter)
 
         vm.listData.observe2(this@AppsFragment, ui) {

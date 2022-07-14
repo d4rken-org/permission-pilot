@@ -7,15 +7,39 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="eu.darken.myperm.main.ui.main.MainFragment">
+        android:name="eu.darken.myperm.main.ui.main.MainFragment"
+        tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_settingsContainerFragment"
             app:destination="@id/settingsContainerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_appDetailsFragment"
+            app:destination="@id/appDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_permissionDetailsFragment"
+            app:destination="@id/permissionDetailsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/settingsContainerFragment"
         android:name="eu.darken.myperm.settings.ui.SettingsFragment"
         tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/appDetailsFragment"
+        android:name="eu.darken.myperm.apps.ui.details.AppDetailsFragment"
+        tools:layout="@layout/apps_details_fragment">
+        <argument
+            android:name="appId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionDetailsFragment"
+        android:name="eu.darken.myperm.permissions.ui.details.PermissionDetailsFragment"
+        tools:layout="@layout/permissions_details_fragment">
+        <argument
+            android:name="permissionId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

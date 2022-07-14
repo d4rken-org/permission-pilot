@@ -194,9 +194,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-process:2.5.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.0")
-    androidTestImplementation("androidx.navigation:navigation-testing:2.5.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.Navigation.core}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.Navigation.core}")
+    androidTestImplementation("androidx.navigation:navigation-testing:${Versions.AndroidX.Navigation.core}")
 
     implementation("androidx.preference:preference-ktx:1.2.0")
 

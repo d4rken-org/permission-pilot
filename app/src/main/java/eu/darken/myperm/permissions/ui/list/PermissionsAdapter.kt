@@ -1,4 +1,4 @@
-package eu.darken.myperm.permissions.ui
+package eu.darken.myperm.permissions.ui.list
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -12,7 +12,7 @@ import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.DataBinderMod
 import eu.darken.myperm.common.lists.modular.mods.TypedVHCreatorMod
 import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.ui.permissions.NormalPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.NormalPermissionVH
 import javax.inject.Inject
 
 

@@ -34,7 +34,7 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val packages: Flow<Set<BaseApp>> = refreshTrigger
+    val apps: Flow<Set<BaseApp>> = refreshTrigger
         .mapLatest {
             val packageInfos = retrievePackageInfo()
 //                .filter { it.packageName == "eu.thedarken.sdm" }

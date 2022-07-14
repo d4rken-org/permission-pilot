@@ -1,8 +1,9 @@
-package eu.darken.myperm.permissions.ui
+package eu.darken.myperm.permissions.ui.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.differ.update
@@ -22,7 +23,7 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
     @Inject lateinit var permissionsAdapter: PermissionsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
         ui.list.setupDefaults(permissionsAdapter)
 
         vm.listData.observe2(this, ui) {

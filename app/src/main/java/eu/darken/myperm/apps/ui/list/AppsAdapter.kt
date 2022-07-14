@@ -1,10 +1,10 @@
-package eu.darken.myperm.apps.ui
+package eu.darken.myperm.apps.ui.list
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.ui.apps.NormalAppVH
+import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.common.lists.differ.AsyncDiffer
 import eu.darken.myperm.common.lists.differ.DifferItem

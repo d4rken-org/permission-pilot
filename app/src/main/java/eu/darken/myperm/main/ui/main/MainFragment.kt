@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.navigation.doNavigate
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
@@ -31,6 +32,7 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                     else -> super.onOptionsItemSelected(it)
                 }
             }
+            subtitle = BuildConfigWrap.VERSION_DESCRIPTION
         }
         val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
         setupWithNavController(ui.bottomNavigation, navController)

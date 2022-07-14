@@ -1,10 +1,10 @@
-package eu.darken.myperm.apps.ui.apps
+package eu.darken.myperm.apps.ui.list.apps
 
 import android.view.ViewGroup
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.types.NormalApp
-import eu.darken.myperm.apps.ui.AppsAdapter
+import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsNormalItemBinding
 

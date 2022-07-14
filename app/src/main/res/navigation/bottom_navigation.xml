@@ -11,7 +11,7 @@
         app:destination="@id/appsFragment" />
     <fragment
         android:id="@+id/appsFragment"
-        android:name="eu.darken.myperm.apps.ui.AppsFragment"
+        android:name="eu.darken.myperm.apps.ui.list.AppsFragment"
         tools:layout="@layout/apps_fragment" />
 
     <action
@@ -20,6 +20,6 @@
         app:destination="@id/permissionsFragment" />
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="eu.darken.myperm.permissions.ui.PermissionsFragment"
+        android:name="eu.darken.myperm.permissions.ui.list.PermissionsFragment"
         tools:layout="@layout/permissions_fragment" />
 </navigation>

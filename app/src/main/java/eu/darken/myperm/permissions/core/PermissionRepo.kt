@@ -37,7 +37,7 @@ class PermissionRepo @Inject constructor(
     }
 
     val permissions: Flow<Set<BasePermission>> = combine(
-        appRepo.packages,
+        appRepo.apps,
         refreshTrigger
     ) { apps, _ ->
         val permissions = mutableSetOf<PermissionInfo>()
@@ -64,7 +64,9 @@ class PermissionRepo @Inject constructor(
 
     private fun PermissionInfo.toNormalPermission(apps: Collection<BaseApp>): NormalPermission = NormalPermission(
         permission = this,
-        label = loadLabel(packageManager).toString(),
+        label = loadLabel(packageManager).toString().replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        },
         description = (loadDescription(packageManager) ?: nonLocalizedDescription)?.toString(),
         requestingApps = apps.filter { it.requestsPermission(name) }
     )

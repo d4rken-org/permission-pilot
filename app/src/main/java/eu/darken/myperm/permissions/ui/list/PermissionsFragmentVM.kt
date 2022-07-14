@@ -1,13 +1,15 @@
-package eu.darken.myperm.permissions.ui
+package eu.darken.myperm.permissions.ui.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.uix.ViewModel3
+import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.types.NormalPermission
-import eu.darken.myperm.permissions.ui.permissions.NormalPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.NormalPermissionVH
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -27,7 +29,10 @@ class PermissionsFragmentVM @Inject constructor(
                         is NormalPermission -> NormalPermissionVH.Item(
                             perm = permission,
                             onClickAction = {
-
+                                log(TAG) { "Navigating to $permission" }
+                                MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
+                                    permissionId = permission.id
+                                ).navigate()
                             }
                         )
                         else -> throw IllegalArgumentException()

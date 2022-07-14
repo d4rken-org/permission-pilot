@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.error.asErrorDialogBuilder
@@ -22,13 +24,18 @@ abstract class Fragment3(@LayoutRes layoutRes: Int?) : Fragment2(layoutRes) {
 
     var onFinishEvent: (() -> Unit)? = null
 
+    var customNavController: NavController? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         vm.navEvents.observe2(ui) {
             log { "navEvents: $it" }
 
-            it?.run { doNavigate(this) } ?: onFinishEvent?.invoke() ?: popBackStack()
+            it
+                ?.run { doNavigate(this, customNavController ?: findNavController()) }
+                ?: onFinishEvent?.invoke()
+                ?: popBackStack()
         }
 
         vm.errorEvents.observe2(ui) {
