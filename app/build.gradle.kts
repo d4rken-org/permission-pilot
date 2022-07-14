@@ -39,16 +39,22 @@ android {
     signingConfigs {
         create("release") {}
     }
-    val signingPropFile = File(System.getProperty("user.home"), ".appconfig/${packageName}/signing.properties")
-    if (signingPropFile.canRead()) {
-        val signingProps = Properties()
-        signingProps.load(FileInputStream(signingPropFile))
+
+    val signProps = Properties().apply {
+        File(System.getProperty("user.home"), ".appconfig/${packageName}/signing.properties")
+            .takeIf { it.canRead() }
+            ?.let { load(FileInputStream(it)) }
+    }
+    val keyStore = System.getenv("STORE_PATH")?.let { File(it) }
+        ?: signProps.getProperty("release.storePath")?.let { File(it) }
+
+    if (keyStore != null) {
         signingConfigs {
             getByName("release") {
-                storeFile = File(signingProps.getProperty("release.storePath"))
-                keyAlias = signingProps.getProperty("release.keyAlias")
-                storePassword = signingProps.getProperty("release.storePassword")
-                keyPassword = signingProps.getProperty("release.keyPassword")
+                storeFile = keyStore
+                storePassword = System.getenv("STORE_PASSWORD") ?: signProps.getProperty("release.storePassword")
+                keyAlias = System.getenv("KEY_ALIAS") ?: signProps.getProperty("release.keyAlias")
+                keyPassword = System.getenv("KEY_PASSWORD") ?: signProps.getProperty("release.keyPassword")
             }
         }
     }
