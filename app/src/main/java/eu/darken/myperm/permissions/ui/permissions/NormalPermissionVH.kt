@@ -7,6 +7,7 @@ import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsNormalItemBinding
 import eu.darken.myperm.permissions.core.types.NormalPermission
 import eu.darken.myperm.permissions.ui.PermissionsAdapter
+import java.util.*
 
 class NormalPermissionVH(parent: ViewGroup) :
     PermissionsAdapter.BaseVH<NormalPermissionVH.Item, PermissionsNormalItemBinding>(
@@ -21,16 +22,16 @@ class NormalPermissionVH(parent: ViewGroup) :
         payloads: List<Any>
     ) -> Unit = { item, _ ->
         val perm = item.perm
-        identifier.text = perm.id
 
-        label.apply {
-            text = perm.label
-            isGone = perm.id == perm.label
+        identifier.apply {
+            text = perm.id
         }
 
-        description.apply {
-            text = perm.description
-            isGone = perm.description.isNullOrEmpty()
+        shortDescription.apply {
+            text = perm.label?.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            }
+            isGone = perm.id == perm.label || perm.label == null
         }
 
         val granted = perm.grantedApps.size

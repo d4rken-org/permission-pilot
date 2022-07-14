@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
+        android:ellipsize="start"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,36 +25,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/label"
+        app:layout_constraintBottom_toTopOf="@+id/short_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/identifier"
         tools:text="Granted to 45 / 90 apps." />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/label"
-        style="@style/TextAppearance.Material3.LabelMedium"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/used_by"
-        tools:text="QUERY_ALL_PACKAGES" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/description"
+        android:id="@+id/short_description"
         style="@style/TextAppearance.Material3.BodySmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
+        android:alpha="0.8"
+        android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/label"
-        tools:text="Allows query of any normal app on the device, regardless of manifest declarations." />
+        app:layout_constraintTop_toBottomOf="@id/used_by"
+        tools:text="See and control calls through the system." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.common.coroutine.AppScope
+import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
@@ -45,6 +46,7 @@ class PermissionRepo @Inject constructor(
 
         groupList.forEach { permissionGroup ->
             val name = permissionGroup?.name
+            log(TAG, VERBOSE) { "Querying permission group $name" }
             try {
                 permissions.addAll(packageManager.queryPermissionsByGroup(name, 0))
             } catch (e: PackageManager.NameNotFoundException) {
