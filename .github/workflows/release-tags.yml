@@ -7,6 +7,7 @@ on:
 
 jobs:
   release:
+    name: Build tagged release
     runs-on: ubuntu-latest
     steps:
       - name: Decode Keystore
@@ -15,7 +16,7 @@ jobs:
         run: |
           TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
           mkdir -p "${TMP_KEYSTORE_FILE_PATH}"
-          KEYSTORE_PATH="${TMP_KEYSTORE_FILE_PATH}"/keystore_myperm.jks
+          KEYSTORE_PATH="${TMP_KEYSTORE_FILE_PATH}"/keystore.jks
           echo $ENCODED_STRING | base64 -di > "${KEYSTORE_PATH}"
           echo "STORE_PATH=$(echo $KEYSTORE_PATH)" >> $GITHUB_ENV
 
