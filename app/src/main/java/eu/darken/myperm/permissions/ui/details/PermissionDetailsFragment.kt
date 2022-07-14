@@ -5,9 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.lists.differ.update
+import eu.darken.myperm.common.lists.setupDefaults
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.PermissionsDetailsFragmentBinding
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragment) {
@@ -15,11 +18,16 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
     override val vm: PermissionDetailsFragmentVM by viewModels()
     override val ui: PermissionsDetailsFragmentBinding by viewBinding()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        vm.details.observe2(ui) { details ->
+    @Inject lateinit var detailsAdapter: PermissionDetailsAdapter
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        ui.list.setupDefaults(detailsAdapter)
+
+        vm.details.observe2(ui) { details ->
             toolbar.title = details.label
             toolbar.subtitle = details.perm.id
+
+            detailsAdapter.update(details.items)
         }
         super.onViewCreated(view, savedInstanceState)
     }

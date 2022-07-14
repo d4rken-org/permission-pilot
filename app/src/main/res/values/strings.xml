@@ -38,4 +38,6 @@
     <string name="issue_tracker_description">A public issue tracker for bug reports and feature requests.</string>
     <string name="permissions_page_label">Permissions</string>
     <string name="apps_page_label">Apps</string>
+    <string name="app_type_system_label">System App</string>
+    <string name="permission_type_aosp_label">AOSP</string>
 </resources>

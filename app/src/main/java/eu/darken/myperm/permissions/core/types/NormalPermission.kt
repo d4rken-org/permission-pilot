@@ -16,4 +16,7 @@ class NormalPermission(
 
     override val id: String
         get() = permission.name
+
+    val isAospPermission: Boolean
+        get() = true
 }
