@@ -3,61 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="16dp"
         android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@id/label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/package_name"
-        app:layout_constraintBottom_toBottomOf="@id/label" />
+        app:layout_constraintTop_toTopOf="@id/identifier" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/package_name"
+        android:id="@+id/identifier"
         style="@style/TextAppearance.Material3.LabelSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@id/label"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/label"
+        app:layout_constraintEnd_toStartOf="@id/status_icon"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="eu.darken.myperm" />
+        tools:text="some.package.name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label"
-        style="@style/TextAppearance.Material3.LabelLarge"
+        style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        app:layout_constraintBottom_toTopOf="@id/permission_info"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintEnd_toStartOf="@id/status_icon"
         app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/package_name"
-        tools:text="Mystic Permissions" />
+        app:layout_constraintTop_toBottomOf="@id/identifier"
+        tools:text="Some App Name" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/permission_info"
+        android:id="@+id/description"
         style="@style/TextAppearance.Material3.BodySmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/permissions_app_type_declaring_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/label"
-        tools:text="Has 99 Permissions" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/label" />
+
+    <ImageView
+        android:id="@+id/status_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_baseline_source_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

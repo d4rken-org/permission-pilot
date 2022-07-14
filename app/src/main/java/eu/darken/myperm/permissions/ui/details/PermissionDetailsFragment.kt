@@ -25,7 +25,7 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
 
         vm.details.observe2(ui) { details ->
             toolbar.title = details.label
-            toolbar.subtitle = details.perm.id
+            toolbar.subtitle = details.perm.id.value
 
             detailsAdapter.update(details.items)
         }

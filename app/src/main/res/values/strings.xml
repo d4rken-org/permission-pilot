@@ -42,4 +42,6 @@
     <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Unknown permission. It is requested by this app, but no other app declares it.</string>
     <string name="permissions_unknown_description">Unknown permission. It is requested by apps, but not declared anywhere, so it is unused.</string>
+    <string name="permissions_app_type_declaring_description">Permission is created by this app.</string>
+    <string name="permissions_app_type_requesting_description">App requests the permission.</string>
 </resources>

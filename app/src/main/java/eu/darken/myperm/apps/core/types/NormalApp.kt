@@ -3,9 +3,10 @@ package eu.darken.myperm.apps.core.types
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
+import eu.darken.myperm.permissions.core.PermissionId
 
 class NormalApp(
-    val packageInfo: PackageInfo,
+    override val packageInfo: PackageInfo,
     val label: String?,
     override val requestedPermissions: Collection<UsesPermission>,
     override val declaredPermissions: Collection<PermissionInfo>,
@@ -23,7 +24,11 @@ class NormalApp(
     override val id: String
         get() = packageInfo.packageName
 
-    override fun requestsPermission(id: String): Boolean = requestedPermissions.any { it.id == id }
+    override fun requestsPermission(id: PermissionId): Boolean = requestedPermissions.any { it.id == id }
+
+    override fun declaresPermission(id: PermissionId): Boolean {
+        return declaredPermissions.any { it.name == id.value }
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

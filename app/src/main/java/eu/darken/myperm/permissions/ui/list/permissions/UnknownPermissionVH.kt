@@ -22,7 +22,7 @@ class UnknownPermissionVH(parent: ViewGroup) :
         val perm = item.perm
 
         identifier.apply {
-            text = perm.id
+            text = perm.id.value
         }
 
         val total = perm.requestingApps.size

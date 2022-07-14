@@ -8,7 +8,8 @@ import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.ui.details.items.AppDeclaringPermissionVH
+import eu.darken.myperm.permissions.ui.details.items.AppRequestingPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -33,15 +34,29 @@ class PermissionDetailsFragmentVM @Inject constructor(
         .map { perm ->
             val infoItems = mutableListOf<PermissionDetailsAdapter.Item>()
 
-            when (perm) {
-                is DeclaredPermission -> PermissionOverviewVH.Item(
-                    permission = perm
-                ).run { infoItems.add(this) }
-            }
+            PermissionOverviewVH.Item(
+                permission = perm
+            ).run { infoItems.add(this) }
+
+
+            perm.declaringApps.map { app ->
+                AppDeclaringPermissionVH.Item(
+                    permission = perm,
+                    app = app,
+                )
+
+            }.run { infoItems.addAll(this) }
+
+            perm.requestingApps.map { app ->
+                AppRequestingPermissionVH.Item(
+                    permission = perm,
+                    app = app,
+                )
+            }.run { infoItems.addAll(this) }
 
             Details(
                 perm = perm,
-                label = perm.label ?: perm.id,
+                label = perm.label ?: perm.id.value,
                 items = infoItems,
             )
         }

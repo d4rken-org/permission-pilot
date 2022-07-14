@@ -3,6 +3,7 @@ package eu.darken.myperm.permissions.core.types
 import android.content.pm.PermissionInfo
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.requestsPermission
+import eu.darken.myperm.permissions.core.PermissionId
 
 class DeclaredPermission(
     val permission: PermissionInfo,
@@ -15,8 +16,8 @@ class DeclaredPermission(
     override val grantedApps: Collection<BaseApp>
         get() = requestingApps.filter { it.requestsPermission(this) }
 
-    override val id: String
-        get() = permission.name
+    override val id: PermissionId
+        get() = PermissionId(permission.name)
 
     override val isAospPermission: Boolean
         get() = true

@@ -39,7 +39,7 @@
         tools:layout="@layout/permissions_details_fragment">
         <argument
             android:name="permissionId"
-            app:argType="string" />
+            app:argType="eu.darken.myperm.permissions.core.PermissionId" />
     </fragment>
 
 </navigation>

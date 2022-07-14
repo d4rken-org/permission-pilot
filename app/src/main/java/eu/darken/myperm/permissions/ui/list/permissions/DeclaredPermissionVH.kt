@@ -2,6 +2,7 @@ package eu.darken.myperm.permissions.ui.list.permissions
 
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDeclaredItemBinding
@@ -22,8 +23,10 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val perm = item.perm
 
+        icon.load(perm.id)
+
         identifier.apply {
-            text = perm.id
+            text = perm.id.value
         }
 
         val granted = perm.grantedApps.size
@@ -33,7 +36,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
 
         shortDescription.apply {
             text = perm.label
-            isGone = perm.id.lowercase() == perm.label?.lowercase() || perm.label == null
+            isGone = perm.id.value.lowercase() == perm.label?.lowercase() || perm.label == null
         }
 
         itemView.setOnClickListener { item.onClickAction(item) }

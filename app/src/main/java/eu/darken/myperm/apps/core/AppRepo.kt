@@ -12,6 +12,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
+import eu.darken.myperm.permissions.core.PermissionId
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,7 +59,7 @@ class AppRepo @Inject constructor(
             val flags = requestedPermissionsFlags[index]
 
             BaseApp.UsesPermission(
-                id = permissionId,
+                id = PermissionId(permissionId),
                 flags = flags,
             )
         } ?: emptyList()

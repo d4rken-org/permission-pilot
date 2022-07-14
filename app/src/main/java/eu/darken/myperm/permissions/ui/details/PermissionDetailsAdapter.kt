@@ -12,6 +12,8 @@ import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.DataBinderMod
 import eu.darken.myperm.common.lists.modular.mods.TypedVHCreatorMod
 import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.ui.details.items.AppDeclaringPermissionVH
+import eu.darken.myperm.permissions.ui.details.items.AppRequestingPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH
 import javax.inject.Inject
 
@@ -27,6 +29,8 @@ class PermissionDetailsAdapter @Inject constructor() :
     init {
         modules.add(DataBinderMod(data))
         modules.add(TypedVHCreatorMod({ data[it] is PermissionOverviewVH.Item }) { PermissionOverviewVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is AppDeclaringPermissionVH.Item }) { AppDeclaringPermissionVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is AppRequestingPermissionVH.Item }) { AppRequestingPermissionVH(it) })
     }
 
     abstract class BaseVH<Item : PermissionDetailsAdapter.Item, VB : ViewBinding>(
@@ -36,8 +40,6 @@ class PermissionDetailsAdapter @Inject constructor() :
 
     interface Item : DifferItem {
         val permission: BasePermission
-        override val stableId: Long
-            get() = permission.id.hashCode().toLong()
     }
 
 }

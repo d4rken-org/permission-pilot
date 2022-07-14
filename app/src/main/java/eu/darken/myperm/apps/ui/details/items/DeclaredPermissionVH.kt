@@ -26,7 +26,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val permission = item.permission
 
-        identifier.text = permission.id
+        identifier.text = permission.id.value
         label.apply {
             text = permission.label
             isGone = permission.label.isNullOrEmpty()
@@ -35,6 +35,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         statusIcon.apply {
             val (iconRes, tintRes) = when (item.appPermission.status) {
                 PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
+                PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
                 PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_n1
             }
             setImageResource(iconRes)

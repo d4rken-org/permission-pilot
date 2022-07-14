@@ -7,7 +7,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.common.coroutine.AppScope
-import eu.darken.myperm.common.debug.logging.Logging.Priority.*
+import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -75,9 +76,8 @@ class PermissionRepo @Inject constructor(
             .flatten()
             .map { id ->
                 val info = try {
-                    packageManager.getPermissionInfo(id, PackageManager.GET_META_DATA)
+                    packageManager.getPermissionInfo(id.value, PackageManager.GET_META_DATA)
                 } catch (e: PackageManager.NameNotFoundException) {
-                    log(TAG, WARN) { "Unknown permission: $id" }
                     null
                 }
                 when {
@@ -95,17 +95,17 @@ class PermissionRepo @Inject constructor(
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-
     private fun PermissionInfo.toDeclaredPermission(apps: Collection<BaseApp>): DeclaredPermission = DeclaredPermission(
         permission = this,
         label = loadLabel(packageManager).toString().replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
         },
         description = (loadDescription(packageManager) ?: nonLocalizedDescription)?.toString(),
-        requestingApps = apps.filter { it.requestsPermission(name) }
+        requestingApps = apps.filter { it.requestsPermission(id) },
+        declaringApps = apps.filter { it.declaresPermission(id) }
     )
 
-    private fun String.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
+    private fun PermissionId.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
         id = this,
         requestingApps = apps.filter { it.requestsPermission(this) }
     )
