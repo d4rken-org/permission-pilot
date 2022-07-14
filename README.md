@@ -14,7 +14,7 @@ Born out of a feature discussion for SD Maid. [Origin Story](https://github.com/
 
 ## Downloads
 
-* [Download GitHub](https://github.com/d4rken/bluemusic/releases/latest)
+* [Download GitHub](https://github.com/d4rken/mystic-permissions/releases)
 
 ## Community
 Want to chat? Join our [discord server here](https://discord.gg/7gGWxfM5yv).
