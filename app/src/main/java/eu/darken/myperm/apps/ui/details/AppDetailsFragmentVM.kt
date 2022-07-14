@@ -54,11 +54,21 @@ class AppDetailsFragmentVM @Inject constructor(
                 val permItem: AppDetailsAdapter.Item = when (permission) {
                     is DeclaredPermission -> DeclaredPermissionVH.Item(
                         appPermission = appPermission,
-                        permission = permission
+                        permission = permission,
+                        onItemClicked = {
+                            AppDetailsFragmentDirections
+                                .actionAppDetailsFragmentToPermissionDetailsFragment(it.permission.id)
+                                .navigate()
+                        }
                     )
                     is UnknownPermission -> UnknownPermissionVH.Item(
                         appPermission = appPermission,
-                        permission = permission
+                        permission = permission,
+                        onItemClicked = {
+                            AppDetailsFragmentDirections
+                                .actionAppDetailsFragmentToPermissionDetailsFragment(it.permission.id)
+                                .navigate()
+                        }
                     )
                 }
                 infoItems.add(permItem)

@@ -43,6 +43,11 @@ class PermissionDetailsFragmentVM @Inject constructor(
                 AppDeclaringPermissionVH.Item(
                     permission = perm,
                     app = app,
+                    onItemClicked = {
+                        PermissionDetailsFragmentDirections
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id)
+                            .navigate()
+                    }
                 )
 
             }.run { infoItems.addAll(this) }
@@ -51,6 +56,11 @@ class PermissionDetailsFragmentVM @Inject constructor(
                 AppRequestingPermissionVH.Item(
                     permission = perm,
                     app = app,
+                    onItemClicked = {
+                        PermissionDetailsFragmentDirections
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id)
+                            .navigate()
+                    }
                 )
             }.run { infoItems.addAll(this) }
 

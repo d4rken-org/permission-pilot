@@ -41,11 +41,14 @@ class UnknownPermissionVH(parent: ViewGroup) :
             setImageResource(iconRes)
             imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))
         }
+
+        root.setOnClickListener { item.onItemClicked(item) }
     }
 
     data class Item(
         val appPermission: BaseApp.UsesPermission,
         val permission: UnknownPermission,
+        val onItemClicked: (Item) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

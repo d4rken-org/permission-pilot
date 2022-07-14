@@ -31,11 +31,14 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
         }
 
         icon.load(item.app.packageInfo)
+
+        root.setOnClickListener { item.onItemClicked(item) }
     }
 
     data class Item(
         override val permission: BasePermission,
         val app: BaseApp,
+        val onItemClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long
             get() = app.id.hashCode().toLong()

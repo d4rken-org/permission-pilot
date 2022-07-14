@@ -3,6 +3,8 @@ package eu.darken.myperm.permissions.ui.details
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.differ.update
@@ -22,6 +24,7 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         ui.list.setupDefaults(detailsAdapter)
+        ui.toolbar.setupWithNavController(findNavController())
 
         vm.details.observe2(ui) { details ->
             toolbar.title = details.label

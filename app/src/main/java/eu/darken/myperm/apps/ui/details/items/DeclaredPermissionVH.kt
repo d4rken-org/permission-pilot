@@ -42,20 +42,13 @@ class DeclaredPermissionVH(parent: ViewGroup) :
             imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))
         }
 
-//
-//        description.apply {
-//            val countTotal = app.requestedPermissions.size
-//            val grantedCount = app.requestedPermissions.count { it.isGranted }
-//            text = "$grantedCount of $countTotal permissions granted."
-//        }
-//
-//        tagSystem.isInvisible = !app.isSystemApp
-//        tagContainer.isGone = tagContainer.children.all { !it.isVisible }
+        root.setOnClickListener { item.onItemClicked(item) }
     }
 
     data class Item(
         val appPermission: BaseApp.UsesPermission,
         val permission: DeclaredPermission,
+        val onItemClicked: (Item) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

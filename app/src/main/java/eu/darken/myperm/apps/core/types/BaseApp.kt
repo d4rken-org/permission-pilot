@@ -17,6 +17,7 @@ sealed class BaseApp {
     abstract val declaredPermissions: Collection<PermissionInfo>
     abstract fun declaresPermission(id: PermissionId): Boolean
 
+    abstract fun getPermissionStatus(id: PermissionId): UsesPermission.PermissionStatus?
 
     data class UsesPermission(
         val id: PermissionId,

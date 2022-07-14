@@ -26,8 +26,10 @@ class NormalApp(
 
     override fun requestsPermission(id: PermissionId): Boolean = requestedPermissions.any { it.id == id }
 
-    override fun declaresPermission(id: PermissionId): Boolean {
-        return declaredPermissions.any { it.name == id.value }
+    override fun declaresPermission(id: PermissionId): Boolean = declaredPermissions.any { it.name == id.value }
+
+    override fun getPermissionStatus(id: PermissionId): UsesPermission.PermissionStatus? {
+        return requestedPermissions.singleOrNull { it.id == id }?.status
     }
 
     override fun equals(other: Any?): Boolean {
