@@ -26,5 +26,5 @@
   "sort": "ASC",
   "template": "${{CHANGELOG}}",
   "pr_template": "- ${{TITLE}} #${{NUMBER}}",
-  "empty_template": "Improvements and bugfixes ¯\\_(ツ)_/¯"
+  "empty_template": "Improvements and bugfixes ¯\\\\_(ツ)_/¯"
 }
