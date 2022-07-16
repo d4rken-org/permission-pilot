@@ -96,7 +96,7 @@ class PermissionRepo @Inject constructor(
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
     private fun PermissionInfo.toDeclaredPermission(apps: Collection<BaseApp>): DeclaredPermission = DeclaredPermission(
-        permission = this,
+        permissionInfo = this,
         label = loadLabel(packageManager).toString().replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
         },

@@ -11,6 +11,7 @@ import eu.darken.myperm.apps.core.AndroidPkgs
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class PermissionOverviewVH(parent: ViewGroup) :
@@ -42,6 +43,16 @@ class PermissionOverviewVH(parent: ViewGroup) :
             isGone = perm.description.isNullOrEmpty()
         }
 
+        protectionLabel.isGone = perm !is DeclaredPermission
+        protectionInfo.apply {
+            isGone = perm !is DeclaredPermission
+            if (perm is DeclaredPermission) {
+                text = getString(perm.protectionType.labelRes)
+                if (perm.protectionFlags.isNotEmpty()) {
+                    append(" (${perm.protectionFlags.joinToString(", ")})")
+                }
+            }
+        }
         tagAosp.isInvisible = perm.declaringPkgs.any { it.id == AndroidPkgs.ANDROID.id }
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }

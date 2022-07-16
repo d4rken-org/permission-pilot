@@ -75,6 +75,13 @@
     <string name="permissions_sort_apps_requested_label"># of apps requested</string>
     <string name="permissions_search_list_hint">Search permissions</string>
     <string name="apps_search_list_hint">Search apps</string>
+    <string name="permissions_details_protection_label">Protection level</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
+    <string name="permissions_protection_type_dangerous_label">Dangerous</string>
+    <string name="permissions_protection_type_signature_label">Signature</string>
+    <string name="permissions_protection_type_signatureorsystem_label">Signature or system</string>
+    <string name="permissions_protection_type_internal_label">Internal</string>
+    <string name="permissions_protection_type_unknown_label">Unknown</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>

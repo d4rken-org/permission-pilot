@@ -47,14 +47,35 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/description"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/identifier"
+            tools:text="@tools:sample/lorem" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/protection_label"
             style="@style/TextAppearance.Material3.LabelSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/tag_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/identifier"
+            android:text="@string/permissions_details_protection_label"
+            app:layout_constraintTop_toBottomOf="@id/description" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/protection_info"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/protection_label"
             tools:text="@tools:sample/lorem" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -66,7 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description">
+            app:layout_constraintTop_toBottomOf="@id/protection_info">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_aosp"
