@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DetailsCardItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shareduserid_label"
+            style="@style/TextAppearance.Material3.LabelSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/apps_details_shareduserid_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/shareduserid_info"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shareduserid_label"
+            tools:text="Google Play Store (com.android.vending)" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/siblings_label"
+            style="@style/TextAppearance.Material3.LabelSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/apps_details_siblings_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shareduserid_info" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/siblings_info"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/siblings_label"
+            tools:text="Google Play Store (com.android.vending)" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

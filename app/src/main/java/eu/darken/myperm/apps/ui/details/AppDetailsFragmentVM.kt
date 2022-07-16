@@ -7,6 +7,7 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
+import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
 import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -43,9 +44,12 @@ class AppDetailsFragmentVM @Inject constructor(
             val permissions = permissionRepo.permissions.first()
 
             when (app) {
-                is NormalApp -> AppOverviewVH.Item(
-                    app = app
-                ).run { infoItems.add(this) }
+                is NormalApp -> {
+                    infoItems.add(AppOverviewVH.Item(app))
+                    if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
+                        infoItems.add(AppSiblingsVH.Item(app))
+                    }
+                }
             }
 
             app.requestedPermissions.forEach { appPermission ->

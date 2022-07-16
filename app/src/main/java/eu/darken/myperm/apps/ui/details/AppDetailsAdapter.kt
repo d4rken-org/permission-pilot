@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
+import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
 import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
 import eu.darken.myperm.common.lists.BindableVH
@@ -28,6 +29,7 @@ class AppDetailsAdapter @Inject constructor() :
     init {
         modules.add(DataBinderMod(data))
         modules.add(TypedVHCreatorMod({ data[it] is AppOverviewVH.Item }) { AppOverviewVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is AppSiblingsVH.Item }) { AppSiblingsVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is DeclaredPermissionVH.Item }) { DeclaredPermissionVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is UnknownPermissionVH.Item }) { UnknownPermissionVH(it) })
     }
