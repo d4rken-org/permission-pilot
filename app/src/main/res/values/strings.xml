@@ -88,7 +88,7 @@
     <string name="generic_loading_label_2">Downloading more RAM</string>
     <string name="generic_loading_label_3">Still faster than an iPhone</string>
     <string name="generic_loading_label_4">What\'s that behind you?</string>
-    <string name="generic_loading_label_5">CPU is on coffee break</string>
+    <string name="generic_loading_label_5">The CPU is on coffee break</string>
     <string name="apps_app_details_label">App details</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>

@@ -20,7 +20,7 @@ class LoadingBoxView @JvmOverloads constructor(
 
     override fun onFinishInflate() {
         ui.loadingText.text = context.getString(
-            when ((0..4).random()) {
+            when ((0..5).random()) {
                 0 -> R.string.generic_loading_label_0
                 1 -> R.string.generic_loading_label_1
                 2 -> R.string.generic_loading_label_2
