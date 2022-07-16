@@ -5,7 +5,6 @@ import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.InternetAccess
@@ -59,41 +58,44 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         itemView.setOnClickListener { item.onClickAction(item) }
 
+        tagBluetooth.setupAll(
+            app,
+            AndroidPermissions.BLUETOOTH_ADMIN,
+            AndroidPermissions.BLUETOOTH,
+            AndroidPermissions.BLUETOOTH_CONNECT,
+        )
+
         tagInternet.apply {
             when (app.internetAccess) {
                 InternetAccess.DIRECT -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_4_bar_24)
-                    tintIt(defaultTagColor)
+                    tintIt(getColor(R.color.status_positive_1))
                 }
                 InternetAccess.INDIRECT -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_statusbar_connected_no_internet_4_24)
-                    tintIt(getColor(R.color.status_positive_1))
+                    tintIt(getColor(R.color.status_negative_1))
                 }
                 InternetAccess.NONE -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_connected_no_internet_4_24)
-                    tintIt(getColor(R.color.status_positive_2))
+                    tintIt(defaultTagColor)
                 }
             }
             setUpInfoSnackbar(AndroidPermissions.INTERNET)
-            isVisible = true
+            isInvisible = app.internetAccess == InternetAccess.NONE
         }
 
-        tagBoot.setupAll(app, AndroidPermissions.BOOT_COMPLETED)
-
-        tagStorage.apply {
-            val writeStorage = app.getPermission(AndroidPermissions.WRITE_EXTERNAL_STORAGE.id)
-            val readStorage = app.getPermission(AndroidPermissions.READ_EXTERNAL_STORAGE.id)
-            isInvisible = writeStorage == null && readStorage == null
-            when {
-                writeStorage?.isGranted == true -> tintIt(getColor(R.color.status_negative_1))
-                readStorage?.isGranted == true -> tintIt(defaultTagColor)
-            }
-            setUpInfoSnackbar(AndroidPermissions.WRITE_EXTERNAL_STORAGE)
-        }
+        tagStorage.setupAll(app, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
 
         tagWakelock.setupAll(app, AndroidPermissions.WAKE_LOCK)
-
         tagVibrate.setupAll(app, AndroidPermissions.VIBRATE)
+        tagCamera.setupAll(app, AndroidPermissions.CAMERA)
+        tagMicrophone.setupAll(app, AndroidPermissions.RECORD_AUDIO)
+        tagContacts.setupAll(app, AndroidPermissions.CONTACTS)
+
+        tagLocation.setupAll(app, AndroidPermissions.LOCATION_FINE, AndroidPermissions.LOCATION_COARSE)
+
+        tagSms.setupAll(app, AndroidPermissions.SMS_READ, AndroidPermissions.SMS_RECEIVE, AndroidPermissions.SMS_SEND)
+        tagPhone.setupAll(app, AndroidPermissions.PHONE_CALL, AndroidPermissions.PHONE_STATE)
     }
 
     private fun ImageView.tintIt(@ColorInt color: Int) {
@@ -102,16 +104,18 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
     private fun ImageView.setupAll(
         app: BaseApp,
-        permission: Permission,
-        @ColorInt colorGranted: Int = defaultTagColor,
-        @ColorInt colorDenied: Int = ContextCompat.getColor(context, R.color.status_positive_1),
+        vararg permissions: Permission,
+        @ColorInt colorGranted: Int = ContextCompat.getColor(context, R.color.status_positive_1),
+        @ColorInt colorDenied: Int = ContextCompat.getColor(context, R.color.status_negative_1),
     ) {
-        isInvisible = when (app.getPermission(permission.id)?.isGranted) {
+        val perms = permissions.map { app.getPermission(it.id) }
+        val grantedPerm = perms.firstOrNull { it?.isGranted == true }
+        isInvisible = when (grantedPerm?.isGranted) {
             true -> tintIt(colorGranted).let { false }
             false -> tintIt(colorDenied).let { false }
             null -> true
         }
-        setUpInfoSnackbar(permission)
+        grantedPerm?.let { setUpInfoSnackbar(it) }
     }
 
     private fun ImageView.setUpInfoSnackbar(permission: Permission) {

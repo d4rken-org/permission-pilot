@@ -217,6 +217,8 @@ dependencies {
 //    implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
 //    testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
 
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
+
     // UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.6.1")

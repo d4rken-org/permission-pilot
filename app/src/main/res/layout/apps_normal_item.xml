@@ -62,62 +62,84 @@
         tools:text="Has 99 Permissions" />
 
 
-    <LinearLayout
+    <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/tag_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/permission_info">
 
         <ImageView
-            android:id="@+id/tag_internet"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginEnd="4dp"
-            android:src="@drawable/ic_baseline_signal_wifi_4_bar_24"
-            android:visibility="invisible"
+            android:id="@+id/tag_bluetooth"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_bluetooth_24"
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/tag_boot"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginHorizontal="4dp"
-            android:src="@drawable/ic_baseline_start_24"
-            android:visibility="invisible"
+            android:id="@+id/tag_internet"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_signal_wifi_4_bar_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_storage"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginHorizontal="4dp"
+            style="@style/AppTagStyle"
             android:src="@drawable/ic_baseline_sd_storage_24"
-            android:visibility="invisible"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_wakelock"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginHorizontal="4dp"
+            style="@style/AppTagStyle"
             android:src="@drawable/ic_baseline_coffee_24"
-            android:visibility="invisible"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_vibrate"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginHorizontal="4dp"
+            style="@style/AppTagStyle"
             android:src="@drawable/ic_baseline_vibration_24"
-            android:visibility="invisible"
             tools:visibility="visible" />
-    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/tag_camera"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_photo_camera_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_microphone"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_mic_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_contacts"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_contacts_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_location"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_location_on_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_sms"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_sms_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_phone"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_local_phone_24"
+            tools:visibility="visible" />
+    </com.google.android.flexbox.FlexboxLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
