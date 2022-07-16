@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/permission_info"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/package_name" />
+        app:layout_constraintTop_toTopOf="@id/package_name"
+        app:layout_constraintBottom_toBottomOf="@id/label" />
 
     <ImageView
         android:id="@+id/installer_source"
