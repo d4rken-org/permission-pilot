@@ -66,7 +66,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
 
             Details(
                 perm = perm,
-                label = perm.label ?: perm.id.value,
+                label = perm.id.value.split(".").lastOrNull() ?: perm.id.value,
                 items = infoItems,
             )
         }

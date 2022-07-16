@@ -27,8 +27,7 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
         ui.toolbar.setupWithNavController(findNavController())
 
         vm.details.observe2(ui) { details ->
-            toolbar.title = details.label
-            toolbar.subtitle = details.perm.id.value
+            toolbar.subtitle = details.label
 
             detailsAdapter.update(details.items)
         }

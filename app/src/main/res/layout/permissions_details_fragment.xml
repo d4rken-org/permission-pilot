@@ -13,8 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:title="Some permission"
-        tools:subtitle="android.permission.PERMISSIOn" />
+        app:title="@string/permissions_permission_details_label"
+        tools:subtitle="android.permission.PERMISSION" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
