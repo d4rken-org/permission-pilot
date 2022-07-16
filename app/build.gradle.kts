@@ -186,7 +186,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.0.0-rc02")
 
     // Debugging
-    implementation("com.bugsnag:bugsnag-android:5.9.2")
+    "gplayImplementation"("com.bugsnag:bugsnag-android:5.9.2")
     implementation("com.getkeepsafe.relinker:relinker:1.4.3")
 
     "gplayImplementation"("com.android.billingclient:billing:4.0.0")
@@ -214,8 +214,8 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
 
-    implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
-    testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
+//    implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
+//    testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
 
     // UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

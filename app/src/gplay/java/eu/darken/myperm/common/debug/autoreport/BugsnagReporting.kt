@@ -1,9 +1,12 @@
 package eu.darken.myperm.common.debug.autoreport
 
+import android.app.Application
 import android.content.Context
 import com.bugsnag.android.Bugsnag
 import com.bugsnag.android.Configuration
+import com.getkeepsafe.relinker.ReLinker
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.App
 import eu.darken.myperm.common.InstallId
 import eu.darken.myperm.common.debug.Bugs
 import eu.darken.myperm.common.debug.autoreport.bugsnag.BugsnagErrorHandler
@@ -18,16 +21,20 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-class AutoReporting @Inject constructor(
+class BugsnagReporting @Inject constructor(
     @ApplicationContext private val context: Context,
     private val bugReportSettings: DebugSettings,
     private val installId: InstallId,
     private val bugsnagLogger: Provider<BugsnagLogger>,
     private val bugsnagErrorHandler: Provider<BugsnagErrorHandler>,
     private val nopBugsnagErrorHandler: Provider<NOPBugsnagErrorHandler>,
-) {
+) : AutomaticBugReporter {
 
-    fun setup() {
+    override fun setup(application: Application) {
+        ReLinker
+            .log { message -> log(App.TAG) { "ReLinker: $message" } }
+            .loadLibrary(application, "bugsnag-plugin-android-anr")
+
         val isEnabled = bugReportSettings.isAutoReportingEnabled.value
         log(TAG) { "setup(): isEnabled=$isEnabled" }
 
@@ -47,10 +54,14 @@ class AutoReporting @Inject constructor(
             }
 
             Bugsnag.start(context, bugsnagConfig)
-            Bugs.ready = true
+            Bugs.reporter = this
         } catch (e: IllegalStateException) {
             log(TAG, WARN) { "Bugsnag API Key not configured." }
         }
+    }
+
+    override fun notify(throwable: Throwable) {
+        Bugsnag.notify(throwable)
     }
 
     companion object {
