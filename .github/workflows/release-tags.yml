@@ -40,7 +40,7 @@ jobs:
           java-version: 11
 
       - name: Build project
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleFossRelease
         env:
           VERSION: ${{ github.ref }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
