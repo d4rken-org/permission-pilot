@@ -14,7 +14,7 @@ class UnknownPermission(
     override val grantedApps: Collection<BaseApp> by lazy {
         requestingApps
             .filter { it.requestsPermission(this) }
-            .filter { it.getPermissionStatus(id) != BaseApp.UsesPermission.PermissionStatus.DENIED }
+            .filter { it.getPermission(id)?.isGranted == true }
     }
 
     override val declaringApps: Collection<BaseApp>

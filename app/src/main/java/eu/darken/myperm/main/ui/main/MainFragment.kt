@@ -63,14 +63,14 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
         }
 
         vm.state.observe2(ui) { state ->
-            bottomNavigation.getOrCreateBadge(R.id.page_apps).apply {
-                isVisible = true
-                number = state.appCount
-            }
-            bottomNavigation.getOrCreateBadge(R.id.page_permissions).apply {
-                isVisible = true
-                number = state.permissionCount
-            }
+//            bottomNavigation.getOrCreateBadge(R.id.page_apps).apply {
+//                isVisible = true
+//                number = state.appCount
+//            }
+//            bottomNavigation.getOrCreateBadge(R.id.page_permissions).apply {
+//                isVisible = true
+//                number = state.permissionCount
+//            }
         }
 
         vm.upgradeInfo.observe2(ui) { info ->

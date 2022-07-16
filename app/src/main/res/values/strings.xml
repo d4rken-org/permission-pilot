@@ -50,4 +50,24 @@
     <string name="permissions_app_type_requesting_description">App requests the permission.</string>
     <string name="upgrade_myperm_label">Upgrade Mystic Permissions</string>
     <string name="upgrade_myperm_description">Feel good and support development.</string>
+    <string name="search_list_hint">Search list</string>
+    <string name="general_filter_action">Filter</string>
+    <string name="general_cancel_action">Cancel</string>
+    <string name="apps_filter_userapps_label">Is user app</string>
+    <string name="apps_filter_systemapps_label">Is system app</string>
+    <string name="apps_sort_permissions_granted_label">Granted permissions</string>
+    <string name="apps_sort_permissions_requested_label">Requested permissions</string>
+    <string name="apps_sort_permissions_declared_label">Declared permissions</string>
+    <string name="apps_sort_app_name_label">App name</string>
+    <string name="apps_sort_install_date_label">Install date</string>
+    <string name="apps_sort_update_date_label">Last updated</string>
+    <string name="general_sort_action">Sort</string>
+    <string name="apps_permissions_x_of_x_granted">%1$d of %1$d granted.</string>
+    <string name="apps_permissions_declares_x">Declares %1$d new permissions.</string>
+    <string name="apps_filter_nointernet_label">No internet access</string>
+
+    <plurals name="generic_x_items_label">
+        <item quantity="one">%s item</item>
+        <item quantity="other">%s items</item>
+    </plurals>
 </resources>

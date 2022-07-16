@@ -16,7 +16,7 @@ class DeclaredPermission(
     override val grantedApps: Collection<BaseApp> by lazy {
         requestingApps
             .filter { it.requestsPermission(this) }
-            .filter { it.getPermissionStatus(id) != BaseApp.UsesPermission.PermissionStatus.DENIED }
+            .filter { it.getPermission(id)?.isGranted == true }
     }
 
     override val id: PermissionId

@@ -4,12 +4,17 @@ import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import eu.darken.myperm.permissions.core.PermissionId
 import eu.darken.myperm.permissions.core.types.BasePermission
+import java.time.Instant
 
 sealed class BaseApp {
 
-    abstract val packageInfo: PackageInfo
     abstract val id: String
+    abstract val packageInfo: PackageInfo
     abstract val isSystemApp: Boolean
+    abstract val label: String?
+
+    abstract val installedAt: Instant
+    abstract val updatedAt: Instant
 
     abstract val requestedPermissions: Collection<UsesPermission>
     abstract fun requestsPermission(id: PermissionId): Boolean
@@ -17,7 +22,9 @@ sealed class BaseApp {
     abstract val declaredPermissions: Collection<PermissionInfo>
     abstract fun declaresPermission(id: PermissionId): Boolean
 
-    abstract fun getPermissionStatus(id: PermissionId): UsesPermission.PermissionStatus?
+    abstract fun getPermission(id: PermissionId): UsesPermission?
+
+    abstract val internetAccess: InternetAccess
 
     data class UsesPermission(
         val id: PermissionId,
@@ -36,6 +43,12 @@ sealed class BaseApp {
             }
         val isGranted: Boolean
             get() = status == PermissionStatus.GRANTED
+    }
+
+    enum class InternetAccess {
+        DIRECT,
+        INDIRECT,
+        NONE
     }
 }
 

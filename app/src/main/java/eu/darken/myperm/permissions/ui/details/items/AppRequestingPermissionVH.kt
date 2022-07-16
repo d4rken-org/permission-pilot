@@ -36,7 +36,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
 
 
         statusIcon.apply {
-            val status = item.app.getPermissionStatus(item.permission.id)
+            val status = item.app.getPermission(item.permission.id)?.status
             if (status != null) {
                 val (iconRes, tintRes) = when (status) {
                     BaseApp.UsesPermission.PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
