@@ -26,7 +26,7 @@
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
     </style>
 
     <style name="AppThemeFloating" parent="AppTheme">
