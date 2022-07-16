@@ -17,16 +17,16 @@ android {
     val bugsnagPropsFile = File(System.getProperty("user.home"), ".appconfig/${packageName}/bugsnag.properties")
     if (bugsnagPropsFile.canRead()) bugsnagProps.load(FileInputStream(bugsnagPropsFile))
 
-    compileSdk = BuildConfig.compileSdk
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         applicationId = packageName
 
-        minSdk = BuildConfig.minSdk
-        targetSdk = BuildConfig.targetSdk
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
 
-        versionCode = BuildConfig.Version.code
-        versionName = BuildConfig.Version.name
+        versionCode = ProjectConfig.Version.code
+        versionName = ProjectConfig.Version.name
 
         testInstrumentationRunner = "$packageName.HiltTestRunner"
 
