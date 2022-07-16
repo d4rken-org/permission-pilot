@@ -61,6 +61,6 @@ jobs:
           tag_name: ${{steps.tagger.outputs.tag}}
           name: ${{steps.tagger.outputs.tag}}
           body: ${{steps.github_release.outputs.changelog}}
-          files: app/build/outputs/apk/release/*.apk
+          files: app/build/outputs/apk/foss/release//*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
