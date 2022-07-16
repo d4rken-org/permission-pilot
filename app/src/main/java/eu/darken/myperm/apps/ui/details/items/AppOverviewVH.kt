@@ -5,6 +5,7 @@ import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
@@ -24,16 +25,21 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     ) -> Unit = { item, _ ->
         val app = item.app
 
+        icon.load(app.id)
+        label.text = app.label
         identifier.text = app.id.toString()
-        label.apply {
-            text = app.label
-            isGone = app.label.isNullOrEmpty()
-        }
 
         description.apply {
             val countTotal = app.requestedPermissions.size
             val grantedCount = app.requestedPermissions.count { it.isGranted }
             text = "$grantedCount of $countTotal permissions granted."
+        }
+
+        installerInfo.apply {
+            text = app.installerInfo?.initiatingPkg?.let {
+                val label = it.getLabel(context)
+                if (label != null) "$label (${it.id})" else "(${it.id})"
+            } ?: getString(R.string.apps_details_installer_manual_label)
         }
 
         tagSystem.isInvisible = !app.isSystemApp

@@ -11,39 +11,68 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/identifier"
-            style="@style/TextAppearance.Material3.LabelSmall"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/label"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@id/identifier"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="eu.darken.myperm" />
+            app:layout_constraintTop_toTopOf="@id/label" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/label"
             style="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/identifier"
+            app:layout_constraintStart_toStartOf="@id/identifier"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Mystic Permissions" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/identifier"
+            style="@style/TextAppearance.Material3.LabelSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toBottomOf="@id/label"
+            tools:text="eu.darken.myperm" />
+
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/description"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/identifier"
+            tools:text="@tools:sample/lorem" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/installer_label"
             style="@style/TextAppearance.Material3.LabelSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@string/apps_details_installer_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/installer_info"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/tag_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label"
-            tools:text="@tools:sample/lorem/random" />
+            app:layout_constraintTop_toBottomOf="@id/installer_label"
+            tools:text="Google Play Store (com.android.vending)" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@id/tag_container"
@@ -54,7 +83,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description">
+            app:layout_constraintTop_toBottomOf="@id/installer_info">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_system"

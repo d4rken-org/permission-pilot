@@ -41,7 +41,11 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                     vm.updateSortOptions { newOptions }
                 }
                 is AppsEvents.ShowPermissionSnackbar -> {
-                    Snackbar.make(ui.root, event.permission.getLabel(requireContext()), Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        ui.root,
+                        event.permission.getLabel(requireContext()) ?: event.permission.id.value,
+                        Snackbar.LENGTH_SHORT
+                    )
                         .setAction(R.string.general_show_action) {
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
                                 permissionId = event.permission.id

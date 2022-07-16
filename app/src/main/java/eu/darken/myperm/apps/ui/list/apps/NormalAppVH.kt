@@ -4,9 +4,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
+import androidx.core.view.isGone
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Installers
 import eu.darken.myperm.apps.core.InternetAccess
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
@@ -56,6 +60,21 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         icon.load(app.id)
 
+        installerSource.apply {
+            val installerPkg = app.installerInfo?.initiatingPkg
+            if (installerPkg == null) {
+                setImageResource(R.drawable.ic_baseline_user_24)
+                return@apply
+            }
+
+            val knownInstaller = Installers.values().singleOrNull { it.id == installerPkg.id }
+            if (knownInstaller?.iconRes != null) {
+                setImageResource(knownInstaller.iconRes)
+            } else {
+                load(installerPkg.id)
+            }
+        }
+
         itemView.setOnClickListener { item.onClickAction(item) }
 
         tagBluetooth.setupAll(
@@ -96,6 +115,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         tagSms.setupAll(app, AndroidPermissions.SMS_READ, AndroidPermissions.SMS_RECEIVE, AndroidPermissions.SMS_SEND)
         tagPhone.setupAll(app, AndroidPermissions.PHONE_CALL, AndroidPermissions.PHONE_STATE)
+
+        tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
 
     private fun ImageView.tintIt(@ColorInt color: Int) {

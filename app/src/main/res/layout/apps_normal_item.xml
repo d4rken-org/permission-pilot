@@ -12,9 +12,19 @@
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/label"
+        app:layout_constraintBottom_toBottomOf="@id/permission_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/package_name" />
+
+    <ImageView
+        android:id="@+id/installer_source"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_baseline_question_mark_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/package_name"
+        tools:src="@drawable/ic_baseline_gplay_24" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/package_name"
@@ -23,18 +33,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@id/label"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/installer_source"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="eu.darken.myperm" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label"
-        style="@style/TextAppearance.Material3.LabelLarge"
+        style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
