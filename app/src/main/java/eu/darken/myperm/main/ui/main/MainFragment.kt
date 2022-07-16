@@ -50,6 +50,17 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                 else -> false
             }
         }
+
+        vm.state.observe2(ui) { state ->
+            bottomNavigation.getOrCreateBadge(R.id.page_apps).apply {
+                isVisible = true
+                number = state.appCount
+            }
+            bottomNavigation.getOrCreateBadge(R.id.page_permissions).apply {
+                isVisible = true
+                number = state.permissionCount
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 }
