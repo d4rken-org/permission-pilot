@@ -35,6 +35,10 @@
         <action
             android:id="@+id/action_appDetailsFragment_to_permissionDetailsFragment"
             app:destination="@id/permissionDetailsFragment" />
+        <argument
+            android:name="appLabel"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -47,6 +51,10 @@
         <action
             android:id="@+id/action_permissionDetailsFragment_to_appDetailsFragment"
             app:destination="@id/appDetailsFragment" />
+        <argument
+            android:name="permissionLabel"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

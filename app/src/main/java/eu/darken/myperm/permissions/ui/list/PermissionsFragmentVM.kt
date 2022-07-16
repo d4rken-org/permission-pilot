@@ -15,6 +15,7 @@ import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,7 +31,12 @@ class PermissionsFragmentVM @Inject constructor(
 
     val events = SingleLiveEvent<PermissionsEvents>()
 
-    val listData: LiveData<List<PermissionsAdapter.Item>> = combine(
+    data class State(
+        val listData: List<PermissionsAdapter.Item> = emptyList(),
+        val isLoading: Boolean = true
+    )
+
+    val state: LiveData<State> = combine(
         permissionRepo.permissions,
         searchTerm,
         filterOptions,
@@ -47,7 +53,7 @@ class PermissionsFragmentVM @Inject constructor(
             }
             .sortedWith(sortOptions.mainSort.comparator)
 
-        filtered
+        val items = filtered
             .sortedByDescending { it.grantingPkgs.size }
             .map { permission ->
                 when (permission) {
@@ -56,7 +62,8 @@ class PermissionsFragmentVM @Inject constructor(
                         onClickAction = {
                             log(TAG) { "Navigating to $permission" }
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
-                                permissionId = permission.id
+                                permissionId = permission.id,
+                                permissionLabel = permission.label,
                             ).navigate()
                         }
                     )
@@ -68,7 +75,12 @@ class PermissionsFragmentVM @Inject constructor(
                     )
                 }
             }
+        State(
+            listData = items,
+            isLoading = false,
+        )
     }
+        .onStart { emit(State()) }
         .asLiveData2()
 
 

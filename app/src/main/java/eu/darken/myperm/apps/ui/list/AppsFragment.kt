@@ -2,6 +2,8 @@ package eu.darken.myperm.apps.ui.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -48,7 +50,8 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                     )
                         .setAction(R.string.general_show_action) {
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
-                                permissionId = event.permission.id
+                                permissionId = event.permission.id,
+                                permissionLabel = event.permission.getLabel(requireContext())
                             ).navigate()
                         }
                         .show()
@@ -60,9 +63,11 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
         }
 
         ui.list.setupDefaults(appsAdapter)
-        vm.listData.observe2(this@AppsFragment, ui) {
-            listCaption.text = requireContext().getQuantityString(R.plurals.generic_x_items_label, it.size)
-            appsAdapter.update(it)
+        vm.listData.observe2(this@AppsFragment, ui) { state ->
+            listCaption.text = requireContext().getQuantityString(R.plurals.generic_x_items_label, state.items.size)
+            appsAdapter.update(state.items)
+            list.isInvisible = state.isLoading
+            loadingContainer.isGone = !state.isLoading
         }
 
         super.onViewCreated(view, savedInstanceState)

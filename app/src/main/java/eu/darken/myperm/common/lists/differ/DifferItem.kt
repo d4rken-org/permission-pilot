@@ -6,5 +6,5 @@ interface DifferItem : ListItem {
     val stableId: Long
 
     val payloadProvider: ((DifferItem, DifferItem) -> DifferItem?)?
-        get() = null
+        get() = { old, new -> new }
 }

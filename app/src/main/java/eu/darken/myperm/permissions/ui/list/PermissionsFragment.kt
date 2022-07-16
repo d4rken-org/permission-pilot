@@ -2,6 +2,8 @@ package eu.darken.myperm.permissions.ui.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -45,9 +47,15 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
         }
 
         ui.list.setupDefaults(permissionsAdapter)
-        vm.listData.observe2(this, ui) {
-            listCaption.text = requireContext().getQuantityString(R.plurals.generic_x_items_label, it.size)
-            permissionsAdapter.update(it)
+        vm.state.observe2(this, ui) { state ->
+            listCaption.text = if (state.isLoading) {
+                null
+            } else {
+                requireContext().getQuantityString(R.plurals.generic_x_items_label, state.listData.size)
+            }
+            permissionsAdapter.update(state.listData)
+            list.isInvisible = state.isLoading
+            loadingContainer.isGone = !state.isLoading
         }
         super.onViewCreated(view, savedInstanceState)
     }

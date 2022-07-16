@@ -17,6 +17,7 @@ import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,9 +31,9 @@ class AppDetailsFragmentVM @Inject constructor(
     private val navArgs: AppDetailsFragmentArgs by handle.navArgs()
 
     data class Details(
-        val app: BaseApp,
         val label: String,
-        val items: List<AppDetailsAdapter.Item>,
+        val app: BaseApp? = null,
+        val items: List<AppDetailsAdapter.Item> = emptyList(),
     )
 
     val details: LiveData<Details> = appRepo.apps
@@ -57,7 +58,10 @@ class AppDetailsFragmentVM @Inject constructor(
                         permission = permission,
                         onItemClicked = {
                             AppDetailsFragmentDirections
-                                .actionAppDetailsFragmentToPermissionDetailsFragment(it.permission.id)
+                                .actionAppDetailsFragmentToPermissionDetailsFragment(
+                                    permissionId = it.permission.id,
+                                    permissionLabel = it.permission.label
+                                )
                                 .navigate()
                         }
                     )
@@ -66,7 +70,10 @@ class AppDetailsFragmentVM @Inject constructor(
                         permission = permission,
                         onItemClicked = {
                             AppDetailsFragmentDirections
-                                .actionAppDetailsFragmentToPermissionDetailsFragment(it.permission.id)
+                                .actionAppDetailsFragmentToPermissionDetailsFragment(
+                                    permissionId = it.permission.id,
+                                    permissionLabel = it.permission.label
+                                )
                                 .navigate()
                         }
                     )
@@ -80,5 +87,6 @@ class AppDetailsFragmentVM @Inject constructor(
                 items = infoItems
             )
         }
+        .onStart { navArgs.appLabel?.let { emit(Details(label = it)) } }
         .asLiveData2()
 }

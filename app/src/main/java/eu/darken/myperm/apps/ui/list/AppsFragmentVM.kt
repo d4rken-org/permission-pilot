@@ -13,6 +13,7 @@ import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +29,12 @@ class AppsFragmentVM @Inject constructor(
 
     val events = SingleLiveEvent<AppsEvents>()
 
-    val listData: LiveData<List<AppsAdapter.Item>> = combine(
+    data class State(
+        val items: List<AppsAdapter.Item> = emptyList(),
+        val isLoading: Boolean = true
+    )
+
+    val listData: LiveData<State> = combine(
         packageRepo.apps,
         searchTerm,
         filterOptions,
@@ -45,20 +51,28 @@ class AppsFragmentVM @Inject constructor(
             }
             .sortedWith(sortOptions.mainSort.comparator)
 
-        filtered.map { app ->
+        val listItems = filtered.map { app ->
             when (app) {
                 is NormalApp -> NormalAppVH.Item(
                     app = app,
                     onClickAction = {
                         log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(appId = app.id).navigate()
+                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(
+                            appId = app.id,
+                            app.label
+                        ).navigate()
                     },
                     onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }
                 )
                 else -> throw IllegalArgumentException()
             }
         }
+        State(
+            items = listItems,
+            isLoading = false
+        )
     }
+        .onStart { emit(State()) }
         .asLiveData2()
 
     fun onSearchInputChanged(term: String?) {

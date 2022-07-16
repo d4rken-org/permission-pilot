@@ -2,6 +2,8 @@ package eu.darken.myperm.apps.ui.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -27,10 +29,11 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
         ui.toolbar.setupWithNavController(findNavController())
 
         vm.details.observe2(ui) { details ->
-            toolbar.title = details.label
-            toolbar.subtitle = details.app.id.toString()
+            toolbar.subtitle = details.label
 
             detailsAdapter.update(details.items)
+            list.isVisible = true
+            loadingContainer.isGone = details.app != null
         }
         super.onViewCreated(view, savedInstanceState)
     }

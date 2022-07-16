@@ -12,6 +12,7 @@ import eu.darken.myperm.permissions.ui.details.items.AppDeclaringPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.AppRequestingPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,9 +25,9 @@ class PermissionDetailsFragmentVM @Inject constructor(
     private val navArgs: PermissionDetailsFragmentArgs by handle.navArgs()
 
     data class Details(
-        val perm: BasePermission,
         val label: String,
-        val items: List<PermissionDetailsAdapter.Item>,
+        val perm: BasePermission? = null,
+        val items: List<PermissionDetailsAdapter.Item> = emptyList(),
     )
 
     val details: LiveData<Details> = permissionsRepo.permissions
@@ -45,7 +46,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id)
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.label)
                             .navigate()
                     }
                 )
@@ -58,7 +59,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id)
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.label)
                             .navigate()
                     }
                 )
@@ -70,5 +71,6 @@ class PermissionDetailsFragmentVM @Inject constructor(
                 items = infoItems,
             )
         }
+        .onStart { navArgs.permissionLabel?.let { Details(label = it) } }
         .asLiveData2()
 }

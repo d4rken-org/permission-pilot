@@ -2,6 +2,8 @@ package eu.darken.myperm.permissions.ui.details
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -30,6 +32,8 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
             toolbar.subtitle = details.label
 
             detailsAdapter.update(details.items)
+            list.isVisible = true
+            loadingContainer.isGone = details.perm != null
         }
         super.onViewCreated(view, savedInstanceState)
     }
