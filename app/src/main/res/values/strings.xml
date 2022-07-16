@@ -62,7 +62,7 @@
     <string name="apps_sort_install_date_label">Install date</string>
     <string name="apps_sort_update_date_label">Last updated</string>
     <string name="general_sort_action">Sort</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d of %1$d granted.</string>
+    <string name="apps_permissions_x_of_x_granted">%1$d of %2$d granted.</string>
     <string name="apps_permissions_declares_x">Declares %1$d new permissions.</string>
     <string name="apps_filter_nointernet_label">No internet access</string>
 

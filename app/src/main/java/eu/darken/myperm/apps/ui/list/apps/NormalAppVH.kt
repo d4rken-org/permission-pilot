@@ -29,9 +29,10 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         }
 
         permissionInfo.apply {
-            val countTotal = app.requestedPermissions.size
             val grantedCount = app.requestedPermissions.count { it.isGranted }
+            val countTotal = app.requestedPermissions.size
             text = getString(R.string.apps_permissions_x_of_x_granted, grantedCount, countTotal)
+
             val declaredCount = app.declaredPermissions.size
             if (declaredCount > 0) {
                 append(" " + getString(R.string.apps_permissions_declares_x, declaredCount))
