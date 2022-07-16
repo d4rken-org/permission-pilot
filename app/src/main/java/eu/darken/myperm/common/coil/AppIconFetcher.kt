@@ -1,6 +1,5 @@
 package eu.darken.myperm.common.coil
 
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -10,15 +9,17 @@ import coil.fetch.DrawableResult
 import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
+import eu.darken.myperm.apps.core.types.Pkg
 import javax.inject.Inject
 
 class AppIconFetcher @Inject constructor(
     private val packageManager: PackageManager,
-    private val data: PackageInfo,
+    private val data: Pkg.Id,
     private val options: Options,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult {
-        val drawable = data.applicationInfo?.loadIcon(packageManager) ?: ColorDrawable(Color.TRANSPARENT)
+        val packageInfo = packageManager.getPackageInfo(data.value, 0)
+        val drawable = packageInfo.applicationInfo?.loadIcon(packageManager) ?: ColorDrawable(Color.TRANSPARENT)
         return DrawableResult(
             drawable = drawable,
             isSampled = false,
@@ -28,10 +29,10 @@ class AppIconFetcher @Inject constructor(
 
     class Factory @Inject constructor(
         private val packageManager: PackageManager,
-    ) : Fetcher.Factory<PackageInfo> {
+    ) : Fetcher.Factory<Pkg.Id> {
 
         override fun create(
-            data: PackageInfo,
+            data: Pkg.Id,
             options: Options,
             imageLoader: ImageLoader
         ): Fetcher = AppIconFetcher(packageManager, data, options)

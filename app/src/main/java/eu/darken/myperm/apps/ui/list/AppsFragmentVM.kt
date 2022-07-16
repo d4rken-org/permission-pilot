@@ -38,7 +38,7 @@ class AppsFragmentVM @Inject constructor(
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
             .filter {
                 if (searchTerm == null) return@filter true
-                if (it.id.contains(searchTerm)) return@filter true
+                if (it.id.toString().contains(searchTerm)) return@filter true
                 if (it is NormalApp && it.label?.contains(searchTerm) == true) return@filter true
 
                 return@filter false
@@ -51,10 +51,9 @@ class AppsFragmentVM @Inject constructor(
                     app = app,
                     onClickAction = {
                         log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(
-                            appId = app.id
-                        ).navigate()
-                    }
+                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(appId = app.id).navigate()
+                    },
+                    onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }
                 )
                 else -> throw IllegalArgumentException()
             }

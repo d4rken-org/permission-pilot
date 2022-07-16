@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.UsesPermission
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.common.lists.BindableVH
@@ -25,23 +26,23 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        identifier.text = item.app.id
+        identifier.text = item.app.id.toString()
 
         label.apply {
             text = (item.app as? NormalApp)?.label
             isGone = text.isNullOrEmpty()
         }
 
-        icon.load(item.app.packageInfo)
+        icon.load(item.app.id)
 
 
         statusIcon.apply {
             val status = item.app.getPermission(item.permission.id)?.status
             if (status != null) {
                 val (iconRes, tintRes) = when (status) {
-                    BaseApp.UsesPermission.PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
-                    BaseApp.UsesPermission.PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
-                    BaseApp.UsesPermission.PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_n1
+                    UsesPermission.PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                    UsesPermission.PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                    UsesPermission.PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
                 }
                 setImageResource(iconRes)
                 imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))

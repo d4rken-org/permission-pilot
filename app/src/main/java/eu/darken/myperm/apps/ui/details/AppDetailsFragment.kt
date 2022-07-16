@@ -28,7 +28,7 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
 
         vm.details.observe2(ui) { details ->
             toolbar.title = details.label
-            toolbar.subtitle = details.app.id
+            toolbar.subtitle = details.app.id.toString()
 
             detailsAdapter.update(details.items)
         }

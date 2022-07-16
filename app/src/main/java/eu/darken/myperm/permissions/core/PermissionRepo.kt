@@ -105,7 +105,7 @@ class PermissionRepo @Inject constructor(
         declaringApps = apps.filter { it.declaresPermission(id) }
     )
 
-    private fun PermissionId.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
+    private fun Permission.Id.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
         id = this,
         requestingApps = apps.filter { it.requestsPermission(this) }
     )

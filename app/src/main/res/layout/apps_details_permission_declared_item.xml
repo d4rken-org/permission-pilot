@@ -41,6 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_baseline_check_circle_24"
-        tools:tint="@color/status_p1" />
+        tools:tint="@color/status_positive_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

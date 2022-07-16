@@ -24,7 +24,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     ) -> Unit = { item, _ ->
         val app = item.app
 
-        identifier.text = app.id
+        identifier.text = app.id.toString()
         label.apply {
             text = app.label
             isGone = app.label.isNullOrEmpty()

@@ -2,54 +2,35 @@ package eu.darken.myperm.apps.core.types
 
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
-import eu.darken.myperm.permissions.core.PermissionId
+import eu.darken.myperm.apps.core.InstallerInfo
+import eu.darken.myperm.apps.core.InternetAccess
+import eu.darken.myperm.apps.core.UsesPermission
+import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.types.BasePermission
 import java.time.Instant
 
-sealed class BaseApp {
+sealed class BaseApp : Pkg {
 
-    abstract val id: String
+    abstract val label: String?
     abstract val packageInfo: PackageInfo
     abstract val isSystemApp: Boolean
-    abstract val label: String?
 
     abstract val installedAt: Instant
     abstract val updatedAt: Instant
 
     abstract val requestedPermissions: Collection<UsesPermission>
-    abstract fun requestsPermission(id: PermissionId): Boolean
+    abstract fun requestsPermission(id: Permission.Id): Boolean
 
     abstract val declaredPermissions: Collection<PermissionInfo>
-    abstract fun declaresPermission(id: PermissionId): Boolean
+    abstract fun declaresPermission(id: Permission.Id): Boolean
 
-    abstract fun getPermission(id: PermissionId): UsesPermission?
+    abstract fun getPermission(id: Permission.Id): UsesPermission?
 
     abstract val internetAccess: InternetAccess
+    abstract val installerInfo: InstallerInfo?
 
-    data class UsesPermission(
-        val id: PermissionId,
-        val flags: Int,
-    ) {
-        enum class PermissionStatus {
-            GRANTED,
-            GRANTED_IN_USE,
-            DENIED,
-        }
+    abstract val sharedUserId: String?
 
-        val status: PermissionStatus
-            get() = when {
-                flags and PackageInfo.REQUESTED_PERMISSION_GRANTED != 0 -> PermissionStatus.GRANTED
-                else -> PermissionStatus.DENIED
-            }
-        val isGranted: Boolean
-            get() = status == PermissionStatus.GRANTED
-    }
-
-    enum class InternetAccess {
-        DIRECT,
-        INDIRECT,
-        NONE
-    }
 }
 
 fun BaseApp.requestsPermission(permission: BasePermission) = requestsPermission(permission.id)

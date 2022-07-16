@@ -5,6 +5,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import eu.darken.myperm.common.debug.logging.log
@@ -32,16 +33,17 @@ abstract class Fragment3(@LayoutRes layoutRes: Int?) : Fragment2(layoutRes) {
         vm.navEvents.observe2(ui) {
             log { "navEvents: $it" }
 
-            it
-                ?.run { doNavigate(this, customNavController ?: findNavController()) }
-                ?: onFinishEvent?.invoke()
-                ?: popBackStack()
+            it?.navigate() ?: onFinishEvent?.invoke() ?: popBackStack()
         }
 
         vm.errorEvents.observe2(ui) {
             val showDialog = onErrorEvent?.invoke(it) ?: true
             if (showDialog) it.asErrorDialogBuilder(requireContext()).show()
         }
+    }
+
+    fun NavDirections.navigate() {
+        doNavigate(this, customNavController ?: findNavController())
     }
 
     inline fun <T> LiveData<T>.observe2(

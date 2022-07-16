@@ -61,7 +61,10 @@
     <color name="md_theme_dark_surfaceTint">#8BCEFF</color>
     <color name="md_theme_dark_surfaceTintColor">#8BCEFF</color>
 
-    <color name="status_p1">#4CAF50</color>
-    <color name="status_n1">#FF5722</color>
+    <color name="status_positive_2">#0e8a16</color>
+    <color name="status_positive_1">#009688</color>
+    <color name="status_negative_1">#ffc107</color>
+    <color name="status_negative_2">#e51c23</color>
+
     <color name="positive_highlight">#0e8a16</color>
 </resources>

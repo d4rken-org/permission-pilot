@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.BaseApp.UsesPermission.PermissionStatus
+import eu.darken.myperm.apps.core.UsesPermission
+import eu.darken.myperm.apps.core.UsesPermission.PermissionStatus
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionDeclaredItemBinding
@@ -34,9 +34,9 @@ class DeclaredPermissionVH(parent: ViewGroup) :
 
         statusIcon.apply {
             val (iconRes, tintRes) = when (item.appPermission.status) {
-                PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
-                PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_p1
-                PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_n1
+                PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
             }
             setImageResource(iconRes)
             imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))
@@ -46,7 +46,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val appPermission: BaseApp.UsesPermission,
+        val appPermission: UsesPermission,
         val permission: DeclaredPermission,
         val onItemClicked: (Item) -> Unit,
     ) : AppDetailsAdapter.Item {

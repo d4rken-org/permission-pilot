@@ -13,13 +13,13 @@ import coil.fetch.DrawableResult
 import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
-import eu.darken.myperm.permissions.core.PermissionId
+import eu.darken.myperm.permissions.core.Permission
 import javax.inject.Inject
 
 
 class PermissionIconFetcher @Inject constructor(
     private val packageManager: PackageManager,
-    private val data: PermissionId,
+    private val data: Permission.Id,
     private val options: Options,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult {
@@ -31,7 +31,7 @@ class PermissionIconFetcher @Inject constructor(
         )
     }
 
-    private fun PermissionId.getIcon(): Drawable? {
+    private fun Permission.Id.getIcon(): Drawable? {
         return try {
             val permissionInfo: PermissionInfo = packageManager.getPermissionInfo(value, 0)
 
@@ -54,10 +54,10 @@ class PermissionIconFetcher @Inject constructor(
 
     class Factory @Inject constructor(
         private val packageManager: PackageManager,
-    ) : Fetcher.Factory<PermissionId> {
+    ) : Fetcher.Factory<Permission.Id> {
 
         override fun create(
-            data: PermissionId,
+            data: Permission.Id,
             options: Options,
             imageLoader: ImageLoader
         ): Fetcher = PermissionIconFetcher(packageManager, data, options)

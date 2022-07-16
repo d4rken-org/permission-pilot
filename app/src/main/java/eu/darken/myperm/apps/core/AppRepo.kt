@@ -6,13 +6,15 @@ import android.content.pm.PackageManager
 import android.os.Build
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.types.BaseApp
+import eu.darken.myperm.apps.core.types.BasicPkg
 import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.types.Pkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
-import eu.darken.myperm.permissions.core.PermissionId
+import eu.darken.myperm.permissions.core.Permission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,8 +40,17 @@ class AppRepo @Inject constructor(
 
     val apps: Flow<Set<BaseApp>> = refreshTrigger.mapLatest {
         val packageInfos = retrievePackageInfo()
-//                .filter { it.packageName == "eu.thedarken.sdm" }
-        packageInfos.map { it.toDefaultApp() }.toSet()
+
+        val allApps = packageInfos.map { it.toDefaultApp() }.toSet<BaseApp>()
+
+        allApps.filterIsInstance<NormalApp>().forEach { app ->
+            app.siblings = allApps
+                .filter { it.sharedUserId != null }
+                .filter { app.packageName != it.id.value && it.sharedUserId == app.sharedUserId }
+                .toSet()
+        }
+
+        allApps
     }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
     private suspend fun retrievePackageInfo(): Collection<PackageInfo> {
@@ -58,17 +69,48 @@ class AppRepo @Inject constructor(
         val requestedPerms = requestedPermissions?.mapIndexed { index, permissionId ->
             val flags = requestedPermissionsFlags[index]
 
-            BaseApp.UsesPermission(
-                id = PermissionId(permissionId),
+            UsesPermission(
+                id = Permission.Id(permissionId),
                 flags = flags,
             )
         } ?: emptyList()
+
         return NormalApp(
             packageInfo = this,
             label = applicationInfo?.loadLabel(packageManager)?.toString(),
             requestedPermissions = requestedPerms,
-            declaredPermissions = permissions?.toSet() ?: emptyList()
+            declaredPermissions = permissions?.toSet() ?: emptyList(),
+            installerInfo = getInstaller()
         )
+    }
+
+    private fun PackageInfo.getInstaller(): InstallerInfo? = if (hasApiLevel(Build.VERSION_CODES.R)) {
+        val sourceInfo = try {
+            packageManager.getInstallSourceInfo(packageName)
+        } catch (_: PackageManager.NameNotFoundException) {
+            null
+        }
+        sourceInfo?.initiatingPackageName?.let { installerPkg ->
+            val info = packageManager.getPackageInfo(installerPkg, 0)?.applicationInfo
+            val label = info?.loadLabel(packageManager)?.toString()
+            InstallerInfo(
+                initiatingPkg = BasicPkg(
+                    id = Pkg.Id(installerPkg),
+                    label = label
+                ),
+            )
+        }
+    } else {
+        packageManager.getInstallerPackageName(packageName)?.let { installerPkg ->
+            val info = packageManager.getPackageInfo(installerPkg, 0)?.applicationInfo
+            val label = info?.loadLabel(packageManager)?.toString()
+            InstallerInfo(
+                initiatingPkg = BasicPkg(
+                    id = Pkg.Id(installerPkg),
+                    label = label
+                ),
+            )
+        }
     }
 
     companion object {

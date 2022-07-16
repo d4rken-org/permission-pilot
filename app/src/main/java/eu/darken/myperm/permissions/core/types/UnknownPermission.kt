@@ -2,10 +2,10 @@ package eu.darken.myperm.permissions.core.types
 
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.requestsPermission
-import eu.darken.myperm.permissions.core.PermissionId
+import eu.darken.myperm.permissions.core.Permission
 
 class UnknownPermission(
-    override val id: PermissionId,
+    override val id: Permission.Id,
     override val label: String? = null,
     override val description: String? = null,
     override val requestingApps: List<BaseApp> = emptyList(),

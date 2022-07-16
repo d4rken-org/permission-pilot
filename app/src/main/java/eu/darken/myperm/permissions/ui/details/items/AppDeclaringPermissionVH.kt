@@ -23,14 +23,14 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        identifier.text = item.app.id
+        identifier.text = item.app.id.toString()
 
         label.apply {
             text = (item.app as? NormalApp)?.label
             isGone = text.isNullOrEmpty()
         }
 
-        icon.load(item.app.packageInfo)
+        icon.load(item.app.id)
 
         root.setOnClickListener { item.onItemClicked(item) }
     }

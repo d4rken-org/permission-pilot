@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.getQuantityString
@@ -14,6 +15,7 @@ import eu.darken.myperm.common.observe2
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.AppsFragmentBinding
+import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,6 +39,15 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                 }
                 is AppsEvents.ShowSortDialog -> SortDialog(requireActivity()).show(event.options) { newOptions ->
                     vm.updateSortOptions { newOptions }
+                }
+                is AppsEvents.ShowPermissionSnackbar -> {
+                    Snackbar.make(ui.root, event.permission.getLabel(requireContext()), Snackbar.LENGTH_SHORT)
+                        .setAction(R.string.general_show_action) {
+                            MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
+                                permissionId = event.permission.id
+                            ).navigate()
+                        }
+                        .show()
                 }
             }
         }

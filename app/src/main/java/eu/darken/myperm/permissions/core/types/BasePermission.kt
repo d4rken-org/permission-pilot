@@ -1,11 +1,10 @@
 package eu.darken.myperm.permissions.core.types
 
 import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.permissions.core.PermissionId
+import eu.darken.myperm.permissions.core.Permission
 
-sealed class BasePermission {
+sealed class BasePermission : Permission {
 
-    abstract val id: PermissionId
     abstract val label: String?
     abstract val description: String?
     abstract val requestingApps: Collection<BaseApp>
