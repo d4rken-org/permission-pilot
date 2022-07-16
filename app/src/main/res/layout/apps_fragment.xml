@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:hint="@string/search_list_hint"
+        android:hint="@string/apps_search_list_hint"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toStartOf="@id/sort_action"
         app:layout_constraintStart_toEndOf="@id/filter_action"

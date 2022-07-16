@@ -2,10 +2,12 @@ package eu.darken.myperm.permissions.ui.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
 import eu.darken.myperm.common.observe2
@@ -24,9 +26,27 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
-        ui.list.setupDefaults(permissionsAdapter)
 
+        ui.filterAction.setOnClickListener { vm.showFilterDialog() }
+        ui.sortAction.setOnClickListener { vm.showSortDialog() }
+
+        vm.events.observe2(ui) { event ->
+            when (event) {
+                is PermissionsEvents.ShowFilterDialog -> FilterDialog(requireActivity()).show(event.options) { newOptions ->
+                    vm.updateFilterOptions { newOptions }
+                }
+                is PermissionsEvents.ShowSortDialog -> SortDialog(requireActivity()).show(event.options) { newOptions ->
+                    vm.updateSortOptions { newOptions }
+                }
+            }
+        }
+        ui.searchInput.addTextChangedListener {
+            vm.onSearchInputChanged(it?.toString())
+        }
+
+        ui.list.setupDefaults(permissionsAdapter)
         vm.listData.observe2(this, ui) {
+            listCaption.text = requireContext().getQuantityString(R.plurals.generic_x_items_label, it.size)
             permissionsAdapter.update(it)
         }
         super.onViewCreated(view, savedInstanceState)

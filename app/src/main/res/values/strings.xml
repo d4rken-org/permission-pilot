@@ -46,12 +46,11 @@
     <string name="app_type_system_label">System App</string>
     <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Unknown permission. It is requested by this app, but no other app declares it.</string>
-    <string name="permissions_unknown_description">Unknown permission. It is requested by apps, but not declared anywhere, so it is unused.</string>
+    <string name="permissions_unknown_description">Unknown permission. It is requested by apps, but not declared anywhere.</string>
     <string name="permissions_app_type_declaring_description">Permission is created by this app.</string>
     <string name="permissions_app_type_requesting_description">App requests the permission.</string>
     <string name="upgrade_myperm_label">Upgrade Mystic Permissions</string>
     <string name="upgrade_myperm_description">Feel good and support development.</string>
-    <string name="search_list_hint">Search list</string>
     <string name="general_filter_action">Filter</string>
     <string name="general_cancel_action">Cancel</string>
     <string name="apps_filter_userapps_label">Is user app</string>
@@ -69,6 +68,12 @@
     <string name="apps_filter_sideloaded_label">Is sideloaded</string>
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_manual_label">Installer unknown (you?)</string>
+    <string name="permissions_filter_aosp_label">AOSP permission</string>
+    <string name="permissions_filter_custom_label">Custom permission</string>
+    <string name="permissions_sort_apps_granted_label"># of apps granted</string>
+    <string name="permissions_sort_apps_requested_label"># of apps requested</string>
+    <string name="permissions_search_list_hint">Search permissions</string>
+    <string name="apps_search_list_hint">Search apps</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
