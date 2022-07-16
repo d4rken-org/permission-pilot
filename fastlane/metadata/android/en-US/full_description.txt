@@ -1,0 +1,16 @@
+<i>Mystic Permissions</i> is a new kind of app to help the user view apps and which permissions they use – born out of a feature discussion for SD Maid.
+
+Currently, Android shows app permissions in 3 different places:
+
+* App Info page
+* Special Access
+* Permissions Manager
+
+In order to control or just see what permissions an app has access to, the user has to go to 3 different places now.
+
+<i>Mystic Permissions</i> will basically list every single permission an app has requested in one place, giving the user a bird's eye view of app permissions. It will have two tabs:
+
+* <b>Apps:</b> This will list all the apps installed. Clicking on any app will list every single permission that the app has requested, including those that show up under Permissions Manager and Special Access, along with their status (ON/ OFF, Allowed/ Disallowed, etc.)
+* <b>Permissions:</b> This will list every single permission such as Contacts, Microphone, Camera, etc., including those that show up under Permissions Manager and Special Access. Clicking on each will show all the apps that currently has access to that permission.
+
+This will also include internet permissions, SharedUserID status!
