@@ -5,7 +5,8 @@ import eu.darken.myperm.R
 
 enum class AndroidPermissions(
     override val id: Permission.Id,
-    @DrawableRes val iconRes: Int
+    val label: String? = null,
+    @DrawableRes val iconRes: Int,
 ) : Permission {
 
     INTERNET(

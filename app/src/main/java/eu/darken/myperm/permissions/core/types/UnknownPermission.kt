@@ -8,20 +8,17 @@ class UnknownPermission(
     override val id: Permission.Id,
     override val label: String? = null,
     override val description: String? = null,
-    override val requestingApps: List<BaseApp> = emptyList(),
+    override val requestingPkgs: List<BaseApp> = emptyList(),
 ) : BasePermission() {
 
-    override val grantedApps: Collection<BaseApp> by lazy {
-        requestingApps
+    override val grantingPkgs: Collection<BaseApp> by lazy {
+        requestingPkgs
             .filter { it.requestsPermission(this) }
             .filter { it.getPermission(id)?.isGranted == true }
     }
 
-    override val declaringApps: Collection<BaseApp>
+    override val declaringPkgs: Collection<BaseApp>
         get() = emptyList()
-
-    override val isAospPermission: Boolean
-        get() = true
 
     override fun toString(): String = "NormalPermission($id)"
 

@@ -39,7 +39,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
             ).run { infoItems.add(this) }
 
 
-            perm.declaringApps.map { app ->
+            perm.declaringPkgs.map { app ->
                 AppDeclaringPermissionVH.Item(
                     permission = perm,
                     app = app,
@@ -52,7 +52,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
 
             }.run { infoItems.addAll(this) }
 
-            perm.requestingApps.map { app ->
+            perm.requestingPkgs.map { app ->
                 AppRequestingPermissionVH.Item(
                     permission = perm,
                     app = app,

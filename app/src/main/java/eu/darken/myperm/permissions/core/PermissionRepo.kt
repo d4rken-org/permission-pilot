@@ -101,13 +101,13 @@ class PermissionRepo @Inject constructor(
             if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
         },
         description = (loadDescription(packageManager) ?: nonLocalizedDescription)?.toString(),
-        requestingApps = apps.filter { it.requestsPermission(id) },
-        declaringApps = apps.filter { it.declaresPermission(id) }
+        requestingPkgs = apps.filter { it.requestsPermission(id) },
+        declaringPkgs = apps.filter { it.declaresPermission(id) }
     )
 
     private fun Permission.Id.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
         id = this,
-        requestingApps = apps.filter { it.requestsPermission(this) }
+        requestingPkgs = apps.filter { it.requestsPermission(this) }
     )
 
     companion object {

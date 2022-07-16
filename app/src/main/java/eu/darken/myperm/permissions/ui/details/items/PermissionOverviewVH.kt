@@ -5,7 +5,9 @@ import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.AndroidPkgs
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -23,20 +25,24 @@ class PermissionOverviewVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        val permission = item.permission
+        val perm = item.permission
 
-        identifier.text = permission.id.value
+        icon.load(
+            perm.declaringPkgs.singleOrNull()?.id?.takeIf { it != AndroidPkgs.ANDROID.id } ?: perm.id
+        )
+
+        identifier.text = perm.id.value
         label.apply {
-            text = permission.label
-            isGone = permission.label.isNullOrEmpty()
+            text = perm.label
+            isGone = perm.label.isNullOrEmpty()
         }
 
         description.apply {
-            text = permission.description
-            isGone = permission.description.isNullOrEmpty()
+            text = perm.description
+            isGone = perm.description.isNullOrEmpty()
         }
 
-        tagAosp.isInvisible = !permission.isAospPermission
+        tagAosp.isInvisible = perm.declaringPkgs.any { it.id == AndroidPkgs.ANDROID.id }
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
 

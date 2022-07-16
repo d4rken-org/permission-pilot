@@ -15,13 +15,13 @@ data class SortOptions(
         APPS_GRANTED(
             labelRes = R.string.permissions_sort_apps_granted_label,
             comparator = Comparator.comparing<BasePermission, Int> { perm ->
-                perm.grantedApps.size
+                perm.grantingPkgs.size
             }.reversed()
         ),
         APPS_REQUESTED(
             labelRes = R.string.permissions_sort_apps_requested_label,
             comparator = Comparator.comparing<BasePermission, Int> { perm ->
-                perm.requestingApps.size
+                perm.requestingPkgs.size
             }.reversed()
         ),
 

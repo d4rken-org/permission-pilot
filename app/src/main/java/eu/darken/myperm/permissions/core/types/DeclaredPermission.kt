@@ -9,21 +9,18 @@ class DeclaredPermission(
     val permission: PermissionInfo,
     override val label: String? = null,
     override val description: String? = null,
-    override val requestingApps: List<BaseApp> = emptyList(),
-    override val declaringApps: Collection<BaseApp> = emptyList(),
+    override val requestingPkgs: List<BaseApp> = emptyList(),
+    override val declaringPkgs: Collection<BaseApp> = emptyList(),
 ) : BasePermission() {
 
-    override val grantedApps: Collection<BaseApp> by lazy {
-        requestingApps
+    override val grantingPkgs: Collection<BaseApp> by lazy {
+        requestingPkgs
             .filter { it.requestsPermission(this) }
             .filter { it.getPermission(id)?.isGranted == true }
     }
 
     override val id: Permission.Id
         get() = Permission.Id(permission.name)
-
-    override val isAospPermission: Boolean
-        get() = true
 
     override fun toString(): String = "DeclaredPermission($id)"
 

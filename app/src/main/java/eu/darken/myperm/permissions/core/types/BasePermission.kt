@@ -7,18 +7,8 @@ sealed class BasePermission : Permission {
 
     abstract val label: String?
     abstract val description: String?
-    abstract val requestingApps: Collection<BaseApp>
-    abstract val grantedApps: Collection<BaseApp>
-    abstract val declaringApps: Collection<BaseApp>
+    abstract val requestingPkgs: Collection<BaseApp>
+    abstract val grantingPkgs: Collection<BaseApp>
+    abstract val declaringPkgs: Collection<BaseApp>
 
-    abstract val isAospPermission: Boolean
-
-    val riskClassifier: RiskClassifier
-        get() = RiskClassifier.HIGH
-
-    enum class RiskClassifier {
-        HIGH,
-        MEDIUM,
-        LOW
-    }
 }

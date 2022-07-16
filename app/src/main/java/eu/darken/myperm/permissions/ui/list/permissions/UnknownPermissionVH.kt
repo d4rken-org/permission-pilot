@@ -25,7 +25,7 @@ class UnknownPermissionVH(parent: ViewGroup) :
             text = perm.id.value
         }
 
-        val total = perm.requestingApps.size
+        val total = perm.requestingPkgs.size
 
         usedBy.text = "Requested by $total apps."
 

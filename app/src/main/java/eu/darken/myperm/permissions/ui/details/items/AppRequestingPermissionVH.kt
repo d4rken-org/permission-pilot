@@ -26,6 +26,8 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
+        root.setOnClickListener { item.onItemClicked(item) }
+
         identifier.text = item.app.id.toString()
 
         label.apply {
@@ -34,7 +36,6 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
         }
 
         icon.load(item.app.id)
-
 
         statusIcon.apply {
             val status = item.app.getPermission(item.permission.id)?.status
@@ -50,7 +51,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
             isGone = status == null
         }
 
-        root.setOnClickListener { item.onItemClicked(item) }
+        description.isGone = true
     }
 
     data class Item(

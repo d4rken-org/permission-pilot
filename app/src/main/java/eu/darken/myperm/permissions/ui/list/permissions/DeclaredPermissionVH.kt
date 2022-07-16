@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.AndroidPkgs
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDeclaredItemBinding
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
@@ -23,14 +24,16 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val perm = item.perm
 
-        icon.load(perm.id)
+        icon.load(
+            perm.declaringPkgs.singleOrNull()?.id?.takeIf { it != AndroidPkgs.ANDROID.id } ?: perm.id
+        )
 
         identifier.apply {
             text = perm.id.value
         }
 
-        val granted = perm.grantedApps.size
-        val total = perm.requestingApps.size
+        val granted = perm.grantingPkgs.size
+        val total = perm.requestingPkgs.size
 
         usedBy.text = "Granted to $granted out of $total apps."
 

@@ -48,7 +48,7 @@ class PermissionsFragmentVM @Inject constructor(
             .sortedWith(sortOptions.mainSort.comparator)
 
         filtered
-            .sortedByDescending { it.grantedApps.size }
+            .sortedByDescending { it.grantingPkgs.size }
             .map { permission ->
                 when (permission) {
                     is DeclaredPermission -> DeclaredPermissionVH.Item(
