@@ -1,10 +1,13 @@
 package eu.darken.myperm.main.ui.main
 
+import android.app.Activity
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.PermissionRepo
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
@@ -15,6 +18,7 @@ class MainFragmentVM @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val appRepo: AppRepo,
     private val permissionRepo: PermissionRepo,
+    private val upgradeRepo: UpgradeRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     data class State(
@@ -31,4 +35,14 @@ class MainFragmentVM @Inject constructor(
             permissionCount = permissions.size
         )
     }.asLiveData2()
+
+    val launchUpgradeFlow = SingleLiveEvent<(Activity) -> Unit>()
+    val upgradeInfo = upgradeRepo.upgradeInfo.asLiveData2()
+
+    fun onUpgrade() = launch {
+        val call: (Activity) -> Unit = {
+            upgradeRepo.launchBillingFlow(it)
+        }
+        launchUpgradeFlow.postValue(call)
+    }
 }

@@ -59,6 +59,16 @@ android {
         }
     }
 
+    flavorDimensions.add("version")
+    productFlavors {
+        create("gplay") {
+            dimension = "version"
+        }
+        create("foss") {
+            dimension = "version"
+        }
+    }
+
     buildTypes {
         val customProguardRules = fileTree(File("../proguard")) {
             include("*.pro")
@@ -87,7 +97,7 @@ android {
         val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
         val variantName: String = variantOutputImpl.name
 
-        if (variantName == "release") {
+        if (variantName.toLowerCase().contains("release")) {
             val outputFileName = packageName +
                     "-v${defaultConfig.versionName}(${defaultConfig.versionCode})" +
                     "-${variantName.toUpperCase()}-${lastCommitHash()}.apk"
@@ -178,6 +188,8 @@ dependencies {
     // Debugging
     implementation("com.bugsnag:bugsnag-android:5.9.2")
     implementation("com.getkeepsafe.relinker:relinker:1.4.3")
+
+    "gplayImplementation"("com.android.billingclient:billing:4.0.0")
 
     // Support libs
     implementation("androidx.core:core-ktx:1.8.0")

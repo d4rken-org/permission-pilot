@@ -10,6 +10,7 @@ import androidx.annotation.MenuRes
 import androidx.annotation.XmlRes
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.preference.PreferenceFragmentCompat
 import eu.darken.myperm.common.preferences.Settings
 import eu.darken.myperm.settings.ui.SettingsFragment
@@ -66,5 +67,11 @@ abstract class PreferenceFragment2
                 true
             }
         }
+    }
+
+    inline fun <T> LiveData<T>.observe2(
+        crossinline callback: (T) -> Unit
+    ) {
+        observe(viewLifecycleOwner) { callback.invoke(it) }
     }
 }

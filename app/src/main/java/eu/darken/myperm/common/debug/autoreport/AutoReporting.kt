@@ -10,6 +10,7 @@ import eu.darken.myperm.common.debug.autoreport.bugsnag.BugsnagErrorHandler
 import eu.darken.myperm.common.debug.autoreport.bugsnag.BugsnagLogger
 import eu.darken.myperm.common.debug.autoreport.bugsnag.NOPBugsnagErrorHandler
 import eu.darken.myperm.common.debug.logging.Logging
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import javax.inject.Inject
@@ -48,7 +49,7 @@ class AutoReporting @Inject constructor(
             Bugsnag.start(context, bugsnagConfig)
             Bugs.ready = true
         } catch (e: IllegalStateException) {
-            log(TAG) { "Bugsnag API Key not configured." }
+            log(TAG, WARN) { "Bugsnag API Key not configured." }
         }
     }
 
