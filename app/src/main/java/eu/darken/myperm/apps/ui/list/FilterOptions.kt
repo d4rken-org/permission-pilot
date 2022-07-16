@@ -23,7 +23,7 @@ data class FilterOptions(
         ),
         NO_INTERNET(
             labelRes = R.string.apps_filter_nointernet_label,
-            matches = { it.internetAccess == InternetAccess.NONE }
+            matches = { it.internetAccess != InternetAccess.DIRECT }
         ),
         SIDELOADED(
             labelRes = R.string.apps_filter_sideloaded_label,

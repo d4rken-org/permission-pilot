@@ -108,12 +108,12 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         @ColorInt colorGranted: Int = ContextCompat.getColor(context, R.color.status_positive_1),
         @ColorInt colorDenied: Int = ContextCompat.getColor(context, R.color.status_negative_1),
     ) {
-        val perms = permissions.map { app.getPermission(it.id) }
-        val grantedPerm = perms.firstOrNull { it?.isGranted == true }
-        isInvisible = when (grantedPerm?.isGranted) {
-            true -> tintIt(colorGranted).let { false }
-            false -> tintIt(colorDenied).let { false }
-            null -> true
+        val perms = permissions.map { app.getPermission(it.id) }.filterNotNull()
+        val grantedPerm = perms.firstOrNull { it.isGranted }
+        isInvisible = when {
+            grantedPerm != null -> tintIt(colorGranted).let { false }
+            perms.isNotEmpty() -> tintIt(colorDenied).let { false }
+            else -> true
         }
         grantedPerm?.let { setUpInfoSnackbar(it) }
     }
