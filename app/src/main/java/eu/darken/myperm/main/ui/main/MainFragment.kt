@@ -43,7 +43,8 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                     else -> super.onOptionsItemSelected(it)
                 }
             }
-            subtitle = BuildConfigWrap.VERSION_DESCRIPTION
+            subtitle =
+                "v${BuildConfigWrap.VERSION_NAME} ~ ${BuildConfigWrap.GIT_SHA}/${BuildConfigWrap.FLAVOR}/${BuildConfigWrap.BUILD_TYPE}"
         }
         val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
         setupWithNavController(ui.bottomNavigation, navController)
