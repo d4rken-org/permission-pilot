@@ -15,8 +15,7 @@ fun PackageManager.getPackageInfo2(
 
 fun PackageManager.getLabel(
     pkgId: Pkg.Id,
-): String? = try {
-    getPackageInfo2(pkgId.value)?.applicationInfo?.loadLabel(this)?.toString()
-} catch (_: PackageManager.NameNotFoundException) {
-    null
-}
+): String? = getPackageInfo2(pkgId.value)
+    ?.applicationInfo
+    ?.loadLabel(this)?.toString()
+    ?.takeIf { it != pkgId.value }

@@ -10,6 +10,7 @@ import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
 import eu.darken.myperm.apps.core.types.Pkg
+import eu.darken.myperm.common.pks.getPackageInfo2
 import javax.inject.Inject
 
 class AppIconFetcher @Inject constructor(
@@ -18,8 +19,8 @@ class AppIconFetcher @Inject constructor(
     private val options: Options,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult {
-        val packageInfo = packageManager.getPackageInfo(data.value, 0)
-        val drawable = packageInfo.applicationInfo?.loadIcon(packageManager) ?: ColorDrawable(Color.TRANSPARENT)
+        val packageInfo = packageManager.getPackageInfo2(data.value)
+        val drawable = packageInfo?.applicationInfo?.loadIcon(packageManager) ?: ColorDrawable(Color.TRANSPARENT)
         return DrawableResult(
             drawable = drawable,
             isSampled = false,
