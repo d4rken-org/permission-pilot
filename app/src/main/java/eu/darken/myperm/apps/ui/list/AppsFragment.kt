@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.list
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
@@ -10,6 +11,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
@@ -57,8 +59,16 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                         }
                         .show()
                 }
+                is AppsEvents.ShowAppSystemDetails -> {
+                    try {
+                        startActivity(event.pkg.getSettingsIntent(requireContext()))
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
+
         ui.searchInput.addTextChangedListener {
             vm.onSearchInputChanged(it?.toString())
         }

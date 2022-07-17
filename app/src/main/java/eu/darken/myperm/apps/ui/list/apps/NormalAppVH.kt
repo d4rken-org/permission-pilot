@@ -12,6 +12,7 @@ import coil.dispose
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.InternetAccess
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.list.AppsAdapter
@@ -59,7 +60,10 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
-        icon.load(app)
+        icon.apply {
+            load(app)
+            setOnClickListener { item.onIconClicked(item.app) }
+        }
 
         installerSource.apply {
             val info = app.installerInfo
@@ -73,7 +77,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
-        itemView.setOnClickListener { item.onClickAction(item) }
+        itemView.setOnClickListener { item.onRowClicked(item.app) }
 
         tagSharedid.isInvisible = app.siblings.isEmpty()
 
@@ -139,7 +143,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
     data class Item(
         override val app: NormalApp,
-        val onClickAction: (Item) -> Unit,
+        val onIconClicked: (Pkg) -> Unit,
+        val onRowClicked: (Pkg) -> Unit,
         val onShowPermission: ((Permission) -> Unit),
     ) : AppsAdapter.Item
 }

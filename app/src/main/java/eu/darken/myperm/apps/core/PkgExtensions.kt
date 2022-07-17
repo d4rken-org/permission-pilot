@@ -1,7 +1,10 @@
 package eu.darken.myperm.apps.core
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.provider.Settings
 import eu.darken.myperm.common.HasIcon
 import eu.darken.myperm.common.HasLabel
 
@@ -23,3 +26,8 @@ fun Pkg.tryIcon(context: Context): Drawable? {
 
     return null
 }
+
+fun Pkg.getSettingsIntent(context: Context): Intent =
+    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+        data = Uri.parse("package:${id}")
+    }

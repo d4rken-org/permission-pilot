@@ -32,7 +32,11 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     ) -> Unit = { item, _ ->
         val app = item.app
 
-        icon.load(app)
+        icon.apply {
+            load(app)
+            setOnClickListener { item.onIconClicked(item.app) }
+        }
+
         label.text = app.label
         identifier.text = app.id.toString()
 
@@ -71,6 +75,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
     data class Item(
         val app: NormalApp,
+        val onIconClicked: (Pkg) -> Unit,
         val onInstallerClicked: (Pkg) -> Unit
     ) : AppDetailsAdapter.Item {
         override val stableId: Long

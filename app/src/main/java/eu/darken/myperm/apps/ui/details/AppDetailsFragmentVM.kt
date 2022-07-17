@@ -13,6 +13,7 @@ import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
 import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -34,6 +35,8 @@ class AppDetailsFragmentVM @Inject constructor(
 
     private val navArgs: AppDetailsFragmentArgs by handle.navArgs()
 
+    val events = SingleLiveEvent<AppDetailsEvents>()
+
     data class Details(
         val label: String,
         val app: BaseApp? = null,
@@ -50,6 +53,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 is NormalApp -> {
                     AppOverviewVH.Item(
                         app = app,
+                        onIconClicked = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
                         onInstallerClicked = { installer ->
                             if (installer is AppStore) {
                                 installer

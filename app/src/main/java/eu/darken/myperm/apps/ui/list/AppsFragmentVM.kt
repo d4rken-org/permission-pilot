@@ -55,12 +55,10 @@ class AppsFragmentVM @Inject constructor(
             when (app) {
                 is NormalApp -> NormalAppVH.Item(
                     app = app,
-                    onClickAction = {
+                    onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
+                    onRowClicked = {
                         log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(
-                            appId = app.id,
-                            app.label
-                        ).navigate()
+                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.label).navigate()
                     },
                     onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }
                 )

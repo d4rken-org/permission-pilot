@@ -1,5 +1,6 @@
 package eu.darken.myperm.apps.ui.list
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.permissions.core.Permission
 
 sealed class AppsEvents {
@@ -13,5 +14,9 @@ sealed class AppsEvents {
 
     data class ShowPermissionSnackbar(
         val permission: Permission
+    ) : AppsEvents()
+
+    data class ShowAppSystemDetails(
+        val pkg: Pkg
     ) : AppsEvents()
 }
