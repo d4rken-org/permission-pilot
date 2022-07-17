@@ -21,10 +21,11 @@ class AppIconFetcher @Inject constructor(
             ?: throw IllegalArgumentException("Not found $data")
         val drawable = packageInfo.applicationInfo?.loadIcon(packageManager)
             ?: throw IllegalArgumentException("Has no icon $data")
+
         return DrawableResult(
             drawable = drawable,
             isSampled = false,
-            dataSource = DataSource.MEMORY
+            dataSource = DataSource.DISK
         )
     }
 
