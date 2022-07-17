@@ -54,7 +54,7 @@ jobs:
         env:
           VERSION: ${{ github.ref }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_ALIAS: release
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Assemble release APK
@@ -63,7 +63,7 @@ jobs:
         env:
           VERSION: ${{ github.ref }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_ALIAS: release
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Create pre-release
