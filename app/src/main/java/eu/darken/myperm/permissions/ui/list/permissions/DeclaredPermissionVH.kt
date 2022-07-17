@@ -25,7 +25,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         val perm = item.perm
 
         icon.load(
-            perm.declaringPkgs.singleOrNull()?.id?.takeIf { it != AndroidPkgs.ANDROID.id } ?: perm.id
+            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AndroidPkgs.ANDROID.id } ?: perm.id
         )
 
         identifier.apply {

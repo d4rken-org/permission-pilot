@@ -7,6 +7,7 @@ import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import coil.dispose
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.InternetAccess
@@ -57,13 +58,16 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
-        icon.load(app.id)
+        icon.load(app)
 
         installerSource.apply {
             val info = app.installerInfo
+
+            log { "ICONLOAD: ${info.installer?.id}" }
             if (info.installer != null) {
-                load(info.installer?.id) { error(info.getIcon(context)) }
+                load(info.installer)
             } else {
+                dispose()
                 setImageDrawable(info.getIcon(context))
             }
         }

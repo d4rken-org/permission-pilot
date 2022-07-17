@@ -35,7 +35,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
             isGone = text.isNullOrEmpty()
         }
 
-        icon.load(item.app.id)
+        icon.load(item.app)
 
         statusIcon.apply {
             val status = item.app.getPermission(item.permission.id)?.status

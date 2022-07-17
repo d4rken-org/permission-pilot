@@ -29,7 +29,7 @@ class PermissionOverviewVH(parent: ViewGroup) :
         val perm = item.permission
 
         icon.load(
-            perm.declaringPkgs.singleOrNull()?.id?.takeIf { it != AndroidPkgs.ANDROID.id } ?: perm.id
+            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AndroidPkgs.ANDROID.id } ?: perm.id
         )
 
         identifier.text = perm.id.value

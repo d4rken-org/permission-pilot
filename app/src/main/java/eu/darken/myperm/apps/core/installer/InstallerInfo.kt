@@ -42,7 +42,8 @@ data class InstallerInfo(
 }
 
 fun BaseApp.isSideloaded(): Boolean {
-    return installerInfo?.allInstallers?.none { it.id == ZKnownPkgs.GooglePlay.id } ?: true
+    if (isSystemApp) return false
+    return installerInfo.allInstallers.none { it.id == ZKnownPkgs.GooglePlay.id }
 }
 
 fun PackageInfo.getInstallerInfo(

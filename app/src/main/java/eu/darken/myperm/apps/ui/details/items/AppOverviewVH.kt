@@ -32,7 +32,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     ) -> Unit = { item, _ ->
         val app = item.app
 
-        icon.load(app.id)
+        icon.load(app)
         label.text = app.label
         identifier.text = app.id.toString()
 

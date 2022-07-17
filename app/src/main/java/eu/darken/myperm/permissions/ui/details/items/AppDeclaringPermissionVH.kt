@@ -30,7 +30,7 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
             isGone = text.isNullOrEmpty()
         }
 
-        icon.load(item.app.id)
+        icon.load(item.app)
 
         root.setOnClickListener { item.onItemClicked(item) }
     }

@@ -27,7 +27,7 @@ sealed class BaseApp : Pkg {
     abstract fun getPermission(id: Permission.Id): UsesPermission?
 
     abstract val internetAccess: InternetAccess
-    abstract val installerInfo: InstallerInfo?
+    abstract val installerInfo: InstallerInfo
 
     abstract val sharedUserId: String?
 
