@@ -14,6 +14,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
+import eu.darken.myperm.common.pks.getPackageInfo2
 import eu.darken.myperm.permissions.core.Permission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -91,8 +92,9 @@ class AppRepo @Inject constructor(
             null
         }
         sourceInfo?.initiatingPackageName?.let { installerPkg ->
-            val info = packageManager.getPackageInfo(installerPkg, 0)?.applicationInfo
-            val label = info?.loadLabel(packageManager)?.toString()
+            val label =
+                packageManager.getPackageInfo2(installerPkg)?.applicationInfo?.loadLabel(packageManager)?.toString()
+
             InstallerInfo(
                 initiatingPkg = BasicPkg(
                     id = Pkg.Id(installerPkg),
@@ -102,8 +104,9 @@ class AppRepo @Inject constructor(
         }
     } else {
         packageManager.getInstallerPackageName(packageName)?.let { installerPkg ->
-            val info = packageManager.getPackageInfo(installerPkg, 0)?.applicationInfo
-            val label = info?.loadLabel(packageManager)?.toString()
+            val label =
+                packageManager.getPackageInfo2(installerPkg)?.applicationInfo?.loadLabel(packageManager)?.toString()
+
             InstallerInfo(
                 initiatingPkg = BasicPkg(
                     id = Pkg.Id(installerPkg),

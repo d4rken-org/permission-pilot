@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.core.types
 
 import android.content.Context
 import android.os.Parcelable
+import eu.darken.myperm.common.pks.getLabel
 import kotlinx.parcelize.Parcelize
 
 interface Pkg {
@@ -13,8 +14,5 @@ interface Pkg {
         override fun toString(): String = value
     }
 
-    fun getLabel(context: Context): String? {
-        val pm = context.packageManager
-        return pm.getPackageInfo(id.value, 0)?.applicationInfo?.loadLabel(pm)?.toString()
-    }
+    fun getLabel(context: Context): String? = context.packageManager.getLabel(id)
 }
