@@ -10,9 +10,9 @@ import coil.fetch.DrawableResult
 import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.getIcon2
-import eu.darken.myperm.apps.core.types.Pkg
-import eu.darken.myperm.apps.core.types.tryIcon
+import eu.darken.myperm.apps.core.tryIcon
 import javax.inject.Inject
 
 class AppIconFetcher @Inject constructor(

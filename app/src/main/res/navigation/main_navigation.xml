@@ -31,7 +31,7 @@
         tools:layout="@layout/apps_details_fragment">
         <argument
             android:name="appId"
-            app:argType="eu.darken.myperm.apps.core.types.Pkg$Id" />
+            app:argType="eu.darken.myperm.apps.core.Pkg$Id" />
         <argument
             android:name="appLabel"
             app:argType="string"

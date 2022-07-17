@@ -1,22 +1,10 @@
-package eu.darken.myperm.apps.core.types
+package eu.darken.myperm.apps.core
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.os.Parcelable
-import eu.darken.myperm.apps.core.getIcon2
-import eu.darken.myperm.apps.core.getLabel2
-import kotlinx.parcelize.Parcelize
+import eu.darken.myperm.common.HasIcon
+import eu.darken.myperm.common.HasLabel
 
-interface Pkg {
-    val id: Id
-
-    @Parcelize
-    data class Id(val value: String) : Parcelable {
-        override fun toString(): String = value
-    }
-
-    data class Container(override val id: Id) : Pkg
-}
 
 fun Pkg.Id.toContainer(): Pkg.Container = Pkg.Container(this)
 

@@ -2,9 +2,9 @@ package eu.darken.myperm.apps.core.known
 
 import androidx.annotation.Keep
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.types.AppStore
 import eu.darken.myperm.apps.core.types.DisplayablePkg
-import eu.darken.myperm.apps.core.types.Pkg
 import kotlin.reflect.full.isSubclassOf
 
 @Keep

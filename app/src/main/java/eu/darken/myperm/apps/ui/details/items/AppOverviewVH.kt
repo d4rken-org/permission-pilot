@@ -12,9 +12,9 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.core.types.NormalApp
-import eu.darken.myperm.apps.core.types.Pkg
-import eu.darken.myperm.apps.core.types.tryLabel
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding

@@ -7,9 +7,13 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.ZKnownPkgs
 import eu.darken.myperm.apps.core.known.toKnownPkg
-import eu.darken.myperm.apps.core.types.*
+import eu.darken.myperm.apps.core.toContainer
+import eu.darken.myperm.apps.core.tryIcon
+import eu.darken.myperm.apps.core.types.BaseApp
+import eu.darken.myperm.common.HasLabel
 import eu.darken.myperm.common.hasApiLevel
 
 data class InstallerInfo(

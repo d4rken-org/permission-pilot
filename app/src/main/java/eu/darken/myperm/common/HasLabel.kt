@@ -1,4 +1,4 @@
-package eu.darken.myperm.apps.core.types
+package eu.darken.myperm.common
 
 import android.content.Context
 

@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import eu.darken.myperm.apps.core.InternetAccess
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.UsesPermission
 import eu.darken.myperm.apps.core.installer.InstallerInfo
 import eu.darken.myperm.permissions.core.AndroidPermissions

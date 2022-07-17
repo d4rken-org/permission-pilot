@@ -6,6 +6,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.tryIcon
+import eu.darken.myperm.apps.core.tryLabel
 
 interface AppStore : DisplayablePkg {
     @get:StringRes val labelRes: Int

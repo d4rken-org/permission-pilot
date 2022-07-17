@@ -3,7 +3,6 @@ package eu.darken.myperm.apps.core
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import eu.darken.myperm.apps.core.types.Pkg
 
 fun PackageManager.getPackageInfo2(
     packageName: String,

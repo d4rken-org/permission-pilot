@@ -1,7 +1,6 @@
 package eu.darken.myperm.apps.core
 
 import androidx.annotation.DrawableRes
-import eu.darken.myperm.apps.core.types.Pkg
 
 enum class AndroidPkgs(
     override val id: Pkg.Id,
