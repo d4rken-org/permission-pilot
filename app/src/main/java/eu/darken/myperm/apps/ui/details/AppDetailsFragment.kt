@@ -27,8 +27,19 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
     @Inject lateinit var detailsAdapter: AppDetailsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        ui.list.setupDefaults(detailsAdapter)
-        ui.toolbar.setupWithNavController(findNavController())
+        ui.toolbar.apply {
+            setupWithNavController(findNavController())
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menu_item_settings -> {
+                        vm.onGoSettings()
+                        true
+                    }
+
+                    else -> super.onOptionsItemSelected(it)
+                }
+            }
+        }
 
         vm.events.observe2(ui) { event ->
             when (event) {
@@ -42,6 +53,7 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
             }
         }
 
+        ui.list.setupDefaults(detailsAdapter)
         vm.details.observe2(ui) { details ->
             toolbar.subtitle = details.label
 

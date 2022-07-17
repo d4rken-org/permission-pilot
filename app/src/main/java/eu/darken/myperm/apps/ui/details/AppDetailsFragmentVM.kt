@@ -53,7 +53,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 is NormalApp -> {
                     AppOverviewVH.Item(
                         app = app,
-                        onIconClicked = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
+                        onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
                         onInstallerClicked = { installer ->
                             if (installer is AppStore) {
                                 installer
@@ -122,4 +122,9 @@ class AppDetailsFragmentVM @Inject constructor(
         }
         .onStart { navArgs.appLabel?.let { emit(Details(label = it)) } }
         .asLiveData2()
+
+    fun onGoSettings() {
+        val pkg = details.value?.app ?: return
+        events.postValue(AppDetailsEvents.ShowAppSystemDetails(pkg))
+    }
 }

@@ -13,6 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_app_details"
         app:title="@string/apps_app_details_label"
         tools:subtitle="some.app.package.name" />
 
