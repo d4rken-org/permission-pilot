@@ -3,7 +3,6 @@ package eu.darken.myperm.apps.ui.list.apps
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -29,7 +28,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
     override val viewBinding = lazy { AppsNormalItemBinding.bind(itemView) }
 
-    private val defaultTagColor = context.getColorForAttr(R.attr.colorOnBackground)
+    @ColorInt private val colorGranted = context.getColorForAttr(R.attr.colorPrimary)
+    @ColorInt private val colorDenied = context.getColorForAttr(R.attr.hintTextColor)
 
     private var permissionNavListener: ((Permission) -> Unit)? = null
 
@@ -88,15 +88,15 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             when (app.internetAccess) {
                 InternetAccess.DIRECT -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_4_bar_24)
-                    tintIt(getColor(R.color.status_positive_1))
+                    tintIt(colorGranted)
                 }
                 InternetAccess.INDIRECT -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_statusbar_connected_no_internet_4_24)
-                    tintIt(getColor(R.color.status_negative_1))
+                    tintIt(colorGranted)
                 }
                 InternetAccess.NONE -> {
                     setImageResource(R.drawable.ic_baseline_signal_wifi_connected_no_internet_4_24)
-                    tintIt(defaultTagColor)
+                    tintIt(colorGranted)
                 }
             }
             setUpInfoSnackbar(AndroidPermissions.INTERNET)
@@ -126,14 +126,14 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     private fun ImageView.setupAll(
         app: BaseApp,
         vararg permissions: Permission,
-        @ColorInt colorGranted: Int = ContextCompat.getColor(context, R.color.status_positive_1),
-        @ColorInt colorDenied: Int = ContextCompat.getColor(context, R.color.status_negative_1),
+        @ColorInt grantedcolor: Int = colorGranted,
+        @ColorInt deniedColor: Int = colorDenied,
     ) {
         val perms = permissions.map { app.getPermission(it.id) }.filterNotNull()
         val grantedPerm = perms.firstOrNull { it.isGranted }
         isInvisible = when {
-            grantedPerm != null -> tintIt(colorGranted).let { false }
-            perms.isNotEmpty() -> tintIt(colorDenied).let { false }
+            grantedPerm != null -> tintIt(grantedcolor).let { false }
+            perms.isNotEmpty() -> tintIt(deniedColor).let { false }
             else -> true
         }
         grantedPerm?.let { setUpInfoSnackbar(it) }
