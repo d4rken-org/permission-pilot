@@ -47,7 +47,15 @@ class AppDetailsFragmentVM @Inject constructor(
                 is NormalApp -> {
                     infoItems.add(AppOverviewVH.Item(app))
                     if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
-                        infoItems.add(AppSiblingsVH.Item(app))
+                        AppSiblingsVH.Item(
+                            app,
+                            onSiblingClicked = {
+                                AppDetailsFragmentDirections.toSelf(
+                                    appId = it.id,
+                                    appLabel = it.label,
+                                ).navigate()
+                            }
+                        ).run { infoItems.add(this) }
                     }
                 }
             }

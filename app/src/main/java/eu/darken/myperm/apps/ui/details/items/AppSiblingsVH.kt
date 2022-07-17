@@ -1,7 +1,13 @@
 package eu.darken.myperm.apps.ui.details.items
 
+import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
@@ -21,9 +27,11 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         val app = item.app
 
         val idLabel = app.packageInfo.applicationInfo?.let { appInfo ->
+            val labelId = app.packageInfo.sharedUserLabel
+            if (labelId == 0) return@let null
             context.packageManager.getText(
                 app.packageName,
-                app.packageInfo.sharedUserLabel,
+                labelId,
                 appInfo
             )
         }?.toString()
@@ -34,13 +42,27 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
             app.sharedUserId
         }
 
-        siblingsInfo.text = app.siblings.joinToString("\n") {
-            "${it.label ?: "?"} (${it.id})"
+        siblingsInfo.apply {
+            val ssb = SpannableStringBuilder()
+            app.siblings.forEach { sibling ->
+                var txt = "${sibling.label ?: "?"} (${sibling.id})"
+                if (app.siblings.last() != sibling) txt += "\n"
+
+                val onClick = object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        item.onSiblingClicked(sibling)
+                    }
+                }
+                ssb.append(txt, onClick, 0)
+            }
+            movementMethod = LinkMovementMethod.getInstance()
+            setText(ssb, TextView.BufferType.SPANNABLE)
         }
     }
 
     data class Item(
-        val app: NormalApp
+        val app: NormalApp,
+        val onSiblingClicked: (BaseApp) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()
