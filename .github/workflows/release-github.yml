@@ -1,4 +1,4 @@
-name: Release CI
+name: Release - GitHub
 
 on:
   push:
@@ -34,6 +34,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get the version
+        id: tagger
+        uses: jimschubert/query-tag-action@v2
+        with:
+          skip-unshallow: 'true'
+          abbrev: false
+          commit-ish: HEAD
+
+      - name: Determine buildtype for env
+        run: |
+          BUILDTYPE_PRERELEASE="$( [[ "${{steps.tagger.outputs.tag}}" == *"beta"* ]] && echo "true" || echo "false" )"
+          echo "BUILDTYPE_PRERELEASE=$BUILDTYPE_PRERELEASE"
+          echo "BUILDTYPE_PRERELEASE=$(echo $BUILDTYPE_PRERELEASE)" >> $GITHUB_ENV
+
       - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v3
         with:
@@ -48,20 +62,13 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Get the version
-        id: tagger
-        uses: jimschubert/query-tag-action@v2
-        with:
-          skip-unshallow: 'true'
-          abbrev: false
-          commit-ish: HEAD
-
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{steps.tagger.outputs.tag}}
-          name: ${{steps.tagger.outputs.tag}}
-          body: ${{steps.github_release.outputs.changelog}}
+          tag_name: ${{ steps.tagger.outputs.tag }}
+          name: ${{ steps.tagger.outputs.tag }}
+          body: ${{ steps.github_release.outputs.changelog }}
+          prerelease: ${{ env.BUILDTYPE_PRERELEASE }}
           files: app/build/outputs/apk/foss/release//*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
