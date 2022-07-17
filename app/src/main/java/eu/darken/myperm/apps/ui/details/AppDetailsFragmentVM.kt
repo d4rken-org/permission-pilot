@@ -10,6 +10,7 @@ import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
 import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
 import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
+import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
@@ -25,6 +26,7 @@ import javax.inject.Inject
 class AppDetailsFragmentVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    private val webpageTool: WebpageTool,
     appRepo: AppRepo,
     permissionRepo: PermissionRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
@@ -45,7 +47,13 @@ class AppDetailsFragmentVM @Inject constructor(
 
             when (app) {
                 is NormalApp -> {
-                    infoItems.add(AppOverviewVH.Item(app))
+                    AppOverviewVH.Item(
+                        app = app,
+                        onInstallerClicked = { installer ->
+                            webpageTool.open(installer.urlGenerator(app.id))
+                        }
+                    ).run { infoItems.add(this) }
+
                     if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
                         AppSiblingsVH.Item(
                             app,
