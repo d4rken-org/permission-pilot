@@ -3,6 +3,7 @@ package eu.darken.myperm.apps.ui.list.apps
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -29,7 +30,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     override val viewBinding = lazy { AppsNormalItemBinding.bind(itemView) }
 
     @ColorInt private val colorGranted = context.getColorForAttr(R.attr.colorPrimary)
-    @ColorInt private val colorDenied = context.getColorForAttr(R.attr.hintTextColor)
+    @ColorInt private val colorDenied = context.getColorForAttr(R.attr.colorOnBackground)
 
     private var permissionNavListener: ((Permission) -> Unit)? = null
 
@@ -74,33 +75,26 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         itemView.setOnClickListener { item.onClickAction(item) }
 
-        tagBluetooth.setupAll(
-            app,
-            AndroidPermissions.BLUETOOTH_ADMIN,
-            AndroidPermissions.BLUETOOTH,
-            AndroidPermissions.BLUETOOTH_CONNECT,
-        )
+        tagSharedid.isInvisible = app.siblings.isEmpty()
 
         tagInternet.apply {
             when (app.internetAccess) {
-                InternetAccess.DIRECT -> {
-                    setImageResource(R.drawable.ic_baseline_signal_wifi_4_bar_24)
-                    tintIt(colorGranted)
-                }
-                InternetAccess.INDIRECT -> {
-                    setImageResource(R.drawable.ic_baseline_signal_wifi_statusbar_connected_no_internet_4_24)
-                    tintIt(colorGranted)
-                }
-                InternetAccess.NONE -> {
-                    setImageResource(R.drawable.ic_baseline_signal_wifi_connected_no_internet_4_24)
-                    tintIt(colorGranted)
-                }
+                InternetAccess.DIRECT -> tintIt(colorGranted)
+                InternetAccess.INDIRECT -> tintIt(ContextCompat.getColor(context, R.color.status_negative_1))
+                InternetAccess.NONE -> tintIt(colorDenied)
             }
             setUpInfoSnackbar(AndroidPermissions.INTERNET)
             isInvisible = app.internetAccess == InternetAccess.NONE
         }
 
         tagStorage.setupAll(app, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
+
+        tagBluetooth.setupAll(
+            app,
+            AndroidPermissions.BLUETOOTH_ADMIN,
+            AndroidPermissions.BLUETOOTH,
+            AndroidPermissions.BLUETOOTH_CONNECT,
+        )
 
         tagWakelock.setupAll(app, AndroidPermissions.WAKE_LOCK)
         tagVibrate.setupAll(app, AndroidPermissions.VIBRATE)
