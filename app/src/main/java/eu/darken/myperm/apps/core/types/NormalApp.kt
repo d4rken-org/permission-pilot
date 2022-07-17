@@ -3,9 +3,9 @@ package eu.darken.myperm.apps.core.types
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
-import eu.darken.myperm.apps.core.InstallerInfo
 import eu.darken.myperm.apps.core.InternetAccess
 import eu.darken.myperm.apps.core.UsesPermission
+import eu.darken.myperm.apps.core.installer.InstallerInfo
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 import java.time.Instant
@@ -15,7 +15,7 @@ class NormalApp(
     override val label: String?,
     override val requestedPermissions: Collection<UsesPermission>,
     override val declaredPermissions: Collection<PermissionInfo>,
-    override val installerInfo: InstallerInfo?,
+    override val installerInfo: InstallerInfo,
 ) : BaseApp() {
 
     var siblings: Set<BaseApp> = emptySet()

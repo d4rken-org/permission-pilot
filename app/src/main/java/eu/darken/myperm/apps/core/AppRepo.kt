@@ -5,16 +5,14 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.installer.getInstallerInfo
 import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.BasicPkg
 import eu.darken.myperm.apps.core.types.NormalApp
-import eu.darken.myperm.apps.core.types.Pkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
-import eu.darken.myperm.common.pks.getPackageInfo2
 import eu.darken.myperm.permissions.core.Permission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -81,39 +79,8 @@ class AppRepo @Inject constructor(
             label = applicationInfo?.loadLabel(packageManager)?.toString()?.takeIf { it != packageName },
             requestedPermissions = requestedPerms,
             declaredPermissions = permissions?.toSet() ?: emptyList(),
-            installerInfo = getInstaller()
+            installerInfo = getInstallerInfo(packageManager)
         )
-    }
-
-    private fun PackageInfo.getInstaller(): InstallerInfo? = if (hasApiLevel(Build.VERSION_CODES.R)) {
-        val sourceInfo = try {
-            packageManager.getInstallSourceInfo(packageName)
-        } catch (_: PackageManager.NameNotFoundException) {
-            null
-        }
-        sourceInfo?.initiatingPackageName?.let { installerPkg ->
-            val label =
-                packageManager.getPackageInfo2(installerPkg)?.applicationInfo?.loadLabel(packageManager)?.toString()
-
-            InstallerInfo(
-                initiatingPkg = BasicPkg(
-                    id = Pkg.Id(installerPkg),
-                    label = label
-                ),
-            )
-        }
-    } else {
-        packageManager.getInstallerPackageName(packageName)?.let { installerPkg ->
-            val label =
-                packageManager.getPackageInfo2(installerPkg)?.applicationInfo?.loadLabel(packageManager)?.toString()
-
-            InstallerInfo(
-                initiatingPkg = BasicPkg(
-                    id = Pkg.Id(installerPkg),
-                    label = label
-                ),
-            )
-        }
     }
 
     companion object {

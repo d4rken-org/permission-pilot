@@ -12,8 +12,9 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.KnownInstaller
 import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.types.Pkg
+import eu.darken.myperm.apps.core.types.tryLabel
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
@@ -42,26 +43,25 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
         }
 
         installerInfo.apply {
-            val knownInstaller = app.installerInfo?.tryKnownInstaller()
-            val installerText = app.installerInfo?.initiatingPkg?.let {
-                val label = knownInstaller?.label ?: it.getLabel(context)
-                if (label != null) "$label (${it.id})" else "(${it.id})"
-            } ?: getString(R.string.apps_details_installer_manual_label)
+            val info = app.installerInfo
 
-            if (knownInstaller != null) {
+            installerIcon.setImageDrawable(info.getIcon(context))
+
+            if (info.allInstallers.isEmpty()) {
+                text = info.getLabel(context)
+            } else {
                 val ssb = SpannableStringBuilder().apply {
-
-                    val onClick = object : ClickableSpan() {
-                        override fun onClick(widget: View) {
-                            item.onInstallerClicked(knownInstaller)
+                    info.allInstallers.forEach { pkg ->
+                        val onClick = object : ClickableSpan() {
+                            override fun onClick(widget: View) = item.onInstallerClicked(pkg)
                         }
+                        var _label = pkg.tryLabel(context) ?: pkg.id.toString()
+                        if (pkg != info.allInstallers.last()) _label += "\n"
+                        append(_label, onClick, 0)
                     }
-                    append(installerText, onClick, 0)
                 }
                 movementMethod = LinkMovementMethod.getInstance()
                 setText(ssb, TextView.BufferType.SPANNABLE)
-            } else {
-                text = installerText
             }
         }
 
@@ -71,7 +71,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
     data class Item(
         val app: NormalApp,
-        val onInstallerClicked: (KnownInstaller) -> Unit
+        val onInstallerClicked: (Pkg) -> Unit
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()

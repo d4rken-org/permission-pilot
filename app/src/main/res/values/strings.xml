@@ -67,7 +67,7 @@
     <string name="apps_filter_nointernet_label">No internet access</string>
     <string name="apps_filter_sideloaded_label">Is sideloaded</string>
     <string name="apps_details_installer_label">Install source</string>
-    <string name="apps_details_installer_manual_label">Installer unknown (you?)</string>
+    <string name="apps_details_installer_manual_label">Manual install</string>
     <string name="permissions_filter_system_core_label">Core permissions</string>
     <string name="permissions_filter_system_extra_label">Declared by system app</string>
     <string name="permissions_filter_custom_label">Custom app permissions</string>
@@ -92,6 +92,12 @@
     <string name="apps_app_details_label">App details</string>
     <string name="apps_details_shareduserid_label">Shared user id</string>
     <string name="apps_details_siblings_label">Siblings</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">VIVO App Store</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">HUAWEI AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Mi Store</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>

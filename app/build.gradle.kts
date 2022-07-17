@@ -166,7 +166,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.coroutines}")
 
-    testImplementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.Kotlin.core}")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${Versions.Kotlin.core}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.Kotlin.coroutines}")
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.Kotlin.coroutines}") {
         // conflicts with mockito due to direct inclusion of byte buddy

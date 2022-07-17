@@ -1,16 +1,14 @@
 package eu.darken.myperm.common.coil
 
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import coil.ImageLoader
 import coil.decode.DataSource
 import coil.fetch.DrawableResult
 import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
+import eu.darken.myperm.apps.core.getPackageInfo2
 import eu.darken.myperm.apps.core.types.Pkg
-import eu.darken.myperm.common.pks.getPackageInfo2
 import javax.inject.Inject
 
 class AppIconFetcher @Inject constructor(
@@ -20,7 +18,9 @@ class AppIconFetcher @Inject constructor(
 ) : Fetcher {
     override suspend fun fetch(): FetchResult {
         val packageInfo = packageManager.getPackageInfo2(data.value)
-        val drawable = packageInfo?.applicationInfo?.loadIcon(packageManager) ?: ColorDrawable(Color.TRANSPARENT)
+            ?: throw IllegalArgumentException("Not found $data")
+        val drawable = packageInfo.applicationInfo?.loadIcon(packageManager)
+            ?: throw IllegalArgumentException("Has no icon $data")
         return DrawableResult(
             drawable = drawable,
             isSampled = false,

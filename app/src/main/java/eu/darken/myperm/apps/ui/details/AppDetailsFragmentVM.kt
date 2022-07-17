@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.types.AppStore
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
@@ -50,7 +51,15 @@ class AppDetailsFragmentVM @Inject constructor(
                     AppOverviewVH.Item(
                         app = app,
                         onInstallerClicked = { installer ->
-                            webpageTool.open(installer.urlGenerator(app.id))
+                            if (installer is AppStore) {
+                                installer
+                                    .urlGenerator?.invoke(app.id)
+                                    ?.let { webpageTool.open(it) }
+                            } else {
+                                AppDetailsFragmentDirections.toSelf(
+                                    appId = installer.id,
+                                ).navigate()
+                            }
                         }
                     ).run { infoItems.add(this) }
 

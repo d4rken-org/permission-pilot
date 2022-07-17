@@ -10,7 +10,6 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.InternetAccess
-import eu.darken.myperm.apps.core.KnownInstaller
 import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.list.AppsAdapter
@@ -61,17 +60,11 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         icon.load(app.id)
 
         installerSource.apply {
-            val installerPkg = app.installerInfo?.initiatingPkg
-            if (installerPkg == null) {
-                setImageResource(R.drawable.ic_baseline_user_24)
-                return@apply
-            }
-
-            val knownInstaller = KnownInstaller.values().singleOrNull { it.id == installerPkg.id }
-            if (knownInstaller?.iconRes != null) {
-                setImageResource(knownInstaller.iconRes)
+            val info = app.installerInfo
+            if (info.installer != null) {
+                load(info.installer?.id) { error(info.getIcon(context)) }
             } else {
-                load(installerPkg.id)
+                setImageDrawable(info.getIcon(context))
             }
         }
 
