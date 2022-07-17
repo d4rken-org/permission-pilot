@@ -43,9 +43,9 @@ class AppsFragmentVM @Inject constructor(
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
             .filter {
-                if (searchTerm == null) return@filter true
-                if (it.id.toString().contains(searchTerm)) return@filter true
-                if (it is NormalApp && it.label?.contains(searchTerm) == true) return@filter true
+                val prunedTerm = searchTerm?.lowercase() ?: return@filter true
+                if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
+                if (it is NormalApp && it.label?.lowercase()?.contains(prunedTerm) == true) return@filter true
 
                 return@filter false
             }
