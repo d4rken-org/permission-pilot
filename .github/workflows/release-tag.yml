@@ -1,4 +1,4 @@
-name: Release - GitHub
+name: Tagged releases
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - 'v*'
 
 jobs:
-  release:
-    name: Build tagged release
+  release-github:
+    name: Create GitHub release
     runs-on: ubuntu-latest
     environment: foss-production
     steps:
@@ -42,19 +42,23 @@ jobs:
           abbrev: false
           commit-ish: HEAD
 
-      - name: Determine buildtype for env
-        run: |
-          BUILDTYPE_PRERELEASE="$( [[ "${{steps.tagger.outputs.tag}}" == *"beta"* ]] && echo "true" || echo "false" )"
-          echo "BUILDTYPE_PRERELEASE=$BUILDTYPE_PRERELEASE"
-          echo "BUILDTYPE_PRERELEASE=$(echo $BUILDTYPE_PRERELEASE)" >> $GITHUB_ENV
-
       - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: 11
 
-      - name: Build project
+      - name: Assemble beta APK
+        if: contains(steps.tagger.outputs.tag, '-beta')
+        run: ./gradlew assembleFossBeta
+        env:
+          VERSION: ${{ github.ref }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Assemble release APK
+        if: "!contains(steps.tagger.outputs.tag, '-beta')"
         run: ./gradlew assembleFossRelease
         env:
           VERSION: ${{ github.ref }}
@@ -62,13 +66,26 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Create Release
+      - name: Create pre-release
+        if: contains(steps.tagger.outputs.tag, '-beta')
         uses: softprops/action-gh-release@v1
         with:
+          prerelease: true
           tag_name: ${{ steps.tagger.outputs.tag }}
           name: ${{ steps.tagger.outputs.tag }}
           body: ${{ steps.github_release.outputs.changelog }}
-          prerelease: ${{ env.BUILDTYPE_PRERELEASE }}
-          files: app/build/outputs/apk/foss/release//*.apk
+          files: app/build/outputs/apk/foss/beta/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create release
+        if: "!contains(steps.tagger.outputs.tag, '-beta')"
+        uses: softprops/action-gh-release@v1
+        with:
+          prerelease: false
+          tag_name: ${{ steps.tagger.outputs.tag }}
+          name: ${{ steps.tagger.outputs.tag }}
+          body: ${{ steps.github_release.outputs.changelog }}
+          files: app/build/outputs/apk/foss/release/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

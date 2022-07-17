@@ -80,6 +80,17 @@ android {
             proguardFiles(*customProguardRules.toList().toTypedArray())
             proguardFiles("proguard-rules-debug.pro")
         }
+        create("beta") {
+            signingConfig = signingConfigs["release"]
+            lint {
+                abortOnError = true
+                fatal.add("StopShip")
+            }
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            proguardFiles(*customProguardRules.toList().toTypedArray())
+        }
         release {
             signingConfig = signingConfigs["release"]
             lint {
@@ -97,7 +108,7 @@ android {
         val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
         val variantName: String = variantOutputImpl.name
 
-        if (variantName.toLowerCase().contains("release")) {
+        if (listOf("release", "beta").contains(variantName)) {
             val outputFileName = packageName +
                     "-v${defaultConfig.versionName}(${defaultConfig.versionCode})" +
                     "-${variantName.toUpperCase()}-${lastCommitHash()}.apk"
