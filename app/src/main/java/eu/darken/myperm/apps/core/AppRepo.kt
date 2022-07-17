@@ -77,7 +77,7 @@ class AppRepo @Inject constructor(
 
         return NormalApp(
             packageInfo = this,
-            label = applicationInfo?.loadLabel(packageManager)?.toString(),
+            label = applicationInfo?.loadLabel(packageManager)?.toString()?.takeIf { it != packageName },
             requestedPermissions = requestedPerms,
             declaredPermissions = permissions?.toSet() ?: emptyList(),
             installerInfo = getInstaller()

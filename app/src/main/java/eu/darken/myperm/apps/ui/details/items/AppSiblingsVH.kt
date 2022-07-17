@@ -45,7 +45,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         siblingsInfo.apply {
             val ssb = SpannableStringBuilder()
             app.siblings.forEach { sibling ->
-                var txt = "${sibling.label ?: "?"} (${sibling.id})"
+                var txt = "${sibling.id} (${sibling.label ?: "?"})"
                 if (app.siblings.last() != sibling) txt += "\n"
 
                 val onClick = object : ClickableSpan() {
