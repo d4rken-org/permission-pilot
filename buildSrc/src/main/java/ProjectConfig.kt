@@ -11,7 +11,7 @@ object ProjectConfig {
     object Version {
         const val major = 0
         const val minor = 2
-        const val patch = 0
+        const val patch = 1
         const val build = 0
 
         const val name = "${major}.${minor}.${patch}"
