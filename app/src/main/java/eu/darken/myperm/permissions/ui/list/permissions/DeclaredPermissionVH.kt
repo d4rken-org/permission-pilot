@@ -8,7 +8,6 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDeclaredItemBinding
-import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
@@ -40,7 +39,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         usedBy.text = "Granted to $granted out of $total apps."
 
         shortDescription.apply {
-            text = perm.tryLabel(context)?.capitalizeFirstLetter()
+            text = perm.getLabel(context)?.capitalizeFirstLetter()
             isGone = perm.id.value.lowercase() == text?.toString()?.lowercase() || text.isEmpty()
         }
 

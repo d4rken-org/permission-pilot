@@ -12,7 +12,6 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
@@ -53,7 +52,7 @@ class PermissionsFragmentVM @Inject constructor(
             .filter {
                 if (searchTerm == null) return@filter true
                 if (it.id.toString().contains(searchTerm)) return@filter true
-                if (it.tryLabel(context)?.contains(searchTerm) == true) return@filter true
+                if (it.getLabel(context)?.contains(searchTerm) == true) return@filter true
 
                 return@filter false
             }
@@ -69,7 +68,7 @@ class PermissionsFragmentVM @Inject constructor(
                             log(TAG) { "Navigating to $permission" }
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
                                 permissionId = permission.id,
-                                permissionLabel = permission.tryLabel(context),
+                                permissionLabel = permission.getLabel(context),
                             ).navigate()
                         }
                     )

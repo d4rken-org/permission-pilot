@@ -11,8 +11,6 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.known.toKnownPkg
 import eu.darken.myperm.apps.core.toContainer
-import eu.darken.myperm.apps.core.tryIcon
-import eu.darken.myperm.common.HasLabel
 import eu.darken.myperm.common.hasApiLevel
 
 data class InstallerInfo(
@@ -32,13 +30,13 @@ data class InstallerInfo(
             return context.getString(R.string.apps_details_installer_manual_label)
         }
 
-        return (installingPkg as? HasLabel)?.getLabel(context) ?: installer!!.id.value
+        return installingPkg?.getLabel(context) ?: installer!!.id.value
     }
 
     fun getIcon(context: Context): Drawable {
         if (installer == null) return ContextCompat.getDrawable(context, R.drawable.ic_baseline_user_24)!!
 
-        installer!!.tryIcon(context)?.let { return it }
+        installer!!.getIcon(context)?.let { return it }
 
         return ContextCompat.getDrawable(context, R.drawable.ic_default_app_icon_24)!!
     }

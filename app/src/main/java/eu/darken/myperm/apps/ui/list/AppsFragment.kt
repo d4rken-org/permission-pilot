@@ -20,7 +20,6 @@ import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.AppsFragmentBinding
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
-import eu.darken.myperm.permissions.core.tryLabel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,13 +47,13 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                 is AppsEvents.ShowPermissionSnackbar -> {
                     Snackbar.make(
                         ui.root,
-                        event.permission.tryLabel(requireContext()) ?: event.permission.id.value,
+                        event.permission.getLabel(requireContext()) ?: event.permission.id.value,
                         Snackbar.LENGTH_SHORT
                     )
                         .setAction(R.string.general_show_action) {
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
                                 permissionId = event.permission.id,
-                                permissionLabel = event.permission.tryLabel(requireContext())
+                                permissionLabel = event.permission.getDescription(requireContext())
                             ).navigate()
                         }
                         .show()

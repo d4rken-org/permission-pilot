@@ -17,6 +17,19 @@ class DeclaredPermission(
     override val id: Permission.Id
         get() = Permission.Id(permissionInfo.name)
 
+
+    //    override fun getLabel(context: Context): String =
+//        context.packageManager.getPermissionInfo2(id)
+//            ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
+//            ?: (this as Pkg).getLabel(context)
+//            ?: id.value
+//
+//    override fun getIcon(context: Context): Drawable =
+//        context.packageManager.getIcon2(id)
+//            ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
+//            ?: (this as Pkg).getIcon(context)
+//            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
+//
     override val grantingPkgs: Collection<ApkPkg> by lazy {
         requestingPkgs
             .filter { it.requestsPermission(this) }

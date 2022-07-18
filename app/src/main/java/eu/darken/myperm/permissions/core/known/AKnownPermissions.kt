@@ -2,6 +2,7 @@ package eu.darken.myperm.permissions.core.known
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
+import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
 import kotlin.reflect.full.isSubclassOf
@@ -9,7 +10,9 @@ import kotlin.reflect.full.isSubclassOf
 @Keep
 sealed class AKnownPermissions constructor(override val id: Permission.Id) : Permission {
 
-    @get:DrawableRes abstract val iconRes: Int?
+    @get:DrawableRes open val iconRes: Int? = null
+    @get:StringRes open val labelRes: Int? = null
+    @get:StringRes open val descriptionRes: Int? = null
 
     constructor(rawPmerissionId: String) : this(Permission.Id(rawPmerissionId))
 

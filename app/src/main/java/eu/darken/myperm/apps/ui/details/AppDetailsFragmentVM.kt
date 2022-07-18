@@ -10,7 +10,6 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.AppStore
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
 import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
@@ -21,7 +20,6 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import kotlinx.coroutines.flow.first
@@ -80,7 +78,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             onSiblingClicked = {
                                 AppDetailsFragmentDirections.toSelf(
                                     appId = it.id,
-                                    appLabel = it.tryLabel(context),
+                                    appLabel = it.getLabel(context),
                                 ).navigate()
                             }
                         ).run { infoItems.add(this) }
@@ -100,7 +98,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             AppDetailsFragmentDirections
                                 .actionAppDetailsFragmentToPermissionDetailsFragment(
                                     permissionId = it.permission.id,
-                                    permissionLabel = it.permission.tryLabel(context)
+                                    permissionLabel = it.permission.getLabel(context)
                                 )
                                 .navigate()
                         }
@@ -112,7 +110,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             AppDetailsFragmentDirections
                                 .actionAppDetailsFragmentToPermissionDetailsFragment(
                                     permissionId = it.permission.id,
-                                    permissionLabel = it.permission.tryLabel(context)
+                                    permissionLabel = it.permission.getLabel(context)
                                 )
                                 .navigate()
                         }
@@ -123,7 +121,7 @@ class AppDetailsFragmentVM @Inject constructor(
 
             Details(
                 app = app,
-                label = navArgs.appLabel ?: app.tryLabel(context) ?: app.id.toString(),
+                label = navArgs.appLabel ?: app.getLabel(context) ?: app.id.toString(),
                 items = infoItems
             )
         }

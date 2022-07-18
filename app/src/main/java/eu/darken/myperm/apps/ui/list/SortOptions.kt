@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.InstalledApp
-import eu.darken.myperm.apps.core.tryLabel
 import java.time.Instant
 
 data class SortOptions(
@@ -41,7 +40,7 @@ data class SortOptions(
             labelRes = R.string.apps_sort_app_name_label,
         ) {
             override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing {
-                it.tryLabel(c) ?: ""
+                it.getLabel(c) ?: ""
             }
         },
         INSTALLED_AT(

@@ -10,7 +10,6 @@ import eu.darken.myperm.apps.core.features.UsesPermission.Status
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionUnknownItemBinding
-import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 
 class UnknownPermissionVH(parent: ViewGroup) :
@@ -29,7 +28,7 @@ class UnknownPermissionVH(parent: ViewGroup) :
 
         identifier.text = permission.id.value
         label.apply {
-            text = permission.tryLabel(context)
+            text = permission.getLabel(context)
             isGone = text.isNullOrEmpty()
         }
 

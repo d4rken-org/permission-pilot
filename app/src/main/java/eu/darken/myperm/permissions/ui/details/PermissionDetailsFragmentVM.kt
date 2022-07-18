@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
@@ -52,7 +51,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.tryLabel(context))
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
                             .navigate()
                     }
                 )
@@ -65,7 +64,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.tryLabel(context))
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
                             .navigate()
                     }
                 )

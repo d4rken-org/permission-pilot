@@ -5,7 +5,6 @@ import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.ApkPkg
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -26,7 +25,7 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
         identifier.text = item.app.id.toString()
 
         label.apply {
-            text = item.app.tryLabel(context)
+            text = item.app.getLabel(context)
             isGone = text.isNullOrEmpty()
         }
 

@@ -9,7 +9,6 @@ import android.widget.TextView
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsSiblingsItemBinding
@@ -46,7 +45,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         siblingsInfo.apply {
             val ssb = SpannableStringBuilder()
             app.siblings.forEach { sibling ->
-                var txt = "${sibling.id} (${sibling.tryLabel(context) ?: "?"})"
+                var txt = "${sibling.id} (${sibling.getLabel(context) ?: "?"})"
                 if (app.siblings.last() != sibling) txt += "\n"
 
                 val onClick = object : ClickableSpan() {

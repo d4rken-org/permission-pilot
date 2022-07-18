@@ -10,7 +10,6 @@ import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.tryIcon
 import javax.inject.Inject
 
 class AppIconFetcher @Inject constructor(
@@ -19,7 +18,7 @@ class AppIconFetcher @Inject constructor(
     private val options: Options,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult = DrawableResult(
-        drawable = data.tryIcon(options.context) ?: ColorDrawable(Color.TRANSPARENT),
+        drawable = data.getIcon(options.context) ?: ColorDrawable(Color.TRANSPARENT),
         isSampled = false,
         dataSource = DataSource.DISK
     )

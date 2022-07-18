@@ -1,12 +1,17 @@
 package eu.darken.myperm.apps.core.container
 
+import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
+import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
+import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.apps.core.getIcon2
+import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.apps.core.pkgId
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
@@ -22,6 +27,18 @@ class NormalApp(
     var siblings: Set<ApkPkg> = emptySet()
 
     override val id: Pkg.Id by lazy { packageInfo.pkgId }
+
+    override fun getLabel(context: Context): String =
+        context.packageManager.getLabel2(id)
+            ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
+            ?: super.getLabel(context)
+            ?: id.value
+
+    override fun getIcon(context: Context): Drawable =
+        context.packageManager.getIcon2(id)
+            ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
+            ?: super.getIcon(context)
+            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
 
     override val sharedUserId: String?
         get() = packageInfo.sharedUserId

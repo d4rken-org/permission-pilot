@@ -14,7 +14,6 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
@@ -38,7 +37,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             setOnClickListener { item.onGoToSettings(item.app) }
         }
 
-        label.text = app.tryLabel(context)?.capitalizeFirstLetter()
+        label.text = app.getLabel(context).capitalizeFirstLetter()
         identifier.text = app.id.toString()
 
         description.apply {
@@ -60,7 +59,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
                         val onClick = object : ClickableSpan() {
                             override fun onClick(widget: View) = item.onInstallerClicked(pkg)
                         }
-                        var _label = pkg.tryLabel(context) ?: pkg.id.toString()
+                        var _label = pkg.getLabel(context) ?: pkg.id.toString()
                         if (pkg != info.allInstallers.last()) _label += "\n"
                         append(_label, onClick, 0)
                     }

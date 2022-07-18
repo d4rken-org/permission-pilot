@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
@@ -51,7 +50,7 @@ class AppsFragmentVM @Inject constructor(
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
-                if (it is NormalApp && it.tryLabel(context)?.lowercase()?.contains(prunedTerm) == true) {
+                if (it is NormalApp && it.getLabel(context).lowercase().contains(prunedTerm) == true) {
                     return@filter true
                 }
 
@@ -66,7 +65,7 @@ class AppsFragmentVM @Inject constructor(
                     onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
                     onRowClicked = {
                         log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.tryLabel(context))
+                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.getLabel(context))
                             .navigate()
                     },
                     onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }

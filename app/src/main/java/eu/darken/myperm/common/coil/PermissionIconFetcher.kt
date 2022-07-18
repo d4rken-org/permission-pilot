@@ -10,7 +10,6 @@ import coil.fetch.FetchResult
 import coil.fetch.Fetcher
 import coil.request.Options
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.tryIcon
 import javax.inject.Inject
 
 
@@ -20,7 +19,7 @@ class PermissionIconFetcher @Inject constructor(
     private val options: Options,
 ) : Fetcher {
     override suspend fun fetch(): FetchResult = DrawableResult(
-        drawable = data.tryIcon(options.context) ?: ColorDrawable(Color.TRANSPARENT),
+        drawable = data.getIcon(options.context) ?: ColorDrawable(Color.TRANSPARENT),
         isSampled = false,
         dataSource = DataSource.MEMORY
     )

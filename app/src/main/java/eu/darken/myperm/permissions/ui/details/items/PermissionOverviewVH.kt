@@ -11,8 +11,6 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
-import eu.darken.myperm.permissions.core.tryDescription
-import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.BasePermission
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
@@ -37,12 +35,12 @@ class PermissionOverviewVH(parent: ViewGroup) :
 
         identifier.text = perm.id.value
         label.apply {
-            text = perm.tryLabel(context)?.capitalizeFirstLetter()
+            text = perm.getLabel(context)?.capitalizeFirstLetter()
             isGone = text.isNullOrEmpty()
         }
 
         description.apply {
-            text = perm.tryDescription(context)
+            text = perm.getDescription(context)
             isGone = text.isNullOrEmpty()
         }
 

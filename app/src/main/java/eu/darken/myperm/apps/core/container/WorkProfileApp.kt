@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.core.container
 
 import android.content.Context
 import android.content.pm.*
+import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
 import eu.darken.myperm.apps.core.Pkg
@@ -19,25 +20,29 @@ class WorkProfileApp(
     val userHandle: UserHandle,
 ) : ApkPkg {
 
+    override fun getLabel(context: Context): String = launcherAppInfo.loadLabel(context.packageManager).toString()
+
+    override fun getIcon(context: Context): Drawable = launcherAppInfo.loadIcon(context.packageManager)
+
     override val sharedUserId: String?
-        get() = TODO("Not yet implemented")
+        get() = throw NotImplementedError()
 
     override fun getPermission(id: Permission.Id): UsesPermission? {
-        TODO("Not yet implemented")
+        throw NotImplementedError()
     }
 
     override val requestedPermissions: Collection<UsesPermission>
-        get() = TODO("Not yet implemented")
+        get() = throw NotImplementedError()
 
     override fun requestsPermission(id: Permission.Id): Boolean {
-        TODO("Not yet implemented")
+        throw NotImplementedError()
     }
 
     override val declaredPermissions: Collection<PermissionInfo>
-        get() = TODO("Not yet implemented")
+        get() = throw NotImplementedError()
 
     override fun declaresPermission(id: Permission.Id): Boolean {
-        TODO("Not yet implemented")
+        throw NotImplementedError()
     }
 
 }
