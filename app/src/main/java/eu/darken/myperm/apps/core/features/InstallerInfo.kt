@@ -58,16 +58,6 @@ fun PackageInfo.getInstallerInfo(
 }
 
 private fun PackageInfo.getInstallerInfoApi30(packageManager: PackageManager): InstallerInfo {
-    val installingPkg = packageManager.getInstallerPackageName(packageName)
-        ?.let { Pkg.Id(it) }
-        ?.let { it.toKnownPkg() ?: it.toContainer() }
-
-    return InstallerInfo(
-        installingPkg = installingPkg,
-    )
-}
-
-private fun PackageInfo.getInstallerInfoLegacy(packageManager: PackageManager): InstallerInfo {
     val sourceInfo = try {
         packageManager.getInstallSourceInfo(packageName)
     } catch (_: PackageManager.NameNotFoundException) {
@@ -89,5 +79,16 @@ private fun PackageInfo.getInstallerInfoLegacy(packageManager: PackageManager): 
         initiatingPkg = initiatingPkg,
         installingPkg = installingPkg,
         originatingPkg = originatingPkg,
+    )
+}
+
+@Suppress("DEPRECATION")
+private fun PackageInfo.getInstallerInfoLegacy(packageManager: PackageManager): InstallerInfo {
+    val installingPkg = packageManager.getInstallerPackageName(packageName)
+        ?.let { Pkg.Id(it) }
+        ?.let { it.toKnownPkg() ?: it.toContainer() }
+
+    return InstallerInfo(
+        installingPkg = installingPkg,
     )
 }
