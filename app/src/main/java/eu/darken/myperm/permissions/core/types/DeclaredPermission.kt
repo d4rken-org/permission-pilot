@@ -2,6 +2,7 @@ package eu.darken.myperm.permissions.core.types
 
 import android.content.pm.PermissionInfo
 import androidx.annotation.StringRes
+import androidx.core.content.pm.PermissionInfoCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.requestsPermission
@@ -17,19 +18,6 @@ class DeclaredPermission(
     override val id: Permission.Id
         get() = Permission.Id(permissionInfo.name)
 
-
-    //    override fun getLabel(context: Context): String =
-//        context.packageManager.getPermissionInfo2(id)
-//            ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
-//            ?: (this as Pkg).getLabel(context)
-//            ?: id.value
-//
-//    override fun getIcon(context: Context): Drawable =
-//        context.packageManager.getIcon2(id)
-//            ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
-//            ?: (this as Pkg).getIcon(context)
-//            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
-//
     override val grantingPkgs: Collection<ApkPkg> by lazy {
         requestingPkgs
             .filter { it.requestsPermission(this) }
@@ -49,7 +37,7 @@ class DeclaredPermission(
     }
 
     val protectionType: ProtectionType
-        get() = when (permissionInfo.protection) {
+        get() = when (PermissionInfoCompat.getProtection(permissionInfo)) {
             PermissionInfo.PROTECTION_NORMAL -> ProtectionType.NORMAL
             PermissionInfo.PROTECTION_DANGEROUS -> ProtectionType.DANGEROUS
             PermissionInfo.PROTECTION_SIGNATURE -> ProtectionType.SIGNATURE
@@ -88,7 +76,9 @@ class DeclaredPermission(
     }
 
     val protectionFlags: Set<ProtectionFlag> by lazy {
-        ProtectionFlag.values().filter { it.flag and permissionInfo.protectionFlags > 0 }.toSet()
+        ProtectionFlag.values().filter {
+            it.flag and PermissionInfoCompat.getProtectionFlags(permissionInfo) > 0
+        }.toSet()
     }
 
     override fun toString(): String = "DeclaredPermission($id)"
