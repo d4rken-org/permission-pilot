@@ -55,7 +55,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
                 text = info.getLabel(context)
             } else {
                 val ssb = SpannableStringBuilder().apply {
-                    info.allInstallers.forEach { pkg ->
+                    info.allInstallers.toSet().forEach { pkg ->
                         val onClick = object : ClickableSpan() {
                             override fun onClick(widget: View) = item.onInstallerClicked(pkg)
                         }
