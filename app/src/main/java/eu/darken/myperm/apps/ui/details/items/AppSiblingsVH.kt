@@ -6,6 +6,7 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isGone
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
@@ -42,6 +43,13 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
             app.sharedUserId
         }
 
+        collapseToggle.setOnClickListener {
+            siblingsContainer.isGone = !siblingsContainer.isGone
+            collapseToggle.setIconResource(
+                if (siblingsInfo.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
+            )
+        }
+
         siblingsInfo.apply {
             val ssb = SpannableStringBuilder()
             app.siblings.forEach { sibling ->
@@ -58,6 +66,11 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
             movementMethod = LinkMovementMethod.getInstance()
             setText(ssb, TextView.BufferType.SPANNABLE)
         }
+
+        siblingsContainer.isGone = app.siblings.size > 5
+        collapseToggle.setIconResource(
+            if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
+        )
     }
 
     data class Item(
