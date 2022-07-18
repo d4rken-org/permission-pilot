@@ -1,10 +1,14 @@
 package eu.darken.myperm.apps.ui.list
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
@@ -16,10 +20,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+@SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AppsFragmentVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    @ApplicationContext private val context: Context,
     packageRepo: AppRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
@@ -45,11 +51,13 @@ class AppsFragmentVM @Inject constructor(
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
-                if (it is NormalApp && it.label?.lowercase()?.contains(prunedTerm) == true) return@filter true
+                if (it is NormalApp && it.tryLabel(context)?.lowercase()?.contains(prunedTerm) == true) {
+                    return@filter true
+                }
 
                 return@filter false
             }
-            .sortedWith(sortOptions.mainSort.comparator)
+            .sortedWith(sortOptions.mainSort.getComparator(context))
 
         val listItems = filtered.map { app ->
             when (app) {
@@ -58,7 +66,8 @@ class AppsFragmentVM @Inject constructor(
                     onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
                     onRowClicked = {
                         log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.label).navigate()
+                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.tryLabel(context))
+                            .navigate()
                     },
                     onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }
                 )

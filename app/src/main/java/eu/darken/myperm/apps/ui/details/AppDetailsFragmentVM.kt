@@ -1,12 +1,16 @@
 package eu.darken.myperm.apps.ui.details
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.types.AppStore
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.AppStore
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
 import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
@@ -17,6 +21,7 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
+import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import kotlinx.coroutines.flow.first
@@ -24,10 +29,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+@SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AppDetailsFragmentVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    @ApplicationContext private val context: Context,
     private val webpageTool: WebpageTool,
     appRepo: AppRepo,
     permissionRepo: PermissionRepo,
@@ -39,7 +46,7 @@ class AppDetailsFragmentVM @Inject constructor(
 
     data class Details(
         val label: String,
-        val app: BaseApp? = null,
+        val app: ApkPkg? = null,
         val items: List<AppDetailsAdapter.Item> = emptyList(),
     )
 
@@ -73,7 +80,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             onSiblingClicked = {
                                 AppDetailsFragmentDirections.toSelf(
                                     appId = it.id,
-                                    appLabel = it.label,
+                                    appLabel = it.tryLabel(context),
                                 ).navigate()
                             }
                         ).run { infoItems.add(this) }
@@ -93,7 +100,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             AppDetailsFragmentDirections
                                 .actionAppDetailsFragmentToPermissionDetailsFragment(
                                     permissionId = it.permission.id,
-                                    permissionLabel = it.permission.label
+                                    permissionLabel = it.permission.tryLabel(context)
                                 )
                                 .navigate()
                         }
@@ -105,7 +112,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             AppDetailsFragmentDirections
                                 .actionAppDetailsFragmentToPermissionDetailsFragment(
                                     permissionId = it.permission.id,
-                                    permissionLabel = it.permission.label
+                                    permissionLabel = it.permission.tryLabel(context)
                                 )
                                 .navigate()
                         }
@@ -116,7 +123,7 @@ class AppDetailsFragmentVM @Inject constructor(
 
             Details(
                 app = app,
-                label = app.label ?: app.packageName,
+                label = navArgs.appLabel ?: app.tryLabel(context) ?: app.id.toString(),
                 items = infoItems
             )
         }

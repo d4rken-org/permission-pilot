@@ -1,8 +1,12 @@
 package eu.darken.myperm.permissions.ui.details
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
@@ -15,10 +19,12 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+@SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class PermissionDetailsFragmentVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    @ApplicationContext private val context: Context,
     private val permissionsRepo: PermissionRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
@@ -46,7 +52,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.label)
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.tryLabel(context))
                             .navigate()
                     }
                 )
@@ -59,7 +65,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                     app = app,
                     onItemClicked = {
                         PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.label)
+                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.tryLabel(context))
                             .navigate()
                     }
                 )

@@ -67,4 +67,5 @@
     <color name="status_negative_2">#e51c23</color>
 
     <color name="positive_highlight">#0e8a16</color>
+    <color name="permission_status_unknown">#009688</color>
 </resources>

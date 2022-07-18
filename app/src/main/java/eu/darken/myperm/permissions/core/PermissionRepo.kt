@@ -5,7 +5,8 @@ import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.types.BaseApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
@@ -75,11 +76,8 @@ class PermissionRepo @Inject constructor(
             .map { usesPerms -> usesPerms.requestedPermissions.map { it.id }.toSet() }
             .flatten()
             .map { id ->
-                val info = try {
-                    packageManager.getPermissionInfo(id.value, PackageManager.GET_META_DATA)
-                } catch (e: PackageManager.NameNotFoundException) {
-                    null
-                }
+                val info = packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+
                 when {
                     info != null -> info.toDeclaredPermission(apps)
                     else -> id.toUnusedPermission(apps)
@@ -95,17 +93,13 @@ class PermissionRepo @Inject constructor(
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-    private fun PermissionInfo.toDeclaredPermission(apps: Collection<BaseApp>): DeclaredPermission = DeclaredPermission(
+    private fun PermissionInfo.toDeclaredPermission(apps: Collection<ApkPkg>): DeclaredPermission = DeclaredPermission(
         permissionInfo = this,
-        label = loadLabel(packageManager).toString().replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-        },
-        description = (loadDescription(packageManager) ?: nonLocalizedDescription)?.toString(),
         requestingPkgs = apps.filter { it.requestsPermission(id) },
         declaringPkgs = apps.filter { it.declaresPermission(id) }
     )
 
-    private fun Permission.Id.toUnusedPermission(apps: Collection<BaseApp>): UnknownPermission = UnknownPermission(
+    private fun Permission.Id.toUnusedPermission(apps: Collection<ApkPkg>): UnknownPermission = UnknownPermission(
         id = this,
         requestingPkgs = apps.filter { it.requestsPermission(this) }
     )

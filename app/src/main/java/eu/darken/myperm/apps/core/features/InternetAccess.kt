@@ -1,4 +1,4 @@
-package eu.darken.myperm.apps.core
+package eu.darken.myperm.apps.core.features
 
 enum class InternetAccess {
     DIRECT,

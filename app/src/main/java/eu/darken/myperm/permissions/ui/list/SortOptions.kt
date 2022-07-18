@@ -1,5 +1,6 @@
 package eu.darken.myperm.permissions.ui.list
 
+import android.content.Context
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -10,21 +11,25 @@ data class SortOptions(
 ) {
     enum class Sort(
         @StringRes val labelRes: Int,
-        val comparator: Comparator<BasePermission>
     ) {
         APPS_GRANTED(
             labelRes = R.string.permissions_sort_apps_granted_label,
-            comparator = Comparator.comparing<BasePermission, Int> { perm ->
-                perm.grantingPkgs.size
-            }.reversed()
-        ),
+        ) {
+            override fun getComparator(c: Context): Comparator<BasePermission> =
+                Comparator.comparing<BasePermission, Int> { perm ->
+                    perm.grantingPkgs.size
+                }.reversed()
+        },
         APPS_REQUESTED(
             labelRes = R.string.permissions_sort_apps_requested_label,
-            comparator = Comparator.comparing<BasePermission, Int> { perm ->
-                perm.requestingPkgs.size
-            }.reversed()
-        ),
-
+        ) {
+            override fun getComparator(c: Context): Comparator<BasePermission> =
+                Comparator.comparing<BasePermission, Int> { perm ->
+                    perm.requestingPkgs.size
+                }.reversed()
+        },
         ;
+
+        abstract fun getComparator(c: Context): Comparator<BasePermission>
     }
 }

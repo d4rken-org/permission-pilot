@@ -1,8 +1,11 @@
 package eu.darken.myperm.apps.ui.list
 
+import android.content.Context
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.types.BaseApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.InstalledApp
+import eu.darken.myperm.apps.core.tryLabel
 import java.time.Instant
 
 data class SortOptions(
@@ -10,39 +13,53 @@ data class SortOptions(
     val reversed: Boolean = false
 ) {
     enum class Sort(
-        @StringRes val labelRes: Int,
-        val comparator: Comparator<BaseApp>
+        @StringRes val labelRes: Int
     ) {
+
         PERMISSIONS_GRANTED(
             labelRes = R.string.apps_sort_permissions_granted_label,
-            comparator = Comparator.comparing<BaseApp?, Int?> { app ->
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing<ApkPkg, Int> { app ->
                 app.requestedPermissions.count { it.isGranted }
             }.reversed()
-        ),
+        },
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
-            comparator = Comparator.comparing<BaseApp?, Int?> { app ->
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing<ApkPkg, Int> { app ->
                 app.requestedPermissions.size
             }.reversed()
-        ),
+        },
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
-            comparator = Comparator.comparing<BaseApp?, Int?> { app ->
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing<ApkPkg, Int> { app ->
                 app.declaredPermissions.size
             }.reversed()
-        ),
+        },
         APP_NAME(
             labelRes = R.string.apps_sort_app_name_label,
-            comparator = Comparator.comparing { it.label ?: "" }
-        ),
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing {
+                it.tryLabel(c) ?: ""
+            }
+        },
         INSTALLED_AT(
             labelRes = R.string.apps_sort_install_date_label,
-            comparator = Comparator.comparing<BaseApp, Instant> { it.installedAt }.reversed()
-        ),
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing<ApkPkg, Instant> {
+                (it as? InstalledApp)?.installedAt
+            }.reversed()
+        },
         UPDATED_AT(
-            labelRes = R.string.apps_sort_update_date_label,
-            comparator = Comparator.comparing<BaseApp, Instant> { it.updatedAt }.reversed()
-        ),
+            labelRes = R.string.apps_sort_update_date_label
+        ) {
+            override fun getComparator(c: Context): Comparator<ApkPkg> = Comparator.comparing<ApkPkg, Instant> {
+                (it as? InstalledApp)?.updatedAt
+            }.reversed()
+        }
         ;
+
+        abstract fun getComparator(c: Context): Comparator<ApkPkg>
     }
 }

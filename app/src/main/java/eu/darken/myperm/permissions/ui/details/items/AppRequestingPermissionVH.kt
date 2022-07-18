@@ -6,9 +6,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.UsesPermission
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -31,7 +31,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
         identifier.text = item.app.id.toString()
 
         label.apply {
-            text = (item.app as? NormalApp)?.label
+            text = item.app.tryLabel(context)
             isGone = text.isNullOrEmpty()
         }
 
@@ -41,9 +41,10 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
             val status = item.app.getPermission(item.permission.id)?.status
             if (status != null) {
                 val (iconRes, tintRes) = when (status) {
-                    UsesPermission.PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                    UsesPermission.PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                    UsesPermission.PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
+                    UsesPermission.Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                    UsesPermission.Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                    UsesPermission.Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
+                    UsesPermission.Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.color.permission_status_unknown
                 }
                 setImageResource(iconRes)
                 imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))
@@ -56,7 +57,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
 
     data class Item(
         override val permission: BasePermission,
-        val app: BaseApp,
+        val app: ApkPkg,
         val onItemClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long

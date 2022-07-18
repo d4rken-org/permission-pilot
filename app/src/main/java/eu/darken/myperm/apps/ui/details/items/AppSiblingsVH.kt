@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsSiblingsItemBinding
@@ -45,7 +46,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         siblingsInfo.apply {
             val ssb = SpannableStringBuilder()
             app.siblings.forEach { sibling ->
-                var txt = "${sibling.id} (${sibling.label ?: "?"})"
+                var txt = "${sibling.id} (${sibling.tryLabel(context) ?: "?"})"
                 if (app.siblings.last() != sibling) txt += "\n"
 
                 val onClick = object : ClickableSpan() {
@@ -62,7 +63,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
 
     data class Item(
         val app: NormalApp,
-        val onSiblingClicked: (BaseApp) -> Unit,
+        val onSiblingClicked: (ApkPkg) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()

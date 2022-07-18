@@ -7,9 +7,12 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.AndroidPkgs
+import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
+import eu.darken.myperm.permissions.core.tryDescription
+import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.BasePermission
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
@@ -29,18 +32,18 @@ class PermissionOverviewVH(parent: ViewGroup) :
         val perm = item.permission
 
         icon.load(
-            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AndroidPkgs.ANDROID.id } ?: perm.id
+            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm
         )
 
         identifier.text = perm.id.value
         label.apply {
-            text = perm.label
-            isGone = perm.label.isNullOrEmpty()
+            text = perm.tryLabel(context)?.capitalizeFirstLetter()
+            isGone = text.isNullOrEmpty()
         }
 
         description.apply {
-            text = perm.description
-            isGone = perm.description.isNullOrEmpty()
+            text = perm.tryDescription(context)
+            isGone = text.isNullOrEmpty()
         }
 
         protectionLabel.isGone = perm !is DeclaredPermission
@@ -53,7 +56,7 @@ class PermissionOverviewVH(parent: ViewGroup) :
                 }
             }
         }
-        tagAosp.isInvisible = perm.declaringPkgs.any { it.id == AndroidPkgs.ANDROID.id }
+        tagAosp.isInvisible = perm.declaringPkgs.any { it.id == AKnownPkg.AndroidSystem.id }
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
 

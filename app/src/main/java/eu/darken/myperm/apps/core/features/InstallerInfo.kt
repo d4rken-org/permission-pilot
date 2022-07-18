@@ -1,4 +1,4 @@
-package eu.darken.myperm.apps.core.installer
+package eu.darken.myperm.apps.core.features
 
 import android.content.Context
 import android.content.pm.PackageInfo
@@ -8,11 +8,10 @@ import android.os.Build
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.known.ZKnownPkgs
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.known.toKnownPkg
 import eu.darken.myperm.apps.core.toContainer
 import eu.darken.myperm.apps.core.tryIcon
-import eu.darken.myperm.apps.core.types.BaseApp
 import eu.darken.myperm.common.HasLabel
 import eu.darken.myperm.common.hasApiLevel
 
@@ -45,9 +44,9 @@ data class InstallerInfo(
     }
 }
 
-fun BaseApp.isSideloaded(): Boolean {
+fun InstalledApp.isSideloaded(): Boolean {
     if (isSystemApp) return false
-    return installerInfo.allInstallers.none { it.id == ZKnownPkgs.GooglePlay.id }
+    return installerInfo.allInstallers.none { it.id == AKnownPkg.GooglePlay.id }
 }
 
 fun PackageInfo.getInstallerInfo(

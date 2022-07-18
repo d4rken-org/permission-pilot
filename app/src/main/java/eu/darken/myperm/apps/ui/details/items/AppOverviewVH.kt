@@ -13,9 +13,10 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.tryLabel
-import eu.darken.myperm.apps.core.types.NormalApp
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
+import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
 
@@ -37,7 +38,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             setOnClickListener { item.onGoToSettings(item.app) }
         }
 
-        label.text = app.label
+        label.text = app.tryLabel(context)?.capitalizeFirstLetter()
         identifier.text = app.id.toString()
 
         description.apply {

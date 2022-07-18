@@ -4,16 +4,18 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.UserHandle
 import dagger.hilt.android.qualifiers.ApplicationContext
-import eu.darken.myperm.apps.core.installer.getInstallerInfo
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.container.WorkProfileApp
+import eu.darken.myperm.apps.core.container.getTwinApps
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.getInstallerInfo
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
-import eu.darken.myperm.permissions.core.Permission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,10 +39,11 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Set<BaseApp>> = refreshTrigger.mapLatest {
+    val apps: Flow<Set<ApkPkg>> = refreshTrigger.mapLatest {
         val packageInfos = retrievePackageInfo()
 
-        val allApps = packageInfos.map { it.toDefaultApp() }.toSet<BaseApp>()
+        val twinApps = context.getTwinApps()
+        val allApps = packageInfos.map { it.toDefaultApp(twinApps) }.toSet<ApkPkg>()
 
         allApps.filterIsInstance<NormalApp>().forEach { app ->
             app.siblings = allApps
@@ -64,22 +67,16 @@ class AppRepo @Inject constructor(
         return packageInfos
     }
 
-    private fun PackageInfo.toDefaultApp(): NormalApp {
-        val requestedPerms = requestedPermissions?.mapIndexed { index, permissionId ->
-            val flags = requestedPermissionsFlags[index]
-
-            UsesPermission(
-                id = Permission.Id(permissionId),
-                flags = flags,
-            )
-        } ?: emptyList()
-
+    private fun PackageInfo.toDefaultApp(
+        twinApps: Map<UserHandle, List<WorkProfileApp>>
+    ): NormalApp {
+        val twins = twinApps.entries
+            .map { es -> es.value.filter { it.id.value == packageName } }
+            .flatten()
         return NormalApp(
             packageInfo = this,
-            label = applicationInfo?.loadLabel(packageManager)?.toString()?.takeIf { it != packageName },
-            requestedPermissions = requestedPerms,
-            declaredPermissions = permissions?.toSet() ?: emptyList(),
-            installerInfo = getInstallerInfo(packageManager)
+            installerInfo = getInstallerInfo(packageManager),
+            twins = twins
         )
     }
 

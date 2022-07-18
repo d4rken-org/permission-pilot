@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.UsesPermission
-import eu.darken.myperm.apps.core.UsesPermission.PermissionStatus
+import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.features.UsesPermission.Status
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionUnknownItemBinding
+import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 
 class UnknownPermissionVH(parent: ViewGroup) :
@@ -28,15 +29,16 @@ class UnknownPermissionVH(parent: ViewGroup) :
 
         identifier.text = permission.id.value
         label.apply {
-            text = permission.label
-            isGone = permission.label.isNullOrEmpty()
+            text = permission.tryLabel(context)
+            isGone = text.isNullOrEmpty()
         }
 
         statusIcon.apply {
             val (iconRes, tintRes) = when (item.appPermission.status) {
-                PermissionStatus.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                PermissionStatus.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                PermissionStatus.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
+                Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
+                Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
+                Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.color.permission_status_unknown
             }
             setImageResource(iconRes)
             imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))

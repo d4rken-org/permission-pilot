@@ -4,9 +4,11 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.AndroidPkgs
+import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDeclaredItemBinding
+import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
@@ -25,7 +27,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         val perm = item.perm
 
         icon.load(
-            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AndroidPkgs.ANDROID.id } ?: perm.id
+            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm
         )
 
         identifier.apply {
@@ -38,8 +40,8 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         usedBy.text = "Granted to $granted out of $total apps."
 
         shortDescription.apply {
-            text = perm.label
-            isGone = perm.id.value.lowercase() == perm.label?.lowercase() || perm.label == null
+            text = perm.tryLabel(context)?.capitalizeFirstLetter()
+            isGone = perm.id.value.lowercase() == text?.toString()?.lowercase() || text.isEmpty()
         }
 
         itemView.setOnClickListener { item.onClickAction(item) }

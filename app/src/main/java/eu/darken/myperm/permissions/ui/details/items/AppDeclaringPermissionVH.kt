@@ -4,8 +4,8 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -26,7 +26,7 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
         identifier.text = item.app.id.toString()
 
         label.apply {
-            text = (item.app as? NormalApp)?.label
+            text = item.app.tryLabel(context)
             isGone = text.isNullOrEmpty()
         }
 
@@ -37,7 +37,7 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
 
     data class Item(
         override val permission: BasePermission,
-        val app: BaseApp,
+        val app: ApkPkg,
         val onItemClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long

@@ -1,4 +1,4 @@
-package eu.darken.myperm.apps.core.types
+package eu.darken.myperm.apps.core.features
 
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.HasIcon

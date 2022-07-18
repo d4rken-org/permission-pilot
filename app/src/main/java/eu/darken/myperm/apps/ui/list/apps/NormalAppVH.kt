@@ -11,10 +11,11 @@ import androidx.core.view.isVisible
 import coil.dispose
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.InternetAccess
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.types.BaseApp
-import eu.darken.myperm.apps.core.types.NormalApp
+import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.tryLabel
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
@@ -45,7 +46,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         packageName.text = app.packageName
 
         label.apply {
-            text = app.label
+            text = app.tryLabel(context)
             isSelected = true
         }
 
@@ -119,7 +120,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     }
 
     private fun ImageView.setupAll(
-        app: BaseApp,
+        app: ApkPkg,
         vararg permissions: Permission,
         @ColorInt grantedcolor: Int = colorGranted,
         @ColorInt deniedColor: Int = colorDenied,

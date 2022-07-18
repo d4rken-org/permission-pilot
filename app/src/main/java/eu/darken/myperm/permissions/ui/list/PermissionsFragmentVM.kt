@@ -1,14 +1,18 @@
 package eu.darken.myperm.permissions.ui.list
 
+import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionRepo
+import eu.darken.myperm.permissions.core.tryLabel
 import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
@@ -18,10 +22,12 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+@SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class PermissionsFragmentVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    @ApplicationContext private val context: Context,
     permissionRepo: PermissionRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
@@ -47,11 +53,11 @@ class PermissionsFragmentVM @Inject constructor(
             .filter {
                 if (searchTerm == null) return@filter true
                 if (it.id.toString().contains(searchTerm)) return@filter true
-                if (it.label?.contains(searchTerm) == true) return@filter true
+                if (it.tryLabel(context)?.contains(searchTerm) == true) return@filter true
 
                 return@filter false
             }
-            .sortedWith(sortOptions.mainSort.comparator)
+            .sortedWith(sortOptions.mainSort.getComparator(context))
 
         val items = filtered
             .sortedByDescending { it.grantingPkgs.size }
@@ -63,7 +69,7 @@ class PermissionsFragmentVM @Inject constructor(
                             log(TAG) { "Navigating to $permission" }
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
                                 permissionId = permission.id,
-                                permissionLabel = permission.label,
+                                permissionLabel = permission.tryLabel(context),
                             ).navigate()
                         }
                     )

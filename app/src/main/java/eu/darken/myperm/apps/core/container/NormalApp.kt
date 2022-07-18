@@ -1,41 +1,36 @@
-package eu.darken.myperm.apps.core.types
+package eu.darken.myperm.apps.core.container
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
-import eu.darken.myperm.apps.core.InternetAccess
+import android.os.Process
+import android.os.UserHandle
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.UsesPermission
-import eu.darken.myperm.apps.core.installer.InstallerInfo
+import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.apps.core.pkgId
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 import java.time.Instant
 
 class NormalApp(
     override val packageInfo: PackageInfo,
-    override val label: String?,
-    override val requestedPermissions: Collection<UsesPermission>,
-    override val declaredPermissions: Collection<PermissionInfo>,
     override val installerInfo: InstallerInfo,
-) : BaseApp() {
+    val twins: Collection<WorkProfileApp>,
+    val userHandle: UserHandle = Process.myUserHandle(),
+) : ApkPkg, InstalledApp {
 
-    var siblings: Set<BaseApp> = emptySet()
+    var siblings: Set<ApkPkg> = emptySet()
+
+    override val id: Pkg.Id by lazy { packageInfo.pkgId }
 
     override val sharedUserId: String?
         get() = packageInfo.sharedUserId
 
-    override val id: Pkg.Id by lazy {
-        Pkg.Id(packageInfo.packageName)
-    }
-
     val packageName: String
         get() = packageInfo.packageName
 
-    val applicationInfo: ApplicationInfo?
-        get() = packageInfo.applicationInfo
-
     override val isSystemApp: Boolean
-        get() = applicationInfo?.run { flags and ApplicationInfo.FLAG_SYSTEM != 0 } ?: true
+        get() = packageInfo.applicationInfo?.run { flags and ApplicationInfo.FLAG_SYSTEM != 0 } ?: true
 
     override val installedAt: Instant
         get() = Instant.ofEpochMilli(packageInfo.firstInstallTime)
@@ -43,13 +38,28 @@ class NormalApp(
     override val updatedAt: Instant
         get() = Instant.ofEpochMilli(packageInfo.lastUpdateTime)
 
-    override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
+    override val requestedPermissions: Collection<UsesPermission> by lazy {
+        packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
+            val flags = packageInfo.requestedPermissionsFlags[index]
 
-    override fun declaresPermission(id: Permission.Id): Boolean = declaredPermissions.any { it.name == id.value }
+            UsesPermission(
+                id = Permission.Id(permissionId),
+                flags = flags,
+            )
+        } ?: emptyList()
+    }
+
+    override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
 
     override fun getPermission(id: Permission.Id): UsesPermission? {
         return requestedPermissions.singleOrNull { it.id == id }
     }
+
+    override val declaredPermissions: Collection<PermissionInfo> by lazy {
+        packageInfo.permissions?.toSet() ?: emptyList()
+    }
+
+    override fun declaresPermission(id: Permission.Id): Boolean = declaredPermissions.any { it.name == id.value }
 
     override val internetAccess: InternetAccess by lazy {
         when {
