@@ -22,7 +22,7 @@ interface Permission {
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
 
-        AKnownPermissions.values().singleOrNull { it.id == id }
+        AKnownPermissions.values.singleOrNull { it.id == id }
             ?.labelRes
             ?.let { return context.getString(it) }
 
@@ -39,7 +39,7 @@ interface Permission {
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
 
-        AKnownPermissions.values().singleOrNull { it.id == id }
+        AKnownPermissions.values.singleOrNull { it.id == id }
             ?.descriptionRes
             ?.let { return context.getString(it) }
 
@@ -55,7 +55,7 @@ interface Permission {
             ?.loadIcon(pm)
             ?.let { return it }
 
-        AKnownPermissions.values().singleOrNull { it.id == id }
+        AKnownPermissions.values.singleOrNull { it.id == id }
             ?.iconRes
             ?.let { ContextCompat.getDrawable(context, it) }
             ?.let { return it }

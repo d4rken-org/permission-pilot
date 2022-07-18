@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.common.upgrade.UpgradeRepo
@@ -44,5 +45,11 @@ class MainFragmentVM @Inject constructor(
             upgradeRepo.launchBillingFlow(it)
         }
         launchUpgradeFlow.postValue(call)
+    }
+
+    fun onRefresh() = launch {
+        log { "refresh()" }
+        appRepo.refresh()
+        permissionRepo.refresh()
     }
 }

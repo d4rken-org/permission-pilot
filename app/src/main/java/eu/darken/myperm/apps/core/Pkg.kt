@@ -16,7 +16,7 @@ interface Pkg {
     fun getLabel(context: Context): String? {
         context.packageManager.getLabel2(id)?.let { return it }
 
-        AKnownPkg.values()
+        AKnownPkg.values
             .singleOrNull { it.id == id }
             ?.labelRes
             ?.let { return context.getString(it) }
@@ -27,7 +27,7 @@ interface Pkg {
     fun getIcon(context: Context): Drawable? {
         context.packageManager.getIcon2(id)?.let { return it }
 
-        AKnownPkg.values()
+        AKnownPkg.values
             .singleOrNull { it.id == id }
             ?.iconRes
             ?.let { ContextCompat.getDrawable(context, it) }

@@ -11,16 +11,14 @@ import eu.darken.myperm.apps.core.container.WorkProfileApp
 import eu.darken.myperm.apps.core.container.getTwinApps
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.getInstallerInfo
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.hasApiLevel
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,7 +27,8 @@ import javax.inject.Singleton
 class AppRepo @Inject constructor(
     @ApplicationContext private val context: Context,
     private val packageManager: PackageManager,
-    @AppScope private val appScope: CoroutineScope
+    @AppScope private val appScope: CoroutineScope,
+    appEventListener: AppEventListener,
 ) {
 
     private val refreshTrigger = MutableStateFlow(UUID.randomUUID())
@@ -39,7 +38,10 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Set<ApkPkg>> = refreshTrigger.mapLatest {
+    val apps: Flow<Set<ApkPkg>> = combine(
+        refreshTrigger,
+        appEventListener.events.onStart { emit(AppEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
+    ) { _, _ ->
         val packageInfos = retrievePackageInfo()
 
         val twinApps = context.getTwinApps()

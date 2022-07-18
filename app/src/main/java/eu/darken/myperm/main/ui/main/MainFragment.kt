@@ -40,6 +40,10 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                         vm.onUpgrade()
                         true
                     }
+                    R.id.menu_item_refresh -> {
+                        vm.onRefresh()
+                        true
+                    }
                     else -> super.onOptionsItemSelected(it)
                 }
             }
