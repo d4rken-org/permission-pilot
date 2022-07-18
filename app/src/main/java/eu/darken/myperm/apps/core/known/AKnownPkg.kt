@@ -48,14 +48,17 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
     }
 
     companion object {
-        fun values(): List<AKnownPkg> = AKnownPkg::class.nestedClasses
-            .filter { clazz -> clazz.isSubclassOf(AKnownPkg::class) }
-            .map { clazz -> clazz.objectInstance }
-            .filterIsInstance<AKnownPkg>()
+        // Without lazy there is an NPE: https://youtrack.jetbrains.com/issue/KT-25957
+        val values: List<AKnownPkg> by lazy {
+            AKnownPkg::class.nestedClasses
+                .filter { clazz -> clazz.isSubclassOf(AKnownPkg::class) }
+                .map { clazz -> clazz.objectInstance }
+                .filterIsInstance<AKnownPkg>()
+        }
 
-        val APP_STORES = values().filterIsInstance<AppStore>()
-        val OEM_STORES = APP_STORES - GooglePlay
+        val APP_STORES by lazy { values.filterIsInstance<AppStore>() }
+        val OEM_STORES by lazy { APP_STORES - GooglePlay }
     }
 }
 
-fun Pkg.Id.toKnownPkg(): Pkg? = AKnownPkg.values().singleOrNull { it.id == this@toKnownPkg }
+fun Pkg.Id.toKnownPkg(): Pkg? = AKnownPkg.values.singleOrNull { it.id == this@toKnownPkg }

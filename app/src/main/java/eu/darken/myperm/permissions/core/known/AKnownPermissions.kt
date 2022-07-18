@@ -93,12 +93,14 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     }
 
     companion object {
-        fun values(): List<AKnownPermissions> = AKnownPermissions::class.nestedClasses
-            .filter { clazz -> clazz.isSubclassOf(AKnownPermissions::class) }
-            .map { clazz -> clazz.objectInstance }
-            .filterIsInstance<AKnownPermissions>()
+        val values: List<AKnownPermissions> by lazy {
+            AKnownPermissions::class.nestedClasses
+                .filter { clazz -> clazz.isSubclassOf(AKnownPermissions::class) }
+                .map { clazz -> clazz.objectInstance }
+                .filterIsInstance<AKnownPermissions>()
+        }
     }
 }
 
 fun Permission.Id.toKnownPermission(): Permission? =
-    AKnownPermissions.values().singleOrNull { it.id == this@toKnownPermission }
+    AKnownPermissions.values.singleOrNull { it.id == this@toKnownPermission }
