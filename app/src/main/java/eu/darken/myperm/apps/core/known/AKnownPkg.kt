@@ -52,6 +52,9 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
             .filter { clazz -> clazz.isSubclassOf(AKnownPkg::class) }
             .map { clazz -> clazz.objectInstance }
             .filterIsInstance<AKnownPkg>()
+
+        val APP_STORES = values().filterIsInstance<AppStore>()
+        val OEM_STORES = APP_STORES - GooglePlay
     }
 }
 
