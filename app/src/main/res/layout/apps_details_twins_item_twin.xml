@@ -39,26 +39,4 @@
         app:layout_constraintTop_toBottomOf="@id/label"
         tools:text="some.package.man" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/installdate_label"
-        style="@style/TextAppearance.Material3.LabelSmall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/install_date_label"
-        app:layout_constraintEnd_toEndOf="@id/label"
-        app:layout_constraintStart_toStartOf="@id/label"
-        app:layout_constraintTop_toBottomOf="@id/identifier" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/installdate_info"
-        style="@style/TextAppearance.Material3.BodySmall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/label"
-        app:layout_constraintStart_toStartOf="@id/label"
-        app:layout_constraintTop_toBottomOf="@id/installdate_label"
-        tools:text="2022.05.22 - 22:00" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

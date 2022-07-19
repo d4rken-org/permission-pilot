@@ -9,9 +9,6 @@ import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsTwinsItemBinding
 import eu.darken.myperm.databinding.AppsDetailsTwinsItemTwinBinding
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.util.*
 
 class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, AppsDetailsTwinsItemBinding>(
     R.layout.apps_details_twins_item,
@@ -28,24 +25,17 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
 
         twinsContainer.removeAllViews()
 
-        val dateFormatter = SimpleDateFormat.getDateTimeInstance()
         val pm = context.packageManager
 
         app.twins.forEach { twin ->
-
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
                 icon.setImageDrawable(pm.getUserBadgedIcon(twin.getIcon(context), twin.userHandle))
 
                 label.text = pm.getUserBadgedLabel(twin.getLabel(context), twin.userHandle)
                 identifier.text = twin.id.toString()
 
-                installdateInfo.text = dateFormatter.format(
-                    Date.from(Instant.ofEpochMilli(twin.packageInfo.firstInstallTime))
-                )
-
                 twinsContainer.addView(this.root)
             }
-
         }
     }
 
