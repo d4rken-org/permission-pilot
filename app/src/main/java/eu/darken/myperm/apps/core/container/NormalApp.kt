@@ -79,14 +79,4 @@ data class NormalApp(
         }
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is NormalApp) return false
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int = id.hashCode()
 }

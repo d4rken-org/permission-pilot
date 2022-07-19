@@ -19,15 +19,4 @@ data class UnknownPermission(
         get() = emptyList()
 
     override fun toString(): String = "NormalPermission($id)"
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is UnknownPermission) return false
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int = id.hashCode()
 }
