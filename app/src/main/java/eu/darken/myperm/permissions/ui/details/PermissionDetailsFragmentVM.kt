@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -28,6 +29,8 @@ class PermissionDetailsFragmentVM @Inject constructor(
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val navArgs: PermissionDetailsFragmentArgs by handle.navArgs()
+
+    val events = SingleLiveEvent<PermissionDetailsEvents>()
 
     data class Details(
         val label: String,
@@ -66,6 +69,9 @@ class PermissionDetailsFragmentVM @Inject constructor(
                         PermissionDetailsFragmentDirections
                             .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
                             .navigate()
+                    },
+                    onIconClicked = {
+                        events.postValue(PermissionDetailsEvents.ShowAppSystemDetails(it.app))
                     }
                 )
             }.run { infoItems.addAll(this) }

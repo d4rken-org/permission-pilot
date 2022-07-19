@@ -44,12 +44,14 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         }
 
         root.setOnClickListener { item.onItemClicked(item) }
+        root.setOnLongClickListener { item.onItemLongClick(item).let { true } }
     }
 
     data class Item(
         val appPermission: UsesPermission,
         val permission: DeclaredPermission,
         val onItemClicked: (Item) -> Unit,
+        val onItemLongClick: (Item) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

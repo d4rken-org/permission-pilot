@@ -107,6 +107,9 @@ class AppDetailsFragmentVM @Inject constructor(
                                     permissionLabel = it.permission.getLabel(context)
                                 )
                                 .navigate()
+                        },
+                        onItemLongClick = {
+
                         }
                     )
                     is UnknownPermission -> UnknownPermissionVH.Item(

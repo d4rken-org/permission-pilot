@@ -34,7 +34,10 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
             isGone = text.isNullOrEmpty()
         }
 
-        icon.load(item.app)
+        icon.apply {
+            load(item.app)
+            setOnClickListener { item.onIconClicked(item) }
+        }
 
         statusIcon.apply {
             val status = item.app.getPermission(item.permission.id)?.status
@@ -58,6 +61,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
         override val permission: BasePermission,
         val app: ApkPkg,
         val onItemClicked: (Item) -> Unit,
+        val onIconClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long
             get() = app.id.hashCode().toLong()
