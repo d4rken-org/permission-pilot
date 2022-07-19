@@ -6,6 +6,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.HasInstallData
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import java.time.Instant
 
 data class SortOptions(
@@ -56,6 +57,24 @@ data class SortOptions(
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Instant> {
                 (it as? HasInstallData)?.updatedAt ?: Instant.MIN
+            }.reversed()
+        },
+        INSTALL_SOURCE(
+            labelRes = R.string.apps_sort_install_source_label
+        ) {
+            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { pkg ->
+                when {
+                    pkg is HasInstallData
+                            && pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id } -> 3
+                    pkg is HasInstallData
+                            && pkg.installerInfo.allInstallers.map { it.id }
+                        .intersect(AKnownPkg.OEM_STORES.map { it.id }.toSet()).isNotEmpty() -> 2
+                    pkg is HasInstallData
+                            && pkg.installerInfo.allInstallers.isNotEmpty()
+                            && pkg.installerInfo.allInstallers.map { it.id }
+                        .intersect(AKnownPkg.APP_STORES.map { it.id }.toSet()).isEmpty() -> 1
+                    else -> 0
+                }
             }.reversed()
         }
         ;
