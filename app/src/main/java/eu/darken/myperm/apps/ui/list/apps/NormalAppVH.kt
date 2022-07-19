@@ -13,6 +13,7 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.ui.list.AppsAdapter
@@ -85,7 +86,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
-        tagWorkprofile.isInvisible = app.twins.isEmpty()
+        tagWorkprofile.isInvisible = !app.isOrHasProfiles()
 
         tagSharedid.isInvisible = app.siblings.isEmpty()
 
