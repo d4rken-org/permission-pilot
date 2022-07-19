@@ -5,15 +5,17 @@ import android.content.pm.*
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
+import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.core.pkgId
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 
-class WorkProfileApp(
+data class WorkProfileApp(
     override val id: Pkg.Id,
     override val packageInfo: PackageInfo,
     val launcherAppInfo: ApplicationInfo,
@@ -59,7 +61,7 @@ fun Context.getTwinApps(): Map<UserHandle, List<WorkProfileApp>> {
     val profiles = launcherApps.profiles
     if (profiles.size < 2) return emptyMap()
 
-    log { "Found multiple user profiles: $profiles" }
+    log(AppRepo.TAG, INFO) { "Found multiple user profiles: $profiles" }
     val extraProfiles = profiles - Process.myUserHandle()
 
     return extraProfiles.map outerMap@{ userHandle ->
@@ -74,12 +76,14 @@ fun Context.getTwinApps(): Map<UserHandle, List<WorkProfileApp>> {
                 return@mapNotNull null
             }
 
-            WorkProfileApp(
+            val app = WorkProfileApp(
                 id = apkPkgInfo.pkgId,
                 packageInfo = apkPkgInfo,
                 launcherAppInfo = appInfo,
                 userHandle = userHandle,
             )
+            log(AppRepo.TAG) { "Processed PKG: $app" }
+            app
         }
 
         userHandle to workProfileApps

@@ -9,7 +9,7 @@ import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.permissions.core.Permission
 
 
-class DeclaredPermission(
+data class DeclaredPermission(
     val permissionInfo: PermissionInfo,
     override val requestingPkgs: List<ApkPkg> = emptyList(),
     override val declaringPkgs: Collection<ApkPkg> = emptyList(),
@@ -80,8 +80,6 @@ class DeclaredPermission(
             it.flag and PermissionInfoCompat.getProtectionFlags(permissionInfo) > 0
         }.toSet()
     }
-
-    override fun toString(): String = "DeclaredPermission($id)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

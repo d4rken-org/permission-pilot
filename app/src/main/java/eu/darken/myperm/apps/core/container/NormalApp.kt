@@ -17,7 +17,7 @@ import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 import java.time.Instant
 
-class NormalApp(
+data class NormalApp(
     override val packageInfo: PackageInfo,
     override val installerInfo: InstallerInfo,
     val twins: Collection<WorkProfileApp>,

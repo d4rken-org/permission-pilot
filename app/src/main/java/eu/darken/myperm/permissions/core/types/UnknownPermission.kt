@@ -4,7 +4,7 @@ import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.permissions.core.Permission
 
-class UnknownPermission(
+data class UnknownPermission(
     override val id: Permission.Id,
     override val requestingPkgs: List<ApkPkg> = emptyList(),
 ) : BasePermission() {

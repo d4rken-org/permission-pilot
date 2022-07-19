@@ -17,6 +17,7 @@ import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
 
@@ -49,6 +50,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
         installerInfo.apply {
             val info = app.installerInfo
+            log { "Showing installerInfo=$info" }
 
             installerIcon.setImageDrawable(info.getIcon(context))
 

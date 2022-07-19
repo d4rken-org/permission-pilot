@@ -45,7 +45,7 @@ class AppRepo @Inject constructor(
         val packageInfos = retrievePackageInfo()
 
         val twinApps = context.getTwinApps()
-        val allApps = packageInfos.map { it.toDefaultApp(twinApps) }.toSet<ApkPkg>()
+        val allApps = packageInfos.map { it.toNormalApp(twinApps) }.toSet<ApkPkg>()
 
         allApps.filterIsInstance<NormalApp>().forEach { app ->
             app.siblings = allApps
@@ -69,20 +69,23 @@ class AppRepo @Inject constructor(
         return packageInfos
     }
 
-    private fun PackageInfo.toDefaultApp(
+    private fun PackageInfo.toNormalApp(
         twinApps: Map<UserHandle, List<WorkProfileApp>>
     ): NormalApp {
         val twins = twinApps.entries
             .map { es -> es.value.filter { it.id.value == packageName } }
             .flatten()
-        return NormalApp(
+        val app = NormalApp(
             packageInfo = this,
             installerInfo = getInstallerInfo(packageManager),
             twins = twins
         )
+
+        log(TAG) { "Processed PKG: $app" }
+        return app
     }
 
     companion object {
-        private val TAG = logTag("App", "Repo")
+        internal val TAG = logTag("Apps", "Repo")
     }
 }
