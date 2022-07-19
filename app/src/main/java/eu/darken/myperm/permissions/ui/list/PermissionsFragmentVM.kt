@@ -50,9 +50,9 @@ class PermissionsFragmentVM @Inject constructor(
         val filtered = permissions
             .filter { perm -> filterOptions.keys.all { it.matches(perm) } }
             .filter {
-                if (searchTerm == null) return@filter true
-                if (it.id.toString().contains(searchTerm)) return@filter true
-                if (it.getLabel(context)?.contains(searchTerm) == true) return@filter true
+                val prunedterm = searchTerm?.lowercase() ?: return@filter true
+                if (it.id.toString().lowercase().contains(prunedterm)) return@filter true
+                if (it.getLabel(context)?.lowercase()?.contains(prunedterm) == true) return@filter true
 
                 return@filter false
             }
