@@ -1,19 +1,16 @@
 package eu.darken.myperm.apps.ui.details.items
 
-import android.text.SpannableStringBuilder
-import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isGone
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsSiblingsItemBinding
+import eu.darken.myperm.databinding.AppsDetailsSiblingsItemSiblingBinding
 
 class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.Item, AppsDetailsSiblingsItemBinding>(
     R.layout.apps_details_siblings_item,
@@ -47,25 +44,33 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         collapseToggle.setOnClickListener {
             siblingsContainer.isGone = !siblingsContainer.isGone
             collapseToggle.setIconResource(
-                if (siblingsInfo.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
+                if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
             )
         }
 
-        siblingsInfo.apply {
-            val ssb = SpannableStringBuilder()
-            app.siblings.forEach { sibling ->
-                var txt = "${sibling.id} (${sibling.getLabel(context) ?: "?"})"
-                if (app.siblings.last() != sibling) txt += "\n"
 
-                val onClick = object : ClickableSpan() {
-                    override fun onClick(widget: View) {
-                        item.onSiblingClicked(sibling)
+        siblingsContainer.removeAllViews()
+        app.siblings.forEach { sibling ->
+
+            AppsDetailsSiblingsItemSiblingBinding.inflate(layoutInflater, siblingsContainer, false).apply {
+                icon.apply {
+                    setImageDrawable(sibling.getIcon(context))
+                    setOnClickListener {
+                        try {
+                            context.startActivity(sibling.getSettingsIntent(context))
+                        } catch (_: Exception) {
+                        }
                     }
                 }
-                ssb.append(txt, onClick, 0)
+
+                label.text = sibling.getLabel(context)
+                identifier.text = sibling.id.value
+
+                this.root.setOnClickListener { item.onSiblingClicked(sibling) }
+
+                siblingsContainer.addView(this.root)
             }
-            movementMethod = LinkMovementMethod.getInstance()
-            setText(ssb, TextView.BufferType.SPANNABLE)
+
         }
 
         siblingsContainer.isGone = app.siblings.size > 5
