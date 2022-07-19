@@ -29,12 +29,11 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
 
         app.twins.forEach { twin ->
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
-                twin.getIcon(context)?.let {
-                    icon.setImageDrawable(pm.getUserBadgedIcon(it, twin.userHandle))
-                }
+                twin.getIcon(context)?.let { icon.setImageDrawable(it) }
 
                 label.text = twin.getLabel(context)?.let { pm.getUserBadgedLabel(it, twin.userHandle) }
                 identifier.text = twin.id.toString()
+                this.root.setOnClickListener { item.onTwinClicked(twin) }
 
                 twinsContainer.addView(this.root)
             }
