@@ -42,6 +42,8 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
         label.text = app.getLabel(context).capitalizeFirstLetter()
         identifier.text = app.id.toString()
 
+        version.text = "${app.versionName} (${app.versionCode})"
+
         description.apply {
             val countTotal = app.requestedPermissions.size
             val grantedCount = app.requestedPermissions.count { it.isGranted }
