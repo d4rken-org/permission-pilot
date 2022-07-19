@@ -98,12 +98,12 @@
     <string name="apps_details_shareduserid_label">Shared user id</string>
     <string name="apps_details_siblings_label">Siblings</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">VIVO App Store</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_vivo_label">V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">App Market</string>
     <string name="apps_known_installer_huawei_label">HUAWEI AppGallery</string>
     <string name="apps_known_installer_samsung_label">Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Mi Store</string>
-    <string name="apps_known_android_system_label">Android system</string>
+    <string name="apps_known_android_system_label">Android System</string>
     <string name="general_refresh_action">Refresh</string>
     <string name="apps_details_twins_label">Twins</string>
     <string name="apps_details_twins_descriptions">Installs in different user profiles.</string>
