@@ -30,7 +30,7 @@ data class InstallerInfo(
             return context.getString(R.string.apps_details_installer_manual_label)
         }
 
-        return installingPkg?.getLabel(context) ?: installer!!.id.value
+        return installingPkg?.getLabel(context) ?: installer!!.id.pkgName
     }
 
     fun getIcon(context: Context): Drawable {
@@ -42,7 +42,7 @@ data class InstallerInfo(
     }
 }
 
-fun InstalledApp.isSideloaded(): Boolean {
+fun HasInstallData.isSideloaded(): Boolean {
     if (isSystemApp) return false
     return installerInfo.allInstallers.none { it.id == AKnownPkg.GooglePlay.id }
 }

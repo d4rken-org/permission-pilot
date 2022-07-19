@@ -4,6 +4,8 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
+import android.os.Build
+import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
 
 fun PackageManager.getPackageInfo2(
@@ -17,18 +19,15 @@ fun PackageManager.getPackageInfo2(
 
 fun PackageManager.getLabel2(
     pkgId: Pkg.Id,
-): String? = getPackageInfo2(pkgId.value)
+): String? = getPackageInfo2(pkgId.pkgName)
     ?.applicationInfo
     ?.let { if (it.labelRes != 0) it.loadLabel(this).toString() else null }
 
 fun PackageManager.getIcon2(
     pkgId: Pkg.Id,
-): Drawable? = getPackageInfo2(pkgId.value)
+): Drawable? = getPackageInfo2(pkgId.pkgName)
     ?.applicationInfo
     ?.let { if (it.icon != 0) it.loadIcon(this) else null }
-
-val PackageInfo.pkgId
-    get() = Pkg.Id(packageName)
 
 fun PackageManager.getPermissionInfo2(
     permissionId: Permission.Id,
@@ -38,3 +37,9 @@ fun PackageManager.getPermissionInfo2(
 } catch (e: PackageManager.NameNotFoundException) {
     null
 }
+
+val PackageManager.GET_UNINSTALLED_PACKAGES_COMPAT
+    get() = when {
+        hasApiLevel(Build.VERSION_CODES.N) -> PackageManager.MATCH_UNINSTALLED_PACKAGES
+        else -> PackageManager.GET_UNINSTALLED_PACKAGES
+    }

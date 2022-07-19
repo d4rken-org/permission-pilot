@@ -4,21 +4,21 @@ import android.content.pm.PermissionInfo
 import androidx.annotation.StringRes
 import androidx.core.content.pm.PermissionInfoCompat
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.permissions.core.Permission
 
 
 data class DeclaredPermission(
     val permissionInfo: PermissionInfo,
-    override val requestingPkgs: List<ApkPkg> = emptyList(),
-    override val declaringPkgs: Collection<ApkPkg> = emptyList(),
+    override val requestingPkgs: List<HasApkData> = emptyList(),
+    override val declaringPkgs: Collection<HasApkData> = emptyList(),
 ) : BasePermission() {
 
     override val id: Permission.Id
         get() = Permission.Id(permissionInfo.name)
 
-    override val grantingPkgs: Collection<ApkPkg> by lazy {
+    override val grantingPkgs: Collection<HasApkData> by lazy {
         requestingPkgs
             .filter { it.requestsPermission(this) }
             .filter { it.getPermission(id)?.isGranted == true }

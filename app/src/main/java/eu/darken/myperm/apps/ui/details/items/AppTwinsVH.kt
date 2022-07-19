@@ -2,8 +2,8 @@ package eu.darken.myperm.apps.ui.details.items
 
 import android.view.ViewGroup
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
@@ -29,9 +29,11 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
 
         app.twins.forEach { twin ->
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
-                icon.setImageDrawable(pm.getUserBadgedIcon(twin.getIcon(context), twin.userHandle))
+                twin.getIcon(context)?.let {
+                    icon.setImageDrawable(pm.getUserBadgedIcon(it, twin.userHandle))
+                }
 
-                label.text = pm.getUserBadgedLabel(twin.getLabel(context), twin.userHandle)
+                label.text = twin.getLabel(context)?.let { pm.getUserBadgedLabel(it, twin.userHandle) }
                 identifier.text = twin.id.toString()
 
                 twinsContainer.addView(this.root)
@@ -40,8 +42,8 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
     }
 
     data class Item(
-        val app: NormalApp,
-        val onTwinClicked: (ApkPkg) -> Unit,
+        val app: BasicPkgContainer,
+        val onTwinClicked: (Pkg) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()

@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -38,54 +38,72 @@ class PermissionRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val permissions: Flow<Set<BasePermission>> = combine(
+    val permissions: Flow<Collection<BasePermission>> = combine(
         appRepo.apps,
         refreshTrigger
     ) { apps, _ ->
-        val permissions = mutableSetOf<PermissionInfo>()
 
-        val groupList = packageManager.getAllPermissionGroups(0) + listOf(null)
-
-        groupList.forEach { permissionGroup ->
-            val name = permissionGroup?.name
-            log(TAG, VERBOSE) { "Querying permission group $name" }
-            try {
-                permissions.addAll(packageManager.queryPermissionsByGroup(name, 0))
-            } catch (e: PackageManager.NameNotFoundException) {
-                log(TAG) { "Failed to retrieve permission group $permissionGroup: $e" }
+        val fromAosp = (packageManager.getAllPermissionGroups(0) + listOf(null))
+            .mapNotNull { permissionGroup ->
+                val name = permissionGroup?.name
+                log(TAG, VERBOSE) { "Querying permission group $name" }
+                try {
+                    packageManager.queryPermissionsByGroup(name, 0)
+                } catch (e: PackageManager.NameNotFoundException) {
+                    log(TAG) { "Failed to retrieve permission group $permissionGroup: $e" }
+                    null
+                }
             }
-        }
+            .flatten()
+
+        val appWithPermissions = apps.filterIsInstance<HasApkData>()
 
         val mappedPermissions = mutableSetOf<BasePermission>()
 
         // All we know from the system
-        permissions
-            .map { it.toDeclaredPermission(apps) }
-            .run { mappedPermissions.addAll(this) }
+        fromAosp
+            .map { it.toDeclaredPermission(appWithPermissions) }
+            .distinctBy { it.id }
+            .let {
+                log(TAG) { "${it.size} permissions from AOSP" }
+                mappedPermissions.addAll(it)
+            }
+
 
         // All that apps have declared themselves
-        apps
+        appWithPermissions
             .map { it.declaredPermissions }
             .flatten()
-            .map { it.toDeclaredPermission(apps) }
-            .run { mappedPermissions.addAll(this) }
+            .filter { newPerm -> mappedPermissions.none { it.id == newPerm.id } }
+            .map { it.toDeclaredPermission(appWithPermissions) }
+            .let {
+                log(TAG) { "${it.size} permissions declared by apps" }
+                mappedPermissions.addAll(it)
+            }
 
         // All that are specified by apps via `uses-permission`
         // It's possible that some of these are unused as no other app declares them.
-        apps
-            .map { usesPerms -> usesPerms.requestedPermissions.map { it.id }.toSet() }
+        appWithPermissions
+            .asSequence()
+            .map { usesPerms -> usesPerms.requestedPermissions.map { it.id } }
             .flatten()
+            .distinct()
+            .filter { newPerm -> mappedPermissions.none { it.id == newPerm } }
             .map { id ->
                 val info = packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
-
                 when {
-                    info != null -> info.toDeclaredPermission(apps)
-                    else -> id.toUnusedPermission(apps)
+                    info != null -> info.toDeclaredPermission(appWithPermissions)
+                    else -> id.toUnusedPermission(appWithPermissions)
                 }
             }
-            .run { mappedPermissions.addAll(this) }
+            .distinctBy { it.id }
+            .toList()
+            .let {
+                log(TAG) { "${it.size} unknown permissions requested by apps" }
+                mappedPermissions.addAll(it)
+            }
 
-        mappedPermissions
+        mappedPermissions.also { log(TAG) { "${it.size} total permissions discovered." } }
     }
         .catch {
             log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
@@ -93,13 +111,14 @@ class PermissionRepo @Inject constructor(
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-    private fun PermissionInfo.toDeclaredPermission(apps: Collection<ApkPkg>): DeclaredPermission = DeclaredPermission(
-        permissionInfo = this,
-        requestingPkgs = apps.filter { it.requestsPermission(id) },
-        declaringPkgs = apps.filter { it.declaresPermission(id) }
-    )
+    private fun PermissionInfo.toDeclaredPermission(apps: Collection<HasApkData>): DeclaredPermission =
+        DeclaredPermission(
+            permissionInfo = this,
+            requestingPkgs = apps.filter { it.requestsPermission(id) },
+            declaringPkgs = apps.filter { it.declaresPermission(id) }
+        )
 
-    private fun Permission.Id.toUnusedPermission(apps: Collection<ApkPkg>): UnknownPermission = UnknownPermission(
+    private fun Permission.Id.toUnusedPermission(apps: Collection<HasApkData>): UnknownPermission = UnknownPermission(
         id = this,
         requestingPkgs = apps.filter { it.requestsPermission(this) }
     )

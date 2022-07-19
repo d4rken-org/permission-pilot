@@ -12,8 +12,8 @@ import coil.dispose
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
@@ -68,7 +68,6 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         installerSource.apply {
             val info = app.installerInfo
 
-            log { "ICONLOAD: ${info.installer?.id}" }
             if (info.installer != null) {
                 load(info.installer)
             } else {
@@ -128,7 +127,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     }
 
     private fun ImageView.setupAll(
-        app: ApkPkg,
+        app: HasApkData,
         vararg permissions: Permission,
         @ColorInt grantedcolor: Int = colorGranted,
         @ColorInt deniedColor: Int = colorDenied,
@@ -159,7 +158,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     }
 
     data class Item(
-        override val app: NormalApp,
+        override val app: BasicPkgContainer,
         val onIconClicked: (Pkg) -> Unit,
         val onRowClicked: (Pkg) -> Unit,
         val onShowPermission: ((Permission) -> Unit),

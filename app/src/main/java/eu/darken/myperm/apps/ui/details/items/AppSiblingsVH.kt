@@ -3,8 +3,8 @@ package eu.darken.myperm.apps.ui.details.items
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
@@ -64,7 +64,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
                 }
 
                 label.text = sibling.getLabel(context)
-                identifier.text = sibling.id.value
+                identifier.text = sibling.id.pkgName
 
                 this.root.setOnClickListener { item.onSiblingClicked(sibling) }
 
@@ -80,8 +80,8 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
     }
 
     data class Item(
-        val app: NormalApp,
-        val onSiblingClicked: (ApkPkg) -> Unit,
+        val app: BasicPkgContainer,
+        val onSiblingClicked: (Pkg) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()

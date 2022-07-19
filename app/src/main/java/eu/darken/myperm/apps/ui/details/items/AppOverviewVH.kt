@@ -13,7 +13,7 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
@@ -47,7 +47,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             setOnClickListener { item.onGoToSettings(item.app) }
         }
 
-        label.text = app.getLabel(context).capitalizeFirstLetter()
+        label.text = app.getLabel(context)?.capitalizeFirstLetter()
         identifier.text = app.id.toString()
 
         version.text = "${app.versionName} (${app.versionCode})"
@@ -97,7 +97,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     }
 
     data class Item(
-        val app: NormalApp,
+        val app: BasicPkgContainer,
         val onGoToSettings: (Pkg) -> Unit,
         val onInstallerClicked: (Pkg) -> Unit
     ) : AppDetailsAdapter.Item {

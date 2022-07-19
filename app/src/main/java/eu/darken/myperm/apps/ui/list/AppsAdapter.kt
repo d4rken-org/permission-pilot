@@ -3,7 +3,7 @@ package eu.darken.myperm.apps.ui.list
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.common.lists.differ.AsyncDiffer
@@ -34,7 +34,7 @@ class AppsAdapter @Inject constructor() : ModularAdapter<AppsAdapter.BaseVH<Apps
     ) : ModularAdapter.VH(layoutRes, parent), BindableVH<Item, VB>
 
     interface Item : DifferItem {
-        val app: ApkPkg
+        val app: HasApkData
         override val stableId: Long
             get() = app.id.hashCode().toLong()
     }

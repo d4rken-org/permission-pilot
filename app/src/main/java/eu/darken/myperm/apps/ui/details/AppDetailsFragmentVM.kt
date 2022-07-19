@@ -7,9 +7,10 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.core.features.AppStore
+import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -41,7 +42,7 @@ class AppDetailsFragmentVM @Inject constructor(
 
     data class Details(
         val label: String,
-        val app: ApkPkg? = null,
+        val app: Pkg? = null,
         val items: List<AppDetailsAdapter.Item> = emptyList(),
     )
 
@@ -52,7 +53,7 @@ class AppDetailsFragmentVM @Inject constructor(
             val permissions = permissionRepo.permissions.first()
 
             when (app) {
-                is NormalApp -> {
+                is BasicPkgContainer -> {
                     AppOverviewVH.Item(
                         app = app,
                         onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
@@ -92,7 +93,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 }
             }
 
-            app.requestedPermissions.forEach { appPermission ->
+            (app as? HasApkData)?.requestedPermissions?.forEach { appPermission ->
                 val permission = permissions.singleOrNull { it.id == appPermission.id }
                     ?: throw IllegalArgumentException("Can't find $appPermission")
 

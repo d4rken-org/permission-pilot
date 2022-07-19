@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.ApkPkg
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -36,7 +36,7 @@ class AppDeclaringPermissionVH(parent: ViewGroup) :
 
     data class Item(
         override val permission: BasePermission,
-        val app: ApkPkg,
+        val app: Pkg,
         val onItemClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long

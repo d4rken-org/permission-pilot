@@ -109,7 +109,7 @@
     <string name="apps_details_twins_descriptions">Installs in different user profiles.</string>
     <string name="install_date_label">Install date</string>
     <string name="apps_filter_sharedid_label">Shared user ID</string>
-    <string name="apps_filter_multipleprofiles_label">Multiple user profiles</string>
+    <string name="apps_filter_multipleprofiles_label">Multiple profiles</string>
     <string name="support_debuglog_label">Debug log</string>
     <string name="support_debuglog_desc">Record everything the app is doing into a text file that you can share.</string>
     <string name="updated_at_x">Last updated: %s</string>

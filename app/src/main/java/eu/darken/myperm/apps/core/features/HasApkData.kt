@@ -7,7 +7,8 @@ import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.types.BasePermission
 
-interface ApkPkg : Pkg {
+// A Pkg where we have access to an APK
+interface HasApkData : Pkg {
 
     val packageInfo: PackageInfo
 
@@ -19,6 +20,7 @@ interface ApkPkg : Pkg {
         get() = if (hasApiLevel(28)) packageInfo.longVersionCode else packageInfo.versionCode.toLong()
 
     val sharedUserId: String?
+        get() = packageInfo.sharedUserId
 
     fun getPermission(id: Permission.Id): UsesPermission?
 
@@ -30,4 +32,4 @@ interface ApkPkg : Pkg {
 
 }
 
-fun ApkPkg.requestsPermission(permission: BasePermission) = requestsPermission(permission.id)
+fun HasApkData.requestsPermission(permission: BasePermission) = requestsPermission(permission.id)

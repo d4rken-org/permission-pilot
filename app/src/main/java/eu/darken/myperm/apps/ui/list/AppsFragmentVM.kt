@@ -7,7 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.container.NormalApp
+import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
@@ -50,7 +50,7 @@ class AppsFragmentVM @Inject constructor(
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
-                if (it is NormalApp && it.getLabel(context).lowercase().contains(prunedTerm) == true) {
+                if (it.getLabel(context)?.lowercase()?.contains(prunedTerm) == true) {
                     return@filter true
                 }
 
@@ -60,7 +60,7 @@ class AppsFragmentVM @Inject constructor(
 
         val listItems = filtered.map { app ->
             when (app) {
-                is NormalApp -> NormalAppVH.Item(
+                is BasicPkgContainer -> NormalAppVH.Item(
                     app = app,
                     onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
                     onRowClicked = {

@@ -2,7 +2,7 @@ package eu.darken.myperm.permissions.ui.list
 
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.InstalledApp
+import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.permissions.core.types.BasePermission
 
 data class FilterOptions(
@@ -18,11 +18,11 @@ data class FilterOptions(
         ),
         SYSTEM(
             labelRes = R.string.permissions_filter_system_extra_label,
-            matches = { pkg -> pkg.declaringPkgs.any { it is InstalledApp && it.isSystemApp } }
+            matches = { pkg -> pkg.declaringPkgs.any { it is HasInstallData && it.isSystemApp } }
         ),
         USER(
             labelRes = R.string.permissions_filter_custom_label,
-            matches = { pkg -> pkg.declaringPkgs.none { it is InstalledApp && it.isSystemApp } }
+            matches = { pkg -> pkg.declaringPkgs.none { it is HasInstallData && it.isSystemApp } }
         ),
         ;
     }

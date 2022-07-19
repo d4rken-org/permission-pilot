@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Parcelable
+import android.os.Process
+import android.os.UserHandle
 import android.provider.Settings
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -12,6 +14,9 @@ import kotlinx.parcelize.Parcelize
 
 interface Pkg {
     val id: Id
+
+    val packageName: String
+        get() = id.pkgName
 
     fun getLabel(context: Context): String? {
         context.packageManager.getLabel2(id)?.let { return it }
@@ -37,8 +42,11 @@ interface Pkg {
     }
 
     @Parcelize
-    data class Id(val value: String) : Parcelable {
-        override fun toString(): String = value
+    data class Id(
+        val pkgName: String,
+        val userHandle: UserHandle = Process.myUserHandle(),
+    ) : Parcelable {
+        override fun toString(): String = pkgName
     }
 
     data class Container(override val id: Id) : Pkg

@@ -1,22 +1,15 @@
 package eu.darken.myperm.apps.core
 
 import android.content.Context
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.UserHandle
 import dagger.hilt.android.qualifiers.ApplicationContext
-import eu.darken.myperm.apps.core.container.NormalApp
-import eu.darken.myperm.apps.core.container.WorkProfileApp
-import eu.darken.myperm.apps.core.container.getTwinApps
-import eu.darken.myperm.apps.core.features.ApkPkg
-import eu.darken.myperm.apps.core.features.getInstallerInfo
+import eu.darken.myperm.apps.core.container.*
+import eu.darken.myperm.apps.core.features.HasApkData
+import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
-import eu.darken.myperm.common.hasApiLevel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import java.util.*
@@ -26,7 +19,6 @@ import javax.inject.Singleton
 @Singleton
 class AppRepo @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val packageManager: PackageManager,
     @AppScope private val appScope: CoroutineScope,
     appEventListener: AppEventListener,
 ) {
@@ -38,52 +30,56 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Set<ApkPkg>> = combine(
+    val apps: Flow<Collection<Pkg>> = combine(
         refreshTrigger,
         appEventListener.events.onStart { emit(AppEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
     ) { _, _ ->
-        val packageInfos = retrievePackageInfo()
+        val normalPkgs = context.getNormalPkgs()
 
-        val twinApps = context.getTwinApps()
-        val allApps = packageInfos.map { it.toNormalApp(twinApps) }.toSet<ApkPkg>()
+        val profilePkgs = context.getProfilePkgs()
 
-        allApps.filterIsInstance<NormalApp>().forEach { app ->
-            app.siblings = allApps
-                .filter { it.sharedUserId != null }
-                .filter { app.packageName != it.id.value && it.sharedUserId == app.sharedUserId }
-                .toSet()
+        val uninstalledPkgs = context.getUninstalledPkgs().filter { uninstalled ->
+            profilePkgs.none { it.id.pkgName == uninstalled.id.pkgName }
         }
 
-        allApps
+        val allPkgs = normalPkgs + profilePkgs + uninstalledPkgs
+        allPkgs.forEach { curPkg ->
+
+            val siblings = allPkgs.asSequence()
+                .filter { it != curPkg } // Don't compare against ourselves
+                .filter {
+                    if (it !is HasApkData || it.sharedUserId == null) return@filter false
+                    if (curPkg !is HasApkData || it.sharedUserId == null) return@filter false
+
+                    it.sharedUserId == curPkg.sharedUserId
+                }
+                .toSet()
+
+            val twins = allPkgs.asSequence()
+                .filter { it != curPkg } // Don't compare against ourselves
+                .filterIsInstance<HasInstallData>()
+                .filter {
+                    if (curPkg !is HasInstallData) return@filter false
+
+                    curPkg.id.pkgName == it.id.pkgName && curPkg.id.userHandle != it.id.userHandle
+                }
+                .toSet()
+
+            when (curPkg) {
+                is NormalPkg -> {
+                    curPkg.siblings = siblings
+                    curPkg.twins = twins
+                }
+                is ProfilePkg -> {
+                    curPkg.siblings = siblings
+                    curPkg.twins = twins
+                }
+                else -> throw IllegalArgumentException("Unknown package type: $curPkg")
+            }
+        }
+        allPkgs
     }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-    private suspend fun retrievePackageInfo(): Collection<PackageInfo> {
-        log(TAG) { "retrievePackageInfo()" }
-
-        val flags = PackageManager.GET_PERMISSIONS
-        val uninstalledFlag = if (hasApiLevel(Build.VERSION_CODES.N)) PackageManager.MATCH_UNINSTALLED_PACKAGES
-        else PackageManager.GET_UNINSTALLED_PACKAGES
-        val packageInfos = packageManager.getInstalledPackages(flags or uninstalledFlag)
-        log(TAG) { "Retrieved ${packageInfos.size} packageInfos" }
-
-        return packageInfos
-    }
-
-    private fun PackageInfo.toNormalApp(
-        twinApps: Map<UserHandle, List<WorkProfileApp>>
-    ): NormalApp {
-        val twins = twinApps.entries
-            .map { es -> es.value.filter { it.id.value == packageName } }
-            .flatten()
-        val app = NormalApp(
-            packageInfo = this,
-            installerInfo = getInstallerInfo(packageManager),
-            twins = twins
-        )
-
-        log(TAG) { "Processed PKG: $app" }
-        return app
-    }
 
     companion object {
         internal val TAG = logTag("Apps", "Repo")
