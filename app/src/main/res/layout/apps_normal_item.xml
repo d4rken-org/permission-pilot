@@ -87,6 +87,12 @@
         app:layout_constraintTop_toBottomOf="@id/permission_info">
 
         <ImageView
+            android:id="@+id/tag_system"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_shield_24"
+            tools:visibility="visible" />
+
+        <ImageView
             android:id="@+id/tag_sharedid"
             style="@style/AppTagStyle"
             android:src="@drawable/ic_id_onsurface"

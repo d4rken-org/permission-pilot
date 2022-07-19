@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.list.apps
 
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.core.view.children
 import androidx.core.view.isGone
@@ -77,6 +78,13 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         }
 
         itemView.setOnClickListener { item.onRowClicked(item.app) }
+
+        tagSystem.apply {
+            isInvisible = !app.isSystemApp
+            setOnClickListener {
+                Toast.makeText(context, R.string.app_type_system_label, Toast.LENGTH_SHORT).show()
+            }
+        }
 
         tagSharedid.isInvisible = app.siblings.isEmpty()
 
