@@ -32,5 +32,10 @@
             android:key="support.installid"
             android:summary="@string/support_installid_desc"
             android:title="@string/support_installid_label" />
+        <Preference
+            android:icon="@drawable/ic_baseline_bug_report_24"
+            android:key="support.debuglog"
+            android:summary="@string/support_debuglog_desc"
+            android:title="@string/support_debuglog_label" />
     </PreferenceCategory>
 </PreferenceScreen>

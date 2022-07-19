@@ -42,7 +42,7 @@ class RecorderService : Service2() {
         NotificationChannel(
             NOTIF_CHANID_DEBUG,
             getString(R.string.debug_notification_channel_label),
-            NotificationManager.IMPORTANCE_MIN
+            NotificationManager.IMPORTANCE_MAX
         ).run { notificationManager.createNotificationChannel(this) }
 
         val openIntent = Intent(this, MainActivity::class.java)
@@ -65,7 +65,7 @@ class RecorderService : Service2() {
         builder = NotificationCompat.Builder(this, NOTIF_CHANID_DEBUG)
             .setChannelId(NOTIF_CHANID_DEBUG)
             .setContentIntent(openPi)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setSmallIcon(R.drawable.ic_baseline_bug_report_24)
             .setContentText("Idle")
             .setContentTitle(getString(R.string.app_name))
