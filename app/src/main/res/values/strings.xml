@@ -72,7 +72,7 @@
     <string name="apps_permissions_x_of_x_granted">%1$d of %2$d granted.</string>
     <string name="apps_permissions_declares_x">Declares %1$d permissions.</string>
     <string name="apps_details_installer_label">Install source</string>
-    <string name="apps_details_installer_manual_label">Manual install</string>
+    <string name="apps_details_installer_unknown_label">Unknown installer</string>
     <string name="permissions_filter_system_core_label">Core permissions</string>
     <string name="permissions_filter_system_extra_label">Declared by system app</string>
     <string name="permissions_filter_custom_label">Custom app permissions</string>

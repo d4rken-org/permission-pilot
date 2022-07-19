@@ -27,7 +27,7 @@ data class InstallerInfo(
 
     fun getLabel(context: Context): String {
         if (installer == null) {
-            return context.getString(R.string.apps_details_installer_manual_label)
+            return context.getString(R.string.apps_details_installer_unknown_label)
         }
 
         return installingPkg?.getLabel(context) ?: installer!!.id.pkgName
