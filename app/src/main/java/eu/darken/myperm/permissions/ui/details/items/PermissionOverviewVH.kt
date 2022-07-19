@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
@@ -19,7 +20,7 @@ class PermissionOverviewVH(parent: ViewGroup) :
     PermissionDetailsAdapter.BaseVH<PermissionOverviewVH.Item, PermissionsDetailsOverviewItemBinding>(
         R.layout.permissions_details_overview_item,
         parent
-    ), BindableVH<PermissionOverviewVH.Item, PermissionsDetailsOverviewItemBinding> {
+    ), BindableVH<PermissionOverviewVH.Item, PermissionsDetailsOverviewItemBinding>, DividerItemDecorator2.SkipDivider {
 
     override val viewBinding = lazy { PermissionsDetailsOverviewItemBinding.bind(itemView) }
 

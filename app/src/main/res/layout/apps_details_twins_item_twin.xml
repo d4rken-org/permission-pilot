@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_default_app_icon_24"
+        app:layout_constraintBottom_toBottomOf="@id/identifier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/label" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/label"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/identifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="App name" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/identifier"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintStart_toStartOf="@id/label"
+        app:layout_constraintTop_toBottomOf="@id/label"
+        tools:text="some.package.man" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/installdate_label"
+        style="@style/TextAppearance.Material3.LabelSmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/install_date_label"
+        app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintStart_toStartOf="@id/label"
+        app:layout_constraintTop_toBottomOf="@id/identifier" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/installdate_info"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintStart_toStartOf="@id/label"
+        app:layout_constraintTop_toBottomOf="@id/installdate_label"
+        tools:text="2022.05.22 - 22:00" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

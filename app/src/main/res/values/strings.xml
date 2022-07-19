@@ -105,6 +105,9 @@
     <string name="apps_known_installer_xiaomi_label">Mi Store</string>
     <string name="apps_known_android_system_label">Android system</string>
     <string name="general_refresh_action">Refresh</string>
+    <string name="apps_details_twins_label">Twins</string>
+    <string name="apps_details_twins_descriptions">Installs in different user profiles.</string>
+    <string name="install_date_label">Install date</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>

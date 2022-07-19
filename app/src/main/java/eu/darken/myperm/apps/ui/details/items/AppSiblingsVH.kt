@@ -11,13 +11,14 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
+import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsSiblingsItemBinding
 
 class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.Item, AppsDetailsSiblingsItemBinding>(
     R.layout.apps_details_siblings_item,
     parent
-), BindableVH<AppSiblingsVH.Item, AppsDetailsSiblingsItemBinding> {
+), BindableVH<AppSiblingsVH.Item, AppsDetailsSiblingsItemBinding>, DividerItemDecorator2.SkipDivider {
 
     override val viewBinding = lazy { AppsDetailsSiblingsItemBinding.bind(itemView) }
 

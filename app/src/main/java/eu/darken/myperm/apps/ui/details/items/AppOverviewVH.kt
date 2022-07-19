@@ -15,6 +15,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
+import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
@@ -22,7 +23,7 @@ import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
 class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.Item, AppsDetailsOverviewItemBinding>(
     R.layout.apps_details_overview_item,
     parent
-), BindableVH<AppOverviewVH.Item, AppsDetailsOverviewItemBinding> {
+), BindableVH<AppOverviewVH.Item, AppsDetailsOverviewItemBinding>, DividerItemDecorator2.SkipDivider {
 
     override val viewBinding = lazy { AppsDetailsOverviewItemBinding.bind(itemView) }
 

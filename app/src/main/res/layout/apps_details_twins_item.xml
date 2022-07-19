@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/DetailsCardItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_work_24"
+            app:layout_constraintBottom_toBottomOf="@id/twins_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/twins_label" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/twins_label"
+            style="@style/TextAppearance.Material3.LabelSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/apps_details_twins_label"
+            app:layout_constraintBottom_toTopOf="@+id/twins_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/twins_description"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/apps_details_twins_descriptions"
+            app:layout_constraintBottom_toTopOf="@id/twinsContainer"
+            app:layout_constraintEnd_toEndOf="@id/twins_label"
+            app:layout_constraintStart_toStartOf="@id/twins_label"
+            app:layout_constraintTop_toBottomOf="@id/twins_label"
+            app:layout_goneMarginBottom="16dp" />
+
+        <LinearLayout
+            android:id="@+id/twinsContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/twins_description">
+
+            <include layout="@layout/apps_details_twins_item_twin" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

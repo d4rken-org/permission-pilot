@@ -10,10 +10,7 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.AppStore
-import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
-import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
-import eu.darken.myperm.apps.ui.details.items.DeclaredPermissionVH
-import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
+import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.livedata.SingleLiveEvent
@@ -71,6 +68,15 @@ class AppDetailsFragmentVM @Inject constructor(
                             }
                         }
                     ).run { infoItems.add(this) }
+
+                    if (app.twins.isNotEmpty()) {
+                        AppTwinsVH.Item(
+                            app,
+                            onTwinClicked = {
+                                AppDetailsFragmentDirections.toSelf(it.id, it.getLabel(context)).navigate()
+                            }
+                        ).run { infoItems.add(this) }
+                    }
 
                     if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
                         AppSiblingsVH.Item(

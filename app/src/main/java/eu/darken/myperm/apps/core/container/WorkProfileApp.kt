@@ -20,9 +20,15 @@ class WorkProfileApp(
     val userHandle: UserHandle,
 ) : ApkPkg {
 
-    override fun getLabel(context: Context): String = launcherAppInfo.loadLabel(context.packageManager).toString()
+    override fun getLabel(context: Context): String {
+        val pm = context.packageManager
+        return launcherAppInfo.loadLabel(pm).toString()
+    }
 
-    override fun getIcon(context: Context): Drawable = launcherAppInfo.loadIcon(context.packageManager)
+    override fun getIcon(context: Context): Drawable {
+        val pm = context.packageManager
+        return launcherAppInfo.loadIcon(pm)
+    }
 
     override val sharedUserId: String?
         get() = throw NotImplementedError()

@@ -10,6 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_baseline_id_24"
+            app:layout_constraintBottom_toBottomOf="@id/shareduserid_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/shareduserid_label" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/shareduserid_label"
             style="@style/TextAppearance.Material3.LabelSmall"
@@ -17,12 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginEnd="8dp"
             android:text="@string/apps_details_shareduserid_label"
             app:layout_constraintBottom_toTopOf="@+id/shareduserid_info"
             app:layout_constraintEnd_toStartOf="@id/collapse_toggle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/shareduserid_info"
@@ -30,7 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/siblings_container"
-            app:layout_constraintEnd_toStartOf="@id/collapse_toggle"
+            app:layout_constraintEnd_toEndOf="@id/shareduserid_label"
             app:layout_constraintStart_toStartOf="@id/shareduserid_label"
             app:layout_constraintTop_toBottomOf="@id/shareduserid_label"
             app:layout_goneMarginBottom="16dp"
