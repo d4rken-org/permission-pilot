@@ -15,7 +15,6 @@ import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.apps.core.pkgId
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
-import java.time.Instant
 
 data class NormalApp(
     override val packageInfo: PackageInfo,
@@ -48,12 +47,6 @@ data class NormalApp(
 
     override val isSystemApp: Boolean
         get() = packageInfo.applicationInfo?.run { flags and ApplicationInfo.FLAG_SYSTEM != 0 } ?: true
-
-    override val installedAt: Instant
-        get() = Instant.ofEpochMilli(packageInfo.firstInstallTime)
-
-    override val updatedAt: Instant
-        get() = Instant.ofEpochMilli(packageInfo.lastUpdateTime)
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
         packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->

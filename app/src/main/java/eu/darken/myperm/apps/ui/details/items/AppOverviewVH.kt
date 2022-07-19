@@ -20,6 +20,10 @@ import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.Item, AppsDetailsOverviewItemBinding>(
     R.layout.apps_details_overview_item,
@@ -27,6 +31,10 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 ), BindableVH<AppOverviewVH.Item, AppsDetailsOverviewItemBinding>, DividerItemDecorator2.SkipDivider {
 
     override val viewBinding = lazy { AppsDetailsOverviewItemBinding.bind(itemView) }
+
+    private val dateFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+        .withLocale(Locale.getDefault())
+        .withZone(ZoneId.systemDefault())
 
     override val onBindData: AppsDetailsOverviewItemBinding.(
         item: Item,
@@ -48,6 +56,16 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             val countTotal = app.requestedPermissions.size
             val grantedCount = app.requestedPermissions.count { it.isGranted }
             text = "$grantedCount of $countTotal permissions granted."
+        }
+
+        updatedAt.apply {
+            text = app.updatedAt?.let { getString(R.string.updated_at_x, dateFormatter.format(it)) }
+            isGone = text.isEmpty()
+        }
+
+        installedAt.apply {
+            text = app.installedAt?.let { getString(R.string.installed_at_x, dateFormatter.format(it)) }
+            isGone = text.isEmpty()
         }
 
         installerInfo.apply {
