@@ -3,7 +3,6 @@ package eu.darken.myperm.apps.ui.list.apps
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -84,7 +83,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         tagInternet.apply {
             when (app.internetAccess) {
                 InternetAccess.DIRECT -> tintIt(colorGranted)
-                InternetAccess.INDIRECT -> tintIt(ContextCompat.getColor(context, R.color.status_negative_1))
+                InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(R.attr.colorTertiary))
                 InternetAccess.NONE -> tintIt(colorDenied)
             }
             setUpInfoSnackbar(AndroidPermissions.INTERNET)
@@ -127,8 +126,16 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         val perms = permissions.map { app.getPermission(it.id) }.filterNotNull()
         val grantedPerm = perms.firstOrNull { it.isGranted }
         isInvisible = when {
-            grantedPerm != null -> tintIt(grantedcolor).let { false }
-            perms.isNotEmpty() -> tintIt(deniedColor).let { false }
+            grantedPerm != null -> {
+                tintIt(grantedcolor)
+                alpha = 1.0f
+                false
+            }
+            perms.isNotEmpty() -> {
+                tintIt(deniedColor)
+                alpha = 0.4f
+                false
+            }
             else -> true
         }
         grantedPerm?.let { setUpInfoSnackbar(it) }

@@ -2,12 +2,12 @@ package eu.darken.myperm.permissions.ui.details.items
 
 import android.content.res.ColorStateList
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.types.BasePermission
@@ -40,13 +40,13 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
             val status = item.app.getPermission(item.permission.id)?.status
             if (status != null) {
                 val (iconRes, tintRes) = when (status) {
-                    UsesPermission.Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                    UsesPermission.Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.color.status_positive_1
-                    UsesPermission.Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.color.status_negative_1
-                    UsesPermission.Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.color.permission_status_unknown
+                    UsesPermission.Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
+                    UsesPermission.Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
+                    UsesPermission.Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.attr.colorOnBackground
+                    UsesPermission.Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.attr.colorOnBackground
                 }
                 setImageResource(iconRes)
-                imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, tintRes))
+                imageTintList = ColorStateList.valueOf(context.getColorForAttr(tintRes))
             }
             isGone = status == null
         }
