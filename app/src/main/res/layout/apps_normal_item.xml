@@ -99,6 +99,12 @@
             tools:visibility="visible" />
 
         <ImageView
+            android:id="@+id/tag_workprofile"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_work_24"
+            tools:visibility="visible" />
+
+        <ImageView
             android:id="@+id/tag_internet"
             style="@style/AppTagStyle"
             android:src="@drawable/ic_baseline_internet_24"

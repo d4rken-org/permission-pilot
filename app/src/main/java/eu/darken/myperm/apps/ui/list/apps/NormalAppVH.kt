@@ -86,6 +86,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
+        tagWorkprofile.isInvisible = app.twins.isEmpty()
+
         tagSharedid.isInvisible = app.siblings.isEmpty()
 
         tagInternet.apply {

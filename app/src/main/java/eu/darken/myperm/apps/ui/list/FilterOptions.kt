@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.list
 
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.container.NormalApp
 import eu.darken.myperm.apps.core.features.ApkPkg
 import eu.darken.myperm.apps.core.features.InstalledApp
 import eu.darken.myperm.apps.core.features.InternetAccess
@@ -50,6 +51,14 @@ data class FilterOptions(
                 }
             }
         ),
+        SHARED_ID(
+            labelRes = R.string.apps_filter_sharedid_label,
+            matches = { it is NormalApp && it.siblings.isNotEmpty() }
+        ),
+        MULTIPLE_PROFILES(
+            labelRes = R.string.apps_filter_multipleprofiles_label,
+            matches = { it is NormalApp && it.twins.isNotEmpty() }
+        )
         ;
     }
 }
