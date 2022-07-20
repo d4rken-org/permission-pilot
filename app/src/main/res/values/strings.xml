@@ -95,7 +95,7 @@
     <string name="generic_loading_label_3">Still faster than an iPhone</string>
     <string name="generic_loading_label_4">What\'s that behind you?</string>
     <string name="generic_loading_label_5">The CPU is on a coffee break</string>
-    <string name="apps_app_details_label">App details</string>
+    <string name="apps_app_details_label">App Details</string>
     <string name="apps_details_shareduserid_label">Shared user id</string>
     <string name="apps_details_siblings_label">Siblings</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
