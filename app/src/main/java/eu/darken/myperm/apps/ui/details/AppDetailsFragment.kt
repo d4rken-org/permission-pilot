@@ -16,7 +16,7 @@ import eu.darken.myperm.common.lists.setupDefaults
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.AppsDetailsFragmentBinding
-import eu.darken.myperm.permissions.core.types.PermissionAction
+import eu.darken.myperm.permissions.core.PermissionAction
 import javax.inject.Inject
 
 @AndroidEntryPoint

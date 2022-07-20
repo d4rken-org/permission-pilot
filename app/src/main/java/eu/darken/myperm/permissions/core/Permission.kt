@@ -7,7 +7,6 @@ import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.permissions.core.known.AKnownPermissions
-import eu.darken.myperm.permissions.core.types.PermissionAction
 import kotlinx.parcelize.Parcelize
 
 interface Permission {

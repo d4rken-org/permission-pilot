@@ -6,7 +6,7 @@ import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.types.PermissionAction
+import eu.darken.myperm.permissions.core.PermissionAction
 import kotlin.reflect.full.isSubclassOf
 
 @Keep

@@ -34,12 +34,10 @@ data class SecondaryProfilePkg(
     }
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
-        packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
-            val flags = packageInfo.requestedPermissionsFlags[index]
-
+        packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
             UsesPermission(
                 id = Permission.Id(permissionId),
-                flags = flags,
+                flags = null,  // We don't know for secondary profiles
             )
         } ?: emptyList()
     }

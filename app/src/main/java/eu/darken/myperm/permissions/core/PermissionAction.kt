@@ -1,9 +1,8 @@
-package eu.darken.myperm.permissions.core.types
+package eu.darken.myperm.permissions.core
 
 import android.app.Activity
 import android.widget.Toast
 import eu.darken.myperm.R
-import eu.darken.myperm.permissions.core.Permission
 
 sealed class PermissionAction {
 
