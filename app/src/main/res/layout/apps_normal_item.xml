@@ -16,18 +16,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/package_name" />
 
-
-    <ImageView
-        android:id="@+id/tag_system"
-        style="@style/AppTagStyle"
-        android:layout_marginTop="3dp"
-        android:src="@drawable/ic_baseline_shield_24"
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/icon"
+        android:layout_marginTop="3dp"
         app:layout_constraintStart_toStartOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/icon"
-        app:tint="?colorError"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/icon">
 
+        <ImageView
+            android:id="@+id/tag_system"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_shield_24"
+            app:tint="?colorError"
+            tools:visibility="visible" />
+
+        <FrameLayout
+            android:layout_width="16dp"
+            android:id="@+id/tag_workprofile"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:layout_height="16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_work_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tag_workprofile_count"
+                style="@style/TextAppearance.Material3.LabelSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:textColor="?colorOnSurfaceInverse"
+                android:textSize="7sp"
+                tools:text="3" />
+        </FrameLayout>
+    </com.google.android.flexbox.FlexboxLayout>
 
     <ImageView
         android:id="@+id/installer_source"
@@ -104,29 +131,6 @@
             style="@style/AppTagStyle"
             android:src="@drawable/ic_id_onsurface"
             tools:visibility="visible" />
-
-        <FrameLayout
-            android:layout_width="16dp"
-            android:layout_height="16dp">
-
-            <ImageView
-                android:id="@+id/tag_workprofile"
-                style="@style/AppTagStyle"
-                android:src="@drawable/ic_baseline_work_24"
-                tools:visibility="visible" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tag_workprofile_count"
-                style="@style/TextAppearance.Material3.LabelSmall"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="1dp"
-                android:gravity="center"
-                android:textColor="?colorOnSurfaceInverse"
-                android:textSize="7sp"
-                tools:text="3" />
-        </FrameLayout>
-
 
         <ImageView
             android:id="@+id/tag_internet"
