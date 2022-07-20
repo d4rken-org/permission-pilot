@@ -69,20 +69,20 @@ data class AppsSortOptions(
         INSTALL_SOURCE(
             labelRes = R.string.apps_sort_install_source_label
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { pkg ->
-                when {
-                    pkg is HasInstallData
-                            && pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id } -> 3
-                    pkg is HasInstallData
-                            && pkg.installerInfo.allInstallers.map { it.id }
-                        .intersect(AKnownPkg.OEM_STORES.map { it.id }.toSet()).isNotEmpty() -> 2
-                    pkg is HasInstallData
-                            && pkg.installerInfo.allInstallers.isNotEmpty()
-                            && pkg.installerInfo.allInstallers.map { it.id }
-                        .intersect(AKnownPkg.APP_STORES.map { it.id }.toSet()).isEmpty() -> 1
-                    else -> 0
-                }
-            }.reversed()
+            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, String> { pkg ->
+                if (pkg !is HasInstallData) return@comparing "ZZ"
+                if (pkg.installerInfo.allInstallers.isEmpty()) return@comparing "Z"
+
+                val byGplay = pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id }
+                if (byGplay) return@comparing "A" + AKnownPkg.GooglePlay.id.pkgName
+
+                val oemIds = AKnownPkg.OEM_STORES.map { it.id }
+                val byOem = pkg.installerInfo.allInstallers.firstOrNull { oemIds.contains(it.id) }
+                if (byOem != null) return@comparing "B" + byOem.packageName
+
+
+                return@comparing "C" + pkg.installerInfo.allInstallers.joinToString()
+            }
         }
         ;
 
