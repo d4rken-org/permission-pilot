@@ -66,11 +66,11 @@ class AppRepo @Inject constructor(
                 .toSet()
 
             when (curPkg) {
-                is NormalPkg -> {
+                is MainProfilePkg -> {
                     curPkg.siblings = siblings
                     curPkg.twins = twins
                 }
-                is ProfilePkg -> {
+                is SecondaryProfilePkg -> {
                     curPkg.siblings = siblings
                     curPkg.twins = twins
                 }

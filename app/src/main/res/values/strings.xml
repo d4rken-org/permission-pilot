@@ -70,6 +70,7 @@
 
     <string name="general_sort_action">Sort</string>
     <string name="apps_permissions_x_of_x_granted">%1$d of %2$d granted.</string>
+    <string name="apps_permissions_x_requested">%1$d permissions requested.</string>
     <string name="apps_permissions_declares_x">Declares %1$d permissions.</string>
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Unknown installer</string>

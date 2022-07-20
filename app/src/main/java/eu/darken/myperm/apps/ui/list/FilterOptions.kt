@@ -56,7 +56,7 @@ data class FilterOptions(
         ),
         MULTI_PROFILE(
             labelRes = R.string.apps_filter_multipleprofiles_label,
-            matches = { it is HasInstallData && (it.twins.isNotEmpty() || it is eu.darken.myperm.apps.core.container.ProfilePkg) }
+            matches = { it is HasInstallData && (it.twins.isNotEmpty() || it is eu.darken.myperm.apps.core.container.SecondaryProfilePkg) }
         )
         ;
     }

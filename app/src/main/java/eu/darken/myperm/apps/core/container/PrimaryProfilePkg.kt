@@ -14,7 +14,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 
-data class NormalPkg(
+data class MainProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
@@ -69,12 +69,12 @@ data class NormalPkg(
     }
 }
 
-private fun PackageInfo.toNormalPkg(context: Context): NormalPkg = NormalPkg(
+private fun PackageInfo.toNormalPkg(context: Context): MainProfilePkg = MainProfilePkg(
     packageInfo = this,
     installerInfo = getInstallerInfo(context.packageManager),
 )
 
-fun Context.getNormalPkgs(): Collection<NormalPkg> {
+fun Context.getNormalPkgs(): Collection<MainProfilePkg> {
     log(AppRepo.TAG) { "getNormalPkgs()" }
 
     return packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS).map {
@@ -83,7 +83,7 @@ fun Context.getNormalPkgs(): Collection<NormalPkg> {
     }
 }
 
-fun Context.getUninstalledPkgs(): Collection<NormalPkg> {
+fun Context.getUninstalledPkgs(): Collection<MainProfilePkg> {
     log(AppRepo.TAG) { "getUninstalledPkgs()" }
 
     val normal = packageManager.getInstalledPackages(0).map { it.packageName }

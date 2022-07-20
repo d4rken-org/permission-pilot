@@ -14,7 +14,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 
-data class ProfilePkg(
+data class SecondaryProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle,
     override val installerInfo: InstallerInfo,
@@ -98,7 +98,7 @@ fun Context.getProfilePkgs(): Collection<Pkg> {
                 return@mapNotNull null
             }
 
-            val app = ProfilePkg(
+            val app = SecondaryProfilePkg(
                 packageInfo = pkgInfo,
                 installerInfo = pkgInfo.getInstallerInfo(packageManager),
                 launcherAppInfo = appInfo,

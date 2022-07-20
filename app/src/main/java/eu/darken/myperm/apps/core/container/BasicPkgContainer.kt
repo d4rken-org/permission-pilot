@@ -6,4 +6,4 @@ import eu.darken.myperm.apps.core.features.HasInstallData
 
 interface BasicPkgContainer : Pkg, HasApkData, HasInstallData
 
-fun BasicPkgContainer.isOrHasProfiles() = twins.isNotEmpty() || this is ProfilePkg
+fun BasicPkgContainer.isOrHasProfiles() = twins.isNotEmpty() || this is SecondaryProfilePkg
