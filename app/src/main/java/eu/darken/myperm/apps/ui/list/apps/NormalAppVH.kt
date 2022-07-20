@@ -14,7 +14,6 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
-import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
@@ -34,13 +33,10 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     @ColorInt private val colorGranted = context.getColorForAttr(R.attr.colorPrimary)
     @ColorInt private val colorDenied = context.getColorForAttr(R.attr.colorOnBackground)
 
-    private var permissionNavListener: ((Permission) -> Unit)? = null
-
     override val onBindData: AppsNormalItemBinding.(
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        permissionNavListener = item.onShowPermission
         val app = item.app
 
         packageName.text = app.packageName
@@ -96,29 +92,29 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
                 InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(R.attr.colorTertiary))
                 InternetAccess.NONE -> tintIt(colorDenied)
             }
-            setUpInfoSnackbar(AndroidPermissions.INTERNET)
+            setupTagClicks(item, AndroidPermissions.INTERNET)
             isInvisible = app.internetAccess == InternetAccess.NONE
         }
 
-        tagStorage.setupAll(app, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
+        tagStorage.setupAll(item, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
 
         tagBluetooth.setupAll(
-            app,
+            item,
             AndroidPermissions.BLUETOOTH_ADMIN,
             AndroidPermissions.BLUETOOTH,
             AndroidPermissions.BLUETOOTH_CONNECT,
         )
 
-        tagWakelock.setupAll(app, AndroidPermissions.WAKE_LOCK)
-        tagVibrate.setupAll(app, AndroidPermissions.VIBRATE)
-        tagCamera.setupAll(app, AndroidPermissions.CAMERA)
-        tagMicrophone.setupAll(app, AndroidPermissions.RECORD_AUDIO)
-        tagContacts.setupAll(app, AndroidPermissions.CONTACTS)
+        tagWakelock.setupAll(item, AndroidPermissions.WAKE_LOCK)
+        tagVibrate.setupAll(item, AndroidPermissions.VIBRATE)
+        tagCamera.setupAll(item, AndroidPermissions.CAMERA)
+        tagMicrophone.setupAll(item, AndroidPermissions.RECORD_AUDIO)
+        tagContacts.setupAll(item, AndroidPermissions.CONTACTS)
 
-        tagLocation.setupAll(app, AndroidPermissions.LOCATION_FINE, AndroidPermissions.LOCATION_COARSE)
+        tagLocation.setupAll(item, AndroidPermissions.LOCATION_FINE, AndroidPermissions.LOCATION_COARSE)
 
-        tagSms.setupAll(app, AndroidPermissions.SMS_READ, AndroidPermissions.SMS_RECEIVE, AndroidPermissions.SMS_SEND)
-        tagPhone.setupAll(app, AndroidPermissions.PHONE_CALL, AndroidPermissions.PHONE_STATE)
+        tagSms.setupAll(item, AndroidPermissions.SMS_READ, AndroidPermissions.SMS_RECEIVE, AndroidPermissions.SMS_SEND)
+        tagPhone.setupAll(item, AndroidPermissions.PHONE_CALL, AndroidPermissions.PHONE_STATE)
 
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
@@ -128,12 +124,12 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     }
 
     private fun ImageView.setupAll(
-        app: HasApkData,
+        item: Item,
         vararg permissions: Permission,
         @ColorInt grantedcolor: Int = colorGranted,
         @ColorInt deniedColor: Int = colorDenied,
     ) {
-        val perms = permissions.map { app.getPermission(it.id) }.filterNotNull()
+        val perms = permissions.mapNotNull { item.app.getPermission(it.id) }
         val grantedPerm = perms.firstOrNull { it.isGranted }
         isInvisible = when {
             grantedPerm != null -> {
@@ -148,13 +144,18 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
             else -> true
         }
-        grantedPerm?.let { setUpInfoSnackbar(it) }
+        permissions.firstOrNull()?.let { setupTagClicks(item, it) }
     }
 
-    private fun ImageView.setUpInfoSnackbar(permission: Permission) {
+    private fun ImageView.setupTagClicks(item: Item, permission: Permission) {
         setOnClickListener {
-            log { "Permission tag clicked: $permission" }
-            permissionNavListener?.invoke(permission)
+            log { "Permission tag clicked: $permission ($item)" }
+            item.onTagClicked(permission)
+        }
+        setOnLongClickListener {
+            log { "Permission tag long-clicked: $permission ($item)" }
+            item.onTagLongClicked(permission)
+            true
         }
     }
 
@@ -162,6 +163,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         override val app: BasicPkgContainer,
         val onIconClicked: (Pkg) -> Unit,
         val onRowClicked: (Pkg) -> Unit,
-        val onShowPermission: ((Permission) -> Unit),
+        val onTagClicked: (Permission) -> Unit,
+        val onTagLongClicked: (Permission) -> Unit,
     ) : AppsAdapter.Item
 }

@@ -68,7 +68,8 @@ class AppsFragmentVM @Inject constructor(
                         MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.getLabel(context))
                             .navigate()
                     },
-                    onShowPermission = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) }
+                    onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
+                    onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) }
                 )
                 else -> throw IllegalArgumentException()
             }
