@@ -87,10 +87,14 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
-        tagWorkprofile.isGone = !app.isOrHasProfiles()
+        tagWorkprofile.apply {
+            isGone = !app.isOrHasProfiles()
+            alpha = if (app.twins.isEmpty()) 0.4f else 1.0f
+        }
         tagWorkprofileCount.apply {
             isGone = !app.isOrHasProfiles()
             text = app.twins.size.toString()
+            alpha = if (app.twins.isEmpty()) 0.4f else 1.0f
         }
 
         tagSharedid.isInvisible = app.siblings.isEmpty()
