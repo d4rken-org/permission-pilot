@@ -13,9 +13,9 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
-import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
@@ -50,7 +50,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         permissionInfo.apply {
             val grantedCount = app.requestedPermissions.count { it.isGranted }
             val countTotal = app.requestedPermissions.size
-            text = if (app is SecondaryProfilePkg) {
+            text = if (app is SecondaryPkg) {
                 getString(R.string.apps_permissions_x_requested, countTotal)
             } else {
                 getString(R.string.apps_permissions_x_of_x_granted, grantedCount, countTotal)

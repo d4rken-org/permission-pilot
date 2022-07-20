@@ -14,6 +14,7 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
@@ -54,8 +55,12 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
         description.apply {
             val countTotal = app.requestedPermissions.size
-            val grantedCount = app.requestedPermissions.count { it.isGranted }
-            text = "$grantedCount of $countTotal permissions granted."
+            text = if (app is SecondaryPkg) {
+                getString(R.string.permissions_details_description_secondary_description, countTotal)
+            } else {
+                val grantedCount = app.requestedPermissions.count { it.isGranted }
+                getString(R.string.permissions_details_description_primary_description, grantedCount, countTotal)
+            }
         }
 
         updatedAt.apply {

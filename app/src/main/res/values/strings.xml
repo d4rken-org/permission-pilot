@@ -118,6 +118,8 @@
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
     <string name="apps_filter_profile_secondary_label">Secondary profile</string>
+    <string name="permissions_details_description_secondary_description">%d permissions requested. Due to Android restrictions, it is not possible to show which permissions have been granted to apps installed in other profiles.</string>
+    <string name="permissions_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
