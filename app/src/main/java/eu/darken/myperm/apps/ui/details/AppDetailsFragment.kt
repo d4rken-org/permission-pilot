@@ -16,6 +16,7 @@ import eu.darken.myperm.common.lists.setupDefaults
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.AppsDetailsFragmentBinding
+import eu.darken.myperm.permissions.core.types.PermissionAction
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,6 +49,11 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
                         startActivity(event.pkg.getSettingsIntent(requireContext()))
                     } catch (e: Exception) {
                         Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                is AppDetailsEvents.RunPermAction -> {
+                    when (event.permAction) {
+                        is PermissionAction.None -> event.permAction.showInfo(requireActivity())
                     }
                 }
             }

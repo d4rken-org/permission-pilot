@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?selectableItemBackground"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp">
+    android:layout_marginVertical="8dp"
+    android:background="?selectableItemBackground">
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -15,12 +15,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:singleLine="true"
         android:ellipsize="start"
+        android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/label"
-        app:layout_constraintEnd_toStartOf="@id/status_icon"
+        app:layout_constraintEnd_toStartOf="@id/action_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="some.permission" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -31,18 +32,23 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/status_icon"
+        app:layout_constraintEnd_toStartOf="@id/action_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/identifier"
         tools:text="Write to external storage" />
 
-    <ImageView
-        android:id="@+id/status_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/action_button"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        app:icon="@drawable/ic_baseline_check_circle_24"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/label"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_baseline_check_circle_24"
+        app:layout_constraintTop_toTopOf="@id/identifier"
         tools:tint="?colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

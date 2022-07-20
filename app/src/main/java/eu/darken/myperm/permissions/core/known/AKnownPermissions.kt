@@ -1,10 +1,12 @@
 package eu.darken.myperm.permissions.core.known
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.types.PermissionAction
 import kotlin.reflect.full.isSubclassOf
 
 @Keep
@@ -15,6 +17,8 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     @get:StringRes open val descriptionRes: Int? = null
 
     constructor(rawPmerissionId: String) : this(Permission.Id(rawPmerissionId))
+
+    override fun getAction(context: Context): PermissionAction = PermissionAction.None(this)
 
     object INTERNET : AKnownPermissions("android.permission.INTERNET") {
         override val iconRes: Int = R.drawable.ic_baseline_internet_24
@@ -29,6 +33,10 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     }
 
     object READ_EXTERNAL_STORAGE : AKnownPermissions("android.permission.READ_EXTERNAL_STORAGE") {
+        override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
+    }
+
+    object MANAGE_EXTERNAL_STORAGE : AKnownPermissions("android.permission.MANAGE_EXTERNAL_STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
     }
 

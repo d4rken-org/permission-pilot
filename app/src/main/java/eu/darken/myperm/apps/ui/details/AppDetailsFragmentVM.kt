@@ -109,8 +109,8 @@ class AppDetailsFragmentVM @Inject constructor(
                                 )
                                 .navigate()
                         },
-                        onItemLongClick = {
-
+                        onTogglePermission = {
+                            events.postValue(AppDetailsEvents.RunPermAction(it.permission.getAction(context)))
                         }
                     )
                     is UnknownPermission -> UnknownPermissionVH.Item(

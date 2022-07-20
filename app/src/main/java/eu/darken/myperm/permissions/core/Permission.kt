@@ -7,6 +7,7 @@ import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.permissions.core.known.AKnownPermissions
+import eu.darken.myperm.permissions.core.types.PermissionAction
 import kotlinx.parcelize.Parcelize
 
 interface Permission {
@@ -63,11 +64,19 @@ interface Permission {
         return null
     }
 
+    fun getAction(context: Context): PermissionAction {
+
+        AKnownPermissions.values
+            .singleOrNull { it.id == id }
+            ?.getAction(context)
+            ?.let { return it }
+
+        return PermissionAction.None(this)
+    }
+
     @Parcelize
     data class Id(val value: String) : Parcelable
 
     data class Container(override val id: Id) : Permission
 }
-
-fun Permission.Id.toContainer(): Permission.Container = Permission.Container(this)
 

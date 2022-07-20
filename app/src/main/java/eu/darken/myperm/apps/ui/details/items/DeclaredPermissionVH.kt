@@ -32,26 +32,27 @@ class DeclaredPermissionVH(parent: ViewGroup) :
             isGone = text.isNullOrEmpty()
         }
 
-        statusIcon.apply {
+        actionButton.apply {
+            val permAction = item.permission.getAction(context)
+            setOnClickListener { item.onTogglePermission(item) }
             val (iconRes, tintRes) = when (item.appPermission.status) {
                 Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
                 Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
                 Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.attr.colorOnBackground
                 Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.attr.colorOnBackground
             }
-            setImageResource(iconRes)
-            imageTintList = ColorStateList.valueOf(context.getColorForAttr(tintRes))
+            setIconResource(iconRes)
+            backgroundTintList = ColorStateList.valueOf(context.getColorForAttr(tintRes))
         }
 
         root.setOnClickListener { item.onItemClicked(item) }
-        root.setOnLongClickListener { item.onItemLongClick(item).let { true } }
     }
 
     data class Item(
         val appPermission: UsesPermission,
         val permission: DeclaredPermission,
         val onItemClicked: (Item) -> Unit,
-        val onItemLongClick: (Item) -> Unit,
+        val onTogglePermission: (Item) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

@@ -36,12 +36,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/identifier" />
 
-    <ImageView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/status_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
         android:src="@drawable/ic_baseline_question_mark_24"
+        app:layout_constraintBottom_toBottomOf="@id/label"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="@id/identifier" />
 </androidx.constraintlayout.widget.ConstraintLayout>
