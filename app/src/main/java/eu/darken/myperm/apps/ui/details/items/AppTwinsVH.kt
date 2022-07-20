@@ -26,7 +26,7 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
         twinsContainer.removeAllViews()
 
         val pm = context.packageManager
-
+        twinCount.text = app.twins.size.toString()
         app.twins.forEach { twin ->
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
                 twin.getIcon(context)?.let { icon.setImageDrawable(it) }

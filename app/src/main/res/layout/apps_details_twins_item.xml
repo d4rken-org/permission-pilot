@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/DetailsCardItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -9,15 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <FrameLayout
             android:id="@+id/icon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/ic_baseline_work_24"
             app:layout_constraintBottom_toBottomOf="@id/twins_description"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/twins_label" />
+            app:layout_constraintTop_toTopOf="@id/twins_label">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_work_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/twin_count"
+                style="@style/TextAppearance.Material3.LabelSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textColor="?colorOnSurfaceInverse"
+                tools:text="3" />
+        </FrameLayout>
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/twins_label"

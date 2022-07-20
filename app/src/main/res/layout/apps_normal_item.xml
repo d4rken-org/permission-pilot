@@ -98,11 +98,28 @@
             android:src="@drawable/ic_id_onsurface"
             tools:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/tag_workprofile"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_work_24"
-            tools:visibility="visible" />
+        <FrameLayout
+            android:layout_width="16dp"
+            android:layout_height="16dp">
+
+            <ImageView
+                android:id="@+id/tag_workprofile"
+                style="@style/AppTagStyle"
+                android:src="@drawable/ic_baseline_work_24"
+                tools:visibility="visible" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tag_workprofile_count"
+                style="@style/TextAppearance.Material3.LabelSmall"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:textColor="?colorOnSurfaceInverse"
+                android:textSize="7sp"
+                tools:text="3" />
+        </FrameLayout>
+
 
         <ImageView
             android:id="@+id/tag_internet"

@@ -88,6 +88,10 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         }
 
         tagWorkprofile.isInvisible = !app.isOrHasProfiles()
+        tagWorkprofileCount.apply {
+            isInvisible = !app.isOrHasProfiles()
+            text = app.twins.size.toString()
+        }
 
         tagSharedid.isInvisible = app.siblings.isEmpty()
 
