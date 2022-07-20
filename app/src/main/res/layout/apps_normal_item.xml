@@ -16,6 +16,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/package_name" />
 
+
+    <ImageView
+        android:id="@+id/tag_system"
+        style="@style/AppTagStyle"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/ic_baseline_shield_24"
+        app:layout_constraintEnd_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/icon"
+        app:tint="?colorError"
+        tools:visibility="visible" />
+
+
     <ImageView
         android:id="@+id/installer_source"
         android:layout_width="16dp"
@@ -85,12 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/permission_info">
-
-        <ImageView
-            android:id="@+id/tag_system"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_shield_24"
-            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_sharedid"

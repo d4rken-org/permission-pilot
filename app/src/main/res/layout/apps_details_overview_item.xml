@@ -138,7 +138,7 @@
                 android:layout_marginEnd="4dp"
                 android:text="@string/app_type_system_label"
                 android:textAllCaps="true"
-                android:textColor="@color/error" />
+                android:textColor="?colorError" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
