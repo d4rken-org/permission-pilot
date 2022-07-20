@@ -3,6 +3,7 @@ package eu.darken.myperm.apps.ui.list
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
 import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -56,7 +57,11 @@ data class FilterOptions(
         ),
         MULTI_PROFILE(
             labelRes = R.string.apps_filter_multipleprofiles_label,
-            matches = { it is HasInstallData && (it.twins.isNotEmpty() || it is eu.darken.myperm.apps.core.container.SecondaryProfilePkg) }
+            matches = { it is HasInstallData && (it.twins.isNotEmpty()) }
+        ),
+        SECONDARY_PROFILE(
+            labelRes = R.string.apps_filter_profile_secondary_label,
+            matches = { it is SecondaryProfilePkg }
         )
         ;
     }

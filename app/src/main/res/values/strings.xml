@@ -117,6 +117,7 @@
     <string name="installed_at_x">First installed: %s</string>
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
+    <string name="apps_filter_profile_secondary_label">Secondary profile</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
