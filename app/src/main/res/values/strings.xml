@@ -54,12 +54,12 @@
     <string name="general_filter_action">Filter</string>
     <string name="general_cancel_action">Cancel</string>
 
-    <string name="apps_filter_userapps_label">Is user app</string>
-    <string name="apps_filter_systemapps_label">Is system app</string>
-    <string name="apps_filter_nointernet_label">No internet access</string>
-    <string name="apps_filter_sideloaded_label">Is sideloaded</string>
-    <string name="apps_filter_gplay_label">Google Play</string>
-    <string name="apps_filter_oemstore_label">OEM store</string>
+    <string name="apps_filter_userapps_label">User Apps</string>
+    <string name="apps_filter_systemapps_label">System Apps</string>
+    <string name="apps_filter_nointernet_label">Has no internet access</string>
+    <string name="apps_filter_sideloaded_label">Sideloaded Apps</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">OEM Store</string>
 
     <string name="apps_sort_permissions_granted_label">Granted permissions</string>
     <string name="apps_sort_permissions_requested_label">Requested permissions</string>
@@ -73,7 +73,7 @@
     <string name="apps_permissions_x_requested">%1$d permissions requested.</string>
     <string name="apps_permissions_declares_x">Declares %1$d permissions.</string>
     <string name="apps_details_installer_label">Install source</string>
-    <string name="apps_details_installer_unknown_label">Unknown installer</string>
+    <string name="apps_details_installer_unknown_label">Information not available</string>
     <string name="permissions_filter_system_core_label">Core permissions</string>
     <string name="permissions_filter_system_extra_label">Declared by system app</string>
     <string name="permissions_filter_custom_label">Custom app permissions</string>
@@ -95,21 +95,21 @@
     <string name="generic_loading_label_3">Still faster than an iPhone</string>
     <string name="generic_loading_label_4">What\'s that behind you?</string>
     <string name="generic_loading_label_5">The CPU is on a coffee break</string>
-    <string name="apps_app_details_label">App details</string>
+    <string name="apps_app_details_label">App Details</string>
     <string name="apps_details_shareduserid_label">Shared user id</string>
     <string name="apps_details_siblings_label">Siblings</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">HUAWEI AppGallery</string>
+    <string name="apps_known_installer_oppo_label">Oppo AppMarket</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android System</string>
     <string name="general_refresh_action">Refresh</string>
-    <string name="apps_details_twins_label">Twins</string>
-    <string name="apps_details_twins_descriptions">Installs in different user profiles.</string>
+    <string name="apps_details_twins_label">Clones</string>
+    <string name="apps_details_twins_descriptions">Installed in other user profile(s).</string>
     <string name="install_date_label">Install date</string>
-    <string name="apps_filter_sharedid_label">Shared user ID</string>
+    <string name="apps_filter_sharedid_label">Shared User ID</string>
     <string name="apps_filter_multipleprofiles_label">Multiple profiles</string>
     <string name="support_debuglog_label">Debug log</string>
     <string name="support_debuglog_desc">Record everything the app is doing into a text file that you can share.</string>
