@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ellipsize="start"
+        android:textIsSelectable="true"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/label"
         app:layout_constraintEnd_toStartOf="@id/status_icon"

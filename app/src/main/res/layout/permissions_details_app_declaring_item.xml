@@ -23,6 +23,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:textIsSelectable="true"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/label"
         app:layout_constraintEnd_toStartOf="@id/status_icon"
