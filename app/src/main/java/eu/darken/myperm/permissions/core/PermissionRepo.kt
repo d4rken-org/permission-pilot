@@ -72,10 +72,13 @@ class PermissionRepo @Inject constructor(
 
         // All that apps have declared themselves
         appWithPermissions
+            .asSequence()
             .map { it.declaredPermissions }
             .flatten()
+            .distinctBy { it.id }
             .filter { newPerm -> mappedPermissions.none { it.id == newPerm.id } }
             .map { it.toDeclaredPermission(appWithPermissions) }
+            .toList()
             .let {
                 log(TAG) { "${it.size} permissions declared by apps" }
                 mappedPermissions.addAll(it)
