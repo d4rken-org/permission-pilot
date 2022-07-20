@@ -31,7 +31,7 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
                 twin.getIcon(context)?.let { icon.setImageDrawable(it) }
 
-                label.text = twin.getLabel(context)?.let { pm.getUserBadgedLabel(it, twin.userHandle) }
+                label.text = twin.getLabel(context)
                 identifier.text = twin.id.toString()
                 this.root.setOnClickListener { item.onTwinClicked(twin) }
 
