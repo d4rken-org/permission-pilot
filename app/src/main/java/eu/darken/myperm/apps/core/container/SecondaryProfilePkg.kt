@@ -19,7 +19,7 @@ data class SecondaryProfilePkg(
     override val userHandle: UserHandle,
     override val installerInfo: InstallerInfo,
     val launcherAppInfo: ApplicationInfo,
-) : BasicPkgContainer {
+) : BasicPkgContainer, SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -66,7 +66,7 @@ data class SecondaryProfilePkg(
     }
 }
 
-fun Context.getProfilePkgs(): Collection<Pkg> {
+fun Context.getSecondaryProfilePkgs(): Collection<Pkg> {
     val launcherApps = getSystemService(LauncherApps::class.java)
 
     val profiles = launcherApps.profiles

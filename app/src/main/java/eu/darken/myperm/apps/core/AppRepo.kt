@@ -36,9 +36,9 @@ class AppRepo @Inject constructor(
     ) { _, _ ->
         val normalPkgs = context.getNormalPkgs()
 
-        val profilePkgs = context.getProfilePkgs()
+        val profilePkgs = context.getSecondaryProfilePkgs()
 
-        val uninstalledPkgs = context.getUninstalledPkgs().filter { uninstalled ->
+        val uninstalledPkgs = context.getSecondaryPkgs().filter { uninstalled ->
             profilePkgs.none { it.id.pkgName == uninstalled.id.pkgName }
         }
 
@@ -71,6 +71,10 @@ class AppRepo @Inject constructor(
                     curPkg.twins = twins
                 }
                 is SecondaryProfilePkg -> {
+                    curPkg.siblings = siblings
+                    curPkg.twins = twins
+                }
+                is SecondaryUserPkg -> {
                     curPkg.siblings = siblings
                     curPkg.twins = twins
                 }

@@ -5,8 +5,15 @@ import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.UserHandle
+import android.os.UserManager
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.jvm.jvmErasure
 
 fun PackageManager.getPackageInfo2(
     packageName: String,
@@ -43,3 +50,15 @@ val PackageManager.GET_UNINSTALLED_PACKAGES_COMPAT
         hasApiLevel(Build.VERSION_CODES.N) -> PackageManager.MATCH_UNINSTALLED_PACKAGES
         else -> PackageManager.GET_UNINSTALLED_PACKAGES
     }
+
+fun UserManager.tryCreateUserHandle(handleId: Int): UserHandle? = try {
+    UserHandle::class.constructors
+        .first {
+            val type = it.parameters.first().type.jvmErasure
+            Int::class.isSubclassOf(type)
+        }
+        .call(handleId)
+} catch (e: Exception) {
+    log(WARN) { "tryCreateUserHandle($handleId) failed: ${e.asLog()}" }
+    null
+}

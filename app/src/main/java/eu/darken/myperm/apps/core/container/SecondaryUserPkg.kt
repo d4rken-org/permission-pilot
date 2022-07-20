@@ -7,21 +7,19 @@ import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
+import android.os.UserManager
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
-import eu.darken.myperm.apps.core.getIcon2
-import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 
-data class MainProfilePkg(
+data class SecondaryUserPkg(
     override val packageInfo: PackageInfo,
-    override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
-) : BasicPkgContainer {
+    override val userHandle: UserHandle,
+) : BasicPkgContainer, SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -37,19 +35,17 @@ data class MainProfilePkg(
             ?: super.getIcon(context)
             ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
 
-    override var siblings: Collection<Pkg> = emptyList()
-    override var twins: Collection<HasInstallData> = emptyList()
-
     override val requestedPermissions: Collection<UsesPermission> by lazy {
-        packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
-            val flags = packageInfo.requestedPermissionsFlags[index]
-
+        packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
             UsesPermission(
                 id = Permission.Id(permissionId),
-                flags = flags,
+                flags = null,  // We don't know for secondary profiles
             )
         } ?: emptyList()
     }
+
+    override var siblings: Collection<Pkg> = emptyList()
+    override var twins: Collection<HasInstallData> = emptyList()
 
     override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
 
@@ -72,16 +68,22 @@ data class MainProfilePkg(
     }
 }
 
-private fun PackageInfo.toNormalPkg(context: Context): MainProfilePkg = MainProfilePkg(
-    packageInfo = this,
-    installerInfo = getInstallerInfo(context.packageManager),
-)
+fun Context.getSecondaryPkgs(): Collection<Pkg> {
+    log(AppRepo.TAG) { "getSecondaryPkgs()" }
 
-fun Context.getNormalPkgs(): Collection<MainProfilePkg> {
-    log(AppRepo.TAG) { "getNormalPkgs()" }
+    val normal = packageManager.getInstalledPackages(0).map { it.packageName }
+    val uninstalled = packageManager.getInstalledPackages(
+        PackageManager.GET_PERMISSIONS or packageManager.GET_UNINSTALLED_PACKAGES_COMPAT
+    )
+    val newOnes = uninstalled.filter { !normal.contains(it.packageName) }
 
-    return packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS).map {
-        it.toNormalPkg(this)
-            .also { log(AppRepo.TAG) { "PKG[normal]: $it" } }
+    val userManager = getSystemService(UserManager::class.java)
+
+    return newOnes.map { pkg ->
+        SecondaryUserPkg(
+            packageInfo = pkg,
+            installerInfo = pkg.getInstallerInfo(packageManager),
+            userHandle = userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+        ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
     }
 }
