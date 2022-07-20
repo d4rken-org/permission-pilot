@@ -81,15 +81,15 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         itemView.setOnClickListener { item.onRowClicked(item.app) }
 
         tagSystem.apply {
-            isInvisible = !app.isSystemApp
+            isGone = !app.isSystemApp
             setOnClickListener {
                 Toast.makeText(context, R.string.app_type_system_label, Toast.LENGTH_SHORT).show()
             }
         }
 
-        tagWorkprofile.isInvisible = !app.isOrHasProfiles()
+        tagWorkprofile.isGone = !app.isOrHasProfiles()
         tagWorkprofileCount.apply {
-            isInvisible = !app.isOrHasProfiles()
+            isGone = !app.isOrHasProfiles()
             text = app.twins.size.toString()
         }
 
