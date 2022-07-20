@@ -1,18 +1,21 @@
 package eu.darken.myperm.apps.ui.list
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import kotlinx.parcelize.Parcelize
 import java.time.Instant
 
+@Parcelize
 data class SortOptions(
     val mainSort: Sort = Sort.UPDATED_AT,
     val reversed: Boolean = false
-) {
+) : Parcelable {
     enum class Sort(
         @StringRes val labelRes: Int
     ) {

@@ -22,15 +22,23 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AppsFragmentVM @Inject constructor(
-    @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
+    @Suppress("UNUSED_PARAMETER") private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     packageRepo: AppRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
+    private var ssFilterOptions: FilterOptions?
+        get() = handle[FilterOptions::class.simpleName!!]
+        set(value) = handle.set(FilterOptions::class.simpleName!!, value)
+
+    private var ssSortOptions: SortOptions?
+        get() = handle[SortOptions::class.simpleName!!]
+        set(value) = handle.set(SortOptions::class.simpleName!!, value)
+
     private val searchTerm = MutableStateFlow<String?>(null)
-    private val filterOptions = MutableStateFlow(FilterOptions())
-    private val sortOptions = MutableStateFlow(SortOptions())
+    private val filterOptions = MutableStateFlow(ssFilterOptions ?: FilterOptions())
+    private val sortOptions = MutableStateFlow(ssSortOptions ?: SortOptions())
 
     val events = SingleLiveEvent<AppsEvents>()
 
@@ -91,6 +99,7 @@ class AppsFragmentVM @Inject constructor(
         val old = filterOptions.value
         val new = action(old)
         log { "updateFilterOptions($old) -> $new" }
+        ssFilterOptions = new
         filterOptions.value = new
     }
 
@@ -98,6 +107,7 @@ class AppsFragmentVM @Inject constructor(
         val old = sortOptions.value
         val new = action(old)
         log { "updateFilterOptions($old) -> $new" }
+        ssSortOptions = new
         sortOptions.value = new
     }
 
