@@ -2,6 +2,8 @@ package eu.darken.myperm.apps.ui.list
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
@@ -11,9 +13,12 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class FilterOptions(
-    val keys: Set<Filter> = setOf(Filter.USER_APP)
+@JsonClass(generateAdapter = true)
+data class AppsFilterOptions(
+    @Json(name = "filters") val keys: Set<Filter> = setOf(Filter.USER_APP)
 ) : Parcelable {
+
+    @JsonClass(generateAdapter = false)
     enum class Filter(
         @StringRes val labelRes: Int,
         val matches: (Pkg) -> Boolean

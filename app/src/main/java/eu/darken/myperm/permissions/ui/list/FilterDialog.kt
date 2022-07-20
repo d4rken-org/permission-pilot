@@ -8,14 +8,14 @@ import eu.darken.myperm.common.dialog.BaseDialogBuilder
 class FilterDialog(private val activity: Activity) : BaseDialogBuilder(activity) {
 
     fun show(
-        options: FilterOptions,
-        onResult: (FilterOptions) -> Unit
+        options: PermsFilterOptions,
+        onResult: (PermsFilterOptions) -> Unit
     ) {
-        val itemLabels = FilterOptions.Filter.values().map {
+        val itemLabels = PermsFilterOptions.Filter.values().map {
             getString(it.labelRes)
         }.toTypedArray<CharSequence>()
 
-        val checkedItems = FilterOptions.Filter.values().map {
+        val checkedItems = PermsFilterOptions.Filter.values().map {
             options.keys.contains(it)
         }.toBooleanArray()
 
@@ -25,7 +25,7 @@ class FilterDialog(private val activity: Activity) : BaseDialogBuilder(activity)
 
             setPositiveButton(android.R.string.ok) { _, _ ->
                 val new = options.copy(
-                    keys = FilterOptions.Filter.values().filterIndexed { index, item ->
+                    keys = PermsFilterOptions.Filter.values().filterIndexed { index, item ->
                         checkedItems[index]
                     }.toSet()
                 )

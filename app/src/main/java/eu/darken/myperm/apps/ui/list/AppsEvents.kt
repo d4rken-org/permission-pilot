@@ -5,9 +5,9 @@ import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionAction
 
 sealed class AppsEvents {
-    data class ShowFilterDialog(val options: FilterOptions) : AppsEvents()
+    data class ShowFilterDialog(val options: AppsFilterOptions) : AppsEvents()
 
-    data class ShowSortDialog(val options: SortOptions) : AppsEvents()
+    data class ShowSortDialog(val options: AppsSortOptions) : AppsEvents()
 
     data class ShowPermissionSnackbar(val permission: Permission) : AppsEvents()
 

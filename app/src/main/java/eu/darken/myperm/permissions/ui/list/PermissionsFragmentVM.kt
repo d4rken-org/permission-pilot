@@ -16,6 +16,7 @@ import eu.darken.myperm.permissions.core.types.DeclaredPermission
 import eu.darken.myperm.permissions.core.types.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
+import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
@@ -24,15 +25,16 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class PermissionsFragmentVM @Inject constructor(
-    @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
+    private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     permissionRepo: PermissionRepo,
+    private val generalSettings: GeneralSettings,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val searchTerm = MutableStateFlow<String?>(null)
-    private val filterOptions = MutableStateFlow(FilterOptions())
-    private val sortOptions = MutableStateFlow(SortOptions())
+    private val filterOptions = generalSettings.permissionsFilterOptions.flow
+    private val sortOptions = generalSettings.permissionsSortOptions.flow
 
     val events = SingleLiveEvent<PermissionsEvents>()
 
@@ -94,27 +96,21 @@ class PermissionsFragmentVM @Inject constructor(
         searchTerm.value = term
     }
 
-    fun updateFilterOptions(action: (FilterOptions) -> FilterOptions) {
-        val old = filterOptions.value
-        val new = action(old)
-        log { "updateFilterOptions($old) -> $new" }
-        filterOptions.value = new
+    fun updateFilterOptions(action: (PermsFilterOptions) -> PermsFilterOptions) {
+        generalSettings.permissionsFilterOptions.update { action(it) }
     }
 
-    fun updateSortOptions(action: (SortOptions) -> SortOptions) {
-        val old = sortOptions.value
-        val new = action(old)
-        log { "updateFilterOptions($old) -> $new" }
-        sortOptions.value = new
+    fun updateSortOptions(action: (PermsSortOptions) -> PermsSortOptions) {
+        generalSettings.permissionsSortOptions.update { action(it) }
     }
 
     fun showFilterDialog() {
         log { "showFilterDialog" }
-        events.postValue(PermissionsEvents.ShowFilterDialog(filterOptions.value))
+        events.postValue(PermissionsEvents.ShowFilterDialog(generalSettings.permissionsFilterOptions.value))
     }
 
     fun showSortDialog() {
         log { "showSortDialog" }
-        events.postValue(PermissionsEvents.ShowSortDialog(sortOptions.value))
+        events.postValue(PermissionsEvents.ShowSortDialog(generalSettings.permissionsSortOptions.value))
     }
 }

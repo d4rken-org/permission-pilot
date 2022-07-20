@@ -34,10 +34,10 @@ inline fun <reified T : Any?> SharedPreferences.createFlowPreference(
 inline fun <reified T : Any?> SharedPreferences.createFlowPreference(
     key: String,
     noinline reader: (rawValue: Any?) -> T,
-    noinline writer: (value: T) -> Any?
+    noinline writer: (value: T) -> Any?,
 ) = FlowPreference(
     preferences = this,
     key = key,
     rawReader = reader,
-    rawWriter = writer
+    rawWriter = writer,
 )

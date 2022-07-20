@@ -11,7 +11,7 @@ class FlowPreference<T> constructor(
     private val preferences: SharedPreferences,
     val key: String,
     val rawReader: (Any?) -> T,
-    val rawWriter: (T) -> Any?
+    val rawWriter: (T) -> Any?,
 ) {
 
     private val flowInternal = MutableStateFlow(value)

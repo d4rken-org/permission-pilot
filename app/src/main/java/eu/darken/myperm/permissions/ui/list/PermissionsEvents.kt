@@ -2,10 +2,10 @@ package eu.darken.myperm.permissions.ui.list
 
 sealed class PermissionsEvents {
     data class ShowFilterDialog(
-        val options: FilterOptions
+        val options: PermsFilterOptions
     ) : PermissionsEvents()
 
     data class ShowSortDialog(
-        val options: SortOptions
+        val options: PermsSortOptions
     ) : PermissionsEvents()
 }

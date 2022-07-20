@@ -8,21 +8,21 @@ import eu.darken.myperm.common.dialog.BaseDialogBuilder
 class SortDialog(private val activity: Activity) : BaseDialogBuilder(activity) {
 
     fun show(
-        options: SortOptions,
-        onResult: (SortOptions) -> Unit
+        options: AppsSortOptions,
+        onResult: (AppsSortOptions) -> Unit
     ) {
-        val itemLabels = SortOptions.Sort.values().map {
+        val itemLabels = AppsSortOptions.Sort.values().map {
             getString(it.labelRes)
         }.toTypedArray<CharSequence>()
 
-        var checkedItem = SortOptions.Sort.values().indexOf(options.mainSort)
+        var checkedItem = AppsSortOptions.Sort.values().indexOf(options.mainSort)
 
         MaterialAlertDialogBuilder(context).apply {
             setTitle(R.string.general_sort_action)
 
             setSingleChoiceItems(itemLabels, checkedItem) { dialog, which ->
                 val new = options.copy(
-                    mainSort = SortOptions.Sort.values()[which]
+                    mainSort = AppsSortOptions.Sort.values()[which]
                 )
                 onResult(new)
                 dialog.dismiss()

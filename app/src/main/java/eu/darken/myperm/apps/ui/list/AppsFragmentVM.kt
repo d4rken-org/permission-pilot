@@ -14,6 +14,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
+import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onStart
@@ -22,23 +23,16 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AppsFragmentVM @Inject constructor(
-    @Suppress("UNUSED_PARAMETER") private val handle: SavedStateHandle,
+    @Suppress("unused") private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     packageRepo: AppRepo,
+    private val generalSettings: GeneralSettings
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
-    private var ssFilterOptions: FilterOptions?
-        get() = handle[FilterOptions::class.simpleName!!]
-        set(value) = handle.set(FilterOptions::class.simpleName!!, value)
-
-    private var ssSortOptions: SortOptions?
-        get() = handle[SortOptions::class.simpleName!!]
-        set(value) = handle.set(SortOptions::class.simpleName!!, value)
-
     private val searchTerm = MutableStateFlow<String?>(null)
-    private val filterOptions = MutableStateFlow(ssFilterOptions ?: FilterOptions())
-    private val sortOptions = MutableStateFlow(ssSortOptions ?: SortOptions())
+    private val filterOptions = generalSettings.appsFilterOptions.flow
+    private val sortOptions = generalSettings.appsSortOptions.flow
 
     val events = SingleLiveEvent<AppsEvents>()
 
@@ -95,29 +89,21 @@ class AppsFragmentVM @Inject constructor(
         searchTerm.value = term
     }
 
-    fun updateFilterOptions(action: (FilterOptions) -> FilterOptions) {
-        val old = filterOptions.value
-        val new = action(old)
-        log { "updateFilterOptions($old) -> $new" }
-        ssFilterOptions = new
-        filterOptions.value = new
+    fun updateFilterOptions(action: (AppsFilterOptions) -> AppsFilterOptions) {
+        generalSettings.appsFilterOptions.update { action(it) }
     }
 
-    fun updateSortOptions(action: (SortOptions) -> SortOptions) {
-        val old = sortOptions.value
-        val new = action(old)
-        log { "updateFilterOptions($old) -> $new" }
-        ssSortOptions = new
-        sortOptions.value = new
+    fun updateSortOptions(action: (AppsSortOptions) -> AppsSortOptions) {
+        generalSettings.appsSortOptions.update { action(it) }
     }
 
     fun showFilterDialog() {
         log { "showFilterDialog" }
-        events.postValue(AppsEvents.ShowFilterDialog(filterOptions.value))
+        events.postValue(AppsEvents.ShowFilterDialog(generalSettings.appsFilterOptions.value))
     }
 
     fun showSortDialog() {
         log { "showSortDialog" }
-        events.postValue(AppsEvents.ShowSortDialog(sortOptions.value))
+        events.postValue(AppsEvents.ShowSortDialog(generalSettings.appsSortOptions.value))
     }
 }

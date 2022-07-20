@@ -1,14 +1,22 @@
 package eu.darken.myperm.permissions.ui.list
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.annotation.StringRes
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.types.BasePermission
+import kotlinx.parcelize.Parcelize
 
-data class SortOptions(
-    val mainSort: Sort = Sort.APPS_GRANTED,
-    val reversed: Boolean = false
-) {
+@Parcelize
+@JsonClass(generateAdapter = true)
+data class PermsSortOptions(
+    @Json(name = "mainSort") val mainSort: Sort = Sort.APPS_GRANTED,
+    @Json(name = "reversed") val reversed: Boolean = false
+) : Parcelable {
+
+    @JsonClass(generateAdapter = false)
     enum class Sort(
         @StringRes val labelRes: Int,
     ) {
