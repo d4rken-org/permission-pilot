@@ -60,7 +60,7 @@ jobs:
 
       - name: Create pre-release
         if: contains(steps.tagger.outputs.tag, '-beta')
-        uses: softprops/action-gh-release@v0.1.14
+        uses: softprops/action-gh-release@v1
         with:
           prerelease: true
           tag_name: ${{ steps.tagger.outputs.tag }}
@@ -72,7 +72,7 @@ jobs:
 
       - name: Create release
         if: "!contains(steps.tagger.outputs.tag, '-beta')"
-        uses: softprops/action-gh-release@v0.1.14
+        uses: softprops/action-gh-release@v1
         with:
           prerelease: false
           tag_name: ${{ steps.tagger.outputs.tag }}
