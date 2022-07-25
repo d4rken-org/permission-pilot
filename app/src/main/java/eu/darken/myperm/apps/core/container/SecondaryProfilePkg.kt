@@ -5,6 +5,7 @@ import android.content.pm.*
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
+import android.os.UserManager
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
@@ -68,15 +69,22 @@ data class SecondaryProfilePkg(
 
 fun Context.getSecondaryProfilePkgs(): Collection<Pkg> {
     val launcherApps = getSystemService(LauncherApps::class.java)
+    val userManager = getSystemService(UserManager::class.java)
 
-    val profiles = launcherApps.profiles
+    val profiles = userManager.userProfiles
+
     if (profiles.size < 2) return emptySet()
 
     log(AppRepo.TAG, INFO) { "Found multiple user profiles: $profiles" }
     val extraProfiles = profiles - Process.myUserHandle()
 
     return extraProfiles.map outerMap@{ userHandle ->
-        val launcherInfos = launcherApps.getActivityList(null, userHandle)
+        val launcherInfos = try {
+            launcherApps.getActivityList(null, userHandle)
+        } catch (e: SecurityException) {
+            log(AppRepo.TAG, ERROR) { "Failed to retrieve activity list for $userHandle" }
+            emptyList()
+        }
 
         launcherInfos.mapNotNull { lai ->
             val appInfo = lai.applicationInfo
