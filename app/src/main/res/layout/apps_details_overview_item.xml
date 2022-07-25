@@ -38,9 +38,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textIsSelectable="true"
             android:ellipsize="marquee"
             android:singleLine="true"
+            android:textIsSelectable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon"
             app:layout_constraintTop_toBottomOf="@id/label"
@@ -87,6 +87,31 @@
             app:layout_constraintTop_toBottomOf="@id/updated_at"
             tools:text="Installed on: 2022-07-18 12:34:56" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/api_target_level"
+            style="@style/TextAppearance.Material3.LabelMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/installed_at"
+            tools:text="Target Android version: 31" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/api_minimum_level"
+            style="@style/TextAppearance.Material3.LabelMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/api_target_level"
+            tools:text="Minimum Android version: 21" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/api_build_level"
+            style="@style/TextAppearance.Material3.LabelMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/api_minimum_level"
+            tools:text="Build with Android version: 21" />
+
         <ImageView
             android:id="@+id/installer_icon"
             android:layout_width="24dp"
@@ -107,7 +132,7 @@
             android:text="@string/apps_details_installer_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/installer_icon"
-            app:layout_constraintTop_toBottomOf="@id/installed_at" />
+            app:layout_constraintTop_toBottomOf="@id/api_build_level" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/installer_info"

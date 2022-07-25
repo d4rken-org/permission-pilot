@@ -16,6 +16,7 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
+import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.debug.logging.log
@@ -70,6 +71,33 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
         installedAt.apply {
             text = app.installedAt?.let { getString(R.string.installed_at_x, dateFormatter.format(it)) }
+            isGone = text.isEmpty()
+        }
+
+        apiTargetLevel.apply {
+            text = app.apiTargetLevel?.let { level ->
+                val hr = AndroidVersionCodes.values().singleOrNull { it.apiLevel == level }?.longFormat
+                    ?: "? (?) [$level]"
+                getString(R.string.api_target_level_x, hr)
+            }
+            isGone = text.isEmpty()
+        }
+
+        apiMinimumLevel.apply {
+            text = app.apiMinimumLevel?.let { level ->
+                val hr = AndroidVersionCodes.values().singleOrNull { it.apiLevel == level }?.longFormat
+                    ?: "? (?) [$level]"
+                getString(R.string.api_minimum_level_x, hr)
+            }
+            isGone = text.isEmpty()
+        }
+
+        apiBuildLevel.apply {
+            text = app.apiCompileLevel?.let { level ->
+                val hr = AndroidVersionCodes.values().singleOrNull { it.apiLevel == level }?.longFormat
+                    ?: "? (?) [$level]"
+                getString(R.string.api_build_level_x, hr)
+            }
             isGone = text.isEmpty()
         }
 

@@ -1,5 +1,6 @@
 package eu.darken.myperm.apps.core.features
 
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import eu.darken.myperm.apps.core.Pkg
@@ -12,6 +13,9 @@ interface HasApkData : Pkg {
 
     val packageInfo: PackageInfo
 
+    val applicationInfo: ApplicationInfo?
+        get() = packageInfo.applicationInfo
+
     val versionName: String?
         get() = packageInfo.versionName
 
@@ -21,6 +25,15 @@ interface HasApkData : Pkg {
 
     val sharedUserId: String?
         get() = packageInfo.sharedUserId
+
+    val apiTargetLevel: Int?
+        get() = applicationInfo?.targetSdkVersion
+
+    val apiCompileLevel: Int?
+        get() = applicationInfo?.compileSdkVersion
+
+    val apiMinimumLevel: Int?
+        get() = applicationInfo?.minSdkVersion
 
     fun getPermission(id: Permission.Id): UsesPermission?
 
