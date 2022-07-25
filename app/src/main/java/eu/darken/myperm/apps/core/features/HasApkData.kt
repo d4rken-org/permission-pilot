@@ -12,7 +12,7 @@ interface HasApkData : Pkg {
 
     val packageInfo: PackageInfo
 
-    val versionName: String
+    val versionName: String?
         get() = packageInfo.versionName
 
     @Suppress("DEPRECATION")
