@@ -30,7 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/identifier"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Mystic Permissions" />
+            tools:text="Permission Pilot" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/identifier"

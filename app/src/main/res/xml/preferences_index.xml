@@ -26,7 +26,7 @@
             app:summary="v?.?.?">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="https://github.com/d4rken-org/mystic-permissions/releases/latest" />
+                android:data="https://github.com/d4rken-org/permission-pilot/releases/latest" />
         </Preference>
 
     </PreferenceCategory>
