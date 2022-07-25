@@ -30,7 +30,7 @@
     </style>
 
     <style name="AppThemeSplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">?colorPrimary</item>
+        <item name="windowSplashScreenBackground">@color/splash_color</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/launch_screen</item>
         <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
