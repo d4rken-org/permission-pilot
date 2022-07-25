@@ -19,8 +19,8 @@
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/icon"
         android:layout_marginTop="3dp"
+        app:layout_constraintEnd_toEndOf="@id/icon"
         app:layout_constraintStart_toStartOf="@id/icon"
         app:layout_constraintTop_toBottomOf="@id/icon">
 
@@ -32,16 +32,17 @@
             tools:visibility="visible" />
 
         <FrameLayout
-            android:layout_width="16dp"
             android:id="@+id/tag_workprofile"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:visibility="gone"
-            tools:visibility="visible"
-            android:layout_height="16dp">
+            tools:visibility="visible">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_baseline_work_24" />
+                android:src="@drawable/ic_baseline_work_24"
+                app:tint="?colorPrimary" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_workprofile_count"
@@ -72,11 +73,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textIsSelectable="true"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textIsSelectable="true"
         app:layout_constraintBottom_toTopOf="@id/label"
         app:layout_constraintEnd_toStartOf="@id/installer_source"
         app:layout_constraintStart_toEndOf="@id/icon"
