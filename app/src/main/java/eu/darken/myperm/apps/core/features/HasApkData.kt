@@ -3,6 +3,7 @@ package eu.darken.myperm.apps.core.features
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
+import android.os.Build
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
@@ -30,7 +31,7 @@ interface HasApkData : Pkg {
         get() = applicationInfo?.targetSdkVersion
 
     val apiCompileLevel: Int?
-        get() = applicationInfo?.compileSdkVersion
+        get() = if (hasApiLevel(Build.VERSION_CODES.S)) applicationInfo?.compileSdkVersion else null
 
     val apiMinimumLevel: Int?
         get() = applicationInfo?.minSdkVersion
