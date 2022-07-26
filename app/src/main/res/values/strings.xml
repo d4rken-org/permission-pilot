@@ -29,6 +29,8 @@
     <string name="settings_acknowledgements_label">Acknowledgements</string>
     <string name="general_thank_you_label">Thank you</string>
     <string name="settings_licenses_label">Licenses</string>
+    <string name="settings_privacy_policy_label">Privacy policy</string>
+    <string name="settings_privacy_policy_desc">Handling data responsibly.</string>
 
     <string name="settings_support_label">Support</string>
     <string name="documentation_label">Documentation</string>
