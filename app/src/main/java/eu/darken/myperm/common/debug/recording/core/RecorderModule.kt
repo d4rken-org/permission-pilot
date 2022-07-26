@@ -3,6 +3,7 @@ package eu.darken.myperm.common.debug.recording.core
 import android.content.Context
 import android.content.Intent
 import android.os.Environment
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.coroutine.AppScope
@@ -12,7 +13,6 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.debug.recording.ui.RecorderActivity
 import eu.darken.myperm.common.flow.DynamicStateFlow
-import eu.darken.myperm.common.startServiceCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.plus
@@ -53,7 +53,7 @@ class RecorderModule @Inject constructor(
                         newRecorder.start(createRecordingFilePath())
                         triggerFile.createNewFile()
 
-                        context.startServiceCompat(Intent(context, RecorderService::class.java))
+                        ContextCompat.startForegroundService(context, Intent(context, RecorderService::class.java))
 
                         copy(
                             recorder = newRecorder

@@ -1,9 +1,9 @@
 package eu.darken.myperm.common.dagger
 
 import android.app.Application
-import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import androidx.core.app.NotificationManagerCompat
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +25,6 @@ class AndroidModule {
 
     @Provides
     @Singleton
-    fun notificationManager(context: Context): NotificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    fun notificationManager(context: Context): NotificationManagerCompat =
+        NotificationManagerCompat.from(context)
 }

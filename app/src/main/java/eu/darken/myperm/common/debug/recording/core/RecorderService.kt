@@ -1,11 +1,12 @@
 package eu.darken.myperm.common.debug.recording.core
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.IBinder
+import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.ServiceCompat
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.BuildConfigWrap
@@ -29,7 +30,7 @@ class RecorderService : Service2() {
     private lateinit var builder: NotificationCompat.Builder
 
     @Inject lateinit var recorderModule: RecorderModule
-    @Inject lateinit var notificationManager: NotificationManager
+    @Inject lateinit var notificationManager: NotificationManagerCompat
     @Inject lateinit var dispatcherProvider: DispatcherProvider
     private val recorderScope by lazy {
         CoroutineScope(SupervisorJob() + dispatcherProvider.IO)
@@ -39,11 +40,10 @@ class RecorderService : Service2() {
 
     override fun onCreate() {
         super.onCreate()
-        NotificationChannel(
-            NOTIF_CHANID_DEBUG,
-            getString(R.string.debug_notification_channel_label),
-            NotificationManager.IMPORTANCE_MAX
-        ).run { notificationManager.createNotificationChannel(this) }
+        NotificationChannelCompat.Builder(NOTIF_CHANID_DEBUG, NotificationManagerCompat.IMPORTANCE_MAX)
+            .setName(getString(R.string.debug_notification_channel_label))
+            .build()
+            .run { notificationManager.createNotificationChannel(this) }
 
         val openIntent = Intent(this, MainActivity::class.java)
         val openPi = PendingIntent.getActivity(
@@ -79,7 +79,7 @@ class RecorderService : Service2() {
                     builder.setContentText("Recording debug log: ${it.currentLogPath?.path}")
                     notificationManager.notify(NOTIFICATION_ID, builder.build())
                 } else {
-                    stopForeground(true)
+                    ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
                     stopSelf()
                 }
             }
