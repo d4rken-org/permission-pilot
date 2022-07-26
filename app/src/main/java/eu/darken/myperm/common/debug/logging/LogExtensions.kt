@@ -1,7 +1,7 @@
 package eu.darken.myperm.common.debug.logging
 
 fun logTag(vararg tags: String): String {
-    val sb = StringBuilder("ASv4:")
+    val sb = StringBuilder("PP:")
     for (i in tags.indices) {
         sb.append(tags[i])
         if (i < tags.size - 1) sb.append(":")
