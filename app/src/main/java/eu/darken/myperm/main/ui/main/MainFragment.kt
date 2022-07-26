@@ -81,10 +81,9 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
         vm.upgradeInfo.observe2(ui) { info ->
             val gplay = toolbar.menu.findItem(R.id.menu_item_upgrade)
             val donate = toolbar.menu.findItem(R.id.menu_item_donate)
-            // TODO currently there are no pro features
-            val nope = false
-            gplay.isVisible = info.type == UpgradeRepo.Type.GPLAY && !info.isPro && nope
-            donate.isVisible = info.type == UpgradeRepo.Type.FOSS && !info.isPro && nope
+
+            gplay.isVisible = info.type == UpgradeRepo.Type.GPLAY && !info.isPro
+            donate.isVisible = info.type == UpgradeRepo.Type.FOSS && !info.isPro
 
             val baseTitle = when (info.type) {
                 UpgradeRepo.Type.GPLAY -> getString(if (info.isPro) R.string.app_name_pro else R.string.app_name)
