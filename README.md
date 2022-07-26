@@ -1,3 +1,5 @@
+<img src="https://github.com/d4rken-org/permission-pilot/raw/main/.github/assets/app_banner.png" width="300">
+
 # Permission Pilot
 
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases)](https://github.com/d4rken-org/permission-pilot/releases/latest)
@@ -8,7 +10,6 @@
 A new kind of app to help the user view apps and which permissions they use.
 
 Born out of a feature discussion for SD Maid. [Origin Story](https://github.com/d4rken-org/permission-pilot/issues/1)
-
 
 ## Quick Start
 
