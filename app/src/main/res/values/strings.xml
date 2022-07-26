@@ -122,6 +122,8 @@
     <string name="api_target_level_x">Target Android version: %s</string>
     <string name="api_minimum_level_x">Minimum Android version: %s</string>
     <string name="api_build_level_x">Build with Android version: %s</string>
+    <string name="permission_reboot_label">Reboot device</string>
+    <string name="permission_reboot_description">Allows the app to reboot the device. Only available to system apps.</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>

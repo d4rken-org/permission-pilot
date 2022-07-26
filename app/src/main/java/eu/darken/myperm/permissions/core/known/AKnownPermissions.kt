@@ -16,7 +16,7 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     @get:StringRes open val labelRes: Int? = null
     @get:StringRes open val descriptionRes: Int? = null
 
-    constructor(rawPmerissionId: String) : this(Permission.Id(rawPmerissionId))
+    constructor(rawPermissionId: String) : this(Permission.Id(rawPermissionId))
 
     override fun getAction(context: Context): PermissionAction = PermissionAction.None(this)
 
@@ -114,6 +114,12 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
 
     object FOREGROUND_SERVICE : AKnownPermissions("android.permission.FOREGROUND_SERVICE") {
         override val iconRes: Int = R.drawable.ic_foreground_service_24
+    }
+    
+    object REBOOT : AKnownPermissions("android.permission.REBOOT") {
+        override val iconRes: Int = R.drawable.ic_reboot_permission_24
+        override val labelRes: Int = R.string.permission_reboot_label
+        override val descriptionRes: Int = R.string.permission_reboot_description
     }
 
     companion object {
