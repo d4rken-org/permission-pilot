@@ -11,3 +11,4 @@
 !/.idea/codeStyles/**/*
 *.jks
 .local/*
+/fastlane/report.xml
