@@ -1,4 +1,4 @@
-<img src="https://github.com/d4rken-org/permission-pilot/raw/main/.github/assets/app_banner.png" width="300">
+<img src="https://github.com/d4rken-org/permission-pilot/raw/main/.github/assets/app_banner.png" width="400">
 
 # Permission Pilot
 
