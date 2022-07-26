@@ -1,10 +1,13 @@
 package eu.darken.myperm.common
 
+import androidx.annotation.Keep
 import eu.darken.myperm.BuildConfig
+import java.time.Instant
 
 
 // Can't be const because that prevents them from being mocked in tests
 @Suppress("MayBeConstant")
+@Keep
 object BuildConfigWrap {
     val APPLICATION_ID = BuildConfig.APPLICATION_ID
     val DEBUG: Boolean = BuildConfig.DEBUG
@@ -33,6 +36,8 @@ object BuildConfigWrap {
         FOSS,
         ;
     }
+
+    val BUILD_TIME: Instant = Instant.parse(BuildConfig.BUILDTIME)
 
     val VERSION_CODE: Long = BuildConfig.VERSION_CODE.toLong()
     val VERSION_NAME: String = BuildConfig.VERSION_NAME
