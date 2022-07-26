@@ -80,24 +80,33 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         itemView.setOnClickListener { item.onRowClicked(item.app) }
 
+        // START: Special status tag group
         tagSystem.apply {
             isGone = !app.isSystemApp
             setOnClickListener {
                 Toast.makeText(context, R.string.app_type_system_label, Toast.LENGTH_SHORT).show()
             }
         }
-
         tagWorkprofile.apply {
             isGone = !app.isOrHasProfiles()
             alpha = if (app.twins.isEmpty()) 0.4f else 1.0f
+            setOnClickListener {
+                Toast.makeText(context, R.string.apps_filter_multipleprofiles_label, Toast.LENGTH_SHORT).show()
+            }
         }
         tagWorkprofileCount.apply {
             isGone = !app.isOrHasProfiles()
             text = app.twins.size.toString()
             alpha = if (app.twins.isEmpty()) 0.4f else 1.0f
         }
+        tagSharedid.apply {
+            isGone = app.siblings.isEmpty()
+            setOnClickListener {
+                Toast.makeText(context, R.string.apps_filter_sharedid_label, Toast.LENGTH_SHORT).show()
+            }
+        }
+        // END
 
-        tagSharedid.isInvisible = app.siblings.isEmpty()
 
         tagInternet.apply {
             when (app.internetAccess) {
@@ -118,8 +127,6 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             AndroidPermissions.BLUETOOTH_CONNECT,
         )
 
-        tagWakelock.setupAll(item, AndroidPermissions.WAKE_LOCK)
-        tagVibrate.setupAll(item, AndroidPermissions.VIBRATE)
         tagCamera.setupAll(item, AndroidPermissions.CAMERA)
         tagMicrophone.setupAll(item, AndroidPermissions.RECORD_AUDIO)
         tagContacts.setupAll(item, AndroidPermissions.CONTACTS)

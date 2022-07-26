@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        app:flexDirection="row"
         app:layout_constraintEnd_toEndOf="@id/icon"
         app:layout_constraintStart_toStartOf="@id/icon"
         app:layout_constraintTop_toBottomOf="@id/icon">
@@ -50,11 +51,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="1dp"
+                android:clickable="false"
                 android:gravity="center"
                 android:textColor="?colorOnSurfaceInverse"
                 android:textSize="7sp"
                 tools:text="3" />
         </FrameLayout>
+
+        <ImageView
+            android:id="@+id/tag_sharedid"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_id_onsurface"
+            tools:visibility="visible" />
     </com.google.android.flexbox.FlexboxLayout>
 
     <ImageView
@@ -118,26 +126,50 @@
         android:id="@+id/tag_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:flexWrap="wrap"
         app:justifyContent="space_between"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/package_name"
         app:layout_constraintTop_toBottomOf="@id/permission_info">
 
         <ImageView
-            android:id="@+id/tag_sharedid"
+            android:id="@+id/tag_camera"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_id_onsurface"
+            android:src="@drawable/ic_baseline_photo_camera_24"
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/tag_internet"
+            android:id="@+id/tag_microphone"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_internet_24"
+            android:src="@drawable/ic_baseline_mic_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_location"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_location_on_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_phone"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_local_phone_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_contacts"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_contacts_24"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/tag_sms"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_sms_24"
             tools:visibility="visible" />
 
         <ImageView
@@ -153,51 +185,10 @@
             tools:visibility="visible" />
 
         <ImageView
-            android:id="@+id/tag_wakelock"
+            android:id="@+id/tag_internet"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_coffee_24"
+            android:src="@drawable/ic_baseline_internet_24"
             tools:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/tag_vibrate"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_vibration_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_camera"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_photo_camera_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_microphone"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_mic_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_contacts"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_contacts_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_location"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_location_on_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_sms"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_sms_24"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/tag_phone"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_local_phone_24"
-            tools:visibility="visible" />
     </com.google.android.flexbox.FlexboxLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
