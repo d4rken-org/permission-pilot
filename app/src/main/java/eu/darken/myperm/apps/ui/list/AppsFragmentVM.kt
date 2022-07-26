@@ -8,7 +8,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.features.AppStore
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
+import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
@@ -27,7 +29,8 @@ class AppsFragmentVM @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     packageRepo: AppRepo,
-    private val generalSettings: GeneralSettings
+    private val generalSettings: GeneralSettings,
+    private val webpageTool: WebpageTool,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val searchTerm = MutableStateFlow<String?>(null)
@@ -71,7 +74,12 @@ class AppsFragmentVM @Inject constructor(
                             .navigate()
                     },
                     onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
-                    onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) }
+                    onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) },
+                    onInstallerClicked = { installer ->
+                        (installer as? AppStore)
+                            ?.urlGenerator?.invoke(app.id)
+                            ?.let { webpageTool.open(it) }
+                    }
                 )
                 else -> throw IllegalArgumentException()
             }

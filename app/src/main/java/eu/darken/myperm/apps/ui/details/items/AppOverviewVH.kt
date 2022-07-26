@@ -105,7 +105,10 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             val info = app.installerInfo
             log { "Showing installerInfo=$info" }
 
-            installerIcon.setImageDrawable(info.getIcon(context))
+            installerIcon.apply {
+                setImageDrawable(info.getIcon(context))
+                info.installer?.let { pkg -> setOnClickListener { item.onInstallerIconClicked(pkg) } }
+            }
 
             if (info.allInstallers.isEmpty()) {
                 text = info.getLabel(context)
@@ -113,7 +116,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
                 val ssb = SpannableStringBuilder().apply {
                     info.allInstallers.toSet().forEach { pkg ->
                         val onClick = object : ClickableSpan() {
-                            override fun onClick(widget: View) = item.onInstallerClicked(pkg)
+                            override fun onClick(widget: View) = item.onInstallerTextClicked(pkg)
                         }
                         var _label = pkg.getLabel(context) ?: pkg.id.toString()
                         if (pkg != info.allInstallers.last()) _label += "\n"
@@ -132,7 +135,8 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     data class Item(
         val app: BasicPkgContainer,
         val onGoToSettings: (Pkg) -> Unit,
-        val onInstallerClicked: (Pkg) -> Unit
+        val onInstallerIconClicked: (Pkg) -> Unit,
+        val onInstallerTextClicked: (Pkg) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long
             get() = Item::class.hashCode().toLong()

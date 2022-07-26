@@ -72,6 +72,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
             if (info.installer != null) {
                 load(info.installer)
+                setOnClickListener { item.onInstallerClicked(info.installer!!) }
             } else {
                 dispose()
                 setImageDrawable(info.getIcon(context))
@@ -183,5 +184,6 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         val onRowClicked: (Pkg) -> Unit,
         val onTagClicked: (Permission) -> Unit,
         val onTagLongClicked: (Permission) -> Unit,
+        val onInstallerClicked: (Pkg) -> Unit,
     ) : AppsAdapter.Item
 }

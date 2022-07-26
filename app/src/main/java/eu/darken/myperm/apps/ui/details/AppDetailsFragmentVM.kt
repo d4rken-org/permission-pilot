@@ -57,16 +57,13 @@ class AppDetailsFragmentVM @Inject constructor(
                     AppOverviewVH.Item(
                         app = app,
                         onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
-                        onInstallerClicked = { installer ->
-                            if (installer is AppStore) {
-                                installer
-                                    .urlGenerator?.invoke(app.id)
-                                    ?.let { webpageTool.open(it) }
-                            } else {
-                                AppDetailsFragmentDirections.toSelf(
-                                    appId = installer.id,
-                                ).navigate()
-                            }
+                        onInstallerTextClicked = { installer ->
+                            AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
+                        },
+                        onInstallerIconClicked = { installer ->
+                            (installer as? AppStore)
+                                ?.urlGenerator?.invoke(app.id)
+                                ?.let { webpageTool.open(it) }
                         }
                     ).run { infoItems.add(this) }
 
