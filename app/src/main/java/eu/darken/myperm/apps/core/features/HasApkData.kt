@@ -4,6 +4,7 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import android.os.Build
+import androidx.core.content.pm.PackageInfoCompat
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
@@ -20,9 +21,8 @@ interface HasApkData : Pkg {
     val versionName: String?
         get() = packageInfo.versionName
 
-    @Suppress("DEPRECATION")
     val versionCode: Long
-        get() = if (hasApiLevel(28)) packageInfo.longVersionCode else packageInfo.versionCode.toLong()
+        get() = PackageInfoCompat.getLongVersionCode(packageInfo)
 
     val sharedUserId: String?
         get() = packageInfo.sharedUserId
