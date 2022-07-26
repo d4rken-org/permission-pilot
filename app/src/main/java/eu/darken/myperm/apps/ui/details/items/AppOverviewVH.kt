@@ -18,7 +18,6 @@ import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.DividerItemDecorator2
-import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
@@ -49,7 +48,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             setOnClickListener { item.onGoToSettings(item.app) }
         }
 
-        label.text = app.getLabel(context)?.capitalizeFirstLetter()
+        label.text = app.getLabel(context)
         identifier.text = app.id.toString()
 
         version.text = "${app.versionName} (${app.versionCode})"
