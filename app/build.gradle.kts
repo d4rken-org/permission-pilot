@@ -37,35 +37,24 @@ android {
     }
 
     signingConfigs {
-        create("release") {}
-    }
-
-    val signProps = Properties().apply {
-        File(System.getProperty("user.home"), ".appconfig/${packageName}/signing.properties")
-            .takeIf { it.canRead() }
-            ?.let { load(FileInputStream(it)) }
-    }
-    val keyStore = System.getenv("STORE_PATH")?.let { File(it) }
-        ?: signProps.getProperty("release.storePath")?.let { File(it) }
-
-    if (keyStore?.exists() == true) {
-        signingConfigs {
-            getByName("release") {
-                storeFile = keyStore
-                storePassword = System.getenv("STORE_PASSWORD") ?: signProps.getProperty("release.storePassword")
-                keyAlias = System.getenv("KEY_ALIAS") ?: signProps.getProperty("release.keyAlias")
-                keyPassword = System.getenv("KEY_PASSWORD") ?: signProps.getProperty("release.keyPassword")
-            }
+        val basePath = File(System.getProperty("user.home"), ".appconfig/${packageName}")
+        create("releaseFoss") {
+            setupCredentials(File(basePath, "signing-foss.properties"))
+        }
+        create("releaseGplay") {
+            setupCredentials(File(basePath, "signing-gplay-upload.properties"))
         }
     }
 
     flavorDimensions.add("version")
     productFlavors {
-        create("gplay") {
-            dimension = "version"
-        }
         create("foss") {
             dimension = "version"
+            signingConfig = signingConfigs["releaseFoss"]
+        }
+        create("gplay") {
+            dimension = "version"
+            signingConfig = signingConfigs["releaseGplay"]
         }
     }
 
@@ -81,7 +70,6 @@ android {
             proguardFiles("proguard-rules-debug.pro")
         }
         create("beta") {
-            signingConfig = signingConfigs["release"]
             lint {
                 abortOnError = true
                 fatal.add("StopShip")
@@ -92,7 +80,6 @@ android {
             proguardFiles(*customProguardRules.toList().toTypedArray())
         }
         release {
-            signingConfig = signingConfigs["release"]
             lint {
                 abortOnError = true
                 fatal.add("StopShip")
