@@ -22,6 +22,9 @@ https://www.bugsnag.com/
 Bugsnag's privacy policy can be found here:
 https://docs.bugsnag.com/legal/privacy-policy/
 
-Crash reports may contain device and app related information, e.g. your phone model, Android version and app version.
+Crash reports may contain device and app related information, e.g.:
+
+* Your phone model, Android version and app version
+* The name of an app, if it is the cause of an error
 
 You can disable automatic reports in the app's settings.
