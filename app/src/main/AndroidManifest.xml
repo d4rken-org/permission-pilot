@@ -36,6 +36,10 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
 
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY"
+            android:value="${bugsnagApiKey}" />
+
         <!-- Debug stuff-->
         <activity
             android:name="eu.darken.myperm.common.debug.recording.ui.RecorderActivity"

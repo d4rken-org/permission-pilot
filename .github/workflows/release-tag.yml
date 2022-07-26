@@ -48,6 +48,7 @@ jobs:
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           KEY_ALIAS: release
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          BUGSNAG_API_KEY: ${{ secrets.BUGSNAG_API_KEY }}
 
       - name: Assemble production APK
         if: "!contains(steps.tagger.outputs.tag, '-beta')"
@@ -57,6 +58,7 @@ jobs:
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           KEY_ALIAS: release
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          BUGSNAG_API_KEY: ${{ secrets.BUGSNAG_API_KEY }}
 
       - name: Create pre-release
         if: contains(steps.tagger.outputs.tag, '-beta')

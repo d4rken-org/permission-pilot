@@ -1,6 +1,3 @@
-import java.io.FileInputStream
-import java.util.*
-
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -12,10 +9,6 @@ apply(plugin = "androidx.navigation.safeargs.kotlin")
 
 android {
     val packageName = "eu.darken.myperm"
-
-    val bugsnagProps = Properties()
-    val bugsnagPropsFile = File(System.getProperty("user.home"), ".appconfig/${packageName}/bugsnag.properties")
-    if (bugsnagPropsFile.canRead()) bugsnagProps.load(FileInputStream(bugsnagPropsFile))
 
     compileSdk = ProjectConfig.compileSdk
 
@@ -33,7 +26,9 @@ android {
         buildConfigField("String", "GITSHA", "\"${lastCommitHash()}\"")
         buildConfigField("String", "BUILDTIME", "\"${buildTime()}\"")
 
-        manifestPlaceholders["bugsnagApiKey"] = "fake"
+        manifestPlaceholders["bugsnagApiKey"] = getBugSnagApiKey(
+            File(System.getenv("user.home"), ".appconfig/${packageName}/bugsnag.properties")
+        ) ?: "fake"
     }
 
     signingConfigs {

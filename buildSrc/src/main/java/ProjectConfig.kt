@@ -109,3 +109,13 @@ fun com.android.build.api.dsl.SigningConfig.setupCredentials(
         }
     }
 }
+
+fun getBugSnagApiKey(
+    propertiesPath: File?
+): String? {
+    val bugsnagProps = Properties().apply {
+        propertiesPath?.takeIf { it.canRead() }?.let { load(FileInputStream(it)) }
+    }
+
+    return System.getenv("BUGSNAG_API_KEY") ?: bugsnagProps.getProperty("bugsnag.apikey")
+}
