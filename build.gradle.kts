@@ -8,6 +8,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.core}")
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.Dagger.core}")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.Navigation.core}")
+        classpath("com.bugsnag:bugsnag-android-gradle-plugin:7.2.1")
     }
 }
 
