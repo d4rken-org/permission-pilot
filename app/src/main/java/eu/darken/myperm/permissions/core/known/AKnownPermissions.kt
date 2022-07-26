@@ -112,6 +112,10 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_query_all_packages_24
     }
 
+    object FOREGROUND_SERVICE : AKnownPermissions("android.permission.FOREGROUND_SERVICE") {
+        override val iconRes: Int = R.drawable.ic_foreground_service_24
+    }
+    
     object REBOOT : AKnownPermissions("android.permission.REBOOT") {
         override val iconRes: Int = R.drawable.ic_reboot_permission_24
         override val labelRes: Int = R.string.permission_reboot_label
