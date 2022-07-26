@@ -11,7 +11,7 @@ import eu.darken.myperm.common.lists.differ.setupDiffer
 import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.DataBinderMod
 import eu.darken.myperm.common.lists.modular.mods.TypedVHCreatorMod
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import javax.inject.Inject

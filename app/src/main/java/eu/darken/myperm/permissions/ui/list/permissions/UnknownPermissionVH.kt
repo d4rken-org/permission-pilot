@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsUnknownItemBinding
-import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
 class UnknownPermissionVH(parent: ViewGroup) :

@@ -18,8 +18,8 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
-import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.UnknownPermission
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart

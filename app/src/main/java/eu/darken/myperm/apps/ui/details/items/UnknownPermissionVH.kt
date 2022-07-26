@@ -6,7 +6,7 @@ import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionUnknownItemBinding
-import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.core.container.UnknownPermission
 
 class UnknownPermissionVH(parent: ViewGroup) :
     AppDetailsAdapter.BaseVH<UnknownPermissionVH.Item, AppsDetailsPermissionUnknownItemBinding>(

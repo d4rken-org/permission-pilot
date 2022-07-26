@@ -1,4 +1,4 @@
-package eu.darken.myperm.permissions.core.types
+package eu.darken.myperm.permissions.core.container
 
 import android.content.pm.PermissionInfo
 import androidx.annotation.StringRes

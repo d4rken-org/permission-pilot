@@ -12,8 +12,8 @@ import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
-import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class PermissionOverviewVH(parent: ViewGroup) :

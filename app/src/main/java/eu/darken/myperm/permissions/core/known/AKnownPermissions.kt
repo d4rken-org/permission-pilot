@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionAction
+import eu.darken.myperm.permissions.core.features.Highlighted
 import kotlin.reflect.full.isSubclassOf
 
 @Keep
@@ -28,15 +29,15 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_baseline_start_24
     }
 
-    object WRITE_EXTERNAL_STORAGE : AKnownPermissions("android.permission.WRITE_EXTERNAL_STORAGE") {
+    object WRITE_EXTERNAL_STORAGE : AKnownPermissions("android.permission.WRITE_EXTERNAL_STORAGE"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
     }
 
-    object READ_EXTERNAL_STORAGE : AKnownPermissions("android.permission.READ_EXTERNAL_STORAGE") {
+    object READ_EXTERNAL_STORAGE : AKnownPermissions("android.permission.READ_EXTERNAL_STORAGE"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
     }
 
-    object MANAGE_EXTERNAL_STORAGE : AKnownPermissions("android.permission.MANAGE_EXTERNAL_STORAGE") {
+    object MANAGE_EXTERNAL_STORAGE : AKnownPermissions("android.permission.MANAGE_EXTERNAL_STORAGE"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
     }
 
@@ -48,23 +49,27 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_baseline_vibration_24
     }
 
-    object CAMERA : AKnownPermissions("android.permission.CAMERA") {
+    object CAMERA : AKnownPermissions("android.permission.CAMERA"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
     }
 
-    object RECORD_AUDIO : AKnownPermissions("android.permission.RECORD_AUDIO") {
+    object RECORD_AUDIO : AKnownPermissions("android.permission.RECORD_AUDIO"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_mic_24
     }
 
-    object CONTACTS : AKnownPermissions("android.permission.READ_CONTACTS") {
+    object READ_CONTACTS : AKnownPermissions("android.permission.READ_CONTACTS"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_contacts_24
     }
 
-    object LOCATION_FINE : AKnownPermissions("android.permission.ACCESS_FINE_LOCATION") {
+    object WRITE_CONTACTS : AKnownPermissions("android.permission.WRITE_CONTACTS"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_contacts_24
+    }
+
+    object LOCATION_FINE : AKnownPermissions("android.permission.ACCESS_FINE_LOCATION"), Highlighted {
         override val iconRes: Int = R.drawable.ic_location_fine_24
     }
 
-    object LOCATION_COARSE : AKnownPermissions("android.permission.ACCESS_COARSE_LOCATION") {
+    object LOCATION_COARSE : AKnownPermissions("android.permission.ACCESS_COARSE_LOCATION"), Highlighted {
         override val iconRes: Int = R.drawable.ic_location_coarse_24
     }
 
@@ -80,15 +85,31 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_baseline_bluetooth_24
     }
 
-    object SMS_READ : AKnownPermissions("android.permission.RECEIVE_SMS") {
+    object BLUETOOTH_SCAN : AKnownPermissions("android.permission.BLUETOOTH_SCAN"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_bluetooth_24
+    }
+
+    object SMS_READ : AKnownPermissions("android.permission.RECEIVE_SMS"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
     }
 
-    object SMS_RECEIVE : AKnownPermissions("android.permission.SMS_RECEIVE") {
+    object SMS_RECEIVE : AKnownPermissions("android.permission.SMS_RECEIVE"), Highlighted {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
     }
 
-    object SMS_SEND : AKnownPermissions("android.permission.SEND_SMS") {
+    object SMS_SEND : AKnownPermissions("android.permission.SEND_SMS"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_sms_24
+    }
+
+    object READ_SMS : AKnownPermissions("android.permission.READ_SMS"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_sms_24
+    }
+
+    object RECEIVE_WAP_PUSH : AKnownPermissions("android.permission.RECEIVE_WAP_PUSH") {
+        override val iconRes: Int = R.drawable.ic_baseline_sms_24
+    }
+
+    object RECEIVE_MMS : AKnownPermissions("android.permission.RECEIVE_MMS") {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
     }
 
@@ -96,7 +117,19 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
     }
 
+    object ANSWER_PHONE_CALLS : AKnownPermissions("android.permission.ANSWER_PHONE_CALLS") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
+    }
+
     object PHONE_STATE : AKnownPermissions("android.permission.PHONE_STATE") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
+    }
+
+    object READ_PHONE_STATE : AKnownPermissions("android.permission.READ_PHONE_STATE") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
+    }
+
+    object READ_PHONE_NUMBERS : AKnownPermissions("android.permission.READ_PHONE_NUMBERS") {
         override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
     }
 
@@ -115,12 +148,45 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     object FOREGROUND_SERVICE : AKnownPermissions("android.permission.FOREGROUND_SERVICE") {
         override val iconRes: Int = R.drawable.ic_foreground_service_24
     }
-    
+
     object REBOOT : AKnownPermissions("android.permission.REBOOT") {
         override val iconRes: Int = R.drawable.ic_reboot_permission_24
         override val labelRes: Int = R.string.permission_reboot_label
         override val descriptionRes: Int = R.string.permission_reboot_description
     }
+
+    object BODY_SENSORS : AKnownPermissions("android.permission.BODY_SENSORS"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_body_sensors_24
+    }
+
+    object BODY_SENSORS_BACKGROUND : AKnownPermissions("android.permission.BODY_SENSORS_BACKGROUND"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_body_sensors_24
+    }
+
+    object READ_CALENDAR : AKnownPermissions("android.permission.READ_CALENDAR"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_calendar_today_24
+    }
+
+    object WRITE_CALENDAR : AKnownPermissions("android.permission.WRITE_CALENDAR"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_edit_calendar_24
+    }
+
+    object READ_CALL_LOG : AKnownPermissions("android.permission.READ_CALL_LOG"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_call_24
+    }
+
+    object WRITE_CALL_LOG : AKnownPermissions("android.permission.WRITE_CALL_LOG"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_call_24
+    }
+
+    object ACTIVITY_RECOGNITION : AKnownPermissions("android.permission.ACTIVITY_RECOGNITION"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_baseline_directions_run_24
+    }
+
+    object SYSTEM_ALERT_WINDOW : AKnownPermissions("android.permission.SYSTEM_ALERT_WINDOW"), Highlighted {
+        override val iconRes: Int = R.drawable.ic_system_alert_window_24
+    }
+
 
     companion object {
         val values: List<AKnownPermissions> by lazy {

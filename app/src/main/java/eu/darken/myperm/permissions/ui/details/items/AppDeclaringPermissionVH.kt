@@ -7,7 +7,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class AppDeclaringPermissionVH(parent: ViewGroup) :

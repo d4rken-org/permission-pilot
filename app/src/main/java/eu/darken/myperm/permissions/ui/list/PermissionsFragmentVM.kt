@@ -12,8 +12,8 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
-import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import eu.darken.myperm.settings.core.GeneralSettings
@@ -60,28 +60,26 @@ class PermissionsFragmentVM @Inject constructor(
             }
             .sortedWith(sortOptions.mainSort.getComparator(context))
 
-        val items = filtered
-            .sortedByDescending { it.grantingPkgs.size }
-            .map { permission ->
-                when (permission) {
-                    is DeclaredPermission -> DeclaredPermissionVH.Item(
-                        perm = permission,
-                        onClickAction = {
-                            log(TAG) { "Navigating to $permission" }
-                            MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
-                                permissionId = permission.id,
-                                permissionLabel = permission.getLabel(context),
-                            ).navigate()
-                        }
-                    )
-                    is UnknownPermission -> UnknownPermissionVH.Item(
-                        perm = permission,
-                        onClickAction = {
+        val items = filtered.map { permission ->
+            when (permission) {
+                is DeclaredPermission -> DeclaredPermissionVH.Item(
+                    perm = permission,
+                    onClickAction = {
+                        log(TAG) { "Navigating to $permission" }
+                        MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
+                            permissionId = permission.id,
+                            permissionLabel = permission.getLabel(context),
+                        ).navigate()
+                    }
+                )
+                is UnknownPermission -> UnknownPermissionVH.Item(
+                    perm = permission,
+                    onClickAction = {
 
-                        }
-                    )
-                }
+                    }
+                )
             }
+        }
         State(
             listData = items,
             isLoading = false,

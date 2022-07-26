@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.HasInstallData
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

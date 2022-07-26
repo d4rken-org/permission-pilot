@@ -1,4 +1,4 @@
-package eu.darken.myperm.permissions.core.types
+package eu.darken.myperm.permissions.core.container
 
 import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.permissions.core.Permission

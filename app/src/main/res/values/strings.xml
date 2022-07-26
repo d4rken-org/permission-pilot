@@ -124,6 +124,7 @@
     <string name="api_build_level_x">Build with Android version: %s</string>
     <string name="permission_reboot_label">Reboot device</string>
     <string name="permission_reboot_description">Allows the app to reboot the device. Only available to system apps.</string>
+    <string name="permissions_sort_apps_relevance_label">Relevance</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>

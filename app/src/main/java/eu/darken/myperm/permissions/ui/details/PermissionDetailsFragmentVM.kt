@@ -11,7 +11,7 @@ import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.ui.details.items.AppDeclaringPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.AppRequestingPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH

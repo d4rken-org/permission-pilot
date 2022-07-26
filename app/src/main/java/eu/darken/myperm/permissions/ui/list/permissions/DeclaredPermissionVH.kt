@@ -8,7 +8,7 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDeclaredItemBinding
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
 class DeclaredPermissionVH(parent: ViewGroup) :

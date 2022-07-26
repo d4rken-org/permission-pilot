@@ -14,9 +14,9 @@ import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
-import eu.darken.myperm.permissions.core.types.BasePermission
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
-import eu.darken.myperm.permissions.core.types.UnknownPermission
+import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.UnknownPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import java.util.*

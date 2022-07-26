@@ -11,7 +11,7 @@ import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionDeclaredItemBinding
-import eu.darken.myperm.permissions.core.types.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
 
 class DeclaredPermissionVH(parent: ViewGroup) :
     AppDetailsAdapter.BaseVH<DeclaredPermissionVH.Item, AppsDetailsPermissionDeclaredItemBinding>(

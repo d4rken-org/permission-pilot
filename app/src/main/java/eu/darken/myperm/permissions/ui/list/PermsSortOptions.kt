@@ -6,13 +6,15 @@ import androidx.annotation.StringRes
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.features.isHighlighted
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class PermsSortOptions(
-    @Json(name = "mainSort") val mainSort: Sort = Sort.APPS_GRANTED,
+    @Json(name = "mainSort") val mainSort: Sort = Sort.RELEVANCE,
     @Json(name = "reversed") val reversed: Boolean = false
 ) : Parcelable {
 
@@ -20,6 +22,23 @@ data class PermsSortOptions(
     enum class Sort(
         @StringRes val labelRes: Int,
     ) {
+        RELEVANCE(
+            labelRes = R.string.permissions_sort_apps_relevance_label,
+        ) {
+            override fun getComparator(c: Context): Comparator<BasePermission> =
+                Comparator.comparing<BasePermission, Int> { perm ->
+                    if (perm.isHighlighted) return@comparing Int.MAX_VALUE
+                    if (perm !is DeclaredPermission) return@comparing Int.MIN_VALUE
+
+                    val flags = perm.protectionFlags
+                    when {
+                        flags.contains(DeclaredPermission.ProtectionFlag.RUNTIME_ONLY) -> 3
+                        perm.protectionType == DeclaredPermission.ProtectionType.DANGEROUS -> 2
+                        flags.contains(DeclaredPermission.ProtectionFlag.APPOP) -> 1
+                        else -> 0
+                    }
+                }.reversed()
+        },
         APPS_GRANTED(
             labelRes = R.string.permissions_sort_apps_granted_label,
         ) {

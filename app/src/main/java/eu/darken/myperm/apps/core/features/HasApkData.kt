@@ -8,7 +8,7 @@ import androidx.core.content.pm.PackageInfoCompat
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.types.BasePermission
+import eu.darken.myperm.permissions.core.container.BasePermission
 
 // A Pkg where we have access to an APK
 interface HasApkData : Pkg {
