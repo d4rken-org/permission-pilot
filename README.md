@@ -1,8 +1,9 @@
 # Permission Pilot
 
-[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
-[![Build](https://github.com/d4rken-org/permission-pilot/actions/workflows/pr-checks.yml/badge.svg)](https://github.com/d4rken-org/permission-pilot/actions/workflows/pr-checks.yml)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases)](https://github.com/d4rken-org/permission-pilot/releases/latest)
 [![Github All Releases](https://img.shields.io/github/downloads/d4rken-org/permission-pilot/total.svg)]()
+[![Build](https://github.com/d4rken-org/permission-pilot/actions/workflows/pr-checks.yml/badge.svg)](https://github.com/d4rken-org/permission-pilot/actions/workflows/pr-checks.yml)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
 
 A new kind of app to help the user view apps and which permissions they use.
 
