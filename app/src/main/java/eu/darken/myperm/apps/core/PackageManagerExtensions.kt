@@ -28,7 +28,10 @@ fun PackageManager.getLabel2(
     pkgId: Pkg.Id,
 ): String? = getPackageInfo2(pkgId.pkgName)
     ?.applicationInfo
-    ?.let { if (it.labelRes != 0) it.loadLabel(this).toString() else null }
+    ?.let {
+        if (it.labelRes != 0) it.loadLabel(this).toString()
+        else it.nonLocalizedLabel?.toString()
+    }
 
 fun PackageManager.getIcon2(
     pkgId: Pkg.Id,
