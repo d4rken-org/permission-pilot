@@ -136,22 +136,20 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         setColorFilter(color)
     }
 
-    private fun ImageView.setupAll(
-        item: Item,
-        vararg permissions: Permission,
-        @ColorInt grantedcolor: Int = colorGranted,
-        @ColorInt deniedColor: Int = colorDenied,
-    ) {
+    private fun ImageView.setupAll(item: Item, vararg permissions: Permission) {
         val perms = permissions.mapNotNull { item.app.getPermission(it.id) }
         val grantedPerm = perms.firstOrNull { it.isGranted }
+
         isInvisible = when {
             grantedPerm != null -> {
-                tintIt(grantedcolor)
+                grantedPerm.getIcon(context)?.let { setImageDrawable(it) }
+                tintIt(colorGranted)
                 alpha = 1.0f
                 false
             }
             perms.isNotEmpty() -> {
-                tintIt(deniedColor)
+                perms.first().getIcon(context)?.let { setImageDrawable(it) }
+                tintIt(colorDenied)
                 alpha = 0.4f
                 false
             }

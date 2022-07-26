@@ -61,11 +61,11 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     }
 
     object LOCATION_FINE : AKnownPermissions("android.permission.ACCESS_FINE_LOCATION") {
-        override val iconRes: Int = R.drawable.ic_baseline_location_on_24
+        override val iconRes: Int = R.drawable.ic_location_fine_24
     }
 
     object LOCATION_COARSE : AKnownPermissions("android.permission.ACCESS_COARSE_LOCATION") {
-        override val iconRes: Int = R.drawable.ic_baseline_location_on_24
+        override val iconRes: Int = R.drawable.ic_location_coarse_24
     }
 
     object BLUETOOTH : AKnownPermissions("android.permission.BLUETOOTH") {
@@ -110,5 +110,5 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     }
 }
 
-fun Permission.Id.toKnownPermission(): Permission? =
+fun Permission.Id.toKnownPermission(): AKnownPermissions? =
     AKnownPermissions.values.singleOrNull { it.id == this@toKnownPermission }
