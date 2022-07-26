@@ -17,10 +17,17 @@ Born out of a feature discussion for SD Maid. [Origin Story](https://github.com/
 
 ## Downloads
 
+* [Download Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
 * [Download GitHub](https://github.com/d4rken-org/permission-pilot/releases)
 
 ## Community
+
 Want to chat? Join our [discord server here](https://discord.gg/7gGWxfM5yv).
 
 ## Support the project
-If you like the app, sponsor the project (see GitHub sponsor button).
+
+If you like the app, consider:
+
+* Contributing translations
+* Buying the upgrade on [Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
+* [Sponsoring the project](https://github.com/sponsors/d4rken)
