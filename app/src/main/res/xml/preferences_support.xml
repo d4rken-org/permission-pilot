@@ -4,6 +4,7 @@
 
     <Preference
         android:icon="@drawable/ic_card_text_onsurface"
+        app:isPreferenceVisible="false"
         android:title="@string/documentation_label">
         <intent
             android:action="android.intent.action.VIEW"
