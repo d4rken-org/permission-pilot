@@ -7,6 +7,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.core.features.UsesPermission.Status
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
+import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionDeclaredItemBinding
@@ -26,9 +27,11 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val permission = item.permission
 
+        icon.setImageDrawable(permission.getIcon(context))
+
         identifier.text = permission.id.value
         label.apply {
-            text = permission.getLabel(context)
+            text = permission.getLabel(context)?.capitalizeFirstLetter()
             isGone = text.isNullOrEmpty()
         }
 
