@@ -9,17 +9,6 @@
 
     <PreferenceCategory android:title="@string/settings_category_other_label">
         <Preference
-            android:icon="@drawable/ic_heart"
-            app:fragment="eu.darken.myperm.settings.ui.acks.AcknowledgementsFragment"
-            app:summary="@string/general_thank_you_label"
-            app:title="@string/settings_acknowledgements_label" />
-
-        <Preference
-            android:icon="@drawable/ic_baseline_contact_support_24"
-            app:fragment="eu.darken.myperm.settings.ui.support.SupportFragment"
-            app:summary="¯\\_(ツ)_/¯"
-            app:title="@string/settings_support_label" />
-        <Preference
             android:icon="@drawable/ic_changelog_onsurface"
             android:key="core.changelog"
             android:title="@string/changelog_label"
@@ -28,6 +17,16 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/d4rken-org/permission-pilot/releases/latest" />
         </Preference>
+        <Preference
+            android:icon="@drawable/ic_baseline_contact_support_24"
+            app:fragment="eu.darken.myperm.settings.ui.support.SupportFragment"
+            app:summary="¯\\_(ツ)_/¯"
+            app:title="@string/settings_support_label" />
+        <Preference
+            android:icon="@drawable/ic_heart"
+            app:fragment="eu.darken.myperm.settings.ui.acks.AcknowledgementsFragment"
+            app:summary="@string/general_thank_you_label"
+            app:title="@string/settings_acknowledgements_label" />
 
     </PreferenceCategory>
 </PreferenceScreen>
