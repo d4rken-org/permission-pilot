@@ -100,6 +100,18 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
     }
 
+    object NETWORK_STATE : AKnownPermissions("android.permission.ACCESS_NETWORK_STATE") {
+        override val iconRes: Int = R.drawable.ic_network_state_24
+    }
+
+    object WIFI_STATE : AKnownPermissions("android.permission.ACCESS_WIFI_STATE") {
+        override val iconRes: Int = R.drawable.ic_wifi_state_24
+    }
+
+    object QUERY_ALL_PACKAGES : AKnownPermissions("android.permission.QUERY_ALL_PACKAGES") {
+        override val iconRes: Int = R.drawable.ic_query_all_packages_24
+    }
+
     companion object {
         val values: List<AKnownPermissions> by lazy {
             AKnownPermissions::class.nestedClasses
