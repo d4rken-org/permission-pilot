@@ -119,7 +119,7 @@
     <string name="apps_filter_profile_secondary_label">Apps in Managed Profile(s)</string>
     <string name="apps_details_description_restrictions_caveat_description">Due to Android restrictions, it is not possible to determine which permissions have been granted to apps installed in Managed User Profiles (i.e. Work Profile and Multi-Users), from the Main Profile. Permission status can only be shown for apps in the Active Profile (i.e. current profile). To view the permission status in other profiles, install this app in those profiles.</string>
     <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
-    <string name="apps_details_description_primary_description">"%1$d of %2$d (%s) permissions granted."</string>
+    <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
     <string name="api_build_level_x">Compile version: %s</string>
@@ -132,8 +132,8 @@
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"User Apps: Granted to %s (%1$d out of %2$d) of User apps."</string>
-    <string name="permissions_details_count_system_apps">"System Apps: Granted to %s (%1$d out of %2$d) of System apps."</string>
-    <string name="permissions_details_count_total_apps">"Total: Granted to %s (%1$d out of %2$d) of Total apps."</string>
+    <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d User apps."</string>
+    <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d System apps."</string>
+    <string name="permissions_details_count_total_apps">"Total: Granted to %1$d out of %2$d Total apps."</string>
     <string name="permissions_details_description_restrictions_caveat_description"> Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
 </resources>
