@@ -7,6 +7,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
@@ -55,6 +56,26 @@ class PermissionOverviewVH(parent: ViewGroup) :
                 }
             }
         }
+
+        countUserApps.apply {
+            val apps = perm.requestingPkgs.filter { (it as? HasInstallData)?.isSystemApp == false }
+            val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
+            text = getString(R.string.permissions_details_count_user_apps, granted.size, apps.size)
+        }
+
+        countSystemApps.apply {
+            val apps = perm.requestingPkgs.filter { (it as? HasInstallData)?.isSystemApp == true }
+            val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
+            text = getString(R.string.permissions_details_count_system_apps, granted.size, apps.size)
+        }
+
+        countTotalApps.apply {
+            val apps = perm.requestingPkgs
+            val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
+            val percent = String.format("%.2f%%", (granted.size / apps.size.toFloat()) * 100)
+            text = getString(R.string.permissions_details_count_total_apps, percent)
+        }
+
         tagAosp.isInvisible = perm.declaringPkgs.any { it.id == AKnownPkg.AndroidSystem.id }
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }

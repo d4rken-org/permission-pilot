@@ -64,9 +64,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@string/permissions_details_protection_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/permissions_details_protection_label"
             app:layout_constraintTop_toBottomOf="@id/description" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -79,6 +79,37 @@
             app:layout_constraintTop_toBottomOf="@id/protection_label"
             tools:text="@tools:sample/lorem" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/count_user_apps"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/protection_info"
+            tools:text="User Apps: Granted to x out of X" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/count_system_apps"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/count_user_apps"
+            tools:text="System Apps: Granted to x out of X" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/count_total_apps"
+            style="@style/TextAppearance.Material3.LabelMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/count_system_apps"
+            tools:text="All Apps: Granted to x out of X" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@id/tag_container"
             android:layout_width="0dp"
@@ -88,7 +119,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/protection_info">
+            app:layout_constraintTop_toBottomOf="@id/count_total_apps">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_aosp"
