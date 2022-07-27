@@ -61,20 +61,26 @@ class PermissionDetailsFragmentVM @Inject constructor(
 
             }.run { infoItems.addAll(this) }
 
-            perm.requestingPkgs.map { app ->
-                AppRequestingPermissionVH.Item(
-                    permission = perm,
-                    app = app,
-                    onItemClicked = {
-                        PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
-                            .navigate()
-                    },
-                    onIconClicked = {
-                        events.postValue(PermissionDetailsEvents.ShowAppSystemDetails(it.app))
-                    }
-                )
-            }.run { infoItems.addAll(this) }
+            perm.requestingPkgs
+                .sortedBy { it.isSystemApp }
+                .map { app ->
+                    AppRequestingPermissionVH.Item(
+                        permission = perm,
+                        app = app,
+                        onItemClicked = {
+                            PermissionDetailsFragmentDirections
+                                .actionPermissionDetailsFragmentToAppDetailsFragment(
+                                    it.app.id,
+                                    it.app.getLabel(context)
+                                )
+                                .navigate()
+                        },
+                        onIconClicked = {
+                            events.postValue(PermissionDetailsEvents.ShowAppSystemDetails(it.app))
+                        }
+                    )
+                }
+                .run { infoItems.addAll(this) }
 
             Details(
                 perm = perm,
