@@ -45,16 +45,6 @@ class AppRepo @Inject constructor(
         val allPkgs = normalPkgs + profilePkgs + uninstalledPkgs
         allPkgs.forEach { curPkg ->
 
-            val siblings = allPkgs.asSequence()
-                .filter { it != curPkg } // Don't compare against ourselves
-                .filter {
-                    if (it !is HasApkData || it.sharedUserId == null) return@filter false
-                    if (curPkg !is HasApkData || it.sharedUserId == null) return@filter false
-
-                    it.sharedUserId == curPkg.sharedUserId
-                }
-                .toSet()
-
             val twins = allPkgs.asSequence()
                 .filter { it != curPkg } // Don't compare against ourselves
                 .filterIsInstance<HasInstallData>()
@@ -62,6 +52,16 @@ class AppRepo @Inject constructor(
                     if (curPkg !is HasInstallData) return@filter false
 
                     curPkg.id.pkgName == it.id.pkgName && curPkg.id.userHandle != it.id.userHandle
+                }
+                .toSet()
+
+            val siblings = allPkgs.asSequence()
+                .filter { it != curPkg } // Don't compare against ourselves
+                .filter {
+                    if (it !is HasApkData || it.sharedUserId == null) return@filter false
+                    if (curPkg !is HasApkData || it.sharedUserId == null) return@filter false
+
+                    it.sharedUserId == curPkg.sharedUserId && it.id.userHandle == curPkg.id.userHandle
                 }
                 .toSet()
 

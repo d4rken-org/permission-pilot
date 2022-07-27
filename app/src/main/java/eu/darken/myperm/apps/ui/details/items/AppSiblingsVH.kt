@@ -41,17 +41,8 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
             app.sharedUserId
         }
 
-        collapseToggle.setOnClickListener {
-            siblingsContainer.isGone = !siblingsContainer.isGone
-            collapseToggle.setIconResource(
-                if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
-            )
-        }
-
-
         siblingsContainer.removeAllViews()
         app.siblings.forEach { sibling ->
-
             AppsDetailsSiblingsItemSiblingBinding.inflate(layoutInflater, siblingsContainer, false).apply {
                 icon.apply {
                     setImageDrawable(sibling.getIcon(context))
@@ -70,13 +61,23 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
 
                 siblingsContainer.addView(this.root)
             }
-
         }
 
-        siblingsContainer.isGone = app.siblings.size > 5
-        collapseToggle.setIconResource(
-            if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
-        )
+        siblingsContainer.isGone = app.siblings.size > 5 || app.siblings.isEmpty()
+
+        collapseToggle.apply {
+            setOnClickListener {
+                siblingsContainer.isGone = !siblingsContainer.isGone
+                collapseToggle.setIconResource(
+                    if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
+                )
+            }
+            setIconResource(
+                if (siblingsContainer.isGone) R.drawable.ic_baseline_expand_more_24 else R.drawable.ic_baseline_expand_less_24
+            )
+            isGone = item.app.siblings.isEmpty()
+        }
+
     }
 
     data class Item(
