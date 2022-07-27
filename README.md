@@ -38,12 +38,6 @@ Permission Pilot gives the user a bird's eye view of all permissions for install
 Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app. Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
 
 
-
-**COMPETITION**
-
-While similar apps exist, they are extremely limited in their scope. More importantly, they suffer from the same limitations of Android System Settings that this app solves. **In short, this is a unique app that solves an exisitng problem comprehensively, and there is no other app in the Android Market that can do what this app does.**
-
-
 ## Downloads
 
 * [Download Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
