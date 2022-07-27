@@ -12,7 +12,6 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.log
-import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
 
 data class SecondaryUserPkg(
@@ -59,13 +58,7 @@ data class SecondaryUserPkg(
 
     override fun declaresPermission(id: Permission.Id): Boolean = declaredPermissions.any { it.name == id.value }
 
-    override val internetAccess: InternetAccess by lazy {
-        when {
-            isSystemApp || getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
-            siblings.any { it is HasApkData && it.getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
-            else -> InternetAccess.NONE
-        }
-    }
+    override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 }
 
 fun Context.getSecondaryUserPkgs(): Collection<Pkg> {

@@ -33,7 +33,11 @@ data class AppsFilterOptions(
         ),
         NO_INTERNET(
             labelRes = R.string.apps_filter_nointernet_label,
-            matches = { it is HasInstallData && it.internetAccess != InternetAccess.DIRECT }
+            matches = {
+                it is HasInstallData
+                        && it.internetAccess != InternetAccess.DIRECT
+                        && it.internetAccess != InternetAccess.UNKNOWN
+            }
         ),
         GOOGLE_PLAY(
             labelRes = R.string.apps_filter_gplay_label,

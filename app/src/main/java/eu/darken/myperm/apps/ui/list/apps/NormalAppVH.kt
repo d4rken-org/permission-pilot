@@ -114,9 +114,10 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
                 InternetAccess.DIRECT -> tintIt(colorGranted)
                 InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(R.attr.colorTertiary))
                 InternetAccess.NONE -> tintIt(colorDenied)
+                InternetAccess.UNKNOWN -> tintIt(colorDenied)
             }
             setupTagClicks(item, AndroidPermissions.INTERNET)
-            isInvisible = app.internetAccess == InternetAccess.NONE
+            isInvisible = app.internetAccess == InternetAccess.NONE || app.internetAccess == InternetAccess.UNKNOWN
         }
 
         tagStorage.setupAll(item, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
