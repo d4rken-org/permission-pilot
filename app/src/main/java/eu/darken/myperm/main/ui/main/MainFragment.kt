@@ -51,21 +51,31 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                 "v${BuildConfigWrap.VERSION_NAME} ~ ${BuildConfigWrap.GIT_SHA}/${BuildConfigWrap.FLAVOR}/${BuildConfigWrap.BUILD_TYPE}"
         }
         val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
-        setupWithNavController(ui.bottomNavigation, navController)
 
-        ui.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.page_apps -> {
-                    navController.navigate(R.id.action_global_appsFragment)
-                    true
+        ui.bottomNavigation.apply {
+            setupWithNavController(this, navController)
+            if (savedInstanceState == null) {
+                menu.findItem(R.id.page_apps).isChecked = true
+            }
+            setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.page_overview -> {
+                        navController.navigate(R.id.action_global_overviewFragment)
+                        true
+                    }
+                    R.id.page_apps -> {
+                        navController.navigate(R.id.action_global_appsFragment)
+                        true
+                    }
+                    R.id.page_permissions -> {
+                        navController.navigate(R.id.action_global_permissionsFragment)
+                        true
+                    }
+                    else -> false
                 }
-                R.id.page_permissions -> {
-                    navController.navigate(R.id.action_global_permissionsFragment)
-                    true
-                }
-                else -> false
             }
         }
+
 
         vm.state.observe2(ui) { state ->
 //            bottomNavigation.getOrCreateBadge(R.id.page_apps).apply {

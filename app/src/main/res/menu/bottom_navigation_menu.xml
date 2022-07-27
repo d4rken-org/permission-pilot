@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/page_overview"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_phone_android_24"
+        android:title="@string/overview_page_label" />
+    <item
         android:id="@+id/page_apps"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_apps_24"
