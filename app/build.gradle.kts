@@ -6,7 +6,6 @@ plugins {
 }
 apply(plugin = "dagger.hilt.android.plugin")
 apply(plugin = "androidx.navigation.safeargs.kotlin")
-apply(plugin = "com.bugsnag.android.gradle")
 
 android {
     val packageName = "eu.darken.myperm"
@@ -26,10 +25,6 @@ android {
 
         buildConfigField("String", "GITSHA", "\"${lastCommitHash()}\"")
         buildConfigField("String", "BUILDTIME", "\"${buildTime()}\"")
-
-        manifestPlaceholders["bugsnagApiKey"] = getBugSnagApiKey(
-            File(System.getProperty("user.home"), ".appconfig/${packageName}/bugsnag.properties")
-        ) ?: "fake"
     }
 
     signingConfigs {
@@ -178,10 +173,6 @@ dependencies {
     implementation("com.squareup.okio:okio:3.1.0")
 
     implementation("io.coil-kt:coil:2.0.0-rc02")
-
-    // Debugging
-    "gplayImplementation"("com.bugsnag:bugsnag-android:5.9.2")
-    implementation("com.getkeepsafe.relinker:relinker:1.4.3")
 
     "gplayImplementation"("com.android.billingclient:billing:4.0.0")
 

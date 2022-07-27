@@ -4,8 +4,8 @@
 
     <Preference
         android:icon="@drawable/ic_card_text_onsurface"
-        app:isPreferenceVisible="false"
-        android:title="@string/documentation_label">
+        android:title="@string/documentation_label"
+        app:isPreferenceVisible="false">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/d4rken-org/permission-pilot/wiki" />
@@ -34,11 +34,12 @@
             android:summary="@string/support_installid_desc"
             android:title="@string/support_installid_label" />
         <CheckBoxPreference
+            android:enabled="false"
             android:icon="@drawable/ic_spider_thread_onsurface"
             android:key="debug.bugreport.automatic.enabled"
-            android:enabled="false"
             android:summary="Automatically reports issues, e.g. details on the app crashes so I can fix figure out why and fix it."
-            android:title="Automatic bug reports" />
+            android:title="Automatic bug reports"
+            app:isPreferenceVisible="false" />
         <Preference
             android:icon="@drawable/ic_baseline_bug_report_24"
             android:key="support.debuglog"

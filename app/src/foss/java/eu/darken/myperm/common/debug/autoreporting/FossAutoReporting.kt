@@ -9,7 +9,6 @@ import javax.inject.Singleton
 @Singleton
 class FossAutoReporting @Inject constructor() : AutomaticBugReporter {
     override fun setup(application: Application) {
-        log { "Automatic bug reporting is N" }
         // NOOP
     }
 

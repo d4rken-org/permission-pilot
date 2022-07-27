@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import eu.darken.myperm.common.debug.autoreport.AutomaticBugReporter
-import eu.darken.myperm.common.debug.autoreport.BugsnagReporting
+import eu.darken.myperm.common.debug.autoreport.GooglePlayReporting
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class DebugModule {
     @Binds
     @Singleton
-    abstract fun autoreporting(foss: BugsnagReporting): AutomaticBugReporter
+    abstract fun autoreporting(foss: GooglePlayReporting): AutomaticBugReporter
 }
