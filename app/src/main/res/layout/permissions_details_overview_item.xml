@@ -101,14 +101,16 @@
             tools:text="System Apps: Granted to x out of X" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/count_total_apps"
-            style="@style/TextAppearance.Material3.LabelMedium"
+            android:id="@+id/app_counts_disclaimer"
+            style="@style/TextAppearance.Material3.BodySmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/permissions_details_description_restrictions_caveat_description"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/count_system_apps"
-            tools:text="All Apps: Granted to x out of X" />
+            app:layout_constraintTop_toBottomOf="@id/count_system_apps" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@id/tag_container"
@@ -119,7 +121,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/count_total_apps">
+            app:layout_constraintTop_toBottomOf="@id/app_counts_disclaimer">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tag_aosp"
