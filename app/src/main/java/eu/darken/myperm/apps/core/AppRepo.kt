@@ -81,6 +81,9 @@ class AppRepo @Inject constructor(
                 else -> throw IllegalArgumentException("Unknown package type: $curPkg")
             }
         }
+
+        log { "Total pkgs: ${allPkgs.size}" }
+
         allPkgs
     }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
 

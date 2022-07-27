@@ -23,9 +23,14 @@ data class SecondaryProfilePkg(
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
+
+    private var _label: String? = null
     override fun getLabel(context: Context): String {
+        _label?.let { return it }
         val pm = context.packageManager
-        return pm.getUserBadgedLabel(launcherAppInfo.loadLabel(pm).toString(), userHandle).toString()
+        val newLabel = pm.getUserBadgedLabel(launcherAppInfo.loadLabel(pm).toString(), userHandle).toString()
+        _label = newLabel
+        return newLabel
     }
 
     override fun getIcon(context: Context): Drawable {

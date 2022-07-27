@@ -22,11 +22,16 @@ data class SecondaryUserPkg(
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
-    override fun getLabel(context: Context): String =
-        context.packageManager.getLabel2(id)
+    private var _label: String? = null
+    override fun getLabel(context: Context): String {
+        _label?.let { return it }
+        val newLabel = context.packageManager.getLabel2(id)
             ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
             ?: super.getLabel(context)
             ?: id.pkgName
+        _label = newLabel
+        return newLabel
+    }
 
     override fun getIcon(context: Context): Drawable =
         context.packageManager.getIcon2(id)
