@@ -136,5 +136,5 @@
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %s (%1$d out of %2$d) apps."</string>
     <string name="permissions_details_count_total_apps">"Total: Granted to %s (%1$d out of %2$d) apps."</string>
 
-    <string name="apps_details_description_restrictions_caveat_description"> *apps installed in other user profiles are not part of this computation due to Android restrictions. </string>
+    <string name="apps_details_description_restrictions_caveat_description"> *apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
 </resources>
