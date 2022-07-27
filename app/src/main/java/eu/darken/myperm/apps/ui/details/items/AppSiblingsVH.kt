@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
@@ -72,7 +72,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
     }
 
     data class Item(
-        val app: BasicPkgContainer,
+        val app: BasePkg,
         val onSiblingClicked: (Pkg) -> Unit,
     ) : AppDetailsAdapter.Item {
         override val stableId: Long

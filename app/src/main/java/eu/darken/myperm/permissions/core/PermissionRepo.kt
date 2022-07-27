@@ -5,7 +5,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PermissionInfo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.features.HasApkData
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -56,7 +56,7 @@ class PermissionRepo @Inject constructor(
             }
             .flatten()
 
-        val appWithPermissions = apps.filterIsInstance<HasApkData>()
+        val appWithPermissions = apps.toList()
 
         val mappedPermissions = mutableSetOf<BasePermission>()
 
@@ -114,14 +114,14 @@ class PermissionRepo @Inject constructor(
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-    private fun PermissionInfo.toDeclaredPermission(apps: Collection<HasApkData>): DeclaredPermission =
+    private fun PermissionInfo.toDeclaredPermission(apps: Collection<BasePkg>): DeclaredPermission =
         DeclaredPermission(
             permissionInfo = this,
             requestingPkgs = apps.filter { it.requestsPermission(id) },
             declaringPkgs = apps.filter { it.declaresPermission(id) }
         )
 
-    private fun Permission.Id.toUnusedPermission(apps: Collection<HasApkData>): UnknownPermission = UnknownPermission(
+    private fun Permission.Id.toUnusedPermission(apps: Collection<BasePkg>): UnknownPermission = UnknownPermission(
         id = this,
         requestingPkgs = apps.filter { it.requestsPermission(this) }
     )

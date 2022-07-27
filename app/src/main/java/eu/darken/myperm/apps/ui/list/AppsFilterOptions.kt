@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
-import eu.darken.myperm.apps.core.features.HasInstallData
+import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
@@ -25,16 +25,16 @@ data class AppsFilterOptions(
     ) {
         SYSTEM_APP(
             labelRes = R.string.apps_filter_systemapps_label,
-            matches = { it is HasInstallData && it.isSystemApp }
+            matches = { it is Installed && it.isSystemApp }
         ),
         USER_APP(
             labelRes = R.string.apps_filter_userapps_label,
-            matches = { it is HasInstallData && !it.isSystemApp }
+            matches = { it is Installed && !it.isSystemApp }
         ),
         NO_INTERNET(
             labelRes = R.string.apps_filter_nointernet_label,
             matches = {
-                it is HasInstallData
+                it is Installed
                         && it.internetAccess != InternetAccess.DIRECT
                         && it.internetAccess != InternetAccess.UNKNOWN
             }
@@ -42,7 +42,7 @@ data class AppsFilterOptions(
         GOOGLE_PLAY(
             labelRes = R.string.apps_filter_gplay_label,
             matches = { pkg ->
-                pkg is HasInstallData
+                pkg is Installed
                         && !pkg.isSystemApp
                         && pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id }
             }
@@ -50,7 +50,7 @@ data class AppsFilterOptions(
         OEM_STORE(
             labelRes = R.string.apps_filter_oemstore_label,
             matches = { pkg ->
-                pkg is HasInstallData && !pkg.isSystemApp && pkg.installerInfo.allInstallers.any { installer ->
+                pkg is Installed && !pkg.isSystemApp && pkg.installerInfo.allInstallers.any { installer ->
                     AKnownPkg.OEM_STORES.map { it.id }.contains(installer.id)
                 }
             }
@@ -58,18 +58,18 @@ data class AppsFilterOptions(
         SIDELOADED(
             labelRes = R.string.apps_filter_sideloaded_label,
             matches = { pkg ->
-                pkg is HasInstallData && !pkg.isSystemApp && pkg.installerInfo.allInstallers.none { installer ->
+                pkg is Installed && !pkg.isSystemApp && pkg.installerInfo.allInstallers.none { installer ->
                     AKnownPkg.APP_STORES.map { it.id }.contains(installer.id)
                 }
             }
         ),
         SHARED_ID(
             labelRes = R.string.apps_filter_sharedid_label,
-            matches = { it is HasInstallData && it.siblings.isNotEmpty() }
+            matches = { it is Installed && it.siblings.isNotEmpty() }
         ),
         MULTI_PROFILE(
             labelRes = R.string.apps_filter_multipleprofiles_label,
-            matches = { it is HasInstallData && (it.twins.isNotEmpty()) }
+            matches = { it is Installed && (it.twins.isNotEmpty()) }
         ),
         PRIMARY_PROFILE(
             labelRes = R.string.apps_filter_profile_active_label,

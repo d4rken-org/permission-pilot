@@ -12,7 +12,7 @@ import coil.dispose
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.features.SecondaryPkg
@@ -180,7 +180,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
     }
 
     data class Item(
-        override val app: BasicPkgContainer,
+        override val app: BasePkg,
         val onIconClicked: (Pkg) -> Unit,
         val onRowClicked: (Pkg) -> Unit,
         val onTagClicked: (Permission) -> Unit,

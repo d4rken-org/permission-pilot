@@ -8,7 +8,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.AppStoreTool
-import eu.darken.myperm.apps.core.container.BasicPkgContainer
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -65,21 +64,18 @@ class AppsFragmentVM @Inject constructor(
             .sortedWith(sortOptions.mainSort.getComparator(context))
 
         val listItems = filtered.map { app ->
-            when (app) {
-                is BasicPkgContainer -> NormalAppVH.Item(
-                    app = app,
-                    onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
-                    onRowClicked = {
-                        log(TAG) { "Navigating to $app" }
-                        MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.getLabel(context))
-                            .navigate()
-                    },
-                    onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
-                    onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) },
-                    onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
-                )
-                else -> throw IllegalArgumentException()
-            }
+            NormalAppVH.Item(
+                app = app,
+                onIconClicked = { events.postValue(AppsEvents.ShowAppSystemDetails(it)) },
+                onRowClicked = {
+                    log(TAG) { "Navigating to $app" }
+                    MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.getLabel(context))
+                        .navigate()
+                },
+                onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
+                onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) },
+                onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
+            )
         }
         State(
             items = listItems,

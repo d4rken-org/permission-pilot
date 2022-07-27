@@ -13,7 +13,7 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.BasicPkgContainer
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.AndroidVersionCodes
@@ -133,7 +133,7 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
     }
 
     data class Item(
-        val app: BasicPkgContainer,
+        val app: BasePkg,
         val onGoToSettings: (Pkg) -> Unit,
         val onInstallerIconClicked: (Pkg) -> Unit,
         val onInstallerTextClicked: (Pkg) -> Unit,

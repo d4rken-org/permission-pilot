@@ -42,7 +42,7 @@ data class InstallerInfo(
     }
 }
 
-fun HasInstallData.isSideloaded(): Boolean {
+fun Installed.isSideloaded(): Boolean {
     if (isSystemApp) return false
     return installerInfo.allInstallers.none { it.id == AKnownPkg.GooglePlay.id }
 }

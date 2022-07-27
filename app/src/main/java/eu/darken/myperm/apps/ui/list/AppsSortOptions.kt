@@ -7,8 +7,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.HasApkData
-import eu.darken.myperm.apps.core.features.HasInstallData
+import eu.darken.myperm.apps.core.features.HasPermissions
+import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
 import java.time.Instant
@@ -28,21 +28,21 @@ data class AppsSortOptions(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasApkData)?.requestedPermissions?.count { it.isGranted } ?: 0
+                (app as? HasPermissions)?.requestedPermissions?.count { it.isGranted } ?: 0
             }.reversed()
         },
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasApkData)?.requestedPermissions?.size ?: 0
+                (app as? HasPermissions)?.requestedPermissions?.size ?: 0
             }.reversed()
         },
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasApkData)?.declaredPermissions?.size ?: 0
+                (app as? HasPermissions)?.declaredPermissions?.size ?: 0
             }.reversed()
         },
         APP_NAME(
@@ -56,21 +56,21 @@ data class AppsSortOptions(
             labelRes = R.string.apps_sort_install_date_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Instant> {
-                (it as? HasInstallData)?.installedAt ?: Instant.MIN
+                (it as? Installed)?.installedAt ?: Instant.MIN
             }.reversed()
         },
         UPDATED_AT(
             labelRes = R.string.apps_sort_update_date_label
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Instant> {
-                (it as? HasInstallData)?.updatedAt ?: Instant.MIN
+                (it as? Installed)?.updatedAt ?: Instant.MIN
             }.reversed()
         },
         INSTALL_SOURCE(
             labelRes = R.string.apps_sort_install_source_label
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, String> { pkg ->
-                if (pkg !is HasInstallData) return@comparing "ZZ"
+                if (pkg !is Installed) return@comparing "ZZ"
                 if (pkg.installerInfo.allInstallers.isEmpty()) return@comparing "Z"
 
                 val byGplay = pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id }

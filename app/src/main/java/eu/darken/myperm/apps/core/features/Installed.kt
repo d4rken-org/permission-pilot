@@ -6,7 +6,7 @@ import android.os.UserHandle
 import eu.darken.myperm.apps.core.Pkg
 import java.time.Instant
 
-interface HasInstallData : Pkg {
+interface Installed : Pkg {
     val packageInfo: PackageInfo
     val userHandle: UserHandle
 
@@ -23,7 +23,7 @@ interface HasInstallData : Pkg {
     val siblings: Collection<Pkg>
 
     // Extra user profile
-    val twins: Collection<HasInstallData>
+    val twins: Collection<Installed>
 
     val internetAccess: InternetAccess
     val installerInfo: InstallerInfo

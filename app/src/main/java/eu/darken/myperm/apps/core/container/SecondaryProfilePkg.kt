@@ -19,7 +19,7 @@ data class SecondaryProfilePkg(
     override val userHandle: UserHandle,
     override val installerInfo: InstallerInfo,
     val launcherAppInfo: ApplicationInfo,
-) : BasicPkgContainer, SecondaryPkg {
+) : BasePkg(), SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -48,7 +48,7 @@ data class SecondaryProfilePkg(
     }
 
     override var siblings: Collection<Pkg> = emptyList()
-    override var twins: Collection<HasInstallData> = emptyList()
+    override var twins: Collection<Installed> = emptyList()
 
     override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
 
@@ -65,7 +65,7 @@ data class SecondaryProfilePkg(
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 }
 
-fun Context.getSecondaryProfilePkgs(): Collection<Pkg> {
+fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
     val launcherApps = getSystemService(LauncherApps::class.java)
     val userManager = getSystemService(UserManager::class.java)
 

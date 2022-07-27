@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.PrimaryProfilePkg
-import eu.darken.myperm.apps.core.features.HasInstallData
+import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
@@ -62,13 +62,13 @@ class PermissionOverviewVH(parent: ViewGroup) :
         val showCaveat = perm.requestingPkgs.size != primaryPkgs.size
 
         countUserApps.apply {
-            val apps = primaryPkgs.filter { (it as? HasInstallData)?.isSystemApp == false }
+            val apps = primaryPkgs.filter { (it as? Installed)?.isSystemApp == false }
             val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
             text = getString(R.string.permissions_details_count_user_apps, granted.size, apps.size)
         }
 
         countSystemApps.apply {
-            val apps = primaryPkgs.filter { (it as? HasInstallData)?.isSystemApp == true }
+            val apps = primaryPkgs.filter { (it as? Installed)?.isSystemApp == true }
             val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
             text = getString(R.string.permissions_details_count_system_apps, granted.size, apps.size)
         }

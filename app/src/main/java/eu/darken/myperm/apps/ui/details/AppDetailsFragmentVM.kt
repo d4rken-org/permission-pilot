@@ -9,8 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.AppStoreTool
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.BasicPkgContainer
-import eu.darken.myperm.apps.core.features.HasApkData
+import eu.darken.myperm.apps.core.features.HasPermissions
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -53,41 +52,37 @@ class AppDetailsFragmentVM @Inject constructor(
             val infoItems = mutableListOf<AppDetailsAdapter.Item>()
             val permissions = permissionRepo.permissions.first()
 
-            when (app) {
-                is BasicPkgContainer -> {
-                    AppOverviewVH.Item(
-                        app = app,
-                        onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
-                        onInstallerTextClicked = { installer ->
-                            AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
-                        },
-                        onInstallerIconClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
-                    ).run { infoItems.add(this) }
+            AppOverviewVH.Item(
+                app = app,
+                onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
+                onInstallerTextClicked = { installer ->
+                    AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
+                },
+                onInstallerIconClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
+            ).run { infoItems.add(this) }
 
-                    if (app.twins.isNotEmpty()) {
-                        AppTwinsVH.Item(
-                            app,
-                            onTwinClicked = {
-                                AppDetailsFragmentDirections.toSelf(it.id, it.getLabel(context)).navigate()
-                            }
-                        ).run { infoItems.add(this) }
+            if (app.twins.isNotEmpty()) {
+                AppTwinsVH.Item(
+                    app,
+                    onTwinClicked = {
+                        AppDetailsFragmentDirections.toSelf(it.id, it.getLabel(context)).navigate()
                     }
-
-                    if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
-                        AppSiblingsVH.Item(
-                            app,
-                            onSiblingClicked = {
-                                AppDetailsFragmentDirections.toSelf(
-                                    appId = it.id,
-                                    appLabel = it.getLabel(context),
-                                ).navigate()
-                            }
-                        ).run { infoItems.add(this) }
-                    }
-                }
+                ).run { infoItems.add(this) }
             }
 
-            (app as? HasApkData)?.requestedPermissions?.forEach { appPermission ->
+            if (app.sharedUserId != null || app.siblings.isNotEmpty()) {
+                AppSiblingsVH.Item(
+                    app,
+                    onSiblingClicked = {
+                        AppDetailsFragmentDirections.toSelf(
+                            appId = it.id,
+                            appLabel = it.getLabel(context),
+                        ).navigate()
+                    }
+                ).run { infoItems.add(this) }
+            }
+
+            (app as? HasPermissions)?.requestedPermissions?.forEach { appPermission ->
                 val permission = permissions.singleOrNull { it.id == appPermission.id }
                     ?: throw IllegalArgumentException("Can't find $appPermission")
 

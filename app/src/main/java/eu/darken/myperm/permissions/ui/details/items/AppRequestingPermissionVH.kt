@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.HasApkData
+import eu.darken.myperm.apps.core.features.HasPermissions
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
@@ -59,7 +59,7 @@ class AppRequestingPermissionVH(parent: ViewGroup) :
 
     data class Item(
         override val permission: BasePermission,
-        val app: HasApkData,
+        val app: HasPermissions,
         val onItemClicked: (Item) -> Unit,
         val onIconClicked: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {

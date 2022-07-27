@@ -2,16 +2,13 @@ package eu.darken.myperm.apps.core.features
 
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import android.content.pm.PermissionInfo
 import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
-import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.container.BasePermission
 
 // A Pkg where we have access to an APK
-interface HasApkData : Pkg {
+interface ReadableApk : Pkg {
 
     val packageInfo: PackageInfo
 
@@ -36,14 +33,4 @@ interface HasApkData : Pkg {
     val apiMinimumLevel: Int?
         get() = applicationInfo?.minSdkVersion
 
-    fun getPermission(id: Permission.Id): UsesPermission?
-
-    val requestedPermissions: Collection<UsesPermission>
-    fun requestsPermission(id: Permission.Id): Boolean
-
-    val declaredPermissions: Collection<PermissionInfo>
-    fun declaresPermission(id: Permission.Id): Boolean
-
 }
-
-fun HasApkData.requestsPermission(permission: BasePermission) = requestsPermission(permission.id)

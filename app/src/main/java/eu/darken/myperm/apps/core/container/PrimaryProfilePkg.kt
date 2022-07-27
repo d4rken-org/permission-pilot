@@ -21,7 +21,7 @@ data class PrimaryProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
-) : BasicPkgContainer {
+) : BasePkg() {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -43,7 +43,7 @@ data class PrimaryProfilePkg(
             ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
 
     override var siblings: Collection<Pkg> = emptyList()
-    override var twins: Collection<HasInstallData> = emptyList()
+    override var twins: Collection<Installed> = emptyList()
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
         packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
@@ -71,7 +71,7 @@ data class PrimaryProfilePkg(
     override val internetAccess: InternetAccess by lazy {
         when {
             isSystemApp || getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
-            siblings.any { it is HasApkData && it.getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
+            siblings.any { it is HasPermissions && it.getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
             else -> InternetAccess.NONE
         }
     }
@@ -82,7 +82,7 @@ private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = Prima
     installerInfo = getInstallerInfo(context.packageManager),
 )
 
-fun Context.getNormalPkgs(): Collection<PrimaryProfilePkg> {
+fun Context.getNormalPkgs(): Collection<BasePkg> {
     log(AppRepo.TAG) { "getNormalPkgs()" }
 
     return packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS).map {

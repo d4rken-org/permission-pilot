@@ -18,7 +18,7 @@ data class SecondaryUserPkg(
     override val packageInfo: PackageInfo,
     override val installerInfo: InstallerInfo,
     override val userHandle: UserHandle,
-) : BasicPkgContainer, SecondaryPkg {
+) : BasePkg(), SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -49,7 +49,7 @@ data class SecondaryUserPkg(
     }
 
     override var siblings: Collection<Pkg> = emptyList()
-    override var twins: Collection<HasInstallData> = emptyList()
+    override var twins: Collection<Installed> = emptyList()
 
     override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
 
@@ -66,7 +66,7 @@ data class SecondaryUserPkg(
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 }
 
-fun Context.getSecondaryUserPkgs(): Collection<Pkg> {
+fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
 
     val normal = packageManager.getInstalledPackages(0).map { it.packageName }

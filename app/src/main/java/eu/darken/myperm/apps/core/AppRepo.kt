@@ -3,8 +3,6 @@ package eu.darken.myperm.apps.core
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.container.*
-import eu.darken.myperm.apps.core.features.HasApkData
-import eu.darken.myperm.apps.core.features.HasInstallData
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
@@ -30,7 +28,7 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Collection<Pkg>> = combine(
+    val apps: Flow<Collection<BasePkg>> = combine(
         refreshTrigger,
         appEventListener.events.onStart { emit(AppEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
     ) { _, _ ->
@@ -47,10 +45,7 @@ class AppRepo @Inject constructor(
 
             val twins = allPkgs.asSequence()
                 .filter { it != curPkg } // Don't compare against ourselves
-                .filterIsInstance<HasInstallData>()
                 .filter {
-                    if (curPkg !is HasInstallData) return@filter false
-
                     curPkg.id.pkgName == it.id.pkgName && curPkg.id.userHandle != it.id.userHandle
                 }
                 .toSet()
@@ -58,8 +53,8 @@ class AppRepo @Inject constructor(
             val siblings = allPkgs.asSequence()
                 .filter { it != curPkg } // Don't compare against ourselves
                 .filter {
-                    if (it !is HasApkData || it.sharedUserId == null) return@filter false
-                    if (curPkg !is HasApkData || it.sharedUserId == null) return@filter false
+                    if (it.sharedUserId == null) return@filter false
+                    if (it.sharedUserId == null) return@filter false
 
                     it.sharedUserId == curPkg.sharedUserId && it.id.userHandle == curPkg.id.userHandle
                 }
