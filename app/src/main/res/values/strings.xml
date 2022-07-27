@@ -117,7 +117,8 @@
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
     <string name="apps_filter_profile_secondary_label">Secondary profile</string>
-    <string name="permissions_details_description_secondary_description">%d permissions requested. Due to Android restrictions, it is not possible to show which permissions have been granted to apps installed in other profiles.</string>
+    <string name="permissions_details_description_restrictions_caveat_description">Due to Android restrictions, it is not possible to determine which permissions have been granted to apps installed in Managed User Profiles (i.e. Work Profile and Multi-Users), from the Main Profile. Permission status can only be shown for apps in the Active Profile (i.e. current profile). To view the permission status in other profiles, install this app in those profiles.</string>
+    <string name="permissions_details_description_secondary_description">"%d permissions requested."</string>
     <string name="permissions_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
