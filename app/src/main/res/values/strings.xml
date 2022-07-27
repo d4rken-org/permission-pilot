@@ -119,9 +119,9 @@
     <string name="apps_filter_profile_secondary_label">Secondary profile</string>
     <string name="permissions_details_description_secondary_description">%d permissions requested. Due to Android restrictions, it is not possible to show which permissions have been granted to apps installed in other profiles.</string>
     <string name="permissions_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
-    <string name="api_target_level_x">Target Android version: %s</string>
-    <string name="api_minimum_level_x">Minimum Android version: %s</string>
-    <string name="api_build_level_x">Build with Android version: %s</string>
+    <string name="api_target_level_x">Target version: %s</string>
+    <string name="api_minimum_level_x">Minimum version: %s</string>
+    <string name="api_build_level_x">Compile version: %s</string>
     <string name="permission_reboot_label">Reboot device</string>
     <string name="permission_reboot_description">Allows the app to reboot the device. Only available to system apps.</string>
     <string name="permissions_sort_apps_relevance_label">Relevance</string>

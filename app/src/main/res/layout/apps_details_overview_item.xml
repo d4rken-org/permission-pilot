@@ -98,7 +98,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/api_minimum_level"
-            style="@style/TextAppearance.Material3.LabelMedium"
+            style="@style/TextAppearance.Material3.BodySmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/api_target_level"
@@ -106,7 +106,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/api_build_level"
-            style="@style/TextAppearance.Material3.LabelMedium"
+            style="@style/TextAppearance.Material3.BodySmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/api_minimum_level"
