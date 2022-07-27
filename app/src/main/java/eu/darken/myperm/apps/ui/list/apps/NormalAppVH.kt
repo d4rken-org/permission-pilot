@@ -151,13 +151,13 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         isInvisible = when {
             grantedPerm != null -> {
-                grantedPerm.getIcon(context)?.let { setImageDrawable(it) }
+                load(grantedPerm)
                 tintIt(colorGranted)
                 alpha = 1.0f
                 false
             }
             perms.isNotEmpty() -> {
-                perms.first().getIcon(context)?.let { setImageDrawable(it) }
+                load(perms.first())
                 tintIt(colorDenied)
                 alpha = 0.4f
                 false
