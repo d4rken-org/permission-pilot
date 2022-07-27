@@ -68,7 +68,7 @@ data class SecondaryUserPkg(
     }
 }
 
-fun Context.getSecondaryPkgs(): Collection<Pkg> {
+fun Context.getSecondaryUserPkgs(): Collection<Pkg> {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
 
     val normal = packageManager.getInstalledPackages(0).map { it.packageName }

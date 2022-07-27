@@ -38,7 +38,7 @@ class AppRepo @Inject constructor(
 
         val profilePkgs = context.getSecondaryProfilePkgs()
 
-        val uninstalledPkgs = context.getSecondaryPkgs().filter { uninstalled ->
+        val uninstalledPkgs = context.getSecondaryUserPkgs().filter { uninstalled ->
             profilePkgs.none { it.id.pkgName == uninstalled.id.pkgName }
         }
 
