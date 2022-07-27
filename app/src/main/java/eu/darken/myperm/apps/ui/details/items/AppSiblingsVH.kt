@@ -5,7 +5,6 @@ import androidx.core.view.isGone
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
-import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.lists.BindableVH
@@ -44,15 +43,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         siblingsContainer.removeAllViews()
         app.siblings.forEach { sibling ->
             AppsDetailsSiblingsItemSiblingBinding.inflate(layoutInflater, siblingsContainer, false).apply {
-                icon.apply {
-                    setImageDrawable(sibling.getIcon(context))
-                    setOnClickListener {
-                        try {
-                            context.startActivity(sibling.getSettingsIntent(context))
-                        } catch (_: Exception) {
-                        }
-                    }
-                }
+                icon.setImageDrawable(sibling.getIcon(context))
 
                 label.text = sibling.getLabel(context)
                 identifier.text = sibling.id.pkgName

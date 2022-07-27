@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:background="?selectableItemBackground">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
         android:src="@drawable/ic_default_app_icon_24"
         app:layout_constraintBottom_toBottomOf="@id/identifier"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,11 +33,14 @@
         android:id="@+id/identifier"
         style="@style/TextAppearance.Material3.BodySmall"
         android:layout_width="0dp"
-        android:textIsSelectable="true"
         android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:ellipsize="end"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/label"
         app:layout_constraintTop_toBottomOf="@id/label"
-        tools:text="some.package.man" />
+        tools:text="some.package.man some.package.man some.package.man some.package.man" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
