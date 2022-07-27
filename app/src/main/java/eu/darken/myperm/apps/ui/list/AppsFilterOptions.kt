@@ -71,6 +71,10 @@ data class AppsFilterOptions(
             labelRes = R.string.apps_filter_multipleprofiles_label,
             matches = { it is HasInstallData && (it.twins.isNotEmpty()) }
         ),
+        PRIMARY_PROFILE(
+            labelRes = R.string.apps_filter_profile_active_label,
+            matches = { it is eu.darken.myperm.apps.core.container.PrimaryProfilePkg }
+        ),
         SECONDARY_PROFILE(
             labelRes = R.string.apps_filter_profile_secondary_label,
             matches = { it is SecondaryProfilePkg }
