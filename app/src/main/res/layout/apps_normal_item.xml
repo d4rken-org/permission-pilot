@@ -139,55 +139,55 @@
         <ImageView
             android:id="@+id/tag_camera"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_photo_camera_24"
+            tools:src="@drawable/ic_baseline_photo_camera_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_microphone"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_mic_24"
+            tools:src="@drawable/ic_baseline_mic_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_location"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_location_on_24"
+            tools:src="@drawable/ic_baseline_location_on_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_phone"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_local_phone_24"
+            tools:src="@drawable/ic_baseline_local_phone_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_contacts"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_contacts_24"
+            tools:src="@drawable/ic_baseline_contacts_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_sms"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_sms_24"
+            tools:src="@drawable/ic_baseline_sms_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_storage"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_sd_storage_24"
+            tools:src="@drawable/ic_baseline_sd_storage_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_bluetooth"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_bluetooth_24"
+            tools:src="@drawable/ic_baseline_bluetooth_24"
             tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/tag_internet"
             style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_internet_24"
+            tools:src="@drawable/ic_baseline_internet_24"
             tools:visibility="visible" />
 
     </com.google.android.flexbox.FlexboxLayout>
