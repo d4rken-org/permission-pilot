@@ -13,7 +13,30 @@ Born out of a feature discussion for SD Maid. [Origin Story](https://github.com/
 
 ## Quick Start
 
-// TODO
+**THE PROBLEM**
+
+This app was created to fill in a void that currently exists in the Android App Market. Android has app permissions scattered in multiple places, requiring the user to navigate through multiple pages within System Settings to properly configure permissions for installed apps. Moreover, there is no way to view the status of all permissions for any app from one place.
+
+
+**THE SOLUTION**
+
+Permission Pilot gives the user a bird's eye view of all permissions for installed apps from one place. Here's what you get:
+
+1. View snapshot of ALL permissions that every app has requested, their allowed/ denied status, battery management status, internet access, SharedUserID status, etc. You can see EVERYTHING about each installed app on your device from one place. This includes all hidden permissions too which are not visible under System Settings.
+
+2. Each icon you see is a 'clickable' shortcut that can quickly launch a configurable permission within System Settings, take you directly to the App Info page within System Settings, or take you to the App page on the Store where the app was downloaded/ updated from. This allows the user to quickly view and configure all permissions for each app, without the need to navigate through multiple pages within System Settings.
+
+3. The Permissions Bar shows the most important permissions at a glance, and clicking any of the icons on it will display a short description of the permission at the bottom of your screen, with a link to view the list of all apps that have requested that permission.
+
+4. Several Sort and Filter options have been provided that can be used to quickly view list of apps that satisfy your chosen criteria.
+
+5. Permission Pilot has support for apps installed in Work Profile and Multi-Users, though some of that is still Work-in-Progress (WIP).
+ 
+
+**LIMITATIONS**
+
+Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app (on non-rooted devices). Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
+
 
 ## Downloads
 
