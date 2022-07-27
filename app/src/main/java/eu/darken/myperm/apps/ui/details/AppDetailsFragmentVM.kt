@@ -7,9 +7,9 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.AppStoreTool
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
-import eu.darken.myperm.apps.core.features.AppStore
 import eu.darken.myperm.apps.core.features.HasApkData
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
@@ -34,6 +34,7 @@ class AppDetailsFragmentVM @Inject constructor(
     private val webpageTool: WebpageTool,
     appRepo: AppRepo,
     permissionRepo: PermissionRepo,
+    appStoreTool: AppStoreTool
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val navArgs: AppDetailsFragmentArgs by handle.navArgs()
@@ -60,11 +61,7 @@ class AppDetailsFragmentVM @Inject constructor(
                         onInstallerTextClicked = { installer ->
                             AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
                         },
-                        onInstallerIconClicked = { installer ->
-                            (installer as? AppStore)
-                                ?.urlGenerator?.invoke(app.id)
-                                ?.let { webpageTool.open(it) }
-                        }
+                        onInstallerIconClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
                     ).run { infoItems.add(this) }
 
                     if (app.twins.isNotEmpty()) {

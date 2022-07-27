@@ -7,8 +7,8 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.AppStoreTool
 import eu.darken.myperm.apps.core.container.BasicPkgContainer
-import eu.darken.myperm.apps.core.features.AppStore
 import eu.darken.myperm.apps.ui.list.apps.NormalAppVH
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -31,6 +31,7 @@ class AppsFragmentVM @Inject constructor(
     packageRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val webpageTool: WebpageTool,
+    private val appStoreTool: AppStoreTool,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val searchTerm = MutableStateFlow<String?>(null)
@@ -75,11 +76,7 @@ class AppsFragmentVM @Inject constructor(
                     },
                     onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
                     onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) },
-                    onInstallerClicked = { installer ->
-                        (installer as? AppStore)
-                            ?.urlGenerator?.invoke(app.id)
-                            ?.let { webpageTool.open(it) }
-                    }
+                    onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
                 )
                 else -> throw IllegalArgumentException()
             }
