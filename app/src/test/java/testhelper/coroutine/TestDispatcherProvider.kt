@@ -1,23 +1,18 @@
 package testhelper.coroutine
 
 import eu.darken.myperm.common.coroutine.DispatcherProvider
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlin.coroutines.CoroutineContext
 
-class TestDispatcherProvider(private val context: CoroutineContext? = null) : DispatcherProvider {
-    override val Default: CoroutineContext
+class TestDispatcherProvider(private val context: CoroutineDispatcher? = null) : DispatcherProvider {
+    override val Default: CoroutineDispatcher
         get() = context ?: Dispatchers.Unconfined
-    override val Main: CoroutineContext
+    override val Main: CoroutineDispatcher
         get() = context ?: Dispatchers.Unconfined
-    override val MainImmediate: CoroutineContext
+    override val MainImmediate: CoroutineDispatcher
         get() = context ?: Dispatchers.Unconfined
-    override val Unconfined: CoroutineContext
+    override val Unconfined: CoroutineDispatcher
         get() = context ?: Dispatchers.Unconfined
-    override val IO: CoroutineContext
+    override val IO: CoroutineDispatcher
         get() = context ?: Dispatchers.Unconfined
 }
-
-fun CoroutineScope.asDispatcherProvider() = this.coroutineContext.asDispatcherProvider()
-
-fun CoroutineContext.asDispatcherProvider() = TestDispatcherProvider(context = this)

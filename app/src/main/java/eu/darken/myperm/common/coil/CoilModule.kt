@@ -11,6 +11,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import eu.darken.myperm.common.BuildConfigWrap
+import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
@@ -27,6 +28,7 @@ class CoilModule {
         @ApplicationContext context: Context,
         appIconFetcherFactory: AppIconFetcher.Factory,
         permissionIconFetcher: PermissionIconFetcher.Factory,
+        dispatcherProvider: DispatcherProvider,
     ): ImageLoader = ImageLoader.Builder(context).apply {
 
         if (BuildConfigWrap.DEBUG) {
@@ -42,6 +44,7 @@ class CoilModule {
             add(appIconFetcherFactory)
             add(permissionIconFetcher)
         }
+        dispatcher(dispatcherProvider.Default)
     }.build()
 
     @Singleton
