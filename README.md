@@ -35,7 +35,7 @@ Permission Pilot gives the user a bird's eye view of all permissions for install
 
 **LIMITATIONS**
 
-Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app on non-rooted devices. Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
+Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app (on non-rooted devices). Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
 
 
 ## Downloads
