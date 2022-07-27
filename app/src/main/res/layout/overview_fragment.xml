@@ -25,4 +25,13 @@
         app:layout_constraintStart_toStartOf="@id/list"
         app:layout_constraintTop_toTopOf="@id/list" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        style="@style/TextAppearance.Material3.HeadlineMedium"
+        android:layout_height="wrap_content"
+        android:text="TODO"
+        app:layout_constraintBottom_toBottomOf="@id/list"
+        app:layout_constraintEnd_toEndOf="@id/list"
+        app:layout_constraintStart_toStartOf="@id/list"
+        app:layout_constraintTop_toTopOf="@id/list" />
 </androidx.constraintlayout.widget.ConstraintLayout>
