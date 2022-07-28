@@ -55,7 +55,7 @@
 
     <string name="apps_filter_userapps_label">User Apps</string>
     <string name="apps_filter_systemapps_label">System Apps</string>
-    <string name="apps_filter_nointernet_label">Apps with no internet access</string>
+    <string name="apps_filter_nointernet_label">Apps without internet access</string>
     <string name="apps_filter_sideloaded_label">Sideloaded Apps</string>
     <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM Store</string>
@@ -117,7 +117,7 @@
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
     <string name="apps_filter_profile_secondary_label">Apps in Managed Profile(s)</string>
-    <string name="apps_details_description_restrictions_caveat_description">Due to Android restrictions, it is not possible to determine which permissions have been granted to apps installed in Managed User Profiles (i.e. Work Profile and Multi-Users), from the Main Profile. Permission status can only be shown for apps in the Active Profile (i.e. current profile). To view the permission status in other profiles, install this app in those profiles.</string>
+    <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted to it cannot be determined due to Android restrictions.</string>
     <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
     <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
     <string name="api_target_level_x">Target version: %s</string>
@@ -136,4 +136,6 @@
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_total_apps">"Total: Granted to %s."</string>
     <string name="permissions_details_description_restrictions_caveat_description"> Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
+    <string name="permission_nfc_label">NFC</string>
+    <string name="permission_nfc_description">Allows the app to communicate with Near Field Communication (NFC) tags, cards and readers.</string>
 </resources>

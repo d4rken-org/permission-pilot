@@ -187,6 +187,11 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val iconRes: Int = R.drawable.ic_system_alert_window_24
     }
 
+    object NFC : AKnownPermissions("android.permission.NFC") {
+        override val iconRes: Int = R.drawable.ic_nfc_24
+        override val labelRes: Int = R.string.permission_nfc_label
+        override val descriptionRes: Int = R.string.permission_nfc_description
+    }
 
     companion object {
         val values: List<AKnownPermissions> by lazy {
