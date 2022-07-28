@@ -23,29 +23,29 @@ platform :android do
   lane :beta do
     gradle(task: 'clean bundleGplayBeta')
     sh "bash ./remove_unsupported_languages.sh"
-#   	supply(
-#         track: 'beta',
-#         package_name: 'eu.darken.myperm',
-#         skip_upload_changelogs: 'false',
-#         skip_upload_apk: 'true',
-#         skip_upload_images: 'true',
-#         skip_upload_screenshots: 'true',
-#         skip_upload_metadata: 'true',
-#   	)
+  	supply(
+        track: 'beta',
+        package_name: 'eu.darken.myperm',
+        skip_upload_changelogs: 'false',
+        skip_upload_apk: 'true',
+        skip_upload_images: 'true',
+        skip_upload_screenshots: 'true',
+        skip_upload_metadata: 'true',
+  	)
   end
 
   lane :production do
     gradle(task: 'clean bundleGplayRelease')
     sh "bash ./remove_unsupported_languages.sh"
-#     supply(
-#         track: 'beta',
-#         package_name: 'eu.darken.myperm',
-#         skip_upload_changelogs: 'false',
-#         skip_upload_apk: 'true',
-#         skip_upload_images: 'true',
-#         skip_upload_screenshots: 'true',
-#         skip_upload_metadata: 'true',
-#     )
+    supply(
+        track: 'beta',
+        package_name: 'eu.darken.myperm',
+        skip_upload_changelogs: 'false',
+        skip_upload_apk: 'true',
+        skip_upload_images: 'true',
+        skip_upload_screenshots: 'true',
+        skip_upload_metadata: 'true',
+    )
   end
 
   lane :listing_only do
