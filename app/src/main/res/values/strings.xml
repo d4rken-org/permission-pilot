@@ -136,6 +136,6 @@
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_total_apps">"Total: Granted to %s."</string>
     <string name="permissions_details_description_restrictions_caveat_description"> Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
-</resources>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_reboot_description">Allows the app to communicate with Near Field Communication (NFC) tags, cards and readers..</string>
+</resources>
