@@ -16,6 +16,7 @@ import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.features.SecondaryPkg
+import eu.darken.myperm.apps.core.features.getPermission
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
@@ -23,6 +24,7 @@ import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsNormalItemBinding
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.features.isGranted
 
 class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, AppsNormalItemBinding>(
     R.layout.apps_normal_item,

@@ -21,6 +21,7 @@ import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsOverviewItemBinding
+import eu.darken.myperm.permissions.core.features.isGranted
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle

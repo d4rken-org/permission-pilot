@@ -9,6 +9,7 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.PrimaryProfilePkg
 import eu.darken.myperm.apps.core.features.Installed
+import eu.darken.myperm.apps.core.features.getPermission
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.DividerItemDecorator2
 import eu.darken.myperm.common.capitalizeFirstLetter
@@ -16,6 +17,7 @@ import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsOverviewItemBinding
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.features.isGranted
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class PermissionOverviewVH(parent: ViewGroup) :

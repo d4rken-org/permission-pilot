@@ -6,6 +6,8 @@ import android.content.pm.PermissionInfo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.BasePkg
+import eu.darken.myperm.apps.core.features.declaresPermission
+import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR

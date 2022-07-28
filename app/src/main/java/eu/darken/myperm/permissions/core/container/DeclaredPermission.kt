@@ -5,8 +5,10 @@ import androidx.annotation.StringRes
 import androidx.core.content.pm.PermissionInfoCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.BasePkg
+import eu.darken.myperm.apps.core.features.getPermission
 import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.features.isGranted
 
 
 data class DeclaredPermission(

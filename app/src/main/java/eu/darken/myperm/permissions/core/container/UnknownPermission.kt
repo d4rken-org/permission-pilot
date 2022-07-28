@@ -1,8 +1,10 @@
 package eu.darken.myperm.permissions.core.container
 
 import eu.darken.myperm.apps.core.container.BasePkg
+import eu.darken.myperm.apps.core.features.getPermission
 import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.features.isGranted
 
 data class UnknownPermission(
     override val id: Permission.Id,

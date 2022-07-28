@@ -9,7 +9,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.AppStoreTool
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.HasPermissions
+import eu.darken.myperm.apps.core.features.HasPermissionUseInfo
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -82,7 +82,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 ).run { infoItems.add(this) }
             }
 
-            (app as? HasPermissions)?.requestedPermissions?.forEach { appPermission ->
+            (app as? HasPermissionUseInfo)?.requestedPermissions?.forEach { appPermission ->
                 val permission = permissions.singleOrNull { it.id == appPermission.id }
                     ?: throw IllegalArgumentException("Can't find $appPermission")
 

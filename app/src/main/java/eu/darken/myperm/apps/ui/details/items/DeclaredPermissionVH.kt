@@ -4,14 +4,14 @@ import android.content.res.ColorStateList
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.UsesPermission
-import eu.darken.myperm.apps.core.features.UsesPermission.Status
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsDetailsPermissionDeclaredItemBinding
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
+import eu.darken.myperm.permissions.core.features.PermissionState.Status
 
 class DeclaredPermissionVH(parent: ViewGroup) :
     AppDetailsAdapter.BaseVH<DeclaredPermissionVH.Item, AppsDetailsPermissionDeclaredItemBinding>(
@@ -52,7 +52,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val appPermission: UsesPermission,
+        val appPermission: UsedPermissionStateful,
         val permission: DeclaredPermission,
         val onItemClicked: (Item) -> Unit,
         val onTogglePermission: (Item) -> Unit,

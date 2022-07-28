@@ -7,9 +7,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.HasPermissions
 import eu.darken.myperm.apps.core.features.Installed
+import eu.darken.myperm.apps.core.features.ReadableApk
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.permissions.core.features.isGranted
 import kotlinx.parcelize.Parcelize
 import java.time.Instant
 
@@ -28,21 +29,21 @@ data class AppsSortOptions(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasPermissions)?.requestedPermissions?.count { it.isGranted } ?: 0
+                (app as? ReadableApk)?.requestedPermissions?.count { it.isGranted } ?: 0
             }.reversed()
         },
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasPermissions)?.requestedPermissions?.size ?: 0
+                (app as? ReadableApk)?.requestedPermissions?.size ?: 0
             }.reversed()
         },
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
         ) {
             override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? HasPermissions)?.declaredPermissions?.size ?: 0
+                (app as? ReadableApk)?.declaredPermissions?.size ?: 0
             }.reversed()
         },
         APP_NAME(

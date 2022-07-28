@@ -16,12 +16,14 @@ import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
+import eu.darken.myperm.permissions.core.features.isGranted
 
 data class PrimaryProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
-) : BasePkg() {
+) : BasePkg(), HasPermissionUseInfo {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -45,33 +47,25 @@ data class PrimaryProfilePkg(
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()
 
-    override val requestedPermissions: Collection<UsesPermission> by lazy {
+    override val requestedPermissions: Collection<UsedPermissionStateful> by lazy {
         packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
             val flags = packageInfo.requestedPermissionsFlags[index]
 
-            UsesPermission(
+            UsedPermissionStateful(
                 id = Permission.Id(permissionId),
                 flags = flags,
             )
         } ?: emptyList()
     }
 
-    override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
-
-    override fun getPermission(id: Permission.Id): UsesPermission? {
-        return requestedPermissions.singleOrNull { it.id == id }
-    }
-
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
         packageInfo.permissions?.toSet() ?: emptyList()
     }
 
-    override fun declaresPermission(id: Permission.Id): Boolean = declaredPermissions.any { it.name == id.value }
-
     override val internetAccess: InternetAccess by lazy {
         when {
-            isSystemApp || getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
-            siblings.any { it is HasPermissions && it.getPermission(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
+            isSystemApp || getPermissionUses(AndroidPermissions.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
+            siblings.any { it is HasPermissionUseInfo && it.getPermissionUses(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
             else -> InternetAccess.NONE
         }
     }

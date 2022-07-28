@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
 import android.os.UserManager
+import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
@@ -13,6 +14,7 @@ import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.Logging.Priority.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
 
 data class SecondaryProfilePkg(
     override val packageInfo: PackageInfo,
@@ -38,29 +40,21 @@ data class SecondaryProfilePkg(
         return pm.getUserBadgedIcon(launcherAppInfo.loadIcon(pm), userHandle)
     }
 
-    override val requestedPermissions: Collection<UsesPermission> by lazy {
+    override var siblings: Collection<Pkg> = emptyList()
+    override var twins: Collection<Installed> = emptyList()
+
+    override val requestedPermissions: Collection<UsedPermissionStateful> by lazy {
         packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
-            UsesPermission(
+            UsedPermissionStateful(
                 id = Permission.Id(permissionId),
                 flags = null,  // We don't know for secondary profiles
             )
         } ?: emptyList()
     }
 
-    override var siblings: Collection<Pkg> = emptyList()
-    override var twins: Collection<Installed> = emptyList()
-
-    override fun requestsPermission(id: Permission.Id): Boolean = requestedPermissions.any { it.id == id }
-
-    override fun getPermission(id: Permission.Id): UsesPermission? {
-        return requestedPermissions.singleOrNull { it.id == id }
-    }
-
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
         packageInfo.permissions?.toSet() ?: emptyList()
     }
-
-    override fun declaresPermission(id: Permission.Id): Boolean = declaredPermissions.any { it.name == id.value }
 
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 }
