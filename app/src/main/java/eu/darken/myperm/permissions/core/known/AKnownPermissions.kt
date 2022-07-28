@@ -192,6 +192,22 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val labelRes: Int = R.string.permission_nfc_label
         override val descriptionRes: Int = R.string.permission_nfc_description
     }
+    
+    object Modify_System_Settings : AknownPermissions("android.permission.WRITE_SETTINGS") {
+    	override val iconRes: Int = R.drawable.ic_modify_system_settings_24
+		override val labelRes: Int = R.string.permission_modify_system_settings_label
+		override val descriptionRes: Int = R.string.permission_modify_system_settings_description
+	}
+	object Manage_Media : AknownPermissions("android.permission.WRITE_MEDIA_STORAGE") {
+    	override val iconRes: Int = R.drawable.ic_write_media_storage_24
+		override val labelRes: Int = R.string.permission_write_media_storage_label
+		override val descriptionRes: Int = R.string.permission_write_media_storage_description
+	}
+	object Usage_Data_Access : AknownPermissions("android.permission.PACKAGE_USAGE_STATS") {
+    	override val iconRes: Int = R.drawable.ic_package_usage_stats_24
+		override val labelRes: Int = R.string.permission_package_usage_stats_label
+		override val descriptionRes: Int = R.string.permission_package_usage_stats_description
+	}
 
     companion object {
         val values: List<AKnownPermissions> by lazy {
