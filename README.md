@@ -11,14 +11,14 @@ A new kind of app to help the user view apps and which permissions they use.
 
 Born out of a feature discussion for SD Maid. [Origin Story](https://github.com/d4rken-org/permission-pilot/issues/1)
 
-## Quick Start
+## Introduction
 
-**THE PROBLEM**
+#### THE PROBLEM
 
 This app was created to fill in a void that currently exists in the Android App Market. Android has app permissions scattered in multiple places, requiring the user to navigate through multiple pages within System Settings to properly configure permissions for installed apps. Moreover, there is no way to view the status of all permissions for any app from one place.
 
 
-**THE SOLUTION**
+#### THE SOLUTION
 
 Permission Pilot gives the user a bird's eye view of all permissions for installed apps from one place. Here's what you get:
 
@@ -33,15 +33,17 @@ Permission Pilot gives the user a bird's eye view of all permissions for install
 5. Permission Pilot has support for apps installed in Work Profile and Multi-Users, though some of that is still Work-in-Progress (WIP).
  
 
-**LIMITATIONS**
+#### LIMITATIONS
 
 Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app (on non-rooted devices). Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
 
 
 ## Downloads
-
-* [Download Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
-* [Download GitHub](https://github.com/d4rken-org/permission-pilot/releases)
+| Source                | Status |
+|-----------------------|--------|
+| [Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm) | [![](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Deu.darken.myperm%26l%3DAndroid%26m%3D%24version)](https://play.google.com/store/apps/details?id=eu.darken.myperm) |
+| [Github Releases](https://github.com/d4rken-org/permission-pilot/release) | [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases&label=GitHub)](https://github.com/d4rken-org/permission-pilot/releases/latest) |
+| [F-Droid (IzzyOnDroid)](https://apt.izzysoft.de/packages/eu.darken.myperm/) | [![](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/eu.darken.myperm)](https://apt.izzysoft.de/packages/eu.darken.myperm/) |
 
 ## Community
 
@@ -52,5 +54,6 @@ Want to chat? Join our [discord server here](https://discord.gg/7gGWxfM5yv).
 If you like the app, consider:
 
 * Contributing translations
+* Contributing features or bugfixes
 * Buying the upgrade on [Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
 * [Sponsoring the project](https://github.com/sponsors/d4rken)
