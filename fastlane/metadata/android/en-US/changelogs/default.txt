@@ -1,0 +1,4 @@
+Bugfixes and performance improvements.
+¯\_(ツ)_/¯
+
+(A detailed changelog is available on GitHub)
