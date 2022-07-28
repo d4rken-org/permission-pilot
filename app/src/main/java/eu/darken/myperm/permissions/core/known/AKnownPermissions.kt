@@ -193,7 +193,7 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val descriptionRes: Int = R.string.permission_nfc_description
     }
 
-    object MODIFY_SYSTEM_SETTINGS : AKnownPermissions("android.permission.WRITE_SETTINGS") {
+    object WRITE_SETTINGS : AKnownPermissions("android.permission.WRITE_SETTINGS") {
         override val iconRes: Int = R.drawable.ic_modify_system_settings_24
         override val labelRes: Int = R.string.permission_modify_system_settings_label
         override val descriptionRes: Int = R.string.permission_modify_system_settings_description
