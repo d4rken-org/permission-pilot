@@ -143,4 +143,6 @@
     <string name="permission_write_media_storage_description">Allows the app to manage media files on your device.</string>
     <string name="permission_package_usage_stats_label">Usage Data Access</string>
     <string name="permission_package_usage_stats_description">Allows the app to view the usage statistics of all apps installed on your device.</string>
+    <string name="permission_write_settings_label">Modify System Settings</string>
+    <string name="permission_write_settings_description">Allows the app to modify system\'s settings data. Malicious apps may corrupt your system\'s configuration.</string>
 </resources>
