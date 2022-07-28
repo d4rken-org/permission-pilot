@@ -60,8 +60,8 @@ data class SecondaryProfilePkg(
 }
 
 fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
-    val launcherApps = getSystemService(LauncherApps::class.java)
-    val userManager = getSystemService(UserManager::class.java)
+    val launcherApps = ContextCompat.getSystemService(this, LauncherApps::class.java)!!
+    val userManager = ContextCompat.getSystemService(this, UserManager::class.java)!!
 
     val profiles = userManager.userProfiles
 

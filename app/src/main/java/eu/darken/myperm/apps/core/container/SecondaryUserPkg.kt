@@ -69,7 +69,7 @@ fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
     )
     val newOnes = uninstalled.filter { !normal.contains(it.packageName) }
 
-    val userManager = getSystemService(UserManager::class.java)
+    val userManager = ContextCompat.getSystemService(this, UserManager::class.java)!!
 
     return newOnes.map { pkg ->
         SecondaryUserPkg(
