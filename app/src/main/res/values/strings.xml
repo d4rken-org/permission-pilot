@@ -137,4 +137,8 @@
     <string name="permissions_details_description_restrictions_caveat_description"> Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Allows the app to communicate with Near Field Communication (NFC) tags, cards and readers.</string>
+    <string name="permission_group_calendar_label">Calendar</string>
+    <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
+    <string name="permission_group_storage_label">Storage</string>
+    <string name="permission_group_storage_description"><![CDATA[Internal & sdcard related permissions, e.g. manage all files or read external storage.]]></string>
 </resources>

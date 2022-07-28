@@ -11,9 +11,12 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
+import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
+import eu.darken.myperm.permissions.core.known.APermGrp
+import eu.darken.myperm.permissions.ui.list.groups.PermissionGroupVH
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import eu.darken.myperm.settings.core.GeneralSettings
@@ -35,7 +38,7 @@ class PermissionsFragmentVM @Inject constructor(
     private val searchTerm = MutableStateFlow<String?>(null)
     private val filterOptions = generalSettings.permissionsFilterOptions.flow
     private val sortOptions = generalSettings.permissionsSortOptions.flow
-
+    private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
     val events = SingleLiveEvent<PermissionsEvents>()
 
     data class State(
@@ -45,10 +48,11 @@ class PermissionsFragmentVM @Inject constructor(
 
     val state: LiveData<State> = combine(
         permissionRepo.permissions,
+        expandedGroups,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { permissions, searchTerm, filterOptions, sortOptions ->
+    ) { permissions, expGroups, searchTerm, filterOptions, sortOptions ->
         val filtered = permissions
             .filter { perm -> filterOptions.keys.all { it.matches(perm) } }
             .filter {
@@ -60,34 +64,76 @@ class PermissionsFragmentVM @Inject constructor(
             }
             .sortedWith(sortOptions.mainSort.getComparator(context))
 
-        val items = filtered.map { permission ->
-            when (permission) {
-                is DeclaredPermission -> DeclaredPermissionVH.Item(
-                    perm = permission,
-                    onClickAction = {
-                        log(TAG) { "Navigating to $permission" }
-                        MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
-                            permissionId = permission.id,
-                            permissionLabel = permission.getLabel(context),
-                        ).navigate()
-                    }
-                )
-                is UnknownPermission -> UnknownPermissionVH.Item(
-                    perm = permission,
-                    onClickAction = {
+        val permItems = filtered
+            .map { permission ->
+                when (permission) {
+                    is DeclaredPermission -> DeclaredPermissionVH.Item(
+                        perm = permission,
+                        onClickAction = {
+                            log(TAG) { "Navigating to $permission" }
+                            MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
+                                permissionId = permission.id,
+                                permissionLabel = permission.getLabel(context),
+                            ).navigate()
+                        }
+                    )
+                    is UnknownPermission -> UnknownPermissionVH.Item(
+                        perm = permission,
+                        onClickAction = {
 
-                    }
-                )
+                        }
+                    )
+                }
+            }
+            .toMutableList()
+
+        val listItems = mutableListOf<PermissionsAdapter.Item>()
+
+        APermGrp.values.forEach { grp ->
+            val permsInGrp = permItems
+                .filter { grp.permissionIds.contains(it.permissionId) }
+                .also { permItems -= it.toSet() }
+
+            val isExpanded = expGroups[grp.id] == true
+
+            PermissionGroupVH.Item(
+                group = grp,
+                permissions = permsInGrp,
+                isExpanded = isExpanded,
+                onClickAction = { expandedGroups.toggle(grp.id) },
+            ).run { listItems.add(this) }
+
+            if (isExpanded) {
+                listItems.addAll(permsInGrp)
             }
         }
+
+        APermGrp.Other.apply {
+            val isExpanded = expGroups[this.id] == true
+
+            PermissionGroupVH.Item(
+                group = this,
+                permissions = permItems,
+                isExpanded = isExpanded,
+                onClickAction = { expandedGroups.toggle(id) },
+            )
+
+            if (isExpanded) {
+                listItems.addAll(permItems)
+            }
+        }
+
         State(
-            listData = items,
+            listData = listItems,
             isLoading = false,
         )
     }
         .onStart { emit(State()) }
         .asLiveData2()
 
+    private fun MutableStateFlow<Map<PermissionGroup.Id, Boolean>>.toggle(id: PermissionGroup.Id) {
+        value = value.toMutableMap().apply { this[id] = !(this[id] ?: false) }
+    }
 
     fun onSearchInputChanged(term: String?) {
         log { "onSearchInputChanged(term=$term)" }

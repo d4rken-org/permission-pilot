@@ -11,36 +11,43 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/used_by"
+        android:src="@drawable/ic_baseline_sd_storage_24"
+        app:layout_constraintBottom_toBottomOf="@id/quick_stats"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/identifier" />
+        app:layout_constraintTop_toTopOf="@id/label" />
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_baseline_group_work_24"
+        app:layout_constraintEnd_toEndOf="@id/icon"
+        app:layout_constraintStart_toStartOf="@id/icon"
+        app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/identifier"
-        style="@style/TextAppearance.Material3.LabelSmall"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:textIsSelectable="true"
-        android:ellipsize="start"
-        android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="android.permission.QUERY_ALL_PACKAGES" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/used_by"
+        android:id="@+id/label"
         style="@style/TextAppearance.Material3.BodyMedium"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/short_description"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:ellipsize="start"
+        android:singleLine="true"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toTopOf="@+id/quick_stats"
+        app:layout_constraintEnd_toStartOf="@id/collapse_toggle"
         app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/identifier"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Storage access" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/quick_stats"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintStart_toStartOf="@id/label"
+        app:layout_constraintTop_toBottomOf="@id/label"
         app:layout_goneMarginBottom="8dp"
         tools:text="Granted to 45 / 90 apps." />
 
@@ -49,14 +56,23 @@
         style="@style/TextAppearance.Material3.BodySmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
         android:alpha="0.8"
         android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/used_by"
+        app:layout_constraintEnd_toEndOf="@id/label"
+        app:layout_constraintStart_toStartOf="@id/label"
+        app:layout_constraintTop_toBottomOf="@id/quick_stats"
         tools:text="See and control calls through the system." />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/collapse_toggle"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:icon="@drawable/ic_baseline_expand_more_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

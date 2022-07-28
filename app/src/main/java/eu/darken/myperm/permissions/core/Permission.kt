@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.getPermissionInfo2
-import eu.darken.myperm.permissions.core.known.AKnownPermissions
+import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.parcelize.Parcelize
 
 interface Permission {
@@ -22,7 +22,7 @@ interface Permission {
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
 
-        AKnownPermissions.values.singleOrNull { it.id == id }
+        APerm.values.singleOrNull { it.id == id }
             ?.labelRes
             ?.let { return context.getString(it) }
 
@@ -39,7 +39,7 @@ interface Permission {
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
 
-        AKnownPermissions.values.singleOrNull { it.id == id }
+        APerm.values.singleOrNull { it.id == id }
             ?.descriptionRes
             ?.let { return context.getString(it) }
 
@@ -55,7 +55,7 @@ interface Permission {
             ?.loadIcon(pm)
             ?.let { return it }
 
-        AKnownPermissions.values.singleOrNull { it.id == id }
+        APerm.values.singleOrNull { it.id == id }
             ?.iconRes
             ?.let { ContextCompat.getDrawable(context, it) }
             ?.let { return it }
@@ -65,7 +65,7 @@ interface Permission {
 
     fun getAction(context: Context): PermissionAction {
 
-        AKnownPermissions.values
+        APerm.values
             .singleOrNull { it.id == id }
             ?.getAction(context)
             ?.let { return it }
