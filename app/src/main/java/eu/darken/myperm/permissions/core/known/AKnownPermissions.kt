@@ -193,12 +193,6 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val descriptionRes: Int = R.string.permission_nfc_description
     }
 
-    object WRITE_SETTINGS : AKnownPermissions("android.permission.WRITE_SETTINGS") {
-        override val iconRes: Int = R.drawable.ic_write_settings_24
-        override val labelRes: Int = R.string.permission_write_settings_label
-        override val descriptionRes: Int = R.string.permission_write_settings_description
-    }
-
     object WRITE_MEDIA_STORAGE : AKnownPermissions("android.permission.WRITE_MEDIA_STORAGE") {
         override val iconRes: Int = R.drawable.ic_write_media_storage_24
         override val labelRes: Int = R.string.permission_write_media_storage_label
