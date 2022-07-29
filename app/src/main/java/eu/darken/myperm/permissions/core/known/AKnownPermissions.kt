@@ -211,6 +211,36 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val descriptionRes: Int = R.string.permission_write_settings_description
     }
 
+    object BLUETOOTH_ADVERTISE : AKnownPermissions("android.permission.BLUETOOTH_ADVERTISE") {
+        override val iconRes: Int = R.drawable.ic_bluetooth_advertise_24
+        override val labelRes: Int = R.string.permission_bluetooth_advertise_label
+        override val descriptionRes: Int = R.string.permission_bluetooth_advertise_description
+    }
+
+    object GET_ACCOUNTS : AKnownPermissions("android.permission.GET_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_get_accounts_24
+        override val labelRes: Int = R.string.permission_get_accounts_label
+        override val descriptionRes: Int = R.string.permission_get_accounts_description
+    }
+
+    object ACCESS_BACKGROUND_LOCATION : AKnownPermissions("android.permission.ACCESS_BACKGROUND_LOCATION") {
+        override val iconRes: Int = R.drawable.ic_access_background_location_24
+        override val labelRes: Int = R.string.permission_access_background_location_label
+        override val descriptionRes: Int = R.string.permission_access_background_location_description
+    }
+
+    object ACCESS_MEDIA_LOCATION : AKnownPermissions("android.permission.ACCESS_MEDIA_LOCATION") {
+        override val iconRes: Int = R.drawable.ic_access_media_location_24
+        override val labelRes: Int = R.string.permission_access_media_location_label
+        override val descriptionRes: Int = R.string.permission_access_media_location_description
+    }
+
+    object MANAGE_ACCOUNTS : AKnownPermissions("android.permission.MANAGE_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_manage_accounts_24
+        override val labelRes: Int = R.string.permission_manage_accounts_label
+        override val descriptionRes: Int = R.string.permission_manage_accounts_description
+    }
+
     companion object {
         val values: List<AKnownPermissions> by lazy {
             AKnownPermissions::class.nestedClasses
