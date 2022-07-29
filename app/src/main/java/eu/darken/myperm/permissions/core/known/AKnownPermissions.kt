@@ -194,19 +194,19 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
     }
 
     object MANAGE_MEDIA : AKnownPermissions("android.permission.WRITE_MEDIA_STORAGE") {
-        override val iconRes: Int = R.drawable.ic_write_media_storage_24
+        override val iconRes: Int = R.drawable.ic_manage_media_24
         override val labelRes: Int = R.string.permission_write_media_storage_label
         override val descriptionRes: Int = R.string.permission_write_media_storage_description
     }
 
     object USAGE_DATA_ACCESS : AKnownPermissions("android.permission.PACKAGE_USAGE_STATS") {
-        override val iconRes: Int = R.drawable.ic_package_usage_stats_24
+        override val iconRes: Int = R.drawable.ic_usage_data_access_24
         override val labelRes: Int = R.string.permission_package_usage_stats_label
         override val descriptionRes: Int = R.string.permission_package_usage_stats_description
     }
     
     object MODIFY_SYSTEM_SETTINGS : AKnownPermissions("android.permission.WRITE_SETTINGS") {
-        override val iconRes: Int = R.drawable.ic_write_settings_24
+        override val iconRes: Int = R.drawable.ic_modify_system_settings_24
         override val labelRes: Int = R.string.permission_write_settings_label
         override val descriptionRes: Int = R.string.permission_write_settings_description
     }
