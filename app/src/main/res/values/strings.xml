@@ -157,4 +157,6 @@
     <string name="permission_change_wifi_state_description">Allows the app to connect to and disconnect from WiFi access points and to make changes to device configuration for WiFi networks.</string>
     <string name="permission_change_network_state_label">Change Network state</string>
     <string name="permission_change_network_state_description">Allows the app to change the state of network connectivity.</string>
+    <string name="permission_read_sync_settings_label">Read Sync Settings</string>
+    <string name="permission_read_sync_settings_description">Allows the app to read sync settings for an account.</string>
 </resources>
