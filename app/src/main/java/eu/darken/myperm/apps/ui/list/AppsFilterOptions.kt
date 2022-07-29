@@ -31,14 +31,6 @@ data class AppsFilterOptions(
             labelRes = R.string.apps_filter_userapps_label,
             matches = { it is Installed && !it.isSystemApp }
         ),
-        NO_INTERNET(
-            labelRes = R.string.apps_filter_nointernet_label,
-            matches = {
-                it is Installed
-                        && it.internetAccess != InternetAccess.DIRECT
-                        && it.internetAccess != InternetAccess.UNKNOWN
-            }
-        ),
         GOOGLE_PLAY(
             labelRes = R.string.apps_filter_gplay_label,
             matches = { pkg ->
@@ -61,6 +53,14 @@ data class AppsFilterOptions(
                 pkg is Installed && !pkg.isSystemApp && pkg.installerInfo.allInstallers.none { installer ->
                     AKnownPkg.APP_STORES.map { it.id }.contains(installer.id)
                 }
+            }
+        ),
+        NO_INTERNET(
+            labelRes = R.string.apps_filter_nointernet_label,
+            matches = {
+                it is Installed
+                        && it.internetAccess != InternetAccess.DIRECT
+                        && it.internetAccess != InternetAccess.UNKNOWN
             }
         ),
         SHARED_ID(
