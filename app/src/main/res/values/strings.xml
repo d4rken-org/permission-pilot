@@ -145,4 +145,12 @@
     <string name="permission_write_settings_description">Allows the app to modify system\'s settings data. Malicious apps may corrupt your system\'s configuration.</string>
     <string name="permission_bluetooth_advertise_label">Bluetooth Advertise</string>
     <string name="permission_bluetooth_advertise_description">Allows the app to advertise to nearby Bluetooth devices.</string>
+    <string name="permission_get_accounts_label">Get Accounts</string>
+    <string name="permission_get_accounts_description">Allows the app to get the list of accounts known by the phone. This may include any accounts created by applications that you have installed.</string>
+    <string name="permission_access_background_location_label">Access Background Location</string>
+    <string name="permission_access_background_location_description">Allows the app to access location any time, even while the app is not in use.</string>
+    <string name="permission_access_media_location_label">Access Media Location</string>
+    <string name="permission_access_media_location_description">Allows the app to read location from your media collection.</string>
+    <string name="permission_manage_accounts_label">Manage Accounts</string>
+    <string name="permission_manage_accounts_description">Allows the app to manage accounts in the device.</string>
 </resources>
