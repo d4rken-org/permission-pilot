@@ -21,23 +21,17 @@ class PermissionGroupVH(parent: ViewGroup) :
         payloads: List<Any>
     ) -> Unit = { item, _ ->
         val group = item.group
-//        icon.load(
-//            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm
-//        )
-//
+        icon.setImageDrawable(group.getIcon(context))
+
         label.apply {
             text = group.getLabel(context)
         }
-//
-//        val granted = perm.grantingPkgs.size
-//        val total = perm.requestingPkgs.size
-//
+
 //        quickStats.text = "Granted to $granted out of $total apps."
-//
-//        shortDescription.apply {
-//            text = perm.getLabel(context)?.capitalizeFirstLetter()
-//            isGone = perm.id.value.lowercase() == text?.toString()?.lowercase() || text.isEmpty()
-//        }
+
+        shortDescription.apply {
+            text = group.getLabel(context)
+        }
 
         collapseToggle.setIconResource(
             if (item.isExpanded) R.drawable.ic_baseline_expand_less_24
