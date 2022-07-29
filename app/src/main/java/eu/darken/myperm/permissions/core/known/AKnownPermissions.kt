@@ -253,6 +253,12 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val descriptionRes: Int = R.string.permission_change_network_state_description
     }
 
+      object READ_SYNC_SETTINGS : AKnownPermissions("android.permission.READ_SYNC_SETTINGS") {
+        override val iconRes: Int = R.drawable.ic_read_sync_settings_24
+        override val labelRes: Int = R.string.permission_read_sync_settings_label
+        override val descriptionRes: Int = R.string.permission_read_sync_settings_description
+    }
+      
     companion object {
         val values: List<AKnownPermissions> by lazy {
             AKnownPermissions::class.nestedClasses
