@@ -153,4 +153,8 @@
     <string name="permission_access_media_location_description">Allows the app to read location from your media collection.</string>
     <string name="permission_manage_accounts_label">Manage Accounts</string>
     <string name="permission_manage_accounts_description">Allows the app to manage accounts in the device.</string>
-</resources>
+    <string name="permission_change_wifi_state_label">Change WiFi state</string>
+    <string name="permission_change_wifi_state_description">Allows the app to connect to and disconnect from WiFi access points and to make changes to device configuration for WiFi networks.</string>
+    <string name="permission_change_network_state_label">Change Network state</string>
+    <string name="permission_change_network_state_description">Allows the app to change the state of network connectivity.</string>
+<resource>
