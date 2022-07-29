@@ -241,6 +241,18 @@ sealed class AKnownPermissions constructor(override val id: Permission.Id) : Per
         override val descriptionRes: Int = R.string.permission_manage_accounts_description
     }
 
+     object CHANGE_WIFI_STATE : AKnownPermissions("android.permission.CHANGE_WIFI_STATE") {
+        override val iconRes: Int = R.drawable.ic_change_wifi_state_24
+        override val labelRes: Int = R.string.permission_change_wifi_state_label
+        override val descriptionRes: Int = R.string.permission_change_wifi_state_description
+    }
+
+      object CHANGE_NETWORK_STATE : AKnownPermissions("android.permission.CHANGE_NETWORK_STATE") {
+        override val iconRes: Int = R.drawable.ic_change_network_state_24
+        override val labelRes: Int = R.string.permission_change_network_state_label
+        override val descriptionRes: Int = R.string.permission_change_network_state_description
+    }
+
     companion object {
         val values: List<AKnownPermissions> by lazy {
             AKnownPermissions::class.nestedClasses
