@@ -36,13 +36,13 @@ sealed class APermGrp constructor(override val id: PermissionGroup.Id) : Permiss
         override val descriptionRes: Int = R.string.permission_group_contacts_description
     }
 
-    object Storage : APermGrp("permission.group.STORAGE") {
+    object Files : APermGrp("permission.group.FILES") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
-        override val labelRes: Int = R.string.permission_group_storage_label
-        override val descriptionRes: Int = R.string.permission_group_storage_description
+        override val labelRes: Int = R.string.permission_group_files_label
+        override val descriptionRes: Int = R.string.permission_group_files_description
     }
 
-    object AppInteraction : APermGrp("permission.group.APPS") {
+    object Apps : APermGrp("permission.group.APPS") {
         override val iconRes: Int = R.drawable.ic_baseline_apps_24
         override val labelRes: Int = R.string.permission_group_apps_label
         override val descriptionRes: Int = R.string.permission_group_apps_description
@@ -66,7 +66,7 @@ sealed class APermGrp constructor(override val id: PermissionGroup.Id) : Permiss
         override val descriptionRes: Int = R.string.permission_group_sensors_description
     }
 
-    object Messages : APermGrp("permission.group.MESSAGING") {
+    object Messaging : APermGrp("permission.group.MESSAGING") {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
         override val labelRes: Int = R.string.permission_group_messaging_label
         override val descriptionRes: Int = R.string.permission_group_messaging_description

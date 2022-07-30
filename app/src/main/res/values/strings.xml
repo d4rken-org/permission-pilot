@@ -161,8 +161,8 @@
     <string name="permission_read_sync_settings_description">Allows the app to read sync settings for an account.</string>
     <string name="permission_group_calendar_label">Calendar</string>
     <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
-    <string name="permission_group_storage_label">Storage</string>
-    <string name="permission_group_storage_description"><![CDATA[Internal & sdcard related permissions, e.g. manage all files or read external storage.]]></string>
+    <string name="permission_group_files_label">Files</string>
+    <string name="permission_group_files_description">File related permissions. Access to storage and documents.</string>
     <string name="permission_group_other_label">Other</string>
     <string name="permission_group_other_description">Other permissions without specific category.</string>
     <string name="permission_group_messaging_label">Messaging</string>
@@ -176,9 +176,10 @@
     <string name="permission_group_location_label">Location</string>
     <string name="permission_group_location_description">Location related permission.</string>
     <string name="permission_group_contacts_label">Contacts</string>
-    <string name="permission_group_contacts_description">"Reading and writing contacts. "</string>
+    <string name="permission_group_contacts_description">"Reading and writing contacts."</string>
     <string name="permission_group_apps_label">Apps</string>
-    <string name="permission_group_apps_description">App info or management related permissions</string>
+    <string name="permission_group_apps_description">App info, app management or behavior related permissions.</string>
     <string name="permission_group_battery_label">Battery</string>
     <string name="permission_group_battery_description">Battery related permissions.</string>
+    <string name="permissions_filter_common_only_label">Common permissions</string>
 </resources>
