@@ -6,6 +6,15 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground">
 
+    <View
+        android:id="@+id/group_thread"
+        android:layout_width="8dp"
+        android:layout_height="0dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/icon"
         android:layout_width="28dp"
@@ -23,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:textIsSelectable="true"
         android:ellipsize="start"
         android:singleLine="true"
+        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +42,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/used_by"
-        style="@style/TextAppearance.Material3.BodyMedium"
+        style="@style/TextAppearance.Material3.BodySmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"

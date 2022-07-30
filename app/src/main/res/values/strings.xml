@@ -132,6 +132,10 @@
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
     </plurals>
+    <plurals name="generic_x_groups_label">
+        <item quantity="one">%s group</item>
+        <item quantity="other">%s groups</item>
+    </plurals>
     <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
@@ -159,4 +163,27 @@
     <string name="permission_change_network_state_description">Allows the app to change the state of network connectivity.</string>
     <string name="permission_read_sync_settings_label">Read Sync Settings</string>
     <string name="permission_read_sync_settings_description">Allows the app to read sync settings for an account.</string>
+    <string name="permission_group_calendar_label">Calendar</string>
+    <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
+    <string name="permission_group_files_label">Files</string>
+    <string name="permission_group_files_description">File related permissions. Access to storage and documents.</string>
+    <string name="permission_group_other_label">Other</string>
+    <string name="permission_group_other_description">Other permissions without specific category.</string>
+    <string name="permission_group_messaging_label">Messaging</string>
+    <string name="permission_group_messaging_description">SMS, MMS and more. Everything messaging related.</string>
+    <string name="permission_group_connectivity_label">Connectivity</string>
+    <string name="permission_group_connectivity_description">Wifi, LTE, Bluetooth and more. Permissions related to talking to the outside world.</string>
+    <string name="permission_group_sensors_label">Sensors</string>
+    <string name="permission_group_sensors_description">Accelerometer, Gyo, Camera, Microphone and more. Ways that your device can capture input.</string>
+    <string name="permission_group_calls_label">Calls</string>
+    <string name="permission_group_calls_description">Call related permissions</string>
+    <string name="permission_group_location_label">Location</string>
+    <string name="permission_group_location_description">Location related permission.</string>
+    <string name="permission_group_contacts_label">Contacts</string>
+    <string name="permission_group_contacts_description">"Reading and writing contacts."</string>
+    <string name="permission_group_apps_label">Apps</string>
+    <string name="permission_group_apps_description">App info, app management or behavior related permissions.</string>
+    <string name="permission_group_battery_label">Battery</string>
+    <string name="permission_group_battery_description">Battery related permissions.</string>
+    <string name="permissions_filter_common_only_label">Common permissions</string>
 </resources>

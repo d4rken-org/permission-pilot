@@ -51,7 +51,9 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
             listCaption.text = if (state.isLoading) {
                 null
             } else {
-                requireContext().getQuantityString(R.plurals.generic_x_items_label, state.listData.size)
+                val groups = requireContext().getQuantityString(R.plurals.generic_x_groups_label, state.countGroups)
+                val items = requireContext().getQuantityString(R.plurals.generic_x_items_label, state.countPermissions)
+                "$groups, $items"
             }
             permissionsAdapter.update(state.listData)
             list.isInvisible = state.isLoading
