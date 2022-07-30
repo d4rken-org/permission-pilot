@@ -34,7 +34,7 @@ interface ReadableApk : Pkg {
         get() = if (hasApiLevel(Build.VERSION_CODES.S)) applicationInfo?.compileSdkVersion else null
 
     val apiMinimumLevel: Int?
-        get() = applicationInfo?.minSdkVersion
+        get() = if (hasApiLevel(Build.VERSION_CODES.N)) applicationInfo?.minSdkVersion else null
 
     val requestedPermissions: Collection<Permission>
 
