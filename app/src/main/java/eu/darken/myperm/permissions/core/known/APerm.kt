@@ -201,6 +201,72 @@ sealed class APerm constructor(override val id: Permission.Id) : Permission {
         override val descriptionRes: Int = R.string.permission_nfc_description
     }
 
+    object MANAGE_MEDIA : AKnownPermissions("android.permission.WRITE_MEDIA_STORAGE") {
+        override val iconRes: Int = R.drawable.ic_manage_media_24
+        override val labelRes: Int = R.string.permission_write_media_storage_label
+        override val descriptionRes: Int = R.string.permission_write_media_storage_description
+    }
+
+    object USAGE_DATA_ACCESS : AKnownPermissions("android.permission.PACKAGE_USAGE_STATS") {
+        override val iconRes: Int = R.drawable.ic_usage_data_access_24
+        override val labelRes: Int = R.string.permission_package_usage_stats_label
+        override val descriptionRes: Int = R.string.permission_package_usage_stats_description
+    }
+    
+    object MODIFY_SYSTEM_SETTINGS : AKnownPermissions("android.permission.WRITE_SETTINGS") {
+        override val iconRes: Int = R.drawable.ic_modify_system_settings_24
+        override val labelRes: Int = R.string.permission_write_settings_label
+        override val descriptionRes: Int = R.string.permission_write_settings_description
+    }
+
+    object BLUETOOTH_ADVERTISE : AKnownPermissions("android.permission.BLUETOOTH_ADVERTISE") {
+        override val iconRes: Int = R.drawable.ic_bluetooth_advertise_24
+        override val labelRes: Int = R.string.permission_bluetooth_advertise_label
+        override val descriptionRes: Int = R.string.permission_bluetooth_advertise_description
+    }
+
+    object GET_ACCOUNTS : AKnownPermissions("android.permission.GET_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_get_accounts_24
+        override val labelRes: Int = R.string.permission_get_accounts_label
+        override val descriptionRes: Int = R.string.permission_get_accounts_description
+    }
+
+    object ACCESS_BACKGROUND_LOCATION : AKnownPermissions("android.permission.ACCESS_BACKGROUND_LOCATION") {
+        override val iconRes: Int = R.drawable.ic_access_background_location_24
+        override val labelRes: Int = R.string.permission_access_background_location_label
+        override val descriptionRes: Int = R.string.permission_access_background_location_description
+    }
+
+    object ACCESS_MEDIA_LOCATION : AKnownPermissions("android.permission.ACCESS_MEDIA_LOCATION") {
+        override val iconRes: Int = R.drawable.ic_access_media_location_24
+        override val labelRes: Int = R.string.permission_access_media_location_label
+        override val descriptionRes: Int = R.string.permission_access_media_location_description
+    }
+
+    object MANAGE_ACCOUNTS : AKnownPermissions("android.permission.MANAGE_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_manage_accounts_24
+        override val labelRes: Int = R.string.permission_manage_accounts_label
+        override val descriptionRes: Int = R.string.permission_manage_accounts_description
+    }
+
+     object CHANGE_WIFI_STATE : AKnownPermissions("android.permission.CHANGE_WIFI_STATE") {
+        override val iconRes: Int = R.drawable.ic_change_wifi_state_24
+        override val labelRes: Int = R.string.permission_change_wifi_state_label
+        override val descriptionRes: Int = R.string.permission_change_wifi_state_description
+    }
+
+      object CHANGE_NETWORK_STATE : AKnownPermissions("android.permission.CHANGE_NETWORK_STATE") {
+        override val iconRes: Int = R.drawable.ic_change_network_state_24
+        override val labelRes: Int = R.string.permission_change_network_state_label
+        override val descriptionRes: Int = R.string.permission_change_network_state_description
+    }
+
+      object READ_SYNC_SETTINGS : AKnownPermissions("android.permission.READ_SYNC_SETTINGS") {
+        override val iconRes: Int = R.drawable.ic_read_sync_settings_24
+        override val labelRes: Int = R.string.permission_read_sync_settings_label
+        override val descriptionRes: Int = R.string.permission_read_sync_settings_description
+    }
+      
     companion object {
         val values: List<APerm> by lazy {
             APerm::class.nestedClasses
