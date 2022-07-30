@@ -15,6 +15,7 @@ import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
+import eu.darken.myperm.permissions.core.getGroupIds
 import eu.darken.myperm.permissions.core.known.APermGrp
 import eu.darken.myperm.permissions.ui.list.groups.PermissionGroupVH
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
@@ -68,7 +69,7 @@ class PermissionsFragmentVM @Inject constructor(
             .map { permission ->
                 when (permission) {
                     is DeclaredPermission -> DeclaredPermissionVH.Item(
-                        perm = permission,
+                        permission = permission,
                         onClickAction = {
                             log(TAG) { "Navigating to $permission" }
                             MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
@@ -78,7 +79,7 @@ class PermissionsFragmentVM @Inject constructor(
                         }
                     )
                     is UnknownPermission -> UnknownPermissionVH.Item(
-                        perm = permission,
+                        permission = permission,
                         onClickAction = {
 
                         }
@@ -89,9 +90,9 @@ class PermissionsFragmentVM @Inject constructor(
 
         val listItems = mutableListOf<PermissionsAdapter.Item>()
 
-        APermGrp.values.forEach { grp ->
+        APermGrp.values.filter { it != APermGrp.Other }.forEach { grp ->
             val permsInGrp = permItems
-                .filter { grp.permissionIds.contains(it.permissionId) }
+                .filter { it.permission.getGroupIds().contains(grp.id) }
                 .also { permItems -= it.toSet() }
 
             val isExpanded = expGroups[grp.id] == true
@@ -101,7 +102,7 @@ class PermissionsFragmentVM @Inject constructor(
                 permissions = permsInGrp,
                 isExpanded = isExpanded,
                 onClickAction = { expandedGroups.toggle(grp.id) },
-            ).run { listItems.add(this) }
+            ).run { if (permsInGrp.isNotEmpty()) listItems.add(this) }
 
             if (isExpanded) {
                 listItems.addAll(permsInGrp)
@@ -116,7 +117,7 @@ class PermissionsFragmentVM @Inject constructor(
                 permissions = permItems,
                 isExpanded = isExpanded,
                 onClickAction = { expandedGroups.toggle(id) },
-            )
+            ).run { if (permItems.isNotEmpty()) listItems.add(this) }
 
             if (isExpanded) {
                 listItems.addAll(permItems)

@@ -4,5 +4,8 @@ import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
 sealed class PermissionItem : PermissionsAdapter.Item {
-    abstract val permissionId: Permission.Id
+    abstract val permission: Permission
+
+    val permissionId: Permission.Id
+        get() = permission.id
 }

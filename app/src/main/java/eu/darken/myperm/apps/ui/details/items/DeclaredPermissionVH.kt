@@ -27,7 +27,9 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val permission = item.permission
 
-        icon.setImageDrawable(permission.getIcon(context))
+        icon.apply {
+            setImageDrawable(permission.getIcon(context))
+        }
 
         identifier.text = permission.id.value
         label.apply {

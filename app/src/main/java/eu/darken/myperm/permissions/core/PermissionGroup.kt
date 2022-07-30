@@ -10,8 +10,6 @@ import kotlinx.parcelize.Parcelize
 interface PermissionGroup {
     val id: Id
 
-    val permissionIds: Collection<Permission.Id>
-
     fun getLabel(context: Context): String? {
         APermGrp.values.singleOrNull { it.id == id }
             ?.labelRes

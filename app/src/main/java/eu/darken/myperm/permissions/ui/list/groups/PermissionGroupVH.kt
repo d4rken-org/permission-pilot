@@ -24,13 +24,13 @@ class PermissionGroupVH(parent: ViewGroup) :
         icon.setImageDrawable(group.getIcon(context))
 
         label.apply {
-            text = group.getLabel(context)
+            text = group.getLabel(context) ?: group.id.value
         }
 
-//        quickStats.text = "Granted to $granted out of $total apps."
+        quickStats.text = getQuantityString(R.plurals.generic_x_items_label, item.permissions.size)
 
         shortDescription.apply {
-            text = group.getLabel(context)
+            text = group.getDescription(context)
         }
 
         collapseToggle.setIconResource(

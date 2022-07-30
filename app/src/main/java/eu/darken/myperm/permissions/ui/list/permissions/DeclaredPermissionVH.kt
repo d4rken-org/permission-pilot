@@ -8,7 +8,6 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsListDeclaredItemBinding
-import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
@@ -24,7 +23,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        val perm = item.perm
+        val perm = item.permission
 
         icon.load(
             perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm
@@ -48,12 +47,10 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val perm: DeclaredPermission,
+        override val permission: DeclaredPermission,
         val onClickAction: (Item) -> Unit
     ) : PermissionItem() {
-        override val permissionId: Permission.Id
-            get() = perm.id
         override val stableId: Long
-            get() = perm.id.hashCode().toLong()
+            get() = permission.id.hashCode().toLong()
     }
 }

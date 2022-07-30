@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/icon"
@@ -16,14 +17,6 @@
         app:layout_constraintBottom_toBottomOf="@id/quick_stats"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/label" />
-
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:src="@drawable/ic_baseline_group_work_24"
-        app:layout_constraintEnd_toEndOf="@id/icon"
-        app:layout_constraintStart_toStartOf="@id/icon"
-        app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label"

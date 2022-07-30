@@ -79,3 +79,9 @@ interface Permission {
     data class Container(override val id: Id) : Permission
 }
 
+fun Permission.Id.getGroupIds(): Collection<PermissionGroup.Id> =
+    APerm.values.singleOrNull { it.id == this }?.groupIds ?: emptySet()
+
+
+fun Permission.getGroupIds(): Collection<PermissionGroup.Id> =
+    APerm.values.singleOrNull { it.id == this.id }?.groupIds ?: emptySet()

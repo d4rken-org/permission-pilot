@@ -163,4 +163,22 @@
     <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
     <string name="permission_group_storage_label">Storage</string>
     <string name="permission_group_storage_description"><![CDATA[Internal & sdcard related permissions, e.g. manage all files or read external storage.]]></string>
+    <string name="permission_group_other_label">Other</string>
+    <string name="permission_group_other_description">Other permissions without specific category.</string>
+    <string name="permission_group_messaging_label">Messaging</string>
+    <string name="permission_group_messaging_description">SMS, MMS and more. Everything messaging related.</string>
+    <string name="permission_group_connectivity_label">Connectivity</string>
+    <string name="permission_group_connectivity_description">Wifi, LTE, Bluetooth and more. Permissions related to talking to the outside world.</string>
+    <string name="permission_group_sensors_label">Sensors</string>
+    <string name="permission_group_sensors_description">Accelerometer, Gyo, Camera, Microphone and more. Ways that your device can capture input.</string>
+    <string name="permission_group_calls_label">Calls</string>
+    <string name="permission_group_calls_description">Call related permissions</string>
+    <string name="permission_group_location_label">Location</string>
+    <string name="permission_group_location_description">Location related permission.</string>
+    <string name="permission_group_contacts_label">Contacts</string>
+    <string name="permission_group_contacts_description">"Reading and writing contacts. "</string>
+    <string name="permission_group_apps_label">Apps</string>
+    <string name="permission_group_apps_description">App info or management related permissions</string>
+    <string name="permission_group_battery_label">Battery</string>
+    <string name="permission_group_battery_description">Battery related permissions.</string>
 </resources>

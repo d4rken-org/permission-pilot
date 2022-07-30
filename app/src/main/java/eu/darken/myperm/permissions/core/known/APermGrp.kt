@@ -4,7 +4,6 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
-import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionGroup
 import kotlin.reflect.full.isSubclassOf
 
@@ -15,55 +14,75 @@ sealed class APermGrp constructor(override val id: PermissionGroup.Id) : Permiss
     @get:StringRes open val labelRes: Int? = null
     @get:StringRes open val descriptionRes: Int? = null
 
-    override val permissionIds: Collection<Permission.Id>
-        get() = emptyList()
-
     constructor(rawPermissionId: String) : this(PermissionGroup.Id(rawPermissionId))
 
     override fun toString(): String = "APermGrp(${id})"
+
+    object Battery : APermGrp("permission.group.BATTERY") {
+        override val iconRes: Int = R.drawable.ic_baseline_battery_charging_full_24
+        override val labelRes: Int = R.string.permission_group_battery_label
+        override val descriptionRes: Int = R.string.permission_group_battery_description
+    }
 
     object Calendar : APermGrp("permission.group.CALENDAR") {
         override val iconRes: Int = R.drawable.ic_baseline_calendar_today_24
         override val labelRes: Int = R.string.permission_group_calendar_label
         override val descriptionRes: Int = R.string.permission_group_calendar_description
-
-        override val permissionIds: Collection<Permission.Id> = setOf(
-            APerm.READ_CALENDAR.id,
-            APerm.WRITE_CALENDAR.id,
-        )
     }
 
-    object Contacts : APermGrp("permission.group.CONTACTS")
+    object Contacts : APermGrp("permission.group.CONTACTS") {
+        override val iconRes: Int = R.drawable.ic_baseline_contacts_24
+        override val labelRes: Int = R.string.permission_group_contacts_label
+        override val descriptionRes: Int = R.string.permission_group_contacts_description
+    }
 
     object Storage : APermGrp("permission.group.STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
         override val labelRes: Int = R.string.permission_group_storage_label
         override val descriptionRes: Int = R.string.permission_group_storage_description
-
-        override val permissionIds: Collection<Permission.Id> = setOf(
-            APerm.MANAGE_EXTERNAL_STORAGE.id,
-            APerm.WRITE_EXTERNAL_STORAGE.id,
-            APerm.READ_EXTERNAL_STORAGE.id,
-            APerm.READ_MEDIA_STORAGE.id,
-            APerm.WRITE_MEDIA_STORAGE.id,
-        )
     }
 
-    object AppInteraction : APermGrp("permission.group.APP_INTERACTION")
+    object AppInteraction : APermGrp("permission.group.APPS") {
+        override val iconRes: Int = R.drawable.ic_baseline_apps_24
+        override val labelRes: Int = R.string.permission_group_apps_label
+        override val descriptionRes: Int = R.string.permission_group_apps_description
+    }
 
-    object Microphone : APermGrp("permission.group.MICROPHONE")
+    object Location : APermGrp("permission.group.LOCATION") {
+        override val iconRes: Int = R.drawable.ic_location_fine_24
+        override val labelRes: Int = R.string.permission_group_location_label
+        override val descriptionRes: Int = R.string.permission_group_location_description
+    }
 
-    object Location : APermGrp("permission.group.LOCATION")
+    object Calls : APermGrp("permission.group.CALLS") {
+        override val iconRes: Int = R.drawable.ic_baseline_call_24
+        override val labelRes: Int = R.string.permission_group_calls_label
+        override val descriptionRes: Int = R.string.permission_group_calls_description
+    }
 
-    object Calls : APermGrp("permission.group.CALLS")
+    object Sensors : APermGrp("permission.group.SENSORS") {
+        override val iconRes: Int = R.drawable.ic_baseline_sensors_24
+        override val labelRes: Int = R.string.permission_group_sensors_label
+        override val descriptionRes: Int = R.string.permission_group_sensors_description
+    }
 
-    object Sensors : APermGrp("permission.group.SENSORS")
+    object Messages : APermGrp("permission.group.MESSAGING") {
+        override val iconRes: Int = R.drawable.ic_baseline_sms_24
+        override val labelRes: Int = R.string.permission_group_messaging_label
+        override val descriptionRes: Int = R.string.permission_group_messaging_description
+    }
 
-    object Messages : APermGrp("permission.group.MESSAGES")
+    object Connectivity : APermGrp("permission.group.CONNECTIVITY") {
+        override val iconRes: Int = R.drawable.ic_connectivity_24
+        override val labelRes: Int = R.string.permission_group_connectivity_label
+        override val descriptionRes: Int = R.string.permission_group_connectivity_description
+    }
 
-    object Connectivity : APermGrp("permission.group.CONNECTIVITY")
-
-    object Other : APermGrp("permission.group.OTHER")
+    object Other : APermGrp("permission.group.OTHER") {
+        override val iconRes: Int = R.drawable.ic_baseline_more_24
+        override val labelRes: Int = R.string.permission_group_other_label
+        override val descriptionRes: Int = R.string.permission_group_other_description
+    }
 
     companion object {
         val values: List<APermGrp> by lazy {
@@ -77,6 +96,3 @@ sealed class APermGrp constructor(override val id: PermissionGroup.Id) : Permiss
 
 fun PermissionGroup.Id.toKnownGroup(): APermGrp? =
     APermGrp.values.singleOrNull { it.id == this@toKnownGroup }
-
-fun Permission.getGroup(): APermGrp? =
-    APermGrp.values.singleOrNull { it.permissionIds.contains(this.id) }

@@ -4,7 +4,6 @@ import android.view.ViewGroup
 import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsListUnknownItemBinding
-import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
@@ -20,7 +19,7 @@ class UnknownPermissionVH(parent: ViewGroup) :
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
-        val perm = item.perm
+        val perm = item.permission
 
         identifier.apply {
             text = perm.id.value
@@ -34,12 +33,10 @@ class UnknownPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
-        val perm: UnknownPermission,
+        override val permission: UnknownPermission,
         val onClickAction: (Item) -> Unit,
     ) : PermissionItem() {
-        override val permissionId: Permission.Id
-            get() = perm.id
         override val stableId: Long
-            get() = perm.id.hashCode().toLong()
+            get() = permission.id.hashCode().toLong()
     }
 }
