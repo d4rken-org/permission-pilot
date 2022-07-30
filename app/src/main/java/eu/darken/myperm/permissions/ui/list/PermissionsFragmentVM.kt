@@ -44,7 +44,9 @@ class PermissionsFragmentVM @Inject constructor(
 
     data class State(
         val listData: List<PermissionsAdapter.Item> = emptyList(),
-        val isLoading: Boolean = true
+        val isLoading: Boolean = true,
+        val countPermissions: Int = 0,
+        val countGroups: Int = 0,
     )
 
     val state: LiveData<State> = combine(
@@ -88,6 +90,9 @@ class PermissionsFragmentVM @Inject constructor(
             }
             .toMutableList()
 
+        var permissionCount = 0
+        var groupCount = 0
+
         val listItems = mutableListOf<PermissionsAdapter.Item>()
 
         APermGrp.values.filter { it != APermGrp.Other }.forEach { grp ->
@@ -102,11 +107,16 @@ class PermissionsFragmentVM @Inject constructor(
                 permissions = permsInGrp,
                 isExpanded = isExpanded,
                 onClickAction = { expandedGroups.toggle(grp.id) },
-            ).run { if (permsInGrp.isNotEmpty()) listItems.add(this) }
-
-            if (isExpanded) {
-                listItems.addAll(permsInGrp)
+            ).run {
+                if (permsInGrp.isNotEmpty()) {
+                    listItems.add(this)
+                    groupCount++
+                }
             }
+
+            permissionCount += permsInGrp.size
+
+            if (isExpanded) listItems.addAll(permsInGrp)
         }
 
         APermGrp.Other.apply {
@@ -117,16 +127,20 @@ class PermissionsFragmentVM @Inject constructor(
                 permissions = permItems,
                 isExpanded = isExpanded,
                 onClickAction = { expandedGroups.toggle(id) },
-            ).run { if (permItems.isNotEmpty()) listItems.add(this) }
-
-            if (isExpanded) {
-                listItems.addAll(permItems)
+            ).run {
+                if (permItems.isNotEmpty()) listItems.add(this)
             }
+
+            permissionCount += permItems.size
+
+            if (isExpanded) listItems.addAll(permItems)
         }
 
         State(
             listData = listItems,
             isLoading = false,
+            countGroups = groupCount,
+            countPermissions = permissionCount
         )
     }
         .onStart { emit(State()) }

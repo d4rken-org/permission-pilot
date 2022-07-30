@@ -132,6 +132,10 @@
         <item quantity="one">%s item</item>
         <item quantity="other">%s items</item>
     </plurals>
+    <plurals name="generic_x_groups_label">
+        <item quantity="one">%s group</item>
+        <item quantity="other">%s groups</item>
+    </plurals>
     <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are not part of this computation due to Android restrictions.</string>
