@@ -5,10 +5,11 @@ import androidx.annotation.StringRes
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.permissions.core.container.BasePermission
-import eu.darken.myperm.permissions.core.features.HasTags
-import eu.darken.myperm.permissions.core.known.toKnownPermission
+import eu.darken.myperm.permissions.core.features.InstallTimeGrant
+import eu.darken.myperm.permissions.core.features.ManifestDoc
+import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -29,7 +30,7 @@ data class PermsFilterOptions(
     ) {
         MANIFEST(
             labelRes = R.string.permissions_filter_manifest_label,
-            matches = { it.declaringPkgs.any { pkg -> pkg.id == AKnownPkg.AndroidSystem.id } }
+            matches = { it.tags.any { tag -> tag is ManifestDoc } }
         ),
         SYSTEM(
             labelRes = R.string.permissions_filter_system_label,
@@ -42,15 +43,15 @@ data class PermsFilterOptions(
 
         RUNTIME(
             labelRes = R.string.permissions_filter_runtime_label,
-            matches = { it is HasTags || it.id.toKnownPermission() is HasTags }
+            matches = { it.tags.any { tag -> tag is RuntimeGrant } }
         ),
         DEFAULT_GRANTED(
             labelRes = R.string.permissions_filter_default_label,
-            matches = { it is HasTags || it.id.toKnownPermission() is HasTags }
+            matches = { it.tags.any { tag -> tag is InstallTimeGrant } }
         ),
         SPECIAL_ACCESS(
             labelRes = R.string.permissions_filter_special_label,
-            matches = { it is HasTags || it.id.toKnownPermission() is HasTags }
+            matches = { it.tags.any { tag -> tag is SpecialAccess } }
         );
     }
 }

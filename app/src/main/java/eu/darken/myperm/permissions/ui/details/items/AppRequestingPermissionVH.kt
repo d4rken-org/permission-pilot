@@ -6,12 +6,12 @@ import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.BasePkg
+import eu.darken.myperm.apps.core.features.PermissionState.Status
 import eu.darken.myperm.apps.core.features.getPermissionUses
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppDeclaringItemBinding
 import eu.darken.myperm.permissions.core.container.BasePermission
-import eu.darken.myperm.permissions.core.features.PermissionState.Status
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsAdapter
 
 class AppRequestingPermissionVH(parent: ViewGroup) :

@@ -36,12 +36,12 @@ interface ReadableApk : Pkg {
     val apiMinimumLevel: Int?
         get() = if (hasApiLevel(Build.VERSION_CODES.N)) applicationInfo?.minSdkVersion else null
 
-    val requestedPermissions: Collection<Permission>
+    val requestedPermissions: Collection<UsesPermission>
 
     val declaredPermissions: Collection<PermissionInfo>
 }
 
-fun Pkg.getPermission(id: Permission.Id): Permission? =
+fun Pkg.getPermission(id: Permission.Id): UsesPermission? =
     (this as? ReadableApk)?.requestedPermissions?.singleOrNull { it.id == id }
 
 fun Pkg.requestsPermission(id: Permission.Id): Boolean =

@@ -17,14 +17,14 @@ import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.features.SecondaryPkg
 import eu.darken.myperm.apps.core.features.getPermission
+import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.AppsNormalItemBinding
-import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.features.isGranted
+import eu.darken.myperm.permissions.core.known.APerm
 
 class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, AppsNormalItemBinding>(
     R.layout.apps_normal_item,
@@ -118,27 +118,27 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
                 InternetAccess.NONE -> tintIt(colorDenied)
                 InternetAccess.UNKNOWN -> tintIt(colorDenied)
             }
-            setupTagClicks(item, AndroidPermissions.INTERNET)
+            setupTagClicks(item, APerm.INTERNET.id)
             isInvisible = app.internetAccess == InternetAccess.NONE || app.internetAccess == InternetAccess.UNKNOWN
         }
 
-        tagStorage.setupAll(item, AndroidPermissions.WRITE_EXTERNAL_STORAGE, AndroidPermissions.READ_EXTERNAL_STORAGE)
+        tagStorage.setupAll(item, APerm.WRITE_EXTERNAL_STORAGE, APerm.READ_EXTERNAL_STORAGE)
 
         tagBluetooth.setupAll(
             item,
-            AndroidPermissions.BLUETOOTH_ADMIN,
-            AndroidPermissions.BLUETOOTH,
-            AndroidPermissions.BLUETOOTH_CONNECT,
+            APerm.BLUETOOTH_ADMIN,
+            APerm.BLUETOOTH,
+            APerm.BLUETOOTH_CONNECT,
         )
 
-        tagCamera.setupAll(item, AndroidPermissions.CAMERA)
-        tagMicrophone.setupAll(item, AndroidPermissions.RECORD_AUDIO)
-        tagContacts.setupAll(item, AndroidPermissions.CONTACTS)
+        tagCamera.setupAll(item, APerm.CAMERA)
+        tagMicrophone.setupAll(item, APerm.RECORD_AUDIO)
+        tagContacts.setupAll(item, APerm.WRITE_CONTACTS, APerm.READ_CONTACTS)
 
-        tagLocation.setupAll(item, AndroidPermissions.LOCATION_FINE, AndroidPermissions.LOCATION_COARSE)
+        tagLocation.setupAll(item, APerm.ACCESS_FINE_LOCATION, APerm.ACCESS_COARSE_LOCATION)
 
-        tagSms.setupAll(item, AndroidPermissions.SMS_READ, AndroidPermissions.SMS_RECEIVE, AndroidPermissions.SMS_SEND)
-        tagPhone.setupAll(item, AndroidPermissions.PHONE_CALL, AndroidPermissions.PHONE_STATE)
+        tagSms.setupAll(item, APerm.RECEIVE_SMS, APerm.READ_SMS, APerm.SEND_SMS)
+        tagPhone.setupAll(item, APerm.PHONE_CALL, APerm.PHONE_STATE)
 
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
@@ -147,8 +147,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         setColorFilter(color)
     }
 
-    private fun ImageView.setupAll(item: Item, vararg permissions: Permission) {
-        val perms = permissions.mapNotNull { item.app.getPermission(it.id) }
+    private fun ImageView.setupAll(item: Item, vararg aperms: APerm) {
+        val perms = aperms.mapNotNull { item.app.getPermission(it.id) }
         val grantedPerm = perms.firstOrNull { it.isGranted }
 
         isInvisible = when {
@@ -166,17 +166,17 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
             else -> true
         }
-        grantedPerm?.let { setupTagClicks(item, it) }
+        grantedPerm?.let { setupTagClicks(item, it.id) }
     }
 
-    private fun ImageView.setupTagClicks(item: Item, permission: Permission) {
+    private fun ImageView.setupTagClicks(item: Item, permId: Permission.Id) {
         setOnClickListener {
-            log { "Permission tag clicked: $permission ($item)" }
-            item.onTagClicked(permission)
+            log { "Permission tag clicked: $permId ($item)" }
+            item.onTagClicked(permId)
         }
         setOnLongClickListener {
-            log { "Permission tag long-clicked: $permission ($item)" }
-            item.onTagLongClicked(permission)
+            log { "Permission tag long-clicked: $permId ($item)" }
+            item.onTagLongClicked(permId)
             true
         }
     }
@@ -185,8 +185,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         override val app: BasePkg,
         val onIconClicked: (Pkg) -> Unit,
         val onRowClicked: (Pkg) -> Unit,
-        val onTagClicked: (Permission) -> Unit,
-        val onTagLongClicked: (Permission) -> Unit,
+        val onTagClicked: (Permission.Id) -> Unit,
+        val onTagLongClicked: (Permission.Id) -> Unit,
         val onInstallerClicked: (Pkg) -> Unit,
     ) : AppsAdapter.Item
 }

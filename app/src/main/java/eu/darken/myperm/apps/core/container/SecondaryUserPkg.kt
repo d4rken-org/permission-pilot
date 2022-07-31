@@ -14,7 +14,6 @@ import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
 
 data class SecondaryUserPkg(
     override val packageInfo: PackageInfo,

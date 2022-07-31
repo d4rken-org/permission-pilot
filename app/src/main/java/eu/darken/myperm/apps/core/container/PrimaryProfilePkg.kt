@@ -14,10 +14,8 @@ import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.apps.core.getIcon2
 import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.common.debug.logging.log
-import eu.darken.myperm.permissions.core.AndroidPermissions
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
-import eu.darken.myperm.permissions.core.features.isGranted
+import eu.darken.myperm.permissions.core.known.APerm
 
 data class PrimaryProfilePkg(
     override val packageInfo: PackageInfo,
@@ -64,8 +62,8 @@ data class PrimaryProfilePkg(
 
     override val internetAccess: InternetAccess by lazy {
         when {
-            isSystemApp || getPermissionUses(AndroidPermissions.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
-            siblings.any { it is HasPermissionUseInfo && it.getPermissionUses(AndroidPermissions.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
+            isSystemApp || getPermissionUses(APerm.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
+            siblings.any { it is HasPermissionUseInfo && it.getPermissionUses(APerm.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
             else -> InternetAccess.NONE
         }
     }

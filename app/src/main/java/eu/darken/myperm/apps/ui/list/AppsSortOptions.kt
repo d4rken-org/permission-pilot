@@ -9,8 +9,8 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.ReadableApk
+import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.core.known.AKnownPkg
-import eu.darken.myperm.permissions.core.features.isGranted
 import kotlinx.parcelize.Parcelize
 import java.time.Instant
 

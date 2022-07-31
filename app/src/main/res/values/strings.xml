@@ -74,7 +74,7 @@
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Information not available</string>
 
-    <string name="permissions_filter_manifest_label">Documented app permissions</string>
+    <string name="permissions_filter_manifest_label">AOSP permissions</string>
     <string name="permissions_filter_system_label">Declared by system app</string>
     <string name="permissions_filter_user_label">Declared by user app</string>
 

@@ -6,9 +6,11 @@ import androidx.annotation.StringRes
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
+import eu.darken.myperm.permissions.core.ProtectionFlag
+import eu.darken.myperm.permissions.core.ProtectionType
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
-import eu.darken.myperm.permissions.core.features.isHighlighted
+import eu.darken.myperm.permissions.core.isHighlighted
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -32,9 +34,9 @@ data class PermsSortOptions(
 
                     val flags = perm.protectionFlags
                     when {
-                        flags.contains(DeclaredPermission.ProtectionFlag.RUNTIME_ONLY) -> 3
-                        perm.protectionType == DeclaredPermission.ProtectionType.DANGEROUS -> 2
-                        flags.contains(DeclaredPermission.ProtectionFlag.APPOP) -> 1
+                        flags.contains(ProtectionFlag.RUNTIME_ONLY) -> 3
+                        perm.protectionType == ProtectionType.DANGEROUS -> 2
+                        flags.contains(ProtectionFlag.APPOP) -> 1
                         else -> 0
                     }
                 }.reversed()

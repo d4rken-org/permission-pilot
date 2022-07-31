@@ -15,6 +15,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
+import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -31,6 +32,7 @@ class AppsFragmentVM @Inject constructor(
     private val generalSettings: GeneralSettings,
     private val webpageTool: WebpageTool,
     private val appStoreTool: AppStoreTool,
+    private val permissionRepo: PermissionRepo,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val searchTerm = MutableStateFlow<String?>(null)
@@ -46,10 +48,11 @@ class AppsFragmentVM @Inject constructor(
 
     val listData: LiveData<State> = combine(
         packageRepo.apps,
+        permissionRepo.permissions,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { apps, searchTerm, filterOptions, sortOptions ->
+    ) { apps, permissions, searchTerm, filterOptions, sortOptions ->
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
             .filter {
@@ -72,8 +75,16 @@ class AppsFragmentVM @Inject constructor(
                     MainFragmentDirections.actionMainFragmentToAppDetailsFragment(app.id, app.getLabel(context))
                         .navigate()
                 },
-                onTagClicked = { events.postValue(AppsEvents.ShowPermissionSnackbar(it)) },
-                onTagLongClicked = { events.postValue(AppsEvents.RunPermAction(it.getAction(context))) },
+                onTagClicked = { id ->
+                    permissions.singleOrNull { it.id == id }?.let {
+                        events.postValue(AppsEvents.ShowPermissionSnackbar(it))
+                    }
+                },
+                onTagLongClicked = { id ->
+                    permissions.singleOrNull { it.id == id }?.let {
+                        events.postValue(AppsEvents.RunPermAction(it.getAction(context)))
+                    }
+                },
                 onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
             )
         }

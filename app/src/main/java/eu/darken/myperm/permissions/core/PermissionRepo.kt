@@ -19,6 +19,12 @@ import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
+import eu.darken.myperm.permissions.core.features.InstallTimeGrant
+import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
+import eu.darken.myperm.permissions.core.known.APerm
+import eu.darken.myperm.permissions.core.known.APermGrp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import java.util.*
@@ -116,16 +122,43 @@ class PermissionRepo @Inject constructor(
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
-    private fun PermissionInfo.toDeclaredPermission(apps: Collection<BasePkg>): DeclaredPermission =
-        DeclaredPermission(
+    private fun PermissionInfo.toDeclaredPermission(apps: Collection<BasePkg>): DeclaredPermission {
+        val groupIds = APerm.values.singleOrNull { it.id == id }?.groupIds?.let { want ->
+            APermGrp.values.filter { want.contains(it.id) }.map { it.id }
+        } ?: emptySet()
+
+        val knownTags = APerm.values.singleOrNull { it.id == id }?.tags ?: emptySet()
+
+        val detectedTags = mutableSetOf<PermissionTag>()
+
+        when {
+            protectionTypeCompat == ProtectionType.DANGEROUS -> {
+                detectedTags.add(RuntimeGrant)
+            }
+            protectionFlagsCompat.contains(ProtectionFlag.APPOP) -> {
+                detectedTags.add(SpecialAccess)
+            }
+            else -> {
+                detectedTags.add(InstallTimeGrant)
+            }
+        }
+
+        return DeclaredPermission(
             permissionInfo = this,
             requestingPkgs = apps.filter { it.requestsPermission(id) },
-            declaringPkgs = apps.filter { it.declaresPermission(id) }
+            declaringPkgs = apps.filter { it.declaresPermission(id) },
+            groupIds = groupIds,
+            tags = knownTags + detectedTags,
         )
+    }
 
     private fun Permission.Id.toUnusedPermission(apps: Collection<BasePkg>): UnknownPermission = UnknownPermission(
         id = this,
-        requestingPkgs = apps.filter { it.requestsPermission(this) }
+        requestingPkgs = apps.filter { it.requestsPermission(this) },
+        groupIds = APerm.values.singleOrNull { it.id == this }?.groupIds?.let { want ->
+            APermGrp.values.filter { want.contains(it.id) }.map { it.id }
+        } ?: emptySet(),
+        tags = APerm.values.singleOrNull { it.id == this }?.tags ?: emptySet(),
     )
 
     companion object {
