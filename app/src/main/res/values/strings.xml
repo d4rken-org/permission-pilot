@@ -73,9 +73,15 @@
     <string name="apps_permissions_declares_x">Declares %1$d permissions.</string>
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Information not available</string>
-    <string name="permissions_filter_system_core_label">Core permissions</string>
-    <string name="permissions_filter_system_extra_label">Declared by system app</string>
-    <string name="permissions_filter_custom_label">Custom app permissions</string>
+
+    <string name="permissions_filter_manifest_label">Documented app permissions</string>
+    <string name="permissions_filter_system_label">Declared by system app</string>
+    <string name="permissions_filter_user_label">Declared by user app</string>
+
+    <string name="permissions_filter_runtime_label">Requested at runtime</string>
+    <string name="permissions_filter_special_label">Special usage</string>
+    <string name="permissions_filter_default_label">Granted by default</string>
+
     <string name="permissions_sort_apps_granted_label"># of apps granted</string>
     <string name="permissions_sort_apps_requested_label"># of apps requested</string>
     <string name="permissions_search_list_hint">Search permissions</string>
@@ -185,5 +191,4 @@
     <string name="permission_group_apps_description">App info, app management or behavior related permissions.</string>
     <string name="permission_group_battery_label">Battery</string>
     <string name="permission_group_battery_description">Battery related permissions.</string>
-    <string name="permissions_filter_common_only_label">Common permissions</string>
 </resources>
