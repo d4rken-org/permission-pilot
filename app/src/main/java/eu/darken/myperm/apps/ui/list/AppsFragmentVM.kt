@@ -82,7 +82,7 @@ class AppsFragmentVM @Inject constructor(
                 },
                 onTagLongClicked = { id ->
                     permissions.singleOrNull { it.id == id }?.let {
-                        events.postValue(AppsEvents.RunPermAction(it.getAction(context)))
+                        events.postValue(AppsEvents.PermissionEvent(it.getAction(context, app)))
                     }
                 },
                 onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }

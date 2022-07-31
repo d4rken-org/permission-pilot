@@ -111,21 +111,28 @@ class AppDetailsFragmentVM @Inject constructor(
                 ?.map { (usesPerm, basePerm) ->
                     when (basePerm) {
                         is DeclaredPermission -> DeclaredPermissionVH.Item(
+                            pkg = app,
                             appPermission = usesPerm,
                             permission = basePerm,
                             onItemClicked = {
-                                AppDetailsFragmentDirections
-                                    .actionAppDetailsFragmentToPermissionDetailsFragment(
-                                        permissionId = it.permission.id,
-                                        permissionLabel = it.permission.getLabel(context)
-                                    )
-                                    .navigate()
+                                AppDetailsFragmentDirections.actionAppDetailsFragmentToPermissionDetailsFragment(
+                                    permissionId = it.permission.id,
+                                    permissionLabel = it.permission.getLabel(context)
+                                ).navigate()
                             },
                             onTogglePermission = {
-                                events.postValue(AppDetailsEvents.RunPermAction(it.permission.getAction(context)))
+                                events.postValue(
+                                    AppDetailsEvents.PermissionEvent(
+                                        it.permission.getAction(
+                                            context,
+                                            app
+                                        )
+                                    )
+                                )
                             }
                         )
                         is UnknownPermission -> UnknownPermissionVH.Item(
+                            pkg = app,
                             appPermission = usesPerm,
                             permission = basePerm,
                             onItemClicked = {

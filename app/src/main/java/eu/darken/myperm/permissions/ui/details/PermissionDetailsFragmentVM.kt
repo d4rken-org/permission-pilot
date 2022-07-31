@@ -68,15 +68,15 @@ class PermissionDetailsFragmentVM @Inject constructor(
                         permission = perm,
                         app = app,
                         onItemClicked = {
-                            PermissionDetailsFragmentDirections
-                                .actionPermissionDetailsFragmentToAppDetailsFragment(
-                                    it.app.id,
-                                    it.app.getLabel(context)
-                                )
-                                .navigate()
+                            PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
+                                it.app.id,
+                                it.app.getLabel(context)
+                            ).navigate()
                         },
                         onIconClicked = {
-                            events.postValue(PermissionDetailsEvents.ShowAppSystemDetails(it.app))
+                            events.postValue(
+                                PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
+                            )
                         }
                     )
                 }

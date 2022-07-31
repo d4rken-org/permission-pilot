@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.getSettingsIntent
+import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
@@ -20,7 +21,6 @@ import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.AppsFragmentBinding
 import eu.darken.myperm.main.ui.main.MainFragmentDirections
-import eu.darken.myperm.permissions.core.PermissionAction
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -66,10 +66,10 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
                         Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
-                is AppsEvents.RunPermAction -> {
-                    when (event.permAction) {
-                        is PermissionAction.None -> event.permAction.showInfo(requireActivity())
-                    }
+                is AppsEvents.PermissionEvent -> try {
+                    event.permAction.execute(requireActivity())
+                } catch (e: Exception) {
+                    e.asErrorDialogBuilder(requireContext()).show()
                 }
             }
         }

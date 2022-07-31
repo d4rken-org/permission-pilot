@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.getSettingsIntent
+import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
 import eu.darken.myperm.common.uix.Fragment3
@@ -38,6 +39,11 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
                     } catch (e: Exception) {
                         Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
                     }
+                }
+                is PermissionDetailsEvents.PermissionEvent -> try {
+                    event.permAction.execute(requireActivity())
+                } catch (e: Exception) {
+                    e.asErrorDialogBuilder(requireContext()).show()
                 }
             }
         }

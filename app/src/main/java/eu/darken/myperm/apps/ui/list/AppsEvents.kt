@@ -2,7 +2,7 @@ package eu.darken.myperm.apps.ui.list
 
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.PermissionAction
+import eu.darken.myperm.permissions.core.features.PermissionAction
 
 sealed class AppsEvents {
     data class ShowFilterDialog(val options: AppsFilterOptions) : AppsEvents()
@@ -13,5 +13,5 @@ sealed class AppsEvents {
 
     data class ShowAppSystemDetails(val pkg: Pkg) : AppsEvents()
 
-    data class RunPermAction(val permAction: PermissionAction) : AppsEvents()
+    data class PermissionEvent(val permAction: PermissionAction) : AppsEvents()
 }

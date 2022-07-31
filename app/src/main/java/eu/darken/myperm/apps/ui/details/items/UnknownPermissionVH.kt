@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.details.items
 
 import android.view.ViewGroup
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.UsedPermissionStateful
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.lists.BindableVH
@@ -28,6 +29,7 @@ class UnknownPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
+        val pkg: BasePkg,
         val appPermission: UsedPermissionStateful,
         val permission: UnknownPermission,
         val onItemClicked: (Item) -> Unit,

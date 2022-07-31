@@ -4,6 +4,7 @@ import android.content.res.ColorStateList
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.PermissionState.Status
 import eu.darken.myperm.apps.core.features.UsedPermissionStateful
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
@@ -38,7 +39,6 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         }
 
         actionButton.apply {
-            val permAction = item.permission.getAction(context)
             setOnClickListener { item.onTogglePermission(item) }
             val (iconRes, tintRes) = when (item.appPermission.status) {
                 Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
@@ -54,6 +54,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
+        val pkg: BasePkg,
         val appPermission: UsedPermissionStateful,
         val permission: DeclaredPermission,
         val onItemClicked: (Item) -> Unit,

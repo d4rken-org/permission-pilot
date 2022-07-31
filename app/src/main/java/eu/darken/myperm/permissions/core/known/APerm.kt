@@ -3,13 +3,11 @@
 package eu.darken.myperm.permissions.core.known
 
 import android.Manifest
-import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.PermissionAction
 import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.features.*
 import kotlin.reflect.full.isSubclassOf
@@ -25,8 +23,6 @@ sealed class APerm constructor(val id: Permission.Id) {
     open val tags: Collection<PermissionTag> = emptySet()
 
     constructor(rawPermissionId: String) : this(Permission.Id(rawPermissionId))
-
-    fun createAction(context: Context, permission: Permission): PermissionAction = PermissionAction.None(permission)
 
     /**
      * FILES

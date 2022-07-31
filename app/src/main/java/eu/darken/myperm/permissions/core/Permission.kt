@@ -5,9 +5,9 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import androidx.core.content.ContextCompat
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.getPermissionInfo2
-import eu.darken.myperm.permissions.core.features.Highlighted
-import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.*
 import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.parcelize.Parcelize
 
@@ -70,14 +70,14 @@ interface Permission {
         return null
     }
 
-    fun getAction(context: Context): PermissionAction {
+    fun getAction(context: Context, pkg: Pkg): PermissionAction {
+        when {
+            tags.contains(RuntimeGrant) -> PermissionAction.Runtime(this, pkg)
+            tags.contains(SpecialAccess) -> PermissionAction.SpecialAccess(this, pkg)
+            else -> null
+        }?.let { return it }
 
-        APerm.values
-            .singleOrNull { it.id == id }
-            ?.createAction(context, this)
-            ?.let { return it }
-
-        return PermissionAction.None(this)
+        return PermissionAction.None(this, pkg)
     }
 
     @Parcelize
