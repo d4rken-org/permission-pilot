@@ -1,6 +1,4 @@
-package eu.darken.myperm.permissions.core.features
-
-import eu.darken.myperm.permissions.core.Permission
+package eu.darken.myperm.apps.core.features
 
 interface PermissionState {
     enum class Status {
@@ -13,5 +11,5 @@ interface PermissionState {
     val status: Status
 }
 
-val Permission.isGranted: Boolean
+val UsesPermission.isGranted: Boolean
     get() = this is PermissionState && status == PermissionState.Status.GRANTED

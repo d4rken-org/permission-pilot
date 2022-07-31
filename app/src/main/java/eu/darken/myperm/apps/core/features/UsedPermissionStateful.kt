@@ -1,14 +1,13 @@
-package eu.darken.myperm.permissions.core.container
+package eu.darken.myperm.apps.core.features
 
 import android.content.pm.PackageInfo
+import eu.darken.myperm.apps.core.features.PermissionState.Status
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.features.PermissionState
-import eu.darken.myperm.permissions.core.features.PermissionState.Status
 
 data class UsedPermissionStateful(
     override val id: Permission.Id,
     val flags: Int?,
-) : Permission, PermissionState {
+) : UsesPermission, PermissionState {
 
     override val status: Status = when {
         flags == null -> Status.UNKNOWN

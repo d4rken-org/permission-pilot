@@ -14,7 +14,6 @@ import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.Logging.Priority.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
-import eu.darken.myperm.permissions.core.container.UsedPermissionStateful
 
 data class SecondaryProfilePkg(
     override val packageInfo: PackageInfo,

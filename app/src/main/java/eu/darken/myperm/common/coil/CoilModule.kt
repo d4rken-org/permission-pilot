@@ -28,6 +28,7 @@ class CoilModule {
         @ApplicationContext context: Context,
         appIconFetcherFactory: AppIconFetcher.Factory,
         permissionIconFetcher: PermissionIconFetcher.Factory,
+        usesPermissionIconFetcher: UsesPermissionIconFetcher.Factory,
         dispatcherProvider: DispatcherProvider,
     ): ImageLoader = ImageLoader.Builder(context).apply {
 
@@ -43,6 +44,7 @@ class CoilModule {
         components {
             add(appIconFetcherFactory)
             add(permissionIconFetcher)
+            add(usesPermissionIconFetcher)
         }
         dispatcher(dispatcherProvider.Default)
     }.build()

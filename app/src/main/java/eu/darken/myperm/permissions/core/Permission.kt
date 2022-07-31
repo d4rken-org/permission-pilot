@@ -6,11 +6,18 @@ import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.getPermissionInfo2
+import eu.darken.myperm.permissions.core.features.Highlighted
+import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.parcelize.Parcelize
 
 interface Permission {
     val id: Id
+
+    val tags: Collection<PermissionTag>
+        get() = emptySet()
+    val groupIds: Collection<PermissionGroup.Id>
+        get() = emptySet()
 
     fun getLabel(context: Context): String? {
         val pm = context.packageManager
@@ -67,7 +74,7 @@ interface Permission {
 
         APerm.values
             .singleOrNull { it.id == id }
-            ?.getAction(context)
+            ?.createAction(context, this)
             ?.let { return it }
 
         return PermissionAction.None(this)
@@ -75,8 +82,6 @@ interface Permission {
 
     @Parcelize
     data class Id(val value: String) : Parcelable
-
-    data class Container(override val id: Id) : Permission
 }
 
 fun Permission.Id.getGroupIds(): Collection<PermissionGroup.Id> =
@@ -85,3 +90,6 @@ fun Permission.Id.getGroupIds(): Collection<PermissionGroup.Id> =
 
 fun Permission.getGroupIds(): Collection<PermissionGroup.Id> =
     APerm.values.singleOrNull { it.id == this.id }?.groupIds ?: emptySet()
+
+val Permission.isHighlighted
+    get() = this.tags.any { it is Highlighted }
