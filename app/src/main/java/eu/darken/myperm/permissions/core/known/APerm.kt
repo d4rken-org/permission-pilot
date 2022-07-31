@@ -588,6 +588,7 @@ sealed class APerm constructor(val id: Permission.Id) {
     }
 
     object REQUEST_INSTALL_PACKAGES : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
+        override val iconRes: Int = R.drawable.ic_baseline_install_mobile_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
