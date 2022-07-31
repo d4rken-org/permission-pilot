@@ -166,7 +166,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
             else -> true
         }
-        grantedPerm?.let { setupTagClicks(item, it.id) }
+        (grantedPerm ?: perms.firstOrNull())?.let { setupTagClicks(item, it.id) }
     }
 
     private fun ImageView.setupTagClicks(item: Item, permId: Permission.Id) {
