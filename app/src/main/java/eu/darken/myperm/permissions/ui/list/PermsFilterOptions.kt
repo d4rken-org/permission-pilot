@@ -18,8 +18,7 @@ data class PermsFilterOptions(
     @Json(name = "filters") val keys: Set<Filter> = setOf(
         Filter.MANIFEST,
         Filter.SYSTEM,
-        Filter.RUNTIME,
-        Filter.SPECIAL_ACCESS
+        Filter.NOT_INSTALLTIME,
     )
 ) : Parcelable {
 
@@ -45,9 +44,13 @@ data class PermsFilterOptions(
             labelRes = R.string.permissions_filter_runtime_label,
             matches = { it.tags.any { tag -> tag is RuntimeGrant } }
         ),
-        DEFAULT_GRANTED(
-            labelRes = R.string.permissions_filter_default_label,
+        INSTALLTIME(
+            labelRes = R.string.permissions_filter_installtime_label,
             matches = { it.tags.any { tag -> tag is InstallTimeGrant } }
+        ),
+        NOT_INSTALLTIME(
+            labelRes = R.string.permissions_filter_installtime_hide_label,
+            matches = { it.tags.none { tag -> tag is InstallTimeGrant } }
         ),
         SPECIAL_ACCESS(
             labelRes = R.string.permissions_filter_special_label,

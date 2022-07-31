@@ -80,7 +80,8 @@
 
     <string name="permissions_filter_runtime_label">Requested at runtime</string>
     <string name="permissions_filter_special_label">Special usage</string>
-    <string name="permissions_filter_default_label">Granted by default</string>
+    <string name="permissions_filter_installtime_label">Granted automatically</string>
+    <string name="permissions_filter_installtime_hide_label">Not granted automatically</string>
 
     <string name="permissions_sort_apps_granted_label"># of apps granted</string>
     <string name="permissions_sort_apps_requested_label"># of apps requested</string>
