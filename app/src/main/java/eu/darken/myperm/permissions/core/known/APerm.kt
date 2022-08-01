@@ -442,30 +442,78 @@ sealed class APerm constructor(val id: Permission.Id) {
     }
 
     /**
-     * SENSORS
+     * Camera
      */
 
     object CAMERA : APerm("android.permission.CAMERA") {
         override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Sensors)
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
+    object CAMERA_OPEN_CLOSE_LISTENER : APerm("android.permission.CAMERA_OPEN_CLOSE_LISTENER") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object SYSTEM_CAMERA : APerm("android.permission.SYSTEM_CAMERA") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object BACKGROUND_CAMERA : APerm("android.permission.BACKGROUND_CAMERA") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object MANAGE_CAMERA : APerm("android.permission.MANAGE_CAMERA") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object CAMERA_SEND_SYSTEM_EVENTS : APerm("android.permission.MANAGE_CAMERACAMERA_SEND_SYSTEM_EVENTS") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object CAMERA_INJECT_EXTERNAL_CAMERA : APerm("android.permission.CAMERA_INJECT_EXTERNAL_CAMERA") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    object CAMERA_DISABLE_TRANSMIT_LED : APerm("android.permission.CAMERA_DISABLE_TRANSMIT_LED") {
+        override val iconRes: Int = R.drawable.ic_baseline_photo_camera_24
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Camera)
+    }
+
+    /**
+     * Record Audio
+     */
+
     object RECORD_AUDIO : APerm("android.permission.RECORD_AUDIO") {
         override val iconRes: Int = R.drawable.ic_baseline_mic_24
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Sensors)
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Audio)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
     object CAPTURE_AUDIO_OUTPUT : APerm("android.permission.CAPTURE_AUDIO_OUTPUT") {
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Sensors)
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Audio)
         override val tags = setOf(ManifestDoc)
     }
 
     object MODIFY_AUDIO_SETTINGS : APerm("android.permission.MODIFY_AUDIO_SETTINGS") {
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Sensors)
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Audio)
         override val tags = setOf(ManifestDoc)
     }
+
+    object RECORD_BACKGROUND_AUDIO : APerm("android.permission.RECORD_BACKGROUND_AUDIO") {
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Audio)
+        override val tags = setOf(ManifestDoc)
+    }
+
+    /**
+     * SENSORS
+     */
 
     object BODY_SENSORS : APerm("android.permission.BODY_SENSORS") {
         override val iconRes: Int = R.drawable.ic_body_sensors_24

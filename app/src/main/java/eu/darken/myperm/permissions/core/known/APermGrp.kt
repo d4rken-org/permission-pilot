@@ -10,18 +10,24 @@ import kotlin.reflect.full.isSubclassOf
 @Keep
 sealed class APermGrp constructor(override val id: PermissionGroup.Id) : PermissionGroup {
 
-    @get:DrawableRes open val iconRes: Int? = null
-    @get:StringRes open val labelRes: Int? = null
-    @get:StringRes open val descriptionRes: Int? = null
+    @get:DrawableRes abstract val iconRes: Int
+    @get:StringRes abstract val labelRes: Int
+    @get:StringRes abstract val descriptionRes: Int
 
     constructor(rawPermissionId: String) : this(PermissionGroup.Id(rawPermissionId))
 
     override fun toString(): String = "APermGrp(${id})"
 
-    object Battery : APermGrp("permission.group.BATTERY") {
-        override val iconRes: Int = R.drawable.ic_baseline_battery_charging_full_24
-        override val labelRes: Int = R.string.permission_group_battery_label
-        override val descriptionRes: Int = R.string.permission_group_battery_description
+    object Camera : APermGrp("permission.group.CAMERA") {
+        override val iconRes: Int = R.drawable.ic_baseline_camera_24
+        override val labelRes: Int = R.string.permission_group_camera_label
+        override val descriptionRes: Int = R.string.permission_group_camera_description
+    }
+
+    object Audio : APermGrp("permission.group.AUDIO") {
+        override val iconRes: Int = R.drawable.ic_baseline_mic_24
+        override val labelRes: Int = R.string.permission_group_audio_label
+        override val descriptionRes: Int = R.string.permission_group_audio_description
     }
 
     object Calendar : APermGrp("permission.group.CALENDAR") {

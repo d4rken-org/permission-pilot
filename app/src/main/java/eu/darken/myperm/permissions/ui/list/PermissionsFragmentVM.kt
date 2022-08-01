@@ -95,29 +95,32 @@ class PermissionsFragmentVM @Inject constructor(
 
         val listItems = mutableListOf<PermissionsAdapter.Item>()
 
-        APermGrp.values.filter { it != APermGrp.Other }.forEach { grp ->
-            val permsInGrp = permItems
-                .filter { it.permission.getGroupIds().contains(grp.id) }
-                .also { permItems -= it.toSet() }
+        APermGrp.values
+            .filter { it != APermGrp.Other }
+            .sortedBy { context.getString(it.labelRes) }
+            .forEach { grp ->
+                val permsInGrp = permItems
+                    .filter { it.permission.getGroupIds().contains(grp.id) }
+                    .also { permItems -= it.toSet() }
 
-            val isExpanded = expGroups[grp.id] == true
+                val isExpanded = expGroups[grp.id] == true
 
-            PermissionGroupVH.Item(
-                group = grp,
-                permissions = permsInGrp,
-                isExpanded = isExpanded,
-                onClickAction = { expandedGroups.toggle(grp.id) },
-            ).run {
-                if (permsInGrp.isNotEmpty()) {
-                    listItems.add(this)
-                    groupCount++
+                PermissionGroupVH.Item(
+                    group = grp,
+                    permissions = permsInGrp,
+                    isExpanded = isExpanded,
+                    onClickAction = { expandedGroups.toggle(grp.id) },
+                ).run {
+                    if (permsInGrp.isNotEmpty()) {
+                        listItems.add(this)
+                        groupCount++
+                    }
                 }
+
+                permissionCount += permsInGrp.size
+
+                if (isExpanded) listItems.addAll(permsInGrp)
             }
-
-            permissionCount += permsInGrp.size
-
-            if (isExpanded) listItems.addAll(permsInGrp)
-        }
 
         APermGrp.Other.apply {
             val isExpanded = expGroups[this.id] == true

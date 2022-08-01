@@ -198,4 +198,8 @@
     <string name="permission_group_apps_description">Special permissions requiring explicit user consent.</string>
     <string name="permission_group_battery_label">Battery</string>
     <string name="permission_group_battery_description">Battery related permissions.</string>
+    <string name="permission_group_camera_label">Camera</string>
+    <string name="permission_group_camera_description">Camera related permissions.</string>
+    <string name="permission_group_audio_label">Microphone</string>
+    <string name="permission_group_audio_description">Microphone related permissions.</string>
 </resources>
