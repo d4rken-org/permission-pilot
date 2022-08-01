@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.features.getPermissionUses
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
@@ -62,11 +63,11 @@ class PermissionDetailsFragmentVM @Inject constructor(
             }.run { infoItems.addAll(this) }
 
             perm.requestingPkgs
-                .sortedBy { it.isSystemApp }
                 .map { app ->
                     AppRequestingPermissionVH.Item(
                         permission = perm,
                         app = app,
+                        status = app.getPermissionUses(perm.id).status,
                         onItemClicked = {
                             PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
                                 it.app.id,
@@ -80,6 +81,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
                         }
                     )
                 }
+                .sortedWith(compareBy<AppRequestingPermissionVH.Item> { it.status }.thenBy { it.app.isSystemApp })
                 .run { infoItems.addAll(this) }
 
             Details(

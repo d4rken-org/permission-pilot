@@ -9,5 +9,6 @@ interface HasPermissionUseInfo {
     val requestedPermissions: Collection<UsedPermissionStateful>
 }
 
-fun Pkg.getPermissionUses(id: Permission.Id): UsedPermissionStateful? =
+fun Pkg.getPermissionUses(id: Permission.Id): UsedPermissionStateful =
     (this as? HasPermissionUseInfo)?.requestedPermissions?.singleOrNull { it.id == id }
+        ?: UsedPermissionStateful(id, null)
