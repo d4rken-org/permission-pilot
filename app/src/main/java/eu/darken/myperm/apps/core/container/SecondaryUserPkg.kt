@@ -57,6 +57,9 @@ data class SecondaryUserPkg(
     }
 
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
+
+    override val isSystemApp: Boolean
+        get() = super.isSystemApp || twins.any { it.isSystemApp }
 }
 
 fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
