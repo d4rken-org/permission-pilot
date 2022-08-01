@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.details.items
 
 import android.view.ViewGroup
 import androidx.core.view.isGone
+import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasePkg
@@ -43,7 +44,7 @@ class AppSiblingsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppSiblingsVH.
         siblingsContainer.removeAllViews()
         app.siblings.forEach { sibling ->
             AppsDetailsSiblingsItemSiblingBinding.inflate(layoutInflater, siblingsContainer, false).apply {
-                icon.setImageDrawable(sibling.getIcon(context))
+                icon.load(sibling)
 
                 label.text = sibling.getLabel(context)
                 identifier.text = sibling.id.pkgName

@@ -1,6 +1,7 @@
 package eu.darken.myperm.apps.ui.details.items
 
 import android.view.ViewGroup
+import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasePkg
@@ -25,11 +26,10 @@ class AppTwinsVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppTwinsVH.Item, 
 
         twinsContainer.removeAllViews()
 
-        val pm = context.packageManager
         twinCount.text = app.twins.size.toString()
         app.twins.forEach { twin ->
             AppsDetailsTwinsItemTwinBinding.inflate(layoutInflater).apply {
-                twin.getIcon(context)?.let { icon.setImageDrawable(it) }
+                icon.load(twin)
 
                 label.text = twin.getLabel(context)
                 identifier.text = twin.id.toString()
