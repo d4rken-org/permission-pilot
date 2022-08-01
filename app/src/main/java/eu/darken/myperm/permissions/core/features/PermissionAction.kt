@@ -1,6 +1,7 @@
 package eu.darken.myperm.permissions.core.features
 
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -64,9 +65,21 @@ sealed class PermissionAction {
                 // We don't have specific intents for these
 //                APerm.MANAGE_ONGOING_CALLS.id -> Intent(Settings.)
 //                APerm.INSTANT_APP_FOREGROUND_SERVICE.id -> Intent(Settings.)
-//                APerm.LOADER_USAGE_STATS.id -> Intent(Settings.)
-//                APerm.SMS_FINANCIAL_TRANSACTIONS.id -> Intent(Settings.)
-//                APerm.USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER.id -> Intent(Settings.)
+//               APerm.LOADER_USAGE_STATS.id -> Intent().apply {
+//
+//               }
+                APerm.SMS_FINANCIAL_TRANSACTIONS.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$PremiumSmsAccessActivity"
+                    )
+                }
+                APerm.USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$IccLockSettingsActivity"
+                    )
+                }
                 else -> throw IllegalArgumentException("No action found for: ${permission.id.value}")
             }
 
