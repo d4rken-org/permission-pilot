@@ -54,6 +54,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object MANAGE_EXTERNAL_STORAGE : APerm("android.permission.MANAGE_EXTERNAL_STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
+        override val labelRes: Int = R.string.permission_manage_external_storage_label
+        override val descriptionRes: Int = R.string.permission_manage_external_storage_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
         override val tags = setOf(Highlighted, ManifestDoc, SpecialAccess)
     }
@@ -536,6 +538,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object SYSTEM_ALERT_WINDOW : APerm("android.permission.SYSTEM_ALERT_WINDOW") {
         override val iconRes: Int = R.drawable.ic_system_alert_window_24
+        override val labelRes: Int = R.string.permission_system_alert_window_label
+        override val descriptionRes: Int = R.string.permission_system_alert_window_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
@@ -585,6 +589,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object REQUEST_INSTALL_PACKAGES : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
         override val iconRes: Int = R.drawable.ic_baseline_install_mobile_24
+        override val labelRes: Int = R.string.permission_request_install_packages_label
+        override val descriptionRes: Int = R.string.permission_request_install_packages_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
