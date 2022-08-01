@@ -3,9 +3,7 @@
     <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Configurações</string>
     <string name="label_help">Ajuda</string>
-
     <string name="general_error_label">Erro</string>
-
     <string name="general_share_action">Compartilhar</string>
     <string name="general_done_action">Feito</string>
     <string name="general_copy_action">Copiar</string>
@@ -13,25 +11,20 @@
     <string name="general_donate_action">Doação</string>
     <string name="general_check_action">Verificar</string>
     <string name="general_show_action">Mostrar</string>
-
     <string name="debug_debuglog_size_label">Tamanho</string>
     <string name="debug_debuglog_size_compressed_label">Tamanho compactado</string>
     <string name="debug_notification_channel_label">Notificações de depuração</string>
     <string name="debug_debuglog_file_label">Arquivo de depuração salvo</string>
     <string name="debug_debuglog_record_action">Registrar um log de depuração</string>
-
     <string name="settings_category_other_label">Outro</string>
-
     <string name="general_settings_label">Geral</string>
     <string name="general_settings_desc">Ajustes gerais que afetam todo app.</string>
-
     <string name="changelog_label">Histórico de modificações</string>
     <string name="settings_acknowledgements_label">Agradecimentos</string>
     <string name="general_thank_you_label">Obrigado</string>
     <string name="settings_licenses_label">Licenças</string>
     <string name="settings_privacy_policy_label">Política de privacidade</string>
     <string name="settings_privacy_policy_desc">Tratamento de dados da forma responsável.</string>
-
     <string name="settings_support_label">Suporte</string>
     <string name="documentation_label">Documentação</string>
     <string name="support_installid_label">ID de instalação</string>
@@ -52,28 +45,31 @@
     <string name="upgrade_myperm_description">Apóie o desenvolvimento.</string>
     <string name="general_filter_action">Filtro</string>
     <string name="general_cancel_action">Cancelar</string>
-
     <string name="apps_filter_userapps_label">Apps do usuário</string>
     <string name="apps_filter_systemapps_label">Apps do sistema</string>
     <string name="apps_filter_nointernet_label">Apps sem acesso à internet</string>
     <string name="apps_filter_sideloaded_label">Apps instalados por fora</string>
     <string name="apps_filter_gplay_label">Loja do Google Play</string>
     <string name="apps_filter_oemstore_label">Loja OEM</string>
-
     <string name="apps_sort_permissions_granted_label">Permissões concedidas</string>
     <string name="apps_sort_permissions_requested_label">Permissões requeridas</string>
     <string name="apps_sort_permissions_declared_label">Permissões declaradas</string>
     <string name="apps_sort_app_name_label">Nome do app</string>
     <string name="apps_sort_install_date_label">Data da instalação</string>
     <string name="apps_sort_update_date_label">Última atualização</string>
-
     <string name="general_sort_action">Ordenar</string>
     <string name="apps_permissions_x_of_x_granted">%1$d de %2$d concedidas.</string>
     <string name="apps_permissions_x_requested">%1$d permissões solicitadas.</string>
     <string name="apps_permissions_declares_x">Declara %1$d permissões.</string>
     <string name="apps_details_installer_label">Fonte da instalação</string>
     <string name="apps_details_installer_unknown_label">Informação indisponível</string>
-
+    <string name="permissions_filter_manifest_label">Permissões do AOSP</string>
+    <string name="permissions_filter_system_label">Declarado pelo app do sistema</string>
+    <string name="permissions_filter_user_label">Declarado pelo app de usuário</string>
+    <string name="permissions_filter_runtime_label">Solicitada em momento da execução</string>
+    <string name="permissions_filter_special_label">Uso especial</string>
+    <string name="permissions_filter_installtime_label">Concedido automaticamente</string>
+    <string name="permissions_filter_installtime_hide_label">Não concedido automaticamente</string>
     <string name="permissions_sort_apps_granted_label"># de apps concedidos</string>
     <string name="permissions_sort_apps_requested_label"># de apps solicitados</string>
     <string name="permissions_search_list_hint">Procurar permissões</string>
@@ -156,13 +152,13 @@
     <string name="permission_manage_accounts_label">Gerenciamento das contas</string>
     <string name="permission_manage_accounts_description">Permite que o app gerencie as contas no dispositivo.</string>
     <string name="permission_change_wifi_state_label">Alteração de estado do WiFi</string>
-    <string name="permission_change_wifi_state_description">Permite que o app se conecte e desconecte dos pontos de acesso WiFi e faça alterações em configuração do dispositivo em redes WiFi.</string>
+    <string name="permission_change_wifi_state_description">Permite que o app se conecte e desconecte dos pontos de acesso WiFi e faça alterações em configuração de redes WiFi do dispositivo.</string>
     <string name="permission_change_network_state_label">Alteração de estado da rede</string>
     <string name="permission_change_network_state_description">Permite que o app mude o estado de conectividade da rede.</string>
     <string name="permission_read_sync_settings_label">Leitura de configurações da sincronização</string>
     <string name="permission_read_sync_settings_description">Permite que o app leia as configurações de sincronização de uma conta.</string>
     <string name="permission_group_calendar_label">Calendário</string>
-    <string name="permission_group_calendar_description"><![CDATA[Permissões relacionadas ao calendário, p.ex., visualizar e editar entradas.]]></string>
+    <string name="permission_group_calendar_description"><![CDATA[ Permissões relacionadas ao calendário, p.ex., visualizar e editar entradas. ]]></string>
     <string name="permission_group_files_label">Arquivos</string>
     <string name="permission_group_files_description">Permissões relacionadas a arquivos. Acesso ao armazenamento e documentos.</string>
     <string name="permission_group_other_label">Outros</string>
@@ -181,7 +177,6 @@
     <string name="permission_group_contacts_description">"Leitura e gravação de contatos."</string>
     <string name="permission_group_apps_label">Apps</string>
     <string name="permission_group_apps_description">Informações sobre apps, gerenciamento deles ou permissões relacionadas ao comportamento.</string>
-    <string name="permission_group_battery_label">Bateria </string>
+    <string name="permission_group_battery_label">Bateria</string>
     <string name="permission_group_battery_description">Permissões relacionadas à bateria.</string>
-
 </resources>

@@ -1,0 +1,17 @@
+<i>Permission Pilot</i> é um novo tipo de ferramenta que ajuda a usuário visualizar quais permissões estão sendo usadas pelos apps - idea surgiu de uma discussão sobre uma funcionalidade para SD Maid.
+
+Atualmente, o Android mostra permissões de apps em 3 lugares diferentes:
+
+* Site de informações do app
+* Acesso especial
+* Gerenciar permissões
+
+A fim de controlar ou apenas ver a quais permissões um app tem acesso, o usuário tem que ir para 3 lugares diferentes.
+
+<i>Permission Pilot</i> basicamente listará todas as permissões que um app solicitou em um único lugar, dando ao usuário um insight amplo sobre as permissões de apps. Você verá duas abas:
+
+* <b>Apps:</b> isto listará todos os apps instalados. Ao tocar em qualquer app você verá todas as permissões que o app solicitou, incluindo aquelas que aparecem em 'Gerenciar permissões' e 'Acesso especial', junto com o seu status (Ligado/ Desligado, Permitido/ Não permitido, etc.)
+
+* <b>Permissões:</b> isto listará todas as permissões, tais como Contatos, Microfone, Câmera, etc., incluindo as que aparecem em 'Gerenciar permissões' e 'Acesso especial'. Ao tocar em cada um deles, serão exibidos todos os apps que atualmente têm acesso a essa permissão.
+
+Isso também incluirá permissões de internet, status de ID compartilhada de usuário!
