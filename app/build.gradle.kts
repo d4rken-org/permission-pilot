@@ -19,7 +19,7 @@ android {
         targetSdk = ProjectConfig.targetSdk
 
         versionCode = ProjectConfig.Version.code
-        versionName = ProjectConfig.Version.name
+        versionName = ProjectConfig.Version.fullName
 
         testInstrumentationRunner = "$packageName.HiltTestRunner"
 
