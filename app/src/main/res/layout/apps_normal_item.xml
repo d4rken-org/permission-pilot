@@ -25,13 +25,6 @@
         app:layout_constraintStart_toStartOf="@id/icon"
         app:layout_constraintTop_toBottomOf="@id/icon">
 
-        <ImageView
-            android:id="@+id/tag_system"
-            style="@style/AppTagStyle"
-            android:src="@drawable/ic_baseline_shield_24"
-            app:tint="?colorError"
-            tools:visibility="visible" />
-
         <FrameLayout
             android:id="@+id/tag_workprofile"
             android:layout_width="16dp"

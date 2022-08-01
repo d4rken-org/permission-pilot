@@ -83,13 +83,6 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         itemView.setOnClickListener { item.onRowClicked(item.app) }
 
-        // START: Special status tag group
-        tagSystem.apply {
-            isGone = !app.isSystemApp
-            setOnClickListener {
-                Toast.makeText(context, R.string.app_type_system_label, Toast.LENGTH_SHORT).show()
-            }
-        }
         tagWorkprofile.apply {
             isGone = !app.isOrHasProfiles()
             alpha = if (app.twins.isEmpty()) 0.4f else 1.0f
