@@ -173,9 +173,9 @@
     <string name="permission_request_install_packages_label">Install unknown apps (Unknown Sources)</string>
     <string name="permission_request_install_packages_description">Allows apps to install other apps on your device. This may put your device and data at risk.</string>
     <string name="permission_manage_external_storage_label">All Files access</string>
-    <string name="permission_manage_external_storage_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren't related to the app, WITHOUT notifying you.</string>
+    <string name="permission_manage_external_storage_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
     <string name="permission_system_alert_window_label">Appear on Top</string>
-    <string name="permission_system_alert_window_description">Allows apps to show things on top of other apps you're using (including showing ads). This may interfere with your use of other apps.</string>
+    <string name="permission_system_alert_window_description">Allows apps to show things on top of other apps you\'re using (including showing ads). This may interfere with your use of other apps.</string>
     <string name="permission_group_calendar_label">Calendar</string>
     <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
     <string name="permission_group_files_label">Files and media</string>
