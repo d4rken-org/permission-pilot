@@ -33,7 +33,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_manage_media_label
         override val descriptionRes: Int = R.string.permission_manage_media_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(Highlighted, ManifestDoc)
     }
 
     object READ_MEDIA_STORAGE : APerm("android.permission.READ_MEDIA_STORAGE") {
