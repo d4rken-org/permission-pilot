@@ -40,11 +40,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/extra_info"
         app:layout_constraintEnd_toStartOf="@id/action_button"
         app:layout_constraintStart_toStartOf="@id/identifier"
         app:layout_constraintTop_toBottomOf="@id/identifier"
         tools:text="Write to external storage" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/extra_info"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/action_button"
+        app:layout_constraintStart_toStartOf="@id/identifier"
+        app:layout_constraintTop_toBottomOf="@id/label"
+        tools:text="Permission is created by this app." />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/action_button"
@@ -55,9 +67,10 @@
         app:icon="@drawable/ic_baseline_check_circle_24"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/label"
+        app:layout_constraintBottom_toBottomOf="@id/extra_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/identifier"
         tools:tint="?colorPrimary" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

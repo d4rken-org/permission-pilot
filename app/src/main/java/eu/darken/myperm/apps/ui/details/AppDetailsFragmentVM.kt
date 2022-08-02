@@ -112,7 +112,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 )
                 ?.map { (usesPerm, basePerm) ->
                     when (basePerm) {
-                        is DeclaredPermission, is ExtraPermission -> DeclaredPermissionVH.Item(
+                        is DeclaredPermission, is ExtraPermission -> UsesPermissionVH.Item(
                             pkg = app,
                             appPermission = usesPerm,
                             permission = basePerm,

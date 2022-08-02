@@ -11,18 +11,19 @@ import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
-import eu.darken.myperm.databinding.AppsDetailsPermissionDeclaredItemBinding
+import eu.darken.myperm.databinding.AppsDetailsPermissionUsesItemBinding
 import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.permissions.core.id
 
-class DeclaredPermissionVH(parent: ViewGroup) :
-    AppDetailsAdapter.BaseVH<DeclaredPermissionVH.Item, AppsDetailsPermissionDeclaredItemBinding>(
-        R.layout.apps_details_permission_declared_item,
+class UsesPermissionVH(parent: ViewGroup) :
+    AppDetailsAdapter.BaseVH<UsesPermissionVH.Item, AppsDetailsPermissionUsesItemBinding>(
+        R.layout.apps_details_permission_uses_item,
         parent
-    ), BindableVH<DeclaredPermissionVH.Item, AppsDetailsPermissionDeclaredItemBinding> {
+    ), BindableVH<UsesPermissionVH.Item, AppsDetailsPermissionUsesItemBinding> {
 
-    override val viewBinding = lazy { AppsDetailsPermissionDeclaredItemBinding.bind(itemView) }
+    override val viewBinding = lazy { AppsDetailsPermissionUsesItemBinding.bind(itemView) }
 
-    override val onBindData: AppsDetailsPermissionDeclaredItemBinding.(
+    override val onBindData: AppsDetailsPermissionUsesItemBinding.(
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
@@ -33,8 +34,18 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         }
 
         identifier.text = permission.id.value
+
         label.apply {
-            text = permission.getLabel(context)?.capitalizeFirstLetter()
+            text = permission.getLabel(context)?.capitalizeFirstLetter() ?: permission.id.value.split(".").lastOrNull()
+            isGone = text.isNullOrEmpty()
+        }
+
+        extraInfo.apply {
+            val isDeclaredbyThisApp = item.pkg.declaredPermissions.any { it.id == item.appPermission.id }
+            text = when {
+                isDeclaredbyThisApp -> getString(R.string.permissions_app_type_declaring_description)
+                else -> null
+            }
             isGone = text.isNullOrEmpty()
         }
 
