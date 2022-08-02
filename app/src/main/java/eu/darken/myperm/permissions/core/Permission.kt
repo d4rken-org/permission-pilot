@@ -22,6 +22,15 @@ interface Permission {
         get() = emptySet()
 
     fun getLabel(context: Context): String? {
+
+        APerm.values.singleOrNull { it.id == id }
+            ?.labelRes
+            ?.let { return context.getString(it) }
+
+        AExtraPerm.values.singleOrNull { it.id == id }
+            ?.labelRes
+            ?.let { return context.getString(it) }
+
         val pm = context.packageManager
 
         pm
@@ -31,18 +40,19 @@ interface Permission {
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
 
-        APerm.values.singleOrNull { it.id == id }
-            ?.labelRes
-            ?.let { return context.getString(it) }
-
-        AExtraPerm.values.singleOrNull { it.id == id }
-            ?.labelRes
-            ?.let { return context.getString(it) }
-
         return null
     }
 
     fun getDescription(context: Context): String? {
+
+        APerm.values.singleOrNull { it.id == id }
+            ?.descriptionRes
+            ?.let { return context.getString(it) }
+
+        AExtraPerm.values.singleOrNull { it.id == id }
+            ?.descriptionRes
+            ?.let { return context.getString(it) }
+
         val pm = context.packageManager
 
         pm
@@ -51,14 +61,6 @@ interface Permission {
             ?.loadDescription(pm)
             ?.takeIf { it.isNotEmpty() && it != id.value }
             ?.let { return it.toString() }
-
-        APerm.values.singleOrNull { it.id == id }
-            ?.descriptionRes
-            ?.let { return context.getString(it) }
-
-        AExtraPerm.values.singleOrNull { it.id == id }
-            ?.descriptionRes
-            ?.let { return context.getString(it) }
 
         return null
     }
