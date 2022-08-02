@@ -185,7 +185,7 @@
     <string name="permission_access_to_media_only_label">Access to Media only</string>
     <string name="permission_access_to_media_only_description">Allows apps access to media only on your device.</string>
     <string name="permission_access_precise_location_label">Access accurate/ precise location</string>
-    <string name="permission_access_precise_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, etc.).</string>
+    <string name="permission_access_precise_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, device tracking services like Find My Device etc.).</string>
     <string name="permission_access_approximate_location_label">Access approximate location</string>
     <string name="permission_access_approximate_location_description">Allows apps to access your device\'s approximate location. This permission is sufficient for most apps that need access to your location for core functionality.</string>
     <string name="permission_ignore_battery_optimizations_label">Ignore Battery Optimizations</string>
