@@ -66,8 +66,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object MANAGE_EXTERNAL_STORAGE : APerm("android.permission.MANAGE_EXTERNAL_STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
-        override val labelRes: Int = R.string.permission_all_file_access_label
-        override val descriptionRes: Int = R.string.permission_all_file_access_description
+        override val labelRes: Int = R.string.permission_all_files_access_label
+        override val descriptionRes: Int = R.string.permission_all_files_access_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
         override val tags = setOf(Highlighted, ManifestDoc, SpecialAccess)
     }
