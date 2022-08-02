@@ -209,7 +209,7 @@
     <string name="permission_group_connectivity_label">Connectivity</string>
     <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth and more. Permissions related to communicating with the outside world.</string>
     <string name="permission_group_sensors_label">Sensors</string>
-    <string name="permission_group_sensors_description">Camera, Microphone, Accelerometer, Gyro, and more. Ways that your device can capture input.</string>
+    <string name="permission_group_sensors_description">Accelerometer, Gyro, and more. Ways that your device can capture input.</string>
     <string name="permission_group_calls_label">Calls</string>
     <string name="permission_group_calls_description">Call related permissions</string>
     <string name="permission_group_location_label">Location</string>
@@ -217,7 +217,7 @@
     <string name="permission_group_contacts_label">Contacts</string>
     <string name="permission_group_contacts_description">"Reading and writing contacts."</string>
     <string name="permission_group_apps_label">Apps</string>
-    <string name="permission_group_apps_description">Special permissions requiring explicit user consent.</string>
+    <string name="permission_group_apps_description">Special Access permissions requiring explicit user consent.</string>
     <string name="permission_group_battery_label">Battery</string>
     <string name="permission_group_battery_description">Battery related permissions.</string>
     <string name="permission_group_camera_label">Camera</string>
