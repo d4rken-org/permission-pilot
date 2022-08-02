@@ -42,7 +42,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(Highlighted, ManifestDoc)
     }
 
-    object WRITE_EXTERNAL_STORAGE : APerm("android.permission.WRITE_EXTERNAL_STORAGE") {
+    object FILES_AND_MEDIA : APerm("android.permission.WRITE_EXTERNAL_STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
         override val labelRes: Int = R.string.permission_files_and_media_label
         override val descriptionRes: Int = R.string.permission_files_and_media_description
@@ -56,7 +56,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(Highlighted, ManifestDoc)
     }
 
-    object MANAGE_EXTERNAL_STORAGE : APerm("android.permission.MANAGE_EXTERNAL_STORAGE") {
+    object ALL_FILES_ACCESS : APerm("android.permission.MANAGE_EXTERNAL_STORAGE") {
         override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
         override val labelRes: Int = R.string.permission_all_file_access_label
         override val descriptionRes: Int = R.string.permission_all_file_access_description
@@ -106,7 +106,7 @@ sealed class APerm constructor(val id: Permission.Id) {
      * LOCATION
      */
 
-    object ACCESS_FINE_LOCATION : APerm("android.permission.ACCESS_FINE_LOCATION") {
+    object ACCESS_PRECISE_LOCATION : APerm("android.permission.ACCESS_FINE_LOCATION") {
         override val iconRes: Int = R.drawable.ic_location_fine_24
         override val labelRes: Int = R.string.permission_access_fine_location_label
         override val descriptionRes: Int = R.string.permission_access_fine_location_description
@@ -114,7 +114,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
-    object ACCESS_COARSE_LOCATION : APerm("android.permission.ACCESS_COARSE_LOCATION") {
+    object ACCESS_APPROXIMATE_LOCATION : APerm("android.permission.ACCESS_COARSE_LOCATION") {
         override val iconRes: Int = R.drawable.ic_location_coarse_24
         override val labelRes: Int = R.string.permission_access_coarse_location_label
         override val descriptionRes: Int = R.string.permission_access_coarse_location_description
@@ -231,7 +231,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object SMS_FINANCIAL_TRANSACTIONS : APerm("android.permission.SMS_FINANCIAL_TRANSACTIONS") {
+    object PREMIUM_SMS_ACCESS : APerm("android.permission.SMS_FINANCIAL_TRANSACTIONS") {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
         override val labelRes: Int = R.string.permission_sms_financial_transactions_label
         override val descriptionRes: Int = R.string.permission_sms_financial_transactions_description
@@ -388,7 +388,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object CHANGE_WIFI_STATE : APerm("android.permission.CHANGE_WIFI_STATE") {
+    object WIFI_CONTROL : APerm("android.permission.CHANGE_WIFI_STATE") {
         override val iconRes: Int = R.drawable.ic_change_wifi_state_24
         override val labelRes: Int = R.string.permission_change_wifi_state_label
         override val descriptionRes: Int = R.string.permission_change_wifi_state_description
@@ -586,7 +586,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object SYSTEM_ALERT_WINDOW : APerm("android.permission.SYSTEM_ALERT_WINDOW") {
+    object APPEAR_ON_TOP : APerm("android.permission.SYSTEM_ALERT_WINDOW") {
         override val iconRes: Int = R.drawable.ic_system_alert_window_24
         override val labelRes: Int = R.string.permission_system_alert_window_label
         override val descriptionRes: Int = R.string.permission_system_alert_window_description
@@ -594,7 +594,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
-    object PACKAGE_USAGE_STATS : APerm("android.permission.PACKAGE_USAGE_STATS") {
+    object USAGE_DATA_ACCESS : APerm("android.permission.PACKAGE_USAGE_STATS") {
         override val iconRes: Int = R.drawable.ic_usage_data_access_24
         override val labelRes: Int = R.string.permission_package_usage_stats_label
         override val descriptionRes: Int = R.string.permission_package_usage_stats_description
@@ -637,7 +637,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object REQUEST_INSTALL_PACKAGES : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
+    object INSTALL_UNKNOWN_APPS : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
         override val iconRes: Int = R.drawable.ic_baseline_install_mobile_24
         override val labelRes: Int = R.string.permission_request_install_packages_label
         override val descriptionRes: Int = R.string.permission_request_install_packages_description
@@ -685,7 +685,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object REQUEST_IGNORE_BATTERY_OPTIMIZATIONS : APerm("android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS") {
+    object IGNORE_BATTERY_OPTIMIZATIONS : APerm("android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS") {
         override val iconRes: Int = R.drawable.ic_baseline_battery_charging_full_24
         override val labelRes: Int = R.string.permission_request_ignore_battery_optimizations_label
         override val descriptionRes: Int = R.string.permission_request_ignore_battery_optimizations_description
