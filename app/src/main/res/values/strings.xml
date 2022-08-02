@@ -172,8 +172,8 @@
     <string name="permission_read_sync_settings_description">Allows apps to read sync settings for an account.</string>
     <string name="permission_install_unknown_apps_label">Install unknown apps (Unknown Sources)</string>
     <string name="permission_install_unknown_apps_description">Allows apps to install (sideload) other apps on your device. This may put your device and data at risk.</string>
-    <string name="permission_all_file_access_label">All Files access</string>
-    <string name="permission_all_file_access_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
+    <string name="permission_all_files_access_label">All Files access</string>
+    <string name="permission_all_files_access_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
     <string name="permission_appear_on_top_label">Appear on Top</string>
     <string name="permission_appear_on_top_description">Allows apps to show things on top of other apps you\'re using (including showing ads). This may interfere with your use of other apps.</string>
     <string name="permission_files_and_media_label">Files and Media</string>
