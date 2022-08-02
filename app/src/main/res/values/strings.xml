@@ -177,7 +177,7 @@
     <string name="permission_system_alert_window_label">Appear on Top</string>
     <string name="permission_system_alert_window_description">Allows apps to show things on top of other apps you\'re using (including showing ads). This may interfere with your use of other apps.</string>
     <string name="permission_files_and_media_label">Files and Media</string>
-    <string name="permission_files_and_media_description">Allows apps to files and media on your device.</string>
+    <string name="permission_files_and_media_description">Allows apps access to files and media on your device.</string>
     <string name="permission_access_fine_location_label">Access accurate/ precise location</string>
     <string name="permission_access_fine_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, etc.).</string>
     <string name="permission_access_coarse_location_label">Access approximate location</string>
