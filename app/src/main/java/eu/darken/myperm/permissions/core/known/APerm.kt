@@ -1086,10 +1086,6 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object WRITE_SETTINGS : APerm("android.permission.WRITE_SETTINGS") {
-        override val tags = setOf(ManifestDoc)
-    }
-
     object WRITE_SYNC_SETTINGS : APerm("android.permission.WRITE_SYNC_SETTINGS") {
         override val tags = setOf(ManifestDoc)
     }
