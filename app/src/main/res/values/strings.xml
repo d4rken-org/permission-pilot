@@ -148,8 +148,8 @@
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Allows apps to communicate with Near Field Communication (NFC) tags, cards and readers.</string>
-    <string name="permission_write_media_storage_label">Manage Media</string>
-    <string name="permission_write_media_storage_description">Allows apps to modify or delete media files created with other apps WITHOUT asking you. Apps must have permission to access files and media.</string>
+    <string name="permission_manage_media_label">Manage Media</string>
+    <string name="permission_manage_media_description">Allows apps to modify or delete media files created with other apps WITHOUT asking you. Apps must have permission to access files and media.</string>
     <string name="permission_package_usage_stats_label">Usage Data Access</string>
     <string name="permission_package_usage_stats_description">Allows apps to track what other apps you use and how often, identify your service provider, language settings and other usage data.</string>
     <string name="permission_write_settings_label">Modify System Settings</string>
@@ -172,12 +172,12 @@
     <string name="permission_read_sync_settings_description">Allows apps to read sync settings for an account.</string>
     <string name="permission_request_install_packages_label">Install unknown apps (Unknown Sources)</string>
     <string name="permission_request_install_packages_description">Allows apps to install (sideload) other apps on your device. This may put your device and data at risk.</string>
-    <string name="permission_manage_external_storage_label">All Files access</string>
-    <string name="permission_manage_external_storage_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
+    <string name="permission_all_file_access_label">All Files access</string>
+    <string name="permission_all_file_access_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
     <string name="permission_system_alert_window_label">Appear on Top</string>
     <string name="permission_system_alert_window_description">Allows apps to show things on top of other apps you\'re using (including showing ads). This may interfere with your use of other apps.</string>
-    <string name="permission_write_external_storage_label">Files and Media</string>
-    <string name="permission_write_external_storage_description">Allows apps to files and media on your device.</string>
+    <string name="permission_files_and_media_label">Files and Media</string>
+    <string name="permission_files_and_media_description">Allows apps to files and media on your device.</string>
     <string name="permission_access_fine_location_label">Access accurate/ precise location</string>
     <string name="permission_access_fine_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, etc.).</string>
     <string name="permission_access_coarse_location_label">Access approximate location</string>
