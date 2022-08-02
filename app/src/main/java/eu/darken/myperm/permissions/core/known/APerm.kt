@@ -116,16 +116,16 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object ACCESS_FINE_LOCATION : APerm("android.permission.ACCESS_FINE_LOCATION") {
         override val iconRes: Int = R.drawable.ic_location_fine_24
-        override val labelRes: Int = R.string.permission_access_fine_location_label
-        override val descriptionRes: Int = R.string.permission_access_fine_location_description
+        override val labelRes: Int = R.string.permission_access_precise_location_label
+        override val descriptionRes: Int = R.string.permission_access_precise_location_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Location)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
     object ACCESS_COARSE_LOCATION : APerm("android.permission.ACCESS_COARSE_LOCATION") {
         override val iconRes: Int = R.drawable.ic_location_coarse_24
-        override val labelRes: Int = R.string.permission_access_coarse_location_label
-        override val descriptionRes: Int = R.string.permission_access_coarse_location_description
+        override val labelRes: Int = R.string.permission_access_approximate_location_label
+        override val descriptionRes: Int = R.string.permission_access_approximate_location_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Location)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
@@ -241,8 +241,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object SMS_FINANCIAL_TRANSACTIONS : APerm("android.permission.SMS_FINANCIAL_TRANSACTIONS") {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
-        override val labelRes: Int = R.string.permission_sms_financial_transactions_label
-        override val descriptionRes: Int = R.string.permission_sms_financial_transactions_description
+        override val labelRes: Int = R.string.permission_premium_sms_services_label
+        override val descriptionRes: Int = R.string.permission_premium_sms_services_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Messaging)
         override val tags = setOf(ManifestDoc)
     }
@@ -398,8 +398,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object CHANGE_WIFI_STATE : APerm("android.permission.CHANGE_WIFI_STATE") {
         override val iconRes: Int = R.drawable.ic_change_wifi_state_24
-        override val labelRes: Int = R.string.permission_change_wifi_state_label
-        override val descriptionRes: Int = R.string.permission_change_wifi_state_description
+        override val labelRes: Int = R.string.permission_wifi_control_label
+        override val descriptionRes: Int = R.string.permission_wifi_control_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Connectivity)
         override val tags = setOf(ManifestDoc)
     }
@@ -596,16 +596,16 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object SYSTEM_ALERT_WINDOW : APerm("android.permission.SYSTEM_ALERT_WINDOW") {
         override val iconRes: Int = R.drawable.ic_system_alert_window_24
-        override val labelRes: Int = R.string.permission_system_alert_window_label
-        override val descriptionRes: Int = R.string.permission_system_alert_window_description
+        override val labelRes: Int = R.string.permission_appear_on_top_label
+        override val descriptionRes: Int = R.string.permission_appear_on_top_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc, Highlighted)
     }
 
     object PACKAGE_USAGE_STATS : APerm("android.permission.PACKAGE_USAGE_STATS") {
         override val iconRes: Int = R.drawable.ic_usage_data_access_24
-        override val labelRes: Int = R.string.permission_package_usage_stats_label
-        override val descriptionRes: Int = R.string.permission_package_usage_stats_description
+        override val labelRes: Int = R.string.permission_usage_data_access_label
+        override val descriptionRes: Int = R.string.permission_usage_data_access_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -647,8 +647,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object REQUEST_INSTALL_PACKAGES : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
         override val iconRes: Int = R.drawable.ic_baseline_install_mobile_24
-        override val labelRes: Int = R.string.permission_request_install_packages_label
-        override val descriptionRes: Int = R.string.permission_request_install_packages_description
+        override val labelRes: Int = R.string.permission_install_unknown_apps_label
+        override val descriptionRes: Int = R.string.permission_install_unknown_apps_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -665,8 +665,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object WRITE_SETTINGS : APerm("android.permission.WRITE_SETTINGS") {
         override val iconRes: Int = R.drawable.ic_modify_system_settings_24
-        override val labelRes: Int = R.string.permission_write_settings_label
-        override val descriptionRes: Int = R.string.permission_write_settings_description
+        override val labelRes: Int = R.string.permission_modify_system_settings_label
+        override val descriptionRes: Int = R.string.permission_modify_system_settings_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -695,8 +695,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object REQUEST_IGNORE_BATTERY_OPTIMIZATIONS : APerm("android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS") {
         override val iconRes: Int = R.drawable.ic_baseline_battery_charging_full_24
-        override val labelRes: Int = R.string.permission_request_ignore_battery_optimizations_label
-        override val descriptionRes: Int = R.string.permission_request_ignore_battery_optimizations_description
+        override val labelRes: Int = R.string.permission_ignore_battery_optimizations_label
+        override val descriptionRes: Int = R.string.permission_ignore_battery_optimizations_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -730,15 +730,15 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object ACCESS_NOTIFICATION_POLICY : APerm("android.permission.ACCESS_NOTIFICATION_POLICY") {
         override val iconRes: Int = R.drawable.ic_access_notification_policy_24
-        override val labelRes: Int = R.string.permission_access_notification_policy_label
-        override val descriptionRes: Int = R.string.permission_access_notification_policy_description
+        override val labelRes: Int = R.string.permission_do_not_disturb_permission_label
+        override val descriptionRes: Int = R.string.permission_do_not_disturb_permission_description
         override val tags = setOf(ManifestDoc)
     }
 
     object ACCESS_NOTIFICATIONS : APerm("android.permission.ACCESS_NOTIFICATIONS") {
         override val iconRes: Int = R.drawable.ic_access_notifications_24
-        override val labelRes: Int = R.string.permission_access_notifications_label
-        override val descriptionRes: Int = R.string.permission_access_notifications_description
+        override val labelRes: Int = R.string.permission_notification_access_label
+        override val descriptionRes: Int = R.string.permission_notification_access_description
         override val tags = setOf(ManifestDoc)
     }
     
@@ -984,8 +984,8 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object SCHEDULE_EXACT_ALARM : APerm("android.permission.SCHEDULE_EXACT_ALARM") {
         override val iconRes: Int = R.drawable.ic_schedule_exact_alarm_24
-        override val labelRes: Int = R.string.permission_schedule_exact_alarm_label
-        override val descriptionRes: Int = R.string.permission_schedule_exact_alarm_description
+        override val labelRes: Int = R.string.permission_alarms_and_reminders_label
+        override val descriptionRes: Int = R.string.permission_alarms_and_reminders_description
         override val tags = setOf(ManifestDoc)
     }
 
