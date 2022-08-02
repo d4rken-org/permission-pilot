@@ -49,7 +49,7 @@ class UpgradeRepoGplay @Inject constructor(
                     lastProStateAt = now
                     Info(billingData = data)
                 }
-                (now - lastProStateAt) < 6 * 60 * 1000L -> { // 6 hours
+                (now - lastProStateAt) < 7 * 24 * 60 * 1000L -> { // 7 days
                     log(TAG, VERBOSE) { "We are not pro, but were recently, did GPlay try annoy us again?" }
                     Info(gracePeriod = true, billingData = null)
                 }
@@ -62,7 +62,7 @@ class UpgradeRepoGplay @Inject constructor(
             // Ignore Google Play errors if the last pro state was recent
             val now = System.currentTimeMillis()
             log(TAG) { "now=$now, lastProStateAt=$lastProStateAt, error=$it" }
-            if ((now - lastProStateAt) < 6 * 60 * 60 * 1000L) { // 6 hours
+            if ((now - lastProStateAt) < 7 * 24 * 60 * 1000L) { // 7 days
                 log(TAG, VERBOSE) { "We are not pro, but were recently, and just and an error, what is GPlay doing???" }
                 emit(Info(gracePeriod = true, billingData = null))
             } else {
@@ -76,7 +76,7 @@ class UpgradeRepoGplay @Inject constructor(
             setIcon(R.drawable.ic_heart)
             setTitle(R.string.upgrade_myperm_label)
             setMessage(R.string.upgrade_myperm_description)
-            setPositiveButton(R.string.general_upgrade_action) { _, _ ->
+            setPositiveButton(R.string.upgrade_buy_pro_action) { _, _ ->
                 scope.launch {
                     try {
                         billingDataRepo.startIapFlow(activity, MyPermSku.PRO_UPGRADE.sku)
