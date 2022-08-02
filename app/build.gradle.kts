@@ -63,6 +63,7 @@ android {
         create("beta") {
             lint {
                 abortOnError = true
+                disable.add("ExtraTranslation")
                 fatal.add("StopShip")
             }
             isMinifyEnabled = false
@@ -73,6 +74,7 @@ android {
         release {
             lint {
                 abortOnError = true
+                disable.add("ExtraTranslation")
                 fatal.add("StopShip")
             }
             isMinifyEnabled = false

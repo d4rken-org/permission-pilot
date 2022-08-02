@@ -15,7 +15,7 @@ object ProjectConfig {
         const val major = 0
         const val minor = 7
         const val patch = 2
-        const val build = 0
+        const val build = 1
 
         const val name = "${major}.${minor}.${patch}"
         const val fullName = "${name}-RC${build}"
