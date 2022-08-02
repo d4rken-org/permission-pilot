@@ -231,7 +231,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
-    object PREMIUM_SMS_ACCESS : APerm("android.permission.SMS_FINANCIAL_TRANSACTIONS") {
+    object SMS_FINANCIAL_TRANSACTIONS : APerm("android.permission.SMS_FINANCIAL_TRANSACTIONS") {
         override val iconRes: Int = R.drawable.ic_baseline_sms_24
         override val labelRes: Int = R.string.permission_sms_financial_transactions_label
         override val descriptionRes: Int = R.string.permission_sms_financial_transactions_description
