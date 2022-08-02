@@ -46,7 +46,7 @@ class MainActivityVM @Inject constructor(
             .launchInViewModel()
     }
 
-    fun increaseLaunchCount() = launch {
+    fun increaseLaunchCount() {
         generalSettings.launchCount.update {
             log { "LaunchCount was $it" }
             it + 1
