@@ -28,10 +28,18 @@ sealed class APerm constructor(val id: Permission.Id) {
      * FILES
      */
 
-    object WRITE_MEDIA_STORAGE : APerm("android.permission.WRITE_MEDIA_STORAGE") {
+    object MANAGE_MEDIA : APerm("android.permission.MANAGE_MEDIA") {
         override val iconRes: Int = R.drawable.ic_manage_media_24
         override val labelRes: Int = R.string.permission_manage_media_label
         override val descriptionRes: Int = R.string.permission_manage_media_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
+        override val tags = setOf(ManifestDoc)
+    }
+    
+    object WRITE_MEDIA_STORAGE : APerm("android.permission.WRITE_MEDIA_STORAGE") {
+        override val iconRes: Int = R.drawable.ic_baseline_sd_storage_24
+        override val labelRes: Int = R.string.permission_files_and_media_label
+        override val descriptionRes: Int = R.string.permission_files_and_media_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
         override val tags = setOf(Highlighted, ManifestDoc)
     }
