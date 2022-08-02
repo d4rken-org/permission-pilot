@@ -6,7 +6,7 @@ import androidx.core.view.isGone
 import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.container.BasePkg
-import eu.darken.myperm.apps.core.features.PermissionState.Status
+import eu.darken.myperm.apps.core.features.UsesPermission.Status
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsDetailsAppRequestingItemBinding

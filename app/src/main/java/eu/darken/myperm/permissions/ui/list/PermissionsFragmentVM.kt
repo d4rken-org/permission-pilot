@@ -14,11 +14,13 @@ import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.getGroupIds
 import eu.darken.myperm.permissions.core.known.APermGrp
 import eu.darken.myperm.permissions.ui.list.groups.PermissionGroupVH
 import eu.darken.myperm.permissions.ui.list.permissions.DeclaredPermissionVH
+import eu.darken.myperm.permissions.ui.list.permissions.ExtraPermissionVH
 import eu.darken.myperm.permissions.ui.list.permissions.UnknownPermissionVH
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,11 +82,19 @@ class PermissionsFragmentVM @Inject constructor(
                             ).navigate()
                         }
                     )
-                    is UnknownPermission -> UnknownPermissionVH.Item(
+                    is ExtraPermission -> ExtraPermissionVH.Item(
                         permission = permission,
                         onClickAction = {
-
+                            log(TAG) { "Navigating to $permission" }
+                            MainFragmentDirections.actionMainFragmentToPermissionDetailsFragment(
+                                permissionId = permission.id,
+                                permissionLabel = permission.getLabel(context),
+                            ).navigate()
                         }
+                    )
+                    is UnknownPermission -> UnknownPermissionVH.Item(
+                        permission = permission,
+                        onClickAction = { }
                     )
                 }
             }

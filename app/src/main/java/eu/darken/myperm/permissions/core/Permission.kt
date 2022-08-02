@@ -8,7 +8,9 @@ import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.permissions.core.features.*
+import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
+import eu.darken.myperm.permissions.core.known.APermGrp
 import kotlinx.parcelize.Parcelize
 
 interface Permission {
@@ -33,6 +35,10 @@ interface Permission {
             ?.labelRes
             ?.let { return context.getString(it) }
 
+        AExtraPerm.values.singleOrNull { it.id == id }
+            ?.labelRes
+            ?.let { return context.getString(it) }
+
         return null
     }
 
@@ -47,6 +53,10 @@ interface Permission {
             ?.let { return it.toString() }
 
         APerm.values.singleOrNull { it.id == id }
+            ?.descriptionRes
+            ?.let { return context.getString(it) }
+
+        AExtraPerm.values.singleOrNull { it.id == id }
             ?.descriptionRes
             ?.let { return context.getString(it) }
 
@@ -67,6 +77,11 @@ interface Permission {
             ?.let { ContextCompat.getDrawable(context, it) }
             ?.let { return it }
 
+        AExtraPerm.values.singleOrNull { it.id == id }
+            ?.iconRes
+            ?.let { ContextCompat.getDrawable(context, it) }
+            ?.let { return it }
+
         return null
     }
 
@@ -83,6 +98,14 @@ interface Permission {
     @Parcelize
     data class Id(val value: String) : Parcelable
 }
+
+
+fun Permission.Id.toKnownPermission(): APerm? =
+    APerm.values.singleOrNull { it.id == this@toKnownPermission }
+
+fun Permission.getGroup(): Collection<APermGrp> =
+    groupIds.map { grpId -> APermGrp.values.single { it.id == grpId } }
+
 
 fun Permission.Id.getGroupIds(): Collection<PermissionGroup.Id> =
     APerm.values.singleOrNull { it.id == this }?.groupIds ?: emptySet()

@@ -9,6 +9,7 @@ import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.declaresPermission
 import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.apps.core.getPermissionInfo2
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
@@ -18,11 +19,13 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.features.InstallTimeGrant
 import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
+import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.permissions.core.known.APermGrp
 import kotlinx.coroutines.CoroutineScope
@@ -89,6 +92,21 @@ class PermissionRepo @Inject constructor(
             .toList()
             .let {
                 log(TAG) { "${it.size} permissions declared by apps" }
+                mappedPermissions.addAll(it)
+            }
+
+        AExtraPerm.values
+            .map { perm ->
+                ExtraPermission(
+                    id = perm.id,
+                    tags = perm.tags,
+                    groupIds = perm.groupIds,
+                    requestingPkgs = apps.filter { it.requestsPermission(perm.id) },
+                    declaringPkgs = apps.filter { it.id == AKnownPkg.AndroidSystem.id }
+                )
+            }
+            .let {
+                log(TAG) { "${it.size} special permissions" }
                 mappedPermissions.addAll(it)
             }
 

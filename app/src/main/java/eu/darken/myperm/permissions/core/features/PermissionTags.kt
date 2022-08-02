@@ -11,3 +11,5 @@ object InstallTimeGrant : PermissionTag()
 object SpecialAccess : PermissionTag()
 
 object Highlighted : PermissionTag()
+
+object NotNormalPerm : PermissionTag()

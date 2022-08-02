@@ -6,19 +6,19 @@ import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.common.capitalizeFirstLetter
 import eu.darken.myperm.common.lists.BindableVH
-import eu.darken.myperm.databinding.PermissionsListDeclaredItemBinding
-import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.databinding.PermissionsListExtraItemBinding
+import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.ui.list.PermissionsAdapter
 
-class DeclaredPermissionVH(parent: ViewGroup) :
-    PermissionsAdapter.BaseVH<DeclaredPermissionVH.Item, PermissionsListDeclaredItemBinding>(
-        R.layout.permissions_list_declared_item,
+class ExtraPermissionVH(parent: ViewGroup) :
+    PermissionsAdapter.BaseVH<ExtraPermissionVH.Item, PermissionsListExtraItemBinding>(
+        R.layout.permissions_list_extra_item,
         parent
-    ), BindableVH<DeclaredPermissionVH.Item, PermissionsListDeclaredItemBinding> {
+    ), BindableVH<ExtraPermissionVH.Item, PermissionsListExtraItemBinding> {
 
-    override val viewBinding = lazy { PermissionsListDeclaredItemBinding.bind(itemView) }
+    override val viewBinding = lazy { PermissionsListExtraItemBinding.bind(itemView) }
 
-    override val onBindData: PermissionsListDeclaredItemBinding.(
+    override val onBindData: PermissionsListExtraItemBinding.(
         item: Item,
         payloads: List<Any>
     ) -> Unit = { item, _ ->
@@ -44,7 +44,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
     }
 
     data class Item(
-        override val permission: BasePermission,
+        override val permission: ExtraPermission,
         val onClickAction: (Item) -> Unit
     ) : PermissionItem() {
         override val stableId: Long

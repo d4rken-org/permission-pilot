@@ -38,3 +38,5 @@ interface PermissionGroup {
     data class Id(val value: String) : Parcelable
 
 }
+
+fun grpIds(vararg groups: PermissionGroup): Set<PermissionGroup.Id> = groups.map { it.id }.toSet()

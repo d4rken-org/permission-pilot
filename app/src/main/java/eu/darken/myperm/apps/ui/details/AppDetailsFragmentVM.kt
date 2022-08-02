@@ -9,8 +9,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.AppStoreTool
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.HasPermissionUseInfo
-import eu.darken.myperm.apps.core.features.UsedPermissionStateful
+import eu.darken.myperm.apps.core.features.ReadableApk
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -20,6 +20,7 @@ import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
@@ -86,16 +87,17 @@ class AppDetailsFragmentVM @Inject constructor(
                 ).run { infoItems.add(this) }
             }
 
-            (app as? HasPermissionUseInfo)?.requestedPermissions
+            (app as? ReadableApk)?.requestedPermissions
                 ?.map { usesPerm ->
                     val basePerm = permissions.singleOrNull { it.id == usesPerm.id }
                         ?: throw IllegalArgumentException("Can't find $usesPerm")
                     usesPerm to basePerm
                 }
                 ?.sortedWith(
-                    compareByDescending<Pair<UsedPermissionStateful, BasePermission>> { (usesPerm, basePerm) ->
+                    compareByDescending<Pair<UsesPermission, BasePermission>> { (usesPerm, basePerm) ->
                         when (basePerm) {
-                            is DeclaredPermission -> 1
+                            is DeclaredPermission -> 2
+                            is ExtraPermission -> 1
                             is UnknownPermission -> 0
                         }
                     }.thenBy { (usesPerm, basePerm) ->
@@ -110,7 +112,7 @@ class AppDetailsFragmentVM @Inject constructor(
                 )
                 ?.map { (usesPerm, basePerm) ->
                     when (basePerm) {
-                        is DeclaredPermission -> DeclaredPermissionVH.Item(
+                        is DeclaredPermission, is ExtraPermission -> DeclaredPermissionVH.Item(
                             pkg = app,
                             appPermission = usesPerm,
                             permission = basePerm,

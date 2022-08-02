@@ -10,6 +10,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.features.*
+import eu.darken.myperm.permissions.core.grpIds
 import kotlin.reflect.full.isSubclassOf
 
 @Keep
@@ -1086,11 +1087,3 @@ sealed class APerm constructor(val id: Permission.Id) {
         }
     }
 }
-
-private fun grpIds(vararg groups: PermissionGroup): Set<PermissionGroup.Id> = groups.map { it.id }.toSet()
-
-fun Permission.Id.toKnownPermission(): APerm? =
-    APerm.values.singleOrNull { it.id == this@toKnownPermission }
-
-fun Permission.getGroup(): Collection<APermGrp> =
-    groupIds.map { grpId -> APermGrp.values.single { it.id == grpId } }

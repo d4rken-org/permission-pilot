@@ -21,7 +21,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-class AppEventListener @Inject constructor(
+class PackageEventListener @Inject constructor(
     @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
 ) {

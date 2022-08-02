@@ -19,6 +19,7 @@ data class SecondaryUserPkg(
     override val packageInfo: PackageInfo,
     override val installerInfo: InstallerInfo,
     override val userHandle: UserHandle,
+    val extraPermissions: Collection<UsesPermission>,
 ) : BasePkg(), SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -43,12 +44,9 @@ data class SecondaryUserPkg(
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()
 
-    override val requestedPermissions: Collection<UsedPermissionStateful> by lazy {
+    override val requestedPermissions: Collection<UsesPermission> by lazy {
         packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
-            UsedPermissionStateful(
-                id = Permission.Id(permissionId),
-                flags = null,  // We don't know for secondary profiles
-            )
+            UsesPermission.Unknown(id = Permission.Id(permissionId))
         } ?: emptyList()
     }
 
@@ -78,6 +76,7 @@ fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
             packageInfo = pkg,
             installerInfo = pkg.getInstallerInfo(packageManager),
             userHandle = userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+            extraPermissions = pkg.determineSpecialPermissions(this),
         ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
     }
 }

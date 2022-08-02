@@ -21,7 +21,8 @@ data class PrimaryProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
-) : BasePkg(), HasPermissionUseInfo {
+    private val extraPermissions: Collection<UsesPermission>,
+) : BasePkg() {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
@@ -45,15 +46,12 @@ data class PrimaryProfilePkg(
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()
 
-    override val requestedPermissions: Collection<UsedPermissionStateful> by lazy {
-        packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
+    override val requestedPermissions: Collection<UsesPermission> by lazy {
+        val base = packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
             val flags = packageInfo.requestedPermissionsFlags[index]
-
-            UsedPermissionStateful(
-                id = Permission.Id(permissionId),
-                flags = flags,
-            )
+            UsesPermission.WithState(id = Permission.Id(permissionId), flags = flags)
         } ?: emptyList()
+        base + extraPermissions
     }
 
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
@@ -62,8 +60,8 @@ data class PrimaryProfilePkg(
 
     override val internetAccess: InternetAccess by lazy {
         when {
-            isSystemApp || getPermissionUses(APerm.INTERNET.id)?.isGranted == true -> InternetAccess.DIRECT
-            siblings.any { it is HasPermissionUseInfo && it.getPermissionUses(APerm.INTERNET.id)?.isGranted == true } -> InternetAccess.INDIRECT
+            isSystemApp || getPermissionUses(APerm.INTERNET.id).isGranted -> InternetAccess.DIRECT
+            siblings.any { it.getPermissionUses(APerm.INTERNET.id).isGranted } -> InternetAccess.INDIRECT
             else -> InternetAccess.NONE
         }
     }
@@ -72,6 +70,7 @@ data class PrimaryProfilePkg(
 private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = PrimaryProfilePkg(
     packageInfo = this,
     installerInfo = getInstallerInfo(context.packageManager),
+    extraPermissions = determineSpecialPermissions(context),
 )
 
 fun Context.getNormalPkgs(): Collection<BasePkg> {

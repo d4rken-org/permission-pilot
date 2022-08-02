@@ -34,9 +34,7 @@ class PermissionOverviewVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val perm = item.permission
 
-        icon.load(
-            perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm
-        )
+        icon.load(perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm)
 
         identifier.text = perm.id.value
         label.apply {

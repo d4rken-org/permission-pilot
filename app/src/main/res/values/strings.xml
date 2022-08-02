@@ -202,4 +202,5 @@
     <string name="permission_group_camera_description">Camera related permissions.</string>
     <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Microphone related permissions.</string>
+    <string name="permission_picture_in_picture_label">Picture in Picture</string>
 </resources>

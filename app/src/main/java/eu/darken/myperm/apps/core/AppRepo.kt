@@ -18,7 +18,7 @@ import javax.inject.Singleton
 class AppRepo @Inject constructor(
     @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
-    appEventListener: AppEventListener,
+    packageEventListener: PackageEventListener,
 ) {
 
     private val refreshTrigger = MutableStateFlow(UUID.randomUUID())
@@ -30,7 +30,7 @@ class AppRepo @Inject constructor(
 
     val apps: Flow<Collection<BasePkg>> = combine(
         refreshTrigger,
-        appEventListener.events.onStart { emit(AppEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
+        packageEventListener.events.onStart { emit(PackageEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
     ) { _, _ ->
         val normalPkgs = context.getNormalPkgs()
 
