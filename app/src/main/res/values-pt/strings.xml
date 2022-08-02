@@ -10,7 +10,7 @@
     <string name="general_done_action">Feito</string>
     <string name="general_copy_action">Copiar</string>
     <string name="general_upgrade_action">Atualizar</string>
-    <string name="general_donate_action">Doação</string>
+    <string name="upgrade_donate_action">Doação</string>
     <string name="general_check_action">Verificar</string>
     <string name="general_show_action">Mostrar</string>
 

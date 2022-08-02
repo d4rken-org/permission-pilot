@@ -25,6 +25,8 @@ class GeneralSettings @Inject constructor(
 
     override val preferences: SharedPreferences = context.getSharedPreferences("settings_core", Context.MODE_PRIVATE)
 
+    val launchCount = preferences.createFlowPreference("core.stats.launches", 0)
+
     val appsFilterOptions = preferences.createFlowPreference(
         "apps.list.options.filter",
         moshiReader(moshi, AppsFilterOptions(), fallbackToDefault = true),

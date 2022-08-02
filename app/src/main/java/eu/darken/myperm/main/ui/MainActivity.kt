@@ -31,7 +31,13 @@ class MainActivity : Activity2() {
         ui = MainActivityBinding.inflate(layoutInflater)
         setContentView(ui.root)
 
+        vm.showUpgradeNag.observe2 {
+            it.invoke(this)
+        }
+
         vm.readyState.observe2 { showSplashScreen = false }
+
+        vm.increaseLaunchCount()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

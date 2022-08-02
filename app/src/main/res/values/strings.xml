@@ -9,10 +9,15 @@
     <string name="general_share_action">Share</string>
     <string name="general_done_action">Done</string>
     <string name="general_copy_action">Copy</string>
-    <string name="general_upgrade_action">Upgrade</string>
-    <string name="general_donate_action">Donate</string>
     <string name="general_check_action">Check</string>
     <string name="general_show_action">Show</string>
+
+
+    <string name="upgrade_myperm_label">Upgrade Permission Pilot</string>
+    <string name="upgrade_myperm_description">Do you like that this app has no ads and doesn\'t collect your data?\nBuy the pro version to show your support!</string>
+    <string name="upgrade_buy_pro_action">Buy pro version</string>
+    <string name="general_no_action">No</string>
+    <string name="upgrade_donate_action">Donate</string>
 
     <string name="debug_debuglog_size_label">Size</string>
     <string name="debug_debuglog_size_compressed_label">Compressed size</string>
@@ -48,8 +53,7 @@
     <string name="permissions_unknown_description">Unknown permission. It is requested by apps, but not declared anywhere.</string>
     <string name="permissions_app_type_declaring_description">Permission is created by this app.</string>
     <string name="permissions_app_type_requesting_description">App requests the permission.</string>
-    <string name="upgrade_myperm_label">Upgrade Permission Pilot</string>
-    <string name="upgrade_myperm_description">Feel good and support development.</string>
+
     <string name="general_filter_action">Filter</string>
     <string name="general_cancel_action">Cancel</string>
 
