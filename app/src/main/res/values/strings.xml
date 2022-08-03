@@ -193,7 +193,7 @@
     <string name="permission_notification_access_label">Notification Access</string>
     <string name="permission_notification_access_description">Allows apps to read all your notifications, including personal information (such as contact names and text of messages you receive), snooze or dismiss notifications or trigger action buttons they contain (such as answer phone calls, delete your sms/ email, etc) and turn Do Not Disturb (DND) ON or OFF and change related settings.</string>
     <string name="permission_do_not_disturb_permission_label">Do Not Disturb (DND) Permission</string>
-    <string name="permission_do_not_disturb_permission_description">Allows apps to turn Do Not Disturb (DND) ON or OFF or change related settings.</string>
+    <string name="permission_do_not_disturb_permission_description">Allows apps to turn Do Not Disturb (DND) ON or OFF and change related settings.</string>
     <string name="permission_alarms_and_reminders_label">Alarms and Reminders</string>
     <string name="permission_alarms_and_reminders_description">Allows apps to set alarms and schedule time-sensitive actions. This allows apps to run in the background, which may use more battery. Turning OFF this permission for an app would cause existing alarms and time-based events that are scheduled by that particular app to stop working.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Access</string>
@@ -211,7 +211,7 @@
     <string name="permission_group_connectivity_label">Connectivity</string>
     <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth and more. Permissions related to communicating with the outside world.</string>
     <string name="permission_group_sensors_label">Sensors</string>
-    <string name="permission_group_sensors_description">Accelerometer, Gyro, and more. Ways that your device can capture input.</string>
+    <string name="permission_group_sensors_description">Accelerometer, Gyro, Body Sensors, Activity Recognition, and more. Ways that your device can capture input.</string>
     <string name="permission_group_calls_label">Calls</string>
     <string name="permission_group_calls_description">Call related permissions</string>
     <string name="permission_group_location_label">Location</string>
