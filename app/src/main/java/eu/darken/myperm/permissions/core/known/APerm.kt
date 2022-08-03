@@ -384,15 +384,6 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Connectivity)
         override val tags = setOf(ManifestDoc)
     }
-    
-    object REQUEST_COMPANION_USE_DATA_IN_BACKGROUND :
-        APerm("android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND") {
-        override val iconRes: Int = R.drawable.ic_unlimited_data_access_24
-        override val labelRes: Int = R.string.permission_unlimited_data_access_label
-        override val descriptionRes: Int = R.string.permission_unlimited_data_access_description
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Connectivity)
-        override val tags = setOf(ManifestDoc)
-    }
 
     object CHANGE_WIFI_STATE : APerm("android.permission.CHANGE_WIFI_STATE") {
         override val iconRes: Int = R.drawable.ic_change_wifi_state_24
@@ -428,6 +419,12 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val iconRes: Int = R.drawable.ic_change_network_state_24
         override val labelRes: Int = R.string.permission_change_network_state_label
         override val descriptionRes: Int = R.string.permission_change_network_state_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Connectivity)
+        override val tags = setOf(ManifestDoc)
+    }
+    
+    object REQUEST_COMPANION_USE_DATA_IN_BACKGROUND :
+        APerm("android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND") {
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Connectivity)
         override val tags = setOf(ManifestDoc)
     }
@@ -633,6 +630,22 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
+    object GET_ACCOUNTS : APerm("android.permission.GET_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_get_accounts_24
+        override val labelRes: Int = R.string.permission_get_accounts_label
+        override val descriptionRes: Int = R.string.permission_get_accounts_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc)
+    }
+
+    object MANAGE_ACCOUNTS : APerm("android.permission.MANAGE_ACCOUNTS") {
+        override val iconRes: Int = R.drawable.ic_manage_accounts_24
+        override val labelRes: Int = R.string.permission_manage_accounts_label
+        override val descriptionRes: Int = R.string.permission_manage_accounts_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc)
+    }
+    
     object BROADCAST_PACKAGE_REMOVED : APerm("android.permission.BROADCAST_PACKAGE_REMOVED") {
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
@@ -647,8 +660,9 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
-
-    object DELETE_PACKAGES : APerm("android.permission.DELETE_PACKAGES") {
+    
+    object QUERY_ALL_PACKAGES : APerm("android.permission.QUERY_ALL_PACKAGES") {
+        override val iconRes: Int = R.drawable.ic_query_all_packages_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -663,6 +677,11 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
+    object DELETE_PACKAGES : APerm("android.permission.DELETE_PACKAGES") {
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc)
+    }
+    
     object REQUEST_DELETE_PACKAGES : APerm("android.permission.REQUEST_DELETE_PACKAGES") {
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
@@ -674,22 +693,6 @@ sealed class APerm constructor(val id: Permission.Id) {
     }
 
     object UPDATE_PACKAGES_WITHOUT_USER_ACTION : APerm("android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION") {
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
-    }
-
-    object GET_ACCOUNTS : APerm("android.permission.GET_ACCOUNTS") {
-        override val iconRes: Int = R.drawable.ic_get_accounts_24
-        override val labelRes: Int = R.string.permission_get_accounts_label
-        override val descriptionRes: Int = R.string.permission_get_accounts_description
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
-    }
-
-    object MANAGE_ACCOUNTS : APerm("android.permission.MANAGE_ACCOUNTS") {
-        override val iconRes: Int = R.drawable.ic_manage_accounts_24
-        override val labelRes: Int = R.string.permission_manage_accounts_label
-        override val descriptionRes: Int = R.string.permission_manage_accounts_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
@@ -710,12 +713,6 @@ sealed class APerm constructor(val id: Permission.Id) {
 
     object BOOT_COMPLETED : APerm("android.permission.RECEIVE_BOOT_COMPLETED") {
         override val iconRes: Int = R.drawable.ic_baseline_start_24
-        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
-    }
-
-    object QUERY_ALL_PACKAGES : APerm("android.permission.QUERY_ALL_PACKAGES") {
-        override val iconRes: Int = R.drawable.ic_query_all_packages_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
         override val tags = setOf(ManifestDoc)
     }
