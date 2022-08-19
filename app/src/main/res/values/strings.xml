@@ -185,7 +185,7 @@
     <string name="permission_access_to_media_only_label">Access to Media only</string>
     <string name="permission_access_to_media_only_description">Allows apps access to media only on your device.</string>
     <string name="permission_access_precise_location_label">Access accurate/ precise location</string>
-    <string name="permission_access_precise_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, etc.).</string>
+    <string name="permission_access_precise_location_description">Allows apps to access your device\'s accurate/ precise location. This is NOT recommended for most apps (except for some apps like maps, cab services, device tracking services like Find My Device etc.).</string>
     <string name="permission_access_approximate_location_label">Access approximate location</string>
     <string name="permission_access_approximate_location_description">Allows apps to access your device\'s approximate location. This permission is sufficient for most apps that need access to your location for core functionality.</string>
     <string name="permission_ignore_battery_optimizations_label">Ignore Battery Optimizations</string>
@@ -193,11 +193,13 @@
     <string name="permission_notification_access_label">Notification Access</string>
     <string name="permission_notification_access_description">Allows apps to read all your notifications, including personal information (such as contact names and text of messages you receive), snooze or dismiss notifications or trigger action buttons they contain (such as answer phone calls, delete your sms/ email, etc) and turn Do Not Disturb (DND) ON or OFF and change related settings.</string>
     <string name="permission_do_not_disturb_permission_label">Do Not Disturb (DND) Permission</string>
-    <string name="permission_do_not_disturb_permission_description">Allows apps to turn Do Not Disturb (DND) ON or OFF or change related settings.</string>
+    <string name="permission_do_not_disturb_permission_description">Allows apps to turn Do Not Disturb (DND) ON or OFF and change related settings.</string>
     <string name="permission_alarms_and_reminders_label">Alarms and Reminders</string>
     <string name="permission_alarms_and_reminders_description">Allows apps to set alarms and schedule time-sensitive actions. This allows apps to run in the background, which may use more battery. Turning OFF this permission for an app would cause existing alarms and time-based events that are scheduled by that particular app to stop working.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Access</string>
     <string name="permission_premium_sms_services_description">Allows apps to use premium text message services. This will cost you money.</string>
+    <string name="permission_unlimited_data_access_label">Unlimited Data Access</string>
+    <string name="permission_unlimited_data_access_description">Allows apps access to unrestricted data. Apps can consume data even when Data Saver is ON.</string>
     <string name="permission_group_calendar_label">Calendar</string>
     <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
     <string name="permission_group_files_label">Files and Media</string>
@@ -209,7 +211,7 @@
     <string name="permission_group_connectivity_label">Connectivity</string>
     <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth and more. Permissions related to communicating with the outside world.</string>
     <string name="permission_group_sensors_label">Sensors</string>
-    <string name="permission_group_sensors_description">Camera, Microphone, Accelerometer, Gyro, and more. Ways that your device can capture input.</string>
+    <string name="permission_group_sensors_description">Accelerometer, Gyro, Body Sensors, Activity Recognition, and more. Ways that your device can capture input.</string>
     <string name="permission_group_calls_label">Calls</string>
     <string name="permission_group_calls_description">Call related permissions</string>
     <string name="permission_group_location_label">Location</string>
@@ -217,7 +219,7 @@
     <string name="permission_group_contacts_label">Contacts</string>
     <string name="permission_group_contacts_description">"Reading and writing contacts."</string>
     <string name="permission_group_apps_label">Apps</string>
-    <string name="permission_group_apps_description">Special permissions requiring explicit user consent.</string>
+    <string name="permission_group_apps_description">Special Access permissions requiring explicit user consent.</string>
     <string name="permission_group_battery_label">Battery</string>
     <string name="permission_group_battery_description">Battery related permissions.</string>
     <string name="permission_group_camera_label">Camera</string>
