@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
     <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Settings</string>
@@ -105,6 +105,8 @@
     <string name="generic_loading_label_3">Still faster than an iPhone</string>
     <string name="generic_loading_label_4">What\'s that behind you?</string>
     <string name="generic_loading_label_5">The CPU is on a coffee break</string>
+    <string name="generic_loading_label_6">Awaiting data from Pepe Silvia</string>
+    <string name="generic_loading_label_7">Turbo encabulator is initiating</string>
     <string name="apps_app_details_label">App Details</string>
     <string name="apps_details_shareduserid_label">Apps with Shared User ID</string>
     <string name="apps_details_siblings_label">Siblings</string>
@@ -227,4 +229,10 @@
     <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Microphone related permissions.</string>
     <string name="permission_picture_in_picture_label">Picture in Picture</string>
+    <string name="overview_device_android_version_label">Android version</string>
+    <string name="overview_device_name_label">Device</string>
+    <string name="overview_device_android_patch_label">Patch level</string>
+    <string name="overview_summary_apps_active_profile">In active profile: %1$d apps (%2$d user, %3$d system)</string>
+    <string name="overview_summary_apps_other_profile">In other profiles: %1$d apps (%2$d user, %3$d system)</string>
+    <string name="overview_summary_apps_sideloaded">Sideloaded in active profile: %1$d apps</string>
 </resources>

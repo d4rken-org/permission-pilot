@@ -34,4 +34,8 @@ enum class AndroidVersionCodes(
     ;
 
     val longFormat: String = "$label (${versionName}) [API $apiLevel]"
+
+    companion object {
+        val current = values().singleOrNull { it.apiLevel == BuildWrap.VersionWrap.SDK_INT }
+    }
 }

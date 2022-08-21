@@ -11,6 +11,7 @@ import eu.darken.myperm.common.lists.differ.setupDiffer
 import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.DataBinderMod
 import eu.darken.myperm.common.lists.modular.mods.TypedVHCreatorMod
+import eu.darken.myperm.main.ui.overview.items.DeviceVH
 import eu.darken.myperm.main.ui.overview.items.SummaryVH
 import javax.inject.Inject
 
@@ -25,6 +26,7 @@ class OverviewAdapter @Inject constructor() :
 
     init {
         modules.add(DataBinderMod(data))
+        modules.add(TypedVHCreatorMod({ data[it] is DeviceVH.Item }) { DeviceVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is SummaryVH.Item }) { SummaryVH(it) })
     }
 
