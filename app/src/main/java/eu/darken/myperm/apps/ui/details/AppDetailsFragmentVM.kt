@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
+
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class AppDetailsFragmentVM @Inject constructor(
@@ -59,6 +60,13 @@ class AppDetailsFragmentVM @Inject constructor(
 
             AppOverviewVH.Item(
                 app = app,
+                onOpenApp = {
+                    val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)
+                    try {
+
+                    } catch (e: Ac)
+                    context.startActivity(intent)
+                },
                 onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
                 onInstallerTextClicked = { installer ->
                     AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
