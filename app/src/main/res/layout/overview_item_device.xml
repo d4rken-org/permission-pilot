@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/DetailsCardItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -21,28 +22,45 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/pkgs_in_profile"
-                style="@style/TextAppearance.Material3.BodyMedium"
+                style="@style/TextAppearance.Material3.LabelMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/overview_summary_apps_active_profile" />
+                android:text="@string/overview_device_name_label" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/pkgs_in_other_profiles"
+                android:id="@+id/device_name"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/overview_summary_apps_other_profile" />
+                tools:text="Pixel 5" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/pkgs_sideloaded"
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/overview_device_android_version_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/android_version"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/overview_summary_apps_sideloaded" />
+                tools:text="Android 13 (API 32)" />
 
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/overview_device_android_patch_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/patch_level"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="BBQ123" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -27,8 +27,8 @@ class OverviewFragment : Fragment3(R.layout.overview_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
 
+        ui.list.setupDefaults(overviewAdapter, dividers = false)
 
-        ui.list.setupDefaults(overviewAdapter)
         vm.listData.observe2(this@OverviewFragment, ui) { state ->
             overviewAdapter.update(state.items)
             list.isInvisible = state.isLoading
