@@ -149,6 +149,18 @@
         <item quantity="one">%s group</item>
         <item quantity="other">%s groups</item>
     </plurals>
+    <plurals name="generic_x_apps_label">
+        <item quantity="one">%d app</item>
+        <item quantity="other">%d apps</item>
+    </plurals>
+    <plurals name="generic_x_apps_user_label">
+        <item quantity="one">%d user app</item>
+        <item quantity="other">%d user apps</item>
+    </plurals>
+    <plurals name="generic_x_apps_system_label">
+        <item quantity="one">%d system app</item>
+        <item quantity="other">%d system apps</item>
+    </plurals>
     <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
@@ -232,7 +244,12 @@
     <string name="overview_device_android_version_label">Android version</string>
     <string name="overview_device_name_label">Device</string>
     <string name="overview_device_android_patch_label">Patch level</string>
-    <string name="overview_summary_apps_active_profile">In active profile: %1$d apps (%2$d user, %3$d system)</string>
-    <string name="overview_summary_apps_other_profile">In other profiles: %1$d apps (%2$d user, %3$d system)</string>
-    <string name="overview_summary_apps_sideloaded">Sideloaded in active profile: %1$d apps</string>
+    <string name="overview_summary_apps_active_profile_label">No. of apps in Active Profile</string>
+    <string name="overview_summary_apps_other_profile_label">No. of apps in Managed User Profile(s), excluding Clones</string>
+    <string name="overview_summary_apps_sideloaded_label">No. of apps sideloaded from external sources</string>
+    <string name="overview_summary_apps_installers_label">No. of apps with \'Install from Unknown Sources\' enabled</string>
+    <string name="overview_summary_apps_overlayers_label">No. of apps that can \'Appear on Top\'</string>
+    <string name="overview_summary_apps_offline_label">No. of apps that have \'No Internet\' permissions</string>
+    <string name="overview_summary_apps_clones_label">No. of apps with clones in other profiles</string>
+    <string name="overview_summary_apps_sharedids_label">No. of apps with SharedUserID</string>
 </resources>
