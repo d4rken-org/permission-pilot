@@ -80,6 +80,12 @@ sealed class PermissionAction {
                         "com.android.settings.Settings\$IccLockSettingsActivity"
                     )
                 }
+                APerm.ACCESS_NOTIFICATION_POLICY.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$ZenAccessSettingsActivity"
+                    )
+                }
                 else -> throw IllegalArgumentException("No action found for: ${permission.id.value}")
             }
 

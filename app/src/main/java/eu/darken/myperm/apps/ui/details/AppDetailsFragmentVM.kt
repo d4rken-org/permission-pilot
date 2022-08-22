@@ -137,12 +137,7 @@ class AppDetailsFragmentVM @Inject constructor(
                             },
                             onTogglePermission = {
                                 events.postValue(
-                                    AppDetailsEvents.PermissionEvent(
-                                        it.permission.getAction(
-                                            context,
-                                            app
-                                        )
-                                    )
+                                    AppDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
                                 )
                             }
                         )
