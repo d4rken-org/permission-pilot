@@ -131,6 +131,7 @@
     <string name="permissions_action_none_msg">No action available for this permission</string>
     <string name="apps_filter_profile_secondary_label">Apps in Managed Profile(s)</string>
     <string name="apps_filter_battery_optimization_label">Apps with custom battery options</string>
+    <string name="apps_filter_accessibility_label">Apps with accessibility services</string>
     <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
     <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
     <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>

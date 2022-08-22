@@ -31,4 +31,7 @@ interface Installed : Pkg {
 
     val batteryOptimization: BatteryOptimization
         get() = BatteryOptimization.MANAGED_BY_SYSTEM
+
+    val accessibilityServices: Collection<AccessibilityService>
+        get() = emptyList()
 }

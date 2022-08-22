@@ -83,6 +83,10 @@ data class AppsFilterOptions(
         BATTERY_OPTIMIZATION(
             labelRes = R.string.apps_filter_battery_optimization_label,
             matches = { it is Installed && it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM }
+        ),
+        ACCESSIBILITY(
+            labelRes = R.string.apps_filter_accessibility_label,
+            matches = { it is Installed && it.accessibilityServices.isNotEmpty() }
         )
         ;
     }

@@ -150,6 +150,19 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             }
         }
 
+        tagAccessibility.apply {
+            isInvisible = app.accessibilityServices.isEmpty()
+            setupTagClicks(item, APerm.BIND_ACCESSIBILITY_SERVICE.id)
+
+            alpha = if (app.accessibilityServices.any { it.isEnabled }) {
+                tintIt(colorGranted)
+                1.0f
+            } else {
+                tintIt(colorDenied)
+                0.4f
+            }
+        }
+
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }
 

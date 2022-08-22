@@ -24,6 +24,7 @@ data class PrimaryProfilePkg(
     override val installerInfo: InstallerInfo,
     private val extraPermissions: Collection<UsesPermission>,
     override val batteryOptimization: BatteryOptimization,
+    override val accessibilityServices: Collection<AccessibilityService>,
 ) : BasePkg() {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -75,6 +76,7 @@ private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = Prima
     installerInfo = getInstallerInfo(context.packageManager),
     extraPermissions = determineSpecialPermissions(context),
     batteryOptimization = determineBatteryOptimization(context),
+    accessibilityServices = determineAccessibilityServices(context),
 )
 
 fun Context.getNormalPkgs(): Collection<BasePkg> {
