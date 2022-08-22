@@ -87,7 +87,7 @@ interface Permission {
         return null
     }
 
-    fun getAction(context: Context, pkg: Pkg): PermissionAction {
+    fun getAction(context: Context, pkg: Pkg? = null): PermissionAction {
         when {
             tags.contains(RuntimeGrant) -> PermissionAction.Runtime(this, pkg)
             tags.contains(SpecialAccess) -> PermissionAction.SpecialAccess(this, pkg)

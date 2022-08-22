@@ -24,7 +24,10 @@ class ExtraPermissionVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val perm = item.permission
 
-        icon.load(perm)
+        icon.apply {
+            load(perm)
+            setOnClickListener { item.onIconClick(item) }
+        }
 
         identifier.apply {
             text = perm.id.value
@@ -45,7 +48,8 @@ class ExtraPermissionVH(parent: ViewGroup) :
 
     data class Item(
         override val permission: ExtraPermission,
-        val onClickAction: (Item) -> Unit
+        val onClickAction: (Item) -> Unit,
+        val onIconClick: (Item) -> Unit,
     ) : PermissionItem() {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

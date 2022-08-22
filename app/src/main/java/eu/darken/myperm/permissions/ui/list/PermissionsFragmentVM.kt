@@ -42,7 +42,7 @@ class PermissionsFragmentVM @Inject constructor(
     private val filterOptions = generalSettings.permissionsFilterOptions.flow
     private val sortOptions = generalSettings.permissionsSortOptions.flow
     private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
-    val events = SingleLiveEvent<PermissionsEvents>()
+    val events = SingleLiveEvent<PermissionListEvent>()
 
     data class State(
         val listData: List<PermissionsAdapter.Item> = emptyList(),
@@ -80,7 +80,10 @@ class PermissionsFragmentVM @Inject constructor(
                                 permissionId = permission.id,
                                 permissionLabel = permission.getLabel(context),
                             ).navigate()
-                        }
+                        },
+                        onIconClick = {
+                            events.postValue(PermissionListEvent.PermissionEvent(it.permission.getAction(context)))
+                        },
                     )
                     is ExtraPermission -> ExtraPermissionVH.Item(
                         permission = permission,
@@ -90,11 +93,14 @@ class PermissionsFragmentVM @Inject constructor(
                                 permissionId = permission.id,
                                 permissionLabel = permission.getLabel(context),
                             ).navigate()
-                        }
+                        },
+                        onIconClick = {
+                            events.postValue(PermissionListEvent.PermissionEvent(it.permission.getAction(context)))
+                        },
                     )
                     is UnknownPermission -> UnknownPermissionVH.Item(
                         permission = permission,
-                        onClickAction = { }
+                        onClickAction = { },
                     )
                 }
             }
@@ -178,11 +184,11 @@ class PermissionsFragmentVM @Inject constructor(
 
     fun showFilterDialog() {
         log { "showFilterDialog" }
-        events.postValue(PermissionsEvents.ShowFilterDialog(generalSettings.permissionsFilterOptions.value))
+        events.postValue(PermissionListEvent.ShowFilterDialog(generalSettings.permissionsFilterOptions.value))
     }
 
     fun showSortDialog() {
         log { "showSortDialog" }
-        events.postValue(PermissionsEvents.ShowSortDialog(generalSettings.permissionsSortOptions.value))
+        events.postValue(PermissionListEvent.ShowSortDialog(generalSettings.permissionsSortOptions.value))
     }
 }

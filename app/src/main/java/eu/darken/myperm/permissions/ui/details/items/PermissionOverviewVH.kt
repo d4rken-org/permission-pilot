@@ -34,7 +34,10 @@ class PermissionOverviewVH(parent: ViewGroup) :
     ) -> Unit = { item, _ ->
         val perm = item.permission
 
-        icon.load(perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm)
+        icon.apply {
+            load(perm.declaringPkgs.singleOrNull()?.takeIf { it.id != AKnownPkg.AndroidSystem.id } ?: perm)
+            setOnClickListener { item.onIconClick(item) }
+        }
 
         identifier.text = perm.id.value
         label.apply {
@@ -80,7 +83,8 @@ class PermissionOverviewVH(parent: ViewGroup) :
     }
 
     data class Item(
-        override val permission: BasePermission
+        override val permission: BasePermission,
+        val onIconClick: (Item) -> Unit,
     ) : PermissionDetailsAdapter.Item {
         override val stableId: Long
             get() = permission.id.hashCode().toLong()

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
@@ -34,11 +35,16 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
 
         vm.events.observe2(ui) { event ->
             when (event) {
-                is PermissionsEvents.ShowFilterDialog -> FilterDialog(requireActivity()).show(event.options) { newOptions ->
+                is PermissionListEvent.ShowFilterDialog -> FilterDialog(requireActivity()).show(event.options) { newOptions ->
                     vm.updateFilterOptions { newOptions }
                 }
-                is PermissionsEvents.ShowSortDialog -> SortDialog(requireActivity()).show(event.options) { newOptions ->
+                is PermissionListEvent.ShowSortDialog -> SortDialog(requireActivity()).show(event.options) { newOptions ->
                     vm.updateSortOptions { newOptions }
+                }
+                is PermissionListEvent.PermissionEvent -> try {
+                    event.permAction.execute(requireActivity())
+                } catch (e: Exception) {
+                    e.asErrorDialogBuilder(requireContext()).show()
                 }
             }
         }

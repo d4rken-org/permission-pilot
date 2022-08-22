@@ -45,7 +45,10 @@ class PermissionDetailsFragmentVM @Inject constructor(
             val infoItems = mutableListOf<PermissionDetailsAdapter.Item>()
 
             PermissionOverviewVH.Item(
-                permission = perm
+                permission = perm,
+                onIconClick = {
+                    events.postValue(PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context)))
+                }
             ).run { infoItems.add(this) }
 
 

@@ -10,57 +10,67 @@ import android.widget.Toast
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
 
 sealed class PermissionAction {
 
     abstract val permission: Permission
-    abstract val pkg: Pkg
+    abstract val pkg: Pkg?
 
     abstract fun execute(activity: Activity)
 
-    data class Runtime(override val permission: Permission, override val pkg: Pkg) : PermissionAction() {
+    data class Runtime(override val permission: Permission, override val pkg: Pkg?) : PermissionAction() {
         override fun execute(activity: Activity) {
-            val intent = when (permission.id) {
-                else -> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+            val resolvedIntent = if (pkg == null) {
+                Intent().apply {
+                    component = ComponentName(
+                        "com.google.android.permissioncontroller",
+                        "com.android.permissioncontroller.permission.ui.ManagePermissionsActivity"
+                    )
                 }
-            }
+            } else {
+                val intent = when (permission.id) {
+                    else -> Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                        data = Uri.parse("package:${pkg.packageName}")
+                    }
+                }
 
-            val resolvedIntent = intent.resolveToActivity(activity)?.apply {
-                data = Uri.parse("package:${pkg.packageName}")
-            } ?: throw IllegalArgumentException("Unavailable for ${permission.id.value}")
+                intent.resolveToActivity(activity)?.apply {
+                    data = Uri.parse("package:${pkg.packageName}")
+                } ?: throw IllegalArgumentException("Unavailable for ${permission.id.value}")
+            }
 
             activity.startActivity(resolvedIntent)
         }
     }
 
-    data class SpecialAccess(override val permission: Permission, override val pkg: Pkg) : PermissionAction() {
+    data class SpecialAccess(override val permission: Permission, override val pkg: Pkg?) : PermissionAction() {
         override fun execute(activity: Activity) {
             val intent = when (permission.id) {
                 APerm.SYSTEM_ALERT_WINDOW.id -> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.PACKAGE_USAGE_STATS.id -> Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND.id -> Intent(Settings.ACTION_IGNORE_BACKGROUND_DATA_RESTRICTIONS_SETTINGS).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id -> Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.MANAGE_EXTERNAL_STORAGE.id -> Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.WRITE_SETTINGS.id -> Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.MANAGE_MEDIA.id -> Intent(Settings.ACTION_REQUEST_MANAGE_MEDIA).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 APerm.SCHEDULE_EXACT_ALARM.id -> Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
-                    data = Uri.parse("package:${pkg.packageName}")
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
                 }
                 // We don't have specific intents for these
 //                APerm.MANAGE_ONGOING_CALLS.id -> Intent(Settings.)
@@ -86,18 +96,32 @@ sealed class PermissionAction {
                         "com.android.settings.Settings\$ZenAccessSettingsActivity"
                     )
                 }
+                APerm.ACCESS_NOTIFICATIONS.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$NotificationAccessSettingsActivity"
+                    )
+                }
+                AExtraPerm.PICTURE_IN_PICTURE.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$PictureInPictureSettingsActivity"
+                    )
+                }
                 else -> throw IllegalArgumentException("No action found for: ${permission.id.value}")
             }
 
-            val resolvedIntent = intent.resolveToActivity(activity)?.apply {
-                data = Uri.parse("package:${pkg.packageName}")
-            } ?: throw IllegalArgumentException("Action unavailable for ${permission.id.value}")
+            val resolvedIntent = intent.resolveToActivity(activity)
+                ?.apply {
+                    pkg?.let { data = Uri.parse("package:${it.packageName}") }
+                }
+                ?: throw IllegalArgumentException("Action unavailable for ${permission.id.value}")
 
             activity.startActivity(resolvedIntent)
         }
     }
 
-    data class None(override val permission: Permission, override val pkg: Pkg) : PermissionAction() {
+    data class None(override val permission: Permission, override val pkg: Pkg?) : PermissionAction() {
         override fun execute(context: Activity) {
             Toast.makeText(context, R.string.permissions_action_none_msg, Toast.LENGTH_SHORT).show()
         }

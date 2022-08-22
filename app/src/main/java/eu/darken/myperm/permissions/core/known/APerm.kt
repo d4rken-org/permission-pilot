@@ -604,7 +604,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val iconRes: Int = R.drawable.ic_access_notifications_24
         override val labelRes: Int = R.string.permission_notification_access_label
         override val descriptionRes: Int = R.string.permission_notification_access_description
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object REQUEST_INSTALL_PACKAGES : APerm("android.permission.REQUEST_INSTALL_PACKAGES") {
@@ -627,7 +627,7 @@ sealed class APerm constructor(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_usage_data_access_label
         override val descriptionRes: Int = R.string.permission_usage_data_access_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object GET_ACCOUNTS : APerm("android.permission.GET_ACCOUNTS") {
