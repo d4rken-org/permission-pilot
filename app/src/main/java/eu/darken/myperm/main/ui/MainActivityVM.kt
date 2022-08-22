@@ -35,7 +35,7 @@ class MainActivityVM @Inject constructor(
                 if (it.isPro) return@onEach
 
                 val launchCount = generalSettings.launchCount.value
-                val skipNag = launchCount == 0 || launchCount % 5 != 0
+                val skipNag = launchCount == 0 || launchCount % 8 != 0
                 log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
                 if (skipNag) return@onEach
 
