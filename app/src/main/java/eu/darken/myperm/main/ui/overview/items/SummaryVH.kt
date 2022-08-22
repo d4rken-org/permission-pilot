@@ -6,6 +6,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.OverviewItemSummaryBinding
 import eu.darken.myperm.main.ui.overview.OverviewAdapter
+import eu.darken.myperm.main.ui.overview.PkgCount
 
 class SummaryVH(parent: ViewGroup) : OverviewAdapter.BaseVH<SummaryVH.Item, OverviewItemSummaryBinding>(
     R.layout.overview_item_summary,
@@ -19,43 +20,33 @@ class SummaryVH(parent: ViewGroup) : OverviewAdapter.BaseVH<SummaryVH.Item, Over
         payloads: List<Any>
     ) -> Unit = binder@{ item, _ ->
         loadingContainer.isGone = item !is Item.Loading
+        contentContainer.isGone = item is Item.Loading
         if (item !is Item.Content) return@binder
 
-        pkgsInProfile.text = getString(
-            R.string.overview_summary_apps_active_profile,
-            item.pkgCountActiveProfileUser + item.pkgCountActiveProfileSystem,
-            item.pkgCountActiveProfileUser, item.pkgCountActiveProfileSystem
-        )
-        pkgsInOtherProfiles.text = getString(
-            R.string.overview_summary_apps_other_profile,
-            item.pkgCountOtherProfileUser + item.pkgCountOtherProfileSystem,
-            item.pkgCountOtherProfileUser, item.pkgCountOtherProfileSystem
-        )
-        pkgsSideloaded.text = getString(
-            R.string.overview_summary_apps_sideloaded, item.pkgCountSideloaded
-        )
+        pkgsInProfile.text = item.pkgCountActiveProfile.getHR(context)
+        pkgsInOtherProfiles.text = item.pkgCountOtherProfile.getHR(context)
+        pkgsSideloaded.text = item.pkgCountSideloaded.getHR(context)
+        pkgsInstallers.text = item.pkgCountInstallerApps.getHR(context)
+        pkgsOverlayers.text = item.pkgCountSystemAlertWindow.getHR(context)
+        pkgsOffline.text = item.pkgCountNoInternet.getHR(context)
+        pkgsClones.text = item.pkgCountClones.getHR(context)
+        pkgsSharedids.text = item.pkgCountSharedIds.getHR(context)
     }
 
     sealed class Item : OverviewAdapter.Item {
-        override val stableId: Long
-            get() = Item::class.java.hashCode().toLong()
+        override val stableId: Long = Item::class.java.hashCode().toLong()
 
         object Loading : Item()
 
-//        No. of apps with 'Install from Unknown Sources' enabled*: Z (x/y)
-//        No. of apps with 'Accessibility' permissions*: Z (x/y)
-//        No. of apps that can 'Appear on Top'*: Z (x/y)
-//        No. of apps with 'Device Admin' permissions*: Z (x/y)
-//        No. of apps that have 'No Internet' permissions**: Z (x/y)
-//        No. of apps with clones in other profiles: Z (x/y)
-//        No. of apps with SharedUserID: Z (x/y)
-
         data class Content(
-            val pkgCountActiveProfileUser: Int,
-            val pkgCountActiveProfileSystem: Int,
-            val pkgCountOtherProfileUser: Int,
-            val pkgCountOtherProfileSystem: Int,
-            val pkgCountSideloaded: Int,
+            val pkgCountActiveProfile: PkgCount,
+            val pkgCountOtherProfile: PkgCount,
+            val pkgCountSideloaded: PkgCount,
+            val pkgCountInstallerApps: PkgCount,
+            val pkgCountSystemAlertWindow: PkgCount,
+            val pkgCountNoInternet: PkgCount,
+            val pkgCountClones: PkgCount,
+            val pkgCountSharedIds: PkgCount,
         ) : Item()
     }
 }

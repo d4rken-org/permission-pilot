@@ -9,6 +9,7 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.container.BasePermission
+import eu.darken.myperm.permissions.core.known.APerm
 
 // A Pkg where we have access to an APK
 interface ReadableApk : Pkg {
@@ -40,6 +41,9 @@ interface ReadableApk : Pkg {
 
     val declaredPermissions: Collection<PermissionInfo>
 }
+
+fun Pkg.getPermission(perm: APerm): UsesPermission? =
+    (this as? ReadableApk)?.requestedPermissions?.singleOrNull { it.id == perm.id }
 
 fun Pkg.getPermission(id: Permission.Id): UsesPermission? =
     (this as? ReadableApk)?.requestedPermissions?.singleOrNull { it.id == id }

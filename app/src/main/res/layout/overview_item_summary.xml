@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/DetailsCardItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        tools:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,27 +24,115 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/overview_summary_apps_active_profile_label" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pkgs_in_profile"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/overview_summary_apps_active_profile" />
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_other_profile_label" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pkgs_in_other_profiles"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/overview_summary_apps_other_profile" />
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_sideloaded_label" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pkgs_sideloaded"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/overview_summary_apps_sideloaded" />
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_installers_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pkgs_installers"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_overlayers_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pkgs_overlayers"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_offline_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pkgs_offline"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_clones_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pkgs_clones"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="000 apps (000 user apps, 000 system apps)" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/overview_summary_apps_sharedids_label" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pkgs_sharedids"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="000 apps (000 user apps, 000 system apps)" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -49,6 +140,7 @@
     <eu.darken.myperm.common.LoadingBoxView
         android:id="@+id/loading_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
 
 </com.google.android.material.card.MaterialCardView>
