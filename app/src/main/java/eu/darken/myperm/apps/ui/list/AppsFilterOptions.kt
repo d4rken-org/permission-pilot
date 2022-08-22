@@ -7,6 +7,7 @@ import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
+import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -78,6 +79,10 @@ data class AppsFilterOptions(
         SECONDARY_PROFILE(
             labelRes = R.string.apps_filter_profile_secondary_label,
             matches = { it is SecondaryProfilePkg }
+        ),
+        BATTERY_OPTIMIZATION(
+            labelRes = R.string.apps_filter_battery_optimization_label,
+            matches = { it is Installed && it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM }
         )
         ;
     }

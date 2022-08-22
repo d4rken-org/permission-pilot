@@ -14,10 +14,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
-import eu.darken.myperm.apps.core.features.InternetAccess
-import eu.darken.myperm.apps.core.features.SecondaryPkg
-import eu.darken.myperm.apps.core.features.getPermission
-import eu.darken.myperm.apps.core.features.isGranted
+import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.apps.ui.list.AppsAdapter
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
@@ -105,6 +102,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
 
         tagInternet.apply {
+            isInvisible = app.internetAccess == InternetAccess.NONE || app.internetAccess == InternetAccess.UNKNOWN
             when (app.internetAccess) {
                 InternetAccess.DIRECT -> tintIt(colorGranted)
                 InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(R.attr.colorTertiary))
@@ -112,7 +110,6 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
                 InternetAccess.UNKNOWN -> tintIt(colorDenied)
             }
             setupTagClicks(item, APerm.INTERNET.id)
-            isInvisible = app.internetAccess == InternetAccess.NONE || app.internetAccess == InternetAccess.UNKNOWN
         }
 
         tagStorage.setupAll(item, APerm.WRITE_EXTERNAL_STORAGE, APerm.READ_EXTERNAL_STORAGE)
@@ -132,6 +129,26 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         tagSms.setupAll(item, APerm.RECEIVE_SMS, APerm.READ_SMS, APerm.SEND_SMS)
         tagPhone.setupAll(item, APerm.PHONE_CALL, APerm.PHONE_STATE)
+
+        tagBattery.apply {
+            isInvisible = app.batteryOptimization == BatteryOptimization.MANAGED_BY_SYSTEM
+            setupTagClicks(item, APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id)
+            setImageResource(
+                if (app.batteryOptimization == BatteryOptimization.UNKNOWN) {
+                    R.drawable.ic_baseline_battery_unknown_24
+                } else {
+                    R.drawable.ic_baseline_battery_charging_full_24
+                }
+            )
+
+            alpha = if (app.batteryOptimization == BatteryOptimization.IGNORED) {
+                tintIt(colorGranted)
+                1.0f
+            } else {
+                tintIt(colorDenied)
+                0.4f
+            }
+        }
 
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
     }

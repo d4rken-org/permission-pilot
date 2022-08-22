@@ -25,6 +25,10 @@ interface Installed : Pkg {
     // Extra user profile
     val twins: Collection<Installed>
 
-    val internetAccess: InternetAccess
     val installerInfo: InstallerInfo
+
+    val internetAccess: InternetAccess
+
+    val batteryOptimization: BatteryOptimization
+        get() = BatteryOptimization.MANAGED_BY_SYSTEM
 }

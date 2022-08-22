@@ -18,10 +18,12 @@ import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
 
 data class PrimaryProfilePkg(
+    private val context: Context,
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
     private val extraPermissions: Collection<UsesPermission>,
+    override val batteryOptimization: BatteryOptimization,
 ) : BasePkg() {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -68,9 +70,11 @@ data class PrimaryProfilePkg(
 }
 
 private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = PrimaryProfilePkg(
+    context = context,
     packageInfo = this,
     installerInfo = getInstallerInfo(context.packageManager),
     extraPermissions = determineSpecialPermissions(context),
+    batteryOptimization = determineBatteryOptimization(context),
 )
 
 fun Context.getNormalPkgs(): Collection<BasePkg> {

@@ -188,5 +188,11 @@
             android:src="@drawable/ic_baseline_internet_24"
             tools:visibility="visible" />
 
+        <ImageView
+            android:id="@+id/tag_battery"
+            style="@style/AppTagStyle"
+            android:src="@drawable/ic_baseline_battery_charging_full_24"
+            tools:visibility="visible" />
+
     </com.google.android.flexbox.FlexboxLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
