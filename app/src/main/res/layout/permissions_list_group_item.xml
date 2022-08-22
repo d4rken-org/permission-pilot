@@ -13,11 +13,11 @@
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
-        app:tint="?colorControlNormal"
         android:src="@drawable/ic_baseline_sd_storage_24"
         app:layout_constraintBottom_toBottomOf="@id/quick_stats"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/label" />
+        app:layout_constraintTop_toTopOf="@id/label"
+        app:tint="?colorControlNormal" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/label"
@@ -37,7 +37,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/quick_stats"
-        style="@style/TextAppearance.Material3.BodySmall"
+        style="@style/TextAppearance.Material3.LabelSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/label"
