@@ -254,4 +254,6 @@
     <string name="overview_summary_apps_offline_label">No. of apps that have \'No Internet\' permissions</string>
     <string name="overview_summary_apps_clones_label">No. of apps with clones in other profiles</string>
     <string name="overview_summary_apps_sharedids_label">No. of apps with SharedUserID</string>
+    <string name="permission_bind_accessibility_service_label">Offer accessibility service</string>
+    <string name="permission_bind_accessibility_service_description">Allows the app to offer an accessibility service that can be enabled in the system settings.</string>
 </resources>

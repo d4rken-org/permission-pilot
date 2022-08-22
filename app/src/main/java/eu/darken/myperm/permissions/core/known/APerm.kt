@@ -760,7 +760,10 @@ sealed class APerm constructor(val id: Permission.Id) {
     }
 
     object BIND_ACCESSIBILITY_SERVICE : APerm("android.permission.BIND_ACCESSIBILITY_SERVICE") {
-        override val tags = setOf(ManifestDoc)
+        override val iconRes: Int = R.drawable.ic_baseline_accessibility_new_24
+        override val labelRes: Int = R.string.permission_bind_accessibility_service_label
+        override val descriptionRes: Int = R.string.permission_bind_accessibility_service_description
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object BIND_APPWIDGET : APerm("android.permission.BIND_APPWIDGET") {

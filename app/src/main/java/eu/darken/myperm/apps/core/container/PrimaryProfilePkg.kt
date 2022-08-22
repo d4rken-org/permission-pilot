@@ -54,7 +54,14 @@ data class PrimaryProfilePkg(
             val flags = packageInfo.requestedPermissionsFlags[index]
             UsesPermission.WithState(id = Permission.Id(permissionId), flags = flags)
         } ?: emptyList()
-        base + extraPermissions
+
+        val acsPermissions = accessibilityServices.map {
+            UsesPermission.WithState(
+                id = APerm.BIND_ACCESSIBILITY_SERVICE.id,
+                flags = if (it.isEnabled) PackageInfo.REQUESTED_PERMISSION_GRANTED else 0
+            )
+        }
+        base + extraPermissions + acsPermissions
     }
 
     override val declaredPermissions: Collection<PermissionInfo> by lazy {

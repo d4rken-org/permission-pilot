@@ -108,6 +108,12 @@ sealed class PermissionAction {
                         "com.android.settings.Settings\$PictureInPictureSettingsActivity"
                     )
                 }
+                APerm.BIND_ACCESSIBILITY_SERVICE.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.Settings\$AccessibilitySettingsActivity"
+                    )
+                }
                 else -> throw IllegalArgumentException("No action found for: ${permission.id.value}")
             }
 

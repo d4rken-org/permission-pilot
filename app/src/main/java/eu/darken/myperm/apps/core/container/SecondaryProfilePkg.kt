@@ -14,6 +14,7 @@ import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.Logging.Priority.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.known.APerm
 
 data class SecondaryProfilePkg(
     override val packageInfo: PackageInfo,
@@ -44,9 +45,16 @@ data class SecondaryProfilePkg(
     override var twins: Collection<Installed> = emptyList()
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
-        packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
+        val base = packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
             UsesPermission.Unknown(id = Permission.Id(permissionId))
         } ?: emptyList()
+        val acsPermissions = accessibilityServices.map {
+            UsesPermission.WithState(
+                id = APerm.BIND_ACCESSIBILITY_SERVICE.id,
+                flags = null
+            )
+        }
+        base + acsPermissions
     }
 
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
