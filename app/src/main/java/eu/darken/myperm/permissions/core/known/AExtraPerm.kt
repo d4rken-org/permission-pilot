@@ -7,6 +7,7 @@ import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.features.NotNormalPerm
 import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.grpIds
 import kotlin.reflect.full.isSubclassOf
 
@@ -25,7 +26,7 @@ sealed class AExtraPerm constructor(val id: Permission.Id) {
         override val iconRes: Int = R.drawable.ic_baseline_picture_in_picture_24
         override val labelRes: Int = R.string.permission_picture_in_picture_label
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Other)
-        override val tags = setOf(NotNormalPerm)
+        override val tags = setOf(NotNormalPerm, SpecialAccess)
     }
 
 
