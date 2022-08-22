@@ -54,7 +54,6 @@ class AppRepo @Inject constructor(
                 .filter { it != curPkg } // Don't compare against ourselves
                 .filter {
                     if (it.sharedUserId == null) return@filter false
-                    if (it.sharedUserId == null) return@filter false
 
                     it.sharedUserId == curPkg.sharedUserId && it.id.userHandle == curPkg.id.userHandle
                 }
