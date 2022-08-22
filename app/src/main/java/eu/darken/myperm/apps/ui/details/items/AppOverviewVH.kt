@@ -131,10 +131,13 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
         tagSystem.isInvisible = !app.isSystemApp
         tagContainer.isGone = tagContainer.children.all { !it.isVisible }
+
+        openAction.setOnClickListener { item.onOpenApp(item.app) }
     }
 
     data class Item(
         val app: BasePkg,
+        val onOpenApp: (Pkg) -> Unit,
         val onGoToSettings: (Pkg) -> Unit,
         val onInstallerIconClicked: (Pkg) -> Unit,
         val onInstallerTextClicked: (Pkg) -> Unit,

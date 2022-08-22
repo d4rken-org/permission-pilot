@@ -14,6 +14,9 @@ import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.ui.details.items.*
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.navigation.navArgs
 import eu.darken.myperm.common.uix.ViewModel3
@@ -28,6 +31,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
+
 
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
@@ -59,6 +63,15 @@ class AppDetailsFragmentVM @Inject constructor(
 
             AppOverviewVH.Item(
                 app = app,
+                onOpenApp = {
+                    try {
+                        val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)!!
+                        context.startActivity(intent)
+                    } catch (e: Exception) {
+                        log(TAG, ERROR) { "Launch intent failed for $app: ${e.asLog()}" }
+                        errorEvents.postValue(e)
+                    }
+                },
                 onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
                 onInstallerTextClicked = { installer ->
                     AppDetailsFragmentDirections.toSelf(appId = installer.id).navigate()
