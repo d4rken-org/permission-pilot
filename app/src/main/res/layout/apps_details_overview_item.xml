@@ -171,9 +171,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/open_action"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/ThemeOverlay.Material3.Button.TextButton"
+            android:layout_height="40dp"
             android:text="@string/general_open_action"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
