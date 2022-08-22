@@ -185,7 +185,7 @@
         <ImageView
             android:id="@+id/tag_internet"
             style="@style/AppTagStyle"
-            tools:src="@drawable/ic_baseline_internet_24"
+            android:src="@drawable/ic_baseline_internet_24"
             tools:visibility="visible" />
 
     </com.google.android.flexbox.FlexboxLayout>
