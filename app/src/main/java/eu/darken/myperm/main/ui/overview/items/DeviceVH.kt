@@ -19,6 +19,7 @@ class DeviceVH(parent: ViewGroup) : OverviewAdapter.BaseVH<DeviceVH.Item, Overvi
         payloads: List<Any>
     ) -> Unit = binder@{ item, _ ->
         loadingContainer.isGone = item !is Item.Loading
+        contentContainer.isGone = item is Item.Loading
         if (item !is Item.Content) return@binder
 
         deviceName.text = item.deviceName
