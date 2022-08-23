@@ -54,16 +54,22 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
 
         ui.list.setupDefaults(permissionsAdapter)
         vm.state.observe2(this, ui) { state ->
-            listCaption.text = if (state.isLoading) {
-                null
-            } else {
-                val groups = requireContext().getQuantityString(R.plurals.generic_x_groups_label, state.countGroups)
-                val items = requireContext().getQuantityString(R.plurals.generic_x_items_label, state.countPermissions)
-                "$groups, $items"
+            list.isInvisible = state is PermissionsFragmentVM.State.Loading
+            loadingContainer.isGone = state !is PermissionsFragmentVM.State.Loading
+
+            when (state) {
+                is PermissionsFragmentVM.State.Loading -> {
+                    listCaption.text = "..."
+                }
+                is PermissionsFragmentVM.State.Ready -> {
+                    val groups = requireContext().getQuantityString(R.plurals.generic_x_groups_label, state.countGroups)
+                    val items =
+                        requireContext().getQuantityString(R.plurals.generic_x_items_label, state.countPermissions)
+                    listCaption.text = "$groups, $items"
+
+                    permissionsAdapter.update(state.listData)
+                }
             }
-            permissionsAdapter.update(state.listData)
-            list.isInvisible = state.isLoading
-            loadingContainer.isGone = !state.isLoading
         }
         super.onViewCreated(view, savedInstanceState)
     }

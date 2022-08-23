@@ -41,10 +41,13 @@ class AppsFragmentVM @Inject constructor(
 
     val events = SingleLiveEvent<AppsEvents>()
 
-    data class State(
-        val items: List<AppsAdapter.Item> = emptyList(),
-        val isLoading: Boolean = true
-    )
+    sealed class State {
+        class Loading : State()
+
+        data class Ready(
+            val items: List<AppsAdapter.Item> = emptyList()
+        ) : State()
+    }
 
     val listData: LiveData<State> = combine(
         appRepo.state,
@@ -55,8 +58,8 @@ class AppsFragmentVM @Inject constructor(
     ) { appRepoState, permissionRepoState, searchTerm, filterOptions, sortOptions ->
         val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs
         val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
-        if (apps == null || permissions == null) return@combine State()
-        if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine State()
+        if (apps == null || permissions == null) return@combine State.Loading()
+        if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine State.Loading()
 
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
@@ -93,12 +96,9 @@ class AppsFragmentVM @Inject constructor(
                 onInstallerClicked = { installer -> appStoreTool.openAppStoreFor(app, installer) }
             )
         }
-        State(
-            items = listItems,
-            isLoading = false
-        )
+        State.Ready(items = listItems)
     }
-        .onStart { emit(State()) }
+        .onStart { emit(State.Loading()) }
         .asLiveData2()
 
     fun onSearchInputChanged(term: String?) {

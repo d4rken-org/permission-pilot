@@ -44,12 +44,15 @@ class PermissionsFragmentVM @Inject constructor(
     private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
     val events = SingleLiveEvent<PermissionListEvent>()
 
-    data class State(
-        val listData: List<PermissionsAdapter.Item> = emptyList(),
-        val isLoading: Boolean = true,
-        val countPermissions: Int = 0,
-        val countGroups: Int = 0,
-    )
+    sealed class State {
+        class Loading : State()
+
+        data class Ready(
+            val listData: List<PermissionsAdapter.Item> = emptyList(),
+            val countPermissions: Int = 0,
+            val countGroups: Int = 0,
+        ) : State()
+    }
 
     val state: LiveData<State> = combine(
         permissionRepo.state,
@@ -58,7 +61,8 @@ class PermissionsFragmentVM @Inject constructor(
         filterOptions,
         sortOptions
     ) { permissionRepoState, expGroups, searchTerm, filterOptions, sortOptions ->
-        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions ?: return@combine State()
+        val permissions =
+            (permissionRepoState as? PermissionRepo.State.Ready)?.permissions ?: return@combine State.Loading()
 
         val filtered = permissions
             .filter { perm -> filterOptions.keys.all { it.matches(perm) } }
@@ -157,14 +161,13 @@ class PermissionsFragmentVM @Inject constructor(
             if (isExpanded) listItems.addAll(permItems)
         }
 
-        State(
+        State.Ready(
             listData = listItems,
-            isLoading = false,
             countGroups = groupCount,
             countPermissions = permissionCount
         )
     }
-        .onStart { emit(State()) }
+        .onStart { emit(State.Loading()) }
         .asLiveData2()
 
     private fun MutableStateFlow<Map<PermissionGroup.Id, Boolean>>.toggle(id: PermissionGroup.Id) {

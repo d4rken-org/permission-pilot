@@ -80,10 +80,18 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
 
         ui.list.setupDefaults(appsAdapter)
         vm.listData.observe2(this@AppsFragment, ui) { state ->
-            listCaption.text = requireContext().getQuantityString(R.plurals.generic_x_items_label, state.items.size)
-            appsAdapter.update(state.items)
-            list.isInvisible = state.isLoading
-            loadingContainer.isGone = !state.isLoading
+            list.isInvisible = state is AppsFragmentVM.State.Loading
+            loadingContainer.isGone = state !is AppsFragmentVM.State.Loading
+            when (state) {
+                is AppsFragmentVM.State.Loading -> {
+                    listCaption.text = "..."
+                }
+                is AppsFragmentVM.State.Ready -> {
+                    listCaption.text =
+                        requireContext().getQuantityString(R.plurals.generic_x_items_label, state.items.size)
+                    appsAdapter.update(state.items)
+                }
+            }
         }
 
         super.onViewCreated(view, savedInstanceState)
