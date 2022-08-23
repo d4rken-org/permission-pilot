@@ -1,16 +1,25 @@
-<i>Permission Pilot</i> is a new kind of app to help the user view apps and which permissions they use – born out of a feature discussion for SD Maid.
+<i>Permission Pilot</i> is a new kind of app to help you review apps and their permissions.
 
-Currently, Android shows app permissions in 3 different places:
+With each Android update permissions are getting more complex.
+Android showing permissions in various different locations, doesn't make it easier to review them:
 
 * App Info page
 * Special Access
 * Permissions Manager
+* and more...
 
-In order to control or just see what permissions an app has access to, the user has to go to 3 different places now.
+<i>Permission Pilot</i> lists all permissions in a single location, giving you a bird's eye view of app permissions.
 
-<i>Permission Pilot</i> will basically list every single permission an app has requested in one place, giving the user a bird's eye view of app permissions. It will have two tabs:
+Two perspectives are available: You can either view all permissions an app requests, or view all apps that request a permission.
 
-* <b>Apps:</b> This will list all the apps installed. Clicking on any app will list every single permission that the app has requested, including those that show up under Permissions Manager and Special Access, along with their status (ON/ OFF, Allowed/ Disallowed, etc.)
-* <b>Permissions:</b> This will list every single permission such as Contacts, Microphone, Camera, etc., including those that show up under Permissions Manager and Special Access. Clicking on each will show all the apps that currently has access to that permission.
-
+<b>Apps tab</b>
+All installed apps, including system apps and work profile apps.
+Clicking on any app will list all permissions that the app has requested, including those that show up under Permissions Manager and Special Access, along with their status.
 This will also include internet permissions, SharedUserID status!
+
+<b>Permissions tab</b>
+All permissions that exist on your device, including those that show up under Permissions Manager and Special Access.
+Permissions are pre-grouped for easier navigation, e.g. Contacts, Microphone, Camera, etc.
+Clicking on a permission shows all the apps that request access to that permission.
+
+Apps and permissions can be searched using free-text, sorted and filtered by different criteria.
