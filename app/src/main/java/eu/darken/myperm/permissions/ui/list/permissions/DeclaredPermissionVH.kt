@@ -2,9 +2,9 @@ package eu.darken.myperm.permissions.ui.list.permissions
 
 import android.view.ViewGroup
 import androidx.core.view.isGone
-import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.common.capitalizeFirstLetter
+import eu.darken.myperm.common.coil.loadPermissionIcon
 import eu.darken.myperm.common.lists.BindableVH
 import eu.darken.myperm.databinding.PermissionsListDeclaredItemBinding
 import eu.darken.myperm.permissions.core.container.BasePermission
@@ -25,7 +25,7 @@ class DeclaredPermissionVH(parent: ViewGroup) :
         val perm = item.permission
 
         icon.apply {
-            load(perm)
+            loadPermissionIcon(perm)
             setOnClickListener { item.onIconClick(item) }
         }
 

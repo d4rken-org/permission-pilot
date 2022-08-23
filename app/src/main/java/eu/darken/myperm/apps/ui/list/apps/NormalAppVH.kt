@@ -9,13 +9,14 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import coil.dispose
-import coil.load
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.container.isOrHasProfiles
 import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.apps.ui.list.AppsAdapter
+import eu.darken.myperm.common.coil.loadAppIcon
+import eu.darken.myperm.common.coil.loadPermissionIcon
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.getColorForAttr
 import eu.darken.myperm.common.lists.BindableVH
@@ -62,7 +63,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         }
 
         icon.apply {
-            load(app)
+            loadAppIcon(app)
             setOnClickListener { item.onIconClicked(item.app) }
         }
 
@@ -70,7 +71,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             val info = app.installerInfo
 
             if (info.installer != null) {
-                load(info.installer)
+                loadAppIcon(info.installer!!)
                 setOnClickListener { item.onInstallerClicked(info.installer!!) }
             } else {
                 dispose()
@@ -176,13 +177,13 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
         isInvisible = when {
             grantedPerm != null -> {
-                load(grantedPerm)
+                loadPermissionIcon(grantedPerm)
                 tintIt(colorGranted)
                 alpha = 1.0f
                 false
             }
             perms.isNotEmpty() -> {
-                load(perms.first())
+                loadPermissionIcon(perms.first())
                 tintIt(colorDenied)
                 alpha = 0.4f
                 false

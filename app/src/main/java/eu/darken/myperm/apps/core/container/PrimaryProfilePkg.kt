@@ -21,7 +21,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 
 class PrimaryProfilePkg(
-    private val context: Context,
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
     override val installerInfo: InstallerInfo,
@@ -83,7 +82,6 @@ class PrimaryProfilePkg(
 }
 
 private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = PrimaryProfilePkg(
-    context = context,
     packageInfo = this,
     installerInfo = getInstallerInfo(context.packageManager),
     extraPermissions = determineSpecialPermissions(context),
