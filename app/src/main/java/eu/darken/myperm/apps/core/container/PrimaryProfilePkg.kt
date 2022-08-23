@@ -16,8 +16,11 @@ import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
-data class PrimaryProfilePkg(
+class PrimaryProfilePkg(
     private val context: Context,
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle = Process.myUserHandle(),
@@ -75,6 +78,8 @@ data class PrimaryProfilePkg(
             else -> InternetAccess.NONE
         }
     }
+
+    override fun toString(): String = "PrimaryProfilePkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
 private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = PrimaryProfilePkg(
@@ -86,11 +91,12 @@ private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = Prima
     accessibilityServices = determineAccessibilityServices(context),
 )
 
-fun Context.getNormalPkgs(): Collection<BasePkg> {
+suspend fun getNormalPkgs(context: Context): Collection<BasePkg> {
     log(AppRepo.TAG) { "getNormalPkgs()" }
 
-    return packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS).map {
-        it.toNormalPkg(this)
-            .also { log(AppRepo.TAG) { "PKG[normal]: $it" } }
+    return coroutineScope {
+        context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+            .map { async { it.toNormalPkg(context) } }
+            .awaitAll()
     }
 }

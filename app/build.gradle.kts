@@ -114,7 +114,8 @@ android {
             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
             "-Xuse-experimental=kotlin.time.ExperimentalTime",
-            "-Xopt-in=kotlin.RequiresOptIn"
+            "-Xopt-in=kotlin.RequiresOptIn",
+            "-Xopt-in=kotlin.time.ExperimentalTime"
         )
     }
 

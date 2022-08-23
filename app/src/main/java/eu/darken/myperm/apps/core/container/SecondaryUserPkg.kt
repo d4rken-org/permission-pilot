@@ -15,8 +15,11 @@ import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
-data class SecondaryUserPkg(
+class SecondaryUserPkg(
     override val packageInfo: PackageInfo,
     override val installerInfo: InstallerInfo,
     override val userHandle: UserHandle,
@@ -64,12 +67,14 @@ data class SecondaryUserPkg(
 
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 
-    override val isSystemApp: Boolean
-        get() = super.isSystemApp || twins.any { it.isSystemApp }
+    override val isSystemApp: Boolean = super.isSystemApp || twins.any { it.isSystemApp }
+
+    override fun toString(): String = "SecondaryUserPkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
-fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
+suspend fun getSecondaryUserPkgs(context: Context): Collection<BasePkg> = coroutineScope {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
+    val packageManager = context.packageManager
 
     val normal = packageManager.getInstalledPackages(0).map { it.packageName }
     val uninstalled = packageManager.getInstalledPackages(
@@ -77,14 +82,18 @@ fun Context.getSecondaryUserPkgs(): Collection<BasePkg> {
     )
     val newOnes = uninstalled.filter { !normal.contains(it.packageName) }
 
-    val userManager = ContextCompat.getSystemService(this, UserManager::class.java)!!
+    val userManager = ContextCompat.getSystemService(context, UserManager::class.java)!!
 
-    return newOnes.map { pkg ->
-        SecondaryUserPkg(
-            packageInfo = pkg,
-            installerInfo = pkg.getInstallerInfo(packageManager),
-            userHandle = userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
-            extraPermissions = pkg.determineSpecialPermissions(this),
-        ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
-    }
+    newOnes
+        .map { pkg ->
+            async {
+                SecondaryUserPkg(
+                    packageInfo = pkg,
+                    installerInfo = pkg.getInstallerInfo(packageManager),
+                    userHandle = userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+                    extraPermissions = pkg.determineSpecialPermissions(context),
+                ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
+            }
+        }
+        .awaitAll()
 }

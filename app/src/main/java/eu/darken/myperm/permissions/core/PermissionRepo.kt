@@ -11,6 +11,7 @@ import eu.darken.myperm.apps.core.features.requestsPermission
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
+import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.asLog
@@ -29,15 +30,20 @@ import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.permissions.core.known.APermGrp
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.time.measureTimedValue
 
 @Singleton
 class PermissionRepo @Inject constructor(
     @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
+    private val dispatcherProvider: DispatcherProvider,
     private val packageManager: PackageManager,
     private val appRepo: AppRepo,
 ) {
@@ -53,8 +59,75 @@ class PermissionRepo @Inject constructor(
         appRepo.apps,
         refreshTrigger
     ) { apps, _ ->
+        val start = System.currentTimeMillis()
 
-        val fromAosp = (packageManager.getAllPermissionGroups(0) + listOf(null))
+        val perms = coroutineScope {
+            val aosp = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getPermissionsAOSP(apps)
+                }.let {
+                    log(TAG) { "Perf: ${it.value.size} permissions from AOSP in ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            val declared = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getPermissionsDeclared(apps).filter { newPerm -> aosp.await().none { it.id == newPerm.id } }
+                }.let {
+                    log(TAG) { "Perf: ${it.value.size} permissions declared by apps in ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            val extra = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getPermissionsExtra(apps)
+                }.let {
+                    log(TAG) { "Perf: ${it.value.size} extra permissions in ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            awaitAll(aosp, declared, extra)
+            listOf(aosp.await(), declared.await(), extra.await())
+        }
+        val mappedPermissions = mutableSetOf<BasePermission>()
+
+        // All we know from the system
+        val fromAosp = perms[0]
+        mappedPermissions.addAll(fromAosp)
+
+        // All that apps have declared themselves
+        val declared = perms[1]
+        mappedPermissions.addAll(declared)
+
+        // Extra permissions
+        val extra = perms[2]
+        mappedPermissions.addAll(extra)
+
+        // All that are specified by apps via `uses-permission`
+        // It's possible that some of these are unused as no other app declares them.
+        val undeclared = measureTimedValue {
+            getUndeclaredPermissions(apps, mappedPermissions)
+        }.let {
+            log(TAG) { "Perf: ${it.value.size} undeclared permissions in ${it.duration.inWholeMilliseconds}ms" }
+            it.value
+        }
+        mappedPermissions.addAll(undeclared)
+
+        val stop = System.currentTimeMillis()
+        log(TAG) { "Perf: Total permissions: ${mappedPermissions.size} in ${stop - start}ms" }
+
+        mappedPermissions
+    }
+        .catch {
+            log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
+            throw it
+        }
+        .shareLatest(scope = appScope, started = SharingStarted.Lazily)
+
+    private suspend fun getPermissionsAOSP(
+        apps: Collection<BasePkg>
+    ): Collection<BasePermission> = coroutineScope {
+        (packageManager.getAllPermissionGroups(0) + listOf(null))
             .mapNotNull { permissionGroup ->
                 val name = permissionGroup?.name
                 log(TAG, VERBOSE) { "Querying permission group $name" }
@@ -66,79 +139,66 @@ class PermissionRepo @Inject constructor(
                 }
             }
             .flatten()
-
-        val appWithPermissions = apps.toList()
-
-        val mappedPermissions = mutableSetOf<BasePermission>()
-
-        // All we know from the system
-        fromAosp
-            .map { it.toDeclaredPermission(appWithPermissions) }
-            .distinctBy { it.id }
-            .let {
-                log(TAG) { "${it.size} permissions from AOSP" }
-                mappedPermissions.addAll(it)
+            .map {
+                async { it.toDeclaredPermission(apps) }
             }
+            .awaitAll()
+            .distinctBy { it.id }
+    }
 
-
-        // All that apps have declared themselves
-        appWithPermissions
+    private suspend fun getPermissionsDeclared(
+        apps: Collection<BasePkg>
+    ): Collection<BasePermission> = coroutineScope {
+        apps
             .asSequence()
             .map { it.declaredPermissions }
             .flatten()
             .distinctBy { it.id }
-            .filter { newPerm -> mappedPermissions.none { it.id == newPerm.id } }
-            .map { it.toDeclaredPermission(appWithPermissions) }
+            .map { async { it.toDeclaredPermission(apps) } }
             .toList()
-            .let {
-                log(TAG) { "${it.size} permissions declared by apps" }
-                mappedPermissions.addAll(it)
-            }
+            .awaitAll()
+    }
 
-        AExtraPerm.values
-            .map { perm ->
-                ExtraPermission(
-                    id = perm.id,
-                    tags = perm.tags,
-                    groupIds = perm.groupIds,
-                    requestingPkgs = apps.filter { it.requestsPermission(perm.id) },
-                    declaringPkgs = apps.filter { it.id == AKnownPkg.AndroidSystem.id }
-                )
-            }
-            .let {
-                log(TAG) { "${it.size} special permissions" }
-                mappedPermissions.addAll(it)
-            }
 
-        // All that are specified by apps via `uses-permission`
-        // It's possible that some of these are unused as no other app declares them.
-        appWithPermissions
+    private suspend fun getPermissionsExtra(
+        apps: Collection<BasePkg>
+    ): Collection<BasePermission> = AExtraPerm.values
+        .map { perm ->
+            ExtraPermission(
+                id = perm.id,
+                tags = perm.tags,
+                groupIds = perm.groupIds,
+                requestingPkgs = apps.filter { it.requestsPermission(perm.id) },
+                declaringPkgs = apps.filter { it.id == AKnownPkg.AndroidSystem.id }
+            )
+        }
+
+    private suspend fun getUndeclaredPermissions(
+        apps: Collection<BasePkg>,
+        mappedPermissions: Collection<BasePermission>,
+    ): Collection<BasePermission> = coroutineScope {
+        apps
             .asSequence()
-            .map { usesPerms -> usesPerms.requestedPermissions.map { it.id } }
-            .flatten()
-            .distinct()
-            .filter { newPerm -> mappedPermissions.none { it.id == newPerm } }
-            .map { id ->
-                val info = packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
-                when {
-                    info != null -> info.toDeclaredPermission(appWithPermissions)
-                    else -> id.toUnusedPermission(appWithPermissions)
+            .map { usesPerms ->
+                async {
+                    usesPerms.requestedPermissions.map { it.id }
+                        .distinct()
+                        .filter { newPerm -> mappedPermissions.none { it.id == newPerm } }
+                        .map { id ->
+                            val info = packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                            when {
+                                info != null -> info.toDeclaredPermission(apps)
+                                else -> id.toUnusedPermission(apps)
+                            }
+                        }
                 }
             }
-            .distinctBy { it.id }
             .toList()
-            .let {
-                log(TAG) { "${it.size} unknown permissions requested by apps" }
-                mappedPermissions.addAll(it)
-            }
-
-        mappedPermissions.also { log(TAG) { "${it.size} total permissions discovered." } }
+            .awaitAll()
+            .flatten()
+            .distinctBy { it.id }
     }
-        .catch {
-            log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
-            throw it
-        }
-        .shareLatest(scope = appScope, started = SharingStarted.Lazily)
+
 
     private fun PermissionInfo.toDeclaredPermission(apps: Collection<BasePkg>): DeclaredPermission {
         val groupIds = APerm.values.singleOrNull { it.id == id }?.groupIds?.let { want ->

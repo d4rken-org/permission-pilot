@@ -5,19 +5,25 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.container.*
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
+import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.time.measureTimedValue
 
 @Singleton
 class AppRepo @Inject constructor(
     @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
+    private val dispatcherProvider: DispatcherProvider,
     packageEventListener: PackageEventListener,
 ) {
 
@@ -32,15 +38,40 @@ class AppRepo @Inject constructor(
         refreshTrigger,
         packageEventListener.events.onStart { emit(PackageEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
     ) { _, _ ->
-        val normalPkgs = context.getNormalPkgs()
+        val start = System.currentTimeMillis()
 
-        val profilePkgs = context.getSecondaryProfilePkgs()
-
-        val uninstalledPkgs = context.getSecondaryUserPkgs().filter { uninstalled ->
-            profilePkgs.none { it.id.pkgName == uninstalled.id.pkgName }
+        val pkgs = coroutineScope {
+            val normal = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getNormalPkgs(context)
+                }.let {
+                    log(TAG) { "Perf: Primary profile pkgs took ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            val secondaryProfile = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getSecondaryProfilePkgs(context)
+                }.let {
+                    log(TAG) { "Perf: Secondary profile pkgs took ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            val uninstalledPkgs = async(dispatcherProvider.Default) {
+                measureTimedValue {
+                    getSecondaryUserPkgs(context).filter { uninstalled ->
+                        secondaryProfile.await().none { it.id.pkgName == uninstalled.id.pkgName }
+                    }
+                }.let {
+                    log(TAG) { "Perf: Secondary user pkgs took ${it.duration.inWholeMilliseconds}ms" }
+                    it.value
+                }
+            }
+            awaitAll(normal, secondaryProfile, uninstalledPkgs)
+            listOf(normal.await(), secondaryProfile.await(), uninstalledPkgs.await())
         }
 
-        val allPkgs = normalPkgs + profilePkgs + uninstalledPkgs
+        val allPkgs = pkgs.flatten()
         allPkgs.forEach { curPkg ->
 
             val twins = allPkgs.asSequence()
@@ -76,7 +107,8 @@ class AppRepo @Inject constructor(
             }
         }
 
-        log { "Total pkgs: ${allPkgs.size}" }
+        val stop = System.currentTimeMillis()
+        log(TAG) { "Perf: Total pkgs: ${allPkgs.size} in ${stop - start}ms" }
 
         allPkgs
     }.shareLatest(scope = appScope, started = SharingStarted.Lazily)

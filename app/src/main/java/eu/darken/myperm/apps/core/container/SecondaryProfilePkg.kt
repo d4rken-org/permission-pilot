@@ -15,8 +15,11 @@ import eu.darken.myperm.common.debug.logging.Logging.Priority.*
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 
-data class SecondaryProfilePkg(
+class SecondaryProfilePkg(
     override val packageInfo: PackageInfo,
     override val userHandle: UserHandle,
     override val installerInfo: InstallerInfo,
@@ -65,20 +68,23 @@ data class SecondaryProfilePkg(
 
     override val isSystemApp: Boolean
         get() = super.isSystemApp || twins.any { it.isSystemApp }
+
+    override fun toString(): String = "SecondaryProfilePkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
-fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
-    val launcherApps = ContextCompat.getSystemService(this, LauncherApps::class.java)!!
-    val userManager = ContextCompat.getSystemService(this, UserManager::class.java)!!
+suspend fun getSecondaryProfilePkgs(context: Context): Collection<BasePkg> = coroutineScope {
+    val packageManager = context.packageManager
+    val launcherApps = ContextCompat.getSystemService(context, LauncherApps::class.java)!!
+    val userManager = ContextCompat.getSystemService(context, UserManager::class.java)!!
 
     val profiles = userManager.userProfiles
 
-    if (profiles.size < 2) return emptySet()
+    if (profiles.size < 2) return@coroutineScope emptySet()
 
     log(AppRepo.TAG, INFO) { "Found multiple user profiles: $profiles" }
     val extraProfiles = profiles - Process.myUserHandle()
 
-    return extraProfiles.map outerMap@{ userHandle ->
+    fun determineForHandle(userHandle: UserHandle): Collection<BasePkg> {
         val launcherInfos = try {
             launcherApps.getActivityList(null, userHandle)
         } catch (e: SecurityException) {
@@ -86,7 +92,7 @@ fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
             emptyList()
         }
 
-        launcherInfos.mapNotNull { lai ->
+        return launcherInfos.mapNotNull { lai ->
             val appInfo = lai.applicationInfo
 
             var pkgInfo = packageManager.getPackageArchiveInfo(
@@ -96,7 +102,8 @@ fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
 
             if (pkgInfo == null) {
                 log(AppRepo.TAG, VERBOSE) { "Failed to get info from packagemanager for $appInfo" }
-                pkgInfo = packageManager.getPackageArchiveInfo(appInfo.sourceDir, PackageManager.GET_PERMISSIONS)
+                pkgInfo =
+                    packageManager.getPackageArchiveInfo(appInfo.sourceDir, PackageManager.GET_PERMISSIONS)
             }
 
             if (pkgInfo == null) {
@@ -104,16 +111,20 @@ fun Context.getSecondaryProfilePkgs(): Collection<BasePkg> {
                 return@mapNotNull null
             }
 
-            val app = SecondaryProfilePkg(
+            SecondaryProfilePkg(
                 packageInfo = pkgInfo,
                 installerInfo = pkgInfo.getInstallerInfo(packageManager),
                 launcherAppInfo = appInfo,
                 userHandle = userHandle,
-                extraPermissions = pkgInfo.determineSpecialPermissions(this),
-            )
-            log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $app" }
-            app
+                extraPermissions = pkgInfo.determineSpecialPermissions(context),
+            ).also { log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $it" } }
         }
-    }.flatten()
-}
+    }
 
+    extraProfiles
+        .map { userHandle ->
+            async { determineForHandle(userHandle) }
+        }
+        .awaitAll()
+        .flatten()
+}
