@@ -29,7 +29,6 @@ import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
-import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
@@ -59,7 +58,6 @@ class AppDetailsFragmentVM @Inject constructor(
     )
 
     val details: LiveData<Details> = appRepo.apps
-        .filterIsInstance<AppRepo.State.Ready>().map { it.pkgs }
         .map { apps -> apps.single { it.id == navArgs.appId } }
         .map { app ->
             val infoItems = mutableListOf<AppDetailsAdapter.Item>()
