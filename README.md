@@ -46,8 +46,6 @@ Android does NOT allow for configuring System Settings or App Permissions using 
 | [Github Releases](https://github.com/d4rken-org/permission-pilot/release) | [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases&label=GitHub)](https://github.com/d4rken-org/permission-pilot/releases/latest) |
 | [F-Droid (IzzyOnDroid)](https://apt.izzysoft.de/packages/eu.darken.myperm/) | [![](https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/eu.darken.myperm)](https://apt.izzysoft.de/packages/eu.darken.myperm/) |
 
-
-
 ## Community
 
 Want to chat? Join our [discord server here](https://discord.gg/7gGWxfM5yv).
@@ -60,3 +58,11 @@ If you like the app, consider:
 * Contributing features or bugfixes
 * Buying the upgrade on [Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
 * [Sponsoring the project](https://github.com/sponsors/d4rken)
+
+## Screenshots
+
+<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot1.png" width="128">
+<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot2.png" width="128">
+<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot3.png" width="128">
+<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot4.png" width="128">
+<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot5.png" width="128">
