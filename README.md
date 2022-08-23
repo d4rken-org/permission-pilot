@@ -61,8 +61,4 @@ If you like the app, consider:
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot1.png" width="128">
-<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot2.png" width="128">
-<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot3.png" width="128">
-<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot4.png" width="128">
-<img src="https://raw.githubusercontent.com/d4rken-org/permission-pilot/fastlane/metadata/android/en-US/images/screenshot5.png" width="128">
+<img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/screenshot1.png" width="196"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/screenshot2.png" width="196"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/screenshot3.png" width="196"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/screenshot4.png" width="196"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/screenshot5.png" width="196">
