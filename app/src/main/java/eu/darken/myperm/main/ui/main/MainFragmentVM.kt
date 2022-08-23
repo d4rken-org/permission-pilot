@@ -4,12 +4,14 @@ import android.app.Activity
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.apps
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
 import eu.darken.myperm.common.uix.ViewModel3
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.PermissionRepo
+import eu.darken.myperm.permissions.core.permissions
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
@@ -50,6 +52,5 @@ class MainFragmentVM @Inject constructor(
     fun onRefresh() = launch {
         log { "refresh()" }
         appRepo.refresh()
-        permissionRepo.refresh()
     }
 }

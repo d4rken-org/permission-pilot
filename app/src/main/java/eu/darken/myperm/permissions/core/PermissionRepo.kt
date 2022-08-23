@@ -34,6 +34,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import java.time.Instant
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -55,10 +56,14 @@ class PermissionRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val permissions: Flow<Collection<BasePermission>> = combine(
-        appRepo.apps,
+    val state: Flow<State> = combineTransform(
+        appRepo.state,
         refreshTrigger
-    ) { apps, _ ->
+    ) { appRepoState, _ ->
+        emit(State.Loading())
+
+        val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs ?: return@combineTransform
+
         val start = System.currentTimeMillis()
 
         val perms = coroutineScope {
@@ -116,12 +121,13 @@ class PermissionRepo @Inject constructor(
         val stop = System.currentTimeMillis()
         log(TAG) { "Perf: Total permissions: ${mappedPermissions.size} in ${stop - start}ms" }
 
-        mappedPermissions
+        emit(State.Ready(permissions = mappedPermissions, basedOnAppState = appRepoState.id))
     }
         .catch {
             log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
             throw it
         }
+        .onStart { emit(State.Loading()) }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
     private suspend fun getPermissionsAOSP(
@@ -238,6 +244,18 @@ class PermissionRepo @Inject constructor(
         } ?: emptySet(),
         tags = APerm.values.singleOrNull { it.id == this }?.tags ?: emptySet(),
     )
+
+    sealed class State {
+        data class Loading(
+            val startedAt: Instant = Instant.now()
+        ) : State()
+
+        data class Ready(
+            val updatedAt: Instant = Instant.now(),
+            val permissions: Collection<BasePermission>,
+            val basedOnAppState: UUID,
+        ) : State()
+    }
 
     companion object {
         private val TAG = logTag("Permissions", "Repo")

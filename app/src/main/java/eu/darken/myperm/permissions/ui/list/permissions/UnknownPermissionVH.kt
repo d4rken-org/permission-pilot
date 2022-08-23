@@ -36,7 +36,6 @@ class UnknownPermissionVH(parent: ViewGroup) :
         override val permission: UnknownPermission,
         val onClickAction: (Item) -> Unit,
     ) : PermissionItem() {
-        override val stableId: Long
-            get() = permission.id.hashCode().toLong()
+        override val stableId: Long = permission.id.hashCode().toLong()
     }
 }

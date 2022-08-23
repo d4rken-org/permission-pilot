@@ -6,6 +6,8 @@ import eu.darken.myperm.apps.core.container.*
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
@@ -14,6 +16,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import java.time.Instant
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -34,10 +37,12 @@ class AppRepo @Inject constructor(
         refreshTrigger.value = UUID.randomUUID()
     }
 
-    val apps: Flow<Collection<BasePkg>> = combine(
+    val state: Flow<State> = combineTransform<UUID?, PackageEventListener.Event, State>(
         refreshTrigger,
         packageEventListener.events.onStart { emit(PackageEventListener.Event.PackageInstalled(AKnownPkg.AndroidSystem.id)) },
     ) { _, _ ->
+        emit(State.Loading())
+
         val start = System.currentTimeMillis()
 
         val pkgs = coroutineScope {
@@ -110,9 +115,26 @@ class AppRepo @Inject constructor(
         val stop = System.currentTimeMillis()
         log(TAG) { "Perf: Total pkgs: ${allPkgs.size} in ${stop - start}ms" }
 
-        allPkgs
-    }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
+        emit(State.Ready(pkgs = allPkgs))
+    }
+        .onStart { emit(State.Loading()) }
+        .catch {
+            log(TAG, ERROR) { "Failed to generate app data: ${it.asLog()}" }
+            throw it
+        }
+        .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
+    sealed class State {
+        data class Loading(
+            val startedAt: Instant = Instant.now()
+        ) : State()
+
+        data class Ready(
+            val updatedAt: Instant = Instant.now(),
+            val pkgs: Collection<BasePkg>,
+            val id: UUID = UUID.randomUUID(),
+        ) : State()
+    }
 
     companion object {
         internal val TAG = logTag("Apps", "Repo")

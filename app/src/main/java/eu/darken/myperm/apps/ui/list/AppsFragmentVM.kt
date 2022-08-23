@@ -28,7 +28,7 @@ class AppsFragmentVM @Inject constructor(
     @Suppress("unused") private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
-    packageRepo: AppRepo,
+    appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val webpageTool: WebpageTool,
     private val appStoreTool: AppStoreTool,
@@ -47,12 +47,17 @@ class AppsFragmentVM @Inject constructor(
     )
 
     val listData: LiveData<State> = combine(
-        packageRepo.apps,
-        permissionRepo.permissions,
+        appRepo.state,
+        permissionRepo.state,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { apps, permissions, searchTerm, filterOptions, sortOptions ->
+    ) { appRepoState, permissionRepoState, searchTerm, filterOptions, sortOptions ->
+        val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs
+        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
+        if (apps == null || permissions == null) return@combine State()
+        if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine State()
+
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
             .filter {

@@ -52,12 +52,14 @@ class PermissionsFragmentVM @Inject constructor(
     )
 
     val state: LiveData<State> = combine(
-        permissionRepo.permissions,
+        permissionRepo.state,
         expandedGroups,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { permissions, expGroups, searchTerm, filterOptions, sortOptions ->
+    ) { permissionRepoState, expGroups, searchTerm, filterOptions, sortOptions ->
+        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions ?: return@combine State()
+
         val filtered = permissions
             .filter { perm -> filterOptions.keys.all { it.matches(perm) } }
             .filter {

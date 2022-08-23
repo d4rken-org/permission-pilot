@@ -10,6 +10,7 @@ import coil.fetch.Fetcher
 import coil.request.Options
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.permissions.core.PermissionRepo
+import eu.darken.myperm.permissions.core.permissions
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 

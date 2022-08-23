@@ -22,6 +22,7 @@ import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
@@ -40,23 +41,25 @@ class OverviewFragmentVM @Inject constructor(
         val isLoading: Boolean = true,
     )
 
-    private val deviceData: Flow<DeviceVH.Item> = combine(
-        packageRepo.apps,
-        permissionRepo.permissions,
-    ) { apps, permissions ->
+    private val deviceData: Flow<DeviceVH.Item> = flow {
         val item: DeviceVH.Item = DeviceVH.Item.Content(
             deviceName = "${Build.DEVICE} (${Build.MODEL})",
             androidVersion = AndroidVersionCodes.current?.longFormat ?: "API ${BuildWrap.VersionWrap.SDK_INT}",
             patchLevel = Build.VERSION.SECURITY_PATCH
         )
-        item
+        emit(item)
     }
         .onStart { emit(DeviceVH.Item.Loading) }
 
     private val summaryData: Flow<SummaryVH.Item> = combine(
-        packageRepo.apps,
-        permissionRepo.permissions,
-    ) { apps, permissions ->
+        packageRepo.state,
+        permissionRepo.state,
+    ) { appRepoState, permissionRepoState ->
+        val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs
+        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
+        if (apps == null || permissions == null) return@combine SummaryVH.Item.Loading
+        if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine SummaryVH.Item.Loading
+
         val item: SummaryVH.Item = SummaryVH.Item.Content(
             pkgCountActiveProfile = PkgCount(
                 user = apps.count { it.userHandle == Process.myUserHandle() && !it.isSystemApp },
