@@ -1,4 +1,5 @@
 Bugfixes and performance improvements.
 ¯\_(ツ)_/¯
 
-(A detailed changelog is available on GitHub)
+A detailed changelog is available on GitHub:
+https://github.com/d4rken-org/permission-pilot/releases/latest
