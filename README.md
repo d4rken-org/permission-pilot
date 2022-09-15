@@ -62,3 +62,9 @@ If you like the app, consider:
 ## Screenshots
 
 <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot1.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot2.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot3.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot4.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot5.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot6.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot7.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot8.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot9.png" width="100"> <img src="https://github.com/d4rken-org/permission-pilot/raw/main/fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot10.png" width="100"> 
+
+## License
+
+Permission Pilot's code is available under a GPL v3 license, this excludes:
+
+* Icons, logos, mascots and marketing materials/assets.
