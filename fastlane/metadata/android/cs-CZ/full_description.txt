@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> je nový druh aplikace, která vám pomůže ovládat aplikace a jejich oprávnění.
+
+S každou aktualizací systému Android jsou oprávnění stále složitější.
+Systém Android zobrazuje oprávnění na různých místech, což neusnadňuje jejich kontrolu:
+
+* Informační stránka aplikace
+* Speciální přístup
+* Správce oprávnění
+* a další...
+
+<i>Permission Pilot</i> zobrazuje všechna oprávnění na jednom místě a poskytuje tak přehled o oprávněních aplikací z ptačí perspektivy.
+
+K dispozici jsou dvě perspektivy: Můžete zobrazit všechna oprávnění, o která aplikace žádá, nebo všechny aplikace, které o oprávnění žádají.
+
+<b>Karta aplikací</b>
+Všechny nainstalované aplikace, včetně systémových aplikací a aplikací pracovního profilu.
+Po kliknutí na libovolnou aplikaci se zobrazí seznam všech oprávnění, která aplikace požadovala, včetně těch, která se zobrazují v části Správce oprávnění a Zvláštní přístup, spolu s jejich stavem.
+To zahrnuje také oprávnění k internetu, stav SharedUserID!
+
+<b>Karta oprávnění</b>
+Všechna oprávnění, která v zařízení existují, včetně těch, která se zobrazují v části Správce oprávnění a Zvláštní přístup.
+Oprávnění jsou předem seskupena pro snadnější orientaci, např. Kontakty, Mikrofon, Fotoaparát atd.
+Kliknutím na oprávnění se zobrazí všechny aplikace, které požadují přístup k tomuto oprávnění.
+
+Aplikace a oprávnění lze vyhledávat pomocí volného textu, třídit a filtrovat podle různých kritérií.
