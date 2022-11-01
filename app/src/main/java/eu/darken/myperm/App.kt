@@ -29,6 +29,6 @@ open class App : Application() {
     }
 
     companion object {
-        internal val TAG = logTag("AKSv4")
+        internal val TAG = logTag("App")
     }
 }
