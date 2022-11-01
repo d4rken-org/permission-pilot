@@ -11,6 +11,9 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.known.toKnownPkg
 import eu.darken.myperm.apps.core.toContainer
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.hasApiLevel
 
 data class InstallerInfo(
@@ -82,9 +85,14 @@ private fun PackageInfo.getInstallerInfoApi30(packageManager: PackageManager): I
 
 @Suppress("DEPRECATION")
 private fun PackageInfo.getInstallerInfoLegacy(packageManager: PackageManager): InstallerInfo {
-    val installingPkg = packageManager.getInstallerPackageName(packageName)
-        ?.let { Pkg.Id(it) }
-        ?.let { it.toKnownPkg() ?: it.toContainer() }
+    val installingPkg = try {
+        packageManager.getInstallerPackageName(packageName)
+            ?.let { Pkg.Id(it) }
+            ?.let { it.toKnownPkg() ?: it.toContainer() }
+    } catch (e: IllegalArgumentException) {
+        log(WARN) { "OS race condition, package ($packageName) was uninstalled?: ${e.asLog()}" }
+        null
+    }
 
     return InstallerInfo(
         installingPkg = installingPkg,
