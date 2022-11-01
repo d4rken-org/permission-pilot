@@ -7,11 +7,10 @@ import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
-import android.os.UserManager
-import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
@@ -72,26 +71,23 @@ class SecondaryUserPkg(
     override fun toString(): String = "SecondaryUserPkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
-suspend fun getSecondaryUserPkgs(context: Context): Collection<BasePkg> = coroutineScope {
+suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> = coroutineScope {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
-    val packageManager = context.packageManager
 
-    val normal = packageManager.getInstalledPackages(0).map { it.packageName }
-    val uninstalled = packageManager.getInstalledPackages(
-        PackageManager.GET_PERMISSIONS or packageManager.GET_UNINSTALLED_PACKAGES_COMPAT
+    val normal = ipcFunnel.packageManager.getInstalledPackages(0).map { it.packageName }
+    val uninstalled = ipcFunnel.packageManager.getInstalledPackages(
+        PackageManager.GET_PERMISSIONS or GET_UNINSTALLED_PACKAGES_COMPAT
     )
     val newOnes = uninstalled.filter { !normal.contains(it.packageName) }
-
-    val userManager = ContextCompat.getSystemService(context, UserManager::class.java)!!
 
     newOnes
         .map { pkg ->
             async {
                 SecondaryUserPkg(
                     packageInfo = pkg,
-                    installerInfo = pkg.getInstallerInfo(packageManager),
-                    userHandle = userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
-                    extraPermissions = pkg.determineSpecialPermissions(context),
+                    installerInfo = pkg.getInstallerInfo(ipcFunnel),
+                    userHandle = ipcFunnel.userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+                    extraPermissions = pkg.determineSpecialPermissions(ipcFunnel),
                 ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
             }
         }

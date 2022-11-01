@@ -11,6 +11,7 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.known.toKnownPkg
 import eu.darken.myperm.apps.core.toContainer
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
@@ -50,17 +51,17 @@ fun Installed.isSideloaded(): Boolean {
     return installerInfo.allInstallers.none { it.id == AKnownPkg.GooglePlay.id }
 }
 
-fun PackageInfo.getInstallerInfo(
-    packageManager: PackageManager,
+suspend fun PackageInfo.getInstallerInfo(
+    ipcFunnel: IPCFunnel,
 ): InstallerInfo = if (hasApiLevel(Build.VERSION_CODES.R)) {
-    getInstallerInfoApi30(packageManager)
+    getInstallerInfoApi30(ipcFunnel)
 } else {
-    getInstallerInfoLegacy(packageManager)
+    getInstallerInfoLegacy(ipcFunnel)
 }
 
-private fun PackageInfo.getInstallerInfoApi30(packageManager: PackageManager): InstallerInfo {
+private suspend fun PackageInfo.getInstallerInfoApi30(ipcFunnel: IPCFunnel): InstallerInfo {
     val sourceInfo = try {
-        packageManager.getInstallSourceInfo(packageName)
+        ipcFunnel.packageManager.getInstallSourceInfo(packageName)
     } catch (_: PackageManager.NameNotFoundException) {
         null
     }
@@ -83,10 +84,9 @@ private fun PackageInfo.getInstallerInfoApi30(packageManager: PackageManager): I
     )
 }
 
-@Suppress("DEPRECATION")
-private fun PackageInfo.getInstallerInfoLegacy(packageManager: PackageManager): InstallerInfo {
+private suspend fun PackageInfo.getInstallerInfoLegacy(ipcFunnel: IPCFunnel): InstallerInfo {
     val installingPkg = try {
-        packageManager.getInstallerPackageName(packageName)
+        ipcFunnel.packageManager.getInstallerPackageName(packageName)
             ?.let { Pkg.Id(it) }
             ?.let { it.toKnownPkg() ?: it.toContainer() }
     } catch (e: IllegalArgumentException) {

@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.container.*
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -28,6 +29,7 @@ class AppRepo @Inject constructor(
     @AppScope private val appScope: CoroutineScope,
     private val dispatcherProvider: DispatcherProvider,
     packageEventListener: PackageEventListener,
+    private val ipcFunnel: IPCFunnel,
 ) {
 
     private val refreshTrigger = MutableStateFlow(UUID.randomUUID())
@@ -48,7 +50,7 @@ class AppRepo @Inject constructor(
         val pkgs = coroutineScope {
             val normal = async(dispatcherProvider.Default) {
                 measureTimedValue {
-                    getNormalPkgs(context)
+                    getNormalPkgs(ipcFunnel)
                 }.let {
                     log(TAG) { "Perf: Primary profile pkgs took ${it.duration.inWholeMilliseconds}ms" }
                     it.value
@@ -56,7 +58,7 @@ class AppRepo @Inject constructor(
             }
             val secondaryProfile = async(dispatcherProvider.Default) {
                 measureTimedValue {
-                    getSecondaryProfilePkgs(context)
+                    getSecondaryProfilePkgs(ipcFunnel)
                 }.let {
                     log(TAG) { "Perf: Secondary profile pkgs took ${it.duration.inWholeMilliseconds}ms" }
                     it.value
@@ -64,7 +66,7 @@ class AppRepo @Inject constructor(
             }
             val uninstalledPkgs = async(dispatcherProvider.Default) {
                 measureTimedValue {
-                    getSecondaryUserPkgs(context).filter { uninstalled ->
+                    getSecondaryUserPkgs(ipcFunnel).filter { uninstalled ->
                         secondaryProfile.await().none { it.id.pkgName == uninstalled.id.pkgName }
                     }
                 }.let {

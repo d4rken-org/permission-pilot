@@ -1,10 +1,9 @@
 package eu.darken.myperm.apps.core.features
 
 import android.accessibilityservice.AccessibilityServiceInfo
-import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.view.accessibility.AccessibilityManager
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.permissions.core.known.APerm
 
 data class AccessibilityService(
@@ -12,14 +11,13 @@ data class AccessibilityService(
     val label: String,
 )
 
-fun PackageInfo.determineAccessibilityServices(context: Context): List<AccessibilityService> {
-    val pm = context.packageManager
-    val acsMan = context.getSystemService(Context.ACCESSIBILITY_SERVICE) as AccessibilityManager
-    val pkgInfo = pm.getPackageInfo(packageName, PackageManager.GET_SERVICES)
+suspend fun PackageInfo.determineAccessibilityServices(ipcFunnel: IPCFunnel): List<AccessibilityService> {
+    val pkgInfo = ipcFunnel.packageManager.getPackageInfo(packageName, PackageManager.GET_SERVICES)
 
-    val enabledAcs = acsMan.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK)
+    val enabledAcs =
+        ipcFunnel.accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK)
 
-    return pkgInfo.services
+    return pkgInfo?.services
         ?.filter { it.permission == APerm.BIND_ACCESSIBILITY_SERVICE.id.value }
         ?.map {
             AccessibilityService(
