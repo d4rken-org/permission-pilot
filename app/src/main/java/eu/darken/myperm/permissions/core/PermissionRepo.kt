@@ -8,8 +8,8 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.declaresPermission
 import eu.darken.myperm.apps.core.features.requestsPermission
-import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -45,8 +45,8 @@ class PermissionRepo @Inject constructor(
     @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
     private val dispatcherProvider: DispatcherProvider,
-    private val packageManager: PackageManager,
     private val appRepo: AppRepo,
+    private val ipcFunnel: IPCFunnel,
 ) {
 
     private val refreshTrigger = MutableStateFlow(UUID.randomUUID())
@@ -133,12 +133,12 @@ class PermissionRepo @Inject constructor(
     private suspend fun getPermissionsAOSP(
         apps: Collection<BasePkg>
     ): Collection<BasePermission> = coroutineScope {
-        (packageManager.getAllPermissionGroups(0) + listOf(null))
+        (ipcFunnel.packageManager.getAllPermissionGroups(0) + listOf(null))
             .mapNotNull { permissionGroup ->
                 val name = permissionGroup?.name
                 log(TAG, VERBOSE) { "Querying permission group $name" }
                 try {
-                    packageManager.queryPermissionsByGroup(name, 0)
+                    ipcFunnel.packageManager.queryPermissionsByGroup(name, 0)
                 } catch (e: PackageManager.NameNotFoundException) {
                     log(TAG) { "Failed to retrieve permission group $permissionGroup: $e" }
                     null
@@ -191,7 +191,7 @@ class PermissionRepo @Inject constructor(
                         .distinct()
                         .filter { newPerm -> mappedPermissions.none { it.id == newPerm } }
                         .map { id ->
-                            val info = packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                            val info = ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
                             when {
                                 info != null -> info.toDeclaredPermission(apps)
                                 else -> id.toUnusedPermission(apps)

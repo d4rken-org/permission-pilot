@@ -1,16 +1,15 @@
 package eu.darken.myperm.apps.core.features
 
-import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.permissions.core.known.AExtraPerm
 
-fun PackageInfo.determineSpecialPermissions(context: Context): Collection<UsesPermission> {
-    val pm = context.packageManager
+suspend fun PackageInfo.determineSpecialPermissions(ipcFunnel: IPCFunnel): Collection<UsesPermission> {
     val permissions = mutableSetOf<UsesPermission>()
 
     val withActivities = try {
-        pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
+        ipcFunnel.packageManager.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
     } catch (e: PackageManager.NameNotFoundException) {
         null
     }

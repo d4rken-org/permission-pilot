@@ -48,7 +48,7 @@ fun PackageManager.getPermissionInfo2(
     null
 }
 
-val PackageManager.GET_UNINSTALLED_PACKAGES_COMPAT
+val GET_UNINSTALLED_PACKAGES_COMPAT: Int
     get() = when {
         hasApiLevel(Build.VERSION_CODES.N) -> PackageManager.MATCH_UNINSTALLED_PACKAGES
         else -> PackageManager.GET_UNINSTALLED_PACKAGES

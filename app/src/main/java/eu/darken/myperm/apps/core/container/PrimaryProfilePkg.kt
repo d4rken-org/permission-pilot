@@ -13,6 +13,7 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.apps.core.getIcon2
 import eu.darken.myperm.apps.core.getLabel2
+import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
@@ -81,20 +82,20 @@ class PrimaryProfilePkg(
     override fun toString(): String = "PrimaryProfilePkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
-private fun PackageInfo.toNormalPkg(context: Context): PrimaryProfilePkg = PrimaryProfilePkg(
+private suspend fun PackageInfo.toNormalPkg(ipcFunnel: IPCFunnel): PrimaryProfilePkg = PrimaryProfilePkg(
     packageInfo = this,
-    installerInfo = getInstallerInfo(context.packageManager),
-    extraPermissions = determineSpecialPermissions(context),
-    batteryOptimization = determineBatteryOptimization(context),
-    accessibilityServices = determineAccessibilityServices(context),
+    installerInfo = getInstallerInfo(ipcFunnel),
+    extraPermissions = determineSpecialPermissions(ipcFunnel),
+    batteryOptimization = determineBatteryOptimization(ipcFunnel),
+    accessibilityServices = determineAccessibilityServices(ipcFunnel),
 )
 
-suspend fun getNormalPkgs(context: Context): Collection<BasePkg> {
+suspend fun getNormalPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> {
     log(AppRepo.TAG) { "getNormalPkgs()" }
 
     return coroutineScope {
-        context.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
-            .map { async { it.toNormalPkg(context) } }
+        ipcFunnel.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+            .map { async { it.toNormalPkg(ipcFunnel) } }
             .awaitAll()
     }
 }
