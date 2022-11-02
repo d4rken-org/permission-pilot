@@ -1,1 +1,1 @@
-Android app permission overview
+Επισκόπηση αδειών εφαρμογής Android
