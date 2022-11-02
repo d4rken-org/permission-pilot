@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> is a new kind of app to help you review apps and their permissions.
+
+With each Android update permissions are getting more complex.
+Android showing permissions in various different locations, doesn't make it easier to review them:
+
+* App Info page
+* Special Access
+* Permissions Manager
+* and more...
+
+<i>Permission Pilot</i> lists all permissions in a single location, giving you a bird's eye view of app permissions.
+
+Two perspectives are available: You can either view all permissions an app requests, or view all apps that request a permission.
+
+<b>Apps tab</b>
+All installed apps, including system apps and work profile apps.
+Clicking on any app will list all permissions that the app has requested, including those that show up under Permissions Manager and Special Access, along with their status.
+This will also include internet permissions, SharedUserID status!
+
+<b>Permissions tab</b>
+All permissions that exist on your device, including those that show up under Permissions Manager and Special Access.
+Permissions are pre-grouped for easier navigation, e.g. Contacts, Microphone, Camera, etc.
+Clicking on a permission shows all the apps that request access to that permission.
+
+Apps and permissions can be searched using free-text, sorted and filtered by different criteria.
