@@ -27,9 +27,8 @@ class IPCFunnel @Inject constructor(
 
     private val execLock = Semaphore(
         when {
-            hasApiLevel(31) -> 4
-            hasApiLevel(29) -> 3
-            hasApiLevel(26) -> 2
+            hasApiLevel(31) -> 3
+            hasApiLevel(29) -> 2
             else -> 1
         }.also { log { "IPCFunnel init with parallelization set to $it" } }
     )
