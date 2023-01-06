@@ -39,8 +39,6 @@
 
     <string name="settings_support_label">Podpora</string>
     <string name="documentation_label">Dokumentace</string>
-    <string name="support_installid_label">ID instalace</string>
-    <string name="support_installid_desc">Automatická hlášení chyb jsou anonymní. Sdílejte své ID instalace, pokud vývojář potřebuje najít vaše chybová hlášení.</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Místo, kde se můžete scházet a klást otázky.</string>
     <string name="issue_tracker_label">Sledování problémů</string>

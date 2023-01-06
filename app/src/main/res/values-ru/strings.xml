@@ -39,8 +39,6 @@
 
     <string name="settings_support_label">Поддержка</string>
     <string name="documentation_label">Документация</string>
-    <string name="support_installid_label">ID установки</string>
-    <string name="support_installid_desc">Автоматические сообщения об ошибках анонимны. Поделитесь ID установки, еси разработчику нужно найти Ваши сообщения.</string>
     <string name="discord_label">Вопросы</string>
     <string name="discord_description">Место для тусовки и вопросов.</string>
     <string name="issue_tracker_label">Проблемы</string>

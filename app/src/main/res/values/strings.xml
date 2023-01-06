@@ -39,8 +39,6 @@
 
     <string name="settings_support_label">Support</string>
     <string name="documentation_label">Documentation</string>
-    <string name="support_installid_label">Install ID</string>
-    <string name="support_installid_desc">Automatic error reports are anonymous. Share your install ID if the developer needs to find your error reports.</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">A place to hang out in and ask questions.</string>
     <string name="issue_tracker_label">Issue tracker</string>

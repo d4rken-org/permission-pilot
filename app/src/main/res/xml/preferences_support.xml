@@ -29,18 +29,6 @@
 
     <PreferenceCategory app:title="@string/settings_category_other_label">
         <Preference
-            android:icon="@drawable/ic_id_onsurface"
-            android:key="support.installid"
-            android:summary="@string/support_installid_desc"
-            android:title="@string/support_installid_label" />
-        <CheckBoxPreference
-            android:enabled="false"
-            android:icon="@drawable/ic_spider_thread_onsurface"
-            android:key="debug.bugreport.automatic.enabled"
-            android:summary="Automatically reports issues, e.g. details on the app crashes so I can fix figure out why and fix it."
-            android:title="Automatic bug reports"
-            app:isPreferenceVisible="false" />
-        <Preference
             android:icon="@drawable/ic_baseline_bug_report_24"
             android:key="support.debuglog"
             android:summary="@string/support_debuglog_desc"
