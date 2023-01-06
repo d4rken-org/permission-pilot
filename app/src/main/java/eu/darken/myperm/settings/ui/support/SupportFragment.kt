@@ -6,7 +6,6 @@ import androidx.annotation.Keep
 import androidx.fragment.app.viewModels
 import androidx.preference.Preference
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.ClipboardHelper
@@ -31,14 +30,9 @@ class SupportFragment : PreferenceFragment2() {
     @Inject lateinit var clipboardHelper: ClipboardHelper
     @Inject lateinit var webpageTool: WebpageTool
 
-    private val installIdPref by lazy { findPreference<Preference>("support.installid")!! }
     private val debugLogPref by lazy { findPreference<Preference>("support.debuglog")!! }
 
     override fun onPreferencesCreated() {
-        installIdPref.setOnPreferenceClickListener {
-            vm.copyInstallID()
-            true
-        }
         debugLogPref.setOnPreferenceClickListener {
             MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle(R.string.support_debuglog_label)
@@ -53,16 +47,6 @@ class SupportFragment : PreferenceFragment2() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        vm.clipboardEvent.observe2(this) { installId ->
-            Snackbar.make(requireView(), installId, Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.general_copy_action) {
-                    clipboardHelper.copyToClipboard(installId)
-                }
-                .show()
-        }
-
-        vm.emailEvent.observe2(this) { startActivity(it) }
-
         vm.isRecording.observe2(this) {
             debugLogPref.isEnabled = !it
         }

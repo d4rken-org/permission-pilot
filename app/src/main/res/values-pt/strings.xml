@@ -31,8 +31,6 @@
     <string name="settings_privacy_policy_desc">Tratamento de dados da forma responsável.</string>
     <string name="settings_support_label">Suporte</string>
     <string name="documentation_label">Documentação</string>
-    <string name="support_installid_label">ID da instalação</string>
-    <string name="support_installid_desc">Os relatórios automáticos são anônimos. Compartilhe sua ID da instalação quando o desenvolvedor precisar ver seus relatórios de erro.</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Um lugar para ficar e fazer perguntas.</string>
     <string name="issue_tracker_label">Rastreador de problemas</string>
