@@ -254,7 +254,7 @@
     <string name="overview_summary_apps_sharedids_label">No. of apps with SharedUserID</string>
     <string name="permission_bind_accessibility_service_label">Offer accessibility service</string>
     <string name="permission_bind_accessibility_service_description">Allows the app to offer an accessibility service that can be enabled in the system settings.</string>
-    <string name="debug_debuglog_sensitive_information_message">The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
+    <string name="debug_debuglog_sensitive_information_message">This file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
     <string name="general_continue">Continue</string>
 </resources>
