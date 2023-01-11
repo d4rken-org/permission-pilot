@@ -5,11 +5,9 @@ import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
-import eu.darken.myperm.common.debug.recording.core.RecorderModule
 import eu.darken.myperm.common.navigation.findNavController
 import eu.darken.myperm.common.uix.Activity2
 import eu.darken.myperm.databinding.MainActivityBinding
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : Activity2() {
@@ -19,8 +17,6 @@ class MainActivity : Activity2() {
     private val navController by lazy { supportFragmentManager.findNavController(R.id.nav_host_main_activity) }
 
     var showSplashScreen = true
-
-    @Inject lateinit var recorderModule: RecorderModule
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

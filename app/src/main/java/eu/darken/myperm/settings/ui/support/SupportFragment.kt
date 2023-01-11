@@ -31,6 +31,7 @@ class SupportFragment : PreferenceFragment2() {
     @Inject lateinit var webpageTool: WebpageTool
 
     private val debugLogPref by lazy { findPreference<Preference>("support.debuglog")!! }
+    private val otherCategory by lazy { findPreference<Preference>("category.other")!! }
 
     override fun onPreferencesCreated() {
         debugLogPref.setOnPreferenceClickListener {
@@ -49,6 +50,10 @@ class SupportFragment : PreferenceFragment2() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         vm.isRecording.observe2(this) {
             debugLogPref.isEnabled = !it
+        }
+        vm.isRecorderAvailable.observe2(this) {
+            debugLogPref.isVisible = it
+            otherCategory.isVisible = it
         }
 
         super.onViewCreated(view, savedInstanceState)

@@ -18,6 +18,8 @@ class SupportFragmentVM @Inject constructor(
 
     val isRecording = recorderModule.state.map { it.isRecording }.asLiveData2()
 
+    val isRecorderAvailable = recorderModule.state.map { it.isAvailable }.asLiveData2()
+
     fun startDebugLog() = launch {
         log { "startDebugLog()" }
         recorderModule.startRecorder()
