@@ -8,11 +8,8 @@ import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
-import eu.darken.myperm.apps.core.getIcon2
-import eu.darken.myperm.apps.core.getLabel2
 import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
@@ -48,6 +45,8 @@ class PrimaryProfilePkg(
             ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
             ?: super.getIcon(context)
             ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
+
+    override val isSystemApp: Boolean = applicationInfo?.isSystemApp ?: true
 
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()

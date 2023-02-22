@@ -1,6 +1,5 @@
 package eu.darken.myperm.apps.core.features
 
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.os.UserHandle
 import eu.darken.myperm.apps.core.Pkg
@@ -10,8 +9,9 @@ interface Installed : Pkg {
     val packageInfo: PackageInfo
     val userHandle: UserHandle
 
+    // Weird overflow when using default interface impl here?
+    // https://github.com/d4rken-org/permission-pilot/issues/173
     val isSystemApp: Boolean
-        get() = packageInfo.applicationInfo?.run { flags and ApplicationInfo.FLAG_SYSTEM != 0 } ?: true
 
     val installedAt: Instant?
         get() = packageInfo.firstInstallTime.takeIf { it != 0L }?.let { Instant.ofEpochMilli(it) }

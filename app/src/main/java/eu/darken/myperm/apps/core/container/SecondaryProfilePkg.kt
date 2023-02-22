@@ -12,6 +12,7 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.apps.core.isSystemApp
 import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.Logging.Priority.*
 import eu.darken.myperm.common.debug.logging.log
@@ -68,8 +69,7 @@ class SecondaryProfilePkg(
 
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 
-    override val isSystemApp: Boolean
-        get() = super.isSystemApp || twins.any { it.isSystemApp }
+    override val isSystemApp: Boolean = (applicationInfo?.isSystemApp ?: true) || twins.any { it.isSystemApp }
 
     override fun toString(): String = "SecondaryProfilePkg(packageName=$packageName, userHandle=$userHandle)"
 }

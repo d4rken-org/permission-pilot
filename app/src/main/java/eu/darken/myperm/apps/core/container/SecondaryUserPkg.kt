@@ -66,7 +66,7 @@ class SecondaryUserPkg(
 
     override val internetAccess: InternetAccess = InternetAccess.UNKNOWN
 
-    override val isSystemApp: Boolean = super.isSystemApp || twins.any { it.isSystemApp }
+    override val isSystemApp: Boolean = (applicationInfo?.isSystemApp ?: true) || twins.any { it.isSystemApp }
 
     override fun toString(): String = "SecondaryUserPkg(packageName=$packageName, userHandle=$userHandle)"
 }
