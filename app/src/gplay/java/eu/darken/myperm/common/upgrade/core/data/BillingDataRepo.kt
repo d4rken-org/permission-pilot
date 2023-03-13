@@ -55,10 +55,9 @@ class BillingDataRepo @Inject constructor(
                     .forEach {
                         log(TAG, INFO) { "Acknowledging purchase: $it" }
 
-                        try {
-                            client.acknowledgePurchase(it)
-                        } catch (e: Exception) {
-                            log(TAG, ERROR) { "Failed to ancknowledge purchase: $it\n${e.asLog()}" }
+                        val ackResult = client.acknowledgePurchase(it)
+                        if (ackResult.responseCode != BillingResponseCode.OK) {
+                            throw BillingResultException(ackResult)
                         }
                     }
             }
@@ -70,6 +69,7 @@ class BillingDataRepo @Inject constructor(
                     log(TAG) { "Ack was cancelled (appScope?) cancelled." }
                     return@retryWhen false
                 }
+
                 if (attempt > 5) {
                     log(TAG, WARN) { "Reached attempt limit: $attempt due to $cause" }
                     return@retryWhen false
