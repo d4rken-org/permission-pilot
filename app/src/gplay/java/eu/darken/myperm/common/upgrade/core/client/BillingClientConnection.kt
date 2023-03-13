@@ -38,7 +38,7 @@ data class BillingClientConnection(
 
         if (!result.isSuccess) {
             log(TAG, WARN) { "queryPurchases() failed" }
-            throw  BillingClientException(result)
+            throw  BillingResultException(result)
         } else {
             requireNotNull(purchases)
         }
@@ -60,7 +60,7 @@ data class BillingClientConnection(
         }
 
         if (!ackResult.isSuccess) {
-            throw BillingClientException(ackResult)
+            throw BillingResultException(ackResult)
         }
 
         return ackResult
@@ -82,7 +82,7 @@ data class BillingClientConnection(
             "querySku(sku=$sku): code=${result.responseCode}, debug=${result.debugMessage}), skuDetails=$details"
         }
 
-        if (!result.isSuccess) throw BillingClientException(result)
+        if (!result.isSuccess) throw BillingResultException(result)
 
         if (details.isNullOrEmpty()) throw IllegalStateException("Unknown SKU, no details available.")
 

@@ -11,7 +11,8 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.replayingShare
 import eu.darken.myperm.common.flow.setupCommonEventHandlers
 import eu.darken.myperm.common.upgrade.core.client.BillingClientConnectionProvider
-import eu.darken.myperm.common.upgrade.core.client.BillingClientException
+import eu.darken.myperm.common.upgrade.core.client.BillingException
+import eu.darken.myperm.common.upgrade.core.client.BillingResultException
 import eu.darken.myperm.common.upgrade.core.client.GplayServiceUnavailableException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
@@ -22,11 +23,11 @@ import javax.inject.Singleton
 
 @Singleton
 class BillingDataRepo @Inject constructor(
-    billingClientConnectionProvider: BillingClientConnectionProvider,
+    clientConnectionProvider: BillingClientConnectionProvider,
     @AppScope private val scope: CoroutineScope,
 ) {
 
-    private val connectionProvider = billingClientConnectionProvider.connection
+    private val connectionProvider = clientConnectionProvider.connection
         .catch { log(TAG, ERROR) { "Unable to provide client connection:\n${it.asLog()}" } }
         .replayingShare(scope)
 
@@ -63,6 +64,8 @@ class BillingDataRepo @Inject constructor(
             }
             .setupCommonEventHandlers(TAG) { "connection-acks" }
             .retryWhen { cause, attempt ->
+                log(TAG, ERROR) { "Failed to ancknowledge purchase: ${cause.asLog()}" }
+
                 if (cause is CancellationException) {
                     log(TAG) { "Ack was cancelled (appScope?) cancelled." }
                     return@retryWhen false
@@ -71,14 +74,12 @@ class BillingDataRepo @Inject constructor(
                     log(TAG, WARN) { "Reached attempt limit: $attempt due to $cause" }
                     return@retryWhen false
                 }
-                if (cause !is BillingClientException) {
-                    log(TAG, WARN) { "Unknown BillingClient exception type: $cause" }
+                if (cause !is BillingException) {
+                    log(TAG, WARN) { "Unknown exception type: $cause" }
                     return@retryWhen false
-                } else {
-                    log(TAG) { "BillingClient exception: $cause; ${cause.result}" }
                 }
 
-                if (cause.result.responseCode == BillingResponseCode.BILLING_UNAVAILABLE) {
+                if (cause is BillingResultException && cause.result.responseCode == BillingResponseCode.BILLING_UNAVAILABLE) {
                     log(TAG) { "Got BILLING_UNAVAILABLE while trying to ACK purchase." }
                     return@retryWhen false
                 }
@@ -108,7 +109,7 @@ class BillingDataRepo @Inject constructor(
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to start IAP flow:\n${e.asLog()}" }
             val ignoredCodes = listOf(3, 6)
-            if (e !is BillingClientException || !e.result.responseCode.let { ignoredCodes.contains(it) }) {
+            if (e !is BillingResultException || !e.result.responseCode.let { ignoredCodes.contains(it) }) {
                 Bugs.report(RuntimeException("IAP flow failed for $sku", e))
             }
 
@@ -120,7 +121,7 @@ class BillingDataRepo @Inject constructor(
         val TAG: String = logTag("Upgrade", "Gplay", "Billing", "DataRepo")
 
         internal fun Throwable.tryMapUserFriendly(): Throwable {
-            if (this !is BillingClientException) return this
+            if (this !is BillingResultException) return this
 
             return when (result.responseCode) {
                 BillingResponseCode.BILLING_UNAVAILABLE,
