@@ -49,7 +49,7 @@ class UpgradeRepoGplay @Inject constructor(
                     lastProStateAt = now
                     Info(billingData = data)
                 }
-                (now - lastProStateAt) < 7 * 24 * 60 * 1000L -> { // 7 days
+                (now - lastProStateAt) < 6 * 60 * 1000L -> { // 6 hours
                     log(TAG, VERBOSE) { "We are not pro, but were recently, did GPlay try annoy us again?" }
                     Info(gracePeriod = true, billingData = null)
                 }
@@ -123,7 +123,7 @@ class UpgradeRepoGplay @Inject constructor(
             get() = UpgradeRepo.Type.GPLAY
 
         override val isPro: Boolean
-            get() = billingData?.getProSku() != null
+            get() = billingData?.getProSku() != null || gracePeriod
 
         override val upgradedAt: Instant?
             get() = billingData
