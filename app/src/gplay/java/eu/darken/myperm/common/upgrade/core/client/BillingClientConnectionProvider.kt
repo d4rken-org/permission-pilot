@@ -105,7 +105,7 @@ class BillingClientConnectionProvider @Inject constructor(
                 return@retryWhen false
             }
 
-            if (cause is BillingResultException && cause.result.responseCode == BillingResponseCode.BILLING_UNAVAILABLE) {
+            if (cause is BillingResultException && cause.result.isGplayUnavailablePermanent) {
                 log(TAG) { "Got BILLING_UNAVAILABLE while trying to connect client." }
                 return@retryWhen false
             }

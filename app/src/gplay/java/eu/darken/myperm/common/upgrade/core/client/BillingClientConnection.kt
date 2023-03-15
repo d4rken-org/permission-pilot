@@ -2,6 +2,7 @@ package eu.darken.myperm.common.upgrade.core.client
 
 import android.app.Activity
 import com.android.billingclient.api.*
+import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -47,23 +48,18 @@ data class BillingClientConnection(
         return purchases
     }
 
-    suspend fun acknowledgePurchase(purchase: Purchase): BillingResult {
+    suspend fun acknowledgePurchase(purchase: Purchase) {
         val ack = AcknowledgePurchaseParams.newBuilder().apply {
             setPurchaseToken(purchase.purchaseToken)
         }.build()
 
-        val ackResult = suspendCoroutine<BillingResult> { continuation ->
+        val result = suspendCoroutine<BillingResult> { continuation ->
             client.acknowledgePurchase(ack) { continuation.resume(it) }
         }
-        log(TAG) {
-            "acknowledgePurchase(purchase=$purchase): code=${ackResult.responseCode}, message=${ackResult.debugMessage})"
-        }
 
-        if (!ackResult.isSuccess) {
-            throw BillingResultException(ackResult)
-        }
+        log(TAG, INFO) { "acknowledgePurchase($purchase): code=${result.responseCode} (${result.debugMessage})" }
 
-        return ackResult
+        if (!result.isSuccess) throw BillingResultException(result)
     }
 
     suspend fun querySku(sku: Sku): Sku.Details {
