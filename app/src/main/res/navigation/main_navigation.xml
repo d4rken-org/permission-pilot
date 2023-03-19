@@ -72,6 +72,7 @@
         tools:layout="@layout/onboarding_fragment">
         <action
             android:id="@+id/action_onboardingFragment_to_mainFragment"
+            app:popUpTo="@id/main_navigation"
             app:destination="@id/mainFragment" />
     </fragment>
 
