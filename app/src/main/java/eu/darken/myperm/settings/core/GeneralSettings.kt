@@ -27,6 +27,8 @@ class GeneralSettings @Inject constructor(
 
     val launchCount = preferences.createFlowPreference("core.stats.launches", 0)
 
+    val isOnboardingFinished = preferences.createFlowPreference("core.onboarding.finished", false)
+
     val appsFilterOptions = preferences.createFlowPreference(
         "apps.list.options.filter",
         moshiReader(moshi, AppsFilterOptions(), fallbackToDefault = true),
