@@ -12,7 +12,10 @@ My underlying privacy principle is the [Golden Rule](https://en.wikipedia.org/wi
 
 ## Installed application information
 
-Permission Pilot uses the `QUERY_ALL_PACKAGES` permission to gather information about installed applications and their permissions. This permission is required for the app to work. Information about installed apps is only processed locally. Permission Pilot has no internet permission and does not automatically upload data to 3rd parties. Note: Information about installed apps may be contained in manually generated [debug logs](#debug-log).
+Permission Pilot requires the `QUERY_ALL_PACKAGES` permission to access and display information about installed
+applications and their permissions. Information about installed apps is processed locally. Permission Pilot has no
+internet permission and does not upload data to 3rd parties. Note: Information about installed apps may also be
+contained in manually generated [debug logs](#debug-log).
 
 ## Debug log
 

@@ -38,7 +38,7 @@ class SupportFragment : PreferenceFragment2() {
             MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle(R.string.support_debuglog_label)
                 setMessage(R.string.settings_debuglog_explanation)
-                setPositiveButton(R.string.general_continue) { _, _ -> vm.startDebugLog() }
+                setPositiveButton(R.string.general_continue_action) { _, _ -> vm.startDebugLog() }
                 setNegativeButton(R.string.general_cancel_action) { _, _ -> }
                 setNeutralButton(R.string.settings_privacy_policy_label) { _, _ -> webpageTool.open(PrivacyPolicy.URL) }
             }.show()

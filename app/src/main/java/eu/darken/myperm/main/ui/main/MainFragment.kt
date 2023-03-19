@@ -16,6 +16,8 @@ import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.MainFragmentBinding
+import eu.darken.myperm.settings.core.GeneralSettings
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -23,8 +25,14 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
 
     override val vm: MainFragmentVM by viewModels()
     override val ui: MainFragmentBinding by viewBinding()
+    @Inject lateinit var generalSettings: GeneralSettings
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (!generalSettings.isOnboardingFinished.value) {
+            MainFragmentDirections.actionMainFragmentToOnboardingFragment().navigate()
+            return
+        }
+
         ui.toolbar.apply {
             setOnMenuItemClickListener {
                 when (it.itemId) {
@@ -50,8 +58,8 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
             subtitle =
                 "v${BuildConfigWrap.VERSION_NAME} ~ ${BuildConfigWrap.GIT_SHA}/${BuildConfigWrap.FLAVOR}/${BuildConfigWrap.BUILD_TYPE}"
         }
-        val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
 
+        val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
         ui.bottomNavigation.apply {
             setupWithNavController(this, navController)
             if (savedInstanceState == null) {
@@ -75,7 +83,6 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
                 }
             }
         }
-
 
         vm.state.observe2(ui) { state ->
 //            bottomNavigation.getOrCreateBadge(R.id.page_apps).apply {
