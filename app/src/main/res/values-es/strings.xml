@@ -144,22 +144,22 @@
     <string name="overview_page_label">Resumen</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s elemento</item>
-        <item quantity="otros">%s artículos</item>
+        <item quantity="other">%s artículos</item>
     </plurals>
     <plurals name="generic_x_groups_label">
         <item quantity="one">%s grupo</item>
         <item quantity="other">%s grupos</item>
-    </plurales>
+    </plurals>
     <plurals name="generic_x_apps_label">
         <item quantity="one">%d aplicación</item>
         <item quantity="other">%d aplicaciones</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
-        <item cantidad="uno">%d aplicación del usuario</item>
-        <item cantidad="otro">%d aplicaciones del usuario</item>
+        <item quantity="one">%d aplicación del usuario</item>
+        <item quantity="other">%d aplicaciones del usuario</item>
     </plurals>
     <plurals name="generic_x_apps_system_label">
-        <item cantidad="one">%d aplicación del sistema</item>
+        <item quantity="one">%d aplicación del sistema</item>
         <item quantity="other">%d aplicaciones del sistema</item>
     </plurals>
     <string name="permissions_details_count_user_apps">"Aplicaciones del usuario: otorgadas a %1$d de %2$d".</string>
