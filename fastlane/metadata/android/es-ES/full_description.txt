@@ -1,0 +1,25 @@
+<i>Piloto de los permisos</i> es un nuevo tipo de aplicación que te ayuda a revisar las aplicaciones y sus permisos.
+
+Con cada actualización de Android los permisos se vuelven más complejos.
+Que Android muestre los permisos en varias ubicaciones diferentes no facilita su revisión:
+
+* Página de información de la aplicación
+* Acceso especial
+* Administrador de permisos
+* y mucho más...
+
+<i>Piloto de los permisos</i> dnumera todos los permisos en una sola ubicación, lo que te proporciona una vista panorámica de los permisos de la aplicación.
+
+Hay dos perspectivas disponibles: Puedes ver todos los permisos que solicita una aplicación o ver todas las aplicaciones que solicitan un permiso.
+
+<b>Pestaña de las Aplicaciones</b>
+Todas las aplicaciones instaladas, incluidas las aplicaciones del sistema y las aplicaciones del perfil de trabajo. 
+Al hacer clic en cualquier aplicación, aparecerá una lista de todos los permisos que la aplicación ha solicitado, incluidos los que aparecen en el Administrador de permisos y Acceso especial, junto con su estado. 
+¡Esto también incluirá permisos de Internet, estado de SharedUserID!
+
+<b>Pestaña de los Permisos</b>
+Todos los permisos que existen en tu dispositivo, incluidos los que aparecen en el  Administrador de permisos y el Acceso especial.
+Los permisos están preagrupados para facilitar la navegación, por ejemplo, Contactos, Micrófono, Cámara, etc.
+Al hacer clic en un permiso se muestran todas las aplicaciones que solicitan acceso a ese permiso.
+
+Las aplicaciones y los permisos se pueden buscar utilizando un texto, ordenados y filtrados por diferentes criterios.
