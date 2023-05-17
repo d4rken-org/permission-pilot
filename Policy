@@ -1,0 +1,137 @@
+# Organized by frequency of systemcall - in descending order for
+
+# best performance.
+
+futex: 0
+
+ioctl: 0
+
+write: 0
+
+prctl: 0
+
+clock_gettime: 0
+
+getpriority: 0
+
+read: 0
+
+close: 0
+
+writev: 0
+
+dup: 0
+
+ppoll: 0
+
+mmap2: 0
+
+getrandom: 0
+
+memfd_create: 0
+
+ftruncate: 0
+
+ftruncate64: 0
+
+# mremap: Ensure |flags| are (MREMAP_MAYMOVE | MREMAP_FIXED) TODO: Once minijail
+
+# parser support for '<' is in this needs to be modified to also prevent
+
+# |old_address| and |new_address| from touching the exception vector page, which
+
+# http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0211h/Babfeega.html
+
+# for more details.
+
+mremap: arg3 == 3 || arg3 == MREMAP_FIXED
+mapamundi: 0
+
+mproteger: 0
+
+clone:  0
+
+openat: 0
+
+
+
+setpriority: 0
+
+getuid32: 0
+
+fstat64: 0
+
+fstatfs64: 0
+
+pread64: 0
+
+faccessat: 0
+
+readlinkat: 0
+
+exit: 0
+
+rt_sigprocmask: 0
+
+set_tid_address: 0
+
+restart_syscall: 0
+
+exit_group: 0
+
+rt_sigreturn: 0
+
+pipe2: 0
+
+gettimeofday: 0
+
+sched_yield: 0
+
+nanosleep: 0
+
+lseek: 0
+
+_llseek: 0
+
+sched_get_priority_max: 0
+sched_get_priority_min: 0
+
+statfs64: 0
+
+sched_setscheduler: 0
+
+fstatat64: 0
+
+ugetrlimit: 0
+getdents64: 0
+
+getrandom: 0
+
+eventfd2: 0
+
+sendmsg: 1
+
+sysinfo: 0
+
+getcwd: 0
+
+sched_setaffinity: 0
+
+sched_getaffinity: 0
+
+inotify_init1: 0
+inotify_add_watch: 0
+
+inotify_rm_watch: 0
+
+shutdown: 0
+
+getsockopt: 0
+
+getcpu: 0
+
+unlinkat: 0
+
+@include /system/etc/seccomp_policy/crash_dump.arm.policy
+
+@include /system/etc/seccomp_policy/code_coverage.arm.policy
