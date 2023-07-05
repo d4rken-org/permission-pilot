@@ -1,7 +1,13 @@
 package eu.darken.myperm.common.upgrade.core.client
 
 import android.app.Activity
-import com.android.billingclient.api.*
+import com.android.billingclient.api.AcknowledgePurchaseParams
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingFlowParams
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.Purchase
+import com.android.billingclient.api.SkuDetails
+import com.android.billingclient.api.SkuDetailsParams
 import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
@@ -22,7 +28,7 @@ data class BillingClientConnection(
     val purchases: Flow<Collection<Purchase>> = combine(purchasesGlobal, purchasesLocal) { global, local ->
         val combined = mutableMapOf<String, Purchase>()
         global.plus(local).toSet().sortedByDescending { it.purchaseTime }.forEach { purchase ->
-            combined[purchase.orderId] = purchase
+            combined[purchase.orderId!!] = purchase
         }
         combined.values
     }
