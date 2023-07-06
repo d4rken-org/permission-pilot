@@ -13,6 +13,7 @@
     <string name="general_show_action">Show</string>
     <string name="general_open_action">Open</string>
     <string name="general_continue_action">Continue</string>
+    <string name="general_accept_action">Accept</string>
 
     <string name="upgrade_myperm_label">Upgrade Permission Pilot</string>
     <string name="upgrade_myperm_description">Do you like that this app has no ads and doesn\'t collect your data?\nBuy the pro version to show your support!</string>
@@ -258,6 +259,6 @@
     <string name="debug_debuglog_sensitive_information_message">This file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
     <string name="onboarding_body1">This app helps you navigate installed applications and discover permissions.</string>
-    <string name="onboarding_body2">It accesses information about your installed applications and cross-references their permissions.</string>
-    <string name="onboarding_body3">Permission Pilot has no ads, no internet permission and does not collect data on you.</string>
+    <string name="onboarding_body2">Permission Pilot collects Installed Application information to enable listing your apps and cross-referencing their permissions when using this application.</string>
+    <string name="onboarding_body3">Permission Pilot has no ads, no internet permission and only processes data locally.</string>
 </resources>
