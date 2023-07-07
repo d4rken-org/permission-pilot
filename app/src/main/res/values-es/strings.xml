@@ -13,6 +13,7 @@
     <string name="general_show_action">Mostrar</string>
     <string name="general_open_action">Abrir</string>
     <string name="general_continue_action">Continuar</string>
+    <string name="general_accept_action">Aceptar</string>
 
     <string name="upgrade_myperm_label">Actualizar el Piloto de los Permisos</string>
     <string name="upgrade_myperm_description">¿Te gusta que esta aplicación no tenga anuncios y no recopile tus datos?\n¡Compra la versión pro para mostrar tu apoyo!</string>
@@ -256,8 +257,8 @@
     <string name="permission_bind_accessibility_service_label">Ofrecer el servicio de accesibilidad</string>
     <string name="permission_bind_accessibility_service_description">Permite que la aplicación ofrezca un servicio de accesibilidad que se puede habilitar en la configuración del sistema.</string>
     <string name="debug_debuglog_sensitive_information_message">Este archivo contiene información confidencial (por ejemplo, tus aplicaciones instaladas). Compártelo solo con personas de confianza.</string>
-    <string name="settings_debuglog_explanation">Esta función registra todo lo que hace la aplicación en un archivo que se puede compartir. El archivo generado contiene información confidencial (por ejemplo, tus aplicaciones instaladas). Compártalo solo con personas de confianza (por ejemplo, el desarrollador de la aplicación si estáis solucionando un problema juntos).</string>
+    <string name="settings_debuglog_explanation">Esta función registra todo lo que hace la aplicación en un archivo que se puede compartir. El archivo generado contiene información confidencial (por ejemplo, las aplicaciones instaladas). Compártelo solo con personas de confianza (por ejemplo, el desarrollador de la aplicación si estáis solucionando un problema juntos).</string>
     <string name="onboarding_body1">Esta aplicación te ayuda a navegar por las aplicaciones instaladas y descubrir los permisos.</string>
-    <string name="onboarding_body2">Accede a la información sobre tus aplicaciones instaladas y muestra referencias a sus permisos.</string>
-    <string name="onboarding_body3">Piloto de los permisos no tiene anuncios, no tiene permiso de Internet y no recopila datos.</string>
+    <string name="onboarding_body2">Piloto de los Permisos recopila información de las aplicaciones instaladas para permitir listar tus apps y cruzar sus permisos al usar esta aplicación.</string>
+    <string name="onboarding_body3">Piloto de los Permisos no tiene anuncios, no tiene permiso de Internet y sólo procesa datos localmente.</string>
 </resources>
