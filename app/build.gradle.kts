@@ -137,6 +137,7 @@ android {
             assets.srcDirs(files("$projectDir/schemas"))
         }
     }
+    namespace = "eu.darken.myperm"
 }
 
 dependencies {
