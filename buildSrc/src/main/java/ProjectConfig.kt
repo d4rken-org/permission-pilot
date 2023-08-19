@@ -8,8 +8,8 @@ import java.util.*
 
 object ProjectConfig {
     const val minSdk = 21
-    const val compileSdk = 31
-    const val targetSdk = 31
+    const val compileSdk = 33
+    const val targetSdk = 33
 
     object Version {
         val versionProperties = Properties().apply {
