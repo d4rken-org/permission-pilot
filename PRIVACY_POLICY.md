@@ -4,7 +4,7 @@ This is the privacy policy for the Android app "Permission Pilot".
 
 ## Preamble
 
-"Permission Pilot" has no internet permission and does not share user data with 3rd parties. 
+"Permission Pilot" does not share user data with 3rd parties.
 
 Send a [quick mail](mailto:support@darken.eu) if you have questions.
 

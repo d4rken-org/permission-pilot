@@ -260,5 +260,5 @@
     <string name="settings_debuglog_explanation">Esta función registra todo lo que hace la aplicación en un archivo que se puede compartir. El archivo generado contiene información confidencial (por ejemplo, las aplicaciones instaladas). Compártelo solo con personas de confianza (por ejemplo, el desarrollador de la aplicación si estáis solucionando un problema juntos).</string>
     <string name="onboarding_body1">Esta aplicación te ayuda a navegar por las aplicaciones instaladas y descubrir los permisos.</string>
     <string name="onboarding_body2">Piloto de los Permisos recopila información de las aplicaciones instaladas para permitir listar tus apps y cruzar sus permisos al usar esta aplicación.</string>
-    <string name="onboarding_body3">Piloto de los Permisos no tiene anuncios, no tiene permiso de Internet y sólo procesa datos localmente.</string>
+    <string name="onboarding_body3">Piloto de los Permisos no tiene anuncios y sólo procesa datos localmente.</string>
 </resources>
