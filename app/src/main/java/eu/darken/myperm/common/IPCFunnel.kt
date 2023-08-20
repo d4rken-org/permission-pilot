@@ -6,15 +6,20 @@ import android.content.pm.LauncherActivityInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PermissionGroupInfo
 import android.content.pm.PermissionInfo
+import android.os.Build
 import android.os.UserHandle
 import android.os.UserManager
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.getPackageInfo2
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.apps.core.tryCreateUserHandle
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import javax.inject.Inject
@@ -23,15 +28,24 @@ import javax.inject.Singleton
 @Singleton
 class IPCFunnel @Inject constructor(
     @ApplicationContext private val context: Context,
+    private val generalSettings: GeneralSettings,
 ) {
 
-    private val execLock = Semaphore(
-        when {
-            hasApiLevel(31) -> 3
-            hasApiLevel(29) -> 2
-            else -> 1
-        }.also { log { "IPCFunnel init with parallelization set to $it" } }
-    )
+    private val execLock by lazy {
+        val parallel = generalSettings.ipcParallelisation.value
+        Semaphore(
+            when {
+                parallel != 0 -> {
+                    log(TAG, WARN) { "AUTO disabled, using $parallel" }
+                    parallel
+                }
+
+                hasApiLevel(31) -> 3
+                hasApiLevel(29) -> 2
+                else -> 1
+            }.also { log { "IPCFunnel init with parallelization set to $it" } }
+        )
+    }
 
     suspend fun <R> execute(block: suspend IPCFunnel.() -> R): R = execLock.withPermit { block(this) }
 
@@ -47,6 +61,7 @@ class IPCFunnel @Inject constructor(
             service.getInstalledPackages(flags)
         }
 
+        @RequiresApi(Build.VERSION_CODES.R)
         suspend fun getInstallSourceInfo(packageName: String) = ipcFunnel.execute {
             service.getInstallSourceInfo(packageName)
         }
@@ -119,5 +134,9 @@ class IPCFunnel @Inject constructor(
         suspend fun tryCreateUserHandle(handle: Int) = ipcFunnel.execute {
             service.tryCreateUserHandle(handle)
         }
+    }
+
+    companion object {
+        private val TAG = logTag("IPCFunnel")
     }
 }
