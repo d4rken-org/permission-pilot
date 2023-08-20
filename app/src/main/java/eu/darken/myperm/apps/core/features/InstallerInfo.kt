@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
@@ -54,11 +55,13 @@ fun Installed.isSideloaded(): Boolean {
 suspend fun PackageInfo.getInstallerInfo(
     ipcFunnel: IPCFunnel,
 ): InstallerInfo = if (hasApiLevel(Build.VERSION_CODES.R)) {
+    @Suppress("NewApi")
     getInstallerInfoApi30(ipcFunnel)
 } else {
     getInstallerInfoLegacy(ipcFunnel)
 }
 
+@RequiresApi(Build.VERSION_CODES.R)
 private suspend fun PackageInfo.getInstallerInfoApi30(ipcFunnel: IPCFunnel): InstallerInfo {
     val sourceInfo = try {
         ipcFunnel.packageManager.getInstallSourceInfo(packageName)
