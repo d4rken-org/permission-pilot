@@ -260,5 +260,5 @@
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
     <string name="onboarding_body1">This app helps you navigate installed applications and discover permissions.</string>
     <string name="onboarding_body2">Permission Pilot collects Installed Application information to enable listing your apps and cross-referencing their permissions when using this application.</string>
-    <string name="onboarding_body3">Permission Pilot has no ads, no internet permission and only processes data locally.</string>
+    <string name="onboarding_body3">Permission Pilot has no ads and only processes data locally.</string>
 </resources>
