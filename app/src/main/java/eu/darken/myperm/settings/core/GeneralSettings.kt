@@ -9,7 +9,11 @@ import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsSortOptions
 import eu.darken.myperm.common.debug.autoreport.DebugSettings
 import eu.darken.myperm.common.debug.logging.logTag
-import eu.darken.myperm.common.preferences.*
+import eu.darken.myperm.common.preferences.PreferenceStoreMapper
+import eu.darken.myperm.common.preferences.Settings
+import eu.darken.myperm.common.preferences.createFlowPreference
+import eu.darken.myperm.common.preferences.moshiReader
+import eu.darken.myperm.common.preferences.moshiWriter
 import eu.darken.myperm.permissions.ui.list.PermsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsSortOptions
 import javax.inject.Inject
@@ -50,6 +54,8 @@ class GeneralSettings @Inject constructor(
         moshiReader(moshi, PermsSortOptions(), fallbackToDefault = true),
         moshiWriter(moshi),
     )
+
+    val ipcParallelisation = preferences.createFlowPreference("core.ipc.parallelisation", 0)
 
     override val preferenceDataStore: PreferenceDataStore = PreferenceStoreMapper(
         debugSettings.isAutoReportingEnabled
