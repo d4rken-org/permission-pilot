@@ -1,15 +1,16 @@
+import com.android.build.api.dsl.Packaging
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import java.io.File
 import java.io.FileInputStream
 import java.time.Instant
-import java.util.*
+import java.util.Properties
 
 object ProjectConfig {
     const val minSdk = 21
-    const val compileSdk = 33
-    const val targetSdk = 33
+    const val compileSdk = 34
+    const val targetSdk = 34
 
     object Version {
         val versionProperties = Properties().apply {
@@ -64,12 +65,12 @@ fun LibraryExtension.setupLibraryDefaults() {
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
@@ -78,7 +79,7 @@ fun LibraryExtension.setupLibraryDefaults() {
         )
     }
 
-    packagingOptions {
+    fun Packaging.() {
         resources.excludes += "DebugProbesKt.bin"
     }
 }
