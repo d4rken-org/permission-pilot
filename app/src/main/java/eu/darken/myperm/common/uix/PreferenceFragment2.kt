@@ -54,7 +54,7 @@ abstract class PreferenceFragment2
 
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
 
     }
 
