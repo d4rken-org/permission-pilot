@@ -37,7 +37,7 @@ jobs:
       - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: 17
 
       - name: Assemble beta APK
@@ -123,7 +123,7 @@ jobs:
       - name: Install JDK ${{ matrix.java_version }}
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: 17
 
       - name: Set up ruby env
