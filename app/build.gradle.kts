@@ -24,7 +24,6 @@ android {
         testInstrumentationRunner = "$packageName.HiltTestRunner"
 
         buildConfigField("String", "GITSHA", "\"${lastCommitHash()}\"")
-        buildConfigField("String", "BUILDTIME", "\"${buildTime()}\"")
     }
 
     signingConfigs {
