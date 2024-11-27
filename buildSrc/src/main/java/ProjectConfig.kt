@@ -4,7 +4,6 @@ import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import java.io.File
 import java.io.FileInputStream
-import java.time.Instant
 import java.util.Properties
 
 object ProjectConfig {
@@ -36,8 +35,6 @@ fun lastCommitHash(): String = Runtime.getRuntime().exec("git rev-parse --short 
     process.destroy()
     output.trim()
 }
-
-fun buildTime(): Instant = Instant.now()
 
 /**
  * Configures the [kotlinOptions][org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions] extension.
