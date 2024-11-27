@@ -9,12 +9,16 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionGroup
-import eu.darken.myperm.permissions.core.features.*
+import eu.darken.myperm.permissions.core.features.Highlighted
+import eu.darken.myperm.permissions.core.features.ManifestDoc
+import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.grpIds
 import kotlin.reflect.full.isSubclassOf
 
 @Keep
-sealed class APerm constructor(val id: Permission.Id) {
+sealed class APerm(val id: Permission.Id) {
 
     @get:DrawableRes open val iconRes: Int? = null
     @get:StringRes open val labelRes: Int? = null
@@ -321,56 +325,67 @@ sealed class APerm constructor(val id: Permission.Id) {
     }
 
     object CALL_PRIVILEGED : APerm("android.permission.CALL_PRIVILEGED") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object MANAGE_ONGOING_CALLS : APerm("android.permission.MANAGE_ONGOING_CALLS") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object MANAGE_OWN_CALLS : APerm("android.permission.MANAGE_OWN_CALLS") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object PROCESS_OUTGOING_CALLS : APerm("android.permission.PROCESS_OUTGOING_CALLS") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object BIND_CALL_REDIRECTION_SERVICE : APerm("android.permission.BIND_CALL_REDIRECTION_SERVICE") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object BIND_INCALL_SERVICE : APerm("android.permission.BIND_INCALL_SERVICE") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object ADD_VOICEMAIL : APerm("com.android.voicemail.permission.ADD_VOICEMAIL") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object BIND_VISUAL_VOICEMAIL_SERVICE : APerm("android.permission.BIND_VISUAL_VOICEMAIL_SERVICE") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object BIND_VOICE_INTERACTION : APerm("android.permission.BIND_VOICE_INTERACTION") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object READ_VOICEMAIL : APerm("com.android.voicemail.permission.READ_VOICEMAIL") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
 
     object WRITE_VOICEMAIL : APerm("com.android.voicemail.permission.WRITE_VOICEMAIL") {
+        override val iconRes: Int = R.drawable.ic_baseline_local_phone_24
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Calls)
         override val tags = setOf(ManifestDoc)
     }
