@@ -70,10 +70,10 @@ fun LibraryExtension.setupLibraryDefaults() {
     kotlinOptions {
         jvmTarget = "17"
         freeCompilerArgs = freeCompilerArgs + listOf(
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-            "-Xuse-experimental=kotlin.time.ExperimentalTime",
-            "-Xopt-in=kotlin.RequiresOptIn"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlin.time.ExperimentalTime",
+            "-opt-in=kotlin.RequiresOptIn"
         )
     }
 
