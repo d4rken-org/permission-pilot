@@ -53,7 +53,7 @@ class PrimaryProfilePkg(
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
         val base = packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
-            val flags = packageInfo.requestedPermissionsFlags[index]
+            val flags = packageInfo.requestedPermissionsFlags?.get(index) ?: 0
             UsesPermission.WithState(id = Permission.Id(permissionId), flags = flags)
         } ?: emptyList()
 

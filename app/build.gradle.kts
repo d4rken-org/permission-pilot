@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 }
 apply(plugin = "dagger.hilt.android.plugin")
 apply(plugin = "androidx.navigation.safeargs.kotlin")
@@ -26,7 +26,6 @@ android {
         buildConfigField("String", "GITSHA", "\"${lastCommitHash()}\"")
     }
 
-    // Add buildFeatures block
     buildFeatures {
         buildConfig = true
         viewBinding = true
@@ -47,7 +46,6 @@ android {
         create("foss") {
             dimension = "version"
             signingConfig = signingConfigs["releaseFoss"]
-            // The info block is encrypted and can only be read by google
             dependenciesInfo {
                 includeInApk = false
                 includeInBundle = false
@@ -147,7 +145,7 @@ android {
 
 dependencies {
     // https://developer.android.com/studio/write/java8-support
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.core}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}")
@@ -163,41 +161,41 @@ dependencies {
     implementation("com.google.dagger:dagger:${Versions.Dagger.core}")
     implementation("com.google.dagger:dagger-android:${Versions.Dagger.core}")
 
-    kapt("com.google.dagger:dagger-compiler:${Versions.Dagger.core}")
-    kapt("com.google.dagger:dagger-android-processor:${Versions.Dagger.core}")
+    ksp("com.google.dagger:dagger-compiler:${Versions.Dagger.core}") // Replace kapt with ksp
+    ksp("com.google.dagger:dagger-android-processor:${Versions.Dagger.core}") // Replace kapt with ksp
 
     implementation("com.google.dagger:hilt-android:${Versions.Dagger.core}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    ksp("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}") // Replace kapt with ksp
 
     testImplementation("com.google.dagger:hilt-android-testing:${Versions.Dagger.core}")
-    kaptTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    kspTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}") // Replace kapt with ksp
 
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.Dagger.core}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}") // Replace kapt with ksp
 
     val moshiVersion = "1.15.1"
     implementation("com.squareup.moshi:moshi:$moshiVersion")
     implementation("com.squareup.moshi:moshi-adapters:$moshiVersion")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion") // Replace kapt with ksp
 
-    implementation("com.squareup.okio:okio:3.1.0")
+    implementation("com.squareup.okio:okio:3.9.0")
 
-    implementation("io.coil-kt:coil:2.4.0")
+    implementation("io.coil-kt:coil:2.7.0")
 
-    "gplayImplementation"("com.android.billingclient:billing:6.2.1")
+    "gplayImplementation"("com.android.billingclient:billing:7.1.1")
 
     // Support libs
-    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.annotation:annotation:1.8.0")
+    implementation("androidx.annotation:annotation:1.9.1")
 
-    implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("androidx.fragment:fragment-ktx:1.8.1")
+    implementation("androidx.activity:activity-ktx:1.9.3")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-process:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-process:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
 
     implementation("androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.Navigation.core}")
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.Navigation.core}")
@@ -205,7 +203,7 @@ dependencies {
 
     implementation("androidx.preference:preference-ktx:1.2.1")
 
-    implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     // implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
     // testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
@@ -213,20 +211,20 @@ dependencies {
     implementation("com.google.android.flexbox:flexbox:3.0.0")
 
     // UI
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
-    testImplementation("androidx.test:core-ktx:1.4.0")
+    testImplementation("androidx.test:core-ktx:1.6.1")
 
     testImplementation("io.mockk:mockk:1.12.4")
     androidTestImplementation("io.mockk:mockk-android:1.12.4")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.3")
 
     testImplementation("io.kotest:kotest-runner-junit5:5.3.0")
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")
@@ -236,15 +234,15 @@ dependencies {
 
     testImplementation("android.arch.core:core-testing:1.1.1")
     androidTestImplementation("android.arch.core:core-testing:1.1.1")
-    debugImplementation("androidx.test:core-ktx:1.4.0")
+    debugImplementation("androidx.test:core-ktx:1.6.1")
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
-    androidTestImplementation("androidx.test:runner:1.4.0")
-    androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
-    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.4.0")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.6.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.6.1")
+    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.6.1")
 }

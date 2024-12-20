@@ -8,8 +8,8 @@ import java.util.Properties
 
 object ProjectConfig {
     const val minSdk = 21
-    const val compileSdk = 34
-    const val targetSdk = 34
+    const val compileSdk = 35
+    const val targetSdk = 35
 
     object Version {
         val versionProperties = Properties().apply {
@@ -47,8 +47,7 @@ fun LibraryExtension.setupLibraryDefaults() {
 
     defaultConfig {
         minSdk = ProjectConfig.minSdk
-        // Remove deprecated property
-        // targetSdk = ProjectConfig.targetSdk
+        targetSdk = ProjectConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
