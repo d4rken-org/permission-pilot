@@ -26,6 +26,12 @@ android {
         buildConfigField("String", "GITSHA", "\"${lastCommitHash()}\"")
     }
 
+    // Add buildFeatures block
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
+    }
+
     signingConfigs {
         val basePath = File(System.getProperty("user.home"), ".appconfig/${packageName}")
         create("releaseFoss") {
@@ -92,17 +98,13 @@ android {
         val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
         val variantName: String = variantOutputImpl.name
 
-        if (listOf("release", "beta").any { variantName.toLowerCase().contains(it) }) {
+        if (listOf("release", "beta").any { variantName.lowercase().contains(it) }) {
             val outputFileName = packageName +
                     "-v${defaultConfig.versionName}-${defaultConfig.versionCode}" +
-                    "-${variantName.toUpperCase()}-${lastCommitHash()}.apk"
+                    "-${variantName.uppercase()}-${lastCommitHash()}.apk"
 
             variantOutputImpl.outputFileName = outputFileName
         }
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 
     compileOptions {
@@ -206,8 +208,8 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
 
-//    implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
-//    testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
+    // implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
+    // testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
 
     implementation("com.google.android.flexbox:flexbox:3.0.0")
 
@@ -226,7 +228,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.2")
-
 
     testImplementation("io.kotest:kotest-runner-junit5:5.3.0")
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")

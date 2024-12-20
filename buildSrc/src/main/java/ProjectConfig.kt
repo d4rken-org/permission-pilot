@@ -25,7 +25,7 @@ object ProjectConfig {
     }
 }
 
-fun lastCommitHash(): String = Runtime.getRuntime().exec("git rev-parse --short HEAD").let { process ->
+fun lastCommitHash(): String = ProcessBuilder("git", "rev-parse", "--short", "HEAD").start().let { process ->
     process.waitFor()
     val output = process.inputStream.use { input ->
         input.bufferedReader().use {
@@ -47,7 +47,8 @@ fun LibraryExtension.setupLibraryDefaults() {
 
     defaultConfig {
         minSdk = ProjectConfig.minSdk
-        targetSdk = ProjectConfig.targetSdk
+        // Remove deprecated property
+        // targetSdk = ProjectConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -76,7 +77,7 @@ fun LibraryExtension.setupLibraryDefaults() {
         )
     }
 
-    fun Packaging.() {
+    packaging {
         resources.excludes += "DebugProbesKt.bin"
     }
 }
