@@ -8,8 +8,8 @@ import java.util.Properties
 
 object ProjectConfig {
     const val minSdk = 21
-    const val compileSdk = 34
-    const val targetSdk = 34
+    const val compileSdk = 35
+    const val targetSdk = 35
 
     object Version {
         val versionProperties = Properties().apply {
@@ -25,7 +25,7 @@ object ProjectConfig {
     }
 }
 
-fun lastCommitHash(): String = Runtime.getRuntime().exec("git rev-parse --short HEAD").let { process ->
+fun lastCommitHash(): String = ProcessBuilder("git", "rev-parse", "--short", "HEAD").start().let { process ->
     process.waitFor()
     val output = process.inputStream.use { input ->
         input.bufferedReader().use {
@@ -47,10 +47,16 @@ fun LibraryExtension.setupLibraryDefaults() {
 
     defaultConfig {
         minSdk = ProjectConfig.minSdk
-        targetSdk = ProjectConfig.targetSdk
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+        testOptions {
+            unitTests {
+                isIncludeAndroidResources = true
+            }
+        }
+    }
+
+    lint {
+        targetSdk = ProjectConfig.targetSdk
     }
 
     buildTypes {
@@ -69,14 +75,14 @@ fun LibraryExtension.setupLibraryDefaults() {
     kotlinOptions {
         jvmTarget = "17"
         freeCompilerArgs = freeCompilerArgs + listOf(
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-            "-Xuse-experimental=kotlin.time.ExperimentalTime",
-            "-Xopt-in=kotlin.RequiresOptIn"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlin.time.ExperimentalTime",
+            "-opt-in=kotlin.RequiresOptIn"
         )
     }
 
-    fun Packaging.() {
+    packaging {
         resources.excludes += "DebugProbesKt.bin"
     }
 }

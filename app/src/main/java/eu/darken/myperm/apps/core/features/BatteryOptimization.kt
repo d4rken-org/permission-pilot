@@ -14,8 +14,8 @@ enum class BatteryOptimization {
 
 suspend fun PackageInfo.determineBatteryOptimization(ipcFunnel: IPCFunnel): BatteryOptimization {
     if (!hasApiLevel(23)) return BatteryOptimization.IGNORED
-    if (requestedPermissions == null) return BatteryOptimization.MANAGED_BY_SYSTEM
-    if (requestedPermissions.none { it == APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id.value }) {
+    val permissions = requestedPermissions ?: return BatteryOptimization.MANAGED_BY_SYSTEM
+    if (permissions.none { it == APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id.value }) {
         return BatteryOptimization.MANAGED_BY_SYSTEM
     }
 
