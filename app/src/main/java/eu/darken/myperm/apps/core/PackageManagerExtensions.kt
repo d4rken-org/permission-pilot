@@ -49,9 +49,10 @@ fun PackageManager.getPermissionInfo2(
 }
 
 val GET_UNINSTALLED_PACKAGES_COMPAT: Int
-    get() = when {
-        hasApiLevel(Build.VERSION_CODES.N) -> PackageManager.MATCH_UNINSTALLED_PACKAGES
-        else -> PackageManager.GET_UNINSTALLED_PACKAGES
+    get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        PackageManager.MATCH_UNINSTALLED_PACKAGES
+    } else {
+        PackageManager.GET_UNINSTALLED_PACKAGES
     }
 
 fun UserManager.tryCreateUserHandle(handleId: Int): UserHandle? = try {
