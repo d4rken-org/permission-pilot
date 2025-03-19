@@ -25,11 +25,7 @@ class SettingsIndexFragment : PreferenceFragment2() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupMenu(R.menu.menu_settings_index) { item ->
-            when (item.itemId) {
-                R.id.menu_item_twitter -> {
-                    webpageTool.open("https://twitter.com/d4rken")
-                }
-            }
+
         }
         super.onViewCreated(view, savedInstanceState)
     }
