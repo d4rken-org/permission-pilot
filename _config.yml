@@ -1,0 +1,21 @@
+theme: minima
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+
+title: "Permission Pilot"
+description: "An Android permission explorer"
+author: "by Matthias Urhahn"
+
+include:
+  - PRIVACY_POLICY.md
+exclude:
+  - buildSrc
+  - gradle/wrapper
+  - fastlane
+  - Gemfile
+  - Gemfile.lock
+  - crowdin*
+  - app
