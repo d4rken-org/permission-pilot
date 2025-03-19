@@ -1,6 +1,12 @@
+---
+layout: plain
+permalink: /privacy
+title: "Privacy Policy"
+---
+
 # Privacy policy
 
-This is the privacy policy for the Android app "Permission Pilot".
+This is the privacy policy for the Android app "Permission Pilot" by Matthias Urhahn (darken).
 
 ## Preamble
 
