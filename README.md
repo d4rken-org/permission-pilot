@@ -3,9 +3,11 @@
 # Permission Pilot
 
 [![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases)](https://github.com/d4rken-org/permission-pilot/releases/latest)
-[![Github All Releases](https://img.shields.io/github/downloads/d4rken-org/permission-pilot/total.svg)]()
 [![Code tests & eval](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml/badge.svg)](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Github Downloads](https://img.shields.io/github/downloads/d4rken-org/permission-pilot/total.svg?label=GitHub%20Downloads&logo=github)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
+[![Google Play Downloads](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.darken.myperm%26l%3DGoogle%2520Play%26m%3D%24totalinstalls)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
+[![⭐](https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.darken.myperm%26gl%3DUS%26hl%3Den%26l%3D%25E2%25AD%2590%26m%3D%24rating)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
 
 A new kind of app to help the user view apps and which permissions they use.
 
