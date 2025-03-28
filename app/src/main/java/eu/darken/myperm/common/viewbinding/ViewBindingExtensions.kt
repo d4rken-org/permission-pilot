@@ -3,6 +3,7 @@ package eu.darken.myperm.common.viewbinding
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.annotation.Keep
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -29,6 +30,7 @@ fun <FragmentT : Fragment, BindingT : ViewBinding> FragmentT.viewBinding(
     lifecycleOwnerProvider: FragmentT.() -> LifecycleOwner
 ) = ViewBindingProperty(bindingProvider, lifecycleOwnerProvider)
 
+@Keep
 class ViewBindingProperty<ComponentT : LifecycleOwner, BindingT : ViewBinding>(
     private val bindingProvider: (ComponentT) -> BindingT,
     private val lifecycleOwnerProvider: ComponentT.() -> LifecycleOwner
