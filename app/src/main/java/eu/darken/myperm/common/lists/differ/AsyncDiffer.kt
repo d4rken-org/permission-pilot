@@ -1,10 +1,12 @@
 package eu.darken.myperm.common.lists.differ
 
+import androidx.annotation.Keep
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import eu.darken.myperm.common.lists.modular.ModularAdapter
 import eu.darken.myperm.common.lists.modular.mods.StableIdMod
 
+@Keep
 class AsyncDiffer<A, T : DifferItem> internal constructor(
     adapter: A,
     compareItem: (T, T) -> Boolean = { i1, i2 -> i1.stableId == i2.stableId },
