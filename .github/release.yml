@@ -3,12 +3,12 @@ changelog:
     labels:
       - changelog-ignore
   categories:
-    - title: "Enhancements :rocket:"
+    - title: ":rocket: Enhancements"
       labels:
         - enhancement
-    - title: "Bug fixes :lady_beetle:"
+    - title: ":lady_beetle: Bug fixes"
       labels:
         - bug
-    - title: "Other changes :shrug:"
+    - title: ":shrug: Other changes"
       labels:
         - "*"

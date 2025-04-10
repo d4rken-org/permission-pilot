@@ -7,44 +7,55 @@ on:
     branches: [ main ]
 
 jobs:
-  test-foss:
-    name: Test FOSS flavor
-    runs-on: ubuntu-latest
-
+  lint-vital:
+    name: Lint vitals
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [ Foss,Gplay ]
+        variant: [ Beta,Release ]
+        module: [ app ]
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'oracle'
-          cache: gradle
+      - name: Checkout source code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+      - name: Setup project and build environment
+        uses: ./.github/actions/common-setup
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Check for fatal lint issues
+        run: ./gradlew lintVital${{ matrix.flavor }}${{ matrix.variant }}
 
-      - name: Build FOSS variant
-        run: ./gradlew assembleFossDebug
-      - name: Test FOSS variant
-        run: ./gradlew testFossDebugUnitTest
-
-  test-gplay:
-    name: Test Google Play flavor
-    runs-on: ubuntu-latest
-
+  build-modules:
+    name: Build apps
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [ Foss,Gplay ]
+        variant: [ Debug ]
+        module: [ app ]
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'oracle'
-          cache: gradle
+      - name: Checkout source code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+      - name: Setup project and build environment
+        uses: ./.github/actions/common-setup
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Build modules
+        run: ./gradlew ${{ matrix.module }}:assemble${{ matrix.flavor }}${{ matrix.variant }}
 
-      - name: Build Google Play variant
-        run: ./gradlew assembleGplayDebug
-      - name: Test Google Play variant
-        run: ./gradlew testGplayDebugUnitTest
+  test-modules:
+    name: Unit tests
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [ Debug,Beta,Release ]
+        flavor: [ test,testFoss,testGplay ]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
+      - name: Setup project and build environment
+        uses: ./.github/actions/common-setup
+
+      - name: Test modules
+        run: ./gradlew ${{ matrix.flavor }}${{ matrix.variant }}UnitTest
