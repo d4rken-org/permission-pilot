@@ -1,2 +1,5 @@
-Bugfixes and performance improvements.
-¯\_(ツ)_/¯
+🐛 Bug fixes, 🚀 performance boosts, maybe even ✨ new features.
+
+Changelog: https://myperm.darken.eu/changelog
+
+FYI: It’s just me here — thanks for understanding if replies take a bit. ¯\_(ツ)_/¯
