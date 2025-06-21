@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="foss_upgrade_donate_label">斗內</string>
+    <string name="foss_upgrade_alreadydonated_label">我早已斗內了</string>
+    <string name="foss_upgrade_no_money_label">我的錢自己都不夠用了QQ</string>
+</resources>
