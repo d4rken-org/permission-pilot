@@ -257,5 +257,4 @@
     <string name="onboarding_body1">แอปนี้ช่วยคุณในการนำทางแอปพลิเคชันที่ติดตั้งและค้นพบสิทธิ์</string>
     <string name="onboarding_body2">Permission Pilot รวบรวมข้อมูลแอปพลิเคชันที่ติดตั้งเพื่อให้สามารถแสดงรายการแอปของคุณและอ้างอิงสิทธิ์ข้ามกันเมื่อใช้แอปพลิเคชันนี้</string>
     <string name="onboarding_body3">Permission Pilot ไม่มีโฆษณาและประมวลผลข้อมูลในเครื่องเท่านั้น</string>
-    +
 </resources>
