@@ -1,0 +1,227 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
+    <string name="label_settings">सेटिंग्स</string>
+    <string name="label_help">सहायता</string>
+
+    <string name="general_error_label">त्रुटि</string>
+
+    <string name="general_share_action">साझा करें</string>
+    <string name="general_done_action">पूर्ण</string>
+    <string name="general_copy_action">कॉपी करें</string>
+    <string name="general_check_action">जांचें</string>
+    <string name="general_show_action">दिखाएं</string>
+    <string name="general_open_action">खोलें</string>
+    <string name="general_continue_action">जारी रखें</string>
+    <string name="general_accept_action">स्वीकार करें</string>
+
+    <string name="upgrade_myperm_label">Permission Pilot अपग्रेड करें</string>
+    <string name="upgrade_myperm_description">क्या आपको पसंद है कि इस ऐप में कोई विज्ञापन नहीं हैं और यह आपका डेटा एकत्र नहीं करता?\nअपना समर्थन दिखाने के लिए प्रो संस्करण खरीदें!</string>
+    <string name="upgrade_buy_pro_action">प्रो संस्करण खरीदें</string>
+    <string name="general_no_action">नहीं</string>
+    <string name="upgrade_donate_action">दान करें</string>
+
+    <string name="debug_debuglog_size_label">आकार</string>
+    <string name="debug_debuglog_size_compressed_label">संपीड़ित आकार</string>
+    <string name="debug_notification_channel_label">डिबग सूचनाएं</string>
+    <string name="debug_debuglog_file_label">रिकॉर्ड की गई लॉग फ़ाइल</string>
+    <string name="debug_debuglog_record_action">डिबग लॉग रिकॉर्ड करें</string>
+
+    <string name="settings_category_other_label">अन्य</string>
+
+    <string name="general_settings_label">सामान्य</string>
+    <string name="general_settings_desc">सामान्य ट्वीक जो पूरे ऐप को प्रभावित करते हैं।</string>
+
+    <string name="changelog_label">परिवर्तन लॉग</string>
+    <string name="settings_acknowledgements_label">आभार</string>
+    <string name="general_thank_you_label">धन्यवाद</string>
+    <string name="settings_licenses_label">लाइसेंस</string>
+    <string name="settings_privacy_policy_label">गोपनीयता नीति</string>
+    <string name="settings_privacy_policy_desc">डेटा को जिम्मेदारी से संभालना।</string>
+
+    <string name="settings_support_label">सहायता</string>
+    <string name="documentation_label">दस्तावेज़ीकरण</string>
+    <string name="discord_label">Discord</string>
+    <string name="discord_description">घूमने और प्रश्न पूछने के लिए एक स्थान।</string>
+    <string name="issue_tracker_label">समस्या ट्रैकर</string>
+    <string name="issue_tracker_description">बग रिपोर्ट और सुविधा अनुरोधों के लिए एक सार्वजनिक समस्या ट्रैकर।</string>
+    <string name="permissions_page_label">अनुमतियां</string>
+    <string name="apps_page_label">ऐप्स</string>
+    <string name="app_type_system_label">सिस्टम ऐप</string>
+    <string name="permission_type_aosp_label">AOSP</string>
+    <string name="apps_permission_unknown_description">अज्ञात अनुमति। यह इस ऐप द्वारा अनुरोधित है, लेकिन कोई अन्य ऐप इसे घोषित नहीं करता।</string>
+    <string name="permissions_unknown_description">अज्ञात अनुमति। यह ऐप्स द्वारा अनुरोधित है, लेकिन कहीं घोषित नहीं है।</string>
+    <string name="permissions_app_type_declaring_description">अनुमति इस ऐप द्वारा बनाई गई है।</string>
+    <string name="permissions_app_type_requesting_description">ऐप अनुमति का अनुरोध करता है।</string>
+
+    <string name="general_filter_action">फ़िल्टर</string>
+    <string name="general_cancel_action">रद्द करें</string>
+
+    <string name="apps_filter_userapps_label">उपयोगकर्ता ऐप्स</string>
+    <string name="apps_filter_systemapps_label">सिस्टम ऐप्स</string>
+    <string name="apps_filter_nointernet_label">इंटरनेट एक्सेस के बिना ऐप्स</string>
+    <string name="apps_filter_sideloaded_label">साइडलोड किए गए ऐप्स</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">OEM Store</string>
+
+    <string name="apps_sort_permissions_granted_label">प्रदान की गई अनुमतियां</string>
+    <string name="apps_sort_permissions_requested_label">अनुरोधित अनुमतियां</string>
+    <string name="apps_sort_permissions_declared_label">घोषित अनुमतियां</string>
+    <string name="apps_sort_app_name_label">ऐप का नाम</string>
+    <string name="apps_sort_install_date_label">इंस्टॉल की तारीख</string>
+    <string name="apps_sort_update_date_label">अंतिम बार अपडेट किया गया</string>
+
+    <string name="general_sort_action">क्रम</string>
+    <string name="apps_permissions_x_of_x_granted">%2$d में से %1$d प्रदान किए गए।</string>
+    <string name="apps_permissions_x_requested">%1$d अनुमतियां अनुरोधित।</string>
+    <string name="apps_permissions_declares_x">%1$d अनुमतियां घोषित करता है।</string>
+    <string name="apps_details_installer_label">इंस्टॉल स्रोत</string>
+    <string name="apps_details_installer_unknown_label">जानकारी उपलब्ध नहीं</string>
+
+    <string name="permissions_filter_manifest_label">AOSP अनुमतियां</string>
+    <string name="permissions_filter_system_label">सिस्टम ऐप द्वारा घोषित</string>
+    <string name="permissions_filter_user_label">उपयोगकर्ता ऐप द्वारा घोषित</string>
+
+    <string name="permissions_filter_runtime_label">रनटाइम पर अनुरोधित</string>
+    <string name="permissions_filter_special_label">विशेष उपयोग</string>
+    <string name="permissions_filter_installtime_label">स्वचालित रूप से प्रदान किया गया</string>
+    <string name="permissions_filter_installtime_hide_label">स्वचालित रूप से प्रदान नहीं किया गया</string>
+
+    <string name="permissions_sort_apps_granted_label"># ऐप्स प्रदान किए गए</string>
+    <string name="permissions_sort_apps_requested_label"># ऐप्स अनुरोधित</string>
+    <string name="permissions_search_list_hint">अनुमतियां खोजें</string>
+    <string name="apps_search_list_hint">ऐप्स खोजें</string>
+    <string name="permissions_details_protection_label">सुरक्षा स्तर</string>
+    <string name="permissions_protection_type_normal_label">सामान्य</string>
+    <string name="permissions_protection_type_dangerous_label">खतरनाक</string>
+    <string name="permissions_protection_type_signature_label">हस्ताक्षर</string>
+    <string name="permissions_protection_type_signatureorsystem_label">हस्ताक्षर या सिस्टम</string>
+    <string name="permissions_protection_type_internal_label">आंतरिक</string>
+    <string name="permissions_protection_type_unknown_label">अज्ञात</string>
+
+    <plurals name="permissions_details_x_apps_granted">
+        <item quantity="one">%1$d ऐप को प्रदान किया गया</item>
+        <item quantity="other">%1$d ऐप्स को प्रदान किया गया</item>
+    </plurals>
+    <plurals name="permissions_details_x_apps_requested">
+        <item quantity="one">%1$d ऐप द्वारा अनुरोधित</item>
+        <item quantity="other">%1$d ऐप्स द्वारा अनुरोधित</item>
+    </plurals>
+
+    <string name="permissions_protection_type_normal_description">सामान्य अनुमति अन्य ऐप्स या उपयोगकर्ता की गोपनीयता के लिए बहुत कम जोखिम प्रस्तुत करती है।</string>
+    <string name="permissions_protection_type_dangerous_description">खतरनाक अनुमति उपयोगकर्ता के गोपनीय डेटा या डिवाइस के नियंत्रण पर पहुंच प्रदान करती है।</string>
+    <string name="permissions_protection_type_signature_description">केवल वही ऐप्स जो अनुमति घोषित करने वाले ऐप के समान प्रमाणपत्र से हस्ताक्षरित हैं, इसे प्राप्त कर सकते हैं।</string>
+    <string name="permissions_protection_type_signatureorsystem_description">केवल वही ऐप्स जो सिस्टम में हैं या अनुमति घोषित करने वाले ऐप के समान प्रमाणपत्र से हस्ताक्षरित हैं, इसे प्राप्त कर सकते हैं।</string>
+    <string name="permissions_protection_type_internal_description">केवल सिस्टम ऐप्स द्वारा उपयोग के लिए।</string>
+
+    <string name="permissions_details_description_label">विवरण</string>
+    <string name="permissions_details_apps_granted_label">प्रदान किए गए ऐप्स</string>
+    <string name="permissions_details_apps_requested_label">अनुरोधित ऐप्स</string>
+    <string name="permissions_details_apps_declared_label">घोषित ऐप्स</string>
+
+    <string name="app_details_permission_granted_label">प्रदान किया गया</string>
+    <string name="app_details_permission_requested_label">अनुरोधित</string>
+    <string name="app_details_permission_declared_label">घोषित</string>
+
+    <string name="app_details_permissions_label">अनुमतियां</string>
+    <string name="apps_details_app_type_label">ऐप प्रकार</string>
+    <string name="apps_details_app_type_system_label">सिस्टम ऐप</string>
+    <string name="apps_details_app_type_user_label">उपयोगकर्ता ऐप</string>
+    <string name="apps_details_app_type_unknown_label">अज्ञात</string>
+    <string name="apps_details_package_label">पैकेज</string>
+    <string name="apps_details_version_label">संस्करण</string>
+    <string name="apps_details_install_date_label">इंस्टॉल की तारीख</string>
+    <string name="apps_details_update_date_label">अपडेट की तारीख</string>
+    <string name="apps_details_target_sdk_label">लक्ष्य SDK</string>
+    <string name="apps_details_compile_sdk_label">कंपाइल SDK</string>
+    <string name="apps_details_min_sdk_label">न्यूनतम SDK</string>
+
+    <string name="apps_details_signing_certificate_label">हस्ताक्षर प्रमाणपत्र</string>
+    <string name="apps_details_signing_certificate_sha256_label">SHA-256 फिंगरप्रिंट</string>
+    <string name="apps_details_signing_certificate_sha1_label">SHA-1 फिंगरप्रिंट</string>
+    <string name="apps_details_signing_certificate_subject_label">विषय</string>
+    <string name="apps_details_signing_certificate_issuer_label">जारीकर्ता</string>
+    <string name="apps_details_signing_certificate_serial_label">सीरियल नंबर</string>
+    <string name="apps_details_signing_certificate_validity_label">वैधता</string>
+
+    <string name="apps_details_apk_label">APK</string>
+    <string name="apps_details_apk_path_label">APK पथ</string>
+    <string name="apps_details_apk_size_label">APK आकार</string>
+
+    <string name="apps_details_overview_label">अवलोकन</string>
+    <string name="overview_label">अवलोकन</string>
+    <string name="overview_summary_label">सारांश</string>
+    <string name="overview_apps_label">ऐप्स</string>
+    <string name="overview_permissions_label">अनुमतियां</string>
+    <string name="overview_permissions_unique_label">अद्वितीय अनुमतियां</string>
+    <string name="overview_permissions_aosp_label">AOSP अनुमतियां</string>
+    <string name="overview_permissions_custom_label">कस्टम अनुमतियां</string>
+    <string name="overview_permissions_special_label">विशेष अनुमतियां</string>
+    <string name="overview_permissions_runtime_label">रनटाइम अनुमतियां</string>
+    <string name="overview_permissions_install_label">इंस्टॉल अनुमतियां</string>
+
+    <string name="overview_info_label">जानकारी</string>
+    <string name="overview_device_label">डिवाइस</string>
+
+    <string name="permission_write_calendar_label">कैलेंडर लिखें</string>
+    <string name="permission_write_calendar_description">आपके डिवाइस पर कैलेंडर इवेंट्स को जोड़ने, हटाने और बदलने की अनुमति देता है।</string>
+    <string name="permission_read_calendar_label">कैलेंडर पढ़ें</string>
+    <string name="permission_read_calendar_description">आपके डिवाइस पर संग्रहीत कैलेंडर इवेंट्स को पढ़ने की अनुमति देता है।</string>
+    <string name="permission_write_contacts_label">संपर्क संपादित करें</string>
+    <string name="permission_write_contacts_description">आपके डिवाइस पर संग्रहीत संपर्क डेटा को संशोधित करने की अनुमति देता है।</string>
+    <string name="permission_read_contacts_label">संपर्क पढ़ें</string>
+    <string name="permission_read_contacts_description">आपके डिवाइस पर संग्रहीत संपर्क डेटा को पढ़ने की अनुमति देता है।</string>
+    <string name="permission_get_accounts_label">खाते खोजें</string>
+    <string name="permission_get_accounts_description">ऐप्स को फोन द्वारा ज्ञात खातों की सूची प्राप्त करने की अनुमति देता है। इसमें आपके द्वारा इंस्टॉल किए गए ऐप्स द्वारा बनाए गए खाते शामिल हो सकते हैं।</string>
+    <string name="permission_access_background_location_label">बैकग्राउंड स्थान पहुंच</string>
+    <string name="permission_access_background_location_description">ऐप्स को किसी भी समय स्थान तक पहुंचने की अनुमति देता है, भले ही वे उपयोग में न हों।</string>
+    <string name="permission_access_media_location_label">मीडिया स्थान पहुंच</string>
+    <string name="permission_access_media_location_description">ऐप्स को आपके मीडिया संग्रह से स्थान जानकारी पढ़ने की अनुमति देता है।</string>
+    <string name="permission_manage_accounts_label">खाते प्रबंधित करें</string>
+    <string name="permission_manage_accounts_description">ऐप्स को डिवाइस पर खातों को प्रबंधित करने की अनुमति देता है।</string>
+    <string name="permission_wifi_control_label">WiFi नियंत्रण</string>
+    <string name="permission_wifi_control_description">ऐप्स को WiFi को चालू या बंद करने, WiFi नेटवर्क को स्कैन करने और कनेक्ट करने, नेटवर्क जोड़ने या हटाने, या स्थानीय हॉटस्पॉट शुरू करने की अनुमति देता है।</string>
+    <string name="permission_change_network_state_label">नेटवर्क स्थिति बदलें</string>
+    <string name="permission_change_network_state_description">ऐप्स को नेटवर्क कनेक्टिविटी की स्थिति बदलने की अनुमति देता है।</string>
+    <string name="permission_read_sync_settings_label">सिंक सेटिंग्स पढ़ें</string>
+    <string name="permission_read_sync_settings_description">ऐप्स को खाते के लिए सिंक सेटिंग्स पढ़ने की अनुमति देता है।</string>
+    <string name="permission_install_unknown_apps_label">अज्ञात ऐप्स इंस्टॉल करें (अज्ञात स्रोत)</string>
+    <string name="permission_install_unknown_apps_description">ऐप्स को डिवाइस पर अन्य ऐप्स इंस्टॉल (साइडलोड) करने की अनुमति देता है। इससे आपका डिवाइस और डेटा जोखिम में पड़ सकता है।</string>
+    <string name="permission_all_files_access_label">सभी फ़ाइलों तक पहुंच</string>
+    <string name="permission_all_files_access_description">ऐप्स को डिवाइस और किसी भी जुड़े स्टोरेज से सभी फ़ाइलों को पढ़ने, संशोधित करने और हटाने की अनुमति देता है। इस अनुमति वाले ऐप्स बिना सूचना के फ़ाइलों तक पहुंच सकते हैं।</string>
+    <string name="permission_appear_on_top_label">शीर्ष पर दिखाई दें</string>
+    <string name="permission_appear_on_top_description">ऐप्स को अन्य उपयोग में आने वाले ऐप्स के ऊपर चीजें प्रदर्शित करने की अनुमति देता है (विज्ञापन दिखाना शामिल)। यह अन्य ऐप्स के उपयोग में हस्तक्षेप कर सकता है।</string>
+    <string name="permission_files_and_media_label">फ़ाइलें और मीडिया</string>
+    <string name="permission_files_and_media_description">ऐप्स को डिवाइस पर फ़ाइलों और मीडिया तक पहुंचने की अनुमति देता है।</string>
+    <string name="permission_access_to_media_only_label">केवल मीडिया तक पहुंच</string>
+    <string name="permission_access_to_media_only_description">ऐप्स को डिवाइस पर केवल मीडिया तक पहुंचने की अनुमति देता है।</string>
+    <string name="permission_access_precise_location_label">सटीक स्थान पहुंच</string>
+    <string name="permission_access_precise_location_description">ऐप्स को डिवाइस के सटीक स्थान का उपयोग करने की अनुमति देता है। यह अधिकांश ऐप्स के लिए अनुशंसित नहीं है (कुछ ऐप्स जैसे मैप्स, टैक्सी सेवाएं, डिवाइस ट्रैकिंग सेवाएं जैसे Find My Device आदि को छोड़कर)।</string>
+    <string name="permission_access_approximate_location_label">अनुमानित स्थान पहुंच</string>
+    <string name="permission_access_approximate_location_description">ऐप्स को डिवाइस के अनुमानित स्थान का उपयोग करने की अनुमति देता है। यह अनुमति उन अधिकांश ऐप्स के लिए पर्याप्त है जिन्हें मूलभूत कार्यक्षमता के लिए स्थान की आवश्यकता होती है।</string>
+    <string name="permission_ignore_battery_optimizations_label">बैटरी अनुकूलन को नज़रअंदाज़ करें</string>
+    <string name="permission_ignore_battery_optimizations_description">ऐप्स को बैकग्राउंड में निर्बाध रूप से चलने की अनुमति देता है। यह बैटरी खत्म कर सकता है। केवल उन ऐप्स के लिए अनुशंसित है जो निरंतर/बार-बार बैकअप और सिंक करते हैं (जैसे Google Photos), बहुत बार उपयोग किए जाने वाले ऐप्स (जैसे ईमेल, चैट, SMS आदि) और निरंतर सूचनाओं वाले ऐप्स।</string>
+    <string name="permission_notification_access_label">सूचना पहुंच</string>
+    <string name="permission_notification_access_description">ऐप्स को व्यक्तिगत जानकारी (जैसे संपर्क नाम और प्राप्त संदेशों का पाठ) सहित सभी सूचनाएं पढ़ने, सूचनाओं को स्थगित या खारिज करने, या कार्य बटन ट्रिगर करने (जैसे कॉल का जवाब देना, SMS/ईमेल हटाना आदि) और परेशान न करें (DND) मोड को चालू/बंद करने और संबंधित सेटिंग्स बदलने की अनुमति देता है।</string>
+    <string name="permission_do_not_disturb_permission_label">परेशान न करें (DND) अनुमति</string>
+    <string name="permission_do_not_disturb_permission_description">ऐप्स को परेशान न करें (DND) मोड को चालू/बंद करने और संबंधित सेटिंग्स बदलने की अनुमति देता है।</string>
+    <string name="permission_alarms_and_reminders_label">अलार्म और रिमाइंडर</string>
+    <string name="permission_alarms_and_reminders_description">ऐप्स को अलार्म सेट करने और समय-संवेदनशील कार्रवाइयों को शेड्यूल करने की अनुमति देता है। यह ऐप्स को बैकग्राउंड में चलने की अनुमति देता है, जो अधिक बैटरी खर्च कर सकता है। किसी ऐप के लिए इस अनुमति को बंद करने से शेड्यूल किए गए अलार्म और समय-आधारित इवेंट काम करना बंद हो जाएंगे।</string>
+    <string name="permission_premium_sms_services_label">प्रीमियम SMS सेवाओं तक पहुंच</string>
+    <string name="permission_premium_sms_services_description">ऐप्स को प्रीमियम टेक्स्ट मैसेजिंग सेवाओं का उपयोग करने की अनुमति देता है। इससे आपका पैसा खर्च होगा।</string>
+    <string name="permission_unlimited_data_access_label">असीमित डेटा पहुंच</string>
+    <string name="permission_unlimited_data_access_description">ऐप्स को असीमित डेटा तक पहुंचने की अनुमति देता है। जब डेटा सेवर चालू हो तब भी ऐप्स डेटा खर्च कर सकते हैं।</string>
+    <string name="permission_group_calendar_label">कैलेंडर</string>
+    <string name="permission_group_calendar_description"><![CDATA[कैलेंडर संबंधी अनुमतियां, जैसे प्रविष्टियों को देखना और संपादित करना।]]></string>
+    <string name="permission_group_files_label">फ़ाइलें और मीडिया</string>
+    <string name="permission_group_files_description">फ़ाइल संबंधी अनुमतियां। स्टोरेज, दस्तावेज़ों और मीडिया तक पहुंच।</string>
+    <string name="permission_group_other_label">अन्य</string>
+    <string name="permission_group_other_description">विशिष्ट श्रेणी के बिना अन्य अनुमतियां।</string>
+    <string name="permission_group_messaging_label">संदेश</string>
+    <string name="permission_group_messaging_description">SMS, MMS और अन्य। सभी संदेश संबंधी।</string>
+    <string name="permission_group_connectivity_label">कनेक्टिविटी</string>
+    <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth और अन्य। दुनिया के साथ संवाद करने से संबंधित अनुमतियां।</string>
+    <string name="permission_group_sensors_label">सेंसर</string>
+    <string name="permission_group_sensors_description">एक्सेलेरोमीटर, जायरोस्कोप, शरीर सेंसर, गतिविधि पहचान और अन्य। आपका डिवाइस इनपुट एकत्र करने के तरीके।</string>
+    <string name="permission_group_calls_label">कॉल</string>
+</resources>

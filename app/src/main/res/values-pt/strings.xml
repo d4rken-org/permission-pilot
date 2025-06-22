@@ -220,23 +220,4 @@
     <string name="permission_group_apps_label">Apps</string>
     <string name="permission_group_apps_description">Permissões especiais que requerem consentimento explícito do usuário.</string>
     <string name="permission_group_battery_label">Bateria</string>
-    <string name="permission_group_battery_description">Permissões relacionadas à bateria.</string>
-    <string name="permission_group_camera_label">Câmera</string>
-    <string name="permission_group_camera_description">Permissões relacionadas à câmera.</string>
-    <string name="permission_group_audio_label">Microfone</string>
-    <string name="permission_group_audio_description">Permissões relacionadas ao microfone.</string>
-    <string name="permission_picture_in_picture_label">Imagem em popup</string>
-    <string name="overview_device_android_version_label">Versão do Android</string>
-    <string name="overview_device_name_label">Dispositivo</string>
-    <string name="overview_device_android_patch_label">Nível da segurança do sistema</string>
-    <string name="overview_summary_apps_active_profile_label">No. de apps em Perfil Ativo</string>
-    <string name="overview_summary_apps_other_profile_label">No. de apps em Perfil(s) de usuário(s) gerenciado(s), excluindo Clonados</string>
-    <string name="overview_summary_apps_sideloaded_label">No. de apps instalados de fontes externas</string>
-    <string name="overview_summary_apps_installers_label">No. de apps que tem ativada \'Instalação de fontes desconhecidas\'</string>
-    <string name="overview_summary_apps_overlayers_label">No. de apps que podem \'Aparecer em primeiro plano\'</string>
-    <string name="overview_summary_apps_offline_label">No. de apps \'Sem permissão à internet\'</string>
-    <string name="overview_summary_apps_clones_label">No. de apps que são clonados em outros perfis</string>
-    <string name="overview_summary_apps_sharedids_label">No. de apps com ID compartilhado do usuário</string>
-    <string name="permission_bind_accessibility_service_label">Disponibiliza serviço de acessibilidade</string>
-    <string name="permission_bind_accessibility_service_description">Permite que app disponibilize um serviço de acessibilidade que pode ser ativado em configurações do sistema.</string>
 </resources>
