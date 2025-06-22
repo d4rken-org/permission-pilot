@@ -99,15 +99,6 @@
     <string name="permissions_protection_type_internal_label">आंतरिक</string>
     <string name="permissions_protection_type_unknown_label">अज्ञात</string>
 
-    <plurals name="permissions_details_x_apps_granted">
-        <item quantity="one">%1$d ऐप को प्रदान किया गया</item>
-        <item quantity="other">%1$d ऐप्स को प्रदान किया गया</item>
-    </plurals>
-    <plurals name="permissions_details_x_apps_requested">
-        <item quantity="one">%1$d ऐप द्वारा अनुरोधित</item>
-        <item quantity="other">%1$d ऐप्स द्वारा अनुरोधित</item>
-    </plurals>
-
     <string name="permissions_protection_type_normal_description">सामान्य अनुमति अन्य ऐप्स या उपयोगकर्ता की गोपनीयता के लिए बहुत कम जोखिम प्रस्तुत करती है।</string>
     <string name="permissions_protection_type_dangerous_description">खतरनाक अनुमति उपयोगकर्ता के गोपनीय डेटा या डिवाइस के नियंत्रण पर पहुंच प्रदान करती है।</string>
     <string name="permissions_protection_type_signature_description">केवल वही ऐप्स जो अनुमति घोषित करने वाले ऐप के समान प्रमाणपत्र से हस्ताक्षरित हैं, इसे प्राप्त कर सकते हैं।</string>

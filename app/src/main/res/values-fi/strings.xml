@@ -99,15 +99,6 @@
     <string name="permissions_protection_type_internal_label">Sisäinen</string>
     <string name="permissions_protection_type_unknown_label">Tuntematon</string>
 
-    <plurals name="permissions_details_x_apps_granted">
-        <item quantity="one">Myönnetty %1$d sovellukselle</item>
-        <item quantity="other">Myönnetty %1$d sovellukselle</item>
-    </plurals>
-    <plurals name="permissions_details_x_apps_requested">
-        <item quantity="one">%1$d sovellus pyytänyt</item>
-        <item quantity="other">%1$d sovellusta pyytänyt</item>
-    </plurals>
-
     <string name="permissions_protection_type_normal_description">Normaali käyttöoikeus aiheuttaa hyvin vähän riskiä muille sovelluksille tai käyttäjän yksityisyydelle.</string>
     <string name="permissions_protection_type_dangerous_description">Vaarallinen käyttöoikeus antaa pääsyn käyttäjän luottamuksellisiin tietoihin tai laitteen hallintaan.</string>
     <string name="permissions_protection_type_signature_description">Vain sovellukset, jotka on allekirjoitettu samalla varmenteella kuin käyttöoikeuden määrittelevä sovellus, voivat saada sen.</string>

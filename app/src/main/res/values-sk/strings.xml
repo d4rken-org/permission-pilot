@@ -99,19 +99,6 @@
     <string name="permissions_protection_type_internal_label">Interné</string>
     <string name="permissions_protection_type_unknown_label">Neznáme</string>
 
-    <plurals name="permissions_details_x_apps_granted">
-        <item quantity="one">Udelené %1$d aplikácii</item>
-        <item quantity="few">Udelené %1$d aplikáciám</item>
-        <item quantity="many">Udelené %1$d aplikáciám</item>
-        <item quantity="other">Udelené %1$d aplikáciám</item>
-    </plurals>
-    <plurals name="permissions_details_x_apps_requested">
-        <item quantity="one">%1$d aplikácia požaduje</item>
-        <item quantity="few">%1$d aplikácie požadujú</item>
-        <item quantity="many">%1$d aplikácií požaduje</item>
-        <item quantity="other">%1$d aplikácií požaduje</item>
-    </plurals>
-
     <string name="permissions_protection_type_normal_description">Normálne oprávnenie predstavuje veľmi malé riziko pre ostatné aplikácie alebo súkromie používateľa.</string>
     <string name="permissions_protection_type_dangerous_description">Nebezpečné oprávnenie poskytuje prístup k dôverným údajom používateľa alebo kontrole zariadenia.</string>
     <string name="permissions_protection_type_signature_description">Len aplikácie podpísané rovnakým certifikátom ako aplikácia deklarujúca oprávnenie ho môžu získať.</string>
