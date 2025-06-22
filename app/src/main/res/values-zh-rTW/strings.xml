@@ -16,7 +16,7 @@
     <string name="general_accept_action">接受</string>
 
     <string name="upgrade_myperm_label">升級 Permission Pilot</string>
-    <string name="upgrade_myperm_description">您喜歡這款無廣告也不會收集個資的應用程式程式嗎？\n請購買專業版以以表達您的支持！</string>
+    <string name="upgrade_myperm_description">您喜歡這款無廣告也不會收集個資的應用程式嗎？\n請購買專業版以表達您的支持！</string>
     <string name="upgrade_buy_pro_action">購買專業版</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">斗內</string>
@@ -30,7 +30,7 @@
     <string name="settings_category_other_label">其他</string>
 
     <string name="general_settings_label">一般</string>
-    <string name="general_settings_desc">此應用程式程式的全域設定</string>
+    <string name="general_settings_desc">此應用程式的全域設定</string>
 
     <string name="changelog_label">更新日誌</string>
     <string name="settings_acknowledgements_label">鳴謝</string>

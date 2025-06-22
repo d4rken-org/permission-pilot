@@ -1,0 +1,25 @@
+<i>İcazə Pilot</i> tətbiqetmələrinizin icazələrini nəzərdən keçirmək üçün yeni bir tətbiq növüdür.
+
+Hər bir Android yeniləməsi ilə icazələr daha da mürəkkəbləşir.
+Android-in icazələri müxtəlif yerlərdə göstərməsi onların nəzərdən keçirilməsini çətinləşdirir:
+
+* Tətbiq Məlumatı səhifəsi
+* Xüsusi Giriş
+* İcazə Meneceri
+* və daha çox...
+
+<i>İcazə Pilot</i> bütün icazələri tək bir yerdə toplam ilə sizə proqram icazələrinə quş baxışı təmin edir.
+
+İki perspektiv mövcuddur: Ya tətbiqin tələb etdiyi bütün icazələri görə bilərsiniz, ya da icazə tələb edən bütün tətbiqləri görə bilərsiniz.
+
+<b>Tətbiqlər nişanı</b>
+Bütün yüklənmiş tətbiqlər, sistem tətbiqləri və iş profil tətbiqləri daxil olmaqla.
+Hər hansı bir tətbiqi basdığınız zaman tətbiqin tələb etdiyi bütün icazələr göstərilir, İcazə Meneceri və Xüsusi Giriş altında göstərilənlər ilə birlikdə, vəziyyətləri ilə.
+Bu həmçinin internet icazələrini, SharedUserID vəziyyətini də ehtiva edəcəkdir!
+
+<b>İcazələr nişanı</b>
+Cihazınızda mövcud olan bütün icazələr, İcazə Meneceri və Xüsusi Giriş altında göstərilənlər daxil olmaqla.
+İcazələr daha asan naviqasiya üçün öncədən qruplaşdırılmışdır, məsələn Əlaqələr, Mikrofon, Kamera və s.
+Bir icazəyə basıldığında, həmin icazəyə çıxışı tələb edən bütün tətbiqlər göstərilir.
+
+Tətbiqlər və icazələr axtarılaraq, müxtəlif meyarlara görə sıralanıb filtrlənə bilər.
