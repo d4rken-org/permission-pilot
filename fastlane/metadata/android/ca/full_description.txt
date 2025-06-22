@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> és un nou tipus d'aplicació per ajudar-vos a revisar aplicacions i els seus permisos.
+
+Amb cada actualització d'Android, els permisos són cada cop més complexos.
+Android mostra els permisos en diverses ubicacions diferents, cosa que no facilita la seva revisió:
+
+* Pàgina d'informació de l'aplicació
+* Accés especial
+* Gestor de permisos
+* i més...
+
+<i>Permission Pilot</i> enumera tots els permisos en una única ubicació, oferint-vos una vista general dels permisos de les aplicacions.
+
+Hi ha dues perspectives disponibles: podeu veure tots els permisos que sol·licita una aplicació o veure totes les aplicacions que sol·liciten un permís.
+
+<b>Pestanya Aplicacions</b>
+Totes les aplicacions instal·lades, incloses les aplicacions del sistema i les aplicacions del perfil de treball.
+Si feu clic a qualsevol aplicació, es mostraran tots els permisos que ha sol·licitat l'aplicació, inclosos els que es mostren a Gestor de permisos i a Accés especial, juntament amb el seu estat.
+Això també inclourà permisos d'Internet, estat de SharedUserID!
+
+<b>Pestanya Permisos</b>
+Tots els permisos que existeixen al dispositiu, inclosos els que es mostren al Gestor de permisos i a Accés especial.
+Els permisos estan preagrupats per facilitar la navegació, per exemple, Contactes, Micròfon, Càmera, etc.
+Si feu clic a un permís, es mostraran totes les aplicacions que sol·liciten accés a aquest permís.
+
+Les aplicacions i els permisos es poden cercar, ordenar i filtrar mitjançant text lliure, ordenats i filtrats per diferents criteris.

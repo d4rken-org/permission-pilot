@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> is 'n nuwe tipe toepassing om jou te help om apps en hul toestemmings na te gaan.
+
+Met elke Android-opdatering raak toestemmings meer ingewikkeld.
+Android wys toestemmings op verskeie plekke, wat dit nie makliker maak om hulle te hersien nie:
+
+* App-inligtingbladsy
+* Spesiale Toegang
+* Toestemmingsbestuurder
+* en meer...
+
+<i>Permission Pilot</i> lys alle toestemmings op een plek, sodat jy 'n oorsig oor app-toestemmings kry.
+
+Twee perspektiewe is beskikbaar: Jy kan óf al die toestemmings sien wat 'n app versoek, óf jy kan 'n lys van alle apps sien wat 'n spesifieke toestemming versoek.
+
+<b>Apps-oortjie</b>
+Al jou geïnstalleerde programme, insluitend stelsel- en werkprofielprogramme.
+As jy op 'n app klik, wys dit al die toestemmings wat die app versoek het — insluitend toestemmings onder Toestemmingsbestuurder en Spesiale Toegang, saam met hul status.
+Dit sluit ook internettoestemming in, asook SharedUserID-status!
+
+<b>Toestemmings-oortjie</b>
+Alle toestemmings wat op jou toestel bestaan, insluitend dié wat onder Toestemmingsbestuurder en Spesiale Toegang verskyn.
+Toestemmings word vooraf gegroepeer vir makliker navigasie, soos Kontakte, Mikrofoon, Kamera, ens.
+As jy op 'n toestemming klik, wys dit al die apps wat daardie toestemming versoek.
+
+Programme en toestemmings kan gesoek, gesorteer en gefilter word op verskeie kriteria.
