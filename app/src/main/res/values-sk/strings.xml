@@ -1,0 +1,263 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
+    <string name="label_settings">Nastavenia</string>
+    <string name="label_help">Pomocník</string>
+
+    <string name="general_error_label">Chyba</string>
+
+    <string name="general_share_action">Zdieľať</string>
+    <string name="general_done_action">Hotovo</string>
+    <string name="general_copy_action">Kopírovať</string>
+    <string name="general_check_action">Skontrolovať</string>
+    <string name="general_show_action">Zobraziť</string>
+    <string name="general_open_action">Otvoriť</string>
+    <string name="general_continue_action">Pokračovať</string>
+    <string name="general_accept_action">Prijať</string>
+
+    <string name="upgrade_myperm_label">Aktualizovať Permission Pilot</string>
+    <string name="upgrade_myperm_description">Páči sa vám, že táto aplikácia nemá reklamy a nezbiera vaše údaje?\nKúpte si pro verziu na podporu vývoja!</string>
+    <string name="upgrade_buy_pro_action">Kúpiť pro verziu</string>
+    <string name="general_no_action">Nie</string>
+    <string name="upgrade_donate_action">Darovať</string>
+
+    <string name="debug_debuglog_size_label">Veľkosť</string>
+    <string name="debug_debuglog_size_compressed_label">Komprimovaná veľkosť</string>
+    <string name="debug_notification_channel_label">Ladiace oznámenia</string>
+    <string name="debug_debuglog_file_label">Zaznamenaný súbor denníka</string>
+    <string name="debug_debuglog_record_action">Zaznamenať ladiaci denník</string>
+
+    <string name="settings_category_other_label">Ostatné</string>
+
+    <string name="general_settings_label">Všeobecné</string>
+    <string name="general_settings_desc">Všeobecné nastavenia ovplyvňujúce celú aplikáciu.</string>
+
+    <string name="changelog_label">Záznam zmien</string>
+    <string name="settings_acknowledgements_label">Poďakovania</string>
+    <string name="general_thank_you_label">Ďakujeme</string>
+    <string name="settings_licenses_label">Licencie</string>
+    <string name="settings_privacy_policy_label">Zásady ochrany súkromia</string>
+    <string name="settings_privacy_policy_desc">Zodpovedné spracovanie údajov.</string>
+
+    <string name="settings_support_label">Podpora</string>
+    <string name="documentation_label">Dokumentácia</string>
+    <string name="discord_label">Discord</string>
+    <string name="discord_description">Miesto na rozhovory a kladenie otázok.</string>
+    <string name="issue_tracker_label">Sledovanie problémov</string>
+    <string name="issue_tracker_description">Verejný sledovač problémov pre hlásenia chýb a požiadavky na funkcie.</string>
+    <string name="permissions_page_label">Oprávnenia</string>
+    <string name="apps_page_label">Aplikácie</string>
+    <string name="app_type_system_label">Systémová aplikácia</string>
+    <string name="permission_type_aosp_label">AOSP</string>
+    <string name="apps_permission_unknown_description">Neznáme oprávnenie. Táto aplikácia ho požaduje, ale žiadna iná aplikácia ho nedeklaruje.</string>
+    <string name="permissions_unknown_description">Neznáme oprávnenie. Aplikácie ho požadujú, ale nie je deklarované nikde.</string>
+    <string name="permissions_app_type_declaring_description">Oprávnenie je vytvorené touto aplikáciou.</string>
+    <string name="permissions_app_type_requesting_description">Aplikácia požaduje oprávnenie.</string>
+
+    <string name="general_filter_action">Filtrovať</string>
+    <string name="general_cancel_action">Zrušiť</string>
+
+    <string name="apps_filter_userapps_label">Používateľské aplikácie</string>
+    <string name="apps_filter_systemapps_label">Systémové aplikácie</string>
+    <string name="apps_filter_nointernet_label">Aplikácie bez prístupu k internetu</string>
+    <string name="apps_filter_sideloaded_label">Bočne načítané aplikácie</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">OEM Store</string>
+
+    <string name="apps_sort_permissions_granted_label">Udelené oprávnenia</string>
+    <string name="apps_sort_permissions_requested_label">Požadované oprávnenia</string>
+    <string name="apps_sort_permissions_declared_label">Deklarované oprávnenia</string>
+    <string name="apps_sort_app_name_label">Názov aplikácie</string>
+    <string name="apps_sort_install_date_label">Dátum inštalácie</string>
+    <string name="apps_sort_update_date_label">Posledná aktualizácia</string>
+
+    <string name="general_sort_action">Triediť</string>
+    <string name="apps_permissions_x_of_x_granted">%1$d z %2$d udelených.</string>
+    <string name="apps_permissions_x_requested">%1$d oprávnení požadovaných.</string>
+    <string name="apps_permissions_declares_x">Deklaruje %1$d oprávnení.</string>
+    <string name="apps_details_installer_label">Zdroj inštalácie</string>
+    <string name="apps_details_installer_unknown_label">Informácie nie sú dostupné</string>
+
+    <string name="permissions_filter_manifest_label">AOSP oprávnenia</string>
+    <string name="permissions_filter_system_label">Deklarované systémovou aplikáciou</string>
+    <string name="permissions_filter_user_label">Deklarované používateľskou aplikáciou</string>
+
+    <string name="permissions_filter_runtime_label">Požadované za behu</string>
+    <string name="permissions_filter_special_label">Špeciálne použitie</string>
+    <string name="permissions_filter_installtime_label">Automaticky udelené</string>
+    <string name="permissions_filter_installtime_hide_label">Nie sú automaticky udelené</string>
+
+    <string name="permissions_sort_apps_granted_label"># aplikácií s udeleným oprávnením</string>
+    <string name="permissions_sort_apps_requested_label"># aplikácií požadujúcich</string>
+    <string name="permissions_search_list_hint">Hľadať oprávnenia</string>
+    <string name="apps_search_list_hint">Hľadať aplikácie</string>
+    <string name="permissions_details_protection_label">Úroveň ochrany</string>
+    <string name="permissions_protection_type_normal_label">Normálne</string>
+    <string name="permissions_protection_type_dangerous_label">Nebezpečné</string>
+    <string name="permissions_protection_type_signature_label">Podpis</string>
+    <string name="permissions_protection_type_signatureorsystem_label">Podpis alebo systém</string>
+    <string name="permissions_protection_type_internal_label">Interné</string>
+    <string name="permissions_protection_type_unknown_label">Neznáme</string>
+
+    <plurals name="permissions_details_x_apps_granted">
+        <item quantity="one">Udelené %1$d aplikácii</item>
+        <item quantity="few">Udelené %1$d aplikáciám</item>
+        <item quantity="many">Udelené %1$d aplikáciám</item>
+        <item quantity="other">Udelené %1$d aplikáciám</item>
+    </plurals>
+    <plurals name="permissions_details_x_apps_requested">
+        <item quantity="one">%1$d aplikácia požaduje</item>
+        <item quantity="few">%1$d aplikácie požadujú</item>
+        <item quantity="many">%1$d aplikácií požaduje</item>
+        <item quantity="other">%1$d aplikácií požaduje</item>
+    </plurals>
+
+    <string name="permissions_protection_type_normal_description">Normálne oprávnenie predstavuje veľmi malé riziko pre ostatné aplikácie alebo súkromie používateľa.</string>
+    <string name="permissions_protection_type_dangerous_description">Nebezpečné oprávnenie poskytuje prístup k dôverným údajom používateľa alebo kontrole zariadenia.</string>
+    <string name="permissions_protection_type_signature_description">Len aplikácie podpísané rovnakým certifikátom ako aplikácia deklarujúca oprávnenie ho môžu získať.</string>
+    <string name="permissions_protection_type_signatureorsystem_description">Len aplikácie v systéme alebo podpísané rovnakým certifikátom ako aplikácia deklarujúca oprávnenie ho môžu získať.</string>
+    <string name="permissions_protection_type_internal_description">Len na použitie systémovými aplikáciami.</string>
+
+    <string name="permissions_details_description_label">Popis</string>
+    <string name="permissions_details_apps_granted_label">Aplikácie s udelenými oprávneniami</string>
+    <string name="permissions_details_apps_requested_label">Aplikácie požadujúce oprávnenia</string>
+    <string name="permissions_details_apps_declared_label">Aplikácie deklarujúce oprávnenia</string>
+
+    <string name="app_details_permission_granted_label">Udelené</string>
+    <string name="app_details_permission_requested_label">Požadované</string>
+    <string name="app_details_permission_declared_label">Deklarované</string>
+
+    <string name="app_details_permissions_label">Oprávnenia</string>
+    <string name="apps_details_app_type_label">Typ aplikácie</string>
+    <string name="apps_details_app_type_system_label">Systémová aplikácia</string>
+    <string name="apps_details_app_type_user_label">Používateľská aplikácia</string>
+    <string name="apps_details_app_type_unknown_label">Neznámy</string>
+    <string name="apps_details_package_label">Balík</string>
+    <string name="apps_details_version_label">Verzia</string>
+    <string name="apps_details_install_date_label">Dátum inštalácie</string>
+    <string name="apps_details_update_date_label">Dátum aktualizácie</string>
+    <string name="apps_details_target_sdk_label">Cieľové SDK</string>
+    <string name="apps_details_compile_sdk_label">Kompilačné SDK</string>
+    <string name="apps_details_min_sdk_label">Minimálne SDK</string>
+
+    <string name="apps_details_signing_certificate_label">Podpisový certifikát</string>
+    <string name="apps_details_signing_certificate_sha256_label">SHA-256 odtlačok</string>
+    <string name="apps_details_signing_certificate_sha1_label">SHA-1 odtlačok</string>
+    <string name="apps_details_signing_certificate_subject_label">Predmet</string>
+    <string name="apps_details_signing_certificate_issuer_label">Vydavateľ</string>
+    <string name="apps_details_signing_certificate_serial_label">Sériové číslo</string>
+    <string name="apps_details_signing_certificate_validity_label">Platnosť</string>
+
+    <string name="apps_details_apk_label">APK</string>
+    <string name="apps_details_apk_path_label">Cesta APK</string>
+    <string name="apps_details_apk_size_label">Veľkosť APK</string>
+
+    <string name="apps_details_overview_label">Prehľad</string>
+    <string name="overview_label">Prehľad</string>
+    <string name="overview_summary_label">Súhrn</string>
+    <string name="overview_apps_label">Aplikácie</string>
+    <string name="overview_permissions_label">Oprávnenia</string>
+    <string name="overview_permissions_unique_label">Jedinečné oprávnenia</string>
+    <string name="overview_permissions_aosp_label">AOSP oprávnenia</string>
+    <string name="overview_permissions_custom_label">Vlastné oprávnenia</string>
+    <string name="overview_permissions_special_label">Špeciálne oprávnenia</string>
+    <string name="overview_permissions_runtime_label">Oprávnenia za behu</string>
+    <string name="overview_permissions_install_label">Oprávnenia pri inštalácii</string>
+
+    <string name="overview_info_label">Informácie</string>
+    <string name="overview_device_label">Zariadenie</string>
+
+    <string name="permission_write_calendar_label">Písať do kalendára</string>
+    <string name="permission_write_calendar_description">Umožňuje pridávanie, odstraňovanie a zmenu udalostí kalendára vo vašom zariadení.</string>
+    <string name="permission_read_calendar_label">Čítať kalendár</string>
+    <string name="permission_read_calendar_description">Umožňuje čítanie udalostí kalendára uložených vo vašom zariadení.</string>
+    <string name="permission_write_contacts_label">Upravovať kontakty</string>
+    <string name="permission_write_contacts_description">Umožňuje úpravu kontaktných údajov uložených vo vašom zariadení.</string>
+    <string name="permission_read_contacts_label">Čítať kontakty</string>
+    <string name="permission_read_contacts_description">Umožňuje čítanie kontaktných údajov uložených vo vašom zariadení.</string>
+    <string name="permission_get_accounts_label">Nájsť účty</string>
+    <string name="permission_get_accounts_description">Umožňuje aplikáciám získať zoznam účtov známych telefónu. Môže to zahŕňať účty vytvorené nainštalovanými aplikáciami.</string>
+    <string name="permission_access_background_location_label">Prístup k polohe na pozadí</string>
+    <string name="permission_access_background_location_description">Umožňuje aplikáciám pristupovať k polohe kedykoľvek, aj keď sa nepoužívajú.</string>
+    <string name="permission_access_media_location_label">Prístup k polohe médií</string>
+    <string name="permission_access_media_location_description">Umožňuje aplikáciám čítať informácie o polohe z vašej kolekcie médií.</string>
+    <string name="permission_manage_accounts_label">Spravovať účty</string>
+    <string name="permission_manage_accounts_description">Umožňuje aplikáciám spravovať účty v zariadení.</string>
+    <string name="permission_wifi_control_label">Ovládanie WiFi</string>
+    <string name="permission_wifi_control_description">Umožňuje aplikáciám zapínať alebo vypínať WiFi, skenovať a pripájať sa k WiFi sieťam, pridávať alebo odstraňovať siete alebo spúšťať lokálny hotspot.</string>
+    <string name="permission_change_network_state_label">Zmeniť stav siete</string>
+    <string name="permission_change_network_state_description">Umožňuje aplikáciám meniť stav pripojenia k sieti.</string>
+    <string name="permission_read_sync_settings_label">Čítať nastavenia synchronizácie</string>
+    <string name="permission_read_sync_settings_description">Umožňuje aplikáciám čítať nastavenia synchronizácie pre účet.</string>
+    <string name="permission_install_unknown_apps_label">Inštalovať neznáme aplikácie (Neznáme zdroje)</string>
+    <string name="permission_install_unknown_apps_description">Umožňuje aplikáciám inštalovať (sideload) iné aplikácie do zariadenia. Môže to ohroziť zariadenie a údaje.</string>
+    <string name="permission_all_files_access_label">Prístup ku všetkým súborom</string>
+    <string name="permission_all_files_access_description">Umožňuje aplikáciám čítať, upravovať a mazať všetky súbory zo zariadenia a z akéhokoľvek pripojeného úložiska. Aplikácie s týmto oprávnením môžu pristupovať k súborom BEZ oznámenia.</string>
+    <string name="permission_appear_on_top_label">Zobraziť navrchu</string>
+    <string name="permission_appear_on_top_description">Umožňuje aplikáciám zobrazovať veci nad inými používanými aplikáciami (vrátane zobrazenia reklám). Môže to narúšať používanie iných aplikácií.</string>
+    <string name="permission_files_and_media_label">Súbory a médiá</string>
+    <string name="permission_files_and_media_description">Umožňuje aplikáciám pristupovať k súborom a médiám v zariadení.</string>
+    <string name="permission_access_to_media_only_label">Prístup len k médiám</string>
+    <string name="permission_access_to_media_only_description">Umožňuje aplikáciám pristupovať len k médiám v zariadení.</string>
+    <string name="permission_access_precise_location_label">Prístup k presnej polohe</string>
+    <string name="permission_access_precise_location_description">Umožňuje aplikáciám používať presnú polohu zariadenia. Toto sa NEodporúča pre väčšinu aplikácií (okrem niektorých ako mapy, taxi služby, sledovacie služby ako Find My Device atď.).</string>
+    <string name="permission_access_approximate_location_label">Prístup k približnej polohe</string>
+    <string name="permission_access_approximate_location_description">Umožňuje aplikáciám používať približnú polohu zariadenia. Toto oprávnenie je dostatočné pre väčšinu aplikácií, ktoré potrebujú polohu pre základné funkcie.</string>
+    <string name="permission_ignore_battery_optimizations_label">Ignorovať optimalizácie batérie</string>
+    <string name="permission_ignore_battery_optimizations_description">Umožňuje aplikáciám bežať neobmedzene na pozadí. Môže to vyčerpávať batériu. Odporúča sa len pre aplikácie, ktoré robia nepretržité/časté zálohy a synchronizácie (napr. Google Photos), veľmi často používané aplikácie (napr. email, chat, SMS atď.) a aplikácie s trvalými oznámeniami.</string>
+    <string name="permission_notification_access_label">Prístup k oznámeniam</string>
+    <string name="permission_notification_access_description">Umožňuje aplikáciám čítať všetky oznámenia vrátane osobných informácií (ako mená kontaktov a text prijatých správ), odkladať alebo zamietať oznámenia, alebo spúšťať tlačidlá akcií (ako odpovedanie na hovory, mazanie SMS/emailov atď.) a zapínať/vypínať režim Nerušiť (DND) a meniť súvisiace nastavenia.</string>
+    <string name="permission_do_not_disturb_permission_label">Oprávnenie Nerušiť (DND)</string>
+    <string name="permission_do_not_disturb_permission_description">Umožňuje aplikáciám zapínať/vypínať režim Nerušiť (DND) a meniť súvisiace nastavenia.</string>
+    <string name="permission_alarms_and_reminders_label">Budíky a pripomienky</string>
+    <string name="permission_alarms_and_reminders_description">Umožňuje aplikáciám nastavovať budíky a plánovať časovo citlivé akcie. Umožňuje aplikáciám bežať na pozadí, čo môže spotrebovať viac batérie. Vypnutie tohto oprávnenia pre aplikáciu spôsobí, že naplánované budíky a časovo založené udalosti prestanú fungovať.</string>
+    <string name="permission_premium_sms_services_label">Prístup k prémilovým SMS službám</string>
+    <string name="permission_premium_sms_services_description">Umožňuje aplikáciám používať prémiové textové služby. Bude vás to stáť peniaze.</string>
+    <string name="permission_unlimited_data_access_label">Neobmedzený prístup k údajom</string>
+    <string name="permission_unlimited_data_access_description">Umožňuje aplikáciám pristupovať k neobmedzeným údajom. Aplikácie môžu spotrebovávať údaje aj keď je Šetrič údajov ZAPNUTÝ.</string>
+    <string name="permission_group_calendar_label">Kalendár</string>
+    <string name="permission_group_calendar_description"><![CDATA[Oprávnenia súvisiace s kalendárom, napr. zobrazovanie a úprava záznamov.]]></string>
+    <string name="permission_group_files_label">Súbory a médiá</string>
+    <string name="permission_group_files_description">Oprávnenia súvisiace so súbormi. Prístup k úložisku, dokumentom a médiám.</string>
+    <string name="permission_group_other_label">Ostatné</string>
+    <string name="permission_group_other_description">Ostatné oprávnenia bez špecifickej kategórie.</string>
+    <string name="permission_group_messaging_label">Správy</string>
+    <string name="permission_group_messaging_description">SMS, MMS a ďalšie. Všetko súvisiace so správami.</string>
+    <string name="permission_group_connectivity_label">Pripojenie</string>
+    <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth a ďalšie. Oprávnenia súvisiace s komunikáciou so svetom.</string>
+    <string name="permission_group_sensors_label">Senzory</string>
+    <string name="permission_group_sensors_description">Akcelerometer, gyroskop, telesné senzory, rozpoznávanie aktivity a ďalšie. Spôsoby, ako môže vaše zariadenie zbierať vstup.</string>
+    <string name="permission_group_calls_label">Hovory</string>
+    <string name="permission_group_calls_description">Oprávnenia súvisiace s hovormi.</string>
+    <string name="permission_group_location_label">Poloha</string>
+    <string name="permission_group_location_description">Oprávnenia súvisiace s polohou.</string>
+    <string name="permission_group_contacts_label">Kontakty</string>
+    <string name="permission_group_contacts_description">"Čítanie a písanie kontaktov."</string>
+    <string name="permission_group_apps_label">Aplikácie</string>
+    <string name="permission_group_apps_description">Špeciálne prístupové oprávnenia, ktoré vyžadujú výslovný súhlas používateľa.</string>
+    <string name="permission_group_battery_label">Batéria</string>
+    <string name="permission_group_battery_description">Oprávnenia súvisiace s batériou.</string>
+    <string name="permission_group_camera_label">Fotoaparát</string>
+    <string name="permission_group_camera_description">Oprávnenia súvisiace s fotoaparátom.</string>
+    <string name="permission_group_audio_label">Mikrofón</string>
+    <string name="permission_group_audio_description">Oprávnenia súvisiace s mikrofónom.</string>
+    <string name="permission_picture_in_picture_label">Obraz v obraze</string>
+    <string name="overview_device_android_version_label">Verzia Androidu</string>
+    <string name="overview_device_name_label">Zariadenie</string>
+    <string name="overview_device_android_patch_label">Úroveň oprávky</string>
+    <string name="overview_summary_apps_active_profile_label">Aplikácie v aktívnom profile</string>
+    <string name="overview_summary_apps_other_profile_label">Aplikácie v spravovaných používateľských profiloch, okrem klonov</string>
+    <string name="overview_summary_apps_sideloaded_label">Aplikácie načítané z externých zdrojov</string>
+    <string name="overview_summary_apps_installers_label">Aplikácie s povoleným \'Inštalovať z neznámych zdrojov\'</string>
+    <string name="overview_summary_apps_overlayers_label">Aplikácie, ktoré môžu \'Zobraziť navrchu\'</string>
+    <string name="overview_summary_apps_offline_label">Aplikácie, ktoré majú oprávnenia \'Bez internetu\'</string>
+    <string name="overview_summary_apps_clones_label">Aplikácie s klonmi v iných profiloch</string>
+    <string name="overview_summary_apps_sharedids_label">Aplikácie so SharedUserID</string>
+    <string name="permission_bind_accessibility_service_label">Ponúknuť službu prístupnosti</string>
+    <string name="permission_bind_accessibility_service_description">Umožňuje aplikácii ponúknuť službu prístupnosti, ktorá sa môže povoliť v nastaveniach systému.</string>
+    <string name="debug_debuglog_sensitive_information_message">Tento súbor obsahuje citlivé informácie (napr. vaše nainštalované aplikácie). Zdieľajte len s dôveryhodnými stranami.</string>
+    <string name="settings_debuglog_explanation">Táto funkcia zaznamenáva všetko, čo aplikácia robí, do zdieľateľného súboru. Vygenerovaný súbor obsahuje citlivé informácie (napr. vaše nainštalované aplikácie). Zdieľajte len s dôveryhodnými stranami (napr. s vývojárom aplikácie, ak riešite problém spoločne).</string>
+    <string name="onboarding_body1">Táto aplikácia vám pomáha prechádzať nainštalovanými aplikáciami a objavovať oprávnenia.</string>
+    <string name="onboarding_body2">Permission Pilot zbiera informácie o nainštalovaných aplikáciách, aby umožnil výpis vašich aplikácií a krížové referencovanie ich oprávnení pri používaní tejto aplikácie.</string>
+    <string name="onboarding_body3">Permission Pilot nemá reklamy a spracováva údaje len lokálne.</string>
+</resources>

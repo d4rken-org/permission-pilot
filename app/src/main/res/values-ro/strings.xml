@@ -1,0 +1,439 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
+    <string name="label_settings">Setări</string>
+    <string name="label_help">Ajutor</string>
+
+    <string name="general_error_label">Eroare</string>
+
+    <string name="general_share_action">Partajează</string>
+    <string name="general_done_action">Terminat</string>
+    <string name="general_copy_action">Copiază</string>
+    <string name="general_check_action">Verifică</string>
+    <string name="general_show_action">Afișează</string>
+    <string name="general_open_action">Deschide</string>
+    <string name="general_continue_action">Continuă</string>
+    <string name="general_accept_action">Acceptă</string>
+
+    <string name="upgrade_myperm_label">Actualizează Permission Pilot</string>
+    <string name="upgrade_myperm_description">Îți place că această aplicație nu are reclame și nu colectează datele tale?\nCumpără versiunea pro pentru a-ți arăta sprijinul!</string>
+    <string name="upgrade_buy_pro_action">Cumpără versiunea pro</string>
+    <string name="general_no_action">Nu</string>
+    <string name="upgrade_donate_action">Donează</string>
+
+    <string name="debug_debuglog_size_label">Dimensiune</string>
+    <string name="debug_debuglog_size_compressed_label">Dimensiune comprimată</string>
+    <string name="debug_notification_channel_label">Notificări de depanare</string>
+    <string name="debug_debuglog_file_label">Fișier jurnal înregistrat</string>
+    <string name="debug_debuglog_record_action">Înregistrează jurnalul de depanare</string>
+
+    <string name="settings_category_other_label">Altele</string>
+
+    <string name="general_settings_label">General</string>
+    <string name="general_settings_desc">Setări generale care afectează întreaga aplicație.</string>
+
+    <string name="changelog_label">Jurnal de modificări</string>
+    <string name="settings_acknowledgements_label">Mulțumiri</string>
+    <string name="general_thank_you_label">Mulțumesc</string>
+    <string name="settings_licenses_label">Licențe</string>
+    <string name="settings_privacy_policy_label">Politica de confidențialitate</string>
+    <string name="settings_privacy_policy_desc">Gestionarea responsabilă a datelor.</string>
+
+    <string name="settings_support_label">Suport</string>
+    <string name="documentation_label">Documentație</string>
+    <string name="discord_label">Discord</string>
+    <string name="discord_description">Un loc pentru a socializa și pune întrebări.</string>
+    <string name="issue_tracker_label">Urmărire probleme</string>
+    <string name="issue_tracker_description">Urmăritor public de probleme pentru rapoarte de erori și cereri de funcționalități.</string>
+    <string name="permissions_page_label">Permisiuni</string>
+    <string name="apps_page_label">Aplicații</string>
+    <string name="app_type_system_label">Aplicație de sistem</string>
+    <string name="permission_type_aosp_label">AOSP</string>
+    <string name="apps_permission_unknown_description">Permisiune necunoscută. Este solicitată de această aplicație, dar nicio altă aplicație nu o declară.</string>
+    <string name="permissions_unknown_description">Permisiune necunoscută. Este solicitată de aplicații, dar nu este declarată nicăieri.</string>
+    <string name="permissions_app_type_declaring_description">Permisiunea este creată de această aplicație.</string>
+    <string name="permissions_app_type_requesting_description">Aplicația solicită permisiunea.</string>
+
+    <string name="general_filter_action">Filtrează</string>
+    <string name="general_cancel_action">Anulează</string>
+
+    <string name="apps_filter_userapps_label">Aplicații de utilizator</string>
+    <string name="apps_filter_systemapps_label">Aplicații de sistem</string>
+    <string name="apps_filter_nointernet_label">Aplicații fără acces la internet</string>
+    <string name="apps_filter_sideloaded_label">Aplicații încărcate lateral</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">OEM Store</string>
+
+    <string name="apps_sort_permissions_granted_label">Permisiuni acordate</string>
+    <string name="apps_sort_permissions_requested_label">Permisiuni solicitate</string>
+    <string name="apps_sort_permissions_declared_label">Permisiuni declarate</string>
+    <string name="apps_sort_app_name_label">Numele aplicației</string>
+    <string name="apps_sort_install_date_label">Data instalării</string>
+    <string name="apps_sort_update_date_label">Ultima actualizare</string>
+
+    <string name="general_sort_action">Sortează</string>
+    <string name="apps_permissions_x_of_x_granted">%1$d din %2$d acordate.</string>
+    <string name="apps_permissions_x_requested">%1$d permisiuni solicitate.</string>
+    <string name="apps_permissions_declares_x">Declară %1$d permisiuni.</string>
+    <string name="apps_details_installer_label">Sursa de instalare</string>
+    <string name="apps_details_installer_unknown_label">Informație nu este disponibilă</string>
+
+    <string name="permissions_filter_manifest_label">Permisiuni AOSP</string>
+    <string name="permissions_filter_system_label">Declarate de aplicația de sistem</string>
+    <string name="permissions_filter_user_label">Declarate de aplicația de utilizator</string>
+
+    <string name="permissions_filter_runtime_label">Solicitate la runtime</string>
+    <string name="permissions_filter_special_label">Utilizare specială</string>
+    <string name="permissions_filter_installtime_label">Acordate automat</string>
+    <string name="permissions_filter_installtime_hide_label">Nu sunt acordate automat</string>
+
+    <string name="permissions_sort_apps_granted_label"># aplicații cu permisiuni accordate</string>
+    <string name="permissions_sort_apps_requested_label"># aplicații care solicită</string>
+    <string name="permissions_search_list_hint">Caută permisiuni</string>
+    <string name="apps_search_list_hint">Caută aplicații</string>
+    <string name="permissions_details_protection_label">Nivel de protecție</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
+    <string name="permissions_protection_type_dangerous_label">Periculos</string>
+    <string name="permissions_protection_type_signature_label">Semnătură</string>
+    <string name="permissions_protection_type_signatureorsystem_label">Semnătură sau sistem</string>
+    <string name="permissions_protection_type_internal_label">Intern</string>
+    <string name="permissions_protection_type_unknown_label">Necunoscut</string>
+
+    <string name="permissions_protection_type_normal_description">Permisiunea normală prezintă foarte puțin risc pentru alte aplicații sau confidențialitatea utilizatorului.</string>
+    <string name="permissions_protection_type_dangerous_description">Permisiunea periculoasă oferă acces la datele confidențiale ale utilizatorului sau controlul dispozitivului.</string>
+    <string name="permissions_protection_type_signature_description">Doar aplicațiile semnate cu același certificat ca aplicația care declară permisiunea o pot obține.</string>
+    <string name="permissions_protection_type_signatureorsystem_description">Doar aplicațiile din sistem sau semnate cu același certificat ca aplicația care declară permisiunea o pot obține.</string>
+    <string name="permissions_protection_type_internal_description">Doar pentru utilizarea aplicațiilor de sistem.</string>
+
+    <string name="permissions_details_declaring_apps_label">Aplicații care declară</string>
+    <string name="permissions_details_requesting_apps_label">Aplicații care solicită</string>
+
+    <string name="permissions_declaring_apps_x">%1$d aplicații declară această permisiune.</string>
+    <string name="permissions_requesting_apps_x">%1$d aplicații solicită această permisiune.</string>
+
+    <string name="permissions_overview_label">Prezentare generală</string>
+
+    <string name="permissions_overview_stats_categories_label">Categorii</string>
+    <string name="permissions_overview_stats_total_label">Total</string>
+    <string name="permissions_overview_stats_by_protection_level_label">După nivelul de protecție</string>
+    <string name="permissions_overview_stats_by_type_label">După tip</string>
+    <string name="permissions_overview_stats_by_apps_label">După aplicații</string>
+
+    <string name="permissions_stats_categories_x_normal">%1$d normale</string>
+    <string name="permissions_stats_categories_x_dangerous">%1$d periculoase</string>
+    <string name="permissions_stats_categories_x_signature">%1$d semnătură</string>
+    <string name="permissions_stats_categories_x_signatureorsystem">%1$d semnătură sau sistem</string>
+    <string name="permissions_stats_categories_x_internal">%1$d interne</string>
+    <string name="permissions_stats_categories_x_unknown">%1$d necunoscute</string>
+
+    <string name="permissions_stats_categories_x_system">%1$d sistem</string>
+    <string name="permissions_stats_categories_x_user">%1$d utilizator</string>
+    <string name="permissions_stats_categories_x_aosp">%1$d AOSP</string>
+
+    <string name="permissions_stats_categories_x_runtime">%1$d runtime</string>
+    <string name="permissions_stats_categories_x_installtime">%1$d timp de instalare</string>
+    <string name="permissions_stats_categories_x_special">%1$d speciale</string>
+
+    <string name="permissions_stats_categories_x_declaring">%1$d care declară</string>
+    <string name="permissions_stats_categories_x_requesting">%1$d care solicită</string>
+
+    <string name="apps_overview_label">Prezentare generală</string>
+    <string name="apps_overview_stats_categories_label">Categorii</string>
+    <string name="apps_overview_stats_total_label">Total</string>
+    <string name="apps_overview_stats_by_type_label">După tip</string>
+    <string name="apps_overview_stats_by_installer_label">După instalator</string>
+
+    <string name="apps_stats_categories_x_user">%1$d utilizator</string>
+    <string name="apps_stats_categories_x_system">%1$d sistem</string>
+
+    <string name="apps_stats_categories_x_gplay">%1$d Google Play</string>
+    <string name="apps_stats_categories_x_oemstore">%1$d OEM Store</string>
+    <string name="apps_stats_categories_x_sideloaded">%1$d încărcate lateral</string>
+    <string name="apps_stats_categories_x_unknown">%1$d necunoscute</string>
+
+    <string name="apps_details_label">Detalii</string>
+    <string name="apps_details_permissions_label">Permisiuni</string>
+    <string name="permissions_details_label">Detalii</string>
+
+    <string name="general_refreshing_data_label">Se actualizează datele...</string>
+
+    <string name="general_loading_label">Se încarcă...</string>
+    <string name="general_na_label">N/A</string>
+
+    <string name="general_updated_label">Actualizat</string>
+    <string name="general_app_version_label">Versiunea aplicației</string>
+    <string name="general_total_label">Total</string>
+
+    <string name="general_all_label">Toate</string>
+    <string name="general_granted_label">Acordate</string>
+    <string name="general_denied_label">Refuzate</string>
+
+    <string name="general_yes_label">Da</string>
+    <string name="general_no_label">Nu</string>
+    <string name="general_unknown_label">Necunoscut</string>
+
+    <string name="general_system_label">Sistem</string>
+    <string name="general_user_label">Utilizator</string>
+
+    <string name="general_back_action">Înapoi</string>
+    <string name="general_clear_action">Șterge</string>
+    <string name="general_search_action">Caută</string>
+
+    <string name="general_up_action">Sus</string>
+    <string name="general_down_action">Jos</string>
+
+    <string name="general_save_action">Salvează</string>
+    <string name="general_delete_action">Șterge</string>
+    <string name="general_close_action">Închide</string>
+
+    <string name="general_on_label">Pornit</string>
+    <string name="general_off_label">Oprit</string>
+
+    <string name="general_high_label">Înalt</string>
+    <string name="general_low_label">Scăzut</string>
+    <string name="general_medium_label">Mediu</string>
+
+    <string name="general_default_label">Implicit</string>
+    <string name="general_custom_label">Personalizat</string>
+    <string name="general_automatic_label">Automat</string>
+    <string name="general_manual_label">Manual</string>
+
+    <string name="general_enabled_label">Activat</string>
+    <string name="general_disabled_label">Dezactivat</string>
+
+    <string name="general_never_label">Niciodată</string>
+    <string name="general_always_label">Întotdeauna</string>
+    <string name="general_sometimes_label">Uneori</string>
+
+    <string name="general_more_label">Mai mult</string>
+    <string name="general_less_label">Mai puțin</string>
+
+    <string name="general_info_label">Informație</string>
+    <string name="general_warning_label">Avertisment</string>
+    <string name="general_error_label_alt">Eroare</string>
+
+    <string name="general_refresh_action">Actualizează</string>
+    <string name="general_reset_action">Resetează</string>
+    <string name="general_restore_action">Restaurează</string>
+
+    <string name="general_import_action">Importă</string>
+    <string name="general_export_action">Exportă</string>
+
+    <string name="general_install_action">Instalează</string>
+    <string name="general_uninstall_action">Dezinstalează</string>
+    <string name="general_update_action">Actualizează</string>
+
+    <string name="general_play_action">Redă</string>
+    <string name="general_pause_action">Pauză</string>
+    <string name="general_stop_action">Oprește</string>
+
+    <string name="general_start_action">Pornește</string>
+    <string name="general_finish_action">Termină</string>
+    <string name="general_complete_action">Completează</string>
+
+    <string name="general_add_action">Adaugă</string>
+    <string name="general_remove_action">Elimină</string>
+    <string name="general_edit_action">Editează</string>
+
+    <string name="general_select_action">Selectează</string>
+    <string name="general_deselect_action">Deselectează</string>
+    <string name="general_select_all_action">Selectează toate</string>
+
+    <string name="general_next_action">Următorul</string>
+    <string name="general_previous_action">Precedentul</string>
+    <string name="general_skip_action">Omite</string>
+
+    <string name="general_ok_action">OK</string>
+    <string name="general_apply_action">Aplică</string>
+    <string name="general_confirm_action">Confirmă</string>
+
+    <string name="general_send_action">Trimite</string>
+    <string name="general_receive_action">Primește</string>
+
+    <string name="general_connect_action">Conectează</string>
+    <string name="general_disconnect_action">Deconectează</string>
+
+    <string name="general_login_action">Autentificare</string>
+    <string name="general_logout_action">Deautentificare</string>
+
+    <string name="general_download_action">Descarcă</string>
+    <string name="general_upload_action">Încarcă</string>
+
+    <string name="general_sync_action">Sincronizează</string>
+    <string name="general_backup_action">Backup</string>
+
+    <string name="general_print_action">Tipărește</string>
+    <string name="general_scan_action">Scanează</string>
+
+    <string name="general_lock_action">Blochează</string>
+    <string name="general_unlock_action">Deblochează</string>
+
+    <string name="general_secure_label">Sigur</string>
+    <string name="general_insecure_label">Nesigur</string>
+
+    <string name="general_public_label">Public</string>
+    <string name="general_private_label">Privat</string>
+
+    <string name="general_visible_label">Vizibil</string>
+    <string name="general_hidden_label">Ascuns</string>
+
+    <string name="general_active_label">Activ</string>
+    <string name="general_inactive_label">Inactiv</string>
+
+    <string name="general_online_label">Online</string>
+    <string name="general_offline_label">Offline</string>
+
+    <string name="general_available_label">Disponibil</string>
+    <string name="general_unavailable_label">Indisponibil</string>
+
+    <string name="general_required_label">Necesar</string>
+    <string name="general_optional_label">Opțional</string>
+
+    <string name="general_recommended_label">Recomandat</string>
+    <string name="general_not_recommended_label">Nu este recomandat</string>
+
+    <string name="general_supported_label">Suportat</string>
+    <string name="general_not_supported_label">Nu este suportat</string>
+
+    <string name="general_compatible_label">Compatibil</string>
+    <string name="general_incompatible_label">Incompatibil</string>
+
+    <string name="general_valid_label">Valid</string>
+    <string name="general_invalid_label">Invalid</string>
+
+    <string name="general_correct_label">Corect</string>
+    <string name="general_incorrect_label">Incorect</string>
+
+    <string name="general_success_label">Succes</string>
+    <string name="general_failure_label">Eșec</string>
+
+    <string name="general_complete_label">Complet</string>
+    <string name="general_incomplete_label">Incomplet</string>
+
+    <string name="general_new_label">Nou</string>
+    <string name="general_old_label">Vechi</string>
+
+    <string name="general_latest_label">Cel mai recent</string>
+    <string name="general_oldest_label">Cel mai vechi</string>
+
+    <string name="general_first_label">Primul</string>
+    <string name="general_last_label">Ultimul</string>
+
+    <string name="general_top_label">Sus</string>
+    <string name="general_bottom_label">Jos</string>
+
+    <string name="general_left_label">Stânga</string>
+    <string name="general_right_label">Dreapta</string>
+
+    <string name="general_center_label">Centru</string>
+    <string name="general_edge_label">Margine</string>
+
+    <string name="general_inside_label">Înăuntru</string>
+    <string name="general_outside_label">Afară</string>
+
+    <string name="general_above_label">Deasupra</string>
+    <string name="general_below_label">Dedesubt</string>
+
+    <string name="general_before_label">Înainte</string>
+    <string name="general_after_label">După</string>
+
+    <string name="general_during_label">În timpul</string>
+    <string name="general_while_label">În timp ce</string>
+
+    <string name="general_since_label">De când</string>
+    <string name="general_until_label">Până când</string>
+
+    <string name="general_from_label">De la</string>
+    <string name="general_to_label">La</string>
+
+    <string name="general_in_label">În</string>
+    <string name="general_out_label">Afară</string>
+
+    <string name="general_with_label">Cu</string>
+    <string name="general_without_label">Fără</string>
+
+    <string name="general_for_label">Pentru</string>
+    <string name="general_against_label">Împotriva</string>
+
+    <string name="general_by_label">De către</string>
+    <string name="general_via_label">Prin</string>
+
+    <string name="general_per_label">Pe</string>
+    <string name="general_each_label">Fiecare</string>
+
+    <string name="general_every_label">Fiecare</string>
+    <string name="general_some_label">Unele</string>
+
+    <string name="general_many_label">Multe</string>
+    <string name="general_few_label">Puține</string>
+
+    <string name="general_several_label">Câteva</string>
+    <string name="general_multiple_label">Multiple</string>
+
+    <string name="general_single_label">Unic</string>
+    <string name="general_double_label">Dublu</string>
+
+    <string name="general_triple_label">Triplu</string>
+    <string name="general_quadruple_label">Cvadruple</string>
+
+    <string name="general_half_label">Jumătate</string>
+    <string name="general_quarter_label">Sfert</string>
+
+    <string name="general_full_label">Complet</string>
+    <string name="general_empty_label">Gol</string>
+
+    <string name="general_partial_label">Parțial</string>
+    <string name="general_whole_label">Întreg</string>
+
+    <string name="permission_write_calendar_label">Scrie în calendar</string>
+    <string name="permission_write_calendar_description">Permite adăugarea, eliminarea și modificarea evenimentelor de calendar pe dispozitivul tău.</string>
+    <string name="permission_read_calendar_label">Citește calendarul</string>
+    <string name="permission_read_calendar_description">Permite citirea evenimentelor de calendar stocate pe dispozitivul tău.</string>
+    <string name="permission_write_contacts_label">Modifică contactele</string>
+    <string name="permission_write_contacts_description">Permite modificarea datelor de contact stocate pe dispozitivul tău.</string>
+    <string name="permission_read_contacts_label">Citește contactele</string>
+    <string name="permission_read_contacts_description">Permite citirea datelor de contact stocate pe dispozitivul tău.</string>
+    <string name="permission_get_accounts_label">Găsește conturile</string>
+    <string name="permission_get_accounts_description">Permite aplicațiilor să obțină lista conturilor cunoscute de telefon. Aceasta poate include conturile create de aplicațiile instalate.</string>
+    <string name="permission_access_background_location_label">Acces la locația din fundal</string>
+    <string name="permission_access_background_location_description">Permite aplicațiilor să acceseze locația oricând, chiar când nu sunt în uz.</string>
+    <string name="permission_access_media_location_label">Acces la locația media</string>
+    <string name="permission_access_media_location_description">Permite aplicațiilor să citească informațiile de locație din colecția ta media.</string>
+    <string name="permission_manage_accounts_label">Gestionează conturile</string>
+    <string name="permission_manage_accounts_description">Permite aplicațiilor să gestioneze conturile de pe dispozitiv.</string>
+    <string name="permission_wifi_control_label">Control WiFi</string>
+    <string name="permission_wifi_control_description">Permite aplicațiilor să activeze sau dezactiveze WiFi, să scaneze și să se conecteze la rețele WiFi, să adauge sau să elimine rețele sau să pornească un hotspot local.</string>
+    <string name="permission_change_network_state_label">Modifică starea rețelei</string>
+    <string name="permission_change_network_state_description">Permite aplicațiilor să modifice starea conectivității rețelei.</string>
+    <string name="permission_read_sync_settings_label">Citește setările de sincronizare</string>
+    <string name="permission_read_sync_settings_description">Permite aplicațiilor să citească setările de sincronizare pentru un cont.</string>
+    <string name="permission_install_unknown_apps_label">Instalează aplicații necunoscute (Surse necunoscute)</string>
+    <string name="permission_install_unknown_apps_description">Permite aplicațiilor să instaleze (sideload) alte aplicații pe dispozitiv. Aceasta poate pune în pericol dispozitivul și datele.</string>
+    <string name="permission_all_files_access_label">Acces la toate fișierele</string>
+    <string name="permission_all_files_access_description">Permite aplicațiilor să citească, modifice și să șteargă toate fișierele de pe dispozitiv și din orice stocare atașată. Aplicațiile cu această permisiune pot accesa fișiere nesolicitate FĂRĂ notificare.</string>
+    <string name="permission_appear_on_top_label">Apare deasupra</string>
+    <string name="permission_appear_on_top_description">Permite aplicațiilor să afișeze lucruri peste alte aplicații în uz (inclusiv afișarea reclamelor). Aceasta poate interfera cu folosirea altor aplicații.</string>
+    <string name="permission_files_and_media_label">Fișiere și media</string>
+    <string name="permission_files_and_media_description">Permite aplicațiilor să acceseze fișiere și media pe dispozitiv.</string>
+    <string name="permission_access_to_media_only_label">Acces doar la media</string>
+    <string name="permission_access_to_media_only_description">Permite aplicațiilor să acceseze doar media pe dispozitiv.</string>
+    <string name="permission_access_precise_location_label">Acces la locația precisă</string>
+    <string name="permission_access_precise_location_description">Permite aplicațiilor să folosească locația precisă a dispozitivului. Aceasta NU este recomandată pentru majoritatea aplicațiilor (cu excepția unor aplicații precum hărți, servicii de taxi, servicii de urmărire a dispozitivului precum Find My Device etc.).</string>
+    <string name="permission_access_approximate_location_label">Acces la locația aproximativă</string>
+    <string name="permission_access_approximate_location_description">Permite aplicațiilor să folosească locația aproximativă a dispozitivului. Această permisiune este suficientă pentru majoritatea aplicațiilor care au nevoie de locație pentru funcționalitățile de bază.</string>
+    <string name="permission_ignore_battery_optimizations_label">Ignoră optimizările bateriei</string>
+    <string name="permission_ignore_battery_optimizations_description">Permite aplicațiilor să ruleze nerestricționat în fundal. Aceasta poate consuma bateria. Recomandat doar pentru aplicații care fac backup-uri/sincronizări continue/frecvente (de ex. Google Photos), aplicații foarte frecvent folosite (de ex. email, chat, SMS etc.) și aplicații care au notificări persistente.</string>
+    <string name="permission_notification_access_label">Acces la notificări</string>
+    <string name="permission_notification_access_description">Permite aplicațiilor să citească toate notificările, inclusiv informații personale (precum numele contactelor și textul mesajelor primite), să amâne sau să respingă notificări sau să declanșeze butoanele de acțiune (precum răspunderea la apeluri, ștergerea SMS/email-urilor etc.) și să activeze/dezactiveze modul Nu Deranja (DND) și să modifice setările asociate.</string>
+    <string name="permission_do_not_disturb_permission_label">Permisiunea Nu Deranja (DND)</string>
+    <string name="permission_do_not_disturb_permission_description">Permite aplicațiilor să activeze/dezactiveze modul Nu Deranja (DND) și să modifice setările asociate.</string>
+    <string name="permission_alarms_and_reminders_label">Alarme și mementouri</string>
+    <string name="permission_alarms_and_reminders_description">Permite aplicațiilor să seteze alarme și să programeze acțiuni sensibile la timp. Aceasta permite aplicațiilor să ruleze în fundal, ceea ce poate consuma mai multă baterie. Dezactivarea acestei permisiuni pentru o aplicație va cauza ca alarmele programate și evenimentele bazate pe timp să nu mai funcționeze.</string>
+    <string name="permission_premium_sms_services_label">Acces la servicii SMS premium</string>
+    <string name="permission_premium_sms_services_description">Permite aplicațiilor să folosească servicii de mesaje text premium. Aceasta te va costa bani.</string>
+    <string name="permission_unlimited_data_access_label">Acces nelimitat la date</string>
+    <string name="permission_unlimited_data_access_description">Permite aplicațiilor să acceseze date nelimitat. Aplicațiile pot consuma date chiar și când Economisorul de Date este ACTIVAT.</string>
+    <string name="permission_group_calendar_label">Calendar</string>
+    <string name="permission_group_calendar_description"><![CDATA[Permisiuni legate de calendar, de ex. vizualizarea și editarea intrărilor.]]></string>
+    <string name="permission_group_files_label">Fișiere și media</string>
+</resources>

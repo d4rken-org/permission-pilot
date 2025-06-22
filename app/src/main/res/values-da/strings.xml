@@ -1,0 +1,253 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
+    <string name="label_settings">Indstillinger</string>
+    <string name="label_help">Hjælp</string>
+
+    <string name="general_error_label">Fejl</string>
+
+    <string name="general_share_action">Del</string>
+    <string name="general_done_action">Færdig</string>
+    <string name="general_copy_action">Kopiér</string>
+    <string name="general_check_action">Tjek</string>
+    <string name="general_show_action">Vis</string>
+    <string name="general_open_action">Åbn</string>
+    <string name="general_continue_action">Fortsæt</string>
+    <string name="general_accept_action">Acceptér</string>
+
+    <string name="upgrade_myperm_label">Opgradér Permission Pilot</string>
+    <string name="upgrade_myperm_description">Kan du lide, at denne app ikke har reklamer og ikke indsamler dine data?\nKøb pro-versionen for at vise din støtte!</string>
+    <string name="upgrade_buy_pro_action">Køb pro-version</string>
+    <string name="general_no_action">Nej</string>
+    <string name="upgrade_donate_action">Donér</string>
+
+    <string name="debug_debuglog_size_label">Størrelse</string>
+    <string name="debug_debuglog_size_compressed_label">Komprimeret størrelse</string>
+    <string name="debug_notification_channel_label">Debug-notifikationer</string>
+    <string name="debug_debuglog_file_label">Optaget logfil</string>
+    <string name="debug_debuglog_record_action">Optag debug-log</string>
+
+    <string name="settings_category_other_label">Andet</string>
+
+    <string name="general_settings_label">Generelt</string>
+    <string name="general_settings_desc">Generelle tilpasninger, der påvirker hele appen.</string>
+
+    <string name="changelog_label">Ændringslog</string>
+    <string name="settings_acknowledgements_label">Anerkendelser</string>
+    <string name="general_thank_you_label">Tak</string>
+    <string name="settings_licenses_label">Licenser</string>
+    <string name="settings_privacy_policy_label">Privatlivspolitik</string>
+    <string name="settings_privacy_policy_desc">Ansvarlig håndtering af data.</string>
+
+    <string name="settings_support_label">Support</string>
+    <string name="documentation_label">Dokumentation</string>
+    <string name="discord_label">Discord</string>
+    <string name="discord_description">Et sted at hænge ud og stille spørgsmål.</string>
+    <string name="issue_tracker_label">Problemsporing</string>
+    <string name="issue_tracker_description">En offentlig problemsporing for fejlrapporter og funktionsanmodninger.</string>
+    <string name="permissions_page_label">Tilladelser</string>
+    <string name="apps_page_label">Apps</string>
+    <string name="app_type_system_label">System-app</string>
+    <string name="permission_type_aosp_label">AOSP</string>
+    <string name="apps_permission_unknown_description">Ukendt tilladelse. Den anmodes af denne app, men ingen anden app erklærer den.</string>
+    <string name="permissions_unknown_description">Ukendt tilladelse. Den anmodes af apps, men er ikke erklæret nogen steder.</string>
+    <string name="permissions_app_type_declaring_description">Tilladelse er oprettet af denne app.</string>
+    <string name="permissions_app_type_requesting_description">App anmoder om tilladelsen.</string>
+
+    <string name="general_filter_action">Filtrer</string>
+    <string name="general_cancel_action">Annullér</string>
+
+    <string name="apps_filter_userapps_label">Bruger-apps</string>
+    <string name="apps_filter_systemapps_label">System-apps</string>
+    <string name="apps_filter_nointernet_label">Apps uden internetadgang</string>
+    <string name="apps_filter_sideloaded_label">Sideloadede apps</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">OEM Store</string>
+
+    <string name="apps_sort_permissions_granted_label">Tildelte tilladelser</string>
+    <string name="apps_sort_permissions_requested_label">Anmodede tilladelser</string>
+    <string name="apps_sort_permissions_declared_label">Erklærede tilladelser</string>
+    <string name="apps_sort_app_name_label">App-navn</string>
+    <string name="apps_sort_install_date_label">Installationsdato</string>
+    <string name="apps_sort_update_date_label">Sidst opdateret</string>
+
+    <string name="general_sort_action">Sortér</string>
+    <string name="apps_permissions_x_of_x_granted">%1$d af %2$d tildelt.</string>
+    <string name="apps_permissions_x_requested">%1$d tilladelser anmodet.</string>
+    <string name="apps_permissions_declares_x">Erklærer %1$d tilladelser.</string>
+    <string name="apps_details_installer_label">Installationskilde</string>
+    <string name="apps_details_installer_unknown_label">Information ikke tilgængelig</string>
+
+    <string name="permissions_filter_manifest_label">AOSP-tilladelser</string>
+    <string name="permissions_filter_system_label">Erklæret af system-app</string>
+    <string name="permissions_filter_user_label">Erklæret af bruger-app</string>
+
+    <string name="permissions_filter_runtime_label">Anmodet ved kørsel</string>
+    <string name="permissions_filter_special_label">Særlig brug</string>
+    <string name="permissions_filter_installtime_label">Automatisk tildelt</string>
+    <string name="permissions_filter_installtime_hide_label">Ikke automatisk tildelt</string>
+
+    <string name="permissions_sort_apps_granted_label">Antal apps tildelt</string>
+    <string name="permissions_sort_apps_requested_label">Antal apps anmodet</string>
+    <string name="permissions_search_list_hint">Søg tilladelser</string>
+    <string name="apps_search_list_hint">Søg apps</string>
+    <string name="permissions_details_protection_label">Beskyttelsesniveau</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
+    <string name="permissions_protection_type_dangerous_label">Farlig</string>
+    <string name="permissions_protection_type_signature_label">Signatur</string>
+    <string name="permissions_protection_type_signatureorsystem_label">Signatur eller system</string>
+    <string name="permissions_protection_type_internal_label">Intern</string>
+    <string name="permissions_protection_type_unknown_label">Ukendt</string>
+
+    <plurals name="permissions_details_x_apps_granted">
+        <item quantity="one">Tildelt til %1$d app</item>
+        <item quantity="other">Tildelt til %1$d apps</item>
+    </plurals>
+    <plurals name="permissions_details_x_apps_requested">
+        <item quantity="one">Anmodet af %1$d app</item>
+        <item quantity="other">Anmodet af %1$d apps</item>
+    </plurals>
+
+    <string name="permissions_details_description_label">Beskrivelse</string>
+    <string name="permissions_details_apps_granted_label">Tildelte apps</string>
+    <string name="permissions_details_apps_requested_label">Anmodede apps</string>
+    <string name="permissions_details_apps_declared_label">Erklærede apps</string>
+
+    <string name="app_details_permission_granted_label">Tildelt</string>
+    <string name="app_details_permission_requested_label">Anmodet</string>
+    <string name="app_details_permission_declared_label">Erklæret</string>
+
+    <string name="app_details_permissions_label">Tilladelser</string>
+    <string name="apps_details_app_type_label">App-type</string>
+    <string name="apps_details_app_type_system_label">System-app</string>
+    <string name="apps_details_app_type_user_label">Bruger-app</string>
+    <string name="apps_details_app_type_unknown_label">Ukendt</string>
+    <string name="apps_details_package_label">Pakke</string>
+    <string name="apps_details_version_label">Version</string>
+    <string name="apps_details_install_date_label">Installationsdato</string>
+    <string name="apps_details_update_date_label">Opdateringsdato</string>
+    <string name="apps_details_target_sdk_label">Mål-SDK</string>
+    <string name="apps_details_compile_sdk_label">Kompiler-SDK</string>
+    <string name="apps_details_min_sdk_label">Minimum SDK</string>
+
+    <string name="apps_details_signing_certificate_label">Signeringscertifikat</string>
+    <string name="apps_details_signing_certificate_sha256_label">SHA-256 fingeraftryk</string>
+    <string name="apps_details_signing_certificate_sha1_label">SHA-1 fingeraftryk</string>
+    <string name="apps_details_signing_certificate_subject_label">Emne</string>
+    <string name="apps_details_signing_certificate_issuer_label">Udsteder</string>
+    <string name="apps_details_signing_certificate_serial_label">Serienummer</string>
+    <string name="apps_details_signing_certificate_validity_label">Gyldighed</string>
+
+    <string name="apps_details_apk_label">APK</string>
+    <string name="apps_details_apk_path_label">APK-sti</string>
+    <string name="apps_details_apk_size_label">APK-størrelse</string>
+
+    <string name="apps_details_overview_label">Oversigt</string>
+    <string name="overview_label">Oversigt</string>
+    <string name="overview_summary_label">Sammendrag</string>
+    <string name="overview_apps_label">Apps</string>
+    <string name="overview_permissions_label">Tilladelser</string>
+    <string name="overview_permissions_unique_label">Unikke tilladelser</string>
+    <string name="overview_permissions_aosp_label">AOSP-tilladelser</string>
+    <string name="overview_permissions_custom_label">Brugerdefinerede tilladelser</string>
+    <string name="overview_permissions_special_label">Særlige tilladelser</string>
+    <string name="overview_permissions_runtime_label">Kørselstilladelser</string>
+    <string name="overview_permissions_install_label">Installationstilladelser</string>
+
+    <string name="overview_info_label">Information</string>
+    <string name="overview_device_label">Enhed</string>
+
+    <string name="permission_write_calendar_label">Skriv kalender</string>
+    <string name="permission_write_calendar_description">Tillader at tilføje, fjerne og ændre kalenderbegivenheder på din enhed.</string>
+    <string name="permission_read_calendar_label">Læs kalender</string>
+    <string name="permission_read_calendar_description">Tillader at læse kalenderbegivenheder gemt på din enhed.</string>
+    <string name="permission_write_contacts_label">Ændr kontakter</string>
+    <string name="permission_write_contacts_description">Tillader at ændre kontaktdata gemt på din enhed.</string>
+    <string name="permission_read_contacts_label">Læs kontakter</string>
+    <string name="permission_read_contacts_description">Tillader at læse kontaktdata gemt på din enhed.</string>
+    <string name="permission_get_accounts_label">Find konti</string>
+    <string name="permission_get_accounts_description">Tillader apps at få listen over konti kendt af telefonen. Dette kan inkludere konti oprettet af applikationer, du har installeret.</string>
+    <string name="permission_access_background_location_label">Adgang til baggrundslokation</string>
+    <string name="permission_access_background_location_description">Tillader apps at få adgang til lokation når som helst, selv når de ikke er i brug.</string>
+    <string name="permission_access_media_location_label">Adgang til medielokation</string>
+    <string name="permission_access_media_location_description">Tillader apps at læse lokation fra din mediesamling.</string>
+    <string name="permission_manage_accounts_label">Administrer konti</string>
+    <string name="permission_manage_accounts_description">Tillader apps at administrere konti på enheden.</string>
+    <string name="permission_wifi_control_label">WiFi-kontrol</string>
+    <string name="permission_wifi_control_description">Tillader apps at tænde eller slukke for WiFi, scanne og forbinde til WiFi-netværk, tilføje eller fjerne netværk, eller starte et lokalt hotspot.</string>
+    <string name="permission_change_network_state_label">Ændr netværkstilstand</string>
+    <string name="permission_change_network_state_description">Tillader apps at ændre tilstanden af netværksforbindelse.</string>
+    <string name="permission_read_sync_settings_label">Læs synkroniseringsindstillinger</string>
+    <string name="permission_read_sync_settings_description">Tillader apps at læse synkroniseringsindstillinger for en konto.</string>
+    <string name="permission_install_unknown_apps_label">Installér ukendte apps (Ukendte kilder)</string>
+    <string name="permission_install_unknown_apps_description">Tillader apps at installere (sideloade) andre apps på din enhed. Dette kan sætte din enhed og data i fare.</string>
+    <string name="permission_all_files_access_label">Alle filers adgang</string>
+    <string name="permission_all_files_access_description">Tillader apps at læse, ændre og slette alle filer på din enhed samt alle tilsluttede lagerenheder. Apps med denne tilladelse kan også få adgang til filer, der ikke er relateret til appen, UDEN at give dig besked.</string>
+    <string name="permission_appear_on_top_label">Vis øverst</string>
+    <string name="permission_appear_on_top_description">Tillader apps at vise ting oven på andre apps, du bruger (inklusive visning af reklamer). Dette kan forstyrre din brug af andre apps.</string>
+    <string name="permission_files_and_media_label">Filer og medier</string>
+    <string name="permission_files_and_media_description">Tillader apps adgang til filer og medier på din enhed.</string>
+    <string name="permission_access_to_media_only_label">Kun adgang til medier</string>
+    <string name="permission_access_to_media_only_description">Tillader apps kun adgang til medier på din enhed.</string>
+    <string name="permission_access_precise_location_label">Adgang til præcis lokation</string>
+    <string name="permission_access_precise_location_description">Tillader apps at få adgang til din enheds præcise lokation. Dette anbefales IKKE for de fleste apps (undtagen for nogle apps som kort, taxitjenester, enhedssporingstjenester som Find My Device osv.).</string>
+    <string name="permission_access_approximate_location_label">Adgang til omtrentlig lokation</string>
+    <string name="permission_access_approximate_location_description">Tillader apps at få adgang til din enheds omtrentlige lokation. Denne tilladelse er tilstrækkelig for de fleste apps, der har brug for adgang til din lokation for kernefunktionalitet.</string>
+    <string name="permission_ignore_battery_optimizations_label">Ignorer batterioptimeringer</string>
+    <string name="permission_ignore_battery_optimizations_description">Tillader apps at køre uhindret i baggrunden. Dette kan dræne batteriet. Anbefales kun til apps, der udfører kontinuerlige/hyppige sikkerhedskopier og/eller synkroniseringer (f.eks. Google Photos), meget hyppigt brugte apps (f.eks. e-mail, chat, sms osv.), samt for apps med en vedvarende notifikation.</string>
+    <string name="permission_notification_access_label">Notifikationsadgang</string>
+    <string name="permission_notification_access_description">Tillader apps at læse alle dine notifikationer, inklusive personlige oplysninger (som kontaktnavne og tekst i beskeder, du modtager), udsætte eller afvise notifikationer eller udløse handlingsknapper de indeholder (som at besvare telefonopkald, slette dine sms/e-mails osv.) og tænde Forstyr ikke (DND) TIL eller FRA og ændre relaterede indstillinger.</string>
+    <string name="permission_do_not_disturb_permission_label">Forstyr ikke (DND) tilladelse</string>
+    <string name="permission_do_not_disturb_permission_description">Tillader apps at tænde Forstyr ikke (DND) TIL eller FRA og ændre relaterede indstillinger.</string>
+    <string name="permission_alarms_and_reminders_label">Alarmer og påmindelser</string>
+    <string name="permission_alarms_and_reminders_description">Tillader apps at indstille alarmer og planlægge tidsfølsomme handlinger. Dette tillader apps at køre i baggrunden, hvilket kan bruge mere batteri. At slå denne tilladelse FRA for en app vil forårsage, at eksisterende alarmer og tidsbaserede begivenheder, der er planlagt af den pågældende app, holder op med at virke.</string>
+    <string name="permission_premium_sms_services_label">Premium SMS-adgang</string>
+    <string name="permission_premium_sms_services_description">Tillader apps at bruge premium tekstbeskedtjenester. Dette vil koste dig penge.</string>
+    <string name="permission_unlimited_data_access_label">Ubegrænset dataadgang</string>
+    <string name="permission_unlimited_data_access_description">Tillader apps adgang til ubegrænsede data. Apps kan forbruge data, selv når Dataspar er TIL.</string>
+    <string name="permission_group_calendar_label">Kalender</string>
+    <string name="permission_group_calendar_description"><![CDATA[Kalenderrelaterede tilladelser, f.eks. vis og rediger indtastninger.]]></string>
+    <string name="permission_group_files_label">Filer og medier</string>
+    <string name="permission_group_files_description">Filrelaterede tilladelser. Adgang til lager, dokumenter og medier.</string>
+    <string name="permission_group_other_label">Andre</string>
+    <string name="permission_group_other_description">Andre tilladelser uden specifik kategori.</string>
+    <string name="permission_group_messaging_label">Beskeder</string>
+    <string name="permission_group_messaging_description">SMS, MMS og mere. Alt beskedrelateret.</string>
+    <string name="permission_group_connectivity_label">Forbindelse</string>
+    <string name="permission_group_connectivity_description">WiFi, LTE, Bluetooth og mere. Tilladelser relateret til kommunikation med omverdenen.</string>
+    <string name="permission_group_sensors_label">Sensorer</string>
+    <string name="permission_group_sensors_description">Accelerometer, gyroskop, kropssensorer, aktivitetsgenkendelse og mere. Måder din enhed kan fange input på.</string>
+    <string name="permission_group_calls_label">Opkald</string>
+    <string name="permission_group_calls_description">Opkaldsrelaterede tilladelser</string>
+    <string name="permission_group_location_label">Lokation</string>
+    <string name="permission_group_location_description">Lokationsrelaterede tilladelser.</string>
+    <string name="permission_group_contacts_label">Kontakter</string>
+    <string name="permission_group_contacts_description">"Læsning og skrivning af kontakter."</string>
+    <string name="permission_group_apps_label">Apps</string>
+    <string name="permission_group_apps_description">Særlige adgangstilladelser, der kræver eksplicit brugersamtykke.</string>
+    <string name="permission_group_battery_label">Batteri</string>
+    <string name="permission_group_battery_description">Batterirelaterede tilladelser.</string>
+    <string name="permission_group_camera_label">Kamera</string>
+    <string name="permission_group_camera_description">Kamerarelaterede tilladelser.</string>
+    <string name="permission_group_audio_label">Mikrofon</string>
+    <string name="permission_group_audio_description">Mikrofonrelaterede tilladelser.</string>
+    <string name="permission_picture_in_picture_label">Billede i billede</string>
+    <string name="overview_device_android_version_label">Android-version</string>
+    <string name="overview_device_name_label">Enhed</string>
+    <string name="overview_device_android_patch_label">Patch-niveau</string>
+    <string name="overview_summary_apps_active_profile_label">Apps i aktiv profil</string>
+    <string name="overview_summary_apps_other_profile_label">Apps i administrerede brugerprofiler, eksklusive kloner</string>
+    <string name="overview_summary_apps_sideloaded_label">Apps sideloadet fra eksterne kilder</string>
+    <string name="overview_summary_apps_installers_label">Apps med \'Installér fra ukendte kilder\' aktiveret</string>
+    <string name="overview_summary_apps_overlayers_label">Apps, der kan \'Vises øverst\'</string>
+    <string name="overview_summary_apps_offline_label">Apps, der har \'Intet internet\' tilladelser</string>
+    <string name="overview_summary_apps_clones_label">Apps med kloner i andre profiler</string>
+    <string name="overview_summary_apps_sharedids_label">Apps med SharedUserID</string>
+    <string name="permission_bind_accessibility_service_label">Tilbyd tilgængelighedstjeneste</string>
+    <string name="permission_bind_accessibility_service_description">Tillader appen at tilbyde en tilgængelighedstjeneste, der kan aktiveres i systemindstillingerne.</string>
+    <string name="debug_debuglog_sensitive_information_message">Denne fil indeholder følsomme oplysninger (f.eks. dine installerede applikationer). Del den kun med betroede parter.</string>
+    <string name="settings_debuglog_explanation">Denne funktion optager alt, hvad appen laver, i en delbar fil. Den genererede fil indeholder følsomme oplysninger (f.eks. dine installerede applikationer). Del den kun med betroede parter (f.eks. app-udvikleren, hvis I fejlsøger et problem sammen).</string>
+    <string name="onboarding_body1">Denne app hjælper dig med at navigere installerede applikationer og opdage tilladelser.</string>
+    <string name="onboarding_body2">Permission Pilot indsamler installerede applikationsoplysninger for at kunne liste dine apps og krydshenvise deres tilladelser, når du bruger denne applikation.</string>
+    <string name="onboarding_body3">Permission Pilot har ingen reklamer og behandler kun data lokalt.</string>
+</resources>

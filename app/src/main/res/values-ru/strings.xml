@@ -254,4 +254,9 @@
     <string name="overview_summary_apps_sharedids_label">Количество прил. с предоставленным ID пользователя</string>
     <string name="permission_bind_accessibility_service_label">Предложение службы специальных возможностей</string>
     <string name="permission_bind_accessibility_service_description">Разрешение приложениям предлагать включить службу специальных возможностей в настройках.</string>
+    <string name="debug_debuglog_sensitive_information_message">Этот файл содержит конфиденциальную информацию (например, ваши установленные приложения). Делитесь им только с доверенными лицами.</string>
+    <string name="settings_debuglog_explanation">Эта функция записывает всё, что делает приложение, в файл для обмена. Созданный файл содержит конфиденциальную информацию (например, ваши установленные приложения). Делитесь им только с доверенными лицами (например, с разработчиком приложения при совместном устранении неполадок).</string>
+    <string name="onboarding_body1">Это приложение поможет вам навигировать по установленным приложениям и изучать разрешения.</string>
+    <string name="onboarding_body2">Permission Pilot собирает информацию об установленных приложениях, чтобы отображать ваши приложения и сопоставлять их разрешения при использовании данного приложения.</string>
+    <string name="onboarding_body3">Permission Pilot не содержит рекламы и обрабатывает данные только локально.</string>
 </resources>
