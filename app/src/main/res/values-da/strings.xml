@@ -99,15 +99,6 @@
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Ukendt</string>
 
-    <plurals name="permissions_details_x_apps_granted">
-        <item quantity="one">Tildelt til %1$d app</item>
-        <item quantity="other">Tildelt til %1$d apps</item>
-    </plurals>
-    <plurals name="permissions_details_x_apps_requested">
-        <item quantity="one">Anmodet af %1$d app</item>
-        <item quantity="other">Anmodet af %1$d apps</item>
-    </plurals>
-
     <string name="permissions_details_description_label">Beskrivelse</string>
     <string name="permissions_details_apps_granted_label">Tildelte apps</string>
     <string name="permissions_details_apps_requested_label">Anmodede apps</string>
