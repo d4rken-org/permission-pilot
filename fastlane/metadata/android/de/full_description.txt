@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> ist eine neuartige App, die Ihnen bei der Überprüfung von Apps und deren Berechtigungen hilft.
+
+Mit jedem Android-Update werden die Berechtigungen komplexer.
+Dass Android Berechtigungen an verschiedenen Stellen anzeigt, macht die Überprüfung nicht einfacher:
+
+* App-Info-Seite
+* Spezieller Zugriff
+* Berechtigungsmanager
+* und mehr...
+
+<i>Permission Pilot</i> listet alle Berechtigungen an einem Ort auf und verschafft Ihnen so einen Überblick über die App-Berechtigungen aus der Vogelperspektive.
+
+Es stehen zwei Perspektiven zur Verfügung: Sie können entweder alle von einer App angeforderten Berechtigungen oder alle Apps anzeigen, die eine bestimmte Berechtigung anfordern.
+
+<b>Registerkarte "Apps"</b>
+Alle installierten Apps, einschließlich System-Apps und Arbeitsprofil-Apps.
+Ein Klick auf eine App listet alle von der App angeforderten Berechtigungen auf, einschließlich derer, die im Berechtigungsmanager und unter "Spezieller Zugriff" angezeigt werden, zusammen mit ihrem Status.
+Dies schließt auch Internetberechtigungen und den SharedUserID-Status ein!
+
+<b>Registerkarte "Berechtigungen"</b>
+Alle auf Ihrem Gerät vorhandenen Berechtigungen, einschließlich derer, die im Berechtigungsmanager und unter "Spezieller Zugriff" angezeigt werden.
+Die Berechtigungen sind zur einfacheren Navigation vorgruppiert, z. B. Kontakte, Mikrofon, Kamera usw.
+Ein Klick auf eine Berechtigung zeigt alle Apps an, die Zugriff auf diese Berechtigung anfordern.
+
+Apps und Berechtigungen können über Freitext gesucht, nach verschiedenen Kriterien sortiert und gefiltert werden.

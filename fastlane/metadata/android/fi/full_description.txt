@@ -1,0 +1,25 @@
+<i>Lupapilotti</i> on uudenlainen sovellus, joka auttaa sinua tarkastelemaan sovelluksia ja niiden lupia.
+
+Jokaisen Android-päivityksen myötä luvat muuttuvat monimutkaisemmiksi.
+Se, että Android näyttää luvat eri paikoissa, ei helpota niiden tarkastelua:
+
+* Sovelluksen tiedot -sivu
+* Erityiskäyttöoikeudet
+* Lupienhallinta
+* ja paljon muuta...
+
+<i>Lupapilotti</i> listaa kaikki luvat yhteen paikkaan, antaen sinulle kokonaiskuvan sovellusten luvista.
+
+Saatavilla on kaksi näkymää: Voit joko tarkastella kaikkia sovelluksen pyytämiä lupia tai tarkastella kaikkia sovelluksia, jotka pyytävät tiettyä lupaa.
+
+<b>Sovellukset-välilehti</b>
+Kaikki asennetut sovellukset, mukaan lukien järjestelmäsovellukset ja työprofiilin sovellukset.
+Napsauttamalla sovellusta näet luettelon kaikista sen pyytämistä luvista, mukaan lukien ne, jotka näkyvät Lupienhallinnassa ja Erityiskäyttöoikeudet-näkymässä, sekä niiden tilan.
+Tämä sisältää myös internet-luvat ja SharedUserID-tilan!
+
+<b>Luvat-välilehti</b>
+Kaikki laitteellasi olevat luvat, mukaan lukien ne, jotka näkyvät Lupienhallinnassa ja Erityiskäyttöoikeudet-näkymässä.
+Luvat on ryhmitelty valmiiksi selailun helpottamiseksi, esim. Yhteystiedot, Mikrofoni, Kamera jne.
+Napsauttamalla lupaa näet kaikki sovellukset, jotka pyytävät kyseistä lupaa.
+
+Sovelluksia ja lupia voi etsiä vapaatekstihaulla sekä lajitella ja suodattaa eri kriteerien mukaan.

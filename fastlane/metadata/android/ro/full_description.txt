@@ -1,0 +1,25 @@
+<i>Pilot de permisiuni</i> este o aplicație de un nou gen, concepută pentru a vă ajuta să analizați aplicațiile și permisiunile acestora.
+
+Cu fiecare actualizare Android, gestionarea permisiunilor devine tot mai complexă.
+Android afișează permisiunile în diverse locuri, ceea ce îngreunează verificarea lor:
+
+* Pagina de informații a aplicației
+* Acces special
+* Manager de permisiuni
+* și altele...
+
+<i>Pilot de permisiuni</i> centralizează toate permisiunile într-un singur loc, oferindu-vă o imagine de ansamblu clară.
+
+Sunt disponibile două perspective: puteți vizualiza toate permisiunile solicitate de o anumită aplicație sau toate aplicațiile care solicită o anumită permisiune.
+
+<b>Fila Aplicații</b>
+Toate aplicațiile instalate, inclusiv cele de sistem și cele din profilul de serviciu.
+La selectarea unei aplicații, veți vedea o listă cu toate permisiunile solicitate, inclusiv cele din Managerul de permisiuni și Acces special, împreună cu starea lor.
+Sunt incluse și permisiunile de internet și starea SharedUserID!
+
+<b>Fila Permisiuni</b>
+Toate permisiunile existente pe dispozitiv, inclusiv cele din Managerul de permisiuni și Acces special.
+Permisiunile sunt grupate pentru o navigare mai ușoară (de ex., Contacte, Microfon, Cameră foto etc.).
+La selectarea unei permisiuni, veți vedea toate aplicațiile care o solicită.
+
+Aplicațiile și permisiunile pot fi căutate folosind text, sortate și filtrate după diverse criterii.

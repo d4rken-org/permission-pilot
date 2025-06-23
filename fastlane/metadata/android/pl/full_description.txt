@@ -1,0 +1,25 @@
+<i>Pilot uprawnień</i> to nowy rodzaj aplikacji, który pomaga w przeglądaniu aplikacji i ich uprawnień.
+
+Z każdą aktualizacją Androida uprawnienia stają się coraz bardziej złożone.
+To, że Android wyświetla uprawnienia w różnych miejscach, nie ułatwia ich sprawdzania:
+
+* Strona informacyjna aplikacji
+* Dostęp specjalny
+* Menedżer uprawnień
+* i inne...
+
+<i>Pilot uprawnień</i> gromadzi wszystkie uprawnienia w jednym miejscu, zapewniając pełny wgląd w uprawnienia aplikacji.
+
+Dostępne są dwie perspektywy: można wyświetlić wszystkie uprawnienia żądane przez daną aplikację lub wszystkie aplikacje żądające określonego uprawnienia.
+
+<b>Karta Aplikacje</b>
+Wszystkie zainstalowane aplikacje, w tym aplikacje systemowe i aplikacje profilu służbowego.
+Kliknięcie aplikacji spowoduje wyświetlenie listy wszystkich żądanych przez nią uprawnień, w tym tych widocznych w Menedżerze uprawnień i w Dostępie specjalnym, wraz z ich statusem.
+Obejmuje to również uprawnienia internetowe i status SharedUserID!
+
+<b>Karta Uprawnienia</b>
+Wszystkie uprawnienia istniejące na urządzeniu, w tym te widoczne w Menedżerze uprawnień i w Dostępie specjalnym.
+Uprawnienia są pogrupowane w celu ułatwienia nawigacji, np. Kontakty, Mikrofon, Aparat itp.
+Kliknięcie uprawnienia pokazuje wszystkie aplikacje, które żądają do niego dostępu.
+
+Aplikacje i uprawnienia można wyszukiwać za pomocą tekstu, sortować i filtrować według różnych kryteriów.
