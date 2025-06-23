@@ -1,0 +1,25 @@
+<i>Toestemmingspiloot</i> is een nieuw soort app die u helpt bij het controleren van apps en hun machtigingen.
+
+Met elke Android-update worden de machtigingen complexer.
+Dat Android machtigingen op verschillende locaties toont, maakt het controleren ervan niet eenvoudiger:
+
+* App-infopagina
+* Speciale toegang
+* Machtigingenbeheer
+* en meer...
+
+<i>Toestemmingspiloot</i> verzamelt alle machtigingen op één plek, waardoor u een helikopterview krijgt over de machtigingen van apps.
+
+Er zijn twee perspectieven beschikbaar: u kunt alle machtigingen bekijken die een app aanvraagt, of alle apps bekijken die een specifieke machtiging aanvragen.
+
+<b>Tabblad Apps</b>
+Alle geïnstalleerde apps, inclusief systeemapps en apps van het werkprofiel.
+Als u op een app klikt, worden alle machtigingen weergegeven die de app heeft aangevraagd, inclusief die in Machtigingenbeheer en Speciale toegang, samen met hun status.
+Dit omvat ook internetmachtigingen en de SharedUserID-status!
+
+<b>Tabblad Machtigingen</b>
+Alle machtigingen die op uw apparaat bestaan, inclusief die in Machtigingenbeheer en Speciale toegang.
+Machtigingen zijn vooraf gegroepeerd voor eenvoudiger navigeren, bijv. Contacten, Microfoon, Camera, enz.
+Als u op een machtiging klikt, worden alle apps weergegeven die toegang tot die machtiging aanvragen.
+
+Apps en machtigingen kunnen worden doorzocht met vrije tekst, en worden gesorteerd en gefilterd op basis van verschillende criteria.

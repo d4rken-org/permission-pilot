@@ -1,0 +1,25 @@
+<i>Pilot povolení</i> je nový druh aplikácie, ktorá vám pomôže kontrolovať aplikácie a ich povolenia.
+
+S každou aktualizáciou systému Android sa povolenia stávajú zložitejšími.
+Zobrazovanie povolení v systéme Android na rôznych miestach ich kontrolu neuľahčuje:
+
+* Stránka s informáciami o aplikácii
+* Špeciálny prístup
+* Správca povolení
+* a ďalšie...
+
+<i>Pilot povolení</i> zhromažďuje všetky povolenia na jednom mieste a poskytuje vám tak prehľad o povoleniach aplikácií z vtáčej perspektívy.
+
+K dispozícii sú dve perspektívy: môžete si zobraziť buď všetky povolenia, ktoré aplikácia požaduje, alebo všetky aplikácie, ktoré požadujú určité povolenie.
+
+<b>Karta Aplikácie</b>
+Všetky nainštalované aplikácie vrátane systémových aplikácií a aplikácií pracovného profilu.
+Kliknutím na ľubovoľnú aplikáciu sa zobrazí zoznam všetkých povolení, ktoré aplikácia požadovala, vrátane tých, ktoré sa zobrazujú v Správcovi povolení a Špeciálnom prístupe, spolu s ich stavom.
+To zahŕňa aj internetové povolenia, stav SharedUserID!
+
+<b>Karta Povolenia</b>
+Všetky povolenia, ktoré existujú vo vašom zariadení, vrátane tých, ktoré sa zobrazujú v Správcovi povolení a Špeciálnom prístupe.
+Povolenia sú vopred zoskupené pre jednoduchšiu navigáciu, napr. Kontakty, Mikrofón, Fotoaparát atď.
+Kliknutím na povolenie sa zobrazia všetky aplikácie, ktoré žiadajú o prístup k danému povoleniu.
+
+Aplikácie a povolenia možno vyhľadávať pomocou voľného textu, triediť a filtrovať podľa rôznych kritérií.

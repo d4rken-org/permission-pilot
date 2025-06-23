@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> er en ny slags app, der hjælper dig med at gennemgå apps og deres tilladelser.
+
+For hver Android-opdatering bliver tilladelser mere komplekse.
+At Android viser tilladelser forskellige steder, gør det ikke lettere at gennemgå dem:
+
+* App-infosiden
+* Særlig adgang
+* Tilladelsesadministrator
+* og mere...
+
+<i>Permission Pilot</i> samler alle tilladelser på ét sted, hvilket giver dig et fugleperspektiv over app-tilladelser.
+
+To perspektiver er tilgængelige: Du kan enten se alle tilladelser, en app anmoder om, eller se alle apps, der anmoder om en bestemt tilladelse.
+
+<b>Apps-faneblad</b>
+Alle installerede apps, inklusive systemapps og arbejdsprofil-apps.
+Når du klikker på en app, vises alle de tilladelser, appen har anmodet om, inklusive dem, der vises under Tilladelsesadministrator og Særlig adgang, sammen med deres status.
+Dette vil også omfatte internettilladelser, SharedUserID-status!
+
+<b>Tilladelser-faneblad</b>
+Alle tilladelser, der findes på din enhed, inklusive dem, der vises under Tilladelsesadministrator og Særlig adgang.
+Tilladelser er forhåndsgrupperet for nemmere navigation, f.eks. Kontakter, Mikrofon, Kamera osv.
+Når du klikker på en tilladelse, vises alle de apps, der anmoder om adgang til den pågældende tilladelse.
+
+Apps og tilladelser kan søges ved hjælp af fritekst, sorteres og filtreres efter forskellige kriterier.

@@ -1,0 +1,25 @@
+<i>Piloto de Permissões</i> é uma nova aplicação que o ajuda a analisar as aplicações e as suas permissões.
+
+Com cada atualização do Android, as permissões tornam-se mais complexas.
+O facto de o Android apresentar as permissões em vários locais diferentes não torna a sua análise mais fácil:
+
+* Página de informações da aplicação
+* Acesso especial
+* Gestor de permissões
+* e mais...
+
+O <i>Piloto de Permissões</i> lista todas as permissões num único local, oferecendo-lhe uma visão geral das permissões das aplicações.
+
+Estão disponíveis duas perspetivas: pode visualizar todas as permissões que uma aplicação solicita ou ver todas as aplicações que solicitam uma determinada permissão.
+
+<b>Separador Aplicações</b>
+Todas as aplicações instaladas, incluindo as do sistema e as do perfil de trabalho.
+Ao clicar numa aplicação, serão listadas todas as permissões que a aplicação solicitou, incluindo as que aparecem no Gestor de permissões e no Acesso especial, juntamente com o respetivo estado.
+Isto também incluirá as permissões de Internet e o estado do SharedUserID!
+
+<b>Separador Permissões</b>
+Todas as permissões que existem no seu dispositivo, incluindo as que aparecem no Gestor de permissões e no Acesso especial.
+As permissões estão pré-agrupadas для facilitar a navegação (p. ex., Contactos, Microfone, Câmara, etc.).
+Ao clicar numa permissão, são mostradas todas as aplicações que solicitam acesso a essa permissão.
+
+As aplicações e as permissões podem ser pesquisadas por texto livre, ordenadas e filtradas segundo diferentes critérios.

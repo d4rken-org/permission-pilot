@@ -1,0 +1,25 @@
+<i>Behörighetspilot</i> är en ny typ av app som hjälper dig att granska appar och deras behörigheter.
+
+Med varje Android-uppdatering blir behörigheterna mer komplexa.
+Att Android visar behörigheter på olika ställen gör det inte lättare att granska dem:
+
+* Appinformationssidan
+* Särskild åtkomst
+* Behörighetshanteraren
+* och mer...
+
+<i>Behörighetspilot</i> listar alla behörigheter på ett och samma ställe, vilket ger dig en fågelperspektiv över appbehörigheter.
+
+Två perspektiv finns tillgängliga: Du kan antingen se alla behörigheter som en app begär, eller se alla appar som begär en viss behörighet.
+
+<b>Fliken Appar</b>
+Alla installerade appar, inklusive systemappar och appar i arbetsprofilen.
+Om du klickar på en app listas alla behörigheter som appen har begärt, inklusive de som visas i Behörighetshanteraren och Särskild åtkomst, tillsammans med deras status.
+Detta inkluderar även internetbehörigheter och SharedUserID-status!
+
+<b>Fliken Behörigheter</b>
+Alla behörigheter som finns på din enhet, inklusive de som visas i Behörighetshanteraren och Särskild åtkomst.
+Behörigheter är förgrupperade för enklare navigering, t.ex. Kontakter, Mikrofon, Kamera, etc.
+Om du klickar på en behörighet visas alla appar som begär åtkomst till den behörigheten.
+
+Appar och behörigheter kan sökas med fritext, sorteras och filtreras efter olika kriterier.

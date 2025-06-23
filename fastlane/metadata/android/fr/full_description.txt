@@ -1,0 +1,25 @@
+<i>Pilote de permission</i> est une nouvelle application conçue pour vous aider à examiner les applications et leurs autorisations.
+
+À chaque mise à jour d'Android, la gestion des autorisations se complexifie.
+Android affiche les autorisations à divers endroits, ce qui ne facilite pas leur examen :
+
+* Page d'informations sur l'application
+* Accès spécial
+* Gestionnaire d'autorisations
+* et plus...
+
+<i>Pilote de permission</i> regroupe toutes les autorisations en un seul lieu, vous offrant une vue d'ensemble des autorisations des applications.
+
+Deux perspectives sont disponibles : vous pouvez visualiser toutes les autorisations demandées par une application, ou bien toutes les applications qui sollicitent une autorisation spécifique.
+
+<b>Onglet Applications</b>
+Liste de toutes les applications installées, y compris les applications système et celles du profil professionnel.
+En cliquant sur une application, vous verrez toutes les autorisations qu'elle a demandées, y compris celles qui figurent dans le Gestionnaire d'autorisations et l'Accès spécial, ainsi que leur statut.
+Cela inclut également les autorisations Internet et le statut SharedUserID !
+
+<b>Onglet Autorisations</b>
+Liste de toutes les autorisations existant sur votre appareil, y compris celles qui figurent dans le Gestionnaire d'autorisations et l'Accès spécial.
+Les autorisations sont regroupées pour faciliter la navigation (par ex. : Contacts, Microphone, Appareil photo, etc.).
+En cliquant sur une autorisation, vous verrez toutes les applications qui demandent à y accéder.
+
+Les applications et les autorisations peuvent être recherchées par texte libre, triées et filtrées selon différents critères.

@@ -1,0 +1,25 @@
+<i>Hoa tiêu Quyền</i> là một ứng dụng kiểu mới giúp bạn dễ dàng xem xét các ứng dụng và quyền hạn của chúng.
+
+Với mỗi bản cập nhật Android, việc quản lý quyền hạn ngày càng trở nên phức tạp.
+Android hiển thị quyền hạn ở nhiều nơi khác nhau, khiến việc xem xét trở nên khó khăn:
+
+* Trang thông tin ứng dụng
+* Truy cập đặc biệt
+* Trình quản lý quyền
+* và hơn thế nữa...
+
+<i>Hoa tiêu Quyền</i> tập hợp tất cả các quyền vào một nơi duy nhất, giúp bạn có cái nhìn tổng quan về quyền hạn của ứng dụng.
+
+Có hai góc độ để bạn lựa chọn: xem tất cả các quyền mà một ứng dụng yêu cầu, hoặc xem tất cả các ứng dụng yêu cầu một quyền cụ thể.
+
+<b>Tab Ứng dụng</b>
+Tất cả các ứng dụng đã cài đặt, bao gồm ứng dụng hệ thống và ứng dụng trong hồ sơ công việc.
+Khi nhấp vào một ứng dụng, bạn sẽ thấy danh sách tất cả các quyền mà ứng dụng đó đã yêu cầu, bao gồm cả những quyền trong Trình quản lý quyền và Truy cập đặc biệt, cùng với trạng thái của chúng.
+Bao gồm cả quyền truy cập Internet và trạng thái SharedUserID!
+
+<b>Tab Quyền</b>
+Tất cả các quyền có trên thiết bị của bạn, bao gồm cả những quyền trong Trình quản lý quyền và Truy cập đặc biệt.
+Các quyền được nhóm sẵn để dễ dàng điều hướng, ví dụ: Danh bạ, Micrô, Máy ảnh, v.v.
+Khi nhấp vào một quyền, bạn sẽ thấy tất cả các ứng dụng yêu cầu quyền truy cập đó.
+
+Bạn có thể tìm kiếm ứng dụng và quyền bằng văn bản tự do, cũng như sắp xếp và lọc theo nhiều tiêu chí khác nhau.

@@ -1,0 +1,25 @@
+<i>Pilota Permessi</i> è un nuovo tipo di app che ti aiuta a controllare le app e le relative autorizzazioni.
+
+Con ogni aggiornamento di Android, le autorizzazioni diventano sempre più complesse.
+Il fatto che Android mostri le autorizzazioni in varie posizioni non ne facilita il controllo:
+
+* Pagina delle informazioni sull'app
+* Accesso speciale
+* Gestore delle autorizzazioni
+* e altro...
+
+<i>Pilota Permessi</i> elenca tutte le autorizzazioni in un'unica posizione, offrendoti una visione d'insieme delle autorizzazioni delle app.
+
+Sono disponibili due prospettive: puoi visualizzare tutte le autorizzazioni richieste da un'app o visualizzare tutte le app che richiedono una specifica autorizzazione.
+
+<b>Scheda App</b>
+Tutte le app installate, incluse le app di sistema e le app del profilo di lavoro.
+Facendo clic su un'app, verranno elencate tutte le autorizzazioni richieste dall'app, comprese quelle visualizzate nel Gestore delle autorizzazioni e in Accesso speciale, insieme al loro stato.
+Ciò includerà anche le autorizzazioni Internet e lo stato di SharedUserID!
+
+<b>Scheda Autorizzazioni</b>
+Tutte le autorizzazioni presenti sul tuo dispositivo, comprese quelle visualizzate nel Gestore delle autorizzazioni e in Accesso speciale.
+Le autorizzazioni sono pre-raggruppate per facilitare la navigazione, ad es. Contatti, Microfono, Fotocamera, ecc.
+Facendo clic su un'autorizzazione vengono visualizzate tutte le app che richiedono l'accesso a tale autorizzazione.
+
+Le app e le autorizzazioni possono essere cercate utilizzando testo libero, ordinate e filtrate in base a diversi criteri.

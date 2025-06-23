@@ -1,0 +1,25 @@
+<i>Tillatelsespilot</i> er en ny type app som hjelper deg med å gjennomgå apper og tillatelsene deres.
+
+For hver Android-oppdatering blir tillatelsene mer komplekse.
+At Android viser tillatelser på ulike steder, gjør det ikke enklere å se over dem:
+
+* Appinformasjon-siden
+* Spesiell tilgang
+* Tillatelsesbehandling
+* og mer ...
+
+<i>Tillatelsespilot</i> lister opp alle tillatelser på ett sted, noe som gir deg et fugleperspektiv over app-tillatelser.
+
+To perspektiver er tilgjengelige: Du kan enten se alle tillatelsene en app ber om, eller se alle appene som ber om en bestemt tillatelse.
+
+<b>Apper-fanen</b>
+Alle installerte apper, inkludert systemapper og apper for jobbprofil.
+Klikker du på en app, listes alle tillatelsene appen har bedt om, inkludert de som vises i Tillatelsesbehandling og Spesiell tilgang, sammen med statusen deres.
+Dette inkluderer også internettillatelser og SharedUserID-status!
+
+<b>Tillatelser-fanen</b>
+Alle tillatelser som finnes på enheten din, inkludert de som vises i Tillatelsesbehandling og Spesiell tilgang.
+Tillatelsene er gruppert på forhånd for enklere navigering, f.eks. Kontakter, Mikrofon, Kamera osv.
+Klikker du på en tillatelse, vises alle appene som ber om tilgang til den.
+
+Apper og tillatelser kan søkes i med fritekst, og sorteres og filtreres etter ulike kriterier.
