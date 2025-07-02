@@ -183,7 +183,7 @@ dependencies {
 
     implementation("io.coil-kt:coil:2.4.0")
 
-    "gplayImplementation"("com.android.billingclient:billing:6.2.1")
+    "gplayImplementation"("com.android.billingclient:billing:8.0.0")
 
     // Support libs
     implementation("androidx.core:core-ktx:1.13.1")

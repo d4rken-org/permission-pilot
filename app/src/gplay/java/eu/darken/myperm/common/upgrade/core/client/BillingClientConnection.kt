@@ -5,9 +5,10 @@ import com.android.billingclient.api.AcknowledgePurchaseParams
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.Purchase
-import com.android.billingclient.api.SkuDetails
-import com.android.billingclient.api.SkuDetailsParams
+import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryPurchasesParams
 import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
@@ -36,7 +37,10 @@ data class BillingClientConnection(
 
     suspend fun queryPurchases(): Collection<Purchase> {
         val (result: BillingResult, purchases) = suspendCoroutine<Pair<BillingResult, Collection<Purchase>?>> { continuation ->
-            client.queryPurchasesAsync(BillingClient.SkuType.INAPP) { result, purchases ->
+            val params = QueryPurchasesParams.newBuilder().apply {
+                setProductType(BillingClient.ProductType.INAPP)
+            }.build()
+            client.queryPurchasesAsync(params) { result, purchases ->
                 continuation.resume(result to purchases)
             }
         }
@@ -45,7 +49,7 @@ data class BillingClientConnection(
 
         if (!result.isSuccess) {
             log(TAG, WARN) { "queryPurchases() failed" }
-            throw  BillingResultException(result)
+            throw BillingResultException(result)
         } else {
             requireNotNull(purchases)
         }
@@ -69,19 +73,24 @@ data class BillingClientConnection(
     }
 
     suspend fun querySku(sku: Sku): Sku.Details {
-        val skuParams = SkuDetailsParams.newBuilder().apply {
-            setType(BillingClient.SkuType.INAPP)
-            setSkusList(listOf(sku.id))
+        val productList = listOf(
+            QueryProductDetailsParams.Product.newBuilder().apply {
+                setProductId(sku.id)
+                setProductType(BillingClient.ProductType.INAPP)
+            }.build()
+        )
+        val params = QueryProductDetailsParams.newBuilder().apply {
+            setProductList(productList)
         }.build()
 
-        val (result, details) = suspendCoroutine<Pair<BillingResult, Collection<SkuDetails>?>> { continuation ->
-            client.querySkuDetailsAsync(skuParams) { skuResult, skuDetails ->
-                continuation.resume(skuResult to skuDetails)
+        val (result, details) = suspendCoroutine<Pair<BillingResult, Collection<ProductDetails>?>> { continuation ->
+            client.queryProductDetailsAsync(params) { result, productDetailsList ->
+                continuation.resume(result to productDetailsList.productDetailsList)
             }
         }
 
         log(TAG) {
-            "querySku(sku=$sku): code=${result.responseCode}, debug=${result.debugMessage}), skuDetails=$details"
+            "querySku(sku=$sku): code=${result.responseCode}, debug=${result.debugMessage}), productDetails=$details"
         }
 
         if (!result.isSuccess) throw BillingResultException(result)
@@ -99,9 +108,17 @@ data class BillingClientConnection(
 
     suspend fun launchBillingFlow(activity: Activity, skuDetails: Sku.Details): BillingResult {
         log(TAG) { "launchBillingFlow(activity=$activity, skuDetails=$skuDetails)" }
+        val productDetails = skuDetails.details.single()
+        val productDetailsParamsList = listOf(
+            BillingFlowParams.ProductDetailsParams.newBuilder().apply {
+                setProductDetails(productDetails)
+            }.build()
+        )
         return client.launchBillingFlow(
             activity,
-            BillingFlowParams.newBuilder().setSkuDetails(skuDetails.details.single()).build()
+            BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(productDetailsParamsList)
+                .build()
         )
     }
 
