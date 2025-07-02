@@ -14,9 +14,5 @@ object Versions {
         object Navigation {
             const val core = "2.7.7"
         }
-
-        object WorkManager {
-            const val core = "2.7.1"
-        }
     }
 }
