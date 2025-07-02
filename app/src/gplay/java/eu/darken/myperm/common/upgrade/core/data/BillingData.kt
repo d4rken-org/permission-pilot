@@ -8,7 +8,7 @@ data class BillingData(
     val purchasedSkus: Collection<PurchasedSku>
         get() = purchases.map { it.toPurchasedSku() }.flatten()
 
-    private fun Purchase.toPurchasedSku(): Collection<PurchasedSku> = skus.map {
+    private fun Purchase.toPurchasedSku(): Collection<PurchasedSku> = products.map {
         PurchasedSku(Sku(it), this)
     }
 }
