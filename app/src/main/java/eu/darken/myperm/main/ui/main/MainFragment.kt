@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.common.BuildConfigWrap
+import eu.darken.myperm.common.EdgeToEdgeHelper
 import eu.darken.myperm.common.colorString
 import eu.darken.myperm.common.navigation.doNavigate
 import eu.darken.myperm.common.uix.Fragment3
@@ -28,6 +29,10 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
     @Inject lateinit var generalSettings: GeneralSettings
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper(requireActivity()).apply {
+            insetsPadding(ui.root, left = true, right = true)
+            insetsPadding(ui.toolbar, top = true)
+        }
         if (!generalSettings.isOnboardingFinished.value) {
             MainFragmentDirections.actionMainFragmentToOnboardingFragment().navigate()
             return

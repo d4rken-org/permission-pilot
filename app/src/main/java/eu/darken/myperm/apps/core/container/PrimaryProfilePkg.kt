@@ -8,8 +8,23 @@ import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.*
-import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.features.AccessibilityService
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.Installed
+import eu.darken.myperm.apps.core.features.InstallerInfo
+import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.features.determineAccessibilityServices
+import eu.darken.myperm.apps.core.features.determineBatteryOptimization
+import eu.darken.myperm.apps.core.features.determineSpecialPermissions
+import eu.darken.myperm.apps.core.features.getInstallerInfo
+import eu.darken.myperm.apps.core.features.getPermissionUses
+import eu.darken.myperm.apps.core.features.isGranted
+import eu.darken.myperm.apps.core.getIcon2
+import eu.darken.myperm.apps.core.getLabel2
+import eu.darken.myperm.apps.core.isSystemApp
 import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
@@ -53,7 +68,7 @@ class PrimaryProfilePkg(
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
         val base = packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
-            val flags = packageInfo.requestedPermissionsFlags[index]
+            val flags = packageInfo.requestedPermissionsFlags?.get(index) ?: 0
             UsesPermission.WithState(id = Permission.Id(permissionId), flags = flags)
         } ?: emptyList()
 

@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.getSettingsIntent
+import eu.darken.myperm.common.EdgeToEdgeHelper
 import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
@@ -32,6 +33,9 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
     @Inject lateinit var appsAdapter: AppsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper(requireActivity()).apply {
+            insetsPadding(ui.root, left = true, right = true)
+        }
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
 
         ui.filterAction.setOnClickListener { vm.showFilterDialog() }

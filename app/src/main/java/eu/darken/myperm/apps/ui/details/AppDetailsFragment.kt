@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.getSettingsIntent
+import eu.darken.myperm.common.EdgeToEdgeHelper
 import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.lists.differ.update
 import eu.darken.myperm.common.lists.setupDefaults
@@ -28,6 +29,11 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
     @Inject lateinit var detailsAdapter: AppDetailsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper(requireActivity()).apply {
+            insetsPadding(ui.root, left = true, right = true)
+            insetsPadding(ui.toolbar, top = true)
+            insetsPadding(ui.list, bottom = true)
+        }
         ui.toolbar.apply {
             setupWithNavController(findNavController())
             setOnMenuItemClickListener {
