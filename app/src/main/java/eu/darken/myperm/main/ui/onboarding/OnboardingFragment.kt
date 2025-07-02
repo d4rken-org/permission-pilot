@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.EdgeToEdgeHelper
 import eu.darken.myperm.common.PrivacyPolicy
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.uix.Fragment3
@@ -22,6 +23,9 @@ class OnboardingFragment : Fragment3(R.layout.onboarding_fragment) {
     @Inject lateinit var webpageTool: WebpageTool
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper(requireActivity()).apply {
+            insetsPadding(ui.root, left = true, right = true, top = true, bottom = true)
+        }
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
         ui.goPrivacyPolicy.setOnClickListener { webpageTool.open(PrivacyPolicy.URL) }
         ui.continueAction.setOnClickListener { vm.finishOnboarding() }
