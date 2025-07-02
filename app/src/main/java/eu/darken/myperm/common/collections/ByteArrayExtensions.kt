@@ -1,7 +1,9 @@
-package eu.darken.myperm.common
+@file:OptIn(ExperimentalUnsignedTypes::class)
+
+package eu.darken.myperm.common.collections
 
 import java.nio.ByteBuffer
-import java.util.*
+import java.util.BitSet
 
 fun Byte.toHex(): String = String.format("%02X", this)
 fun UByte.toHex(): String = this.toByte().toHex()
