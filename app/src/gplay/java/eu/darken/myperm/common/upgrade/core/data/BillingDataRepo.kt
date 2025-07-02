@@ -3,20 +3,36 @@ package eu.darken.myperm.common.upgrade.core.data
 import android.app.Activity
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.Bugs
-import eu.darken.myperm.common.debug.logging.Logging.Priority.*
+import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.replayingShare
 import eu.darken.myperm.common.flow.setupCommonEventHandlers
-import eu.darken.myperm.common.upgrade.core.client.*
+import eu.darken.myperm.common.upgrade.core.client.BillingClientConnectionProvider
+import eu.darken.myperm.common.upgrade.core.client.BillingException
+import eu.darken.myperm.common.upgrade.core.client.BillingResultException
+import eu.darken.myperm.common.upgrade.core.client.GplayServiceUnavailableException
+import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailablePermanent
+import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailableTemporary
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.retryWhen
 import javax.inject.Inject
 import javax.inject.Singleton
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Singleton
 class BillingDataRepo @Inject constructor(
     clientConnectionProvider: BillingClientConnectionProvider,

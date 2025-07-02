@@ -1,6 +1,7 @@
 package eu.darken.myperm.main.ui
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ class MainActivity : Activity2() {
         super.onCreate(savedInstanceState)
 
         val splashScreen = installSplashScreen()
+        enableEdgeToEdge()
         splashScreen.setKeepVisibleCondition { showSplashScreen && savedInstanceState == null }
 
         ui = MainActivityBinding.inflate(layoutInflater)
