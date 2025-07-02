@@ -127,9 +127,10 @@ android {
         unitTests {
             isIncludeAndroidResources = true
         }
-        tasks.withType<Test> {
-            useJUnitPlatform()
-        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
     }
 
     sourceSets {
@@ -146,7 +147,7 @@ android {
 
 dependencies {
     // https://developer.android.com/studio/write/java8-support
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.Kotlin.core}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}")
