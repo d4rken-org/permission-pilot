@@ -19,9 +19,9 @@ open class PreferenceStoreMapper(
     }
 
     override fun getString(key: String, defValue: String?): String? {
-        return flowPreferences.singleOrNull { it.key == key }?.let { flowPref ->
-            flowPref.valueRaw as String?
-        } ?: throw NotImplementedError("getString(key=$key, defValue=$defValue)")
+        val pref = flowPreferences.singleOrNull { it.key == key }
+            ?: throw NotImplementedError("getString(key=$key, defValue=$defValue)")
+        return pref.valueRaw as String?
     }
 
     override fun putString(key: String, value: String?) {
