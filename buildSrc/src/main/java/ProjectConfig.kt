@@ -1,4 +1,3 @@
-import com.android.build.api.dsl.Packaging
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.Action
 import org.gradle.api.JavaVersion
@@ -25,7 +24,7 @@ object ProjectConfig {
     }
 }
 
-fun lastCommitHash(): String = Runtime.getRuntime().exec("git rev-parse --short HEAD").let { process ->
+fun lastCommitHash(): String = Runtime.getRuntime().exec(arrayOf("git", "rev-parse", "--short", "HEAD")).let { process ->
     process.waitFor()
     val output = process.inputStream.use { input ->
         input.bufferedReader().use {
@@ -47,7 +46,6 @@ fun LibraryExtension.setupLibraryDefaults() {
 
     defaultConfig {
         minSdk = ProjectConfig.minSdk
-        targetSdk = ProjectConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -76,8 +74,12 @@ fun LibraryExtension.setupLibraryDefaults() {
         )
     }
 
-    fun Packaging.() {
-        resources.excludes += "DebugProbesKt.bin"
+    testOptions {
+        targetSdk = ProjectConfig.targetSdk
+    }
+
+    lint {
+        targetSdk = ProjectConfig.targetSdk
     }
 }
 
