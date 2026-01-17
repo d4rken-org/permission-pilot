@@ -6,6 +6,8 @@
 
     <string name="general_error_label">Ошибка</string>
 
+    <string name="general_accept_action">Принять</string>
+    <string name="general_continue_action">Продолжить</string>
     <string name="general_share_action">Поделиться</string>
     <string name="general_done_action">Готово</string>
     <string name="general_copy_action">Копировать</string>
