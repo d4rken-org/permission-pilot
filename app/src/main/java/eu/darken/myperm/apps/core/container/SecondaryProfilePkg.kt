@@ -8,6 +8,7 @@ import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
+import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
@@ -37,14 +38,34 @@ class SecondaryProfilePkg(
     override fun getLabel(context: Context): String {
         _label?.let { return it }
         val pm = context.packageManager
-        val newLabel = pm.getUserBadgedLabel(launcherAppInfo.loadLabel(pm).toString(), userHandle).toString()
+        val newLabel = try {
+            val loadedLabel = launcherAppInfo.loadLabel(pm).toString()
+            pm.getUserBadgedLabel(loadedLabel, userHandle).toString()
+        } catch (_: Exception) {
+            null
+        }
+            ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
+            ?: super.getLabel(context)
+            ?: id.pkgName
         _label = newLabel
         return newLabel
     }
 
     override fun getIcon(context: Context): Drawable {
         val pm = context.packageManager
-        return pm.getUserBadgedIcon(launcherAppInfo.loadIcon(pm), userHandle)
+        return try {
+            val loadedIcon = launcherAppInfo.loadIcon(pm)
+            if (loadedIcon != null) {
+                pm.getUserBadgedIcon(loadedIcon, userHandle)
+            } else {
+                null
+            }
+        } catch (_: Exception) {
+            null
+        }
+            ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
+            ?: super.getIcon(context)
+            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
     }
 
     override var siblings: Collection<Pkg> = emptyList()
