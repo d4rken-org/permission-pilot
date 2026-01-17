@@ -66,12 +66,17 @@ class AppDetailsFragmentVM @Inject constructor(
             AppOverviewVH.Item(
                 app = app,
                 onOpenApp = {
-                    try {
-                        val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)!!
-                        context.startActivity(intent)
-                    } catch (e: Exception) {
-                        log(TAG, ERROR) { "Launch intent failed for $app: ${e.asLog()}" }
-                        errorEvents.postValue(e)
+                    val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)
+                    if (intent != null) {
+                        try {
+                            context.startActivity(intent)
+                        } catch (e: Exception) {
+                            log(TAG, ERROR) { "Launch intent failed for $app: ${e.asLog()}" }
+                            errorEvents.postValue(e)
+                        }
+                    } else {
+                        log(TAG, ERROR) { "No launch intent available for ${it.packageName}" }
+                        errorEvents.postValue(IllegalStateException("No launch intent available"))
                     }
                 },
                 onGoToSettings = { events.postValue(AppDetailsEvents.ShowAppSystemDetails(it)) },
