@@ -6,6 +6,8 @@
 
     <string name="general_error_label">Chyba</string>
 
+    <string name="general_accept_action">Přijmout</string>
+    <string name="general_continue_action">Pokračovat</string>
     <string name="general_share_action">Sdílet</string>
     <string name="general_done_action">Hotovo</string>
     <string name="general_copy_action">Kopírovat</string>
@@ -24,6 +26,7 @@
     <string name="debug_notification_channel_label">Oznámení o ladění</string>
     <string name="debug_debuglog_file_label">Zaznamenaný soubor ladělí</string>
     <string name="debug_debuglog_record_action">Zaznamenat soubor ladění</string>
+    <string name="debug_debuglog_sensitive_information_message">Tento soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami.</string>
 
     <string name="settings_category_other_label">Další</string>
 
@@ -123,6 +126,7 @@
     <string name="apps_filter_multipleprofiles_label">Aplikace s klony</string>
     <string name="support_debuglog_label">Záznam ladění</string>
     <string name="support_debuglog_desc">Zaznamenávejte vše, co aplikace dělá do textového souboru, který můžete sdílet.</string>
+    <string name="settings_debuglog_explanation">Tato funkce zaznamenává vše, co aplikace dělá, do sdílitelného souboru. Vygenerovaný soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami (např. s vývojářem aplikace, pokud společně řešíte problém).</string>
     <string name="updated_at_x">Poslední aktualizace: %s</string>
     <string name="installed_at_x">První instalace: %s</string>
     <string name="apps_sort_install_source_label">Zdroj instalace</string>
@@ -254,4 +258,8 @@
     <string name="overview_summary_apps_sharedids_label">No. aplikací se SharedUserID</string>
     <string name="permission_bind_accessibility_service_label">Nabídka služeb přístupnosti</string>
     <string name="permission_bind_accessibility_service_description">Umožňuje aplikaci nabízet službu přístupnosti, kterou lze povolit v nastavení systému.</string>
+
+    <string name="onboarding_body1">Tato aplikace vám pomáhá procházet nainstalované aplikace a zjišťovat jejich oprávnění.</string>
+    <string name="onboarding_body2">Permission Pilot shromažďuje informace o nainstalovaných aplikacích, aby mohl zobrazovat seznam vašich aplikací a porovnávat jejich oprávnění při používání této aplikace.</string>
+    <string name="onboarding_body3">Permission Pilot neobsahuje reklamy a zpracovává data pouze lokálně.</string>
 </resources>
