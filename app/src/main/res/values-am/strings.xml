@@ -118,6 +118,7 @@
     <string name="apps_filter_battery_optimization_label">የተሻሻለ ባትሪ አስተካካይ ያላቸው መተግበሪያዎች</string>
     <string name="apps_filter_accessibility_label">አቅራቢ አገልግሎት ያላቸው መተግበሪያዎች</string>
     <string name="apps_details_description_restrictions_caveat_description">ይህ መተግበሪያ በሌላ የተጠቃሚ መገለጫ ተጫኗል። በAndroid መገደብ ምክንያት፣ ሰጥቷቸውን ፍቃዶች ለአሁኑ አነስተኛ ሞዴል ብቻ ማስታወቂያ ይቻላሉ።</string>
+    <string name="apps_details_description_uninstalled_caveat">ይህ መተግበሪያ ተሰርዟል ነገር ግን መረጃው ተጠብቆ ቆይቷል። ለተሰረዙ መተግበሪያዎች የፍቃድ ሁኔታዎችን ማወቅ አይቻልም።</string>
     <string name="apps_details_description_secondary_description">"%d ፍቃዶች ተጠይቋል።"</string>
     <string name="apps_details_description_primary_description">"%1$d ከ%2$d ፍቃዶች ተፈቅዷል።"</string>
     <string name="api_target_level_x">የተመረጠ እትክት፡ %s</string>

@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Ứng dụng có tùy chọn pin tùy chỉnh</string>
     <string name="apps_filter_accessibility_label">Ứng dụng có dịch vụ trợ năng</string>
     <string name="apps_details_description_restrictions_caveat_description">Ứng dụng này được cài đặt trong hồ sơ người dùng khác. Quyền đã cấp chỉ có thể được xác định cho các ứng dụng được cài đặt trong hồ sơ hiện đang hoạt động, do hạn chế của Android.</string>
+    <string name="apps_details_description_uninstalled_caveat">Ứng dụng này đã bị gỡ cài đặt nhưng dữ liệu của nó vẫn được giữ lại. Không thể xác định trạng thái quyền cho các ứng dụng đã gỡ cài đặt.</string>
     <string name="apps_details_description_secondary_description">"%d quyền đã yêu cầu."</string>
     <string name="apps_details_description_primary_description">"%1$d trong %2$d quyền đã cấp."</string>
     <string name="api_target_level_x">Phiên bản mục tiêu: %s</string>

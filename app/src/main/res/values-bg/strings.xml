@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Приложения с персонализирани настройки за батерията</string>
     <string name="apps_filter_accessibility_label">Приложения с услуги за достъпност</string>
     <string name="apps_details_description_restrictions_caveat_description">Това приложение е инсталирано в друг потребителски профил. Предоставените разрешения могат да бъдат определени само за приложения, инсталирани в текущо активния профил, поради ограничения на Android.</string>
+    <string name="apps_details_description_uninstalled_caveat">Това приложение е деинсталирано, но данните му са запазени. Състоянието на разрешенията не може да бъде определено за деинсталирани приложения.</string>
     <string name="apps_details_description_secondary_description">"%d заявени разрешения."</string>
     <string name="apps_details_description_primary_description">"%1$d от %2$d предоставени разрешения."</string>
     <string name="api_target_level_x">Целева версия: %s</string>

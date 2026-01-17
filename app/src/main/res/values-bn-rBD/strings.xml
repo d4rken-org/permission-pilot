@@ -136,6 +136,7 @@
     <string name="apps_details_description_restrictions_caveat_description">এই অ্যাপটি অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা। Android সীমাবদ্ধতার কারণে বর্তমানে সক্রিয় প্রোফাইলে ইনস্টল করা অ্যাপগুলির জন্য শুধুমাত্র প্রদত্ত অনুমতি নির্ধারণ করা যেতে পারে।</string>
     <string name="apps_details_description_secondary_description">"%d অনুমতি অনুরোধ করা হয়েছে।"</string>
     <string name="apps_details_description_primary_description">"%1$d এর মধ্যে %2$d অনুমতি প্রদত্ত।"</string>
+    <string name="apps_details_description_uninstalled_caveat">এই অ্যাপটি আনইনস্টল করা হয়েছে কিন্তু এর ডেটা রক্ষিত আছে। আনইনস্টল করা অ্যাপগুলির জন্য অনুমতির অবস্থা নির্ধারণ করা যায় না।</string>
     <string name="api_target_level_x">লক্ষ্য সংস্করণ: %s</string>
     <string name="api_minimum_level_x">সর্বনিম্ন সংস্করণ: %s</string>
     <string name="api_build_level_x">কম্পাইল সংস্করণ: %s</string>

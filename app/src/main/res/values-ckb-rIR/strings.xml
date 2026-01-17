@@ -120,6 +120,7 @@
     <string name="apps_details_description_restrictions_caveat_description">ئەم ئەپە لە پڕۆفایلی بەکارهێنەرێکی تر دامەزرابووە. بەپەی سنووریەکانی Android تەنها مۆڵەتە پێدراوەکان بۆ ئەپەکان لە پڕۆفایلی ئاکتیڤ دەتوانرێت دیاری بکرێن.</string>
     <string name="apps_details_description_secondary_description">"%d مۆڵەت داواکراوە."</string>
     <string name="apps_details_description_primary_description">"%1$d لە %2$d مۆڵەت پێدراوە."</string>
+    <string name="apps_details_description_uninstalled_caveat">ئەم ئەپە سڕابەتەوە بەڵام داتاکەی هێشتراوەتەوە. بارودۆخی مۆڵەتەکان بۆ ئەپە سڕاوەکان ناتوانرێت دیاری بکرێت.</string>
     <string name="api_target_level_x">وەشانی ئامانج: %s</string>
     <string name="api_minimum_level_x">کەمترین وەشان: %s</string>
     <string name="api_build_level_x">وەشانی کۆمپایل: %s</string>

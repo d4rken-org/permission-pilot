@@ -136,6 +136,7 @@
     <string name="apps_details_description_restrictions_caveat_description">Deze app is geïnstalleerd in een ander gebruikersprofiel. Verleende machtigingen kunnen alleen worden bepaald voor apps die zijn geïnstalleerd in het momenteel actieve profiel, vanwege Android-beperkingen.</string>
     <string name="apps_details_description_secondary_description">"%d machtigingen aangevraagd."</string>
     <string name="apps_details_description_primary_description">"%1$d van %2$d machtigingen verleend."</string>
+    <string name="apps_details_description_uninstalled_caveat">Deze app is verwijderd maar de gegevens zijn behouden. Machtigingsstatussen kunnen niet worden bepaald voor verwijderde apps.</string>
     <string name="api_target_level_x">Doelversie: %s</string>
     <string name="api_minimum_level_x">Minimumversie: %s</string>
     <string name="api_build_level_x">Compileversie: %s</string>

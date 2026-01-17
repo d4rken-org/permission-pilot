@@ -136,6 +136,7 @@
     <string name="apps_details_description_restrictions_caveat_description">Ova aplikacija je instalirana u drugom korisničkom profilu. Odobrene dozvole mogu se odrediti samo za aplikacije instalirane u trenutno aktivnom profilu, zbog ograničenja Androida.</string>
     <string name="apps_details_description_secondary_description">"%d traženih dozvola."</string>
     <string name="apps_details_description_primary_description">"%1$d od %2$d odobrenih dozvola."</string>
+    <string name="apps_details_description_uninstalled_caveat">Ova aplikacija je deinstalirana, ali njezini podaci su zadržani. Stanje dozvola nije moguće odrediti za deinstalirane aplikacije.</string>
     <string name="api_target_level_x">Ciljna verzija: %s</string>
     <string name="api_minimum_level_x">Minimalna verzija: %s</string>
     <string name="api_build_level_x">Verzija kompajliranja: %s</string>

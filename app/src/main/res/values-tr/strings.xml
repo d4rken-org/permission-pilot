@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Özel pil seçenekleri olan uygulamalar</string>
     <string name="apps_filter_accessibility_label">Erişilebilirlik hizmetleri olan uygulamalar</string>
     <string name="apps_details_description_restrictions_caveat_description">Bu uygulama başka bir kullanıcı profilinde yüklü. Android kısıtlamaları nedeniyle verilen izinler yalnızca şu anda etkin profilde yüklü uygulamalar için belirlenebilir.</string>
+    <string name="apps_details_description_uninstalled_caveat">Bu uygulama kaldırıldı ancak verileri saklandı. Kaldırılmış uygulamaların izin durumları belirlenemiyor.</string>
     <string name="apps_details_description_secondary_description">"%d izin talep edildi."</string>
     <string name="apps_details_description_primary_description">"%2$d izinden %1$d tanesi verildi."</string>
     <string name="api_target_level_x">Hedef sürüm: %s</string>

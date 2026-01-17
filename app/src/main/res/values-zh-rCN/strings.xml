@@ -133,6 +133,7 @@
     <string name="apps_filter_battery_optimization_label">具有自定义电池选项的应用</string>
     <string name="apps_filter_accessibility_label">具有辅助功能服务的应用</string>
     <string name="apps_details_description_restrictions_caveat_description">此应用已安装在另一个用户配置文件中。由于 Android 限制，只能确定在当前活动配置文件中安装的应用的授予的权限。</string>
+    <string name="apps_details_description_uninstalled_caveat">此应用已卸载，但其数据仍被保留。已卸载的应用无法确定其权限状态。</string>
     <string name="apps_details_description_secondary_description">"%d 项权限已请求。"</string>
     <string name="apps_details_description_primary_description">"%2$d 个权限中已授予 %1$d 个。"</string>
     <string name="api_target_level_x">目标版本：%s</string>

@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Aplikacje z niestandardowymi opcjami baterii</string>
     <string name="apps_filter_accessibility_label">Aplikacje z usługami dostępności</string>
     <string name="apps_details_description_restrictions_caveat_description">Ta aplikacja jest zainstalowana w innym profilu użytkownika. Przyznane uprawnienia można określić tylko dla aplikacji zainstalowanych w obecnie aktywnym profilu, ze względu na ograniczenia Androida.</string>
+    <string name="apps_details_description_uninstalled_caveat">Ta aplikacja została odinstalowana, ale jej dane zostały zachowane. Nie można określić stanu uprawnień dla odinstalowanych aplikacji.</string>
     <string name="apps_details_description_secondary_description">"%d żądanych uprawnień."</string>
     <string name="apps_details_description_primary_description">"%1$d z %2$d uprawnień przyznanych."</string>
     <string name="api_target_level_x">Wersja docelowa: %s</string>

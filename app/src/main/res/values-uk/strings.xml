@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Програми з налаштованими опціями батареї</string>
     <string name="apps_filter_accessibility_label">Програми з службами доступності</string>
     <string name="apps_details_description_restrictions_caveat_description">Ця програма встановлена в іншому профілі користувача. Надані дозволи можна визначити лише для програм, встановлених у наразі активному профілі, через обмеження Android.</string>
+    <string name="apps_details_description_uninstalled_caveat">Цю програму було видалено, але її дані збережено. Стан дозволів неможливо визначити для видалених програм.</string>
     <string name="apps_details_description_secondary_description">"%d дозволів запитано."</string>
     <string name="apps_details_description_primary_description">"%1$d з %2$d дозволів надано."</string>
     <string name="api_target_level_x">Цільова версія: %s</string>

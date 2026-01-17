@@ -158,6 +158,7 @@
     <string name="apps_details_description_primary_description">"%1$d z %2$d oprávnení udelených."</string>
     <string name="apps_details_description_restrictions_caveat_description">Táto aplikácia je nainštalovaná v inom používateľskom profile. Udelené oprávnenia možno zistiť len pre aplikácie nainštalované v aktuálne aktívnom profile kvôli obmedzeniam Androidu.</string>
     <string name="apps_details_description_secondary_description">"%d oprávnení požadovaných."</string>
+    <string name="apps_details_description_uninstalled_caveat">Táto aplikácia bola odinštalovaná, ale jej údaje boli zachované. Pre odinštalované aplikácie nie je možné určiť stav oprávnení.</string>
     <string name="apps_details_shareduserid_label">Aplikácie so Shared User ID</string>
     <string name="apps_details_siblings_label">Súrodenci</string>
     <string name="apps_details_twins_descriptions">Nainštalované v iných používateľských profiloch.</string>

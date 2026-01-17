@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Aplicacions amb opcions de bateria personalitzades</string>
     <string name="apps_filter_accessibility_label">Aplicacions amb serveis d\'accessibilitat</string>
     <string name="apps_details_description_restrictions_caveat_description">Aquesta aplicació està instal·lada en un altre perfil d\'usuari. Els permisos concedits només es poden determinar per a aplicacions instal·lades en el perfil actualment actiu, a causa de les restriccions d\'Android.</string>
+    <string name="apps_details_description_uninstalled_caveat">Aquesta aplicació s\'ha desinstal·lat però les seves dades s\'han conservat. No es pot determinar l\'estat dels permisos per a aplicacions desinstal·lades.</string>
     <string name="apps_details_description_secondary_description">"%d permisos sol·licitats."</string>
     <string name="apps_details_description_primary_description">"%1$d de %2$d permisos concedits."</string>
     <string name="api_target_level_x">Versió objectiu: %s</string>

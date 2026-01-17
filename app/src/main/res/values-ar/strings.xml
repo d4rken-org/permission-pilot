@@ -118,6 +118,7 @@
     <string name="apps_filter_battery_optimization_label">تطبيقات بخيارات بطارية خاصة</string>
     <string name="apps_filter_accessibility_label">تطبيقات بخدمات وصول</string>
     <string name="apps_details_description_restrictions_caveat_description">تم تثبيت هذا التطبيق في ملف شخصي آخر. يمكن تحديد الأذونات الممنوحة للتطبيقات في الملف النشط فقط، بسبب قيود أندرويد.</string>
+    <string name="apps_details_description_uninstalled_caveat">تم إزالة هذا التطبيق لكن تم الاحتفاظ ببياناته. لا يمكن تحديد حالة الأذونات للتطبيقات المُزالة.</string>
     <string name="apps_details_description_secondary_description">"%d أذونات مطلوبة."</string>
     <string name="apps_details_description_primary_description">"%1$d من %2$d أذونات ممنوحة."</string>
     <string name="api_target_level_x">إصدار الهدف: %s</string>

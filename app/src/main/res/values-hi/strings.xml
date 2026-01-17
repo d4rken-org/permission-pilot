@@ -147,6 +147,7 @@
     <string name="apps_details_min_sdk_label">न्यूनतम SDK</string>
     <string name="apps_details_description_primary_description">"%2$d में से %1$d अनुमतियां प्रदान की गईं।"</string>
     <string name="apps_details_description_restrictions_caveat_description">यह ऐप किसी अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल है। Android प्रतिबंधों के कारण, प्रदान की गई अनुमतियां केवल वर्तमान सक्रिय प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स के लिए निर्धारित की जा सकती हैं।</string>
+    <string name="apps_details_description_uninstalled_caveat">यह ऐप अनइंस्टॉल कर दिया गया है लेकिन इसका डेटा बरकरार रखा गया है। अनइंस्टॉल किए गए ऐप्स के लिए अनुमति स्थिति निर्धारित नहीं की जा सकती।</string>
     <string name="apps_details_description_secondary_description">"%d अनुमतियां अनुरोधित।"</string>
     <string name="apps_details_shareduserid_label">साझा उपयोगकर्ता ID वाले ऐप्स</string>
     <string name="apps_details_siblings_label">सिबलिंग्स</string>
