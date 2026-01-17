@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Apper med tilpassede batterialternativer</string>
     <string name="apps_filter_accessibility_label">Apper med tilgjengelighetstjenester</string>
     <string name="apps_details_description_restrictions_caveat_description">Denne appen er installert i en annen brukerprofil. Innvilgede tillatelser kan kun bestemmes for apper installert i den for øyeblikket aktive profilen, på grunn av Android-begrensninger.</string>
+    <string name="apps_details_description_uninstalled_caveat">Denne appen er avinstallert, men dataene er beholdt. Tillatelsesstatus kan ikke fastslås for avinstallerte apper.</string>
     <string name="apps_details_description_secondary_description">"%d tillatelser forespurt."</string>
     <string name="apps_details_description_primary_description">"%1$d av %2$d tillatelser innvilget."</string>
     <string name="api_target_level_x">Målversjon: %s</string>

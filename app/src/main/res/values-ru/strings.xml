@@ -133,6 +133,7 @@
     <string name="apps_filter_battery_optimization_label">Прил. с пользовательскими опциями батареи</string>
     <string name="apps_filter_accessibility_label">Прил. со службами спецвозможностей</string>
     <string name="apps_details_description_restrictions_caveat_description">Приложение установлено в другом профиле пользователя. Из-за ограничений Android, предоставленные разрешения могут быть определены только для приложений, установленных в текущем активном профиле.</string>
+    <string name="apps_details_description_uninstalled_caveat">Это приложение было удалено, но его данные сохранены. Состояние разрешений невозможно определить для удалённых приложений.</string>
     <string name="apps_details_description_secondary_description">"%d разреш. запрошено."</string>
     <string name="apps_details_description_primary_description">"%1$d из %2$d разреш. предоставлено."</string>
     <string name="api_target_level_x">Целевая версия: %s</string>

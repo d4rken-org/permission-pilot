@@ -118,6 +118,7 @@
     <string name="apps_filter_battery_optimization_label">Xüsusi batareya optimallaşdırma tətbiqləri</string>
     <string name="apps_filter_accessibility_label">Accessibility xidmətləri olan tətbiqlər</string>
     <string name="apps_details_description_restrictions_caveat_description">Bu tətbiq başqa bir istifadəçi profilində quraşdırılıb. Verilən icazələr yalnız Android məhdudiyyətləri səbəbindən cari Aktiv Profil üçün müəyyən edilə bilər.</string>
+    <string name="apps_details_description_uninstalled_caveat">Bu tətbiq silinib, lakin məlumatları saxlanılıb. Silinmiş tətbiqlər üçün icazə vəziyyətini müəyyən etmək mümkün deyil.</string>
     <string name="apps_details_description_secondary_description">"%d icazə tələb edir."</string>
     <string name="apps_details_description_primary_description">"%1$d-də %2$d icazə verilib."</string>
     <string name="api_target_level_x">Hedef versiya: %s</string>

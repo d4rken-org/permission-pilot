@@ -137,6 +137,7 @@
     <string name="apps_app_details_label">App-detaljer</string>
     <string name="apps_details_description_primary_description">"%1$d af %2$d tilladelser tildelt."</string>
     <string name="apps_details_description_restrictions_caveat_description">Denne app er installeret i en anden brugerprofil. Tildelte tilladelser kan kun bestemmes for apps installeret i den aktuelt aktive profil på grund af Android-begrænsninger.</string>
+    <string name="apps_details_description_uninstalled_caveat">Denne app er blevet afinstalleret, men dens data er blevet bevaret. Tilladelsestilstande kan ikke bestemmes for afinstallerede apps.</string>
     <string name="apps_details_description_secondary_description">"%d tilladelser anmodet."</string>
     <string name="apps_details_shareduserid_label">Apps med delt bruger-ID</string>
     <string name="apps_details_siblings_label">Søskende</string>

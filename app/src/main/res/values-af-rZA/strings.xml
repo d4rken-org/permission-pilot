@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Apps met pasgemaakte battery opsies</string>
     <string name="apps_filter_accessibility_label">Apps met toeganklikheid dienste</string>
     <string name="apps_details_description_restrictions_caveat_description">Hierdie app is geïnstalleer in \'n ander gebruiker profiel. Toegekende toestemmings kan slegs bepaal word vir apps wat geïnstalleer is in die huidiglik Aktiewe Profiel, weens Android beperkings.</string>
+    <string name="apps_details_description_uninstalled_caveat">Hierdie app is gedeïnstalleer maar die data is behou. Toestemmingstatus kan nie bepaal word vir gedeïnstalleerde apps nie.</string>
     <string name="apps_details_description_secondary_description">"%d toestemmings versoek."</string>
     <string name="apps_details_description_primary_description">"%1$d van %2$d toestemmings toegeken."</string>
     <string name="api_target_level_x">Teiken weergawe: %s</string>

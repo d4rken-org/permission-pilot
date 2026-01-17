@@ -136,6 +136,7 @@
     <string name="apps_details_description_restrictions_caveat_description">Este app está instalado em outro perfil de usuário. Permissões concedidas podem ser determinadas apenas para apps instalados no Perfil Atualmente Ativo, devido às restrições do Android.</string>
     <string name="apps_details_description_secondary_description">"%d permissões solicitadas."</string>
     <string name="apps_details_description_primary_description">"%1$d de %2$d permissões concedidas."</string>
+    <string name="apps_details_description_uninstalled_caveat">Este app foi desinstalado, mas seus dados foram mantidos. O estado das permissões não pode ser determinado para apps desinstalados.</string>
     <string name="api_target_level_x">Versão alvo: %s</string>
     <string name="api_minimum_level_x">Versão mínima: %s</string>
     <string name="api_build_level_x">Versão de compilação: %s</string>

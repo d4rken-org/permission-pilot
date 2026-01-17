@@ -135,6 +135,7 @@
     <string name="apps_details_description_restrictions_caveat_description">此應用程式因為由其他使用者安裝而無無法偵測在目前設定檔之應用程式的權限。</string>
     <string name="apps_details_description_secondary_description">"%d 項權限已請求。"</string>
     <string name="apps_details_description_primary_description">"%2$d 個權限中已授予 %1$d 個。"</string>
+    <string name="apps_details_description_uninstalled_caveat">此應用程式已解除安裝，但資料仍被保留。已解除安裝的應用程式無法判斷其權限狀態。</string>
     <string name="api_target_level_x">目標版本：%s</string>
     <string name="api_minimum_level_x">最低版本：%s</string>
     <string name="api_build_level_x">編譯版本：%s</string>

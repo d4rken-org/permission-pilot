@@ -135,6 +135,7 @@
     <string name="apps_filter_battery_optimization_label">Aplikace s vlastními možnostmi baterie</string>
     <string name="apps_filter_accessibility_label">Aplikace se službami přístupnosti</string>
     <string name="apps_details_description_restrictions_caveat_description">Tato aplikace je nainstalována v jiném uživatelském profilu. Udělená oprávnění lze kvůli omezením systému Android určit pouze pro aplikace nainstalované v aktuálně aktivním profilu.</string>
+    <string name="apps_details_description_uninstalled_caveat">Tato aplikace byla odinstalována, ale její data byla zachována. U odinstalovaných aplikací nelze zjistit stav oprávnění.</string>
     <string name="apps_details_description_secondary_description">"Vyžadovaná oprávnění: %d"</string>
     <string name="apps_details_description_primary_description">"Udělená oprávnění: %1$d z %2$d"</string>
     <string name="api_target_level_x">Cílová verze: %s</string>

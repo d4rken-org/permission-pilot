@@ -482,6 +482,7 @@
     <string name="apps_app_details_label">Detalii aplicație</string>
     <string name="apps_details_description_primary_description">"%1$d din %2$d permisiuni acordate."</string>
     <string name="apps_details_description_restrictions_caveat_description">Această aplicație este instalată într-un alt profil de utilizator. Permisiunile acordate pot fi determinate doar pentru aplicațiile instalate în Profilul Activ curent, din cauza restricțiilor Android.</string>
+    <string name="apps_details_description_uninstalled_caveat">Această aplicație a fost dezinstalată, dar datele sale au fost păstrate. Starea permisiunilor nu poate fi determinată pentru aplicațiile dezinstalate.</string>
     <string name="apps_details_description_secondary_description">"%d permisiuni solicitate."</string>
     <string name="apps_details_shareduserid_label">Aplicații cu ID Utilizator Partajat</string>
     <string name="apps_details_siblings_label">Aplicații înrudite</string>

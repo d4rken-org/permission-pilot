@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">カスタムバッテリーオプションを持つアプリ</string>
     <string name="apps_filter_accessibility_label">アクセシビリティサービスを持つアプリ</string>
     <string name="apps_details_description_restrictions_caveat_description">このアプリは別のユーザープロファイルにインストールされています。Androidの制限により、現在アクティブなプロファイルにインストールされたアプリについてのみ、付与された権限を判定できます。</string>
+    <string name="apps_details_description_uninstalled_caveat">このアプリはアンインストールされましたが、データは保持されています。アンインストールされたアプリの権限状態は確認できません。</string>
     <string name="apps_details_description_secondary_description">"%d個の権限が要求されました。"</string>
     <string name="apps_details_description_primary_description">"%2$d個中%1$d個の権限が付与されました。"</string>
     <string name="api_target_level_x">ターゲットバージョン：%s</string>

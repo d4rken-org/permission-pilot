@@ -136,6 +136,7 @@
     <string name="apps_details_description_restrictions_caveat_description">แอปนี้ติดตั้งในโปรไฟล์ผู้ใช้อื่น สิทธิ์ที่ได้รับสามารถกำหนดได้เฉพาะแอปที่ติดตั้งในโปรไฟล์ที่ใช้งานอยู่ในปัจจุบัน เนื่องจากข้อจำกัดของ Android</string>
     <string name="apps_details_description_secondary_description">"%d สิทธิ์ที่ร้องขอ"</string>
     <string name="apps_details_description_primary_description">"%1$d จาก %2$d สิทธิ์ที่ได้รับอนุญาต"</string>
+    <string name="apps_details_description_uninstalled_caveat">แอปนี้ถูกถอนการติดตั้งแล้ว แต่ยังคงเก็บข้อมูลไว้ ไม่สามารถระบุสถานะสิทธิ์ได้สำหรับแอปที่ถูกถอนการติดตั้ง</string>
     <string name="api_target_level_x">เวอร์ชันเป้าหมาย: %s</string>
     <string name="api_minimum_level_x">เวอร์ชันต่ำสุด: %s</string>
     <string name="api_build_level_x">เวอร์ชันการคอมไพล์: %s</string>

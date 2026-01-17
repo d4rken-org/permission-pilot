@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Appar med anpassade batterialternativ</string>
     <string name="apps_filter_accessibility_label">Appar med tillgänglighetstjänster</string>
     <string name="apps_details_description_restrictions_caveat_description">Denna app är installerad i en annan användarprofil. Beviljade behörigheter kan endast bestämmas för appar installerade i den för närvarande aktiva profilen, på grund av Android-begränsningar.</string>
+    <string name="apps_details_description_uninstalled_caveat">Denna app har avinstallerats men dess data har behållits. Behörighetsstatus kan inte fastställas för avinstallerade appar.</string>
     <string name="apps_details_description_secondary_description">"%d behörigheter begärda."</string>
     <string name="apps_details_description_primary_description">"%1$d av %2$d behörigheter beviljade."</string>
     <string name="api_target_level_x">Målversion: %s</string>

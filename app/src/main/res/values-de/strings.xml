@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">Apps mit benutzerdefinierten Akku-Optionen</string>
     <string name="apps_filter_accessibility_label">Apps mit Barrierefreiheitsdiensten</string>
     <string name="apps_details_description_restrictions_caveat_description">Diese App ist in einem anderen Benutzerprofil installiert. Gewährte Berechtigungen können nur für Apps bestimmt werden, die im aktuell aktiven Profil installiert sind, aufgrund von Android-Einschränkungen.</string>
+    <string name="apps_details_description_uninstalled_caveat">Diese App wurde deinstalliert, aber ihre Daten wurden beibehalten. Berechtigungsstatus kann für deinstallierte Apps nicht ermittelt werden.</string>
     <string name="apps_details_description_secondary_description">"%d Berechtigungen angefordert."</string>
     <string name="apps_details_description_primary_description">"%1$d von %2$d Berechtigungen gewährt."</string>
     <string name="api_target_level_x">Zielversion: %s</string>

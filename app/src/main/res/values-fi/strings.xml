@@ -272,6 +272,7 @@
     <string name="apps_app_details_label">Sovelluksen tiedot</string>
     <string name="apps_details_description_primary_description">"%1$d / %2$d käyttöoikeudesta myönnetty."</string>
     <string name="apps_details_description_restrictions_caveat_description">Tämä sovellus on asennettu toiseen käyttäjäprofiiliin. Myönnetyt käyttöoikeudet voidaan määrittää vain aktiiviseen profiiliin asennetuille sovelluksille Androidin rajoitusten vuoksi.</string>
+    <string name="apps_details_description_uninstalled_caveat">Tämä sovellus on poistettu, mutta sen tiedot on säilytetty. Käyttöoikeuksien tilaa ei voida määrittää poistetuille sovelluksille.</string>
     <string name="apps_details_description_secondary_description">"%d käyttöoikeutta pyydetty."</string>
     <string name="apps_details_shareduserid_label">Sovellukset jaetulla käyttäjätunnuksella</string>
     <string name="apps_details_siblings_label">Sisarukset</string>

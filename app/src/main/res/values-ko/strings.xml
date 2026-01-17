@@ -134,6 +134,7 @@
     <string name="apps_filter_battery_optimization_label">사용자 정의 배터리 옵션이 있는 앱</string>
     <string name="apps_filter_accessibility_label">접근성 서비스가 있는 앱</string>
     <string name="apps_details_description_restrictions_caveat_description">이 앱은 다른 사용자 프로필에 설치되어 있습니다. Android 제한으로 인해 현재 활성 프로필에 설치된 앱에 대해서만 허용된 권한을 확인할 수 있습니다.</string>
+    <string name="apps_details_description_uninstalled_caveat">이 앱은 삭제되었지만 데이터는 유지되었습니다. 삭제된 앱의 권한 상태는 확인할 수 없습니다.</string>
     <string name="apps_details_description_secondary_description">"%d개 권한이 요청됨."</string>
     <string name="apps_details_description_primary_description">"%2$d개 중 %1$d개 권한이 허용됨."</string>
     <string name="api_target_level_x">대상 버전: %s</string>
