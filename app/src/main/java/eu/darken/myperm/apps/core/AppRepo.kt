@@ -110,6 +110,10 @@ class AppRepo @Inject constructor(
                     curPkg.siblings = siblings
                     curPkg.twins = twins
                 }
+                is UninstalledDataPkg -> {
+                    curPkg.siblings = siblings
+                    curPkg.twins = twins
+                }
                 else -> throw IllegalArgumentException("Unknown package type: $curPkg")
             }
         }

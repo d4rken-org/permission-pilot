@@ -15,6 +15,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.SecondaryPkg
+import eu.darken.myperm.apps.core.features.UninstalledPkg
 import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.ui.details.AppDetailsAdapter
 import eu.darken.myperm.common.AndroidVersionCodes
@@ -56,12 +57,19 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
 
         description.apply {
             val countTotal = app.requestedPermissions.size
-            text = if (app is SecondaryPkg) {
-                getString(R.string.apps_details_description_secondary_description, countTotal) + "\n" +
-                        getString(R.string.apps_details_description_restrictions_caveat_description)
-            } else {
-                val grantedCount = app.requestedPermissions.count { it.isGranted }
-                getString(R.string.apps_details_description_primary_description, grantedCount, countTotal)
+            text = when (app) {
+                is UninstalledPkg -> {
+                    getString(R.string.apps_details_description_secondary_description, countTotal) + "\n" +
+                            getString(R.string.apps_details_description_uninstalled_caveat)
+                }
+                is SecondaryPkg -> {
+                    getString(R.string.apps_details_description_secondary_description, countTotal) + "\n" +
+                            getString(R.string.apps_details_description_restrictions_caveat_description)
+                }
+                else -> {
+                    val grantedCount = app.requestedPermissions.count { it.isGranted }
+                    getString(R.string.apps_details_description_primary_description, grantedCount, countTotal)
+                }
             }
         }
 

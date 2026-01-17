@@ -133,6 +133,7 @@
     <string name="apps_filter_battery_optimization_label">Apps with custom battery options</string>
     <string name="apps_filter_accessibility_label">Apps with accessibility services</string>
     <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
+    <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
     <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
     <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
     <string name="api_target_level_x">Target version: %s</string>
