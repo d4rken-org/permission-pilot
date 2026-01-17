@@ -50,7 +50,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
         permissionInfo.apply {
             val grantedCount = app.requestedPermissions.count { it.isGranted }
             val countTotal = app.requestedPermissions.size
-            text = if (app is SecondaryPkg) {
+            text = if (app is SecondaryPkg || app is UninstalledPkg) {
                 getString(R.string.apps_permissions_x_requested, countTotal)
             } else {
                 getString(R.string.apps_permissions_x_of_x_granted, grantedCount, countTotal)

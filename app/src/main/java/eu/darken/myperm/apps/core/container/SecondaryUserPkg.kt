@@ -11,12 +11,15 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.*
 import eu.darken.myperm.apps.core.features.*
 import eu.darken.myperm.common.IPCFunnel
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import java.io.File
 
 class SecondaryUserPkg(
     override val packageInfo: PackageInfo,
@@ -71,6 +74,16 @@ class SecondaryUserPkg(
     override fun toString(): String = "SecondaryUserPkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
+private fun PackageInfo.isUninstalled(): Boolean {
+    val sourceDir = applicationInfo?.sourceDir
+    return try {
+        sourceDir?.let { !File(it).exists() } ?: true
+    } catch (e: Exception) {
+        log(AppRepo.TAG, WARN) { "Failed to check if $sourceDir exists: ${e.asLog()}" }
+        false
+    }
+}
+
 suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> = coroutineScope {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
 
@@ -83,12 +96,24 @@ suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> = co
     newOnes
         .map { pkg ->
             async {
-                SecondaryUserPkg(
-                    packageInfo = pkg,
-                    installerInfo = pkg.getInstallerInfo(ipcFunnel),
-                    userHandle = ipcFunnel.userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
-                    extraPermissions = pkg.determineSpecialPermissions(ipcFunnel),
-                ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
+                val installerInfo = pkg.getInstallerInfo(ipcFunnel)
+                val extraPermissions = pkg.determineSpecialPermissions(ipcFunnel)
+
+                if (pkg.isUninstalled()) {
+                    UninstalledDataPkg(
+                        packageInfo = pkg,
+                        installerInfo = installerInfo,
+                        userHandle = Process.myUserHandle(),
+                        extraPermissions = extraPermissions,
+                    ).also { log(AppRepo.TAG) { "PKG[uninstalled]: $it" } }
+                } else {
+                    SecondaryUserPkg(
+                        packageInfo = pkg,
+                        installerInfo = installerInfo,
+                        userHandle = ipcFunnel.userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+                        extraPermissions = extraPermissions,
+                    ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
+                }
             }
         }
         .awaitAll()
