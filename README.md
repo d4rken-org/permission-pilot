@@ -2,9 +2,9 @@
 
 # Permission Pilot
 
-[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/d4rken-org/permission-pilot?include_prereleases)](https://github.com/d4rken-org/permission-pilot/releases/latest)
-[![Code tests & eval](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml/badge.svg)](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+[![Localized](https://badges.crowdin.net/permission-pilot/localized.svg)](https://crowdin.com/project/permission-pilot)
+[![Code tests](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml/badge.svg)](https://github.com/d4rken-org/permission-pilot/actions/workflows/code-checks.yml)
 [![Github Downloads](https://img.shields.io/github/downloads/d4rken-org/permission-pilot/total.svg?label=GitHub%20Downloads&logo=github)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
 [![Google Play Downloads](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.darken.myperm%26l%3DGoogle%2520Play%26m%3D%24totalinstalls)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
 [![⭐](https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.darken.myperm%26gl%3DUS%26hl%3Den%26l%3D%25E2%25AD%2590%26m%3D%24rating)](https://github.com/d4rken-org/permission-pilot/edit/main/README.md#download)
@@ -56,10 +56,9 @@ Want to chat? Join our [discord server here](https://discord.gg/7gGWxfM5yv).
 
 If you like the app, consider:
 
-* Contributing translations
-* Contributing features or bugfixes
 * Buying the upgrade on [Google Play](https://play.google.com/store/apps/details?id=eu.darken.myperm)
 * [Sponsoring the project](https://github.com/sponsors/d4rken)
+* [Contributing translations](https://crowdin.com/project/permission-pilot)
 
 ## Screenshots
 
@@ -70,3 +69,7 @@ If you like the app, consider:
 Permission Pilot's code is available under a GPL v3 license, this excludes:
 
 * Icons, logos, mascots and marketing materials/assets.
+
+## Thanks
+
+* Thanks to [crowdin.com](https://crowdin.com/) for supporting open-source projects.
