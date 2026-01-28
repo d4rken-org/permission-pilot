@@ -13,6 +13,15 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://twitter.com/maxpatchs" />
         </Preference>
+        <Preference
+            android:key="thanks.crowdin"
+            android:summary="For supporting translation of open-source projects."
+            android:title="Crowdin"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://crowdin.com/project/permission-pilot" />
+        </Preference>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/settings_licenses_label"
