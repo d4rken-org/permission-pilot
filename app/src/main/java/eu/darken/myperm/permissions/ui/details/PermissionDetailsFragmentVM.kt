@@ -17,6 +17,8 @@ import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.permissions.ui.details.items.AppDeclaringPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.AppRequestingPermissionVH
 import eu.darken.myperm.permissions.ui.details.items.PermissionOverviewVH
+import eu.darken.myperm.settings.core.GeneralSettings
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
@@ -28,9 +30,11 @@ class PermissionDetailsFragmentVM @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     private val permissionsRepo: PermissionRepo,
+    private val generalSettings: GeneralSettings,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
     private val navArgs: PermissionDetailsFragmentArgs by handle.navArgs()
+    private val filterOptions = generalSettings.permissionDetailsFilterOptions.flow
 
     val events = SingleLiveEvent<PermissionDetailsEvents>()
 
@@ -40,60 +44,70 @@ class PermissionDetailsFragmentVM @Inject constructor(
         val items: List<PermissionDetailsAdapter.Item> = emptyList(),
     )
 
-    val details: LiveData<Details> = permissionsRepo.permissions
-        .map { perms -> perms.single { it.id == navArgs.permissionId } }
-        .map { perm ->
-            val infoItems = mutableListOf<PermissionDetailsAdapter.Item>()
+    val details: LiveData<Details> = combine(
+        permissionsRepo.permissions.map { perms -> perms.single { it.id == navArgs.permissionId } },
+        filterOptions
+    ) { perm, filterOpts ->
+        val infoItems = mutableListOf<PermissionDetailsAdapter.Item>()
 
-            PermissionOverviewVH.Item(
+        PermissionOverviewVH.Item(
+            permission = perm,
+            onIconClick = {
+                events.postValue(PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context)))
+            }
+        ).run { infoItems.add(this) }
+
+
+        perm.declaringPkgs.map { app ->
+            AppDeclaringPermissionVH.Item(
                 permission = perm,
-                onIconClick = {
-                    events.postValue(PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context)))
+                app = app,
+                onItemClicked = {
+                    PermissionDetailsFragmentDirections
+                        .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
+                        .navigate()
                 }
-            ).run { infoItems.add(this) }
+            )
 
+        }.run { infoItems.addAll(this) }
 
-            perm.declaringPkgs.map { app ->
-                AppDeclaringPermissionVH.Item(
+        perm.requestingPkgs
+            .filter { app -> filterOpts.keys.any { filter -> filter.matches(app) } }
+            .map { app ->
+                AppRequestingPermissionVH.Item(
                     permission = perm,
                     app = app,
+                    status = app.getPermissionUses(perm.id).status,
                     onItemClicked = {
-                        PermissionDetailsFragmentDirections
-                            .actionPermissionDetailsFragmentToAppDetailsFragment(it.app.id, it.app.getLabel(context))
-                            .navigate()
+                        PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
+                            it.app.id,
+                            it.app.getLabel(context)
+                        ).navigate()
+                    },
+                    onIconClicked = {
+                        events.postValue(
+                            PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
+                        )
                     }
                 )
+            }
+            .sortedWith(compareBy<AppRequestingPermissionVH.Item> { it.status }.thenBy { it.app.isSystemApp })
+            .run { infoItems.addAll(this) }
 
-            }.run { infoItems.addAll(this) }
-
-            perm.requestingPkgs
-                .map { app ->
-                    AppRequestingPermissionVH.Item(
-                        permission = perm,
-                        app = app,
-                        status = app.getPermissionUses(perm.id).status,
-                        onItemClicked = {
-                            PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
-                                it.app.id,
-                                it.app.getLabel(context)
-                            ).navigate()
-                        },
-                        onIconClicked = {
-                            events.postValue(
-                                PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
-                            )
-                        }
-                    )
-                }
-                .sortedWith(compareBy<AppRequestingPermissionVH.Item> { it.status }.thenBy { it.app.isSystemApp })
-                .run { infoItems.addAll(this) }
-
-            Details(
-                perm = perm,
-                label = perm.id.value.split(".").lastOrNull() ?: perm.id.value,
-                items = infoItems,
-            )
-        }
+        Details(
+            perm = perm,
+            label = perm.id.value.split(".").lastOrNull() ?: perm.id.value,
+            items = infoItems,
+        )
+    }
         .onStart { navArgs.permissionLabel?.let { Details(label = it) } }
         .asLiveData2()
+
+    fun showFilterDialog() {
+        events.postValue(PermissionDetailsEvents.ShowFilterDialog(generalSettings.permissionDetailsFilterOptions.value))
+    }
+
+    fun updateFilterOptions(action: (PermissionDetailsFilterOptions) -> PermissionDetailsFilterOptions) {
+        generalSettings.permissionDetailsFilterOptions.update { action(it) }
+    }
 }

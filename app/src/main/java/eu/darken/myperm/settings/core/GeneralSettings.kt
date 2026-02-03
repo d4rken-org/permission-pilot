@@ -14,6 +14,7 @@ import eu.darken.myperm.common.preferences.Settings
 import eu.darken.myperm.common.preferences.createFlowPreference
 import eu.darken.myperm.common.preferences.moshiReader
 import eu.darken.myperm.common.preferences.moshiWriter
+import eu.darken.myperm.permissions.ui.details.PermissionDetailsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsSortOptions
 import javax.inject.Inject
@@ -52,6 +53,12 @@ class GeneralSettings @Inject constructor(
     val permissionsSortOptions = preferences.createFlowPreference(
         "permissions.list.options.sort",
         moshiReader(moshi, PermsSortOptions(), fallbackToDefault = true),
+        moshiWriter(moshi),
+    )
+
+    val permissionDetailsFilterOptions = preferences.createFlowPreference(
+        "permissions.details.options.filter",
+        moshiReader(moshi, PermissionDetailsFilterOptions(), fallbackToDefault = true),
         moshiWriter(moshi),
     )
 
