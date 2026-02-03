@@ -87,6 +87,10 @@
     <string name="permissions_filter_installtime_label">Granted automatically</string>
     <string name="permissions_filter_installtime_hide_label">Not granted automatically</string>
 
+    <string name="filter_granted_label">Granted</string>
+    <string name="filter_denied_label">Denied</string>
+    <string name="filter_configurable_label">Configurable</string>
+
     <string name="permissions_sort_apps_granted_label"># of apps granted</string>
     <string name="permissions_sort_apps_requested_label"># of apps requested</string>
     <string name="permissions_search_list_hint">Search permissions</string>
@@ -136,6 +140,7 @@
     <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
     <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
     <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
+    <string name="apps_details_empty_filter_message">No permissions match current filters. Tap the filter icon to adjust.</string>
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
     <string name="api_build_level_x">Compile version: %s</string>
@@ -167,6 +172,7 @@
     <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
+    <string name="permissions_details_empty_filter_message">No apps match current filters. Tap the filter icon to adjust.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Allows apps to communicate with Near Field Communication (NFC) tags, cards and readers.</string>
     <string name="permission_manage_media_label">Manage Media</string>

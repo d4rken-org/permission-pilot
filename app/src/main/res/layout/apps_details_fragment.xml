@@ -37,4 +37,19 @@
         app:layout_constraintStart_toStartOf="@id/list"
         app:layout_constraintTop_toTopOf="@id/list" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/empty_state"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="@string/apps_details_empty_filter_message"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/list"
+        app:layout_constraintEnd_toEndOf="@id/list"
+        app:layout_constraintStart_toStartOf="@id/list"
+        app:layout_constraintTop_toTopOf="@id/list"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

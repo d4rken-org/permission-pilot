@@ -38,6 +38,11 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
             setupWithNavController(findNavController())
             setOnMenuItemClickListener {
                 when (it.itemId) {
+                    R.id.menu_item_filter -> {
+                        vm.showFilterDialog()
+                        true
+                    }
+
                     R.id.menu_item_settings -> {
                         vm.onGoSettings()
                         true
@@ -57,10 +62,17 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
                         Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
+
                 is AppDetailsEvents.PermissionEvent -> try {
                     event.permAction.execute(requireActivity())
                 } catch (e: Exception) {
                     e.asErrorDialogBuilder(requireContext()).show()
+                }
+
+                is AppDetailsEvents.ShowFilterDialog -> {
+                    AppDetailsFilterDialog(requireActivity()).show(event.options) { newOptions ->
+                        vm.updateFilterOptions { newOptions }
+                    }
                 }
             }
         }
@@ -72,6 +84,7 @@ class AppDetailsFragment : Fragment3(R.layout.apps_details_fragment) {
             detailsAdapter.update(details.items)
             list.isVisible = true
             loadingContainer.isGone = details.app != null
+            emptyState.isVisible = details.isEmptyDueToFilter
         }
         super.onViewCreated(view, savedInstanceState)
     }

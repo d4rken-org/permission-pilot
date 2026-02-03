@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="eu.darken.myperm.main.ui.MainActivity">
     <item
+        android:id="@+id/menu_item_filter"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:orderInCategory="90"
+        android:title="@string/general_filter_action"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/menu_item_settings"
         android:icon="@drawable/ic_baseline_settings_applications_24"
         android:orderInCategory="100"

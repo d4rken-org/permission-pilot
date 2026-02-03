@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceDataStore
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.ui.details.AppDetailsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsSortOptions
 import eu.darken.myperm.common.debug.autoreport.DebugSettings
@@ -42,6 +43,12 @@ class GeneralSettings @Inject constructor(
     val appsSortOptions = preferences.createFlowPreference(
         "apps.list.options.sort",
         moshiReader(moshi, AppsSortOptions(), fallbackToDefault = true),
+        moshiWriter(moshi),
+    )
+
+    val appDetailsFilterOptions = preferences.createFlowPreference(
+        "apps.details.options.filter",
+        moshiReader(moshi, AppDetailsFilterOptions(), fallbackToDefault = true),
         moshiWriter(moshi),
     )
 

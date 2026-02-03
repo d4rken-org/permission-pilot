@@ -44,6 +44,7 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
                         vm.showFilterDialog()
                         true
                     }
+
                     else -> false
                 }
             }
@@ -58,11 +59,13 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
                         Toast.makeText(requireContext(), e.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
+
                 is PermissionDetailsEvents.PermissionEvent -> try {
                     event.permAction.execute(requireActivity())
                 } catch (e: Exception) {
                     e.asErrorDialogBuilder(requireContext()).show()
                 }
+
                 is PermissionDetailsEvents.ShowFilterDialog -> {
                     PermissionDetailsFilterDialog(requireActivity()).show(event.options) { newOptions ->
                         vm.updateFilterOptions { newOptions }
@@ -77,6 +80,7 @@ class PermissionDetailsFragment : Fragment3(R.layout.permissions_details_fragmen
             detailsAdapter.update(details.items)
             list.isVisible = true
             loadingContainer.isGone = details.perm != null
+            emptyState.isVisible = details.isEmptyDueToFilter
         }
         super.onViewCreated(view, savedInstanceState)
     }
