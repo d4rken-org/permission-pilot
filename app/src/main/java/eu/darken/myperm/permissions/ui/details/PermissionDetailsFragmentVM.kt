@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.getPermissionUses
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.livedata.SingleLiveEvent
@@ -42,6 +43,7 @@ class PermissionDetailsFragmentVM @Inject constructor(
         val label: String,
         val perm: BasePermission? = null,
         val items: List<PermissionDetailsAdapter.Item> = emptyList(),
+        val isEmptyDueToFilter: Boolean = false,
     )
 
     val details: LiveData<Details> = combine(
@@ -71,33 +73,41 @@ class PermissionDetailsFragmentVM @Inject constructor(
 
         }.run { infoItems.addAll(this) }
 
-        perm.requestingPkgs
-            .filter { app -> filterOpts.keys.any { filter -> filter.matches(app) } }
-            .map { app ->
-                AppRequestingPermissionVH.Item(
-                    permission = perm,
-                    app = app,
-                    status = app.getPermissionUses(perm.id).status,
-                    onItemClicked = {
-                        PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
-                            it.app.id,
-                            it.app.getLabel(context)
-                        ).navigate()
-                    },
-                    onIconClicked = {
-                        events.postValue(
-                            PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
-                        )
-                    }
-                )
+        val filteredRequestingApps = perm.requestingPkgs
+            .filter { app ->
+                // Always show non-Installed apps (e.g., from secondary profiles) as they can't be categorized
+                app !is Installed || filterOpts.keys.any { filter -> filter.matches(app) }
             }
+
+        filteredRequestingApps.map { app ->
+            AppRequestingPermissionVH.Item(
+                permission = perm,
+                app = app,
+                status = app.getPermissionUses(perm.id).status,
+                onItemClicked = {
+                    PermissionDetailsFragmentDirections.actionPermissionDetailsFragmentToAppDetailsFragment(
+                        it.app.id,
+                        it.app.getLabel(context)
+                    ).navigate()
+                },
+                onIconClicked = {
+                    events.postValue(
+                        PermissionDetailsEvents.PermissionEvent(it.permission.getAction(context, app))
+                    )
+                }
+            )
+        }
             .sortedWith(compareBy<AppRequestingPermissionVH.Item> { it.status }.thenBy { it.app.isSystemApp })
             .run { infoItems.addAll(this) }
+
+        // Check if apps were filtered out (permission has requesting apps but none match filter)
+        val isEmptyDueToFilter = perm.requestingPkgs.isNotEmpty() && filteredRequestingApps.isEmpty()
 
         Details(
             perm = perm,
             label = perm.id.value.split(".").lastOrNull() ?: perm.id.value,
             items = infoItems,
+            isEmptyDueToFilter = isEmptyDueToFilter,
         )
     }
         .onStart { navArgs.permissionLabel?.let { Details(label = it) } }
