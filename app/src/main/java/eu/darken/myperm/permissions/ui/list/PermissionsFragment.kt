@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import eu.darken.myperm.R
+import eu.darken.myperm.common.EdgeToEdgeHelper
 import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.getQuantityString
 import eu.darken.myperm.common.lists.differ.update
@@ -17,6 +18,7 @@ import eu.darken.myperm.common.observe2
 import eu.darken.myperm.common.uix.Fragment3
 import eu.darken.myperm.common.viewbinding.viewBinding
 import eu.darken.myperm.databinding.PermissionsFragmentBinding
+import eu.darken.myperm.main.ui.main.MainFragmentDirections
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,10 +30,17 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
     @Inject lateinit var permissionsAdapter: PermissionsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        EdgeToEdgeHelper(requireActivity()).apply {
+            insetsPadding(ui.root, left = true, right = true, top = true)
+        }
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
 
         ui.filterAction.setOnClickListener { vm.showFilterDialog() }
         ui.sortAction.setOnClickListener { vm.showSortDialog() }
+        ui.refreshAction.setOnClickListener { vm.onRefresh() }
+        ui.settingsAction.setOnClickListener {
+            MainFragmentDirections.actionMainFragmentToSettingsContainerFragment().navigate()
+        }
 
         vm.events.observe2(ui) { event ->
             when (event) {

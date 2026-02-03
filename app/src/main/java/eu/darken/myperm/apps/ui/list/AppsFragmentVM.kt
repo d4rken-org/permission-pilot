@@ -28,7 +28,7 @@ class AppsFragmentVM @Inject constructor(
     @Suppress("unused") private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
-    appRepo: AppRepo,
+    private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val webpageTool: WebpageTool,
     private val appStoreTool: AppStoreTool,
@@ -122,5 +122,10 @@ class AppsFragmentVM @Inject constructor(
     fun showSortDialog() {
         log { "showSortDialog" }
         events.postValue(AppsEvents.ShowSortDialog(generalSettings.appsSortOptions.value))
+    }
+
+    fun onRefresh() {
+        log { "onRefresh" }
+        appRepo.refresh()
     }
 }

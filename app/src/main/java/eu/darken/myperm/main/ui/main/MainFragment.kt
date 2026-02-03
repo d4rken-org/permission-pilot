@@ -3,6 +3,7 @@ package eu.darken.myperm.main.ui.main
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -65,6 +66,11 @@ class MainFragment : Fragment3(R.layout.main_fragment) {
         }
 
         val navController: NavController = ui.bottomNavHost.getFragment<NavHostFragment>().navController
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            ui.toolbar.isVisible = destination.id == R.id.overviewFragment
+        }
+
         ui.bottomNavigation.apply {
             setupWithNavController(this, navController)
             if (savedInstanceState == null) {
