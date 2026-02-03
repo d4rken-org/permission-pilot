@@ -41,26 +41,17 @@
         android:layout_height="wrap_content"
         app:icon="@drawable/ic_baseline_sort_24"
         app:layout_constraintBottom_toBottomOf="@id/search_container"
-        app:layout_constraintEnd_toStartOf="@id/refresh_action"
+        app:layout_constraintEnd_toStartOf="@id/more_action"
         app:layout_constraintStart_toEndOf="@id/search_container"
         app:layout_constraintTop_toTopOf="@id/search_container" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/refresh_action"
+        android:id="@+id/more_action"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_baseline_refresh_24"
-        app:layout_constraintBottom_toBottomOf="@id/search_container"
-        app:layout_constraintEnd_toStartOf="@id/settings_action"
-        app:layout_constraintTop_toTopOf="@id/search_container" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/settings_action"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_baseline_settings_24"
+        android:contentDescription="@string/general_more_options_action"
+        app:icon="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintBottom_toBottomOf="@id/search_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/search_container" />

@@ -93,6 +93,7 @@ class PermissionsFragmentVM @Inject constructor(
                             events.postValue(PermissionListEvent.PermissionEvent(it.permission.getAction(context)))
                         },
                     )
+
                     is ExtraPermission -> ExtraPermissionVH.Item(
                         permission = permission,
                         onClickAction = {
@@ -106,6 +107,7 @@ class PermissionsFragmentVM @Inject constructor(
                             events.postValue(PermissionListEvent.PermissionEvent(it.permission.getAction(context)))
                         },
                     )
+
                     is UnknownPermission -> UnknownPermissionVH.Item(
                         permission = permission,
                         onClickAction = { },
@@ -174,6 +176,17 @@ class PermissionsFragmentVM @Inject constructor(
 
     private fun MutableStateFlow<Map<PermissionGroup.Id, Boolean>>.toggle(id: PermissionGroup.Id) {
         value = value.toMutableMap().apply { this[id] = !(this[id] ?: false) }
+    }
+
+    fun expandAll() {
+        log { "expandAll" }
+        val allGroupIds = APermGrp.values.map { it.id }
+        expandedGroups.value = allGroupIds.associateWith { true }
+    }
+
+    fun collapseAll() {
+        log { "collapseAll" }
+        expandedGroups.value = emptyMap()
     }
 
     fun onSearchInputChanged(term: String?) {
