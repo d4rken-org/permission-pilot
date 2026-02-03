@@ -1,7 +1,9 @@
 package eu.darken.myperm.permissions.ui.list
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
@@ -37,19 +39,18 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
 
         ui.filterAction.setOnClickListener { vm.showFilterDialog() }
         ui.sortAction.setOnClickListener { vm.showSortDialog() }
-        ui.refreshAction.setOnClickListener { vm.onRefresh() }
-        ui.settingsAction.setOnClickListener {
-            MainFragmentDirections.actionMainFragmentToSettingsContainerFragment().navigate()
-        }
+        ui.moreAction.setOnClickListener { showMoreMenu(it) }
 
         vm.events.observe2(ui) { event ->
             when (event) {
                 is PermissionListEvent.ShowFilterDialog -> FilterDialog(requireActivity()).show(event.options) { newOptions ->
                     vm.updateFilterOptions { newOptions }
                 }
+
                 is PermissionListEvent.ShowSortDialog -> SortDialog(requireActivity()).show(event.options) { newOptions ->
                     vm.updateSortOptions { newOptions }
                 }
+
                 is PermissionListEvent.PermissionEvent -> try {
                     event.permAction.execute(requireActivity())
                 } catch (e: Exception) {
@@ -70,6 +71,7 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
                 is PermissionsFragmentVM.State.Loading -> {
                     listCaption.text = "..."
                 }
+
                 is PermissionsFragmentVM.State.Ready -> {
                     val groups = requireContext().getQuantityString(R.plurals.generic_x_groups_label, state.countGroups)
                     val items =
@@ -81,5 +83,40 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
             }
         }
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun showMoreMenu(anchor: View) {
+        PopupMenu(requireContext(), anchor).apply {
+            menuInflater.inflate(R.menu.menu_permissions_list, menu)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                setForceShowIcon(true)
+            }
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_item_expand_all -> {
+                        vm.expandAll()
+                        true
+                    }
+
+                    R.id.menu_item_collapse_all -> {
+                        vm.collapseAll()
+                        true
+                    }
+
+                    R.id.menu_item_refresh -> {
+                        vm.onRefresh()
+                        true
+                    }
+
+                    R.id.menu_item_settings -> {
+                        MainFragmentDirections.actionMainFragmentToSettingsContainerFragment().navigate()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            show()
+        }
     }
 }

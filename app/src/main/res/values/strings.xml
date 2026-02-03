@@ -122,6 +122,9 @@
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android System</string>
     <string name="general_refresh_action">Refresh</string>
+    <string name="general_expand_all_action">Expand all</string>
+    <string name="general_collapse_all_action">Collapse all</string>
+    <string name="general_more_options_action">More options</string>
     <string name="apps_details_twins_label">Clones</string>
     <string name="apps_details_twins_descriptions">Installed in other user profile(s).</string>
     <string name="install_date_label">Install date</string>
