@@ -34,12 +34,16 @@ class AppsFragment : Fragment3(R.layout.apps_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         EdgeToEdgeHelper(requireActivity()).apply {
-            insetsPadding(ui.root, left = true, right = true)
+            insetsPadding(ui.root, left = true, right = true, top = true)
         }
         customNavController = requireActivity().findNavController(R.id.nav_host_main_activity)
 
         ui.filterAction.setOnClickListener { vm.showFilterDialog() }
         ui.sortAction.setOnClickListener { vm.showSortDialog() }
+        ui.refreshAction.setOnClickListener { vm.onRefresh() }
+        ui.settingsAction.setOnClickListener {
+            MainFragmentDirections.actionMainFragmentToSettingsContainerFragment().navigate()
+        }
 
         vm.events.observe2(ui) { event ->
             when (event) {

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.livedata.SingleLiveEvent
@@ -31,10 +32,11 @@ import javax.inject.Inject
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class PermissionsFragmentVM @Inject constructor(
-    private val handle: SavedStateHandle,
+    @Suppress("unused") private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     permissionRepo: PermissionRepo,
+    private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
@@ -195,5 +197,10 @@ class PermissionsFragmentVM @Inject constructor(
     fun showSortDialog() {
         log { "showSortDialog" }
         events.postValue(PermissionListEvent.ShowSortDialog(generalSettings.permissionsSortOptions.value))
+    }
+
+    fun onRefresh() {
+        log { "onRefresh" }
+        appRepo.refresh()
     }
 }
