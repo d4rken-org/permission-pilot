@@ -1,8 +1,11 @@
 package eu.darken.myperm.permissions.ui.list
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -60,6 +63,14 @@ class PermissionsFragment : Fragment3(R.layout.permissions_fragment) {
         }
         ui.searchInput.addTextChangedListener {
             vm.onSearchInputChanged(it?.toString())
+        }
+        ui.searchInput.setOnEditorActionListener { v, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                v.clearFocus()
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(v.windowToken, 0)
+                true
+            } else false
         }
 
         ui.list.setupDefaults(permissionsAdapter)
