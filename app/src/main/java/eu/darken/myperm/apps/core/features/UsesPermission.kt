@@ -15,13 +15,27 @@ sealed class UsesPermission {
         UNKNOWN,
     }
 
-    data class WithState(override val id: Permission.Id, val flags: Int?) : UsesPermission() {
+    class WithState(
+        override val id: Permission.Id,
+        val flags: Int?,
+        private val overrideStatus: Status? = null
+    ) : UsesPermission() {
 
-        override val status: Status = when {
+        override val status: Status = overrideStatus ?: when {
             flags == null -> Status.UNKNOWN
             flags and PackageInfo.REQUESTED_PERMISSION_GRANTED != 0 -> Status.GRANTED
             else -> Status.DENIED
         }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (other !is WithState) return false
+            return id == other.id && flags == other.flags
+        }
+
+        override fun hashCode(): Int = 31 * id.hashCode() + (flags ?: 0)
+
+        override fun toString(): String = "WithState(id=$id, flags=$flags, status=$status)"
     }
 
     data class Unknown(override val id: Permission.Id) : UsesPermission() {

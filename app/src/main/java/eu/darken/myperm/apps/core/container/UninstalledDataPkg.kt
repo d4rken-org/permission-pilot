@@ -23,6 +23,7 @@ class UninstalledDataPkg(
     override val installerInfo: InstallerInfo,
     override val userHandle: UserHandle,
     val extraPermissions: Collection<UsesPermission>,
+    private val specialPermissionStatuses: Map<Permission.Id, UsesPermission.Status> = emptyMap(),
 ) : BasePkg(), UninstalledPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -48,8 +49,14 @@ class UninstalledDataPkg(
     override var twins: Collection<Installed> = emptyList()
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
-        val base = packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
-            UsesPermission.Unknown(id = Permission.Id(permissionId))
+        val base = packageInfo.requestedPermissions?.map { permissionId ->
+            val permId = Permission.Id(permissionId)
+            val overrideStatus = specialPermissionStatuses[permId]
+            if (overrideStatus != null) {
+                UsesPermission.WithState(id = permId, flags = null, overrideStatus = overrideStatus)
+            } else {
+                UsesPermission.Unknown(id = permId)
+            }
         } ?: emptyList()
         val acsPermissions = accessibilityServices.map {
             UsesPermission.WithState(

@@ -20,6 +20,7 @@ import eu.darken.myperm.apps.core.features.determineAccessibilityServices
 import eu.darken.myperm.apps.core.features.determineBatteryOptimization
 import eu.darken.myperm.apps.core.features.determineSpecialPermissions
 import eu.darken.myperm.apps.core.features.getInstallerInfo
+import eu.darken.myperm.apps.core.features.getSpecialPermissionStatuses
 import eu.darken.myperm.apps.core.features.getPermissionUses
 import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.core.getIcon2
@@ -40,6 +41,7 @@ class PrimaryProfilePkg(
     private val extraPermissions: Collection<UsesPermission>,
     override val batteryOptimization: BatteryOptimization,
     override val accessibilityServices: Collection<AccessibilityService>,
+    private val specialPermissionStatuses: Map<Permission.Id, UsesPermission.Status> = emptyMap(),
 ) : BasePkg() {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -69,7 +71,9 @@ class PrimaryProfilePkg(
     override val requestedPermissions: Collection<UsesPermission> by lazy {
         val base = packageInfo.requestedPermissions?.mapIndexed { index, permissionId ->
             val flags = packageInfo.requestedPermissionsFlags?.get(index) ?: 0
-            UsesPermission.WithState(id = Permission.Id(permissionId), flags = flags)
+            val permId = Permission.Id(permissionId)
+            val overrideStatus = specialPermissionStatuses[permId]
+            UsesPermission.WithState(id = permId, flags = flags, overrideStatus = overrideStatus)
         } ?: emptyList()
 
         val acsPermissions = accessibilityServices.map {
@@ -102,6 +106,7 @@ private suspend fun PackageInfo.toNormalPkg(ipcFunnel: IPCFunnel): PrimaryProfil
     extraPermissions = determineSpecialPermissions(ipcFunnel),
     batteryOptimization = determineBatteryOptimization(ipcFunnel),
     accessibilityServices = determineAccessibilityServices(ipcFunnel),
+    specialPermissionStatuses = getSpecialPermissionStatuses(ipcFunnel),
 )
 
 suspend fun getNormalPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> {
