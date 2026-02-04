@@ -12,7 +12,15 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.*
+import eu.darken.myperm.apps.core.features.AccessibilityService
+import eu.darken.myperm.apps.core.features.InstallerInfo
+import eu.darken.myperm.apps.core.features.Installed
+import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.features.SecondaryPkg
+import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.features.determineSpecialPermissions
+import eu.darken.myperm.apps.core.features.getInstallerInfo
+import eu.darken.myperm.apps.core.features.getSpecialPermissionStatuses
 import eu.darken.myperm.apps.core.isSystemApp
 import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.Logging.Priority.*
@@ -29,6 +37,7 @@ class SecondaryProfilePkg(
     override val installerInfo: InstallerInfo,
     val launcherAppInfo: ApplicationInfo,
     val extraPermissions: Collection<UsesPermission>,
+    private val specialPermissionStatuses: Map<Permission.Id, UsesPermission.Status> = emptyMap(),
 ) : BasePkg(), SecondaryPkg {
 
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
@@ -72,8 +81,14 @@ class SecondaryProfilePkg(
     override var twins: Collection<Installed> = emptyList()
 
     override val requestedPermissions: Collection<UsesPermission> by lazy {
-        val base = packageInfo.requestedPermissions?.mapIndexed { _, permissionId ->
-            UsesPermission.Unknown(id = Permission.Id(permissionId))
+        val base = packageInfo.requestedPermissions?.map { permissionId ->
+            val permId = Permission.Id(permissionId)
+            val overrideStatus = specialPermissionStatuses[permId]
+            if (overrideStatus != null) {
+                UsesPermission.WithState(id = permId, flags = null, overrideStatus = overrideStatus)
+            } else {
+                UsesPermission.Unknown(id = permId)
+            }
         } ?: emptyList()
         val acsPermissions = accessibilityServices.map {
             UsesPermission.WithState(
@@ -137,6 +152,7 @@ suspend fun getSecondaryProfilePkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> =
                 launcherAppInfo = appInfo,
                 userHandle = userHandle,
                 extraPermissions = pkgInfo.determineSpecialPermissions(ipcFunnel),
+                specialPermissionStatuses = pkgInfo.getSpecialPermissionStatuses(ipcFunnel, uidOverride = appInfo.uid),
             ).also { log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $it" } }
         }
     }

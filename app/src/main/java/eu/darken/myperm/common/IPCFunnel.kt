@@ -1,6 +1,7 @@
 package eu.darken.myperm.common
 
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.PackageInfo
@@ -133,6 +134,19 @@ class IPCFunnel @Inject constructor(
 
         suspend fun tryCreateUserHandle(handle: Int) = ipcFunnel.execute {
             service.tryCreateUserHandle(handle)
+        }
+    }
+
+    val appOpsManager by lazy { AppOpsManager2(this) }
+
+    class AppOpsManager2(private val ipcFunnel: IPCFunnel) {
+        private val service by lazy {
+            ContextCompat.getSystemService(ipcFunnel.context, AppOpsManager::class.java)
+                ?: error("AppOpsManager not available")
+        }
+
+        suspend fun checkOpNoThrow(op: String, uid: Int, packageName: String): Int = ipcFunnel.execute {
+            service.unsafeCheckOpNoThrow(op, uid, packageName)
         }
     }
 
