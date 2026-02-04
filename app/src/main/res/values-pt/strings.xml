@@ -247,4 +247,21 @@
     <string name="permission_group_audio_description">Permissões relacionadas com o microfone.</string>
     <string name="permission_group_camera_label">Câmara</string>
     <string name="permission_group_camera_description">Permissões relacionadas com a câmara.</string>
+
+    <string name="apps_details_empty_filter_message">Nenhuma permissão corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
+    <string name="filter_configurable_label">Configurável</string>
+    <string name="filter_denied_label">Negada</string>
+    <string name="filter_granted_label">Concedida</string>
+    <string name="general_collapse_all_action">Recolher tudo</string>
+    <string name="general_expand_all_action">Expandir tudo</string>
+    <string name="general_more_options_action">Mais opções</string>
+    <string name="permission_full_screen_intent_description">Permite que as aplicações mostrem notificações em ecrã inteiro que ocupam o ecrã quando o dispositivo está bloqueado ou em uso. Normalmente usado para alarmes, chamadas e outros eventos urgentes.</string>
+    <string name="permission_full_screen_intent_label">Notificações em ecrã inteiro</string>
+    <string name="permission_interact_across_profiles_description">Permite que as aplicações comuniquem entre os seus perfis de trabalho e pessoal, partilhando dados e funcionalidades entre perfis.</string>
+    <string name="permission_interact_across_profiles_label">Apps de trabalho e pessoais ligadas</string>
+    <string name="permission_loader_usage_stats_description">Permite que as aplicações recolham estatísticas sobre o uso de carregadores de dados no dispositivo.</string>
+    <string name="permission_loader_usage_stats_label">Estatísticas de uso do carregador</string>
+    <string name="permissions_details_empty_filter_message">Nenhuma aplicação corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
+    <string name="permission_turn_screen_on_description">Permite que as aplicações liguem o ecrã do dispositivo quando precisam da sua atenção, como para alarmes ou chamadas recebidas.</string>
+    <string name="permission_turn_screen_on_label">Ligar ecrã</string>
 </resources>

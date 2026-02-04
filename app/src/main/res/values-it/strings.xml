@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Questa app ti aiuta a navigare nelle applicazioni installate e scoprire i permessi.</string>
     <string name="onboarding_body2">Permission Pilot raccoglie informazioni sulle applicazioni installate per consentire di elencare le tue app e fare riferimenti incrociati dei loro permessi quando usi questa applicazione.</string>
     <string name="onboarding_body3">Permission Pilot non ha pubblicità e elabora i dati solo localmente.</string>
+
+    <string name="apps_details_empty_filter_message">Nessun permesso corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
+    <string name="filter_configurable_label">Configurabile</string>
+    <string name="filter_denied_label">Negato</string>
+    <string name="filter_granted_label">Concesso</string>
+    <string name="general_collapse_all_action">Comprimi tutto</string>
+    <string name="general_expand_all_action">Espandi tutto</string>
+    <string name="general_more_options_action">Altre opzioni</string>
+    <string name="permission_full_screen_intent_description">Consente alle app di mostrare notifiche a schermo intero che occupano lo schermo quando il dispositivo è bloccato o in uso. Comunemente usato per sveglie, chiamate e altri eventi urgenti.</string>
+    <string name="permission_full_screen_intent_label">Notifiche a schermo intero</string>
+    <string name="permission_interact_across_profiles_description">Consente alle app di comunicare tra i tuoi profili di lavoro e personali, condividendo dati e funzionalità tra i profili.</string>
+    <string name="permission_interact_across_profiles_label">App di lavoro e personali collegate</string>
+    <string name="permission_loader_usage_stats_description">Consente alle app di raccogliere statistiche sull\'utilizzo dei caricatori di dati sul dispositivo.</string>
+    <string name="permission_loader_usage_stats_label">Statistiche utilizzo caricatore</string>
+    <string name="permissions_details_empty_filter_message">Nessuna app corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
+    <string name="permission_turn_screen_on_description">Consente alle app di accendere lo schermo del dispositivo quando hanno bisogno della tua attenzione, come per sveglie o chiamate in arrivo.</string>
+    <string name="permission_turn_screen_on_label">Accendi schermo</string>
 </resources>

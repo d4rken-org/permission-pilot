@@ -263,4 +263,21 @@
     <string name="overview_summary_apps_sharedids_label">No. of apps with Κοινόχρηστα Αναγνωριστικά Χρήστη</string>
     <string name="permission_bind_accessibility_service_label">Προσφέρετε υπηρεσία προσβασιμότητας</string>
     <string name="permission_bind_accessibility_service_description">Επιτρέπει στην εφαρμογή να προσφέρει μια υπηρεσία προσβασιμότητας που μπορεί να ενεργοποιηθεί στις ρυθμίσεις συστήματος.</string>
+
+    <string name="apps_details_empty_filter_message">Δεν υπάρχουν άδειες που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
+    <string name="filter_configurable_label">Διαμορφώσιμα</string>
+    <string name="filter_denied_label">Απορρίφθηκαν</string>
+    <string name="filter_granted_label">Χορηγήθηκαν</string>
+    <string name="general_collapse_all_action">Σύμπτυξη όλων</string>
+    <string name="general_expand_all_action">Ανάπτυξη όλων</string>
+    <string name="general_more_options_action">Περισσότερες επιλογές</string>
+    <string name="permission_full_screen_intent_description">Επιτρέπει στις εφαρμογές να εμφανίζουν ειδοποιήσεις πλήρους οθόνης που καταλαμβάνουν την οθόνη σας όταν η συσκευή είναι κλειδωμένη ή σε χρήση. Χρησιμοποιείται συνήθως για ξυπνητήρια, κλήσεις και άλλα χρονικά ευαίσθητα συμβάντα.</string>
+    <string name="permission_full_screen_intent_label">Ειδοποιήσεις Πλήρους Οθόνης</string>
+    <string name="permission_interact_across_profiles_description">Επιτρέπει στις εφαρμογές να επικοινωνούν μεταξύ των επαγγελματικών και προσωπικών προφίλ σας, μοιράζοντας δεδομένα και λειτουργικότητα μεταξύ των ορίων προφίλ.</string>
+    <string name="permission_interact_across_profiles_label">Συνδεδεμένες Επαγγελματικές και Προσωπικές Εφαρμογές</string>
+    <string name="permission_loader_usage_stats_description">Επιτρέπει στις εφαρμογές να συλλέγουν στατιστικά στοιχεία σχετικά με τη χρήση του φορτωτή δεδομένων στη συσκευή.</string>
+    <string name="permission_loader_usage_stats_label">Στατιστικά Χρήσης Φορτωτή</string>
+    <string name="permissions_details_empty_filter_message">Δεν υπάρχουν εφαρμογές που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
+    <string name="permission_turn_screen_on_description">Επιτρέπει στις εφαρμογές να ενεργοποιούν την οθόνη της συσκευής όταν χρειάζονται την προσοχή σας, όπως για ξυπνητήρια ή εισερχόμενες κλήσεις.</string>
+    <string name="permission_turn_screen_on_label">Ενεργοποίηση Οθόνης</string>
 </resources>

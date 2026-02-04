@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Tato aplikace vám pomáhá procházet nainstalované aplikace a zjišťovat jejich oprávnění.</string>
     <string name="onboarding_body2">Permission Pilot shromažďuje informace o nainstalovaných aplikacích, aby mohl zobrazovat seznam vašich aplikací a porovnávat jejich oprávnění při používání této aplikace.</string>
     <string name="onboarding_body3">Permission Pilot neobsahuje reklamy a zpracovává data pouze lokálně.</string>
+
+    <string name="apps_details_empty_filter_message">Žádná oprávnění neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
+    <string name="filter_configurable_label">Konfigurovatelné</string>
+    <string name="filter_denied_label">Odepřeno</string>
+    <string name="filter_granted_label">Uděleno</string>
+    <string name="general_collapse_all_action">Sbalit vše</string>
+    <string name="general_expand_all_action">Rozbalit vše</string>
+    <string name="general_more_options_action">Další možnosti</string>
+    <string name="permission_full_screen_intent_description">Umožňuje aplikacím zobrazovat oznámení na celou obrazovku, která převezmou obrazovku, když je zařízení zamčené nebo používané. Běžně se používá pro budíky, hovory a další časově citlivé události.</string>
+    <string name="permission_full_screen_intent_label">Oznámení na celou obrazovku</string>
+    <string name="permission_interact_across_profiles_description">Umožňuje aplikacím komunikovat mezi pracovními a osobními profily a sdílet data a funkce přes hranice profilů.</string>
+    <string name="permission_interact_across_profiles_label">Propojené pracovní a osobní aplikace</string>
+    <string name="permission_loader_usage_stats_description">Umožňuje aplikacím shromažďovat statistiky o používání datových zavaděčů na zařízení.</string>
+    <string name="permission_loader_usage_stats_label">Statistiky využití zavaděče</string>
+    <string name="permissions_details_empty_filter_message">Žádné aplikace neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
+    <string name="permission_turn_screen_on_description">Umožňuje aplikacím zapnout obrazovku zařízení, když potřebují vaši pozornost, například pro budíky nebo příchozí hovory.</string>
+    <string name="permission_turn_screen_on_label">Zapnout obrazovku</string>
 </resources>

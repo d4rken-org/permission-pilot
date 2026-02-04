@@ -258,4 +258,20 @@
     <string name="onboarding_body1">このアプリは、インストールされたアプリケーションをナビゲートし、権限を発見するのに役立ちます。</string>
     <string name="onboarding_body2">Permission Pilotは、このアプリケーションを使用する際にアプリをリストし、その権限をクロスリファレンスすることを可能にするために、インストールされたアプリケーション情報を収集します。</string>
     <string name="onboarding_body3">Permission Pilotには広告がなく、データはローカルでのみ処理されます。</string>
+    <string name="apps_details_empty_filter_message">現在のフィルターに一致する権限がありません。調整するにはフィルターアイコンをタップしてください。</string>
+    <string name="filter_configurable_label">設定可能</string>
+    <string name="filter_denied_label">拒否</string>
+    <string name="filter_granted_label">付与</string>
+    <string name="general_collapse_all_action">すべて折りたたむ</string>
+    <string name="general_expand_all_action">すべて展開</string>
+    <string name="general_more_options_action">その他のオプション</string>
+    <string name="permission_full_screen_intent_description">デバイスがロックされている時や使用中に画面を占有するフルスクリーン通知をアプリが表示することを許可します。一般的にアラーム、電話、その他の時間に敏感なイベントに使用されます。</string>
+    <string name="permission_full_screen_intent_label">フルスクリーン通知</string>
+    <string name="permission_interact_across_profiles_description">アプリが仕事用プロファイルと個人用プロファイル間で通信し、プロファイルの境界を越えてデータと機能を共有することを許可します。</string>
+    <string name="permission_interact_across_profiles_label">接続された仕事用と個人用アプリ</string>
+    <string name="permission_loader_usage_stats_description">アプリがデバイス上のデータローダー使用に関する統計を収集することを許可します。</string>
+    <string name="permission_loader_usage_stats_label">ローダー使用統計</string>
+    <string name="permissions_details_empty_filter_message">現在のフィルターに一致するアプリがありません。調整するにはフィルターアイコンをタップしてください。</string>
+    <string name="permission_turn_screen_on_description">アラームや着信など、注意が必要な時にアプリがデバイスの画面をオンにすることを許可します。</string>
+    <string name="permission_turn_screen_on_label">画面をオンにする</string>
 </resources>

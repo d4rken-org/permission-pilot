@@ -262,4 +262,21 @@
     <string name="onboarding_body1">Это приложение поможет вам навигировать по установленным приложениям и изучать разрешения.</string>
     <string name="onboarding_body2">Permission Pilot собирает информацию об установленных приложениях, чтобы отображать ваши приложения и сопоставлять их разрешения при использовании данного приложения.</string>
     <string name="onboarding_body3">Permission Pilot не содержит рекламы и обрабатывает данные только локально.</string>
+
+    <string name="apps_details_empty_filter_message">Нет разрешений, соответствующих текущим фильтрам. Нажмите на значок фильтра для настройки.</string>
+    <string name="filter_configurable_label">Настраиваемые</string>
+    <string name="filter_denied_label">Отклонённые</string>
+    <string name="filter_granted_label">Предоставленные</string>
+    <string name="general_collapse_all_action">Свернуть все</string>
+    <string name="general_expand_all_action">Развернуть все</string>
+    <string name="general_more_options_action">Дополнительные параметры</string>
+    <string name="permission_full_screen_intent_description">Позволяет приложениям показывать полноэкранные уведомления, которые занимают весь экран, когда устройство заблокировано или используется. Обычно используется для будильников, звонков и других срочных событий.</string>
+    <string name="permission_full_screen_intent_label">Полноэкранные уведомления</string>
+    <string name="permission_interact_across_profiles_description">Позволяет приложениям взаимодействовать между рабочим и личным профилями, обмениваясь данными и функциями между профилями.</string>
+    <string name="permission_interact_across_profiles_label">Связанные рабочие и личные приложения</string>
+    <string name="permission_loader_usage_stats_description">Позволяет приложениям собирать статистику об использовании загрузчика данных на устройстве.</string>
+    <string name="permission_loader_usage_stats_label">Статистика использования загрузчика</string>
+    <string name="permissions_details_empty_filter_message">Нет приложений, соответствующих текущим фильтрам. Нажмите на значок фильтра для настройки.</string>
+    <string name="permission_turn_screen_on_description">Позволяет приложениям включать экран устройства, когда им требуется ваше внимание, например, для будильников или входящих звонков.</string>
+    <string name="permission_turn_screen_on_label">Включение экрана</string>
 </resources>

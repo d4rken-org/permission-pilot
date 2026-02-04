@@ -332,4 +332,20 @@
         <item quantity="one">%s आइटम</item>
         <item quantity="other">%s आइटम</item>
     </plurals>
+    <string name="apps_details_empty_filter_message">कोई अनुमति वर्तमान फ़िल्टर से मेल नहीं खाती। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
+    <string name="filter_configurable_label">कॉन्फ़िगर करने योग्य</string>
+    <string name="filter_denied_label">अस्वीकृत</string>
+    <string name="filter_granted_label">प्रदान किया गया</string>
+    <string name="general_collapse_all_action">सभी संकुचित करें</string>
+    <string name="general_expand_all_action">सभी विस्तृत करें</string>
+    <string name="general_more_options_action">अधिक विकल्प</string>
+    <string name="permission_full_screen_intent_description">ऐप्स को पूर्ण-स्क्रीन सूचनाएं दिखाने की अनुमति देता है जो डिवाइस लॉक होने या उपयोग में होने पर आपकी स्क्रीन पर आ जाती हैं। आमतौर पर अलार्म, कॉल और अन्य समय-संवेदनशील घटनाओं के लिए उपयोग किया जाता है।</string>
+    <string name="permission_full_screen_intent_label">पूर्ण-स्क्रीन सूचनाएं</string>
+    <string name="permission_interact_across_profiles_description">ऐप्स को आपके कार्य और व्यक्तिगत प्रोफ़ाइल के बीच संवाद करने, प्रोफ़ाइल सीमाओं के पार डेटा और कार्यक्षमता साझा करने की अनुमति देता है।</string>
+    <string name="permission_interact_across_profiles_label">कनेक्टेड कार्य और व्यक्तिगत ऐप्स</string>
+    <string name="permission_loader_usage_stats_description">ऐप्स को डिवाइस पर डेटा लोडर उपयोग के बारे में आंकड़े एकत्र करने की अनुमति देता है।</string>
+    <string name="permission_loader_usage_stats_label">लोडर उपयोग आंकड़े</string>
+    <string name="permissions_details_empty_filter_message">कोई ऐप वर्तमान फ़िल्टर से मेल नहीं खाता। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
+    <string name="permission_turn_screen_on_description">ऐप्स को डिवाइस स्क्रीन चालू करने की अनुमति देता है जब उन्हें आपके ध्यान की आवश्यकता होती है, जैसे अलार्म या इनकमिंग कॉल के लिए।</string>
+    <string name="permission_turn_screen_on_label">स्क्रीन चालू करें</string>
 </resources>

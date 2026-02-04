@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Aquesta aplicació t\'ajuda a navegar per les aplicacions instal·lades i descobrir permisos.</string>
     <string name="onboarding_body2">Permission Pilot recull informació d\'aplicacions instal·lades per permetre llistar les teves aplicacions i fer referències creuades dels seus permisos quan utilitzes aquesta aplicació.</string>
     <string name="onboarding_body3">Permission Pilot no té publicitat i només processa dades localment.</string>
+
+    <string name="apps_details_empty_filter_message">Cap permís no coincideix amb els filtres actuals. Toca la icona de filtre per ajustar.</string>
+    <string name="filter_configurable_label">Configurable</string>
+    <string name="filter_denied_label">Denegat</string>
+    <string name="filter_granted_label">Concedit</string>
+    <string name="general_collapse_all_action">Replegar tot</string>
+    <string name="general_expand_all_action">Expandir tot</string>
+    <string name="general_more_options_action">Més opcions</string>
+    <string name="permission_full_screen_intent_description">Permet a les aplicacions mostrar notificacions a pantalla completa que ocupen la pantalla quan el dispositiu està bloquejat o en ús. S\'utilitza habitualment per a alarmes, trucades i altres esdeveniments urgents.</string>
+    <string name="permission_full_screen_intent_label">Notificacions a pantalla completa</string>
+    <string name="permission_interact_across_profiles_description">Permet a les aplicacions comunicar-se entre els perfils de treball i personals, compartint dades i funcionalitat entre els límits dels perfils.</string>
+    <string name="permission_interact_across_profiles_label">Aplicacions de treball i personals connectades</string>
+    <string name="permission_loader_usage_stats_description">Permet a les aplicacions recollir estadístiques sobre l\'ús de carregadors de dades al dispositiu.</string>
+    <string name="permission_loader_usage_stats_label">Estadístiques d\'ús del carregador</string>
+    <string name="permissions_details_empty_filter_message">Cap aplicació no coincideix amb els filtres actuals. Toca la icona de filtre per ajustar.</string>
+    <string name="permission_turn_screen_on_description">Permet a les aplicacions encendre la pantalla del dispositiu quan necessiten la teva atenció, com per a alarmes o trucades entrants.</string>
+    <string name="permission_turn_screen_on_label">Encendre pantalla</string>
 </resources>

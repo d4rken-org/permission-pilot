@@ -262,4 +262,21 @@
     <string name="onboarding_body1">Esta aplicación te ayuda a navegar por las aplicaciones instaladas y descubrir los permisos.</string>
     <string name="onboarding_body2">Piloto de los Permisos recopila información de las aplicaciones instaladas para permitir listar tus apps y cruzar sus permisos al usar esta aplicación.</string>
     <string name="onboarding_body3">Piloto de los Permisos no tiene anuncios y sólo procesa datos localmente.</string>
+
+    <string name="apps_details_empty_filter_message">Ningún permiso coincide con los filtros actuales. Toca el icono de filtro para ajustarlos.</string>
+    <string name="filter_configurable_label">Configurable</string>
+    <string name="filter_denied_label">Denegado</string>
+    <string name="filter_granted_label">Concedido</string>
+    <string name="general_collapse_all_action">Contraer todo</string>
+    <string name="general_expand_all_action">Expandir todo</string>
+    <string name="general_more_options_action">Más opciones</string>
+    <string name="permission_full_screen_intent_description">Permite que las aplicaciones muestren notificaciones a pantalla completa que ocupan la pantalla cuando el dispositivo está bloqueado o en uso. Se usa comúnmente para alarmas, llamadas y otros eventos urgentes.</string>
+    <string name="permission_full_screen_intent_label">Notificaciones a pantalla completa</string>
+    <string name="permission_interact_across_profiles_description">Permite que las aplicaciones se comuniquen entre tus perfiles de trabajo y personal, compartiendo datos y funcionalidad entre perfiles.</string>
+    <string name="permission_interact_across_profiles_label">Aplicaciones de trabajo y personales conectadas</string>
+    <string name="permission_loader_usage_stats_description">Permite que las aplicaciones recopilen estadísticas sobre el uso del cargador de datos en el dispositivo.</string>
+    <string name="permission_loader_usage_stats_label">Estadísticas de uso del cargador</string>
+    <string name="permissions_details_empty_filter_message">Ninguna aplicación coincide con los filtros actuales. Toca el icono de filtro para ajustarlos.</string>
+    <string name="permission_turn_screen_on_description">Permite que las aplicaciones enciendan la pantalla del dispositivo cuando necesitan tu atención, como para alarmas o llamadas entrantes.</string>
+    <string name="permission_turn_screen_on_label">Encender pantalla</string>
 </resources>

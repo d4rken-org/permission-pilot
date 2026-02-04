@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Deze app helpt je navigeren door geïnstalleerde applicaties en machtigingen ontdekken.</string>
     <string name="onboarding_body2">Permission Pilot verzamelt informatie over geïnstalleerde applicaties om het mogelijk te maken je apps weer te geven en hun machtigingen kruislings te refereren bij het gebruik van deze applicatie.</string>
     <string name="onboarding_body3">Permission Pilot heeft geen advertenties en verwerkt gegevens alleen lokaal.</string>
+
+    <string name="apps_details_empty_filter_message">Geen machtigingen komen overeen met de huidige filters. Tik op het filterpictogram om aan te passen.</string>
+    <string name="filter_configurable_label">Configureerbaar</string>
+    <string name="filter_denied_label">Geweigerd</string>
+    <string name="filter_granted_label">Verleend</string>
+    <string name="general_collapse_all_action">Alles inklappen</string>
+    <string name="general_expand_all_action">Alles uitklappen</string>
+    <string name="general_more_options_action">Meer opties</string>
+    <string name="permission_full_screen_intent_description">Staat apps toe om volledig-scherm meldingen te tonen die je scherm overnemen wanneer het apparaat vergrendeld is of in gebruik is. Vaak gebruikt voor wekkers, oproepen en andere tijdgevoelige gebeurtenissen.</string>
+    <string name="permission_full_screen_intent_label">Volledig-scherm meldingen</string>
+    <string name="permission_interact_across_profiles_description">Staat apps toe om te communiceren tussen je werk- en persoonlijke profielen, waarbij gegevens en functionaliteit worden gedeeld over profielgrenzen.</string>
+    <string name="permission_interact_across_profiles_label">Verbonden werk- en persoonlijke apps</string>
+    <string name="permission_loader_usage_stats_description">Staat apps toe om statistieken te verzamelen over het gebruik van data loaders op het apparaat.</string>
+    <string name="permission_loader_usage_stats_label">Loader-gebruiksstatistieken</string>
+    <string name="permissions_details_empty_filter_message">Geen apps komen overeen met de huidige filters. Tik op het filterpictogram om aan te passen.</string>
+    <string name="permission_turn_screen_on_description">Staat apps toe om het scherm van het apparaat in te schakelen wanneer ze je aandacht nodig hebben, zoals voor wekkers of inkomende oproepen.</string>
+    <string name="permission_turn_screen_on_label">Scherm inschakelen</string>
 </resources>

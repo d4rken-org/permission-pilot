@@ -247,4 +247,20 @@
     <string name="onboarding_body1">يساعدك هذا التطبيق على استعراض التطبيقات المثبتة واكتشاف الأذونات الخاصة بها.</string>
     <string name="onboarding_body2">يجمع بايلوت الأذونات معلومات تطبيقاتك المثبتة لتمكين عرضها ومراجعة أذوناتها عند استخدام التطبيق.</string>
     <string name="onboarding_body3">بايلوت الأذونات خالٍ من الإعلانات ويعالج البيانات محليًا فقط.</string>
+    <string name="apps_details_empty_filter_message">لا توجد أذونات تطابق الفلاتر الحالية. اضغط على أيقونة الفلتر للتعديل.</string>
+    <string name="filter_configurable_label">قابل للتكوين</string>
+    <string name="filter_denied_label">مرفوض</string>
+    <string name="filter_granted_label">ممنوح</string>
+    <string name="general_collapse_all_action">طي الكل</string>
+    <string name="general_expand_all_action">توسيع الكل</string>
+    <string name="general_more_options_action">المزيد من الخيارات</string>
+    <string name="permission_full_screen_intent_description">يسمح للتطبيقات بعرض إشعارات ملء الشاشة التي تستحوذ على شاشتك عندما يكون الجهاز مقفلاً أو قيد الاستخدام. يُستخدم عادةً للمنبهات والمكالمات والأحداث الحساسة للوقت.</string>
+    <string name="permission_full_screen_intent_label">إشعارات ملء الشاشة</string>
+    <string name="permission_interact_across_profiles_description">يسمح للتطبيقات بالتواصل بين ملفك الشخصي للعمل والشخصي، ومشاركة البيانات والوظائف عبر حدود الملفات الشخصية.</string>
+    <string name="permission_interact_across_profiles_label">تطبيقات العمل والشخصية المتصلة</string>
+    <string name="permission_loader_usage_stats_description">يسمح للتطبيقات بجمع إحصائيات حول استخدام محمّل البيانات على الجهاز.</string>
+    <string name="permission_loader_usage_stats_label">إحصائيات استخدام المحمّل</string>
+    <string name="permissions_details_empty_filter_message">لا توجد تطبيقات تطابق الفلاتر الحالية. اضغط على أيقونة الفلتر للتعديل.</string>
+    <string name="permission_turn_screen_on_description">يسمح للتطبيقات بتشغيل شاشة الجهاز عندما تحتاج انتباهك، مثل المنبهات أو المكالمات الواردة.</string>
+    <string name="permission_turn_screen_on_label">تشغيل الشاشة</string>
 </resources>

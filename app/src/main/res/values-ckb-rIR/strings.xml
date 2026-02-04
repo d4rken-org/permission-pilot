@@ -247,4 +247,20 @@
     <string name="onboarding_body1">ئەم ئەپە دەتوانێت ئەپە دامەزرابووەکانت دیاری بکا و مۆڵەتەکان ببینیت.</string>
     <string name="onboarding_body2">مۆڵەت پایلۆت زانیاریی ئەپە دامەزرابووەکان جمع دەکات بۆ لیستکردن بەکار بەو کاتە تۆ ئەپەکە دەتەوێت و مۆڵەتەکانت جیا بکات.</string>
     <string name="onboarding_body3">مۆڵەت پایلۆت ڕیکلام نییه و داتا تەنیا لە ناوخۆ دا پڕۆسس دەکات.</string>
+    <string name="apps_details_empty_filter_message">هیچ مۆڵەتێک لەگەڵ فلتەرە ئێستاییەکان ناگونجێت. بۆ ڕێکخستن لەسەر ئایکۆنی فلتەر دەست بگرە.</string>
+    <string name="filter_configurable_label">ڕێکخستنی پێکراو</string>
+    <string name="filter_denied_label">ڕەتکراوە</string>
+    <string name="filter_granted_label">پێدراوە</string>
+    <string name="general_collapse_all_action">هەموو بپێچەوە</string>
+    <string name="general_expand_all_action">هەموو بکەرەوە</string>
+    <string name="general_more_options_action">هەڵبژاردنی زیاتر</string>
+    <string name="permission_full_screen_intent_description">ڕێگە بە ئەپەکان دەدات ئاگادارکردنەوەی تەواوی شاشە پیشان بدەن کە شاشەکەت دەگرن کاتێک ئامێرەکە قفڵکراوە یان بەکارهێنراوە. زۆرجار بۆ هۆشیارکەر، پەیوەندی و ڕووداوە هەستیارەکانی کات بەکاردەهێنرێت.</string>
+    <string name="permission_full_screen_intent_label">ئاگادارکردنەوەی تەواوی شاشە</string>
+    <string name="permission_interact_across_profiles_description">ڕێگە بە ئەپەکان دەدات پەیوەندی بکەن لەنێوان پڕۆفایلی کار و کەسیت، هاوبەشکردنی داتا و کارکردن بەسەر سنوورەکانی پڕۆفایل.</string>
+    <string name="permission_interact_across_profiles_label">ئەپە کار و کەسییە پەیوەستکراوەکان</string>
+    <string name="permission_loader_usage_stats_description">ڕێگە بە ئەپەکان دەدات ئامارەکان دەربارەی بەکارهێنانی بارکەری داتا لەسەر ئامێرەکە کۆبکەنەوە.</string>
+    <string name="permission_loader_usage_stats_label">ئامارەکانی بەکارهێنانی بارکەر</string>
+    <string name="permissions_details_empty_filter_message">هیچ ئەپێک لەگەڵ فلتەرە ئێستاییەکان ناگونجێت. بۆ ڕێکخستن لەسەر ئایکۆنی فلتەر دەست بگرە.</string>
+    <string name="permission_turn_screen_on_description">ڕێگە بە ئەپەکان دەدات شاشەی ئامێرەکە بکەنەوە کاتێک پێویستیان بە سەرنجی تۆ هەیە، وەک بۆ هۆشیارکەر یان پەیوەندی هاتوو.</string>
+    <string name="permission_turn_screen_on_label">شاشە بکەرەوە</string>
 </resources>

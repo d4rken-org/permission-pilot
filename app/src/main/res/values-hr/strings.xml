@@ -268,4 +268,21 @@
     <string name="onboarding_body1">Ova aplikacija vam pomaže navigirati instaliranim aplikacijama i otkrivati dozvole.</string>
     <string name="onboarding_body2">Permission Pilot prikuplja informacije o instaliranim aplikacijama kako bi omogućio izlistavanje vaših aplikacija i unakrsno referenciranje njihovih dozvola pri korištenju ove aplikacije.</string>
     <string name="onboarding_body3">Permission Pilot nema reklame i obrađuje podatke samo lokalno.</string>
+
+    <string name="apps_details_empty_filter_message">Nijedna dozvola ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
+    <string name="filter_configurable_label">Podesivo</string>
+    <string name="filter_denied_label">Odbijeno</string>
+    <string name="filter_granted_label">Odobreno</string>
+    <string name="general_collapse_all_action">Sažmi sve</string>
+    <string name="general_expand_all_action">Proširi sve</string>
+    <string name="general_more_options_action">Više opcija</string>
+    <string name="permission_full_screen_intent_description">Omogućuje aplikacijama prikazivanje obavijesti na cijelom zaslonu koje preuzimaju zaslon kada je uređaj zaključan ili u upotrebi. Obično se koristi za alarme, pozive i druge vremenski osjetljive događaje.</string>
+    <string name="permission_full_screen_intent_label">Obavijesti na cijelom zaslonu</string>
+    <string name="permission_interact_across_profiles_description">Omogućuje aplikacijama komunikaciju između radnih i osobnih profila, dijeleći podatke i funkcionalnost preko granica profila.</string>
+    <string name="permission_interact_across_profiles_label">Povezane radne i osobne aplikacije</string>
+    <string name="permission_loader_usage_stats_description">Omogućuje aplikacijama prikupljanje statistika o korištenju učitavača podataka na uređaju.</string>
+    <string name="permission_loader_usage_stats_label">Statistika korištenja učitavača</string>
+    <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
+    <string name="permission_turn_screen_on_description">Omogućuje aplikacijama uključivanje zaslona uređaja kada trebaju vašu pozornost, kao što su alarmi ili dolazni pozivi.</string>
+    <string name="permission_turn_screen_on_label">Uključi zaslon</string>
 </resources>

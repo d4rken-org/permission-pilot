@@ -258,4 +258,20 @@
     <string name="onboarding_body1">แอปนี้ช่วยคุณในการนำทางแอปพลิเคชันที่ติดตั้งและค้นพบสิทธิ์</string>
     <string name="onboarding_body2">Permission Pilot รวบรวมข้อมูลแอปพลิเคชันที่ติดตั้งเพื่อให้สามารถแสดงรายการแอปของคุณและอ้างอิงสิทธิ์ข้ามกันเมื่อใช้แอปพลิเคชันนี้</string>
     <string name="onboarding_body3">Permission Pilot ไม่มีโฆษณาและประมวลผลข้อมูลในเครื่องเท่านั้น</string>
+    <string name="apps_details_empty_filter_message">ไม่มีสิทธิ์ที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
+    <string name="filter_configurable_label">กำหนดค่าได้</string>
+    <string name="filter_denied_label">ถูกปฏิเสธ</string>
+    <string name="filter_granted_label">ได้รับอนุญาต</string>
+    <string name="general_collapse_all_action">ยุบทั้งหมด</string>
+    <string name="general_expand_all_action">ขยายทั้งหมด</string>
+    <string name="general_more_options_action">ตัวเลือกเพิ่มเติม</string>
+    <string name="permission_full_screen_intent_description">อนุญาตให้แอปแสดงการแจ้งเตือนแบบเต็มหน้าจอที่ครอบคลุมหน้าจอของคุณเมื่ออุปกรณ์ถูกล็อคหรือกำลังใช้งาน มักใช้สำหรับการปลุก การโทร และเหตุการณ์ที่ไวต่อเวลา</string>
+    <string name="permission_full_screen_intent_label">การแจ้งเตือนแบบเต็มหน้าจอ</string>
+    <string name="permission_interact_across_profiles_description">อนุญาตให้แอปสื่อสารระหว่างโปรไฟล์งานและส่วนตัวของคุณ แชร์ข้อมูลและฟังก์ชันข้ามขอบเขตโปรไฟล์</string>
+    <string name="permission_interact_across_profiles_label">แอปงานและส่วนตัวที่เชื่อมต่อ</string>
+    <string name="permission_loader_usage_stats_description">อนุญาตให้แอปรวบรวมสถิติเกี่ยวกับการใช้ตัวโหลดข้อมูลบนอุปกรณ์</string>
+    <string name="permission_loader_usage_stats_label">สถิติการใช้ตัวโหลด</string>
+    <string name="permissions_details_empty_filter_message">ไม่มีแอปที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
+    <string name="permission_turn_screen_on_description">อนุญาตให้แอปเปิดหน้าจออุปกรณ์เมื่อต้องการความสนใจจากคุณ เช่น สำหรับการปลุกหรือสายเรียกเข้า</string>
+    <string name="permission_turn_screen_on_label">เปิดหน้าจอ</string>
 </resources>

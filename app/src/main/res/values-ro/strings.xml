@@ -572,4 +572,21 @@
         <item quantity="few">%d aplicații de sistem</item>
         <item quantity="other">%d de aplicații de sistem</item>
     </plurals>
+
+    <string name="apps_details_empty_filter_message">Nicio permisiune nu corespunde filtrelor curente. Apăsați pictograma de filtrare pentru a ajusta.</string>
+    <string name="filter_configurable_label">Configurabil</string>
+    <string name="filter_denied_label">Refuzată</string>
+    <string name="filter_granted_label">Acordată</string>
+    <string name="general_collapse_all_action">Restrânge tot</string>
+    <string name="general_expand_all_action">Extinde tot</string>
+    <string name="general_more_options_action">Mai multe opțiuni</string>
+    <string name="permission_full_screen_intent_description">Permite aplicațiilor să afișeze notificări pe ecran complet care preiau ecranul când dispozitivul este blocat sau în uz. Folosit frecvent pentru alarme, apeluri și alte evenimente urgente.</string>
+    <string name="permission_full_screen_intent_label">Notificări pe ecran complet</string>
+    <string name="permission_interact_across_profiles_description">Permite aplicațiilor să comunice între profilurile de serviciu și personale, partajând date și funcționalitate între limitele profilurilor.</string>
+    <string name="permission_interact_across_profiles_label">Aplicații de serviciu și personale conectate</string>
+    <string name="permission_loader_usage_stats_description">Permite aplicațiilor să colecteze statistici despre utilizarea încărcătoarelor de date pe dispozitiv.</string>
+    <string name="permission_loader_usage_stats_label">Statistici de utilizare a încărcătorului</string>
+    <string name="permissions_details_empty_filter_message">Nicio aplicație nu corespunde filtrelor curente. Apăsați pictograma de filtrare pentru a ajusta.</string>
+    <string name="permission_turn_screen_on_description">Permite aplicațiilor să pornească ecranul dispozitivului când au nevoie de atenția dvs., cum ar fi pentru alarme sau apeluri primite.</string>
+    <string name="permission_turn_screen_on_label">Pornește ecranul</string>
 </resources>

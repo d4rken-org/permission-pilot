@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Denna app hjälper dig navigera installerade applikationer och upptäcka behörigheter.</string>
     <string name="onboarding_body2">Permission Pilot samlar in information om installerade applikationer för att möjliggöra listning av dina appar och korsreferering av deras behörigheter när du använder denna applikation.</string>
     <string name="onboarding_body3">Permission Pilot har inga annonser och bearbetar endast data lokalt.</string>
+
+    <string name="apps_details_empty_filter_message">Inga behörigheter matchar aktuella filter. Tryck på filterikonen för att justera.</string>
+    <string name="filter_configurable_label">Konfigurerbar</string>
+    <string name="filter_denied_label">Nekad</string>
+    <string name="filter_granted_label">Beviljad</string>
+    <string name="general_collapse_all_action">Fäll ihop alla</string>
+    <string name="general_expand_all_action">Expandera alla</string>
+    <string name="general_more_options_action">Fler alternativ</string>
+    <string name="permission_full_screen_intent_description">Låter appar visa helskärmsnotifieringar som tar över din skärm när enheten är låst eller används. Används ofta för larm, samtal och andra tidskänsliga händelser.</string>
+    <string name="permission_full_screen_intent_label">Helskärmsnotifieringar</string>
+    <string name="permission_interact_across_profiles_description">Låter appar kommunicera mellan dina arbets- och personliga profiler och dela data och funktionalitet över profilgränser.</string>
+    <string name="permission_interact_across_profiles_label">Anslutna arbets- och personliga appar</string>
+    <string name="permission_loader_usage_stats_description">Låter appar samla in statistik om användning av dataladdare på enheten.</string>
+    <string name="permission_loader_usage_stats_label">Statistik för laddaranvändning</string>
+    <string name="permissions_details_empty_filter_message">Inga appar matchar aktuella filter. Tryck på filterikonen för att justera.</string>
+    <string name="permission_turn_screen_on_description">Låter appar slå på enhetens skärm när de behöver din uppmärksamhet, till exempel för larm eller inkommande samtal.</string>
+    <string name="permission_turn_screen_on_label">Slå på skärm</string>
 </resources>

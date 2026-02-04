@@ -258,5 +258,20 @@
     <string name="onboarding_body1">Ứng dụng này giúp bạn điều hướng các ứng dụng đã cài đặt và khám phá quyền.</string>
     <string name="onboarding_body2">Permission Pilot thu thập thông tin ứng dụng đã cài đặt để cho phép liệt kê ứng dụng của bạn và tham chiếu chéo quyền của chúng khi sử dụng ứng dụng này.</string>
     <string name="onboarding_body3">Permission Pilot không có quảng cáo và chỉ xử lý dữ liệu cục bộ.</string>
-    +
+    <string name="apps_details_empty_filter_message">Không có quyền nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
+    <string name="filter_configurable_label">Có thể cấu hình</string>
+    <string name="filter_denied_label">Bị từ chối</string>
+    <string name="filter_granted_label">Đã cấp</string>
+    <string name="general_collapse_all_action">Thu gọn tất cả</string>
+    <string name="general_expand_all_action">Mở rộng tất cả</string>
+    <string name="general_more_options_action">Thêm tùy chọn</string>
+    <string name="permission_full_screen_intent_description">Cho phép ứng dụng hiển thị thông báo toàn màn hình chiếm lấy màn hình của bạn khi thiết bị bị khóa hoặc đang sử dụng. Thường được sử dụng cho báo thức, cuộc gọi và các sự kiện nhạy cảm với thời gian.</string>
+    <string name="permission_full_screen_intent_label">Thông báo toàn màn hình</string>
+    <string name="permission_interact_across_profiles_description">Cho phép ứng dụng giao tiếp giữa hồ sơ công việc và cá nhân của bạn, chia sẻ dữ liệu và chức năng qua ranh giới hồ sơ.</string>
+    <string name="permission_interact_across_profiles_label">Ứng dụng công việc và cá nhân được kết nối</string>
+    <string name="permission_loader_usage_stats_description">Cho phép ứng dụng thu thập thống kê về việc sử dụng trình tải dữ liệu trên thiết bị.</string>
+    <string name="permission_loader_usage_stats_label">Thống kê sử dụng trình tải</string>
+    <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
+    <string name="permission_turn_screen_on_description">Cho phép ứng dụng bật màn hình thiết bị khi cần sự chú ý của bạn, chẳng hạn như cho báo thức hoặc cuộc gọi đến.</string>
+    <string name="permission_turn_screen_on_label">Bật màn hình</string>
 </resources>

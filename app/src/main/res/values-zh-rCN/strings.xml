@@ -262,4 +262,20 @@
     <string name="onboarding_body1">这款应用可以帮助您浏览已安装的应用程序并发现其权限。</string>
     <string name="onboarding_body2">Permission Pilot 收集已安装应用程序的信息，以便在使用本应用程序时列出您的应用程序并交叉引用其权限。</string>
     <string name="onboarding_body3">Permission Pilot 不含广告，仅在本地处理数据。</string>
+    <string name="apps_details_empty_filter_message">没有权限符合当前筛选条件。点击筛选图标进行调整。</string>
+    <string name="filter_configurable_label">可配置</string>
+    <string name="filter_denied_label">已拒绝</string>
+    <string name="filter_granted_label">已授予</string>
+    <string name="general_collapse_all_action">全部折叠</string>
+    <string name="general_expand_all_action">全部展开</string>
+    <string name="general_more_options_action">更多选项</string>
+    <string name="permission_full_screen_intent_description">允许应用显示全屏通知，在设备锁定或使用时占据您的屏幕。通常用于闹钟、来电和其他时间敏感事件。</string>
+    <string name="permission_full_screen_intent_label">全屏通知</string>
+    <string name="permission_interact_across_profiles_description">允许应用在您的工作和个人配置文件之间进行通信，跨配置文件边界共享数据和功能。</string>
+    <string name="permission_interact_across_profiles_label">关联的工作和个人应用</string>
+    <string name="permission_loader_usage_stats_description">允许应用收集有关设备上数据加载器使用情况的统计信息。</string>
+    <string name="permission_loader_usage_stats_label">加载器使用统计</string>
+    <string name="permissions_details_empty_filter_message">没有应用符合当前筛选条件。点击筛选图标进行调整。</string>
+    <string name="permission_turn_screen_on_description">允许应用在需要您注意时打开设备屏幕，例如闹钟或来电。</string>
+    <string name="permission_turn_screen_on_label">打开屏幕</string>
 </resources>

@@ -346,4 +346,21 @@
         <item quantity="one">%s kohde</item>
         <item quantity="other">%s kohdetta</item>
     </plurals>
+
+    <string name="apps_details_empty_filter_message">Yksikään käyttöoikeus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <string name="filter_configurable_label">Määritettävissä</string>
+    <string name="filter_denied_label">Evätty</string>
+    <string name="filter_granted_label">Myönnetty</string>
+    <string name="general_collapse_all_action">Pienennä kaikki</string>
+    <string name="general_expand_all_action">Laajenna kaikki</string>
+    <string name="general_more_options_action">Lisää vaihtoehtoja</string>
+    <string name="permission_full_screen_intent_description">Sallii sovellusten näyttää koko näytön ilmoituksia, jotka valtaavat näytön, kun laite on lukittu tai käytössä. Käytetään yleisesti herätyksiin, puheluihin ja muihin aikakriittisiin tapahtumiin.</string>
+    <string name="permission_full_screen_intent_label">Koko näytön ilmoitukset</string>
+    <string name="permission_interact_across_profiles_description">Sallii sovellusten kommunikoida työ- ja henkilökohtaisten profiilien välillä, jakaen tietoja ja toimintoja profiilirajojen yli.</string>
+    <string name="permission_interact_across_profiles_label">Yhdistetyt työ- ja henkilökohtaiset sovellukset</string>
+    <string name="permission_loader_usage_stats_description">Sallii sovellusten kerätä tilastoja tietojen lataajien käytöstä laitteella.</string>
+    <string name="permission_loader_usage_stats_label">Lataajan käyttötilastot</string>
+    <string name="permissions_details_empty_filter_message">Yksikään sovellus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <string name="permission_turn_screen_on_description">Sallii sovellusten kytkeä laitteen näytön päälle, kun ne tarvitsevat huomiotasi, kuten herätyksiin tai saapuviin puheluihin.</string>
+    <string name="permission_turn_screen_on_label">Kytke näyttö päälle</string>
 </resources>

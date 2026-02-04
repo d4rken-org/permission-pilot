@@ -262,4 +262,20 @@
     <string name="onboarding_body1">此應用程式讓您方便的查看並管理應用程式權限。</string>
     <string name="onboarding_body2">Permission Pilot 收集應用程式的資訊以在使用時列出權限。</string>
     <string name="onboarding_body3">Permission Pilot 不含廣告，且僅在本地處理數據。</string>
+    <string name="apps_details_empty_filter_message">沒有權限符合目前篩選條件。點擊篩選圖示進行調整。</string>
+    <string name="filter_configurable_label">可設定</string>
+    <string name="filter_denied_label">已拒絕</string>
+    <string name="filter_granted_label">已授予</string>
+    <string name="general_collapse_all_action">全部收合</string>
+    <string name="general_expand_all_action">全部展開</string>
+    <string name="general_more_options_action">更多選項</string>
+    <string name="permission_full_screen_intent_description">允許應用程式顯示全螢幕通知，在裝置鎖定或使用時佔據您的螢幕。通常用於鬧鐘、來電和其他時間敏感事件。</string>
+    <string name="permission_full_screen_intent_label">全螢幕通知</string>
+    <string name="permission_interact_across_profiles_description">允許應用程式在您的工作和個人設定檔之間進行通訊，跨設定檔邊界共享資料和功能。</string>
+    <string name="permission_interact_across_profiles_label">關聯的工作和個人應用程式</string>
+    <string name="permission_loader_usage_stats_description">允許應用程式收集有關裝置上資料載入器使用情況的統計資訊。</string>
+    <string name="permission_loader_usage_stats_label">載入器使用統計</string>
+    <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
+    <string name="permission_turn_screen_on_description">允許應用程式在需要您注意時開啟裝置螢幕，例如鬧鐘或來電。</string>
+    <string name="permission_turn_screen_on_label">開啟螢幕</string>
 </resources>
