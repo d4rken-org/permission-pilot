@@ -39,12 +39,25 @@ private data class SpecialPermissionDef(
 )
 
 private val SPECIAL_PERMISSIONS = listOf(
-    SpecialPermissionDef(APerm.MANAGE_EXTERNAL_STORAGE, "android:manage_external_storage", Build.VERSION_CODES.R),
-    SpecialPermissionDef(APerm.SCHEDULE_EXACT_ALARM, "android:schedule_exact_alarm", Build.VERSION_CODES.S),
-    SpecialPermissionDef(APerm.REQUEST_INSTALL_PACKAGES, "android:request_install_packages", Build.VERSION_CODES.O),
+    // API 1 (always available, minSdk >= 21)
+    SpecialPermissionDef(APerm.PACKAGE_USAGE_STATS, AppOpsManager.OPSTR_GET_USAGE_STATS, 1),
+    SpecialPermissionDef(APerm.ACCESS_NOTIFICATIONS, "android:access_notifications", 1),
+    // API 23 (M)
     SpecialPermissionDef(APerm.SYSTEM_ALERT_WINDOW, AppOpsManager.OPSTR_SYSTEM_ALERT_WINDOW, Build.VERSION_CODES.M),
     SpecialPermissionDef(APerm.WRITE_SETTINGS, AppOpsManager.OPSTR_WRITE_SETTINGS, Build.VERSION_CODES.M),
-    SpecialPermissionDef(APerm.PACKAGE_USAGE_STATS, AppOpsManager.OPSTR_GET_USAGE_STATS, 1), // Always available (minSdk >= 21)
+    // API 24 (N)
+    SpecialPermissionDef(APerm.CHANGE_WIFI_STATE, "android:change_wifi_state", Build.VERSION_CODES.N),
+    // API 26 (O)
+    SpecialPermissionDef(APerm.REQUEST_INSTALL_PACKAGES, "android:request_install_packages", Build.VERSION_CODES.O),
+    SpecialPermissionDef(APerm.TURN_SCREEN_ON, "android:turn_screen_on", Build.VERSION_CODES.O),
+    // API 30 (R)
+    SpecialPermissionDef(APerm.MANAGE_EXTERNAL_STORAGE, "android:manage_external_storage", Build.VERSION_CODES.R),
+    SpecialPermissionDef(APerm.INTERACT_ACROSS_PROFILES, "android:interact_across_profiles", Build.VERSION_CODES.R),
+    SpecialPermissionDef(APerm.LOADER_USAGE_STATS, "android:loader_usage_stats", Build.VERSION_CODES.R),
+    // API 31 (S)
+    SpecialPermissionDef(APerm.SCHEDULE_EXACT_ALARM, "android:schedule_exact_alarm", Build.VERSION_CODES.S),
+    SpecialPermissionDef(APerm.MANAGE_MEDIA, "android:manage_media", Build.VERSION_CODES.S),
+    SpecialPermissionDef(APerm.USE_FULL_SCREEN_INTENT, "android:use_full_screen_intent", Build.VERSION_CODES.S),
 )
 
 /**
