@@ -46,7 +46,7 @@ sealed class APerm(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_manage_media_label
         override val descriptionRes: Int = R.string.permission_manage_media_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object WRITE_MEDIA_STORAGE : APerm("android.permission.WRITE_MEDIA_STORAGE") {
@@ -738,6 +738,14 @@ sealed class APerm(val id: Permission.Id) {
         override val tags = setOf(ManifestDoc)
     }
 
+    object TURN_SCREEN_ON : APerm("android.permission.TURN_SCREEN_ON") {
+        override val iconRes: Int = R.drawable.ic_baseline_phone_android_24
+        override val labelRes: Int = R.string.permission_turn_screen_on_label
+        override val descriptionRes: Int = R.string.permission_turn_screen_on_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
+    }
+
 
     /**
      * OTHER
@@ -944,7 +952,11 @@ sealed class APerm(val id: Permission.Id) {
     }
 
     object INTERACT_ACROSS_PROFILES : APerm("android.permission.INTERACT_ACROSS_PROFILES") {
-        override val tags = setOf(ManifestDoc)
+        override val iconRes: Int = R.drawable.ic_baseline_work_24
+        override val labelRes: Int = R.string.permission_interact_across_profiles_label
+        override val descriptionRes: Int = R.string.permission_interact_across_profiles_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object KILL_BACKGROUND_PROCESSES : APerm("android.permission.KILL_BACKGROUND_PROCESSES") {
@@ -952,7 +964,11 @@ sealed class APerm(val id: Permission.Id) {
     }
 
     object LOADER_USAGE_STATS : APerm("android.permission.LOADER_USAGE_STATS") {
-        override val tags = setOf(ManifestDoc)
+        override val iconRes: Int = R.drawable.ic_usage_data_access_24
+        override val labelRes: Int = R.string.permission_loader_usage_stats_label
+        override val descriptionRes: Int = R.string.permission_loader_usage_stats_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object MASTER_CLEAR : APerm("android.permission.MASTER_CLEAR") {
@@ -1087,7 +1103,11 @@ sealed class APerm(val id: Permission.Id) {
     }
 
     object USE_FULL_SCREEN_INTENT : APerm("android.permission.USE_FULL_SCREEN_INTENT") {
-        override val tags = setOf(ManifestDoc)
+        override val iconRes: Int = R.drawable.ic_baseline_picture_in_picture_24
+        override val labelRes: Int = R.string.permission_full_screen_intent_label
+        override val descriptionRes: Int = R.string.permission_full_screen_intent_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER : APerm("android.permission.USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER") {

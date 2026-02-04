@@ -222,6 +222,14 @@
     <string name="permission_do_not_disturb_permission_description">Allows apps to turn Do Not Disturb (DND) ON or OFF and change related settings.</string>
     <string name="permission_alarms_and_reminders_label">Alarms and Reminders</string>
     <string name="permission_alarms_and_reminders_description">Allows apps to set alarms and schedule time-sensitive actions. This allows apps to run in the background, which may use more battery. Turning OFF this permission for an app would cause existing alarms and time-based events that are scheduled by that particular app to stop working.</string>
+    <string name="permission_turn_screen_on_label">Turn Screen On</string>
+    <string name="permission_turn_screen_on_description">Allows apps to turn on the device screen when they need your attention, such as for alarms or incoming calls.</string>
+    <string name="permission_full_screen_intent_label">Full-Screen Notifications</string>
+    <string name="permission_full_screen_intent_description">Allows apps to show full-screen notifications that take over your screen when the device is locked or in use. Commonly used for alarms, calls, and other time-sensitive events.</string>
+    <string name="permission_interact_across_profiles_label">Connected Work and Personal Apps</string>
+    <string name="permission_interact_across_profiles_description">Allows apps to communicate between your work and personal profiles, sharing data and functionality across profile boundaries.</string>
+    <string name="permission_loader_usage_stats_label">Loader Usage Stats</string>
+    <string name="permission_loader_usage_stats_description">Allows apps to collect statistics about data loader usage on the device.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Access</string>
     <string name="permission_premium_sms_services_description">Allows apps to use premium text message services. This will cost you money.</string>
     <string name="permission_unlimited_data_access_label">Unlimited Data Access</string>
