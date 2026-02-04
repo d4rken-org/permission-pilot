@@ -627,7 +627,7 @@ sealed class APerm(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_install_unknown_apps_label
         override val descriptionRes: Int = R.string.permission_install_unknown_apps_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object SCHEDULE_EXACT_ALARM : APerm("android.permission.SCHEDULE_EXACT_ALARM") {
