@@ -263,4 +263,20 @@
     <string name="onboarding_body1">এই অ্যাপ আপনাকে ইনস্টল করা অ্যাপ্লিকেশনগুলি নেভিগেট করতে এবং অনুমতি আবিষ্কার করতে সাহায্য করে।</string>
     <string name="onboarding_body2">Permission Pilot ইনস্টল করা অ্যাপ্লিকেশনের তথ্য সংগ্রহ করে যাতে এই অ্যাপটি ব্যবহার করার সময় আপনার অ্যাপগুলি তালিকাভুক্ত করা এবং তাদের অনুমতিগুলির ক্রস-রেফারেন্স করা সম্ভব হয়।</string>
     <string name="onboarding_body3">Permission Pilot-এ কোনো বিজ্ঞাপন নেই এবং শুধুমাত্র স্থানীয়ভাবে ডেটা প্রক্রিয়া করে।</string>
+    <string name="apps_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অনুমতি মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
+    <string name="filter_configurable_label">কনফিগারযোগ্য</string>
+    <string name="filter_denied_label">প্রত্যাখ্যাত</string>
+    <string name="filter_granted_label">প্রদত্ত</string>
+    <string name="general_collapse_all_action">সব সংকুচিত করুন</string>
+    <string name="general_expand_all_action">সব প্রসারিত করুন</string>
+    <string name="general_more_options_action">আরো বিকল্প</string>
+    <string name="permission_full_screen_intent_description">অ্যাপগুলিকে পূর্ণ-স্ক্রিন বিজ্ঞপ্তি দেখানোর অনুমতি দেয় যা ডিভাইস লক থাকা বা ব্যবহারে থাকা অবস্থায় আপনার স্ক্রিন দখল করে। সাধারণত অ্যালার্ম, কল এবং অন্যান্য সময়-সংবেদনশীল ইভেন্টের জন্য ব্যবহৃত হয়।</string>
+    <string name="permission_full_screen_intent_label">পূর্ণ-স্ক্রিন বিজ্ঞপ্তি</string>
+    <string name="permission_interact_across_profiles_description">অ্যাপগুলিকে আপনার কাজ এবং ব্যক্তিগত প্রোফাইলের মধ্যে যোগাযোগ করতে, প্রোফাইল সীমানা জুড়ে ডেটা এবং কার্যকারিতা ভাগ করার অনুমতি দেয়।</string>
+    <string name="permission_interact_across_profiles_label">সংযুক্ত কাজ এবং ব্যক্তিগত অ্যাপস</string>
+    <string name="permission_loader_usage_stats_description">অ্যাপগুলিকে ডিভাইসে ডেটা লোডার ব্যবহার সম্পর্কে পরিসংখ্যান সংগ্রহ করার অনুমতি দেয়।</string>
+    <string name="permission_loader_usage_stats_label">লোডার ব্যবহারের পরিসংখ্যান</string>
+    <string name="permissions_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অ্যাপ মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
+    <string name="permission_turn_screen_on_description">অ্যাপগুলিকে ডিভাইসের স্ক্রিন চালু করার অনুমতি দেয় যখন তাদের আপনার মনোযোগ প্রয়োজন, যেমন অ্যালার্ম বা ইনকামিং কলের জন্য।</string>
+    <string name="permission_turn_screen_on_label">স্ক্রিন চালু করুন</string>
 </resources>

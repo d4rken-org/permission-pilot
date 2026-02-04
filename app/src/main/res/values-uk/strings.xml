@@ -273,4 +273,21 @@
     <string name="onboarding_body1">Ця програма допомагає вам навігувати встановленими програмами та виявляти дозволи.</string>
     <string name="onboarding_body2">Permission Pilot збирає інформацію про встановлені програми, щоб дозволити перелічувати ваші програми та перехресно посилатися на їх дозволи під час використання цієї програми.</string>
     <string name="onboarding_body3">Permission Pilot не має реклами і обробляє дані лише локально.</string>
+
+    <string name="apps_details_empty_filter_message">Немає дозволів, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
+    <string name="filter_configurable_label">Налаштовувані</string>
+    <string name="filter_denied_label">Відхилені</string>
+    <string name="filter_granted_label">Надані</string>
+    <string name="general_collapse_all_action">Згорнути все</string>
+    <string name="general_expand_all_action">Розгорнути все</string>
+    <string name="general_more_options_action">Додаткові параметри</string>
+    <string name="permission_full_screen_intent_description">Дозволяє програмам показувати повноекранні сповіщення, які займають весь екран, коли пристрій заблоковано або використовується. Зазвичай використовується для будильників, дзвінків та інших термінових подій.</string>
+    <string name="permission_full_screen_intent_label">Повноекранні сповіщення</string>
+    <string name="permission_interact_across_profiles_description">Дозволяє програмам взаємодіяти між робочим і особистим профілями, обмінюючись даними та функціями між профілями.</string>
+    <string name="permission_interact_across_profiles_label">Пов\'язані робочі та особисті програми</string>
+    <string name="permission_loader_usage_stats_description">Дозволяє програмам збирати статистику про використання завантажувача даних на пристрої.</string>
+    <string name="permission_loader_usage_stats_label">Статистика використання завантажувача</string>
+    <string name="permissions_details_empty_filter_message">Немає програм, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
+    <string name="permission_turn_screen_on_description">Дозволяє програмам вмикати екран пристрою, коли їм потрібна ваша увага, наприклад, для будильників або вхідних дзвінків.</string>
+    <string name="permission_turn_screen_on_label">Увімкнення екрана</string>
 </resources>

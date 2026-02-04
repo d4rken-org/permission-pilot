@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Diese App hilft dir, durch installierte Anwendungen zu navigieren und Berechtigungen zu entdecken.</string>
     <string name="onboarding_body2">Permission Pilot sammelt Informationen über installierte Anwendungen, um das Auflisten deiner Apps und die Querverweise ihrer Berechtigungen bei der Nutzung dieser Anwendung zu ermöglichen.</string>
     <string name="onboarding_body3">Permission Pilot hat keine Werbung und verarbeitet Daten nur lokal.</string>
+
+    <string name="apps_details_empty_filter_message">Keine Berechtigungen entsprechen den aktuellen Filtern. Tippe auf das Filtersymbol, um sie anzupassen.</string>
+    <string name="filter_configurable_label">Konfigurierbar</string>
+    <string name="filter_denied_label">Verweigert</string>
+    <string name="filter_granted_label">Gewährt</string>
+    <string name="general_collapse_all_action">Alle einklappen</string>
+    <string name="general_expand_all_action">Alle ausklappen</string>
+    <string name="general_more_options_action">Weitere Optionen</string>
+    <string name="permission_full_screen_intent_description">Ermöglicht Apps, Vollbild-Benachrichtigungen anzuzeigen, die den Bildschirm übernehmen, wenn das Gerät gesperrt ist oder verwendet wird. Wird häufig für Wecker, Anrufe und andere zeitkritische Ereignisse verwendet.</string>
+    <string name="permission_full_screen_intent_label">Vollbild-Benachrichtigungen</string>
+    <string name="permission_interact_across_profiles_description">Ermöglicht Apps die Kommunikation zwischen Arbeits- und persönlichen Profilen, um Daten und Funktionen über Profilgrenzen hinweg zu teilen.</string>
+    <string name="permission_interact_across_profiles_label">Verbundene Arbeits- und persönliche Apps</string>
+    <string name="permission_loader_usage_stats_description">Ermöglicht Apps, Statistiken über die Nutzung von Datenladern auf dem Gerät zu sammeln.</string>
+    <string name="permission_loader_usage_stats_label">Loader-Nutzungsstatistiken</string>
+    <string name="permissions_details_empty_filter_message">Keine Apps entsprechen den aktuellen Filtern. Tippe auf das Filtersymbol, um sie anzupassen.</string>
+    <string name="permission_turn_screen_on_description">Ermöglicht Apps, den Bildschirm des Geräts einzuschalten, wenn sie deine Aufmerksamkeit benötigen, z.B. bei Weckern oder eingehenden Anrufen.</string>
+    <string name="permission_turn_screen_on_label">Bildschirm einschalten</string>
 </resources>

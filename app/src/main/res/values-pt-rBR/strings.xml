@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Este app ajuda você a navegar por aplicações instaladas e descobrir permissões.</string>
     <string name="onboarding_body2">Permission Pilot coleta informações de Aplicação Instalada para permitir listar seus apps e fazer referência cruzada de suas permissões ao usar esta aplicação.</string>
     <string name="onboarding_body3">Permission Pilot não tem anúncios e apenas processa dados localmente.</string>
+
+    <string name="apps_details_empty_filter_message">Nenhuma permissão corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
+    <string name="filter_configurable_label">Configurável</string>
+    <string name="filter_denied_label">Negada</string>
+    <string name="filter_granted_label">Concedida</string>
+    <string name="general_collapse_all_action">Recolher tudo</string>
+    <string name="general_expand_all_action">Expandir tudo</string>
+    <string name="general_more_options_action">Mais opções</string>
+    <string name="permission_full_screen_intent_description">Permite que apps mostrem notificações em tela cheia que tomam conta da tela quando o dispositivo está bloqueado ou em uso. Comumente usado para alarmes, chamadas e outros eventos urgentes.</string>
+    <string name="permission_full_screen_intent_label">Notificações em tela cheia</string>
+    <string name="permission_interact_across_profiles_description">Permite que apps se comuniquem entre seus perfis de trabalho e pessoal, compartilhando dados e funcionalidades entre perfis.</string>
+    <string name="permission_interact_across_profiles_label">Apps de trabalho e pessoais conectados</string>
+    <string name="permission_loader_usage_stats_description">Permite que apps coletem estatísticas sobre o uso de carregadores de dados no dispositivo.</string>
+    <string name="permission_loader_usage_stats_label">Estatísticas de uso do carregador</string>
+    <string name="permissions_details_empty_filter_message">Nenhum app corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
+    <string name="permission_turn_screen_on_description">Permite que apps liguem a tela do dispositivo quando precisam da sua atenção, como para alarmes ou chamadas recebidas.</string>
+    <string name="permission_turn_screen_on_label">Ligar tela</string>
 </resources>

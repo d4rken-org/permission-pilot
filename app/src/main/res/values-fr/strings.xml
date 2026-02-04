@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Cette application vous aide à naviguer dans les applications installées et à découvrir les autorisations.</string>
     <string name="onboarding_body2">Permission Pilot collecte des informations sur les applications installées pour permettre de lister vos applications et de faire des références croisées de leurs autorisations lors de l\'utilisation de cette application.</string>
     <string name="onboarding_body3">Permission Pilot n\'a pas de publicité et ne traite les données que localement.</string>
+
+    <string name="apps_details_empty_filter_message">Aucune autorisation ne correspond aux filtres actuels. Appuyez sur l\'icône de filtre pour les ajuster.</string>
+    <string name="filter_configurable_label">Configurable</string>
+    <string name="filter_denied_label">Refusée</string>
+    <string name="filter_granted_label">Accordée</string>
+    <string name="general_collapse_all_action">Tout réduire</string>
+    <string name="general_expand_all_action">Tout développer</string>
+    <string name="general_more_options_action">Plus d\'options</string>
+    <string name="permission_full_screen_intent_description">Permet aux applications d\'afficher des notifications en plein écran qui prennent le contrôle de l\'écran lorsque l\'appareil est verrouillé ou en cours d\'utilisation. Couramment utilisé pour les alarmes, les appels et autres événements urgents.</string>
+    <string name="permission_full_screen_intent_label">Notifications plein écran</string>
+    <string name="permission_interact_across_profiles_description">Permet aux applications de communiquer entre vos profils professionnel et personnel, en partageant des données et des fonctionnalités entre les profils.</string>
+    <string name="permission_interact_across_profiles_label">Applications professionnelles et personnelles connectées</string>
+    <string name="permission_loader_usage_stats_description">Permet aux applications de collecter des statistiques sur l\'utilisation des chargeurs de données sur l\'appareil.</string>
+    <string name="permission_loader_usage_stats_label">Statistiques d\'utilisation du chargeur</string>
+    <string name="permissions_details_empty_filter_message">Aucune application ne correspond aux filtres actuels. Appuyez sur l\'icône de filtre pour les ajuster.</string>
+    <string name="permission_turn_screen_on_description">Permet aux applications d\'allumer l\'écran de l\'appareil lorsqu\'elles ont besoin de votre attention, par exemple pour les alarmes ou les appels entrants.</string>
+    <string name="permission_turn_screen_on_label">Allumer l\'écran</string>
 </resources>

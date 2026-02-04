@@ -326,4 +326,21 @@
         <item quantity="one">%s element</item>
         <item quantity="other">%s elementer</item>
     </plurals>
+
+    <string name="apps_details_empty_filter_message">Ingen tilladelser matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
+    <string name="filter_configurable_label">Konfigurerbar</string>
+    <string name="filter_denied_label">Afvist</string>
+    <string name="filter_granted_label">Tildelt</string>
+    <string name="general_collapse_all_action">Skjul alle</string>
+    <string name="general_expand_all_action">Udvid alle</string>
+    <string name="general_more_options_action">Flere muligheder</string>
+    <string name="permission_full_screen_intent_description">Tillader apps at vise fuldskærmsnotifikationer, der overtager din skærm, når enheden er låst eller i brug. Bruges ofte til alarmer, opkald og andre tidsfølsomme begivenheder.</string>
+    <string name="permission_full_screen_intent_label">Fuldskærmsnotifikationer</string>
+    <string name="permission_interact_across_profiles_description">Tillader apps at kommunikere mellem dine arbejds- og personlige profiler og dele data og funktionalitet på tværs af profilgrænser.</string>
+    <string name="permission_interact_across_profiles_label">Forbundne arbejds- og personlige apps</string>
+    <string name="permission_loader_usage_stats_description">Tillader apps at indsamle statistik om brug af dataindlæser på enheden.</string>
+    <string name="permission_loader_usage_stats_label">Statistik for indlæserbrug</string>
+    <string name="permissions_details_empty_filter_message">Ingen apps matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
+    <string name="permission_turn_screen_on_description">Tillader apps at tænde enhedens skærm, når de har brug for din opmærksomhed, såsom til alarmer eller indgående opkald.</string>
+    <string name="permission_turn_screen_on_label">Tænd skærm</string>
 </resources>

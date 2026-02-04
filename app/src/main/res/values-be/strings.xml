@@ -247,4 +247,21 @@
     <string name="onboarding_body1">Гэта праграма дапамагае аглядаць усталяваныя праграмы і дазволы.</string>
     <string name="onboarding_body2">Дазвол Пілот збірае інфармацыю аб усталяваных праграмах дзеля паказу іх і правільнага звязвання дазволаў.</string>
     <string name="onboarding_body3">Дазвол Пілот без рэкламы і апрацоўвае дадзеныя толькі лакальна.</string>
+
+    <string name="apps_details_empty_filter_message">Няма дазволаў, якія адпавядаюць бягучым фільтрам. Націсніце на значок фільтра для налады.</string>
+    <string name="filter_configurable_label">Наладжвальныя</string>
+    <string name="filter_denied_label">Адхіленыя</string>
+    <string name="filter_granted_label">Атрыманыя</string>
+    <string name="general_collapse_all_action">Згарнуць усё</string>
+    <string name="general_expand_all_action">Разгарнуць усё</string>
+    <string name="general_more_options_action">Дадатковыя параметры</string>
+    <string name="permission_full_screen_intent_description">Дазваляе праграмам паказваць поўнаэкранныя апавяшчэнні, якія займаюць увесь экран, калі прылада заблакавана або выкарыстоўваецца. Звычайна выкарыстоўваецца для будзільнікаў, званкоў і іншых тэрміновых падзей.</string>
+    <string name="permission_full_screen_intent_label">Поўнаэкранныя апавяшчэнні</string>
+    <string name="permission_interact_across_profiles_description">Дазваляе праграмам узаемадзейнічаць паміж працоўным і асабістым профілямі, абменьваючыся дадзенымі і функцыямі паміж профілямі.</string>
+    <string name="permission_interact_across_profiles_label">Звязаныя працоўныя і асабістыя праграмы</string>
+    <string name="permission_loader_usage_stats_description">Дазваляе праграмам збіраць статыстыку аб выкарыстанні загрузчыка дадзеных на прыладзе.</string>
+    <string name="permission_loader_usage_stats_label">Статыстыка выкарыстання загрузчыка</string>
+    <string name="permissions_details_empty_filter_message">Няма праграм, якія адпавядаюць бягучым фільтрам. Націсніце на значок фільтра для налады.</string>
+    <string name="permission_turn_screen_on_description">Дазваляе праграмам уключаць экран прылады, калі ім патрэбна ваша ўвага, напрыклад, для будзільнікаў або ўваходных званкоў.</string>
+    <string name="permission_turn_screen_on_label">Уключэнне экрана</string>
 </resources>

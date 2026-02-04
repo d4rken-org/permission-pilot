@@ -247,4 +247,21 @@
     <string name="onboarding_body1">ይህ መተግበሪያ የተጫኙ መተግበሪያዎችን እና ፈቃዶቻቸውን ማወቅና ማሳየት ይረዳል።</string>
     <string name="onboarding_body2">Permission Pilot የተጫኙ መተግበሪያዎች መረጃ ይሰበስባል። ይህ የፈቃዶችን ቅዱስ ዝርዝር ማየት ያስችላል።</string>
     <string name="onboarding_body3">Permission Pilot ማንኛውንም ማስታወቂያ የለውምና ሁሉንም ውሂብ በኪነ ምሁር ይተግበራል።</string>
+
+    <string name="apps_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ ፈቃዶች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
+    <string name="filter_configurable_label">ሊዋቀር የሚችል</string>
+    <string name="filter_denied_label">ተከልክሏል</string>
+    <string name="filter_granted_label">ተፈቅዷል</string>
+    <string name="general_collapse_all_action">ሁሉንም አሳንስ</string>
+    <string name="general_expand_all_action">ሁሉንም አስፋ</string>
+    <string name="general_more_options_action">ተጨማሪ አማራጮች</string>
+    <string name="permission_full_screen_intent_description">መሣሪያው ሲቆለፍ ወይም ጥቅም ላይ ሲውል ማያ ገጽዎን የሚይዙ ሙሉ ማያ ማሳወቂያዎችን እንዲያሳዩ ለመተግበሪያዎች ይፈቅዳል። በተለምዶ ለማንቂያዎች፣ ጥሪዎች እና ሌሎች ጊዜ-ተኮር ክስተቶች ጥቅም ላይ ይውላል።</string>
+    <string name="permission_full_screen_intent_label">ሙሉ ማያ ማሳወቂያዎች</string>
+    <string name="permission_interact_across_profiles_description">መተግበሪያዎች በስራ እና በግል መገለጫዎችዎ መካከል እንዲገናኙ ይፈቅዳል፣ ውሂብ እና ተግባራትን በመገለጫ ድንበሮች ላይ ያጋራሉ።</string>
+    <string name="permission_interact_across_profiles_label">የተገናኙ የስራ እና የግል መተግበሪያዎች</string>
+    <string name="permission_loader_usage_stats_description">መተግበሪያዎች በመሣሪያው ላይ ስላለው የውሂብ ጫኚ አጠቃቀም ስታቲስቲክስ እንዲሰበስቡ ይፈቅዳል።</string>
+    <string name="permission_loader_usage_stats_label">የጫኚ አጠቃቀም ስታቲስቲክስ</string>
+    <string name="permissions_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ መተግበሪያዎች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
+    <string name="permission_turn_screen_on_description">እንደ ማንቂያዎች ወይም ገቢ ጥሪዎች ያሉ ትኩረትዎን ሲፈልጉ መተግበሪያዎች የመሣሪያውን ማያ ገጽ እንዲያበሩ ይፈቅዳል።</string>
+    <string name="permission_turn_screen_on_label">ማያ ገጽን አብራ</string>
 </resources>

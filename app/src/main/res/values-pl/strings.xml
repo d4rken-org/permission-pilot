@@ -273,4 +273,21 @@
     <string name="onboarding_body1">Ta aplikacja pomaga ci nawigować po zainstalowanych aplikacjach i odkrywać uprawnienia.</string>
     <string name="onboarding_body2">Permission Pilot zbiera informacje o zainstalowanych aplikacjach, aby umożliwić wyświetlanie twoich aplikacji i krzyżowe odwoływanie się do ich uprawnień podczas korzystania z tej aplikacji.</string>
     <string name="onboarding_body3">Permission Pilot nie ma reklam i przetwarza dane tylko lokalnie.</string>
+
+    <string name="apps_details_empty_filter_message">Żadne uprawnienia nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
+    <string name="filter_configurable_label">Konfigurowalny</string>
+    <string name="filter_denied_label">Odmówiono</string>
+    <string name="filter_granted_label">Przyznano</string>
+    <string name="general_collapse_all_action">Zwiń wszystko</string>
+    <string name="general_expand_all_action">Rozwiń wszystko</string>
+    <string name="general_more_options_action">Więcej opcji</string>
+    <string name="permission_full_screen_intent_description">Pozwala aplikacjom wyświetlać powiadomienia pełnoekranowe, które przejmują ekran, gdy urządzenie jest zablokowane lub w użyciu. Powszechnie używane do alarmów, połączeń i innych zdarzeń wrażliwych czasowo.</string>
+    <string name="permission_full_screen_intent_label">Powiadomienia pełnoekranowe</string>
+    <string name="permission_interact_across_profiles_description">Pozwala aplikacjom komunikować się między profilami służbowym i osobistym, udostępniając dane i funkcje między granicami profili.</string>
+    <string name="permission_interact_across_profiles_label">Połączone aplikacje służbowe i osobiste</string>
+    <string name="permission_loader_usage_stats_description">Pozwala aplikacjom zbierać statystyki dotyczące użycia ładowaczy danych na urządzeniu.</string>
+    <string name="permission_loader_usage_stats_label">Statystyki użycia ładowacza</string>
+    <string name="permissions_details_empty_filter_message">Żadne aplikacje nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
+    <string name="permission_turn_screen_on_description">Pozwala aplikacjom włączać ekran urządzenia, gdy potrzebują twojej uwagi, na przykład do alarmów lub połączeń przychodzących.</string>
+    <string name="permission_turn_screen_on_label">Włącz ekran</string>
 </resources>

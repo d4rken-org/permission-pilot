@@ -258,4 +258,20 @@
     <string name="onboarding_body1">이 앱은 설치된 애플리케이션을 탐색하고 권한을 발견하는 데 도움이 됩니다.</string>
     <string name="onboarding_body2">Permission Pilot은 이 애플리케이션을 사용할 때 앱을 나열하고 해당 권한을 상호 참조할 수 있도록 설치된 애플리케이션 정보를 수집합니다.</string>
     <string name="onboarding_body3">Permission Pilot에는 광고가 없으며 데이터를 로컬에서만 처리합니다.</string>
+    <string name="apps_details_empty_filter_message">현재 필터와 일치하는 권한이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
+    <string name="filter_configurable_label">구성 가능</string>
+    <string name="filter_denied_label">거부됨</string>
+    <string name="filter_granted_label">허용됨</string>
+    <string name="general_collapse_all_action">모두 접기</string>
+    <string name="general_expand_all_action">모두 펼치기</string>
+    <string name="general_more_options_action">더 많은 옵션</string>
+    <string name="permission_full_screen_intent_description">기기가 잠겨 있거나 사용 중일 때 화면을 차지하는 전체 화면 알림을 앱이 표시할 수 있도록 허용합니다. 일반적으로 알람, 전화 및 기타 시간에 민감한 이벤트에 사용됩니다.</string>
+    <string name="permission_full_screen_intent_label">전체 화면 알림</string>
+    <string name="permission_interact_across_profiles_description">앱이 업무용 프로필과 개인 프로필 간에 통신하여 프로필 경계를 넘어 데이터와 기능을 공유할 수 있도록 허용합니다.</string>
+    <string name="permission_interact_across_profiles_label">연결된 업무용 및 개인 앱</string>
+    <string name="permission_loader_usage_stats_description">앱이 기기에서 데이터 로더 사용에 대한 통계를 수집할 수 있도록 허용합니다.</string>
+    <string name="permission_loader_usage_stats_label">로더 사용 통계</string>
+    <string name="permissions_details_empty_filter_message">현재 필터와 일치하는 앱이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
+    <string name="permission_turn_screen_on_description">알람이나 수신 전화와 같이 주의가 필요할 때 앱이 기기 화면을 켤 수 있도록 허용합니다.</string>
+    <string name="permission_turn_screen_on_label">화면 켜기</string>
 </resources>

@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Hierdie app help jou om deur geïnstalleerde toepassings te navigeer en toestemmings te ontdek.</string>
     <string name="onboarding_body2">Permission Pilot versamel Geïnstalleerde Toepassing inligting om die lys van jou apps en kruis-verwysing van hul toestemmings moontlik te maak wanneer jy hierdie toepassing gebruik.</string>
     <string name="onboarding_body3">Permission Pilot het geen advertensies nie en verwerk slegs data plaaslik.</string>
+
+    <string name="apps_details_empty_filter_message">Geen toestemmings pas by huidige filters nie. Tik die filter ikoon om aan te pas.</string>
+    <string name="filter_configurable_label">Konfigureerbaar</string>
+    <string name="filter_denied_label">Geweier</string>
+    <string name="filter_granted_label">Toegeken</string>
+    <string name="general_collapse_all_action">Vou alles toe</string>
+    <string name="general_expand_all_action">Brei alles uit</string>
+    <string name="general_more_options_action">Meer opsies</string>
+    <string name="permission_full_screen_intent_description">Laat apps toe om volskerm kennisgewings te wys wat jou skerm oorneem wanneer die toestel gesluit of in gebruik is. Algemeen gebruik vir alarms, oproepe en ander tyd-sensitiewe gebeurtenisse.</string>
+    <string name="permission_full_screen_intent_label">Volskerm Kennisgewings</string>
+    <string name="permission_interact_across_profiles_description">Laat apps toe om tussen jou werk- en persoonlike profiele te kommunikeer, en data en funksionaliteit oor profielgrense te deel.</string>
+    <string name="permission_interact_across_profiles_label">Gekoppelde Werk- en Persoonlike Apps</string>
+    <string name="permission_loader_usage_stats_description">Laat apps toe om statistieke oor data laaier gebruik op die toestel te versamel.</string>
+    <string name="permission_loader_usage_stats_label">Laaier Gebruik Statistieke</string>
+    <string name="permissions_details_empty_filter_message">Geen apps pas by huidige filters nie. Tik die filter ikoon om aan te pas.</string>
+    <string name="permission_turn_screen_on_description">Laat apps toe om die toestel se skerm aan te skakel wanneer hulle jou aandag nodig het, soos vir alarms of inkomende oproepe.</string>
+    <string name="permission_turn_screen_on_label">Skakel Skerm Aan</string>
 </resources>

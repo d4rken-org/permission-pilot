@@ -345,4 +345,21 @@
         <item quantity="many">%s položiek</item>
         <item quantity="other">%s položiek</item>
     </plurals>
+
+    <string name="apps_details_empty_filter_message">Žiadne oprávnenia nezodpovedajú aktuálnym filtrom. Ťuknite na ikonu filtra pre úpravu.</string>
+    <string name="filter_configurable_label">Konfigurovateľné</string>
+    <string name="filter_denied_label">Zamietnuté</string>
+    <string name="filter_granted_label">Udelené</string>
+    <string name="general_collapse_all_action">Zbaliť všetko</string>
+    <string name="general_expand_all_action">Rozbaliť všetko</string>
+    <string name="general_more_options_action">Ďalšie možnosti</string>
+    <string name="permission_full_screen_intent_description">Umožňuje aplikáciám zobrazovať oznámenia na celú obrazovku, ktoré prevezmú obrazovku, keď je zariadenie zamknuté alebo používané. Bežne sa používa pre budíky, hovory a iné časovo citlivé udalosti.</string>
+    <string name="permission_full_screen_intent_label">Oznámenia na celú obrazovku</string>
+    <string name="permission_interact_across_profiles_description">Umožňuje aplikáciám komunikovať medzi pracovnými a osobnými profilmi a zdieľať dáta a funkcie cez hranice profilov.</string>
+    <string name="permission_interact_across_profiles_label">Prepojené pracovné a osobné aplikácie</string>
+    <string name="permission_loader_usage_stats_description">Umožňuje aplikáciám zbierať štatistiky o používaní dátových zavádzačov na zariadení.</string>
+    <string name="permission_loader_usage_stats_label">Štatistiky využitia zavádzača</string>
+    <string name="permissions_details_empty_filter_message">Žiadne aplikácie nezodpovedajú aktuálnym filtrom. Ťuknite na ikonu filtra pre úpravu.</string>
+    <string name="permission_turn_screen_on_description">Umožňuje aplikáciám zapnúť obrazovku zariadenia, keď potrebujú vašu pozornosť, napríklad pre budíky alebo prichádzajúce hovory.</string>
+    <string name="permission_turn_screen_on_label">Zapnúť obrazovku</string>
 </resources>

@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Bu uygulama, yüklü uygulamalarda gezinmenize ve izinleri keşfetmenize yardımcı olur.</string>
     <string name="onboarding_body2">Permission Pilot, bu uygulamayı kullanırken uygulamalarınızı listelemek ve izinlerini çapraz referanslamak için Yüklü Uygulama bilgilerini toplar.</string>
     <string name="onboarding_body3">Permission Pilot\'ta reklam yoktur ve verileri yalnızca yerel olarak işler.</string>
+
+    <string name="apps_details_empty_filter_message">Mevcut filtrelere uyan izin yok. Ayarlamak için filtre simgesine dokunun.</string>
+    <string name="filter_configurable_label">Yapılandırılabilir</string>
+    <string name="filter_denied_label">Reddedilen</string>
+    <string name="filter_granted_label">Verilen</string>
+    <string name="general_collapse_all_action">Tümünü daralt</string>
+    <string name="general_expand_all_action">Tümünü genişlet</string>
+    <string name="general_more_options_action">Daha fazla seçenek</string>
+    <string name="permission_full_screen_intent_description">Uygulamaların, cihaz kilitliyken veya kullanımdayken ekranınızı kaplayan tam ekran bildirimler göstermesine izin verir. Genellikle alarmlar, aramalar ve diğer zamana duyarlı olaylar için kullanılır.</string>
+    <string name="permission_full_screen_intent_label">Tam Ekran Bildirimler</string>
+    <string name="permission_interact_across_profiles_description">Uygulamaların iş ve kişisel profilleriniz arasında iletişim kurmasına, profil sınırları arasında veri ve işlevsellik paylaşmasına izin verir.</string>
+    <string name="permission_interact_across_profiles_label">Bağlı İş ve Kişisel Uygulamalar</string>
+    <string name="permission_loader_usage_stats_description">Uygulamaların cihazdaki veri yükleyici kullanımı hakkında istatistik toplamasına izin verir.</string>
+    <string name="permission_loader_usage_stats_label">Yükleyici Kullanım İstatistikleri</string>
+    <string name="permissions_details_empty_filter_message">Mevcut filtrelere uyan uygulama yok. Ayarlamak için filtre simgesine dokunun.</string>
+    <string name="permission_turn_screen_on_description">Uygulamaların alarmlar veya gelen aramalar gibi dikkatinize ihtiyaç duyduklarında cihaz ekranını açmasına izin verir.</string>
+    <string name="permission_turn_screen_on_label">Ekranı Aç</string>
 </resources>

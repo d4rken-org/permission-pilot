@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Това приложение ви помага да навигирате в инсталираните приложения и да откриете разрешения.</string>
     <string name="onboarding_body2">Permission Pilot събира информация за инсталирани приложения, за да позволи изброяването на вашите приложения и кръстосано препращане на техните разрешения при използване на това приложение.</string>
     <string name="onboarding_body3">Permission Pilot няма реклами и обработва данните само локално.</string>
+
+    <string name="apps_details_empty_filter_message">Няма разрешения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
+    <string name="filter_configurable_label">Конфигурируеми</string>
+    <string name="filter_denied_label">Отказани</string>
+    <string name="filter_granted_label">Предоставени</string>
+    <string name="general_collapse_all_action">Свиване на всички</string>
+    <string name="general_expand_all_action">Разгъване на всички</string>
+    <string name="general_more_options_action">Още опции</string>
+    <string name="permission_full_screen_intent_description">Позволява на приложенията да показват уведомления на цял екран, които заемат екрана, когато устройството е заключено или се използва. Често се използва за аларми, обаждания и други времево-чувствителни събития.</string>
+    <string name="permission_full_screen_intent_label">Уведомления на цял екран</string>
+    <string name="permission_interact_across_profiles_description">Позволява на приложенията да комуникират между вашите работни и лични профили, споделяйки данни и функционалност между границите на профилите.</string>
+    <string name="permission_interact_across_profiles_label">Свързани работни и лични приложения</string>
+    <string name="permission_loader_usage_stats_description">Позволява на приложенията да събират статистика за използването на зареждащи данни на устройството.</string>
+    <string name="permission_loader_usage_stats_label">Статистика за използване на зареждач</string>
+    <string name="permissions_details_empty_filter_message">Няма приложения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
+    <string name="permission_turn_screen_on_description">Позволява на приложенията да включват екрана на устройството, когато се нуждаят от вашето внимание, например за аларми или входящи обаждания.</string>
+    <string name="permission_turn_screen_on_label">Включване на екрана</string>
 </resources>

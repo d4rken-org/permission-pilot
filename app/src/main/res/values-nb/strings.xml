@@ -263,4 +263,21 @@
     <string name="onboarding_body1">Denne appen hjelper deg med å navigere installerte applikasjoner og oppdage tillatelser.</string>
     <string name="onboarding_body2">Permission Pilot samler inn informasjon om installerte applikasjoner for å gjøre det mulig å liste appene dine og kryssreferere tillatelsene deres når du bruker denne applikasjonen.</string>
     <string name="onboarding_body3">Permission Pilot har ingen annonser og behandler kun data lokalt.</string>
+
+    <string name="apps_details_empty_filter_message">Ingen tillatelser samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
+    <string name="filter_configurable_label">Konfigurerbar</string>
+    <string name="filter_denied_label">Nektet</string>
+    <string name="filter_granted_label">Innvilget</string>
+    <string name="general_collapse_all_action">Skjul alle</string>
+    <string name="general_expand_all_action">Utvid alle</string>
+    <string name="general_more_options_action">Flere alternativer</string>
+    <string name="permission_full_screen_intent_description">Lar apper vise fullskjermsvarsler som tar over skjermen når enheten er låst eller i bruk. Brukes ofte for alarmer, samtaler og andre tidssensitive hendelser.</string>
+    <string name="permission_full_screen_intent_label">Fullskjermsvarsler</string>
+    <string name="permission_interact_across_profiles_description">Lar apper kommunisere mellom jobb- og personlige profiler, og dele data og funksjonalitet på tvers av profilgrenser.</string>
+    <string name="permission_interact_across_profiles_label">Tilkoblede jobb- og personlige apper</string>
+    <string name="permission_loader_usage_stats_description">Lar apper samle inn statistikk om bruk av datalastere på enheten.</string>
+    <string name="permission_loader_usage_stats_label">Statistikk for lasterbruk</string>
+    <string name="permissions_details_empty_filter_message">Ingen apper samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
+    <string name="permission_turn_screen_on_description">Lar apper slå på enhetens skjerm når de trenger oppmerksomheten din, for eksempel for alarmer eller innkommende samtaler.</string>
+    <string name="permission_turn_screen_on_label">Slå på skjerm</string>
 </resources>
