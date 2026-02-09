@@ -12,12 +12,12 @@ Android'in izinleri farklı konumlarda göstermesi, onları incelemeyi kolaylaş
 
 İki bakış açısı mevcuttur: Bir uygulamanın istediği tüm izinleri görüntüleyebilir veya bir izin isteyen tüm uygulamaları görüntüleyebilirsiniz.
 
-<b>Uygulamalar sekmesi</b>
+<b>İzinler sekmesi</b>
 Sistem uygulamaları ve iş profili uygulamaları da dahil olmak üzere yüklü tüm uygulamalar.
 Herhangi bir uygulamaya tıklandığında, İzin Yöneticisi ve Özel Erişim altında görünenler de dahil olmak üzere uygulamanın istediği tüm izinler ve durumları listelenir.
 Bu aynı zamanda internet izinlerini, SharedUserID durumunu da içerecektir!
 
-<b>İzinler sekmesi</b>
+<b>Uygulamalar sekmesi</b>
 İzin Yöneticisi ve Özel Erişim altında görünenler de dahil olmak üzere cihazınızda bulunan tüm izinler.
 İzinler, daha kolay gezinme için önceden gruplandırılmıştır; örneğin Kişiler, Mikrofon, Kamera vb.
 Bir izne tıklandığında, o izne erişim isteyen tüm uygulamalar gösterilir.

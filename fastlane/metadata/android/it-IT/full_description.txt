@@ -19,7 +19,7 @@ Ciò includerà anche le autorizzazioni Internet e lo stato di SharedUserID!
 
 <b>Scheda Autorizzazioni</b>
 Tutte le autorizzazioni presenti sul tuo dispositivo, comprese quelle visualizzate nel Gestore delle autorizzazioni e in Accesso speciale.
-Le autorizzazioni sono pre-raggruppate per facilitare la navigazione, ad es. Contatti, Microfono, Fotocamera, ecc.
+Le autorizzazioni sono pre-raggruppate per facilitare la navigazione, ad es.
 Facendo clic su un'autorizzazione vengono visualizzate tutte le app che richiedono l'accesso a tale autorizzazione.
 
 Le app e le autorizzazioni possono essere cercate utilizzando testo libero, ordinate e filtrate in base a diversi criteri.

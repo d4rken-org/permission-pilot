@@ -19,7 +19,7 @@ Cela inclut également les autorisations Internet et le statut SharedUserID !
 
 <b>Onglet Autorisations</b>
 Liste de toutes les autorisations existant sur votre appareil, y compris celles qui figurent dans le Gestionnaire d'autorisations et l'Accès spécial.
-Les autorisations sont regroupées pour faciliter la navigation (par ex. : Contacts, Microphone, Appareil photo, etc.).
+Les autorisations sont regroupées pour faciliter la navigation (par ex.
 En cliquant sur une autorisation, vous verrez toutes les applications qui demandent à y accéder.
 
 Les applications et les autorisations peuvent être recherchées par texte libre, triées et filtrées selon différents critères.

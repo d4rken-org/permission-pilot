@@ -19,7 +19,7 @@ Dies schließt auch Internetberechtigungen und den SharedUserID-Status ein!
 
 <b>Registerkarte "Berechtigungen"</b>
 Alle auf Ihrem Gerät vorhandenen Berechtigungen, einschließlich derer, die im Berechtigungsmanager und unter "Spezieller Zugriff" angezeigt werden.
-Die Berechtigungen sind zur einfacheren Navigation vorgruppiert, z. B. Kontakte, Mikrofon, Kamera usw.
+Die Berechtigungen sind zur einfacheren Navigation vorgruppiert, z.
 Ein Klick auf eine Berechtigung zeigt alle Apps an, die Zugriff auf diese Berechtigung anfordern.
 
 Apps und Berechtigungen können über Freitext gesucht, nach verschiedenen Kriterien sortiert und gefiltert werden.
