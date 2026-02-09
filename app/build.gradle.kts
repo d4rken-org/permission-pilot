@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -89,19 +91,6 @@ android {
         }
     }
 
-    buildOutputs.all {
-        val variantOutputImpl = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-        val variantName: String = variantOutputImpl.name
-
-        if (listOf("release", "beta").any { variantName.lowercase().contains(it) }) {
-            val outputFileName = packageName +
-                    "-v${defaultConfig.versionName}-${defaultConfig.versionCode}" +
-                    "-${variantName.uppercase()}-${lastCommitHash()}.apk"
-
-            variantOutputImpl.outputFileName = outputFileName
-        }
-    }
-
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -111,17 +100,6 @@ android {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
-        freeCompilerArgs = freeCompilerArgs + listOf(
-            "-opt-in=kotlin.ExperimentalStdlibApi",
-            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-opt-in=kotlinx.coroutines.FlowPreview",
-            "-opt-in=kotlin.time.ExperimentalTime",
-            "-opt-in=kotlin.RequiresOptIn"
-        )
     }
 
     testOptions {
@@ -144,6 +122,55 @@ android {
         }
     }
     namespace = "eu.darken.myperm"
+}
+
+androidComponents {
+    onVariants { variant ->
+        val buildType = variant.buildType ?: return@onVariants
+        if (buildType != "release" && buildType != "beta") return@onVariants
+
+        val formattedVariantName = variant.name
+            .replace(Regex("([a-z])([A-Z])"), "$1-$2")
+            .uppercase()
+
+        val packageName = "eu.darken.myperm"
+        val apkFolder = variant.artifacts.get(com.android.build.api.artifact.SingleArtifact.APK)
+        val loader = variant.artifacts.getBuiltArtifactsLoader()
+
+        val renameTask = tasks.register("rename${variant.name.replaceFirstChar { it.uppercase() }}Apk") {
+            inputs.files(apkFolder)
+            outputs.upToDateWhen { false }
+
+            doLast {
+                val builtArtifacts = loader.load(apkFolder.get()) ?: return@doLast
+
+                builtArtifacts.elements.forEach { element ->
+                    val apkFile = File(element.outputFile)
+                    val outputFileName = "$packageName-v${element.versionName}-${element.versionCode}-$formattedVariantName-${lastCommitHash()}.apk"
+                    if (apkFile.exists() && apkFile.name != outputFileName) {
+                        apkFile.copyTo(File(apkFile.parentFile, outputFileName), overwrite = true)
+                    }
+                }
+            }
+        }
+
+        tasks.matching { it.name == "assemble${variant.name.replaceFirstChar { it.uppercase() }}" }.configureEach {
+            finalizedBy(renameTask)
+        }
+    }
+}
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        freeCompilerArgs.addAll(
+            "-opt-in=kotlin.ExperimentalStdlibApi",
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlin.time.ExperimentalTime",
+            "-opt-in=kotlin.RequiresOptIn"
+        )
+    }
 }
 
 dependencies {

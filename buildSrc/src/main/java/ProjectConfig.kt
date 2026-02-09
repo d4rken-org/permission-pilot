@@ -1,6 +1,8 @@
 import com.android.build.gradle.LibraryExtension
-import org.gradle.api.Action
 import org.gradle.api.JavaVersion
+import org.gradle.api.Project
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.File
 import java.io.FileInputStream
 import java.util.Properties
@@ -35,13 +37,7 @@ fun lastCommitHash(): String = Runtime.getRuntime().exec(arrayOf("git", "rev-par
     output.trim()
 }
 
-/**
- * Configures the [kotlinOptions][org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions] extension.
- */
-private fun LibraryExtension.kotlinOptions(configure: Action<org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions>): Unit =
-    (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("kotlinOptions", configure)
-
-fun LibraryExtension.setupLibraryDefaults() {
+fun LibraryExtension.setupLibraryDefaults(project: Project) {
     compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
@@ -64,14 +60,16 @@ fun LibraryExtension.setupLibraryDefaults() {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-        freeCompilerArgs = freeCompilerArgs + listOf(
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
-            "-Xuse-experimental=kotlin.time.ExperimentalTime",
-            "-Xopt-in=kotlin.RequiresOptIn"
-        )
+    project.tasks.withType(KotlinCompile::class.java) {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+            freeCompilerArgs.addAll(
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview",
+                "-opt-in=kotlin.time.ExperimentalTime",
+                "-opt-in=kotlin.RequiresOptIn"
+            )
+        }
     }
 
     testOptions {

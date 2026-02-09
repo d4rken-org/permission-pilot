@@ -31,8 +31,8 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
 
     override val viewBinding = lazy { AppsNormalItemBinding.bind(itemView) }
 
-    @ColorInt private val colorGranted = context.getColorForAttr(R.attr.colorPrimary)
-    @ColorInt private val colorDenied = context.getColorForAttr(R.attr.colorOnBackground)
+    @ColorInt private val colorGranted = context.getColorForAttr(com.google.android.material.R.attr.colorPrimary)
+    @ColorInt private val colorDenied = context.getColorForAttr(com.google.android.material.R.attr.colorOnBackground)
 
     override val onBindData: AppsNormalItemBinding.(
         item: Item,
@@ -106,7 +106,7 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             isInvisible = app.internetAccess == InternetAccess.NONE || app.internetAccess == InternetAccess.UNKNOWN
             when (app.internetAccess) {
                 InternetAccess.DIRECT -> tintIt(colorGranted)
-                InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(R.attr.colorTertiary))
+                InternetAccess.INDIRECT -> tintIt(context.getColorForAttr(com.google.android.material.R.attr.colorTertiary))
                 InternetAccess.NONE -> tintIt(colorDenied)
                 InternetAccess.UNKNOWN -> tintIt(colorDenied)
             }

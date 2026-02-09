@@ -1,11 +1,11 @@
 object Versions {
     object Kotlin {
-        const val core = "1.9.24"
-        const val coroutines = "1.8.0"
+        const val core = "2.2.21"
+        const val coroutines = "1.10.2"
     }
 
     object Dagger {
-        const val core = "2.52"
+        const val core = "2.57.2"
     }
 
     object AndroidX {
