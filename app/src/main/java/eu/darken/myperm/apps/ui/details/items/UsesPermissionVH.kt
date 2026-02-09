@@ -52,10 +52,10 @@ class UsesPermissionVH(parent: ViewGroup) :
         actionButton.apply {
             setOnClickListener { item.onTogglePermission(item) }
             val (iconRes, tintRes) = when (item.appPermission.status) {
-                Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
-                Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to R.attr.colorPrimary
-                Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to R.attr.colorOnBackground
-                Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to R.attr.colorOnBackground
+                Status.GRANTED -> R.drawable.ic_baseline_check_circle_24 to com.google.android.material.R.attr.colorPrimary
+                Status.GRANTED_IN_USE -> R.drawable.ic_baseline_check_circle_24 to com.google.android.material.R.attr.colorPrimary
+                Status.DENIED -> R.drawable.ic_baseline_remove_circle_24 to com.google.android.material.R.attr.colorOnBackground
+                Status.UNKNOWN -> R.drawable.ic_baseline_question_mark_24 to com.google.android.material.R.attr.colorOnBackground
             }
             setIconResource(iconRes)
             backgroundTintList = ColorStateList.valueOf(context.getColorForAttr(tintRes))

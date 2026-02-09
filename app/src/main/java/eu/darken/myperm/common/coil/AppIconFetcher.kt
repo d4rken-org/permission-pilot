@@ -37,7 +37,7 @@ class AppIconFetcher @Inject constructor(
                 isSampled = true
 
                 val badgeIcon = ContextCompat.getDrawable(options.context, R.drawable.ic_baseline_shield_24)!!.apply {
-                    setTint(options.context.getColorForAttr(R.attr.colorError))
+                    setTint(options.context.getColorForAttr(com.google.android.material.R.attr.colorError))
                 }
 
                 LayerDrawable(arrayOf(baseIcon, badgeIcon)).apply {
