@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Postavke</string>
     <string name="label_help">Pomoć</string>
-
     <string name="general_error_label">Greška</string>
-
     <string name="general_share_action">Dijeli</string>
     <string name="general_done_action">Gotovo</string>
     <string name="general_copy_action">Kopiraj</string>
@@ -14,79 +11,66 @@
     <string name="general_open_action">Otvori</string>
     <string name="general_continue_action">Nastavi</string>
     <string name="general_accept_action">Prihvati</string>
-
     <string name="upgrade_myperm_label">Nadogradi Permission Pilot</string>
     <string name="upgrade_myperm_description">Sviđa li vam se što ova aplikacija nema reklame i ne prikuplja vaše podatke?\nKupite pro verziju da pokažete svoju podršku!</string>
     <string name="upgrade_buy_pro_action">Kupi pro verziju</string>
     <string name="general_no_action">Ne</string>
     <string name="upgrade_donate_action">Doniraj</string>
-
     <string name="debug_debuglog_size_label">Veličina</string>
     <string name="debug_debuglog_size_compressed_label">Kompresirana veličina</string>
     <string name="debug_notification_channel_label">Obavijesti za otklanjanje grešaka</string>
     <string name="debug_debuglog_file_label">Snimljena datoteka dnevnika</string>
     <string name="debug_debuglog_record_action">Snimi dnevnik za otklanjanje grešaka</string>
-
     <string name="settings_category_other_label">Ostalo</string>
-
     <string name="general_settings_label">Općenito</string>
     <string name="general_settings_desc">Općenite prilagodbe koje utječu na cijelu aplikaciju.</string>
-
     <string name="changelog_label">Popis promjena</string>
     <string name="settings_acknowledgements_label">Priznanja</string>
     <string name="general_thank_you_label">Hvala vam</string>
     <string name="settings_licenses_label">Licence</string>
     <string name="settings_privacy_policy_label">Politika privatnosti</string>
     <string name="settings_privacy_policy_desc">Odgovorno rukovanje podacima.</string>
-
     <string name="settings_support_label">Podrška</string>
     <string name="documentation_label">Dokumentacija</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Mjesto za druženje i postavljanje pitanja.</string>
     <string name="issue_tracker_label">Praćenje problema</string>
     <string name="issue_tracker_description">Javni sustav praćenja problema za izvještaje o greškama i zahtjeve za značajke.</string>
     <string name="permissions_page_label">Dozvole</string>
     <string name="apps_page_label">Aplikacije</string>
     <string name="app_type_system_label">Sistemska aplikacija</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Nepoznata dozvola. Ova aplikacija je traži, ali je nijedna druga aplikacija ne deklarirane.</string>
     <string name="permissions_unknown_description">Nepoznata dozvola. Aplikacije je traže, ali nije deklarirana nigdje.</string>
     <string name="permissions_app_type_declaring_description">Dozvolu je stvorila ova aplikacija.</string>
     <string name="permissions_app_type_requesting_description">Aplikacija traži dozvolu.</string>
-
     <string name="general_filter_action">Filtriraj</string>
     <string name="general_cancel_action">Odustani</string>
-
     <string name="apps_filter_userapps_label">Korisničke aplikacije</string>
     <string name="apps_filter_systemapps_label">Sistemske aplikacije</string>
     <string name="apps_filter_nointernet_label">Aplikacije bez internetskog pristupa</string>
     <string name="apps_filter_sideloaded_label">Aplikacije instalirane izvana</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM trgovina</string>
-
     <string name="apps_sort_permissions_granted_label">Odobrene dozvole</string>
     <string name="apps_sort_permissions_requested_label">Tražene dozvole</string>
     <string name="apps_sort_permissions_declared_label">Deklarirane dozvole</string>
     <string name="apps_sort_app_name_label">Naziv aplikacije</string>
     <string name="apps_sort_install_date_label">Datum instalacije</string>
     <string name="apps_sort_update_date_label">Zadnje ažuriranje</string>
-
     <string name="general_sort_action">Sortiraj</string>
     <string name="apps_permissions_x_of_x_granted">%1$d od %2$d odobreno.</string>
     <string name="apps_permissions_x_requested">Traženo %1$d dozvola.</string>
     <string name="apps_permissions_declares_x">Deklarirale %1$d dozvola.</string>
     <string name="apps_details_installer_label">Izvor instalacije</string>
     <string name="apps_details_installer_unknown_label">Informacije nisu dostupne</string>
-
     <string name="permissions_filter_manifest_label">AOSP dozvole</string>
     <string name="permissions_filter_system_label">Deklarirane sistemskom aplikacijom</string>
     <string name="permissions_filter_user_label">Deklarirane korisničkom aplikacijom</string>
-
     <string name="permissions_filter_runtime_label">Tražene za vrijeme izvršavanja</string>
     <string name="permissions_filter_special_label">Posebna upotreba</string>
     <string name="permissions_filter_installtime_label">Odobrene automatski</string>
     <string name="permissions_filter_installtime_hide_label">Nisu odobrene automatski</string>
-
+    <string name="filter_granted_label">Odobreno</string>
+    <string name="filter_denied_label">Odbijeno</string>
+    <string name="filter_configurable_label">Podesivo</string>
     <string name="permissions_sort_apps_granted_label"># aplikacija odobrenih</string>
     <string name="permissions_sort_apps_requested_label"># aplikacija traženih</string>
     <string name="permissions_search_list_hint">Pretraži dozvole</string>
@@ -98,7 +82,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">Potpis ili sustav</string>
     <string name="permissions_protection_type_internal_label">Unutarnja</string>
     <string name="permissions_protection_type_unknown_label">Nepoznata</string>
-
     <string name="permissions_permission_details_label">Pojedinosti dozvole</string>
     <string name="generic_loading_label_0">Uskoro™</string>
     <string name="generic_loading_label_1">Dodavanje maslaca</string>
@@ -111,14 +94,11 @@
     <string name="apps_app_details_label">Pojedinosti aplikacije</string>
     <string name="apps_details_shareduserid_label">Aplikacije s dijeljenim korisničkim ID-om</string>
     <string name="apps_details_siblings_label">Braća i sestre</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android sustav</string>
     <string name="general_refresh_action">Osvježi</string>
+    <string name="general_expand_all_action">Proširi sve</string>
+    <string name="general_collapse_all_action">Sažmi sve</string>
+    <string name="general_more_options_action">Više opcija</string>
     <string name="apps_details_twins_label">Klonovi</string>
     <string name="apps_details_twins_descriptions">Instalirane u drugim korisničkim profilima.</string>
     <string name="install_date_label">Datum instalacije</string>
@@ -134,9 +114,10 @@
     <string name="apps_filter_battery_optimization_label">Aplikacije s prilagođenim opcijama baterije</string>
     <string name="apps_filter_accessibility_label">Aplikacije s uslugama pristupačnosti</string>
     <string name="apps_details_description_restrictions_caveat_description">Ova aplikacija je instalirana u drugom korisničkom profilu. Odobrene dozvole mogu se odrediti samo za aplikacije instalirane u trenutno aktivnom profilu, zbog ograničenja Androida.</string>
+    <string name="apps_details_description_uninstalled_caveat">Ova aplikacija je deinstalirana, ali njezini podaci su zadržani. Stanje dozvola nije moguće odrediti za deinstalirane aplikacije.</string>
     <string name="apps_details_description_secondary_description">"%d traženih dozvola."</string>
     <string name="apps_details_description_primary_description">"%1$d od %2$d odobrenih dozvola."</string>
-    <string name="apps_details_description_uninstalled_caveat">Ova aplikacija je deinstalirana, ali njezini podaci su zadržani. Stanje dozvola nije moguće odrediti za deinstalirane aplikacije.</string>
+    <string name="apps_details_empty_filter_message">Nijedna dozvola ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
     <string name="api_target_level_x">Ciljna verzija: %s</string>
     <string name="api_minimum_level_x">Minimalna verzija: %s</string>
     <string name="api_build_level_x">Verzija kompajliranja: %s</string>
@@ -173,7 +154,7 @@
     <string name="permissions_details_count_user_apps">"Korisničke aplikacije: Odobreno za %1$d od %2$d."</string>
     <string name="permissions_details_count_system_apps">"Sistemske aplikacije: Odobreno za %1$d od %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacije instalirane u drugim korisničkim profilima su isključene iz gornjeg izračuna zbog ograničenja Androida.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
     <string name="permission_nfc_description">Omogućuje aplikacijama komunikaciju s Near Field Communication (NFC) oznakama, karticama i čitačima.</string>
     <string name="permission_manage_media_label">Upravljanje medijima</string>
     <string name="permission_manage_media_description">Omogućuje aplikacijama mijenjanje ili brisanje medijskih datoteka stvorenih s drugim aplikacijama BEZ pitanja. Aplikacije moraju imati dozvolu za pristup datotekama i medijima.</string>
@@ -219,6 +200,14 @@
     <string name="permission_do_not_disturb_permission_description">Omogućuje aplikacijama uključivanje ili isključivanje načina Ne ometaj (DND) i mijenjanje povezanih postavki.</string>
     <string name="permission_alarms_and_reminders_label">Alarmi i podsjetnici</string>
     <string name="permission_alarms_and_reminders_description">Omogućuje aplikacijama postavljanje alarma i planiranje vremensko-osjetljivih radnji. To omogućuje aplikacijama rad u pozadini, što može trošiti više baterije. Isključivanje ove dozvole za aplikaciju bi dovelo do prestanka rada postojećih alarma i vremenski-utemeljenih događaja zakazanih od te određene aplikacije.</string>
+    <string name="permission_turn_screen_on_label">Uključi zaslon</string>
+    <string name="permission_turn_screen_on_description">Omogućuje aplikacijama uključivanje zaslona uređaja kada trebaju vašu pozornost, kao što su alarmi ili dolazni pozivi.</string>
+    <string name="permission_full_screen_intent_label">Obavijesti na cijelom zaslonu</string>
+    <string name="permission_full_screen_intent_description">Omogućuje aplikacijama prikazivanje obavijesti na cijelom zaslonu koje preuzimaju zaslon kada je uređaj zaključan ili u upotrebi. Obično se koristi za alarme, pozive i druge vremenski osjetljive događaje.</string>
+    <string name="permission_interact_across_profiles_label">Povezane radne i osobne aplikacije</string>
+    <string name="permission_interact_across_profiles_description">Omogućuje aplikacijama komunikaciju između radnih i osobnih profila, dijeleći podatke i funkcionalnost preko granica profila.</string>
+    <string name="permission_loader_usage_stats_label">Statistika korištenja učitavača</string>
+    <string name="permission_loader_usage_stats_description">Omogućuje aplikacijama prikupljanje statistika o korištenju učitavača podataka na uređaju.</string>
     <string name="permission_premium_sms_services_label">Pristup premium SMS-u</string>
     <string name="permission_premium_sms_services_description">Omogućuje aplikacijama korištenje premium usluga tekstualnih poruka. To će vas koštati novac.</string>
     <string name="permission_unlimited_data_access_label">Neograničen pristup podacima</string>
@@ -268,21 +257,4 @@
     <string name="onboarding_body1">Ova aplikacija vam pomaže navigirati instaliranim aplikacijama i otkrivati dozvole.</string>
     <string name="onboarding_body2">Permission Pilot prikuplja informacije o instaliranim aplikacijama kako bi omogućio izlistavanje vaših aplikacija i unakrsno referenciranje njihovih dozvola pri korištenju ove aplikacije.</string>
     <string name="onboarding_body3">Permission Pilot nema reklame i obrađuje podatke samo lokalno.</string>
-
-    <string name="apps_details_empty_filter_message">Nijedna dozvola ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
-    <string name="filter_configurable_label">Podesivo</string>
-    <string name="filter_denied_label">Odbijeno</string>
-    <string name="filter_granted_label">Odobreno</string>
-    <string name="general_collapse_all_action">Sažmi sve</string>
-    <string name="general_expand_all_action">Proširi sve</string>
-    <string name="general_more_options_action">Više opcija</string>
-    <string name="permission_full_screen_intent_description">Omogućuje aplikacijama prikazivanje obavijesti na cijelom zaslonu koje preuzimaju zaslon kada je uređaj zaključan ili u upotrebi. Obično se koristi za alarme, pozive i druge vremenski osjetljive događaje.</string>
-    <string name="permission_full_screen_intent_label">Obavijesti na cijelom zaslonu</string>
-    <string name="permission_interact_across_profiles_description">Omogućuje aplikacijama komunikaciju između radnih i osobnih profila, dijeleći podatke i funkcionalnost preko granica profila.</string>
-    <string name="permission_interact_across_profiles_label">Povezane radne i osobne aplikacije</string>
-    <string name="permission_loader_usage_stats_description">Omogućuje aplikacijama prikupljanje statistika o korištenju učitavača podataka na uređaju.</string>
-    <string name="permission_loader_usage_stats_label">Statistika korištenja učitavača</string>
-    <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
-    <string name="permission_turn_screen_on_description">Omogućuje aplikacijama uključivanje zaslona uređaja kada trebaju vašu pozornost, kao što su alarmi ili dolazni pozivi.</string>
-    <string name="permission_turn_screen_on_label">Uključi zaslon</string>
 </resources>

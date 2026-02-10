@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">การตั้งค่า</string>
     <string name="label_help">ช่วยเหลือ</string>
-
     <string name="general_error_label">ข้อผิดพลาด</string>
-
     <string name="general_share_action">แชร์</string>
     <string name="general_done_action">เสร็จสิ้น</string>
     <string name="general_copy_action">คัดลอก</string>
@@ -14,79 +11,65 @@
     <string name="general_open_action">เปิด</string>
     <string name="general_continue_action">ดำเนินการต่อ</string>
     <string name="general_accept_action">ยอมรับ</string>
-
     <string name="upgrade_myperm_label">อัปเกรด Permission Pilot</string>
     <string name="upgrade_myperm_description">คุณชอบที่แอปนี้ไม่มีโฆษณาและไม่เก็บข้อมูลของคุณหรือไม่?\nซื้อเวอร์ชันโปรเพื่อแสดงการสนับสนุนของคุณ!</string>
     <string name="upgrade_buy_pro_action">ซื้อเวอร์ชันโปร</string>
     <string name="general_no_action">ไม่</string>
     <string name="upgrade_donate_action">บริจาค</string>
-
     <string name="debug_debuglog_size_label">ขนาด</string>
     <string name="debug_debuglog_size_compressed_label">ขนาดบีบอัด</string>
     <string name="debug_notification_channel_label">การแจ้งเตือนดีบัก</string>
     <string name="debug_debuglog_file_label">ไฟล์บันทึกที่บันทึกไว้</string>
     <string name="debug_debuglog_record_action">บันทึกบันทึกดีบัก</string>
-
     <string name="settings_category_other_label">อื่นๆ</string>
-
     <string name="general_settings_label">ทั่วไป</string>
     <string name="general_settings_desc">การตั้งค่าทั่วไปที่ส่งผลต่อแอปทั้งหมด</string>
-
     <string name="changelog_label">บันทึกการเปลี่ยนแปลง</string>
     <string name="settings_acknowledgements_label">การขอบคุณ</string>
     <string name="general_thank_you_label">ขอบคุณ</string>
     <string name="settings_licenses_label">ใบอนุญาต</string>
     <string name="settings_privacy_policy_label">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_privacy_policy_desc">การจัดการข้อมูลอย่างรับผิดชอบ</string>
-
     <string name="settings_support_label">การสนับสนุน</string>
     <string name="documentation_label">เอกสารประกอบ</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">สถานที่สำหรับพูดคุยและถามคำถาม</string>
     <string name="issue_tracker_label">ตัวติดตามปัญหา</string>
     <string name="issue_tracker_description">ตัวติดตามปัญหาสาธารณะสำหรับรายงานข้อบกพร่องและคำขอคุณลักษณะ</string>
     <string name="permissions_page_label">สิทธิ์</string>
     <string name="apps_page_label">แอป</string>
     <string name="app_type_system_label">แอประบบ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">สิทธิ์ที่ไม่รู้จัก ถูกร้องขอโดยแอปนี้ แต่ไม่มีแอปอื่นประกาศไว้</string>
     <string name="permissions_unknown_description">สิทธิ์ที่ไม่รู้จัก ถูกร้องขอโดยแอป แต่ไม่มีการประกาศไว้ที่ไหน</string>
     <string name="permissions_app_type_declaring_description">สิทธิ์ถูกสร้างโดยแอปนี้</string>
     <string name="permissions_app_type_requesting_description">แอปร้องขอสิทธิ์</string>
-
     <string name="general_filter_action">กรอง</string>
     <string name="general_cancel_action">ยกเลิก</string>
-
     <string name="apps_filter_userapps_label">แอปผู้ใช้</string>
     <string name="apps_filter_systemapps_label">แอประบบ</string>
     <string name="apps_filter_nointernet_label">แอปที่ไม่มีการเข้าถึงอินเทอร์เน็ต</string>
     <string name="apps_filter_sideloaded_label">แอปที่ติดตั้งจากภายนอก</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">สิทธิ์ที่ได้รับอนุญาต</string>
     <string name="apps_sort_permissions_requested_label">สิทธิ์ที่ร้องขอ</string>
     <string name="apps_sort_permissions_declared_label">สิทธิ์ที่ประกาศ</string>
     <string name="apps_sort_app_name_label">ชื่อแอป</string>
     <string name="apps_sort_install_date_label">วันที่ติดตั้ง</string>
     <string name="apps_sort_update_date_label">อัปเดตล่าสุด</string>
-
     <string name="general_sort_action">เรียงลำดับ</string>
     <string name="apps_permissions_x_of_x_granted">อนุญาต %1$d จาก %2$d</string>
     <string name="apps_permissions_x_requested">ร้องขอสิทธิ์ %1$d รายการ</string>
     <string name="apps_permissions_declares_x">ประกาศสิทธิ์ %1$d รายการ</string>
     <string name="apps_details_installer_label">แหล่งที่มาของการติดตั้ง</string>
     <string name="apps_details_installer_unknown_label">ข้อมูลไม่พร้อมใช้งาน</string>
-
     <string name="permissions_filter_manifest_label">สิทธิ์ AOSP</string>
     <string name="permissions_filter_system_label">ประกาศโดยแอประบบ</string>
     <string name="permissions_filter_user_label">ประกาศโดยแอปผู้ใช้</string>
-
     <string name="permissions_filter_runtime_label">ร้องขอขณะทำงาน</string>
     <string name="permissions_filter_special_label">การใช้งานพิเศษ</string>
     <string name="permissions_filter_installtime_label">อนุญาตโดยอัตโนมัติ</string>
     <string name="permissions_filter_installtime_hide_label">ไม่อนุญาตโดยอัตโนมัติ</string>
-
+    <string name="filter_granted_label">ได้รับอนุญาต</string>
+    <string name="filter_denied_label">ถูกปฏิเสธ</string>
+    <string name="filter_configurable_label">กำหนดค่าได้</string>
     <string name="permissions_sort_apps_granted_label"># แอปที่อนุญาต</string>
     <string name="permissions_sort_apps_requested_label"># แอปที่ร้องขอ</string>
     <string name="permissions_search_list_hint">ค้นหาสิทธิ์</string>
@@ -98,7 +81,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">ลายเซ็นหรือระบบ</string>
     <string name="permissions_protection_type_internal_label">ภายใน</string>
     <string name="permissions_protection_type_unknown_label">ไม่ทราบ</string>
-
     <string name="permissions_permission_details_label">รายละเอียดสิทธิ์</string>
     <string name="generic_loading_label_0">เร็วๆ นี้™</string>
     <string name="generic_loading_label_1">กำลังส่งเนย</string>
@@ -111,14 +93,11 @@
     <string name="apps_app_details_label">รายละเอียดแอป</string>
     <string name="apps_details_shareduserid_label">แอปที่มี User ID ร่วมกัน</string>
     <string name="apps_details_siblings_label">พี่น้อง</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">ระบบ Android</string>
     <string name="general_refresh_action">รีเฟรช</string>
+    <string name="general_expand_all_action">ขยายทั้งหมด</string>
+    <string name="general_collapse_all_action">ยุบทั้งหมด</string>
+    <string name="general_more_options_action">ตัวเลือกเพิ่มเติม</string>
     <string name="apps_details_twins_label">โคลน</string>
     <string name="apps_details_twins_descriptions">ติดตั้งในโปรไฟล์ผู้ใช้อื่น</string>
     <string name="install_date_label">วันที่ติดตั้ง</string>
@@ -134,9 +113,10 @@
     <string name="apps_filter_battery_optimization_label">แอปที่มีตัวเลือกแบตเตอรี่แบบกำหนดเอง</string>
     <string name="apps_filter_accessibility_label">แอปที่มีบริการการเข้าถึง</string>
     <string name="apps_details_description_restrictions_caveat_description">แอปนี้ติดตั้งในโปรไฟล์ผู้ใช้อื่น สิทธิ์ที่ได้รับสามารถกำหนดได้เฉพาะแอปที่ติดตั้งในโปรไฟล์ที่ใช้งานอยู่ในปัจจุบัน เนื่องจากข้อจำกัดของ Android</string>
+    <string name="apps_details_description_uninstalled_caveat">แอปนี้ถูกถอนการติดตั้งแล้ว แต่ยังคงเก็บข้อมูลไว้ ไม่สามารถระบุสถานะสิทธิ์ได้สำหรับแอปที่ถูกถอนการติดตั้ง</string>
     <string name="apps_details_description_secondary_description">"%d สิทธิ์ที่ร้องขอ"</string>
     <string name="apps_details_description_primary_description">"%1$d จาก %2$d สิทธิ์ที่ได้รับอนุญาต"</string>
-    <string name="apps_details_description_uninstalled_caveat">แอปนี้ถูกถอนการติดตั้งแล้ว แต่ยังคงเก็บข้อมูลไว้ ไม่สามารถระบุสถานะสิทธิ์ได้สำหรับแอปที่ถูกถอนการติดตั้ง</string>
+    <string name="apps_details_empty_filter_message">ไม่มีสิทธิ์ที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
     <string name="api_target_level_x">เวอร์ชันเป้าหมาย: %s</string>
     <string name="api_minimum_level_x">เวอร์ชันต่ำสุด: %s</string>
     <string name="api_build_level_x">เวอร์ชันการคอมไพล์: %s</string>
@@ -163,7 +143,7 @@
     <string name="permissions_details_count_user_apps">"แอปผู้ใช้: อนุญาตให้ %1$d จาก %2$d"</string>
     <string name="permissions_details_count_system_apps">"แอประบบ: อนุญาตให้ %1$d จาก %2$d"</string>
     <string name="permissions_details_description_restrictions_caveat_description">แอปที่ติดตั้งในโปรไฟล์ผู้ใช้อื่นถูกยกเว้นจากการคำนวณข้างต้นเนื่องจากข้อจำกัดของ Android</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">ไม่มีแอปที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
     <string name="permission_nfc_description">อนุญาตให้แอปสื่อสารกับแท็ก การ์ด และเครื่องอ่าน Near Field Communication (NFC)</string>
     <string name="permission_manage_media_label">จัดการสื่อ</string>
     <string name="permission_manage_media_description">อนุญาตให้แอปแก้ไขหรือลบไฟล์สื่อที่สร้างด้วยแอปอื่นโดยไม่ต้องถามคุณ แอปต้องได้รับอนุญาตในการเข้าถึงไฟล์และสื่อ</string>
@@ -209,6 +189,14 @@
     <string name="permission_do_not_disturb_permission_description">อนุญาตให้แอปเปิดหรือปิดโหมดห้ามรบกวน (DND) และเปลี่ยนการตั้งค่าที่เกี่ยวข้อง</string>
     <string name="permission_alarms_and_reminders_label">การปลุกและการเตือน</string>
     <string name="permission_alarms_and_reminders_description">อนุญาตให้แอปตั้งการปลุกและกำหนดเวลาการดำเนินการที่ไวต่อเวลา สิ่งนี้ช่วยให้แอปทำงานในพื้นหลัง ซึ่งอาจใช้แบตเตอรี่มากขึ้น การปิดสิทธิ์นี้สำหรับแอปจะทำให้การปลุกที่มีอยู่และเหตุการณ์ที่ใช้เวลาเป็นฐานที่กำหนดโดยแอปเฉพาะนั้นหยุดทำงาน</string>
+    <string name="permission_turn_screen_on_label">เปิดหน้าจอ</string>
+    <string name="permission_turn_screen_on_description">อนุญาตให้แอปเปิดหน้าจออุปกรณ์เมื่อต้องการความสนใจจากคุณ เช่น สำหรับการปลุกหรือสายเรียกเข้า</string>
+    <string name="permission_full_screen_intent_label">การแจ้งเตือนแบบเต็มหน้าจอ</string>
+    <string name="permission_full_screen_intent_description">อนุญาตให้แอปแสดงการแจ้งเตือนแบบเต็มหน้าจอที่ครอบคลุมหน้าจอของคุณเมื่ออุปกรณ์ถูกล็อคหรือกำลังใช้งาน มักใช้สำหรับการปลุก การโทร และเหตุการณ์ที่ไวต่อเวลา</string>
+    <string name="permission_interact_across_profiles_label">แอปงานและส่วนตัวที่เชื่อมต่อ</string>
+    <string name="permission_interact_across_profiles_description">อนุญาตให้แอปสื่อสารระหว่างโปรไฟล์งานและส่วนตัวของคุณ แชร์ข้อมูลและฟังก์ชันข้ามขอบเขตโปรไฟล์</string>
+    <string name="permission_loader_usage_stats_label">สถิติการใช้ตัวโหลด</string>
+    <string name="permission_loader_usage_stats_description">อนุญาตให้แอปรวบรวมสถิติเกี่ยวกับการใช้ตัวโหลดข้อมูลบนอุปกรณ์</string>
     <string name="permission_premium_sms_services_label">การเข้าถึง SMS พรีเมียม</string>
     <string name="permission_premium_sms_services_description">อนุญาตให้แอปใช้บริการข้อความพรีเมียม สิ่งนี้จะทำให้คุณเสียเงิน</string>
     <string name="permission_unlimited_data_access_label">การเข้าถึงข้อมูลไม่จำกัด</string>
@@ -258,20 +246,4 @@
     <string name="onboarding_body1">แอปนี้ช่วยคุณในการนำทางแอปพลิเคชันที่ติดตั้งและค้นพบสิทธิ์</string>
     <string name="onboarding_body2">Permission Pilot รวบรวมข้อมูลแอปพลิเคชันที่ติดตั้งเพื่อให้สามารถแสดงรายการแอปของคุณและอ้างอิงสิทธิ์ข้ามกันเมื่อใช้แอปพลิเคชันนี้</string>
     <string name="onboarding_body3">Permission Pilot ไม่มีโฆษณาและประมวลผลข้อมูลในเครื่องเท่านั้น</string>
-    <string name="apps_details_empty_filter_message">ไม่มีสิทธิ์ที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
-    <string name="filter_configurable_label">กำหนดค่าได้</string>
-    <string name="filter_denied_label">ถูกปฏิเสธ</string>
-    <string name="filter_granted_label">ได้รับอนุญาต</string>
-    <string name="general_collapse_all_action">ยุบทั้งหมด</string>
-    <string name="general_expand_all_action">ขยายทั้งหมด</string>
-    <string name="general_more_options_action">ตัวเลือกเพิ่มเติม</string>
-    <string name="permission_full_screen_intent_description">อนุญาตให้แอปแสดงการแจ้งเตือนแบบเต็มหน้าจอที่ครอบคลุมหน้าจอของคุณเมื่ออุปกรณ์ถูกล็อคหรือกำลังใช้งาน มักใช้สำหรับการปลุก การโทร และเหตุการณ์ที่ไวต่อเวลา</string>
-    <string name="permission_full_screen_intent_label">การแจ้งเตือนแบบเต็มหน้าจอ</string>
-    <string name="permission_interact_across_profiles_description">อนุญาตให้แอปสื่อสารระหว่างโปรไฟล์งานและส่วนตัวของคุณ แชร์ข้อมูลและฟังก์ชันข้ามขอบเขตโปรไฟล์</string>
-    <string name="permission_interact_across_profiles_label">แอปงานและส่วนตัวที่เชื่อมต่อ</string>
-    <string name="permission_loader_usage_stats_description">อนุญาตให้แอปรวบรวมสถิติเกี่ยวกับการใช้ตัวโหลดข้อมูลบนอุปกรณ์</string>
-    <string name="permission_loader_usage_stats_label">สถิติการใช้ตัวโหลด</string>
-    <string name="permissions_details_empty_filter_message">ไม่มีแอปที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
-    <string name="permission_turn_screen_on_description">อนุญาตให้แอปเปิดหน้าจออุปกรณ์เมื่อต้องการความสนใจจากคุณ เช่น สำหรับการปลุกหรือสายเรียกเข้า</string>
-    <string name="permission_turn_screen_on_label">เปิดหน้าจอ</string>
 </resources>

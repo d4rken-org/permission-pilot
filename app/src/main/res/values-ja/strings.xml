@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">設定</string>
     <string name="label_help">ヘルプ</string>
-
     <string name="general_error_label">エラー</string>
-
     <string name="general_share_action">共有</string>
     <string name="general_done_action">完了</string>
     <string name="general_copy_action">コピー</string>
@@ -14,79 +11,67 @@
     <string name="general_open_action">開く</string>
     <string name="general_continue_action">続行</string>
     <string name="general_accept_action">同意</string>
-
     <string name="upgrade_myperm_label">Permission Pilotをアップグレード</string>
     <string name="upgrade_myperm_description">このアプリに広告がなく、データを収集しないことを気に入っていませんか？\nサポートを示すためにプロ版を購入してください！</string>
     <string name="upgrade_buy_pro_action">プロ版を購入</string>
     <string name="general_no_action">いいえ</string>
     <string name="upgrade_donate_action">寄付</string>
-
     <string name="debug_debuglog_size_label">サイズ</string>
     <string name="debug_debuglog_size_compressed_label">圧縮サイズ</string>
     <string name="debug_notification_channel_label">デバッグ通知</string>
     <string name="debug_debuglog_file_label">記録されたログファイル</string>
     <string name="debug_debuglog_record_action">デバッグログを記録</string>
-
     <string name="settings_category_other_label">その他</string>
-
     <string name="general_settings_label">一般</string>
     <string name="general_settings_desc">アプリ全体に影響する一般的な設定。</string>
-
     <string name="changelog_label">変更履歴</string>
     <string name="settings_acknowledgements_label">謝辞</string>
     <string name="general_thank_you_label">ありがとうございます</string>
     <string name="settings_licenses_label">ライセンス</string>
     <string name="settings_privacy_policy_label">プライバシーポリシー</string>
     <string name="settings_privacy_policy_desc">データの責任ある取り扱い。</string>
-
     <string name="settings_support_label">サポート</string>
     <string name="documentation_label">ドキュメント</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">質問をしたり交流したりする場所。</string>
     <string name="issue_tracker_label">問題追跡</string>
     <string name="issue_tracker_description">バグレポートと機能要求のための公開問題追跡システム。</string>
     <string name="permissions_page_label">権限</string>
     <string name="apps_page_label">アプリ</string>
     <string name="app_type_system_label">システムアプリ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">不明な権限。このアプリによって要求されていますが、他のアプリでは宣言されていません。</string>
     <string name="permissions_unknown_description">不明な権限。アプリによって要求されていますが、どこにも宣言されていません。</string>
     <string name="permissions_app_type_declaring_description">権限はこのアプリによって作成されます。</string>
     <string name="permissions_app_type_requesting_description">アプリが権限を要求します。</string>
-
     <string name="general_filter_action">フィルター</string>
     <string name="general_cancel_action">キャンセル</string>
-
     <string name="apps_filter_userapps_label">ユーザーアプリ</string>
     <string name="apps_filter_systemapps_label">システムアプリ</string>
     <string name="apps_filter_nointernet_label">インターネットアクセスなしのアプリ</string>
     <string name="apps_filter_sideloaded_label">サイドロードアプリ</string>
     <string name="apps_filter_gplay_label">Google Play ストア</string>
     <string name="apps_filter_oemstore_label">OEMストア</string>
-
     <string name="apps_sort_permissions_granted_label">付与された権限</string>
     <string name="apps_sort_permissions_requested_label">要求された権限</string>
     <string name="apps_sort_permissions_declared_label">宣言された権限</string>
     <string name="apps_sort_app_name_label">アプリ名</string>
     <string name="apps_sort_install_date_label">インストール日</string>
     <string name="apps_sort_update_date_label">最終更新</string>
-
     <string name="general_sort_action">並び替え</string>
     <string name="apps_permissions_x_of_x_granted">%2$d中%1$d個付与。</string>
     <string name="apps_permissions_x_requested">%1$d個の権限が要求されました。</string>
     <string name="apps_permissions_declares_x">%1$d個の権限を宣言。</string>
     <string name="apps_details_installer_label">インストール元</string>
     <string name="apps_details_installer_unknown_label">情報が利用できません</string>
-
     <string name="permissions_filter_manifest_label">AOSP権限</string>
     <string name="permissions_filter_system_label">システムアプリによって宣言</string>
     <string name="permissions_filter_user_label">ユーザーアプリによって宣言</string>
-
     <string name="permissions_filter_runtime_label">実行時に要求</string>
     <string name="permissions_filter_special_label">特別な使用</string>
     <string name="permissions_filter_installtime_label">自動的に付与</string>
     <string name="permissions_filter_installtime_hide_label">自動的に付与されない</string>
-
+    <string name="filter_granted_label">付与</string>
+    <string name="filter_denied_label">拒否</string>
+    <string name="filter_configurable_label">設定可能</string>
     <string name="permissions_sort_apps_granted_label"># 付与されたアプリ</string>
     <string name="permissions_sort_apps_requested_label"># 要求されたアプリ</string>
     <string name="permissions_search_list_hint">権限を検索</string>
@@ -98,7 +83,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">署名またはシステム</string>
     <string name="permissions_protection_type_internal_label">内部</string>
     <string name="permissions_protection_type_unknown_label">不明</string>
-
     <string name="permissions_permission_details_label">権限の詳細</string>
     <string name="generic_loading_label_0">もうすぐ™</string>
     <string name="generic_loading_label_1">バターを渡している</string>
@@ -112,13 +96,11 @@
     <string name="apps_details_shareduserid_label">共有ユーザーIDを持つアプリ</string>
     <string name="apps_details_siblings_label">兄弟</string>
     <string name="apps_known_installer_gplay_label">Google Play ストア</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Androidシステム</string>
     <string name="general_refresh_action">更新</string>
+    <string name="general_expand_all_action">すべて展開</string>
+    <string name="general_collapse_all_action">すべて折りたたむ</string>
+    <string name="general_more_options_action">その他のオプション</string>
     <string name="apps_details_twins_label">クローン</string>
     <string name="apps_details_twins_descriptions">他のユーザープロファイルにインストール済み。</string>
     <string name="install_date_label">インストール日</string>
@@ -137,6 +119,7 @@
     <string name="apps_details_description_uninstalled_caveat">このアプリはアンインストールされましたが、データは保持されています。アンインストールされたアプリの権限状態は確認できません。</string>
     <string name="apps_details_description_secondary_description">"%d個の権限が要求されました。"</string>
     <string name="apps_details_description_primary_description">"%2$d個中%1$d個の権限が付与されました。"</string>
+    <string name="apps_details_empty_filter_message">現在のフィルターに一致する権限がありません。調整するにはフィルターアイコンをタップしてください。</string>
     <string name="api_target_level_x">ターゲットバージョン：%s</string>
     <string name="api_minimum_level_x">最小バージョン：%s</string>
     <string name="api_build_level_x">コンパイルバージョン：%s</string>
@@ -163,7 +146,7 @@
     <string name="permissions_details_count_user_apps">"ユーザーアプリ：%2$d中%1$dに付与。"</string>
     <string name="permissions_details_count_system_apps">"システムアプリ：%2$d中%1$dに付与。"</string>
     <string name="permissions_details_description_restrictions_caveat_description">他のユーザープロファイルにインストールされたアプリは、Androidの制限により上記の計算から除外されています。</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">現在のフィルターに一致するアプリがありません。調整するにはフィルターアイコンをタップしてください。</string>
     <string name="permission_nfc_description">アプリが近距離無線通信（NFC）タグ、カード、リーダーと通信することを許可します。</string>
     <string name="permission_manage_media_label">メディア管理</string>
     <string name="permission_manage_media_description">アプリが他のアプリで作成されたメディアファイルを許可なしに変更または削除することを許可します。アプリはファイルとメディアへのアクセス権限を持つ必要があります。</string>
@@ -209,6 +192,14 @@
     <string name="permission_do_not_disturb_permission_description">アプリがおやすみモード（DND）をオン・オフし、関連設定を変更することを許可します。</string>
     <string name="permission_alarms_and_reminders_label">アラームとリマインダー</string>
     <string name="permission_alarms_and_reminders_description">アプリがアラームを設定し、時間に敏感なアクションをスケジュールすることを許可します。これによりアプリがバックグラウンドで実行され、より多くのバッテリーを使用する可能性があります。アプリでこの権限をオフにすると、その特定のアプリによってスケジュールされた既存のアラームと時間ベースのイベントが機能しなくなります。</string>
+    <string name="permission_turn_screen_on_label">画面をオンにする</string>
+    <string name="permission_turn_screen_on_description">アラームや着信など、注意が必要な時にアプリがデバイスの画面をオンにすることを許可します。</string>
+    <string name="permission_full_screen_intent_label">フルスクリーン通知</string>
+    <string name="permission_full_screen_intent_description">デバイスがロックされている時や使用中に画面を占有するフルスクリーン通知をアプリが表示することを許可します。一般的にアラーム、電話、その他の時間に敏感なイベントに使用されます。</string>
+    <string name="permission_interact_across_profiles_label">接続された仕事用と個人用アプリ</string>
+    <string name="permission_interact_across_profiles_description">アプリが仕事用プロファイルと個人用プロファイル間で通信し、プロファイルの境界を越えてデータと機能を共有することを許可します。</string>
+    <string name="permission_loader_usage_stats_label">ローダー使用統計</string>
+    <string name="permission_loader_usage_stats_description">アプリがデバイス上のデータローダー使用に関する統計を収集することを許可します。</string>
     <string name="permission_premium_sms_services_label">プレミアムSMSアクセス</string>
     <string name="permission_premium_sms_services_description">アプリがプレミアムテキストメッセージサービスを使用することを許可します。これはお金がかかります。</string>
     <string name="permission_unlimited_data_access_label">無制限データアクセス</string>
@@ -246,9 +237,9 @@
     <string name="overview_summary_apps_active_profile_label">アクティブプロファイル内のアプリ</string>
     <string name="overview_summary_apps_other_profile_label">管理ユーザープロファイル内のアプリ（クローンを除く）</string>
     <string name="overview_summary_apps_sideloaded_label">外部ソースからサイドロードされたアプリ</string>
-    <string name="overview_summary_apps_installers_label">"提供元不明のアプリのインストール"が有効なアプリ</string>
-    <string name="overview_summary_apps_overlayers_label">"他のアプリの上に表示"できるアプリ</string>
-    <string name="overview_summary_apps_offline_label">"インターネットなし"権限を持つアプリ</string>
+    <string name="overview_summary_apps_installers_label">\"提供元不明のアプリのインストール\"が有効なアプリ</string>
+    <string name="overview_summary_apps_overlayers_label">\"他のアプリの上に表示\"できるアプリ</string>
+    <string name="overview_summary_apps_offline_label">\"インターネットなし\"権限を持つアプリ</string>
     <string name="overview_summary_apps_clones_label">他のプロファイルにクローンを持つアプリ</string>
     <string name="overview_summary_apps_sharedids_label">SharedUserIDを持つアプリ</string>
     <string name="permission_bind_accessibility_service_label">アクセシビリティサービスの提供</string>
@@ -258,20 +249,4 @@
     <string name="onboarding_body1">このアプリは、インストールされたアプリケーションをナビゲートし、権限を発見するのに役立ちます。</string>
     <string name="onboarding_body2">Permission Pilotは、このアプリケーションを使用する際にアプリをリストし、その権限をクロスリファレンスすることを可能にするために、インストールされたアプリケーション情報を収集します。</string>
     <string name="onboarding_body3">Permission Pilotには広告がなく、データはローカルでのみ処理されます。</string>
-    <string name="apps_details_empty_filter_message">現在のフィルターに一致する権限がありません。調整するにはフィルターアイコンをタップしてください。</string>
-    <string name="filter_configurable_label">設定可能</string>
-    <string name="filter_denied_label">拒否</string>
-    <string name="filter_granted_label">付与</string>
-    <string name="general_collapse_all_action">すべて折りたたむ</string>
-    <string name="general_expand_all_action">すべて展開</string>
-    <string name="general_more_options_action">その他のオプション</string>
-    <string name="permission_full_screen_intent_description">デバイスがロックされている時や使用中に画面を占有するフルスクリーン通知をアプリが表示することを許可します。一般的にアラーム、電話、その他の時間に敏感なイベントに使用されます。</string>
-    <string name="permission_full_screen_intent_label">フルスクリーン通知</string>
-    <string name="permission_interact_across_profiles_description">アプリが仕事用プロファイルと個人用プロファイル間で通信し、プロファイルの境界を越えてデータと機能を共有することを許可します。</string>
-    <string name="permission_interact_across_profiles_label">接続された仕事用と個人用アプリ</string>
-    <string name="permission_loader_usage_stats_description">アプリがデバイス上のデータローダー使用に関する統計を収集することを許可します。</string>
-    <string name="permission_loader_usage_stats_label">ローダー使用統計</string>
-    <string name="permissions_details_empty_filter_message">現在のフィルターに一致するアプリがありません。調整するにはフィルターアイコンをタップしてください。</string>
-    <string name="permission_turn_screen_on_description">アラームや着信など、注意が必要な時にアプリがデバイスの画面をオンにすることを許可します。</string>
-    <string name="permission_turn_screen_on_label">画面をオンにする</string>
 </resources>

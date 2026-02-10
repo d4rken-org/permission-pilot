@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Asetukset</string>
     <string name="label_help">Ohje</string>
-
     <string name="general_error_label">Virhe</string>
-
     <string name="general_share_action">Jaa</string>
     <string name="general_done_action">Valmis</string>
     <string name="general_copy_action">Kopioi</string>
@@ -14,79 +11,65 @@
     <string name="general_open_action">Avaa</string>
     <string name="general_continue_action">Jatka</string>
     <string name="general_accept_action">Hyväksy</string>
-
     <string name="upgrade_myperm_label">Päivitä Permission Pilot</string>
     <string name="upgrade_myperm_description">Pidätkö siitä, että tässä sovelluksessa ei ole mainoksia eikä se kerää tietojasi?\nOsta pro-versio tukeaksesi kehittäjää!</string>
     <string name="upgrade_buy_pro_action">Osta pro-versio</string>
     <string name="general_no_action">Ei</string>
     <string name="upgrade_donate_action">Lahjoita</string>
-
     <string name="debug_debuglog_size_label">Koko</string>
     <string name="debug_debuglog_size_compressed_label">Pakattu koko</string>
     <string name="debug_notification_channel_label">Virheenkorjausilmoitukset</string>
     <string name="debug_debuglog_file_label">Tallennettu lokitiedosto</string>
     <string name="debug_debuglog_record_action">Tallenna virheenkorjausloki</string>
-
     <string name="settings_category_other_label">Muut</string>
-
     <string name="general_settings_label">Yleiset</string>
     <string name="general_settings_desc">Yleiset säädöt, jotka vaikuttavat koko sovellukseen.</string>
-
     <string name="changelog_label">Muutosloki</string>
     <string name="settings_acknowledgements_label">Kiitokset</string>
     <string name="general_thank_you_label">Kiitos</string>
     <string name="settings_licenses_label">Lisenssit</string>
     <string name="settings_privacy_policy_label">Tietosuojakäytäntö</string>
     <string name="settings_privacy_policy_desc">Vastuullinen tietojen käsittely.</string>
-
     <string name="settings_support_label">Tuki</string>
     <string name="documentation_label">Dokumentaatio</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Paikka hengailla ja kysyä kysymyksiä.</string>
     <string name="issue_tracker_label">Ongelmanseuranta</string>
     <string name="issue_tracker_description">Julkinen ongelmanseuranta virheraporteille ja ominaisuuspyynnöille.</string>
     <string name="permissions_page_label">Käyttöoikeudet</string>
     <string name="apps_page_label">Sovellukset</string>
     <string name="app_type_system_label">Järjestelmäsovellus</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Tuntematon käyttöoikeus. Tämä sovellus pyytää sitä, mutta mikään muu sovellus ei määrittele sitä.</string>
     <string name="permissions_unknown_description">Tuntematon käyttöoikeus. Sovellukset pyytävät sitä, mutta sitä ei ole määritelty missään.</string>
     <string name="permissions_app_type_declaring_description">Käyttöoikeus on tämän sovelluksen luoma.</string>
     <string name="permissions_app_type_requesting_description">Sovellus pyytää käyttöoikeutta.</string>
-
     <string name="general_filter_action">Suodata</string>
     <string name="general_cancel_action">Peruuta</string>
-
     <string name="apps_filter_userapps_label">Käyttäjäsovellukset</string>
     <string name="apps_filter_systemapps_label">Järjestelmäsovellukset</string>
     <string name="apps_filter_nointernet_label">Sovellukset ilman internetyhteyttä</string>
     <string name="apps_filter_sideloaded_label">Sivuladatut sovellukset</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">Myönnetyt käyttöoikeudet</string>
     <string name="apps_sort_permissions_requested_label">Pyydetyt käyttöoikeudet</string>
     <string name="apps_sort_permissions_declared_label">Määritellyt käyttöoikeudet</string>
     <string name="apps_sort_app_name_label">Sovelluksen nimi</string>
     <string name="apps_sort_install_date_label">Asennuspäivä</string>
     <string name="apps_sort_update_date_label">Viimeksi päivitetty</string>
-
     <string name="general_sort_action">Lajittele</string>
     <string name="apps_permissions_x_of_x_granted">%1$d/%2$d myönnetty.</string>
     <string name="apps_permissions_x_requested">%1$d käyttöoikeutta pyydetty.</string>
     <string name="apps_permissions_declares_x">Määrittelee %1$d käyttöoikeutta.</string>
     <string name="apps_details_installer_label">Asennuslähde</string>
     <string name="apps_details_installer_unknown_label">Tieto ei saatavilla</string>
-
     <string name="permissions_filter_manifest_label">AOSP-käyttöoikeudet</string>
     <string name="permissions_filter_system_label">Järjestelmäsovelluksen määrittelemä</string>
     <string name="permissions_filter_user_label">Käyttäjäsovelluksen määrittelemä</string>
-
     <string name="permissions_filter_runtime_label">Pyydetty suoritusaikana</string>
     <string name="permissions_filter_special_label">Erikoiskäyttö</string>
     <string name="permissions_filter_installtime_label">Myönnetty automaattisesti</string>
     <string name="permissions_filter_installtime_hide_label">Ei myönnetty automaattisesti</string>
-
+    <string name="filter_granted_label">Myönnetty</string>
+    <string name="filter_denied_label">Evätty</string>
+    <string name="filter_configurable_label">Määritettävissä</string>
     <string name="permissions_sort_apps_granted_label"># sovellusta myönnetty</string>
     <string name="permissions_sort_apps_requested_label"># sovellusta pyydetty</string>
     <string name="permissions_search_list_hint">Hae käyttöoikeuksia</string>
@@ -98,70 +81,84 @@
     <string name="permissions_protection_type_signatureorsystem_label">Allekirjoitus tai järjestelmä</string>
     <string name="permissions_protection_type_internal_label">Sisäinen</string>
     <string name="permissions_protection_type_unknown_label">Tuntematon</string>
-
-    <string name="permissions_protection_type_normal_description">Normaali käyttöoikeus aiheuttaa hyvin vähän riskiä muille sovelluksille tai käyttäjän yksityisyydelle.</string>
-    <string name="permissions_protection_type_dangerous_description">Vaarallinen käyttöoikeus antaa pääsyn käyttäjän luottamuksellisiin tietoihin tai laitteen hallintaan.</string>
-    <string name="permissions_protection_type_signature_description">Vain sovellukset, jotka on allekirjoitettu samalla varmenteella kuin käyttöoikeuden määrittelevä sovellus, voivat saada sen.</string>
-    <string name="permissions_protection_type_signatureorsystem_description">Vain sovellukset, jotka ovat järjestelmässä tai allekirjoitettu samalla varmenteella kuin käyttöoikeuden määrittelevä sovellus, voivat saada sen.</string>
-    <string name="permissions_protection_type_internal_description">Vain järjestelmäsovellusten käyttöön.</string>
-
-    <string name="permissions_details_description_label">Kuvaus</string>
-    <string name="permissions_details_apps_granted_label">Myönnetyt sovellukset</string>
-    <string name="permissions_details_apps_requested_label">Pyytäneet sovellukset</string>
-    <string name="permissions_details_apps_declared_label">Määritelleet sovellukset</string>
-
-    <string name="app_details_permission_granted_label">Myönnetty</string>
-    <string name="app_details_permission_requested_label">Pyydetty</string>
-    <string name="app_details_permission_declared_label">Määritelty</string>
-
-    <string name="app_details_permissions_label">Käyttöoikeudet</string>
-    <string name="apps_details_app_type_label">Sovelluksen tyyppi</string>
-    <string name="apps_details_app_type_system_label">Järjestelmäsovellus</string>
-    <string name="apps_details_app_type_user_label">Käyttäjäsovellus</string>
-    <string name="apps_details_app_type_unknown_label">Tuntematon</string>
-    <string name="apps_details_package_label">Paketti</string>
-    <string name="apps_details_version_label">Versio</string>
-    <string name="apps_details_install_date_label">Asennuspäivä</string>
-    <string name="apps_details_update_date_label">Päivityspäivä</string>
-    <string name="apps_details_target_sdk_label">Kohde-SDK</string>
-    <string name="apps_details_compile_sdk_label">Käännös-SDK</string>
-    <string name="apps_details_min_sdk_label">Minimi-SDK</string>
-
-    <string name="apps_details_signing_certificate_label">Allekirjoitusvarmenne</string>
-    <string name="apps_details_signing_certificate_sha256_label">SHA-256 sormenjälki</string>
-    <string name="apps_details_signing_certificate_sha1_label">SHA-1 sormenjälki</string>
-    <string name="apps_details_signing_certificate_subject_label">Aihe</string>
-    <string name="apps_details_signing_certificate_issuer_label">Myöntäjä</string>
-    <string name="apps_details_signing_certificate_serial_label">Sarjanumero</string>
-    <string name="apps_details_signing_certificate_validity_label">Voimassaolo</string>
-
-    <string name="apps_details_apk_label">APK</string>
-    <string name="apps_details_apk_path_label">APK-polku</string>
-    <string name="apps_details_apk_size_label">APK-koko</string>
-
-    <string name="apps_details_overview_label">Yleiskatsaus</string>
-    <string name="overview_label">Yleiskatsaus</string>
-    <string name="overview_summary_label">Yhteenveto</string>
-    <string name="overview_apps_label">Sovellukset</string>
-    <string name="overview_permissions_label">Käyttöoikeudet</string>
-    <string name="overview_permissions_unique_label">Yksilölliset käyttöoikeudet</string>
-    <string name="overview_permissions_aosp_label">AOSP-käyttöoikeudet</string>
-    <string name="overview_permissions_custom_label">Mukautetut käyttöoikeudet</string>
-    <string name="overview_permissions_special_label">Erikoiskäyttöoikeudet</string>
-    <string name="overview_permissions_runtime_label">Suoritusajan käyttöoikeudet</string>
-    <string name="overview_permissions_install_label">Asennuksen käyttöoikeudet</string>
-
-    <string name="overview_info_label">Tiedot</string>
-    <string name="overview_device_label">Laite</string>
-
-    <string name="permission_write_calendar_label">Kirjoita kalenteriin</string>
-    <string name="permission_write_calendar_description">Sallii kalenteritapahtumien lisäämisen, poistamisen ja muuttamisen laitteellasi.</string>
-    <string name="permission_read_calendar_label">Lue kalenteria</string>
-    <string name="permission_read_calendar_description">Sallii laitteeseesi tallennettujen kalenteritapahtumien lukemisen.</string>
-    <string name="permission_write_contacts_label">Muokkaa yhteystietoja</string>
-    <string name="permission_write_contacts_description">Sallii laitteeseesi tallennettujen yhteystietojen muokkaamisen.</string>
-    <string name="permission_read_contacts_label">Lue yhteystietoja</string>
-    <string name="permission_read_contacts_description">Sallii laitteeseesi tallennettujen yhteystietojen lukemisen.</string>
+    <string name="permissions_permission_details_label">Käyttöoikeuden tiedot</string>
+    <string name="generic_loading_label_0">Kohta valmista™</string>
+    <string name="generic_loading_label_1">Syötetään kissalle dataa</string>
+    <string name="generic_loading_label_2">Ladataan lisää RAM-muistia</string>
+    <string name="generic_loading_label_3">Silti nopeampi kuin iPhone</string>
+    <string name="generic_loading_label_4">Mitä tuolla takanasi on?</string>
+    <string name="generic_loading_label_5">Prosessori on kahvitauolla</string>
+    <string name="generic_loading_label_6">Odotetaan dataa Pertti Pasaselta</string>
+    <string name="generic_loading_label_7">Turbokapasitaattori käynnistyy</string>
+    <string name="apps_app_details_label">Sovelluksen tiedot</string>
+    <string name="apps_details_shareduserid_label">Sovellukset jaetulla käyttäjätunnuksella</string>
+    <string name="apps_details_siblings_label">Sisarukset</string>
+    <string name="apps_known_installer_gplay_label">Google Play -kauppa</string>
+    <string name="apps_known_android_system_label">Android-järjestelmä</string>
+    <string name="general_refresh_action">Päivitä</string>
+    <string name="general_expand_all_action">Laajenna kaikki</string>
+    <string name="general_collapse_all_action">Pienennä kaikki</string>
+    <string name="general_more_options_action">Lisää vaihtoehtoja</string>
+    <string name="apps_details_twins_label">Kloonit</string>
+    <string name="apps_details_twins_descriptions">Asennettu muihin käyttäjäprofiileihin.</string>
+    <string name="install_date_label">Asennuspäivä</string>
+    <string name="apps_filter_sharedid_label">Jaettu käyttäjätunnus</string>
+    <string name="apps_filter_multipleprofiles_label">Sovellukset klooneilla</string>
+    <string name="support_debuglog_label">Virheenkorjausloki</string>
+    <string name="support_debuglog_desc">Tallenna kaikki sovelluksen toiminta tekstitiedostoon, jonka voit jakaa.</string>
+    <string name="updated_at_x">Viimeksi päivitetty: %s</string>
+    <string name="installed_at_x">Ensimmäinen asennus: %s</string>
+    <string name="apps_sort_install_source_label">Asennuslähde</string>
+    <string name="permissions_action_none_msg">Tälle käyttöoikeudelle ei ole toimintoa saatavilla</string>
+    <string name="apps_filter_profile_secondary_label">Sovellukset hallituissa profiileissa</string>
+    <string name="apps_filter_battery_optimization_label">Sovellukset mukautetuilla akkuasetuksilla</string>
+    <string name="apps_filter_accessibility_label">Sovellukset saavutettavuuspalveluilla</string>
+    <string name="apps_details_description_restrictions_caveat_description">Tämä sovellus on asennettu toiseen käyttäjäprofiiliin. Myönnetyt käyttöoikeudet voidaan määrittää vain aktiiviseen profiiliin asennetuille sovelluksille Androidin rajoitusten vuoksi.</string>
+    <string name="apps_details_description_uninstalled_caveat">Tämä sovellus on poistettu, mutta sen tiedot on säilytetty. Käyttöoikeuksien tilaa ei voida määrittää poistetuille sovelluksille.</string>
+    <string name="apps_details_description_secondary_description">"%d käyttöoikeutta pyydetty."</string>
+    <string name="apps_details_description_primary_description">"%1$d / %2$d käyttöoikeudesta myönnetty."</string>
+    <string name="apps_details_empty_filter_message">Yksikään käyttöoikeus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <string name="api_target_level_x">Kohdeversio: %s</string>
+    <string name="api_minimum_level_x">Minimiversio: %s</string>
+    <string name="api_build_level_x">Käännösversio: %s</string>
+    <string name="permission_reboot_label">Käynnistä laite uudelleen</string>
+    <string name="permission_reboot_description">Sallii sovelluksen käynnistää laitteen uudelleen. Saatavilla vain järjestelmäsovelluksille.</string>
+    <string name="permissions_sort_apps_relevance_label">Merkityksellisyys</string>
+    <string name="apps_filter_profile_active_label">Sovellukset aktiivisessa profiilissa</string>
+    <string name="overview_page_label">Yleiskatsaus</string>
+    <plurals name="generic_x_items_label">
+        <item quantity="one">%s kohde</item>
+        <item quantity="other">%s kohdetta</item>
+    </plurals>
+    <plurals name="generic_x_groups_label">
+        <item quantity="one">%s ryhmä</item>
+        <item quantity="other">%s ryhmää</item>
+    </plurals>
+    <plurals name="generic_x_apps_label">
+        <item quantity="one">%d sovellus</item>
+        <item quantity="other">%d sovellusta</item>
+    </plurals>
+    <plurals name="generic_x_apps_user_label">
+        <item quantity="one">%d käyttäjäsovellus</item>
+        <item quantity="other">%d käyttäjäsovellusta</item>
+    </plurals>
+    <plurals name="generic_x_apps_system_label">
+        <item quantity="one">%d järjestelmäsovellus</item>
+        <item quantity="other">%d järjestelmäsovellusta</item>
+    </plurals>
+    <string name="permissions_details_count_user_apps">"Käyttäjäsovellukset: Myönnetty %1$d / %2$d."</string>
+    <string name="permissions_details_count_system_apps">"Järjestelmäsovellukset: Myönnetty %1$d / %2$d."</string>
+    <string name="permissions_details_description_restrictions_caveat_description">Muihin käyttäjäprofiileihin asennetut sovellukset on jätetty pois yllä olevasta laskelmasta Androidin rajoitusten vuoksi.</string>
+    <string name="permissions_details_empty_filter_message">Yksikään sovellus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <string name="permission_nfc_description">Sallii sovellusten kommunikoida NFC (Near Field Communication) -tunnisteiden, korttien ja lukijoiden kanssa.</string>
+    <string name="permission_manage_media_label">Median hallinta</string>
+    <string name="permission_manage_media_description">Sallii sovellusten muokata tai poistaa muiden sovellusten luomia mediatiedostoja KYSYMÄTTÄ sinulta. Sovelluksilla täytyy olla käyttöoikeus tiedostoihin ja mediaan.</string>
+    <string name="permission_usage_data_access_label">Käyttötietojen käyttöoikeus</string>
+    <string name="permission_usage_data_access_description">Sallii sovellusten seurata mitä muita sovelluksia käytät ja kuinka usein, tunnistaa palveluntarjoajasi, kieliasetukset ja muut käyttötiedot.</string>
+    <string name="permission_modify_system_settings_label">Muokkaa järjestelmäasetuksia</string>
+    <string name="permission_modify_system_settings_description">Sallii sovellusten muokata järjestelmän asetustietoja. Haitalliset sovellukset voivat vahingoittaa järjestelmäsi kokoonpanoa.</string>
+    <string name="permission_bluetooth_advertise_label">Bluetooth-mainostus</string>
+    <string name="permission_bluetooth_advertise_description">Sallii sovellusten mainostaa läheisille Bluetooth-laitteille.</string>
     <string name="permission_get_accounts_label">Etsi tilit</string>
     <string name="permission_get_accounts_description">Sallii sovellusten hakea puhelimen tuntemat tilit. Tämä voi sisältää tilit, jotka asentamasi sovellukset ovat luoneet.</string>
     <string name="permission_access_background_location_label">Taustasijaintioikeus</string>
@@ -198,6 +195,14 @@
     <string name="permission_do_not_disturb_permission_description">Sallii sovellusten ottaa Älä häiritse (DND) -tila PÄÄLLE tai POIS ja muuttaa siihen liittyviä asetuksia.</string>
     <string name="permission_alarms_and_reminders_label">Hälytykset ja muistutukset</string>
     <string name="permission_alarms_and_reminders_description">Sallii sovellusten asettaa hälytyksiä ja aikatauluttaa aikaherkkiä toimintoja. Tämä sallii sovellusten toimia taustalla, mikä voi kuluttaa enemmän akkua. Tämän käyttöoikeuden sammuttaminen sovellukselta aiheuttaa sen, että kyseisen sovelluksen aikatauluttamat hälytykset ja aikapohjaiset tapahtumat lakkaavat toimimasta.</string>
+    <string name="permission_turn_screen_on_label">Kytke näyttö päälle</string>
+    <string name="permission_turn_screen_on_description">Sallii sovellusten kytkeä laitteen näytön päälle, kun ne tarvitsevat huomiotasi, kuten herätyksiin tai saapuviin puheluihin.</string>
+    <string name="permission_full_screen_intent_label">Koko näytön ilmoitukset</string>
+    <string name="permission_full_screen_intent_description">Sallii sovellusten näyttää koko näytön ilmoituksia, jotka valtaavat näytön, kun laite on lukittu tai käytössä. Käytetään yleisesti herätyksiin, puheluihin ja muihin aikakriittisiin tapahtumiin.</string>
+    <string name="permission_interact_across_profiles_label">Yhdistetyt työ- ja henkilökohtaiset sovellukset</string>
+    <string name="permission_interact_across_profiles_description">Sallii sovellusten kommunikoida työ- ja henkilökohtaisten profiilien välillä, jakaen tietoja ja toimintoja profiilirajojen yli.</string>
+    <string name="permission_loader_usage_stats_label">Lataajan käyttötilastot</string>
+    <string name="permission_loader_usage_stats_description">Sallii sovellusten kerätä tilastoja tietojen lataajien käytöstä laitteella.</string>
     <string name="permission_premium_sms_services_label">Premium SMS -käyttöoikeus</string>
     <string name="permission_premium_sms_services_description">Sallii sovellusten käyttää premium-tekstiviestipalveluja. Tämä maksaa sinulle rahaa.</string>
     <string name="permission_unlimited_data_access_label">Rajoittamaton datakäyttö</string>
@@ -247,120 +252,4 @@
     <string name="onboarding_body1">Tämä sovellus auttaa navigoimaan asennetuissa sovelluksissa ja löytämään käyttöoikeuksia.</string>
     <string name="onboarding_body2">Permission Pilot kerää asennettujen sovellusten tietoja mahdollistaakseen sovellustesi listaamisen ja niiden käyttöoikeuksien ristiinviittaamisen tätä sovellusta käytettäessä.</string>
     <string name="onboarding_body3">Permission Pilot ei sisällä mainoksia ja käsittelee tietoja vain paikallisesti.</string>
-
-    <string name="permissions_details_declaring_apps_label">Määrittelevät sovellukset</string>
-    <string name="permissions_details_requesting_apps_label">Pyytävät sovellukset</string>
-
-    <string name="permissions_declaring_apps_x">%1$d sovellusta määrittelee tämän käyttöoikeuden.</string>
-    <string name="permissions_requesting_apps_x">%1$d sovellusta pyytää tätä käyttöoikeutta.</string>
-
-    <string name="permissions_overview_label">Yleiskatsaus</string>
-
-    <string name="permissions_overview_stats_categories_label">Kategoriat</string>
-    <string name="permissions_overview_stats_total_label">Yhteensä</string>
-    <string name="permissions_overview_stats_by_protection_level_label">Suojaustason mukaan</string>
-    <string name="permissions_overview_stats_by_type_label">Tyypin mukaan</string>
-    <string name="permissions_overview_stats_by_apps_label">Sovellusten mukaan</string>
-
-    <string name="permissions_stats_categories_x_normal">%1$d normaali</string>
-    <string name="permissions_stats_categories_x_dangerous">%1$d vaarallinen</string>
-    <string name="permissions_stats_categories_x_signature">%1$d allekirjoitus</string>
-
-    <string name="api_build_level_x">Käännösversio: %s</string>
-    <string name="api_minimum_level_x">Minimiversio: %s</string>
-    <string name="api_target_level_x">Kohdeversio: %s</string>
-    <string name="apps_app_details_label">Sovelluksen tiedot</string>
-    <string name="apps_details_description_primary_description">"%1$d / %2$d käyttöoikeudesta myönnetty."</string>
-    <string name="apps_details_description_restrictions_caveat_description">Tämä sovellus on asennettu toiseen käyttäjäprofiiliin. Myönnetyt käyttöoikeudet voidaan määrittää vain aktiiviseen profiiliin asennetuille sovelluksille Androidin rajoitusten vuoksi.</string>
-    <string name="apps_details_description_uninstalled_caveat">Tämä sovellus on poistettu, mutta sen tiedot on säilytetty. Käyttöoikeuksien tilaa ei voida määrittää poistetuille sovelluksille.</string>
-    <string name="apps_details_description_secondary_description">"%d käyttöoikeutta pyydetty."</string>
-    <string name="apps_details_shareduserid_label">Sovellukset jaetulla käyttäjätunnuksella</string>
-    <string name="apps_details_siblings_label">Sisarukset</string>
-    <string name="apps_details_twins_descriptions">Asennettu muihin käyttäjäprofiileihin.</string>
-    <string name="apps_details_twins_label">Kloonit</string>
-    <string name="apps_filter_accessibility_label">Sovellukset saavutettavuuspalveluilla</string>
-    <string name="apps_filter_battery_optimization_label">Sovellukset mukautetuilla akkuasetuksilla</string>
-    <string name="apps_filter_multipleprofiles_label">Sovellukset klooneilla</string>
-    <string name="apps_filter_profile_active_label">Sovellukset aktiivisessa profiilissa</string>
-    <string name="apps_filter_profile_secondary_label">Sovellukset hallituissa profiileissa</string>
-    <string name="apps_filter_sharedid_label">Jaettu käyttäjätunnus</string>
-    <string name="apps_known_android_system_label">Android-järjestelmä</string>
-    <string name="apps_known_installer_gplay_label">Google Play -kauppa</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="apps_sort_install_source_label">Asennuslähde</string>
-    <string name="general_refresh_action">Päivitä</string>
-    <string name="generic_loading_label_0">Kohta valmista™</string>
-    <string name="generic_loading_label_1">Syötetään kissalle dataa</string>
-    <string name="generic_loading_label_2">Ladataan lisää RAM-muistia</string>
-    <string name="generic_loading_label_3">Silti nopeampi kuin iPhone</string>
-    <string name="generic_loading_label_4">Mitä tuolla takanasi on?</string>
-    <string name="generic_loading_label_5">Prosessori on kahvitauolla</string>
-    <string name="generic_loading_label_6">Odotetaan dataa Pertti Pasaselta</string>
-    <string name="generic_loading_label_7">Turbokapasitaattori käynnistyy</string>
-    <string name="install_date_label">Asennuspäivä</string>
-    <string name="installed_at_x">Ensimmäinen asennus: %s</string>
-    <string name="overview_page_label">Yleiskatsaus</string>
-    <string name="permission_bluetooth_advertise_description">Sallii sovellusten mainostaa läheisille Bluetooth-laitteille.</string>
-    <string name="permission_bluetooth_advertise_label">Bluetooth-mainostus</string>
-    <string name="permission_manage_media_description">Sallii sovellusten muokata tai poistaa muiden sovellusten luomia mediatiedostoja KYSYMÄTTÄ sinulta. Sovelluksilla täytyy olla käyttöoikeus tiedostoihin ja mediaan.</string>
-    <string name="permission_manage_media_label">Median hallinta</string>
-    <string name="permission_modify_system_settings_description">Sallii sovellusten muokata järjestelmän asetustietoja. Haitalliset sovellukset voivat vahingoittaa järjestelmäsi kokoonpanoa.</string>
-    <string name="permission_modify_system_settings_label">Muokkaa järjestelmäasetuksia</string>
-    <string name="permission_nfc_description">Sallii sovellusten kommunikoida NFC (Near Field Communication) -tunnisteiden, korttien ja lukijoiden kanssa.</string>
-    <string name="permission_nfc_label">NFC</string>
-    <string name="permission_reboot_description">Sallii sovelluksen käynnistää laitteen uudelleen. Saatavilla vain järjestelmäsovelluksille.</string>
-    <string name="permission_reboot_label">Käynnistä laite uudelleen</string>
-    <string name="permission_usage_data_access_description">Sallii sovellusten seurata mitä muita sovelluksia käytät ja kuinka usein, tunnistaa palveluntarjoajasi, kieliasetukset ja muut käyttötiedot.</string>
-    <string name="permission_usage_data_access_label">Käyttötietojen käyttöoikeus</string>
-    <string name="permissions_action_none_msg">Tälle käyttöoikeudelle ei ole toimintoa saatavilla</string>
-    <string name="permissions_details_count_system_apps">"Järjestelmäsovellukset: Myönnetty %1$d / %2$d."</string>
-    <string name="permissions_details_count_user_apps">"Käyttäjäsovellukset: Myönnetty %1$d / %2$d."</string>
-    <string name="permissions_details_description_restrictions_caveat_description">Muihin käyttäjäprofiileihin asennetut sovellukset on jätetty pois yllä olevasta laskelmasta Androidin rajoitusten vuoksi.</string>
-    <string name="permissions_permission_details_label">Käyttöoikeuden tiedot</string>
-    <string name="permissions_sort_apps_relevance_label">Merkityksellisyys</string>
-    <string name="support_debuglog_desc">Tallenna kaikki sovelluksen toiminta tekstitiedostoon, jonka voit jakaa.</string>
-    <string name="support_debuglog_label">Virheenkorjausloki</string>
-    <string name="updated_at_x">Viimeksi päivitetty: %s</string>
-
-    <plurals name="generic_x_apps_label">
-        <item quantity="one">%d sovellus</item>
-        <item quantity="other">%d sovellusta</item>
-    </plurals>
-    <plurals name="generic_x_apps_system_label">
-        <item quantity="one">%d järjestelmäsovellus</item>
-        <item quantity="other">%d järjestelmäsovellusta</item>
-    </plurals>
-    <plurals name="generic_x_apps_user_label">
-        <item quantity="one">%d käyttäjäsovellus</item>
-        <item quantity="other">%d käyttäjäsovellusta</item>
-    </plurals>
-    <plurals name="generic_x_groups_label">
-        <item quantity="one">%s ryhmä</item>
-        <item quantity="other">%s ryhmää</item>
-    </plurals>
-    <plurals name="generic_x_items_label">
-        <item quantity="one">%s kohde</item>
-        <item quantity="other">%s kohdetta</item>
-    </plurals>
-
-    <string name="apps_details_empty_filter_message">Yksikään käyttöoikeus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
-    <string name="filter_configurable_label">Määritettävissä</string>
-    <string name="filter_denied_label">Evätty</string>
-    <string name="filter_granted_label">Myönnetty</string>
-    <string name="general_collapse_all_action">Pienennä kaikki</string>
-    <string name="general_expand_all_action">Laajenna kaikki</string>
-    <string name="general_more_options_action">Lisää vaihtoehtoja</string>
-    <string name="permission_full_screen_intent_description">Sallii sovellusten näyttää koko näytön ilmoituksia, jotka valtaavat näytön, kun laite on lukittu tai käytössä. Käytetään yleisesti herätyksiin, puheluihin ja muihin aikakriittisiin tapahtumiin.</string>
-    <string name="permission_full_screen_intent_label">Koko näytön ilmoitukset</string>
-    <string name="permission_interact_across_profiles_description">Sallii sovellusten kommunikoida työ- ja henkilökohtaisten profiilien välillä, jakaen tietoja ja toimintoja profiilirajojen yli.</string>
-    <string name="permission_interact_across_profiles_label">Yhdistetyt työ- ja henkilökohtaiset sovellukset</string>
-    <string name="permission_loader_usage_stats_description">Sallii sovellusten kerätä tilastoja tietojen lataajien käytöstä laitteella.</string>
-    <string name="permission_loader_usage_stats_label">Lataajan käyttötilastot</string>
-    <string name="permissions_details_empty_filter_message">Yksikään sovellus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
-    <string name="permission_turn_screen_on_description">Sallii sovellusten kytkeä laitteen näytön päälle, kun ne tarvitsevat huomiotasi, kuten herätyksiin tai saapuviin puheluihin.</string>
-    <string name="permission_turn_screen_on_label">Kytke näyttö päälle</string>
 </resources>

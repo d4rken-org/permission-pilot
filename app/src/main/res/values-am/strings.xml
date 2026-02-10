@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">ፍቃድ ፓይሎት</string>
     <string name="app_name_pro">ፍቃድ ፓይሎት ፕሮ</string>
@@ -33,14 +34,12 @@
     <string name="settings_privacy_policy_desc">ውሂብን በተጠቃሚነት ያስተዳድሩ፡፡</string>
     <string name="settings_support_label">ድጋፍ</string>
     <string name="documentation_label">ሰነዶች</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">ለመማርና ለጥያቄዎች ቦታ፡፡</string>
     <string name="issue_tracker_label">ፍለጋ ችግር</string>
     <string name="issue_tracker_description">በተለፎን ግልፅ የተቀመጠ የችግር ተከታታይ፡፡</string>
     <string name="permissions_page_label">ፍቃዶች</string>
     <string name="apps_page_label">መተግበሪያዎች</string>
     <string name="app_type_system_label">የስርዓት መተግበሪያ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">ያልታወቀ ፍቃድ። በዚህ መተግበሪያ ይጠየቃል ነገር ግን ሌላ መተግበሪያ አይገልጽም።</string>
     <string name="permissions_unknown_description">ያልታወቀ ፍቃድ። መተግበሪያዎች ይጠይቁበት ነገር ግን አይገልጽም።</string>
     <string name="permissions_app_type_declaring_description">ይህ መተግበሪያ የፈቃድ ፍጠራ ነው።</string>
@@ -72,6 +71,9 @@
     <string name="permissions_filter_special_label">ልዩ አጠቃቀም</string>
     <string name="permissions_filter_installtime_label">ራሱ ተፈቅዶታል</string>
     <string name="permissions_filter_installtime_hide_label">ራሱ አልተፈቀደም</string>
+    <string name="filter_granted_label">ተፈቅዷል</string>
+    <string name="filter_denied_label">ተከልክሏል</string>
+    <string name="filter_configurable_label">ሊዋቀር የሚችል</string>
     <string name="permissions_sort_apps_granted_label"># መተግበሪያዎች ተፈቅዷል</string>
     <string name="permissions_sort_apps_requested_label"># መተግበሪያዎች ተጠይቋል</string>
     <string name="permissions_search_list_hint">ፍቃዶችን ፈልግ</string>
@@ -96,13 +98,12 @@
     <string name="apps_details_shareduserid_label">ከጋራ የተጠቃሚ መለያ ያላቸው መተግበሪያዎች</string>
     <string name="apps_details_siblings_label">እህቶች</string>
     <string name="apps_known_installer_gplay_label">Google Play መደብር</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
     <string name="apps_known_installer_oppo_label">Oppo መተግበሪያ ገበያ</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">አንድሮይድ ስርዓት</string>
     <string name="general_refresh_action">ዳግም አዘምን</string>
+    <string name="general_expand_all_action">ሁሉንም አስፋ</string>
+    <string name="general_collapse_all_action">ሁሉንም አሳንስ</string>
+    <string name="general_more_options_action">ተጨማሪ አማራጮች</string>
     <string name="apps_details_twins_label">ተወላጅ</string>
     <string name="apps_details_twins_descriptions">በሌላ የተጠቃሚ መገለጫ(ዎች) ተጫኗል።</string>
     <string name="install_date_label">የተጫኑበት ቀን</string>
@@ -121,6 +122,7 @@
     <string name="apps_details_description_uninstalled_caveat">ይህ መተግበሪያ ተሰርዟል ነገር ግን መረጃው ተጠብቆ ቆይቷል። ለተሰረዙ መተግበሪያዎች የፍቃድ ሁኔታዎችን ማወቅ አይቻልም።</string>
     <string name="apps_details_description_secondary_description">"%d ፍቃዶች ተጠይቋል።"</string>
     <string name="apps_details_description_primary_description">"%1$d ከ%2$d ፍቃዶች ተፈቅዷል።"</string>
+    <string name="apps_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ ፈቃዶች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
     <string name="api_target_level_x">የተመረጠ እትክት፡ %s</string>
     <string name="api_minimum_level_x">ዩኒቨርስ አነስተኛ፡ %s</string>
     <string name="api_build_level_x">የአውታረ መስመር ትክክለኛ፡ %s</string>
@@ -152,7 +154,7 @@
     <string name="permissions_details_count_user_apps">"የተጠቃሚ መተግበሪያዎች፦ %1$d ከ%2$d ተፈቅዷል።"</string>
     <string name="permissions_details_count_system_apps">"የስርዓት መተግበሪያዎች፦ %1$d ከ%2$d ተፈቅዷል።"</string>
     <string name="permissions_details_description_restrictions_caveat_description">በሌሎች እንቅስቃሴ ላይ የተጫኑ መተግበሪያዎች ስለ Android ውስስነት ከመተግበሪያ ግልጽ ማስታወቂያ ተገናኝተዋል።</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ መተግበሪያዎች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
     <string name="permission_nfc_description">ለመተግበሪያዎች ከNear Field Communication (NFC) ከእቃዎች፣ ካርዶችና እንደ Reader ጋር ይገናኛሉ።</string>
     <string name="permission_manage_media_label">ሚዲያ አስተዳደር</string>
     <string name="permission_manage_media_description">ሌሎች መተግበሪያዎች የፈጠሩ ሚዲያ በመቀየርም ማጥፋትም ይችላሉ ሆኖም ፈቃድ ሊያገኙ ይገባል።</string>
@@ -198,6 +200,14 @@
     <string name="permission_do_not_disturb_permission_description">የአትናገር ግንዛቤን እንዲተግብሩ ይፈቅዷሉ።</string>
     <string name="permission_alarms_and_reminders_label">አስታዋቂዎችና አስታውቂያዎች</string>
     <string name="permission_alarms_and_reminders_description">አስፈላጊ ማሳወቂያዎችን ይገናኛሉ፡፡ ይህ በባትሪ በደረጃ ይጨምራል። ይህን ባለፈለው ማስወገድ ውስጥ ትኩረት ይመጣሉ፡፡</string>
+    <string name="permission_turn_screen_on_label">ማያ ገጽን አብራ</string>
+    <string name="permission_turn_screen_on_description">እንደ ማንቂያዎች ወይም ገቢ ጥሪዎች ያሉ ትኩረትዎን ሲፈልጉ መተግበሪያዎች የመሣሪያውን ማያ ገጽ እንዲያበሩ ይፈቅዳል።</string>
+    <string name="permission_full_screen_intent_label">ሙሉ ማያ ማሳወቂያዎች</string>
+    <string name="permission_full_screen_intent_description">መሣሪያው ሲቆለፍ ወይም ጥቅም ላይ ሲውል ማያ ገጽዎን የሚይዙ ሙሉ ማያ ማሳወቂያዎችን እንዲያሳዩ ለመተግበሪያዎች ይፈቅዳል። በተለምዶ ለማንቂያዎች፣ ጥሪዎች እና ሌሎች ጊዜ-ተኮር ክስተቶች ጥቅም ላይ ይውላል።</string>
+    <string name="permission_interact_across_profiles_label">የተገናኙ የስራ እና የግል መተግበሪያዎች</string>
+    <string name="permission_interact_across_profiles_description">መተግበሪያዎች በስራ እና በግል መገለጫዎችዎ መካከል እንዲገናኙ ይፈቅዳል፣ ውሂብ እና ተግባራትን በመገለጫ ድንበሮች ላይ ያጋራሉ።</string>
+    <string name="permission_loader_usage_stats_label">የጫኚ አጠቃቀም ስታቲስቲክስ</string>
+    <string name="permission_loader_usage_stats_description">መተግበሪያዎች በመሣሪያው ላይ ስላለው የውሂብ ጫኚ አጠቃቀም ስታቲስቲክስ እንዲሰበስቡ ይፈቅዳል።</string>
     <string name="permission_premium_sms_services_label">የፕሪሚየም SMS ተደርሶታል</string>
     <string name="permission_premium_sms_services_description">የፕሪሚየም SMS አገልግሎት ባለሙያዎችን ይጠቀሙ፣ ይህ ወጪ ይፈጥራል።</string>
     <string name="permission_unlimited_data_access_label">ያለገደብ ውሂብ ይደርሳሉ</string>
@@ -219,7 +229,7 @@
     <string name="permission_group_location_label">አካባቢ</string>
     <string name="permission_group_location_description">የአካባቢ ፈቃዶች</string>
     <string name="permission_group_contacts_label">አገናኝ</string>
-    <string name="permission_group_contacts_description">አገናኞችን አንብብ እና ይጻፍ።</string>
+    <string name="permission_group_contacts_description">"አገናኞችን አንብብ እና ይጻፍ።"</string>
     <string name="permission_group_apps_label">መተግበሪያዎች</string>
     <string name="permission_group_apps_description">የተጠቃሚ እርስዎ ቅድሚያ የሚፈጽሙ የተለያዩ ፈቃዶች</string>
     <string name="permission_group_battery_label">ባትሪ</string>
@@ -235,11 +245,11 @@
     <string name="overview_summary_apps_active_profile_label">አሁን በጥሩ ሙዚቃ ውስጥ ያሉ መተግበሪያዎች</string>
     <string name="overview_summary_apps_other_profile_label">በውስጥ የተገናኙ መተግበሪያዎች፣ ተወላጅ ሳይደርሱ</string>
     <string name="overview_summary_apps_sideloaded_label">ከውጭ ቦታ ተጭነው ያሉ መተግበሪያዎች</string>
-    <string name="overview_summary_apps_installers_label">"ከያልታወቀ ምንጭ እንዲጫኑ የተፈቀዱ መተግበሪያዎች"</string>
-    <string name="overview_summary_apps_overlayers_label">"በሌሎች ላይ መታየት የሚችሉ መተግበሪያዎች"</string>
-    <string name="overview_summary_apps_offline_label">"የኢንተርኔት ፈቃድ ያላቸው መተግበሪያዎች"</string>
+    <string name="overview_summary_apps_installers_label">ከያልታወቀ ምንጭ እንዲጫኑ የተፈቀዱ መተግበሪያዎች</string>
+    <string name="overview_summary_apps_overlayers_label">በሌሎች ላይ መታየት የሚችሉ መተግበሪያዎች</string>
+    <string name="overview_summary_apps_offline_label">የኢንተርኔት ፈቃድ ያላቸው መተግበሪያዎች</string>
     <string name="overview_summary_apps_clones_label">ተወላጅ በሆኑ ሙዚቃዎች ውስጥ ያሉ መተግበሪያዎች</string>
-    <string name="overview_summary_apps_sharedids_label">"አጋራ የተጠቃሚ ID ያላቸው መተግበሪያዎች"</string>
+    <string name="overview_summary_apps_sharedids_label">አጋራ የተጠቃሚ ID ያላቸው መተግበሪያዎች</string>
     <string name="permission_bind_accessibility_service_label">የተደራሽነት አገልግሎት ያቅርቡ</string>
     <string name="permission_bind_accessibility_service_description">መተግበሪያው በስርዓት ቅንብሮች ውስጥ ከሚታቀበው የተደራሽነት አገልግሎት አካል ነው።</string>
     <string name="debug_debuglog_sensitive_information_message">ይህ ፋይል የግል መረጃ ይዟል፡፡ ለታመነ ሰው ብቻ አጋሩ፡፡</string>
@@ -247,21 +257,4 @@
     <string name="onboarding_body1">ይህ መተግበሪያ የተጫኙ መተግበሪያዎችን እና ፈቃዶቻቸውን ማወቅና ማሳየት ይረዳል።</string>
     <string name="onboarding_body2">Permission Pilot የተጫኙ መተግበሪያዎች መረጃ ይሰበስባል። ይህ የፈቃዶችን ቅዱስ ዝርዝር ማየት ያስችላል።</string>
     <string name="onboarding_body3">Permission Pilot ማንኛውንም ማስታወቂያ የለውምና ሁሉንም ውሂብ በኪነ ምሁር ይተግበራል።</string>
-
-    <string name="apps_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ ፈቃዶች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
-    <string name="filter_configurable_label">ሊዋቀር የሚችል</string>
-    <string name="filter_denied_label">ተከልክሏል</string>
-    <string name="filter_granted_label">ተፈቅዷል</string>
-    <string name="general_collapse_all_action">ሁሉንም አሳንስ</string>
-    <string name="general_expand_all_action">ሁሉንም አስፋ</string>
-    <string name="general_more_options_action">ተጨማሪ አማራጮች</string>
-    <string name="permission_full_screen_intent_description">መሣሪያው ሲቆለፍ ወይም ጥቅም ላይ ሲውል ማያ ገጽዎን የሚይዙ ሙሉ ማያ ማሳወቂያዎችን እንዲያሳዩ ለመተግበሪያዎች ይፈቅዳል። በተለምዶ ለማንቂያዎች፣ ጥሪዎች እና ሌሎች ጊዜ-ተኮር ክስተቶች ጥቅም ላይ ይውላል።</string>
-    <string name="permission_full_screen_intent_label">ሙሉ ማያ ማሳወቂያዎች</string>
-    <string name="permission_interact_across_profiles_description">መተግበሪያዎች በስራ እና በግል መገለጫዎችዎ መካከል እንዲገናኙ ይፈቅዳል፣ ውሂብ እና ተግባራትን በመገለጫ ድንበሮች ላይ ያጋራሉ።</string>
-    <string name="permission_interact_across_profiles_label">የተገናኙ የስራ እና የግል መተግበሪያዎች</string>
-    <string name="permission_loader_usage_stats_description">መተግበሪያዎች በመሣሪያው ላይ ስላለው የውሂብ ጫኚ አጠቃቀም ስታቲስቲክስ እንዲሰበስቡ ይፈቅዳል።</string>
-    <string name="permission_loader_usage_stats_label">የጫኚ አጠቃቀም ስታቲስቲክስ</string>
-    <string name="permissions_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ መተግበሪያዎች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
-    <string name="permission_turn_screen_on_description">እንደ ማንቂያዎች ወይም ገቢ ጥሪዎች ያሉ ትኩረትዎን ሲፈልጉ መተግበሪያዎች የመሣሪያውን ማያ ገጽ እንዲያበሩ ይፈቅዳል።</string>
-    <string name="permission_turn_screen_on_label">ማያ ገጽን አብራ</string>
 </resources>

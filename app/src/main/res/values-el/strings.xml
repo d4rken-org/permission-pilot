@@ -1,97 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Ρυθμίσεις</string>
     <string name="label_help">Βοήθεια</string>
-
     <string name="general_error_label">Σφάλμα</string>
-
-    <string name="general_accept_action">Αποδοχή</string>
-    <string name="general_continue_action">Συνέχεια</string>
     <string name="general_share_action">Κοινοποίηση</string>
     <string name="general_done_action">Ολοκληρώθηκε</string>
     <string name="general_copy_action">Αντιγραφή</string>
     <string name="general_check_action">Έλεγχος</string>
     <string name="general_show_action">Εμφάνιση</string>
     <string name="general_open_action">Άνοιγμα</string>
-
+    <string name="general_continue_action">Συνέχεια</string>
+    <string name="general_accept_action">Αποδοχή</string>
     <string name="upgrade_myperm_label">Αναβάθμιση Permission Pilot</string>
     <string name="upgrade_myperm_description">Σας αρέσει που αυτή η εφαρμογή δεν έχει διαφημίσεις και δεν συλλέγει τα δεδομένα σας;\nΑγοράστε την pro έκδοση για να δείξετε την υποστήριξή σας!</string>
     <string name="upgrade_buy_pro_action">Αγοράστε την pro έκδοση</string>
     <string name="general_no_action">Όχι</string>
     <string name="upgrade_donate_action">Δωρεά</string>
-
     <string name="debug_debuglog_size_label">Μέγεθος</string>
     <string name="debug_debuglog_size_compressed_label">Συμπιεσμένο μέγεθος</string>
     <string name="debug_notification_channel_label">Ειδοποιήσεις εντοπισμού σφαλμάτων</string>
     <string name="debug_debuglog_file_label">Καταγεγραμμένο αρχείο καταγραφής</string>
     <string name="debug_debuglog_record_action">Καταγραφή αρχείου εντοπισμού σφαλμάτων</string>
-    <string name="debug_debuglog_sensitive_information_message">Αυτό το αρχείο περιέχει ευαίσθητες πληροφορίες (π.χ. τις εγκατεστημένες εφαρμογές σας). Μοιραστείτε το μόνο με αξιόπιστα άτομα.</string>
-
     <string name="settings_category_other_label">Διάφορα</string>
-
     <string name="general_settings_label">Γενικά</string>
     <string name="general_settings_desc">Γενικές τροποποιήσεις που επηρεάζουν ολόκληρη την εφαρμογή.</string>
-
     <string name="changelog_label">Καταγραφή αλλαγών</string>
     <string name="settings_acknowledgements_label">Ευχαριστίες</string>
     <string name="general_thank_you_label">Ευχαριστούμε</string>
     <string name="settings_licenses_label">Άδειες</string>
     <string name="settings_privacy_policy_label">Πολιτική απορρήτου</string>
     <string name="settings_privacy_policy_desc">Χειρισμός δεδομένων με υπευθυνότητα.</string>
-
-    <string name="onboarding_body1">Αυτή η εφαρμογή σας βοηθά να πλοηγηθείτε στις εγκατεστημένες εφαρμογές και να ανακαλύψετε τις άδειές τους.</string>
-    <string name="onboarding_body2">Το Permission Pilot συλλέγει πληροφορίες για τις εγκατεστημένες εφαρμογές, ώστε να μπορεί να τις εμφανίζει και να συσχετίζει τις άδειές τους κατά τη χρήση της εφαρμογής.</string>
-    <string name="onboarding_body3">Το Permission Pilot δεν έχει διαφημίσεις και επεξεργάζεται δεδομένα μόνο τοπικά.</string>
-
     <string name="settings_support_label">Υποστήριξη</string>
     <string name="documentation_label">Οδηγίες</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Ένα μέρος για να αράξετε και να κάνετε ερωτήσεις.</string>
     <string name="issue_tracker_label">Παρακολούθηση ζητημάτων</string>
     <string name="issue_tracker_description">Ένα δημόσιο πρόγραμμα παρακολούθησης προβλημάτων για αναφορές σφαλμάτων και αιτήματα νέων λειτουργιών.</string>
     <string name="permissions_page_label">Άδειες</string>
     <string name="apps_page_label">Εφαρμογές</string>
     <string name="app_type_system_label">Εφαρμογές Συστήματος</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Άγνωστη άδεια. Ζητείται από αυτήν την εφαρμογή, αλλά καμία άλλη εφαρμογή δεν την έχει δηλώσει.</string>
     <string name="permissions_unknown_description">Άγνωστη άδεια. Ζητείται από εφαρμογές, αλλά δεν δηλώνεται πουθενά.</string>
     <string name="permissions_app_type_declaring_description">Η άδεια δημιουργείται από αυτήν την εφαρμογή.</string>
     <string name="permissions_app_type_requesting_description">Η εφαρμογή ζητά την άδεια.</string>
-
     <string name="general_filter_action">Φίλτρο</string>
     <string name="general_cancel_action">Ακύρωση</string>
-
     <string name="apps_filter_userapps_label">Εφαρμογές Χρήστη</string>
     <string name="apps_filter_systemapps_label">Εφαρμογές Συστήματος</string>
     <string name="apps_filter_nointernet_label">Εφαρμογές χωρίς πρόσβαση στο διαδίκτυο</string>
     <string name="apps_filter_sideloaded_label">Εφαρμογές πλευρικής χειροκίνητης εγκατάστασης</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">Άδειες που χορηγήθηκαν</string>
     <string name="apps_sort_permissions_requested_label">Άδειες που ζητήθηκαν</string>
     <string name="apps_sort_permissions_declared_label">Δηλωμένες άδειες</string>
     <string name="apps_sort_app_name_label">Όνομα εφαρμογής</string>
     <string name="apps_sort_install_date_label">Ημερομηνία εγκατάστασης</string>
     <string name="apps_sort_update_date_label">Τελευταία ενημέρωση</string>
-
     <string name="general_sort_action">Ταξινόμηση</string>
     <string name="apps_permissions_x_of_x_granted">Χορηγήθηκε %1$d από %2$d.</string>
     <string name="apps_permissions_x_requested">Ζητήθηκαν %1$d άδειες.</string>
     <string name="apps_permissions_declares_x">Δηλώνει %1$d άδεις.</string>
     <string name="apps_details_installer_label">Πηγή Εγκατάστασης</string>
     <string name="apps_details_installer_unknown_label">Οι πληροφορίες δεν είναι διαθέσιμες</string>
-
     <string name="permissions_filter_manifest_label">Άδειες AOSP</string>
     <string name="permissions_filter_system_label">Δηλώθηκε από εφαρμογή συστήματος</string>
     <string name="permissions_filter_user_label">Δηλώθηκε από εφαρμογή χρήστη</string>
-
     <string name="permissions_filter_runtime_label">Ζητήθηκε κατά το χρόνο εκτέλεσης</string>
     <string name="permissions_filter_special_label">Ειδική χρήση</string>
     <string name="permissions_filter_installtime_label">Χορηγήθηκε αυτόματα</string>
     <string name="permissions_filter_installtime_hide_label">Δεν χορηγήθηκε αυτόματα</string>
-
+    <string name="filter_granted_label">Χορηγήθηκαν</string>
+    <string name="filter_denied_label">Απορρίφθηκαν</string>
+    <string name="filter_configurable_label">Διαμορφώσιμα</string>
     <string name="permissions_sort_apps_granted_label"># εφαρμογών που χορηγήθηκαν</string>
     <string name="permissions_sort_apps_requested_label"># εφαρμογών που ζητήθηκαν</string>
     <string name="permissions_search_list_hint">Αναζήτηση Αδειών</string>
@@ -115,14 +93,11 @@
     <string name="apps_app_details_label">Λεπτομέρειες Εφαρμογής</string>
     <string name="apps_details_shareduserid_label">Εφαρμογές με Κοινόχρηστο Αναγνωριστικό Χρήστη</string>
     <string name="apps_details_siblings_label">Αδέρφια</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Σύστημα Android</string>
     <string name="general_refresh_action">Ανανέωση</string>
+    <string name="general_expand_all_action">Ανάπτυξη όλων</string>
+    <string name="general_collapse_all_action">Σύμπτυξη όλων</string>
+    <string name="general_more_options_action">Περισσότερες επιλογές</string>
     <string name="apps_details_twins_label">Κλώνοι</string>
     <string name="apps_details_twins_descriptions">Εγκατεστημένο σε άλλα προφίλ χρήστη.</string>
     <string name="install_date_label">Ημερομηνία εγκατάστασης</string>
@@ -130,7 +105,6 @@
     <string name="apps_filter_multipleprofiles_label">Εφαρμογές με Κλώνους</string>
     <string name="support_debuglog_label">Αρχείο καταγραφής εντοπισμού σφαλμάτων</string>
     <string name="support_debuglog_desc">Καταγράψτε όλα όσα κάνει η εφαρμογή σε ένα αρχείο κειμένου το οποίο μπορείτε να μοιραστείτε.</string>
-    <string name="settings_debuglog_explanation">Αυτή η λειτουργία καταγράφει όλα όσα κάνει η εφαρμογή σε ένα αρχείο που μπορείτε να μοιραστείτε. Το αρχείο που δημιουργείται περιέχει ευαίσθητες πληροφορίες (π.χ. τις εγκατεστημένες εφαρμογές σας). Μοιραστείτε το μόνο με αξιόπιστα άτομα (π.χ. τον προγραμματιστή της εφαρμογής αν αντιμετωπίζετε κάποιο πρόβλημα μαζί).</string>
     <string name="updated_at_x">Τελευταία ενημέρωση: %s</string>
     <string name="installed_at_x">Πρώτη εγκατάσταση: %s</string>
     <string name="apps_sort_install_source_label">Πηγή εγκατάστασης</string>
@@ -142,6 +116,7 @@
     <string name="apps_details_description_uninstalled_caveat">Αυτή η εφαρμογή έχει απεγκατασταθεί αλλά τα δεδομένα της διατηρήθηκαν. Δεν είναι δυνατός ο προσδιορισμός της κατάστασης των αδειών για απεγκατεστημένες εφαρμογές.</string>
     <string name="apps_details_description_secondary_description">"%d άδειες ζητήθηκαν."</string>
     <string name="apps_details_description_primary_description">"%1$d από %2$d άδειες χορηγήθηκαν."</string>
+    <string name="apps_details_empty_filter_message">Δεν υπάρχουν άδειες που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
     <string name="api_target_level_x">Στοχευμένη έκδοση: %s</string>
     <string name="api_minimum_level_x">Ελάχιστη έκδοση: %s</string>
     <string name="api_build_level_x">Έκδοση σύνταξης: %s</string>
@@ -173,7 +148,7 @@
     <string name="permissions_details_count_user_apps">"Εφαρμογές Χρήστη: Χορηγείται σε %1$d από %2$d."</string>
     <string name="permissions_details_count_system_apps">"Εφαρμογές συστήματος: Χορηγείται σε %1$d από %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Οι εφαρμογές που είναι εγκατεστημένες σε άλλα προφίλ χρηστών εξαιρούνται από τον παραπάνω υπολογισμό λόγω περιορισμών Android.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Δεν υπάρχουν εφαρμογές που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
     <string name="permission_nfc_description">Επιτρέπει στις εφαρμογές την επικοινωνία με ετικέτες, κάρτες και αναγνώστες Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Διαχείριση Πολυμέσων</string>
     <string name="permission_manage_media_description">Επιτρέπει στις εφαρμογές να τροποποιούν ή να διαγράφουν αρχεία πολυμέσων που έχουν δημιουργηθεί με άλλες εφαρμογές ΧΩΡΙΣ να σας ρωτήσουν. Οι εφαρμογές πρέπει να έχουν άδεια πρόσβασης σε αρχεία και πολυμέσα.</string>
@@ -219,6 +194,14 @@
     <string name="permission_do_not_disturb_permission_description">Επιτρέπει στις εφαρμογές να ενεργοποιούν ή να απενεργοποιούν το Do Not Disturb (DND) και να αλλάζουν τις σχετικές ρυθμίσεις.</string>
     <string name="permission_alarms_and_reminders_label">Ξυπνητήρια και Υπενθυμίσεις</string>
     <string name="permission_alarms_and_reminders_description">Επιτρέπει στις εφαρμογές να ορίζουν ξυπνητήρια και να προγραμματίζουν ενέργειες ευαίσθητες στον χρόνο. Αυτό επιτρέπει στις εφαρμογές να εκτελούνται στο παρασκήνιο, το οποίο μπορεί να καταναλώνει περισσότερη μπαταρία. Η απενεργοποίηση αυτής της άδειας για μια εφαρμογή θα είχε ως αποτέλεσμα να σταματήσουν να λειτουργούν οι υπάρχοντες συναγερμοί και τα συμβάντα βάσει χρόνου που έχουν προγραμματιστεί από τη συγκεκριμένη εφαρμογή.</string>
+    <string name="permission_turn_screen_on_label">Ενεργοποίηση Οθόνης</string>
+    <string name="permission_turn_screen_on_description">Επιτρέπει στις εφαρμογές να ενεργοποιούν την οθόνη της συσκευής όταν χρειάζονται την προσοχή σας, όπως για ξυπνητήρια ή εισερχόμενες κλήσεις.</string>
+    <string name="permission_full_screen_intent_label">Ειδοποιήσεις Πλήρους Οθόνης</string>
+    <string name="permission_full_screen_intent_description">Επιτρέπει στις εφαρμογές να εμφανίζουν ειδοποιήσεις πλήρους οθόνης που καταλαμβάνουν την οθόνη σας όταν η συσκευή είναι κλειδωμένη ή σε χρήση. Χρησιμοποιείται συνήθως για ξυπνητήρια, κλήσεις και άλλα χρονικά ευαίσθητα συμβάντα.</string>
+    <string name="permission_interact_across_profiles_label">Συνδεδεμένες Επαγγελματικές και Προσωπικές Εφαρμογές</string>
+    <string name="permission_interact_across_profiles_description">Επιτρέπει στις εφαρμογές να επικοινωνούν μεταξύ των επαγγελματικών και προσωπικών προφίλ σας, μοιράζοντας δεδομένα και λειτουργικότητα μεταξύ των ορίων προφίλ.</string>
+    <string name="permission_loader_usage_stats_label">Στατιστικά Χρήσης Φορτωτή</string>
+    <string name="permission_loader_usage_stats_description">Επιτρέπει στις εφαρμογές να συλλέγουν στατιστικά στοιχεία σχετικά με τη χρήση του φορτωτή δεδομένων στη συσκευή.</string>
     <string name="permission_premium_sms_services_label">Premium Πρόσβαση SMS</string>
     <string name="permission_premium_sms_services_description">Επιτρέπει στις εφαρμογές να χρησιμοποιούν υπηρεσίες μηνυμάτων κειμένου υψηλής ποιότητας. Αυτό θα σας κοστίσει χρήματα.</string>
     <string name="permission_unlimited_data_access_label">Απεριόριστη Πρόσβαση σε Δεδομένα</string>
@@ -263,21 +246,9 @@
     <string name="overview_summary_apps_sharedids_label">No. of apps with Κοινόχρηστα Αναγνωριστικά Χρήστη</string>
     <string name="permission_bind_accessibility_service_label">Προσφέρετε υπηρεσία προσβασιμότητας</string>
     <string name="permission_bind_accessibility_service_description">Επιτρέπει στην εφαρμογή να προσφέρει μια υπηρεσία προσβασιμότητας που μπορεί να ενεργοποιηθεί στις ρυθμίσεις συστήματος.</string>
-
-    <string name="apps_details_empty_filter_message">Δεν υπάρχουν άδειες που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
-    <string name="filter_configurable_label">Διαμορφώσιμα</string>
-    <string name="filter_denied_label">Απορρίφθηκαν</string>
-    <string name="filter_granted_label">Χορηγήθηκαν</string>
-    <string name="general_collapse_all_action">Σύμπτυξη όλων</string>
-    <string name="general_expand_all_action">Ανάπτυξη όλων</string>
-    <string name="general_more_options_action">Περισσότερες επιλογές</string>
-    <string name="permission_full_screen_intent_description">Επιτρέπει στις εφαρμογές να εμφανίζουν ειδοποιήσεις πλήρους οθόνης που καταλαμβάνουν την οθόνη σας όταν η συσκευή είναι κλειδωμένη ή σε χρήση. Χρησιμοποιείται συνήθως για ξυπνητήρια, κλήσεις και άλλα χρονικά ευαίσθητα συμβάντα.</string>
-    <string name="permission_full_screen_intent_label">Ειδοποιήσεις Πλήρους Οθόνης</string>
-    <string name="permission_interact_across_profiles_description">Επιτρέπει στις εφαρμογές να επικοινωνούν μεταξύ των επαγγελματικών και προσωπικών προφίλ σας, μοιράζοντας δεδομένα και λειτουργικότητα μεταξύ των ορίων προφίλ.</string>
-    <string name="permission_interact_across_profiles_label">Συνδεδεμένες Επαγγελματικές και Προσωπικές Εφαρμογές</string>
-    <string name="permission_loader_usage_stats_description">Επιτρέπει στις εφαρμογές να συλλέγουν στατιστικά στοιχεία σχετικά με τη χρήση του φορτωτή δεδομένων στη συσκευή.</string>
-    <string name="permission_loader_usage_stats_label">Στατιστικά Χρήσης Φορτωτή</string>
-    <string name="permissions_details_empty_filter_message">Δεν υπάρχουν εφαρμογές που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
-    <string name="permission_turn_screen_on_description">Επιτρέπει στις εφαρμογές να ενεργοποιούν την οθόνη της συσκευής όταν χρειάζονται την προσοχή σας, όπως για ξυπνητήρια ή εισερχόμενες κλήσεις.</string>
-    <string name="permission_turn_screen_on_label">Ενεργοποίηση Οθόνης</string>
+    <string name="debug_debuglog_sensitive_information_message">Αυτό το αρχείο περιέχει ευαίσθητες πληροφορίες (π.χ. τις εγκατεστημένες εφαρμογές σας). Μοιραστείτε το μόνο με αξιόπιστα άτομα.</string>
+    <string name="settings_debuglog_explanation">Αυτή η λειτουργία καταγράφει όλα όσα κάνει η εφαρμογή σε ένα αρχείο που μπορείτε να μοιραστείτε. Το αρχείο που δημιουργείται περιέχει ευαίσθητες πληροφορίες (π.χ. τις εγκατεστημένες εφαρμογές σας). Μοιραστείτε το μόνο με αξιόπιστα άτομα (π.χ. τον προγραμματιστή της εφαρμογής αν αντιμετωπίζετε κάποιο πρόβλημα μαζί).</string>
+    <string name="onboarding_body1">Αυτή η εφαρμογή σας βοηθά να πλοηγηθείτε στις εγκατεστημένες εφαρμογές και να ανακαλύψετε τις άδειές τους.</string>
+    <string name="onboarding_body2">Το Permission Pilot συλλέγει πληροφορίες για τις εγκατεστημένες εφαρμογές, ώστε να μπορεί να τις εμφανίζει και να συσχετίζει τις άδειές τους κατά τη χρήση της εφαρμογής.</string>
+    <string name="onboarding_body3">Το Permission Pilot δεν έχει διαφημίσεις και επεξεργάζεται δεδομένα μόνο τοπικά.</string>
 </resources>

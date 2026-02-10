@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Innstillinger</string>
     <string name="label_help">Hjelp</string>
-
     <string name="general_error_label">Feil</string>
-
     <string name="general_share_action">Del</string>
     <string name="general_done_action">Ferdig</string>
     <string name="general_copy_action">Kopier</string>
@@ -14,91 +11,75 @@
     <string name="general_open_action">Åpne</string>
     <string name="general_continue_action">Fortsett</string>
     <string name="general_accept_action">Godta</string>
-
     <string name="upgrade_myperm_label">Oppgrader Permission Pilot</string>
     <string name="upgrade_myperm_description">Liker du at denne appen ikke har annonser og ikke samler inn dataene dine?\nKjøp pro-versjonen for å vise din støtte!</string>
     <string name="upgrade_buy_pro_action">Kjøp pro-versjon</string>
     <string name="general_no_action">Nei</string>
     <string name="upgrade_donate_action">Doner</string>
-
     <string name="debug_debuglog_size_label">Størrelse</string>
     <string name="debug_debuglog_size_compressed_label">Komprimert størrelse</string>
     <string name="debug_notification_channel_label">Debug-varsler</string>
     <string name="debug_debuglog_file_label">Innspilt loggfil</string>
     <string name="debug_debuglog_record_action">Spill inn debug-logg</string>
-
     <string name="settings_category_other_label">Andre</string>
-
     <string name="general_settings_label">Generelt</string>
     <string name="general_settings_desc">Generelle innstillinger som påvirker hele appen.</string>
-
     <string name="changelog_label">Endringslogg</string>
     <string name="settings_acknowledgements_label">Anerkjennelser</string>
     <string name="general_thank_you_label">Takk</string>
     <string name="settings_licenses_label">Lisenser</string>
     <string name="settings_privacy_policy_label">Personvernpolicy</string>
     <string name="settings_privacy_policy_desc">Ansvarlig håndtering av data.</string>
-
     <string name="settings_support_label">Støtte</string>
     <string name="documentation_label">Dokumentasjon</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Et sted å henge og stille spørsmål.</string>
     <string name="issue_tracker_label">Problemsporing</string>
     <string name="issue_tracker_description">En offentlig problemsporing for feilrapporter og funksjonsforespørsler.</string>
     <string name="permissions_page_label">Tillatelser</string>
     <string name="apps_page_label">Apper</string>
     <string name="app_type_system_label">Systemapp</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Ukjent tillatelse. Den forespørres av denne appen, men ingen annen app erklærer den.</string>
     <string name="permissions_unknown_description">Ukjent tillatelse. Den forespørres av apper, men er ikke erklært noe sted.</string>
     <string name="permissions_app_type_declaring_description">Tillatelse opprettes av denne appen.</string>
     <string name="permissions_app_type_requesting_description">App ber om tillatelsen.</string>
-
     <string name="general_filter_action">Filtrer</string>
     <string name="general_cancel_action">Avbryt</string>
-
     <string name="apps_filter_userapps_label">Brukerapper</string>
     <string name="apps_filter_systemapps_label">Systemapper</string>
     <string name="apps_filter_nointernet_label">Apper uten internettilgang</string>
     <string name="apps_filter_sideloaded_label">Sidelastede apper</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">Innvilgede tillatelser</string>
     <string name="apps_sort_permissions_requested_label">Forespurte tillatelser</string>
     <string name="apps_sort_permissions_declared_label">Erklærte tillatelser</string>
     <string name="apps_sort_app_name_label">Appnavn</string>
     <string name="apps_sort_install_date_label">Installasjonsdato</string>
     <string name="apps_sort_update_date_label">Sist oppdatert</string>
-
     <string name="general_sort_action">Sorter</string>
     <string name="apps_permissions_x_of_x_granted">%1$d av %2$d innvilget.</string>
     <string name="apps_permissions_x_requested">%1$d tillatelser forespurt.</string>
     <string name="apps_permissions_declares_x">Erklærer %1$d tillatelser.</string>
     <string name="apps_details_installer_label">Installasjonskilde</string>
     <string name="apps_details_installer_unknown_label">Informasjon ikke tilgjengelig</string>
-
     <string name="permissions_filter_manifest_label">AOSP-tillatelser</string>
     <string name="permissions_filter_system_label">Erklært av systemapp</string>
     <string name="permissions_filter_user_label">Erklært av brukerapp</string>
-
     <string name="permissions_filter_runtime_label">Forespurt ved kjøring</string>
     <string name="permissions_filter_special_label">Spesiell bruk</string>
     <string name="permissions_filter_installtime_label">Automatisk innvilget</string>
     <string name="permissions_filter_installtime_hide_label">Ikke automatisk innvilget</string>
-
+    <string name="filter_granted_label">Innvilget</string>
+    <string name="filter_denied_label">Nektet</string>
+    <string name="filter_configurable_label">Konfigurerbar</string>
     <string name="permissions_sort_apps_granted_label"># apper innvilget</string>
     <string name="permissions_sort_apps_requested_label"># apper forespurt</string>
     <string name="permissions_search_list_hint">Søk tillatelser</string>
     <string name="apps_search_list_hint">Søk apper</string>
     <string name="permissions_details_protection_label">Beskyttelsesnivå</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Farlig</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
     <string name="permissions_protection_type_signatureorsystem_label">Signatur eller system</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Ukjent</string>
-
     <string name="permissions_permission_details_label">Tillatelsesdetaljer</string>
     <string name="generic_loading_label_0">Snart™</string>
     <string name="generic_loading_label_1">Sender smøret</string>
@@ -111,14 +92,11 @@
     <string name="apps_app_details_label">Appdetaljer</string>
     <string name="apps_details_shareduserid_label">Apper med delt bruker-ID</string>
     <string name="apps_details_siblings_label">Søsken</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android-system</string>
     <string name="general_refresh_action">Oppdater</string>
+    <string name="general_expand_all_action">Utvid alle</string>
+    <string name="general_collapse_all_action">Skjul alle</string>
+    <string name="general_more_options_action">Flere alternativer</string>
     <string name="apps_details_twins_label">Kloner</string>
     <string name="apps_details_twins_descriptions">Installert i andre brukerprofiler.</string>
     <string name="install_date_label">Installasjonsdato</string>
@@ -137,6 +115,7 @@
     <string name="apps_details_description_uninstalled_caveat">Denne appen er avinstallert, men dataene er beholdt. Tillatelsesstatus kan ikke fastslås for avinstallerte apper.</string>
     <string name="apps_details_description_secondary_description">"%d tillatelser forespurt."</string>
     <string name="apps_details_description_primary_description">"%1$d av %2$d tillatelser innvilget."</string>
+    <string name="apps_details_empty_filter_message">Ingen tillatelser samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
     <string name="api_target_level_x">Målversjon: %s</string>
     <string name="api_minimum_level_x">Minimum versjon: %s</string>
     <string name="api_build_level_x">Byggversjon: %s</string>
@@ -153,10 +132,6 @@
         <item quantity="one">%s gruppe</item>
         <item quantity="other">%s grupper</item>
     </plurals>
-    <plurals name="generic_x_apps_label">
-        <item quantity="one">%d app</item>
-        <item quantity="other">%d apper</item>
-    </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">%d brukerapp</item>
         <item quantity="other">%d brukerapper</item>
@@ -168,7 +143,7 @@
     <string name="permissions_details_count_user_apps">"Brukerapper: Innvilget til %1$d av %2$d."</string>
     <string name="permissions_details_count_system_apps">"Systemapper: Innvilget til %1$d av %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Apper installert i andre brukerprofiler er ekskludert fra beregningen ovenfor på grunn av Android-begrensninger.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Ingen apper samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
     <string name="permission_nfc_description">Lar apper kommunisere med Near Field Communication (NFC) tagger, kort og lesere.</string>
     <string name="permission_manage_media_label">Administrer media</string>
     <string name="permission_manage_media_description">Lar apper endre eller slette mediefiler opprettet med andre apper UTEN å spørre deg. Apper må ha tillatelse til å få tilgang til filer og media.</string>
@@ -214,6 +189,14 @@
     <string name="permission_do_not_disturb_permission_description">Lar apper slå på eller av Ikke forstyrr (DND) og endre relaterte innstillinger.</string>
     <string name="permission_alarms_and_reminders_label">Alarmer og påminnelser</string>
     <string name="permission_alarms_and_reminders_description">Lar apper sette alarmer og planlegge tidssensitive handlinger. Dette lar apper kjøre i bakgrunnen, som kan bruke mer batteri. Å slå av denne tillatelsen for en app ville føre til at eksisterende alarmer og tidsbaserte hendelser planlagt av den spesifikke appen sluttet å fungere.</string>
+    <string name="permission_turn_screen_on_label">Slå på skjerm</string>
+    <string name="permission_turn_screen_on_description">Lar apper slå på enhetens skjerm når de trenger oppmerksomheten din, for eksempel for alarmer eller innkommende samtaler.</string>
+    <string name="permission_full_screen_intent_label">Fullskjermsvarsler</string>
+    <string name="permission_full_screen_intent_description">Lar apper vise fullskjermsvarsler som tar over skjermen når enheten er låst eller i bruk. Brukes ofte for alarmer, samtaler og andre tidssensitive hendelser.</string>
+    <string name="permission_interact_across_profiles_label">Tilkoblede jobb- og personlige apper</string>
+    <string name="permission_interact_across_profiles_description">Lar apper kommunisere mellom jobb- og personlige profiler, og dele data og funksjonalitet på tvers av profilgrenser.</string>
+    <string name="permission_loader_usage_stats_label">Statistikk for lasterbruk</string>
+    <string name="permission_loader_usage_stats_description">Lar apper samle inn statistikk om bruk av datalastere på enheten.</string>
     <string name="permission_premium_sms_services_label">Premium SMS-tilgang</string>
     <string name="permission_premium_sms_services_description">Lar apper bruke premium tekstmeldingstjenester. Dette vil koste deg penger.</string>
     <string name="permission_unlimited_data_access_label">Ubegrenset datatilgang</string>
@@ -263,21 +246,4 @@
     <string name="onboarding_body1">Denne appen hjelper deg med å navigere installerte applikasjoner og oppdage tillatelser.</string>
     <string name="onboarding_body2">Permission Pilot samler inn informasjon om installerte applikasjoner for å gjøre det mulig å liste appene dine og kryssreferere tillatelsene deres når du bruker denne applikasjonen.</string>
     <string name="onboarding_body3">Permission Pilot har ingen annonser og behandler kun data lokalt.</string>
-
-    <string name="apps_details_empty_filter_message">Ingen tillatelser samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
-    <string name="filter_configurable_label">Konfigurerbar</string>
-    <string name="filter_denied_label">Nektet</string>
-    <string name="filter_granted_label">Innvilget</string>
-    <string name="general_collapse_all_action">Skjul alle</string>
-    <string name="general_expand_all_action">Utvid alle</string>
-    <string name="general_more_options_action">Flere alternativer</string>
-    <string name="permission_full_screen_intent_description">Lar apper vise fullskjermsvarsler som tar over skjermen når enheten er låst eller i bruk. Brukes ofte for alarmer, samtaler og andre tidssensitive hendelser.</string>
-    <string name="permission_full_screen_intent_label">Fullskjermsvarsler</string>
-    <string name="permission_interact_across_profiles_description">Lar apper kommunisere mellom jobb- og personlige profiler, og dele data og funksjonalitet på tvers av profilgrenser.</string>
-    <string name="permission_interact_across_profiles_label">Tilkoblede jobb- og personlige apper</string>
-    <string name="permission_loader_usage_stats_description">Lar apper samle inn statistikk om bruk av datalastere på enheten.</string>
-    <string name="permission_loader_usage_stats_label">Statistikk for lasterbruk</string>
-    <string name="permissions_details_empty_filter_message">Ingen apper samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
-    <string name="permission_turn_screen_on_description">Lar apper slå på enhetens skjerm når de trenger oppmerksomheten din, for eksempel for alarmer eller innkommende samtaler.</string>
-    <string name="permission_turn_screen_on_label">Slå på skjerm</string>
 </resources>

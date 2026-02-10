@@ -1,45 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
     <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Nastavení</string>
     <string name="label_help">Nápověda</string>
-
     <string name="general_error_label">Chyba</string>
-
-    <string name="general_accept_action">Přijmout</string>
-    <string name="general_continue_action">Pokračovat</string>
     <string name="general_share_action">Sdílet</string>
     <string name="general_done_action">Hotovo</string>
     <string name="general_copy_action">Kopírovat</string>
     <string name="general_check_action">Zkontrolovat</string>
     <string name="general_show_action">Zobrazit</string>
     <string name="general_open_action">Otevřít</string>
-
-    <string name="upgrade_myperm_label">Aktualizovat Permission Pilot</string>
-    <string name="upgrade_myperm_description">Líbí se vám, že tato aplikace nemá žádné reklamy a neshromažďuje vaše data?\nKupte si Pro verzi, abyste vyjádřili svou podporu!</string>
+    <string name="general_continue_action">Pokračovat</string>
+    <string name="general_accept_action">Přijmout</string>
+    <string name="upgrade_myperm_label">Upgradovat Permission Pilot</string>
+    <string name="upgrade_myperm_description">Líbí se vám, že tato aplikace neobsahuje reklamy a neshromažďuje vaše data?\nPodpořte nás zakoupením verze Pro!</string>
     <string name="upgrade_buy_pro_action">Zakoupit verzi Pro</string>
     <string name="general_no_action">Ne</string>
     <string name="upgrade_donate_action">Přispět</string>
-
     <string name="debug_debuglog_size_label">Velikost</string>
     <string name="debug_debuglog_size_compressed_label">Komprimovaná velikost</string>
     <string name="debug_notification_channel_label">Oznámení o ladění</string>
-    <string name="debug_debuglog_file_label">Zaznamenaný soubor ladělí</string>
-    <string name="debug_debuglog_record_action">Zaznamenat soubor ladění</string>
-    <string name="debug_debuglog_sensitive_information_message">Tento soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami.</string>
-
+    <string name="debug_debuglog_file_label">Zaznamenaný log soubor</string>
+    <string name="debug_debuglog_record_action">Zaznamenat log ladění</string>
     <string name="settings_category_other_label">Další</string>
-
     <string name="general_settings_label">Obecné</string>
     <string name="general_settings_desc">Obecná vylepšení, která ovlivňují celou aplikaci</string>
-
     <string name="changelog_label">Seznam změn</string>
     <string name="settings_acknowledgements_label">Poděkování</string>
     <string name="general_thank_you_label">Děkuji</string>
     <string name="settings_licenses_label">Licence</string>
-    <string name="settings_privacy_policy_label">Zásady ochrany osobních údajů.</string>
+    <string name="settings_privacy_policy_label">Zásady ochrany osobních údajů</string>
     <string name="settings_privacy_policy_desc">Zodpovědné nakládání s daty.</string>
-
     <string name="settings_support_label">Podpora</string>
     <string name="documentation_label">Dokumentace</string>
     <string name="discord_label">Discord</string>
@@ -53,43 +45,39 @@
     <string name="apps_permission_unknown_description">Neznámé oprávnění. Tato aplikace jej požaduje, ale žádná jiná aplikace jej nedeklaruje.</string>
     <string name="permissions_unknown_description">Neznámé oprávnění. Aplikace jej vyžaduje, ale nikde jej nedeklaruje.</string>
     <string name="permissions_app_type_declaring_description">Oprávnění je vytvořeno touto aplikací.</string>
-    <string name="permissions_app_type_requesting_description">Aplikace si vyžádá oprávnění.</string>
-
+    <string name="permissions_app_type_requesting_description">Aplikace žádá o oprávnění.</string>
     <string name="general_filter_action">Filtrovat</string>
     <string name="general_cancel_action">Zrušit</string>
-
     <string name="apps_filter_userapps_label">Uživatelské aplikace</string>
     <string name="apps_filter_systemapps_label">Systémové aplikace</string>
     <string name="apps_filter_nointernet_label">Aplikace bez přístupu k internetu</string>
     <string name="apps_filter_sideloaded_label">Aplikace stažené mimo obchod</string>
     <string name="apps_filter_gplay_label">Obchod Google Play</string>
     <string name="apps_filter_oemstore_label">Obchod OEM</string>
-
     <string name="apps_sort_permissions_granted_label">Udělená oprávnění</string>
     <string name="apps_sort_permissions_requested_label">Požadovaná oprávnění</string>
     <string name="apps_sort_permissions_declared_label">Deklarovaná oprávnění</string>
     <string name="apps_sort_app_name_label">Název aplikace</string>
     <string name="apps_sort_install_date_label">Datum instalace</string>
     <string name="apps_sort_update_date_label">Poslední aktualizace</string>
-
     <string name="general_sort_action">Třídit</string>
     <string name="apps_permissions_x_of_x_granted">Uděleno %1$d z %2$d.</string>
     <string name="apps_permissions_x_requested">Požadovaná oprávnění: %1$d.</string>
     <string name="apps_permissions_declares_x">Deklaruje %1$d oprávnění.</string>
     <string name="apps_details_installer_label">Zdroj instalace</string>
     <string name="apps_details_installer_unknown_label">Informace nejsou k dispozici</string>
-
     <string name="permissions_filter_manifest_label">AOSP oprávnění</string>
     <string name="permissions_filter_system_label">Deklarováno systémovou aplikací</string>
     <string name="permissions_filter_user_label">Deklarováno uživatelskou aplikací</string>
-
     <string name="permissions_filter_runtime_label">Vyžádáno při spuštění</string>
     <string name="permissions_filter_special_label">Speciální využití</string>
     <string name="permissions_filter_installtime_label">Uděleno automaticky</string>
     <string name="permissions_filter_installtime_hide_label">Neuděleno automaticky</string>
-
+    <string name="filter_granted_label">Uděleno</string>
+    <string name="filter_denied_label">Zamítnuto</string>
+    <string name="filter_configurable_label">Konfigurovatelné</string>
     <string name="permissions_sort_apps_granted_label"># z aplikací uděleno</string>
-    <string name="permissions_sort_apps_requested_label"># z aplikací vyžadováno</string>
+    <string name="permissions_sort_apps_requested_label"># z aplikací požadováno</string>
     <string name="permissions_search_list_hint">Vyhledat oprávnění</string>
     <string name="apps_search_list_hint">Vyhledat aplikace</string>
     <string name="permissions_details_protection_label">Úroveň ochrany</string>
@@ -98,16 +86,16 @@
     <string name="permissions_protection_type_signature_label">Podpis</string>
     <string name="permissions_protection_type_signatureorsystem_label">Podpis nebo systém</string>
     <string name="permissions_protection_type_internal_label">Interní</string>
-    <string name="permissions_protection_type_unknown_label">Neznámá</string>
+    <string name="permissions_protection_type_unknown_label">Neznámé</string>
     <string name="permissions_permission_details_label">Detaily oprávnění</string>
-    <string name="generic_loading_label_0">Soon™</string>
-    <string name="generic_loading_label_1">Passing the butter</string>
-    <string name="generic_loading_label_2">Downloading more RAM</string>
-    <string name="generic_loading_label_3">Still faster than an iPhone</string>
-    <string name="generic_loading_label_4">What\'s that behind you?</string>
-    <string name="generic_loading_label_5">The CPU is on a coffee break</string>
-    <string name="generic_loading_label_6">Awaiting data from Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator is initiating</string>
+    <string name="generic_loading_label_0">Již brzy™</string>
+    <string name="generic_loading_label_1">Podávání másla</string>
+    <string name="generic_loading_label_2">Stahování více RAM</string>
+    <string name="generic_loading_label_3">Stále rychleji než iPhone</string>
+    <string name="generic_loading_label_4">Co je to za tebou?</string>
+    <string name="generic_loading_label_5">CPU má přestávku na kávu</string>
+    <string name="generic_loading_label_6">Čekání na data od Pepe Silvia</string>
+    <string name="generic_loading_label_7">Turbo encabulator se spouští</string>
     <string name="apps_app_details_label">Detaily aplikace</string>
     <string name="apps_details_shareduserid_label">Aplikace se sdíleným ID uživatele</string>
     <string name="apps_details_siblings_label">Podobné</string>
@@ -119,6 +107,9 @@
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Systém Android</string>
     <string name="general_refresh_action">Obnovit</string>
+    <string name="general_expand_all_action">Rozbalit vše</string>
+    <string name="general_collapse_all_action">Sbalit vše</string>
+    <string name="general_more_options_action">Další možnosti</string>
     <string name="apps_details_twins_label">Klony</string>
     <string name="apps_details_twins_descriptions">Nainstalováno v jiných uživatelských profilech.</string>
     <string name="install_date_label">Datum instalace</string>
@@ -126,7 +117,6 @@
     <string name="apps_filter_multipleprofiles_label">Aplikace s klony</string>
     <string name="support_debuglog_label">Záznam ladění</string>
     <string name="support_debuglog_desc">Zaznamenávejte vše, co aplikace dělá do textového souboru, který můžete sdílet.</string>
-    <string name="settings_debuglog_explanation">Tato funkce zaznamenává vše, co aplikace dělá, do sdílitelného souboru. Vygenerovaný soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami (např. s vývojářem aplikace, pokud společně řešíte problém).</string>
     <string name="updated_at_x">Poslední aktualizace: %s</string>
     <string name="installed_at_x">První instalace: %s</string>
     <string name="apps_sort_install_source_label">Zdroj instalace</string>
@@ -138,6 +128,7 @@
     <string name="apps_details_description_uninstalled_caveat">Tato aplikace byla odinstalována, ale její data byla zachována. U odinstalovaných aplikací nelze zjistit stav oprávnění.</string>
     <string name="apps_details_description_secondary_description">"Vyžadovaná oprávnění: %d"</string>
     <string name="apps_details_description_primary_description">"Udělená oprávnění: %1$d z %2$d"</string>
+    <string name="apps_details_empty_filter_message">Žádná oprávnění neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
     <string name="api_target_level_x">Cílová verze: %s</string>
     <string name="api_minimum_level_x">Minimální verze: %s</string>
     <string name="api_build_level_x">Kompilovaná verze: %s</string>
@@ -148,39 +139,50 @@
     <string name="overview_page_label">Přehled</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s položka</item>
+        <item quantity="few">%s polož(ky/ek)</item>
+        <item quantity="many">%s polož(ky/ek)</item>
         <item quantity="other">%s polož(ky/ek)</item>
     </plurals>
     <plurals name="generic_x_groups_label">
         <item quantity="one">%s skupina</item>
+        <item quantity="few">%s skupin(y)</item>
+        <item quantity="many">%s skupin(y)</item>
         <item quantity="other">%s skupin(y)</item>
     </plurals>
     <plurals name="generic_x_apps_label">
         <item quantity="one">%d aplikace</item>
+        <item quantity="few">%d aplikac(e/í)</item>
+        <item quantity="many">%d aplikac(e/í)</item>
         <item quantity="other">%d aplikac(e/í)</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">%d uživ. aplikace</item>
+        <item quantity="few">%d uživ. aplikac(e/í)</item>
+        <item quantity="many">%d uživ. aplikac(e/í)</item>
         <item quantity="other">%d uživ. aplikac(e/í)</item>
     </plurals>
     <plurals name="generic_x_apps_system_label">
         <item quantity="one">%d sys. aplikace</item>
+        <item quantity="few">%d sys. aplikac(e/í)</item>
+        <item quantity="many">%d sys. aplikac(e/í)</item>
         <item quantity="other">%d sys. aplikac(e/í)</item>
     </plurals>
     <string name="permissions_details_count_user_apps">"Uživatelské aplikace: Uděleno %1$d z %2$d."</string>
     <string name="permissions_details_count_system_apps">"Systémové aplikace: Uděleno %1$d z %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikace nainstalované v jiných uživatelských profilech jsou z výše uvedených výpočtů vyloučeny kvůli omezením systému Android.</string>
+    <string name="permissions_details_empty_filter_message">Žádné aplikace neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Umožňuje aplikacím komunikovat se štítky, kartami a čtečkami NFC (Near Field Communication).</string>
     <string name="permission_manage_media_label">Správa médií</string>
     <string name="permission_manage_media_description">Umožňuje aplikacím upravovat nebo odstraňovat mediální soubory vytvořené jinými aplikacemi, aniž by se vás zeptaly. Aplikace musí mít oprávnění k přístupu k souborům a médiím.</string>
     <string name="permission_usage_data_access_label">Přístup k využití dat</string>
     <string name="permission_usage_data_access_description">Umožňuje aplikacím sledovat, jaké další aplikace používáte a jak často, identifikovat poskytovatele služeb, nastavení jazyka a další údaje o používání.</string>
-    <string name="permission_modify_system_settings_label">Správa systémových nastavení</string>
+    <string name="permission_modify_system_settings_label">Změny nastavení systému</string>
     <string name="permission_modify_system_settings_description">Umožňuje aplikacím měnit údaje o nastavení systému. Škodlivé aplikace mohou poškodit konfiguraci systému.</string>
     <string name="permission_bluetooth_advertise_label">Bluetooth</string>
     <string name="permission_bluetooth_advertise_description">Umožňuje aplikacím přistupovat na blízká zařízení Bluetooth.</string>
     <string name="permission_get_accounts_label">Získávání účtů</string>
-    <string name="permission_get_accounts_description">Umožňuje aplikacím získat seznam účtů, které telefon zná. To může zahrnovat všechny účty vytvořené nainstalovanými aplikacemi.</string>
+    <string name="permission_get_accounts_description">Umožňuje aplikacím získat seznam účtů v telefonu. Mohou sem patřit i účty vytvořené aplikacemi, které jste nainstalovali.</string>
     <string name="permission_access_background_location_label">Přístup k poloze na pozadí</string>
     <string name="permission_access_background_location_description">Umožňuje aplikacím kdykoli přistupovat k poloze, i když nejsou používány.</string>
     <string name="permission_access_media_location_label">Přístup k umístění médií</string>
@@ -215,6 +217,14 @@
     <string name="permission_do_not_disturb_permission_description">Umožňuje aplikacím zapnout nebo vypnout funkci Nerušit (DND) a změnit související nastavení.</string>
     <string name="permission_alarms_and_reminders_label">Budíky a připomenutí</string>
     <string name="permission_alarms_and_reminders_description">Umožňuje aplikacím nastavovat budíky a plánovat časově závislé akce. Díky tomu mohou aplikace běžet na pozadí, což může spotřebovávat více baterie. Vypnutí tohoto oprávnění pro aplikaci způsobí, že stávající budíky a časové události naplánované danou aplikací přestanou fungovat.</string>
+    <string name="permission_turn_screen_on_label">Zapnout obrazovku</string>
+    <string name="permission_turn_screen_on_description">Umožňuje aplikacím zapnout obrazovku zařízení, když potřebují vaši pozornost, například pro budíky nebo příchozí hovory.</string>
+    <string name="permission_full_screen_intent_label">Oznámení na celou obrazovku</string>
+    <string name="permission_full_screen_intent_description">Umožňuje aplikacím zobrazovat oznámení na celou obrazovku, která převezmou obrazovku, když je zařízení zamčené nebo používané. Běžně se používá pro budíky, hovory a další časově citlivé události.</string>
+    <string name="permission_interact_across_profiles_label">Propojené pracovní a osobní aplikace</string>
+    <string name="permission_interact_across_profiles_description">Umožňuje aplikacím komunikovat mezi pracovními a osobními profily a sdílet data a funkce přes hranice profilů.</string>
+    <string name="permission_loader_usage_stats_label">Statistiky využití zavaděče</string>
+    <string name="permission_loader_usage_stats_description">Umožňuje aplikacím shromažďovat statistiky o používání datových zavaděčů na zařízení.</string>
     <string name="permission_premium_sms_services_label">Přístup k prémiovým SMA</string>
     <string name="permission_premium_sms_services_description">Umožňuje aplikacím používat prémiové služby textových zpráv. To vás bude stát peníze.</string>
     <string name="permission_unlimited_data_access_label">Neomezený přístup k datům</string>
@@ -259,25 +269,9 @@
     <string name="overview_summary_apps_sharedids_label">No. aplikací se SharedUserID</string>
     <string name="permission_bind_accessibility_service_label">Nabídka služeb přístupnosti</string>
     <string name="permission_bind_accessibility_service_description">Umožňuje aplikaci nabízet službu přístupnosti, kterou lze povolit v nastavení systému.</string>
-
+    <string name="debug_debuglog_sensitive_information_message">Tento soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami.</string>
+    <string name="settings_debuglog_explanation">Tato funkce zaznamenává vše, co aplikace dělá, do sdílitelného souboru. Vygenerovaný soubor obsahuje citlivé informace (např. vaše nainstalované aplikace). Sdílejte jej pouze s důvěryhodnými stranami (např. s vývojářem aplikace, pokud společně řešíte problém).</string>
     <string name="onboarding_body1">Tato aplikace vám pomáhá procházet nainstalované aplikace a zjišťovat jejich oprávnění.</string>
     <string name="onboarding_body2">Permission Pilot shromažďuje informace o nainstalovaných aplikacích, aby mohl zobrazovat seznam vašich aplikací a porovnávat jejich oprávnění při používání této aplikace.</string>
     <string name="onboarding_body3">Permission Pilot neobsahuje reklamy a zpracovává data pouze lokálně.</string>
-
-    <string name="apps_details_empty_filter_message">Žádná oprávnění neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
-    <string name="filter_configurable_label">Konfigurovatelné</string>
-    <string name="filter_denied_label">Odepřeno</string>
-    <string name="filter_granted_label">Uděleno</string>
-    <string name="general_collapse_all_action">Sbalit vše</string>
-    <string name="general_expand_all_action">Rozbalit vše</string>
-    <string name="general_more_options_action">Další možnosti</string>
-    <string name="permission_full_screen_intent_description">Umožňuje aplikacím zobrazovat oznámení na celou obrazovku, která převezmou obrazovku, když je zařízení zamčené nebo používané. Běžně se používá pro budíky, hovory a další časově citlivé události.</string>
-    <string name="permission_full_screen_intent_label">Oznámení na celou obrazovku</string>
-    <string name="permission_interact_across_profiles_description">Umožňuje aplikacím komunikovat mezi pracovními a osobními profily a sdílet data a funkce přes hranice profilů.</string>
-    <string name="permission_interact_across_profiles_label">Propojené pracovní a osobní aplikace</string>
-    <string name="permission_loader_usage_stats_description">Umožňuje aplikacím shromažďovat statistiky o používání datových zavaděčů na zařízení.</string>
-    <string name="permission_loader_usage_stats_label">Statistiky využití zavaděče</string>
-    <string name="permissions_details_empty_filter_message">Žádné aplikace neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
-    <string name="permission_turn_screen_on_description">Umožňuje aplikacím zapnout obrazovku zařízení, když potřebují vaši pozornost, například pro budíky nebo příchozí hovory.</string>
-    <string name="permission_turn_screen_on_label">Zapnout obrazovku</string>
 </resources>
