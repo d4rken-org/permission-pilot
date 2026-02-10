@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Ustawienia</string>
     <string name="label_help">Pomoc</string>
-
     <string name="general_error_label">Błąd</string>
-
     <string name="general_share_action">Udostępnij</string>
     <string name="general_done_action">Gotowe</string>
     <string name="general_copy_action">Kopiuj</string>
@@ -14,79 +11,66 @@
     <string name="general_open_action">Otwórz</string>
     <string name="general_continue_action">Kontynuuj</string>
     <string name="general_accept_action">Akceptuj</string>
-
     <string name="upgrade_myperm_label">Uaktualnij Permission Pilot</string>
     <string name="upgrade_myperm_description">Podoba ci się, że ta aplikacja nie ma reklam i nie zbiera twoich danych?\nKup wersję pro, aby pokazać swoje wsparcie!</string>
     <string name="upgrade_buy_pro_action">Kup wersję pro</string>
     <string name="general_no_action">Nie</string>
     <string name="upgrade_donate_action">Przekaż darowiznę</string>
-
     <string name="debug_debuglog_size_label">Rozmiar</string>
     <string name="debug_debuglog_size_compressed_label">Rozmiar skompresowany</string>
     <string name="debug_notification_channel_label">Powiadomienia debugowania</string>
     <string name="debug_debuglog_file_label">Nagrany plik dziennika</string>
     <string name="debug_debuglog_record_action">Nagraj dziennik debugowania</string>
-
     <string name="settings_category_other_label">Inne</string>
-
     <string name="general_settings_label">Ogólne</string>
     <string name="general_settings_desc">Ogólne ustawienia wpływające na całą aplikację.</string>
-
     <string name="changelog_label">Lista zmian</string>
     <string name="settings_acknowledgements_label">Podziękowania</string>
     <string name="general_thank_you_label">Dziękujemy</string>
     <string name="settings_licenses_label">Licencje</string>
     <string name="settings_privacy_policy_label">Polityka prywatności</string>
     <string name="settings_privacy_policy_desc">Odpowiedzialne zarządzanie danymi.</string>
-
     <string name="settings_support_label">Wsparcie</string>
     <string name="documentation_label">Dokumentacja</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Miejsce do spędzania czasu i zadawania pytań.</string>
     <string name="issue_tracker_label">Śledzenie problemów</string>
     <string name="issue_tracker_description">Publiczny system śledzenia problemów dla zgłoszeń błędów i próśb o funkcje.</string>
     <string name="permissions_page_label">Uprawnienia</string>
     <string name="apps_page_label">Aplikacje</string>
     <string name="app_type_system_label">Aplikacja systemowa</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Nieznane uprawnienie. Jest żądane przez tę aplikację, ale żadna inna aplikacja go nie deklaruje.</string>
     <string name="permissions_unknown_description">Nieznane uprawnienie. Jest żądane przez aplikacje, ale nie jest nigdzie zadeklarowane.</string>
     <string name="permissions_app_type_declaring_description">Uprawnienie jest tworzone przez tę aplikację.</string>
     <string name="permissions_app_type_requesting_description">Aplikacja żąda uprawnienia.</string>
-
     <string name="general_filter_action">Filtruj</string>
     <string name="general_cancel_action">Anuluj</string>
-
     <string name="apps_filter_userapps_label">Aplikacje użytkownika</string>
     <string name="apps_filter_systemapps_label">Aplikacje systemowe</string>
     <string name="apps_filter_nointernet_label">Aplikacje bez dostępu do internetu</string>
     <string name="apps_filter_sideloaded_label">Aplikacje zainstalowane z boku</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Sklep OEM</string>
-
     <string name="apps_sort_permissions_granted_label">Przyznane uprawnienia</string>
     <string name="apps_sort_permissions_requested_label">Żądane uprawnienia</string>
     <string name="apps_sort_permissions_declared_label">Zadeklarowane uprawnienia</string>
     <string name="apps_sort_app_name_label">Nazwa aplikacji</string>
     <string name="apps_sort_install_date_label">Data instalacji</string>
     <string name="apps_sort_update_date_label">Ostatnia aktualizacja</string>
-
     <string name="general_sort_action">Sortuj</string>
     <string name="apps_permissions_x_of_x_granted">%1$d z %2$d przyznanych.</string>
     <string name="apps_permissions_x_requested">%1$d żądanych uprawnień.</string>
     <string name="apps_permissions_declares_x">Deklaruje %1$d uprawnień.</string>
     <string name="apps_details_installer_label">Źródło instalacji</string>
     <string name="apps_details_installer_unknown_label">Informacje niedostępne</string>
-
     <string name="permissions_filter_manifest_label">Uprawnienia AOSP</string>
     <string name="permissions_filter_system_label">Zadeklarowane przez aplikację systemową</string>
     <string name="permissions_filter_user_label">Zadeklarowane przez aplikację użytkownika</string>
-
     <string name="permissions_filter_runtime_label">Żądane w czasie wykonania</string>
     <string name="permissions_filter_special_label">Specjalne użycie</string>
     <string name="permissions_filter_installtime_label">Przyznane automatycznie</string>
     <string name="permissions_filter_installtime_hide_label">Nie przyznane automatycznie</string>
-
+    <string name="filter_granted_label">Przyznano</string>
+    <string name="filter_denied_label">Odmówiono</string>
+    <string name="filter_configurable_label">Konfigurowalny</string>
     <string name="permissions_sort_apps_granted_label"># aplikacji przyznanych</string>
     <string name="permissions_sort_apps_requested_label"># aplikacji żądających</string>
     <string name="permissions_search_list_hint">Szukaj uprawnień</string>
@@ -98,7 +82,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">Podpis lub system</string>
     <string name="permissions_protection_type_internal_label">Wewnętrzny</string>
     <string name="permissions_protection_type_unknown_label">Nieznany</string>
-
     <string name="permissions_permission_details_label">Szczegóły uprawnienia</string>
     <string name="generic_loading_label_0">Wkrótce™</string>
     <string name="generic_loading_label_1">Podawanie masła</string>
@@ -111,14 +94,11 @@
     <string name="apps_app_details_label">Szczegóły aplikacji</string>
     <string name="apps_details_shareduserid_label">Aplikacje ze współdzielonym ID użytkownika</string>
     <string name="apps_details_siblings_label">Rodzeństwo</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">System Android</string>
     <string name="general_refresh_action">Odśwież</string>
+    <string name="general_expand_all_action">Rozwiń wszystko</string>
+    <string name="general_collapse_all_action">Zwiń wszystko</string>
+    <string name="general_more_options_action">Więcej opcji</string>
     <string name="apps_details_twins_label">Klony</string>
     <string name="apps_details_twins_descriptions">Zainstalowane w innych profilach użytkownika.</string>
     <string name="install_date_label">Data instalacji</string>
@@ -137,6 +117,7 @@
     <string name="apps_details_description_uninstalled_caveat">Ta aplikacja została odinstalowana, ale jej dane zostały zachowane. Nie można określić stanu uprawnień dla odinstalowanych aplikacji.</string>
     <string name="apps_details_description_secondary_description">"%d żądanych uprawnień."</string>
     <string name="apps_details_description_primary_description">"%1$d z %2$d uprawnień przyznanych."</string>
+    <string name="apps_details_empty_filter_message">Żadne uprawnienia nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
     <string name="api_target_level_x">Wersja docelowa: %s</string>
     <string name="api_minimum_level_x">Wersja minimalna: %s</string>
     <string name="api_build_level_x">Wersja kompilacji: %s</string>
@@ -178,7 +159,7 @@
     <string name="permissions_details_count_user_apps">"Aplikacje użytkownika: Przyznane %1$d z %2$d."</string>
     <string name="permissions_details_count_system_apps">"Aplikacje systemowe: Przyznane %1$d z %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacje zainstalowane w innych profilach użytkownika są wykluczone z powyższego obliczenia ze względu na ograniczenia Androida.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Żadne aplikacje nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
     <string name="permission_nfc_description">Pozwala aplikacjom komunikować się z tagami, kartami i czytnikami Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Zarządzaj mediami</string>
     <string name="permission_manage_media_description">Pozwala aplikacjom modyfikować lub usuwać pliki multimedialne utworzone przez inne aplikacje BEZ pytania cię. Aplikacje muszą mieć uprawnienie dostępu do plików i mediów.</string>
@@ -224,6 +205,14 @@
     <string name="permission_do_not_disturb_permission_description">Pozwala aplikacjom włączać lub wyłączać Nie przeszkadzaj (DND) i zmieniać powiązane ustawienia.</string>
     <string name="permission_alarms_and_reminders_label">Alarmy i przypomnienia</string>
     <string name="permission_alarms_and_reminders_description">Pozwala aplikacjom ustawiać alarmy i planować działania wrażliwe na czas. To pozwala aplikacjom działać w tle, co może zużywać więcej baterii. Wyłączenie tego uprawnienia dla aplikacji spowoduje, że istniejące alarmy i wydarzenia oparte na czasie zaplanowane przez tę konkretną aplikację przestaną działać.</string>
+    <string name="permission_turn_screen_on_label">Włącz ekran</string>
+    <string name="permission_turn_screen_on_description">Pozwala aplikacjom włączać ekran urządzenia, gdy potrzebują twojej uwagi, na przykład do alarmów lub połączeń przychodzących.</string>
+    <string name="permission_full_screen_intent_label">Powiadomienia pełnoekranowe</string>
+    <string name="permission_full_screen_intent_description">Pozwala aplikacjom wyświetlać powiadomienia pełnoekranowe, które przejmują ekran, gdy urządzenie jest zablokowane lub w użyciu. Powszechnie używane do alarmów, połączeń i innych zdarzeń wrażliwych czasowo.</string>
+    <string name="permission_interact_across_profiles_label">Połączone aplikacje służbowe i osobiste</string>
+    <string name="permission_interact_across_profiles_description">Pozwala aplikacjom komunikować się między profilami służbowym i osobistym, udostępniając dane i funkcje między granicami profili.</string>
+    <string name="permission_loader_usage_stats_label">Statystyki użycia ładowacza</string>
+    <string name="permission_loader_usage_stats_description">Pozwala aplikacjom zbierać statystyki dotyczące użycia ładowaczy danych na urządzeniu.</string>
     <string name="permission_premium_sms_services_label">Dostęp do Premium SMS</string>
     <string name="permission_premium_sms_services_description">Pozwala aplikacjom korzystać z premium usług wiadomości tekstowych. To będzie cię kosztować pieniądze.</string>
     <string name="permission_unlimited_data_access_label">Nieograniczony dostęp do danych</string>
@@ -273,21 +262,4 @@
     <string name="onboarding_body1">Ta aplikacja pomaga ci nawigować po zainstalowanych aplikacjach i odkrywać uprawnienia.</string>
     <string name="onboarding_body2">Permission Pilot zbiera informacje o zainstalowanych aplikacjach, aby umożliwić wyświetlanie twoich aplikacji i krzyżowe odwoływanie się do ich uprawnień podczas korzystania z tej aplikacji.</string>
     <string name="onboarding_body3">Permission Pilot nie ma reklam i przetwarza dane tylko lokalnie.</string>
-
-    <string name="apps_details_empty_filter_message">Żadne uprawnienia nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
-    <string name="filter_configurable_label">Konfigurowalny</string>
-    <string name="filter_denied_label">Odmówiono</string>
-    <string name="filter_granted_label">Przyznano</string>
-    <string name="general_collapse_all_action">Zwiń wszystko</string>
-    <string name="general_expand_all_action">Rozwiń wszystko</string>
-    <string name="general_more_options_action">Więcej opcji</string>
-    <string name="permission_full_screen_intent_description">Pozwala aplikacjom wyświetlać powiadomienia pełnoekranowe, które przejmują ekran, gdy urządzenie jest zablokowane lub w użyciu. Powszechnie używane do alarmów, połączeń i innych zdarzeń wrażliwych czasowo.</string>
-    <string name="permission_full_screen_intent_label">Powiadomienia pełnoekranowe</string>
-    <string name="permission_interact_across_profiles_description">Pozwala aplikacjom komunikować się między profilami służbowym i osobistym, udostępniając dane i funkcje między granicami profili.</string>
-    <string name="permission_interact_across_profiles_label">Połączone aplikacje służbowe i osobiste</string>
-    <string name="permission_loader_usage_stats_description">Pozwala aplikacjom zbierać statystyki dotyczące użycia ładowaczy danych na urządzeniu.</string>
-    <string name="permission_loader_usage_stats_label">Statystyki użycia ładowacza</string>
-    <string name="permissions_details_empty_filter_message">Żadne aplikacje nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
-    <string name="permission_turn_screen_on_description">Pozwala aplikacjom włączać ekran urządzenia, gdy potrzebują twojej uwagi, na przykład do alarmów lub połączeń przychodzących.</string>
-    <string name="permission_turn_screen_on_label">Włącz ekran</string>
 </resources>

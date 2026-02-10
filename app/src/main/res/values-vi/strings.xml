@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Cài đặt</string>
     <string name="label_help">Trợ giúp</string>
-
     <string name="general_error_label">Lỗi</string>
-
     <string name="general_share_action">Chia sẻ</string>
     <string name="general_done_action">Xong</string>
     <string name="general_copy_action">Sao chép</string>
@@ -14,79 +11,66 @@
     <string name="general_open_action">Mở</string>
     <string name="general_continue_action">Tiếp tục</string>
     <string name="general_accept_action">Chấp nhận</string>
-
     <string name="upgrade_myperm_label">Nâng cấp Permission Pilot</string>
     <string name="upgrade_myperm_description">Bạn có thích ứng dụng này không có quảng cáo và không thu thập dữ liệu của bạn không?\nMua phiên bản pro để thể hiện sự ủng hộ của bạn!</string>
     <string name="upgrade_buy_pro_action">Mua phiên bản pro</string>
     <string name="general_no_action">Không</string>
     <string name="upgrade_donate_action">Quyên góp</string>
-
     <string name="debug_debuglog_size_label">Kích thước</string>
     <string name="debug_debuglog_size_compressed_label">Kích thước nén</string>
     <string name="debug_notification_channel_label">Thông báo gỡ lỗi</string>
     <string name="debug_debuglog_file_label">Tệp nhật ký đã ghi</string>
     <string name="debug_debuglog_record_action">Ghi nhật ký gỡ lỗi</string>
-
     <string name="settings_category_other_label">Khác</string>
-
     <string name="general_settings_label">Chung</string>
     <string name="general_settings_desc">Cài đặt chung ảnh hưởng đến toàn bộ ứng dụng.</string>
-
     <string name="changelog_label">Nhật ký thay đổi</string>
     <string name="settings_acknowledgements_label">Ghi nhận</string>
     <string name="general_thank_you_label">Cảm ơn bạn</string>
     <string name="settings_licenses_label">Giấy phép</string>
     <string name="settings_privacy_policy_label">Chính sách bảo mật</string>
     <string name="settings_privacy_policy_desc">Xử lý dữ liệu có trách nhiệm.</string>
-
     <string name="settings_support_label">Hỗ trợ</string>
     <string name="documentation_label">Tài liệu</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Nơi để trò chuyện và đặt câu hỏi.</string>
     <string name="issue_tracker_label">Theo dõi vấn đề</string>
     <string name="issue_tracker_description">Công cụ theo dõi vấn đề công khai cho báo cáo lỗi và yêu cầu tính năng.</string>
     <string name="permissions_page_label">Quyền</string>
     <string name="apps_page_label">Ứng dụng</string>
     <string name="app_type_system_label">Ứng dụng hệ thống</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Quyền không xác định. Nó được yêu cầu bởi ứng dụng này, nhưng không có ứng dụng nào khác khai báo nó.</string>
     <string name="permissions_unknown_description">Quyền không xác định. Nó được yêu cầu bởi các ứng dụng, nhưng không được khai báo ở đâu cả.</string>
     <string name="permissions_app_type_declaring_description">Quyền được tạo bởi ứng dụng này.</string>
     <string name="permissions_app_type_requesting_description">Ứng dụng yêu cầu quyền.</string>
-
     <string name="general_filter_action">Lọc</string>
     <string name="general_cancel_action">Hủy</string>
-
     <string name="apps_filter_userapps_label">Ứng dụng người dùng</string>
     <string name="apps_filter_systemapps_label">Ứng dụng hệ thống</string>
     <string name="apps_filter_nointernet_label">Ứng dụng không có quyền truy cập internet</string>
     <string name="apps_filter_sideloaded_label">Ứng dụng cài đặt ngoài</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Cửa hàng OEM</string>
-
     <string name="apps_sort_permissions_granted_label">Quyền đã cấp</string>
     <string name="apps_sort_permissions_requested_label">Quyền đã yêu cầu</string>
     <string name="apps_sort_permissions_declared_label">Quyền đã khai báo</string>
     <string name="apps_sort_app_name_label">Tên ứng dụng</string>
     <string name="apps_sort_install_date_label">Ngày cài đặt</string>
     <string name="apps_sort_update_date_label">Cập nhật lần cuối</string>
-
     <string name="general_sort_action">Sắp xếp</string>
     <string name="apps_permissions_x_of_x_granted">%1$d trong %2$d đã cấp.</string>
     <string name="apps_permissions_x_requested">%1$d quyền đã yêu cầu.</string>
     <string name="apps_permissions_declares_x">Khai báo %1$d quyền.</string>
     <string name="apps_details_installer_label">Nguồn cài đặt</string>
     <string name="apps_details_installer_unknown_label">Thông tin không có sẵn</string>
-
     <string name="permissions_filter_manifest_label">Quyền AOSP</string>
     <string name="permissions_filter_system_label">Được khai báo bởi ứng dụng hệ thống</string>
     <string name="permissions_filter_user_label">Được khai báo bởi ứng dụng người dùng</string>
-
     <string name="permissions_filter_runtime_label">Được yêu cầu lúc chạy</string>
     <string name="permissions_filter_special_label">Sử dụng đặc biệt</string>
     <string name="permissions_filter_installtime_label">Tự động cấp</string>
     <string name="permissions_filter_installtime_hide_label">Không tự động cấp</string>
-
+    <string name="filter_granted_label">Đã cấp</string>
+    <string name="filter_denied_label">Bị từ chối</string>
+    <string name="filter_configurable_label">Có thể cấu hình</string>
     <string name="permissions_sort_apps_granted_label"># ứng dụng đã cấp</string>
     <string name="permissions_sort_apps_requested_label"># ứng dụng đã yêu cầu</string>
     <string name="permissions_search_list_hint">Tìm quyền</string>
@@ -98,7 +82,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">Chữ ký hoặc hệ thống</string>
     <string name="permissions_protection_type_internal_label">Nội bộ</string>
     <string name="permissions_protection_type_unknown_label">Không xác định</string>
-
     <string name="permissions_permission_details_label">Chi tiết quyền</string>
     <string name="generic_loading_label_0">Sắp có™</string>
     <string name="generic_loading_label_1">Đang chuyển bơ</string>
@@ -111,14 +94,11 @@
     <string name="apps_app_details_label">Chi tiết ứng dụng</string>
     <string name="apps_details_shareduserid_label">Ứng dụng có ID người dùng chung</string>
     <string name="apps_details_siblings_label">Anh chị em</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Hệ thống Android</string>
     <string name="general_refresh_action">Làm mới</string>
+    <string name="general_expand_all_action">Mở rộng tất cả</string>
+    <string name="general_collapse_all_action">Thu gọn tất cả</string>
+    <string name="general_more_options_action">Thêm tùy chọn</string>
     <string name="apps_details_twins_label">Bản sao</string>
     <string name="apps_details_twins_descriptions">Được cài đặt trong các hồ sơ người dùng khác.</string>
     <string name="install_date_label">Ngày cài đặt</string>
@@ -137,6 +117,7 @@
     <string name="apps_details_description_uninstalled_caveat">Ứng dụng này đã bị gỡ cài đặt nhưng dữ liệu của nó vẫn được giữ lại. Không thể xác định trạng thái quyền cho các ứng dụng đã gỡ cài đặt.</string>
     <string name="apps_details_description_secondary_description">"%d quyền đã yêu cầu."</string>
     <string name="apps_details_description_primary_description">"%1$d trong %2$d quyền đã cấp."</string>
+    <string name="apps_details_empty_filter_message">Không có quyền nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
     <string name="api_target_level_x">Phiên bản mục tiêu: %s</string>
     <string name="api_minimum_level_x">Phiên bản tối thiểu: %s</string>
     <string name="api_build_level_x">Phiên bản biên dịch: %s</string>
@@ -163,7 +144,7 @@
     <string name="permissions_details_count_user_apps">"Ứng dụng người dùng: Đã cấp cho %1$d trong %2$d."</string>
     <string name="permissions_details_count_system_apps">"Ứng dụng hệ thống: Đã cấp cho %1$d trong %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Ứng dụng được cài đặt trong các hồ sơ người dùng khác bị loại trừ khỏi tính toán trên do hạn chế của Android.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
     <string name="permission_nfc_description">Cho phép ứng dụng giao tiếp với thẻ, thẻ và đầu đọc Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Quản lý phương tiện</string>
     <string name="permission_manage_media_description">Cho phép ứng dụng sửa đổi hoặc xóa tệp phương tiện được tạo bằng ứng dụng khác mà KHÔNG hỏi bạn. Ứng dụng phải có quyền truy cập vào tệp và phương tiện.</string>
@@ -209,6 +190,14 @@
     <string name="permission_do_not_disturb_permission_description">Cho phép ứng dụng bật hoặc tắt Không làm phiền (DND) và thay đổi cài đặt liên quan.</string>
     <string name="permission_alarms_and_reminders_label">Báo thức và lời nhắc</string>
     <string name="permission_alarms_and_reminders_description">Cho phép ứng dụng đặt báo thức và lên lịch các hành động nhạy cảm với thời gian. Điều này cho phép ứng dụng chạy trong nền, có thể sử dụng nhiều pin hơn. Tắt quyền này cho một ứng dụng sẽ khiến các báo thức hiện có và sự kiện dựa trên thời gian được lên lịch bởi ứng dụng cụ thể đó ngừng hoạt động.</string>
+    <string name="permission_turn_screen_on_label">Bật màn hình</string>
+    <string name="permission_turn_screen_on_description">Cho phép ứng dụng bật màn hình thiết bị khi cần sự chú ý của bạn, chẳng hạn như cho báo thức hoặc cuộc gọi đến.</string>
+    <string name="permission_full_screen_intent_label">Thông báo toàn màn hình</string>
+    <string name="permission_full_screen_intent_description">Cho phép ứng dụng hiển thị thông báo toàn màn hình chiếm lấy màn hình của bạn khi thiết bị bị khóa hoặc đang sử dụng. Thường được sử dụng cho báo thức, cuộc gọi và các sự kiện nhạy cảm với thời gian.</string>
+    <string name="permission_interact_across_profiles_label">Ứng dụng công việc và cá nhân được kết nối</string>
+    <string name="permission_interact_across_profiles_description">Cho phép ứng dụng giao tiếp giữa hồ sơ công việc và cá nhân của bạn, chia sẻ dữ liệu và chức năng qua ranh giới hồ sơ.</string>
+    <string name="permission_loader_usage_stats_label">Thống kê sử dụng trình tải</string>
+    <string name="permission_loader_usage_stats_description">Cho phép ứng dụng thu thập thống kê về việc sử dụng trình tải dữ liệu trên thiết bị.</string>
     <string name="permission_premium_sms_services_label">Truy cập SMS cao cấp</string>
     <string name="permission_premium_sms_services_description">Cho phép ứng dụng sử dụng dịch vụ tin nhắn văn bản cao cấp. Điều này sẽ tốn tiền của bạn.</string>
     <string name="permission_unlimited_data_access_label">Truy cập dữ liệu không giới hạn</string>
@@ -235,9 +224,7 @@
     <string name="permission_group_apps_description">Quyền truy cập đặc biệt yêu cầu sự đồng ý rõ ràng của người dùng.</string>
     <string name="permission_group_battery_label">Pin</string>
     <string name="permission_group_battery_description">Quyền liên quan đến pin.</string>
-    <string name="permission_group_camera_label">Camera</string>
     <string name="permission_group_camera_description">Quyền liên quan đến camera.</string>
-    <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Quyền liên quan đến microphone.</string>
     <string name="permission_picture_in_picture_label">Hình trong hình</string>
     <string name="overview_device_android_version_label">Phiên bản Android</string>
@@ -258,20 +245,4 @@
     <string name="onboarding_body1">Ứng dụng này giúp bạn điều hướng các ứng dụng đã cài đặt và khám phá quyền.</string>
     <string name="onboarding_body2">Permission Pilot thu thập thông tin ứng dụng đã cài đặt để cho phép liệt kê ứng dụng của bạn và tham chiếu chéo quyền của chúng khi sử dụng ứng dụng này.</string>
     <string name="onboarding_body3">Permission Pilot không có quảng cáo và chỉ xử lý dữ liệu cục bộ.</string>
-    <string name="apps_details_empty_filter_message">Không có quyền nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
-    <string name="filter_configurable_label">Có thể cấu hình</string>
-    <string name="filter_denied_label">Bị từ chối</string>
-    <string name="filter_granted_label">Đã cấp</string>
-    <string name="general_collapse_all_action">Thu gọn tất cả</string>
-    <string name="general_expand_all_action">Mở rộng tất cả</string>
-    <string name="general_more_options_action">Thêm tùy chọn</string>
-    <string name="permission_full_screen_intent_description">Cho phép ứng dụng hiển thị thông báo toàn màn hình chiếm lấy màn hình của bạn khi thiết bị bị khóa hoặc đang sử dụng. Thường được sử dụng cho báo thức, cuộc gọi và các sự kiện nhạy cảm với thời gian.</string>
-    <string name="permission_full_screen_intent_label">Thông báo toàn màn hình</string>
-    <string name="permission_interact_across_profiles_description">Cho phép ứng dụng giao tiếp giữa hồ sơ công việc và cá nhân của bạn, chia sẻ dữ liệu và chức năng qua ranh giới hồ sơ.</string>
-    <string name="permission_interact_across_profiles_label">Ứng dụng công việc và cá nhân được kết nối</string>
-    <string name="permission_loader_usage_stats_description">Cho phép ứng dụng thu thập thống kê về việc sử dụng trình tải dữ liệu trên thiết bị.</string>
-    <string name="permission_loader_usage_stats_label">Thống kê sử dụng trình tải</string>
-    <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
-    <string name="permission_turn_screen_on_description">Cho phép ứng dụng bật màn hình thiết bị khi cần sự chú ý của bạn, chẳng hạn như cho báo thức hoặc cuộc gọi đến.</string>
-    <string name="permission_turn_screen_on_label">Bật màn hình</string>
 </resources>

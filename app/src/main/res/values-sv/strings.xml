@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Inställningar</string>
     <string name="label_help">Hjälp</string>
-
     <string name="general_error_label">Fel</string>
-
     <string name="general_share_action">Dela</string>
     <string name="general_done_action">Klar</string>
     <string name="general_copy_action">Kopiera</string>
@@ -14,91 +11,74 @@
     <string name="general_open_action">Öppna</string>
     <string name="general_continue_action">Fortsätt</string>
     <string name="general_accept_action">Acceptera</string>
-
     <string name="upgrade_myperm_label">Uppgradera Permission Pilot</string>
     <string name="upgrade_myperm_description">Gillar du att denna app inte har annonser och inte samlar in dina data?\nKöp pro-versionen för att visa ditt stöd!</string>
     <string name="upgrade_buy_pro_action">Köp pro-version</string>
     <string name="general_no_action">Nej</string>
     <string name="upgrade_donate_action">Donera</string>
-
     <string name="debug_debuglog_size_label">Storlek</string>
     <string name="debug_debuglog_size_compressed_label">Komprimerad storlek</string>
     <string name="debug_notification_channel_label">Felsökningsnotiser</string>
     <string name="debug_debuglog_file_label">Inspelad loggfil</string>
     <string name="debug_debuglog_record_action">Spela in felsökningslogg</string>
-
     <string name="settings_category_other_label">Övrigt</string>
-
     <string name="general_settings_label">Allmänt</string>
     <string name="general_settings_desc">Allmänna inställningar som påverkar hela appen.</string>
-
     <string name="changelog_label">Ändringslogg</string>
     <string name="settings_acknowledgements_label">Erkännanden</string>
     <string name="general_thank_you_label">Tack</string>
     <string name="settings_licenses_label">Licenser</string>
     <string name="settings_privacy_policy_label">Integritetspolicy</string>
     <string name="settings_privacy_policy_desc">Ansvarsfull hantering av data.</string>
-
-    <string name="settings_support_label">Support</string>
     <string name="documentation_label">Dokumentation</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">En plats att hänga på och ställa frågor.</string>
     <string name="issue_tracker_label">Problemhanterare</string>
     <string name="issue_tracker_description">En offentlig problemhanterare för felrapporter och funktionsförfrågningar.</string>
     <string name="permissions_page_label">Behörigheter</string>
     <string name="apps_page_label">Appar</string>
     <string name="app_type_system_label">Systemapp</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Okänd behörighet. Den begärs av denna app, men ingen annan app deklarerar den.</string>
     <string name="permissions_unknown_description">Okänd behörighet. Den begärs av appar, men deklareras inte någonstans.</string>
     <string name="permissions_app_type_declaring_description">Behörighet skapas av denna app.</string>
     <string name="permissions_app_type_requesting_description">App begär behörigheten.</string>
-
     <string name="general_filter_action">Filtrera</string>
     <string name="general_cancel_action">Avbryt</string>
-
     <string name="apps_filter_userapps_label">Användarappar</string>
     <string name="apps_filter_systemapps_label">Systemappar</string>
     <string name="apps_filter_nointernet_label">Appar utan internetåtkomst</string>
     <string name="apps_filter_sideloaded_label">Sidoladdade appar</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">Beviljade behörigheter</string>
     <string name="apps_sort_permissions_requested_label">Begärda behörigheter</string>
     <string name="apps_sort_permissions_declared_label">Deklarerade behörigheter</string>
     <string name="apps_sort_app_name_label">Appnamn</string>
     <string name="apps_sort_install_date_label">Installationsdatum</string>
     <string name="apps_sort_update_date_label">Senast uppdaterad</string>
-
     <string name="general_sort_action">Sortera</string>
     <string name="apps_permissions_x_of_x_granted">%1$d av %2$d beviljade.</string>
     <string name="apps_permissions_x_requested">%1$d behörigheter begärda.</string>
     <string name="apps_permissions_declares_x">Deklarerar %1$d behörigheter.</string>
     <string name="apps_details_installer_label">Installationskälla</string>
     <string name="apps_details_installer_unknown_label">Information inte tillgänglig</string>
-
     <string name="permissions_filter_manifest_label">AOSP-behörigheter</string>
     <string name="permissions_filter_system_label">Deklarerad av systemapp</string>
     <string name="permissions_filter_user_label">Deklarerad av användarapp</string>
-
     <string name="permissions_filter_runtime_label">Begärd vid körning</string>
     <string name="permissions_filter_special_label">Speciell användning</string>
     <string name="permissions_filter_installtime_label">Automatiskt beviljad</string>
     <string name="permissions_filter_installtime_hide_label">Inte automatiskt beviljad</string>
-
+    <string name="filter_granted_label">Beviljad</string>
+    <string name="filter_denied_label">Nekad</string>
+    <string name="filter_configurable_label">Konfigurerbar</string>
     <string name="permissions_sort_apps_granted_label"># appar beviljade</string>
     <string name="permissions_sort_apps_requested_label"># appar begärda</string>
     <string name="permissions_search_list_hint">Sök behörigheter</string>
     <string name="apps_search_list_hint">Sök appar</string>
     <string name="permissions_details_protection_label">Skyddsnivå</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Farlig</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
     <string name="permissions_protection_type_signatureorsystem_label">Signatur eller system</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Okänd</string>
-
     <string name="permissions_permission_details_label">Behörighetsdetaljer</string>
     <string name="generic_loading_label_0">Snart™</string>
     <string name="generic_loading_label_1">Skickar smöret</string>
@@ -111,14 +91,11 @@
     <string name="apps_app_details_label">Appdetaljer</string>
     <string name="apps_details_shareduserid_label">Appar med delat användar-ID</string>
     <string name="apps_details_siblings_label">Syskon</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android-system</string>
     <string name="general_refresh_action">Uppdatera</string>
+    <string name="general_expand_all_action">Expandera alla</string>
+    <string name="general_collapse_all_action">Fäll ihop alla</string>
+    <string name="general_more_options_action">Fler alternativ</string>
     <string name="apps_details_twins_label">Kloner</string>
     <string name="apps_details_twins_descriptions">Installerade i andra användarprofiler.</string>
     <string name="install_date_label">Installationsdatum</string>
@@ -137,6 +114,7 @@
     <string name="apps_details_description_uninstalled_caveat">Denna app har avinstallerats men dess data har behållits. Behörighetsstatus kan inte fastställas för avinstallerade appar.</string>
     <string name="apps_details_description_secondary_description">"%d behörigheter begärda."</string>
     <string name="apps_details_description_primary_description">"%1$d av %2$d behörigheter beviljade."</string>
+    <string name="apps_details_empty_filter_message">Inga behörigheter matchar aktuella filter. Tryck på filterikonen för att justera.</string>
     <string name="api_target_level_x">Målversion: %s</string>
     <string name="api_minimum_level_x">Minsta version: %s</string>
     <string name="api_build_level_x">Byggversion: %s</string>
@@ -153,10 +131,6 @@
         <item quantity="one">%s grupp</item>
         <item quantity="other">%s grupper</item>
     </plurals>
-    <plurals name="generic_x_apps_label">
-        <item quantity="one">%d app</item>
-        <item quantity="other">%d appar</item>
-    </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">%d användarapp</item>
         <item quantity="other">%d användarappar</item>
@@ -168,7 +142,7 @@
     <string name="permissions_details_count_user_apps">"Användarappar: Beviljad till %1$d av %2$d."</string>
     <string name="permissions_details_count_system_apps">"Systemappar: Beviljad till %1$d av %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Appar installerade i andra användarprofiler utesluts från beräkningen ovan på grund av Android-begränsningar.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Inga appar matchar aktuella filter. Tryck på filterikonen för att justera.</string>
     <string name="permission_nfc_description">Låter appar kommunicera med Near Field Communication (NFC) taggar, kort och läsare.</string>
     <string name="permission_manage_media_label">Hantera media</string>
     <string name="permission_manage_media_description">Låter appar modifiera eller ta bort mediafiler skapade med andra appar UTAN att fråga dig. Appar måste ha tillstånd att komma åt filer och media.</string>
@@ -214,6 +188,14 @@
     <string name="permission_do_not_disturb_permission_description">Låter appar slå på eller av Stör ej (DND) och ändra relaterade inställningar.</string>
     <string name="permission_alarms_and_reminders_label">Alarm och påminnelser</string>
     <string name="permission_alarms_and_reminders_description">Låter appar ställa in alarm och schemalägga tidskänsliga åtgärder. Detta låter appar köra i bakgrunden, vilket kan använda mer batteri. Att stänga av denna behörighet för en app skulle göra att befintliga alarm och tidsbaserade händelser schemalagda av den specifika appen slutar fungera.</string>
+    <string name="permission_turn_screen_on_label">Slå på skärm</string>
+    <string name="permission_turn_screen_on_description">Låter appar slå på enhetens skärm när de behöver din uppmärksamhet, till exempel för larm eller inkommande samtal.</string>
+    <string name="permission_full_screen_intent_label">Helskärmsnotifieringar</string>
+    <string name="permission_full_screen_intent_description">Låter appar visa helskärmsnotifieringar som tar över din skärm när enheten är låst eller används. Används ofta för larm, samtal och andra tidskänsliga händelser.</string>
+    <string name="permission_interact_across_profiles_label">Anslutna arbets- och personliga appar</string>
+    <string name="permission_interact_across_profiles_description">Låter appar kommunicera mellan dina arbets- och personliga profiler och dela data och funktionalitet över profilgränser.</string>
+    <string name="permission_loader_usage_stats_label">Statistik för laddaranvändning</string>
+    <string name="permission_loader_usage_stats_description">Låter appar samla in statistik om användning av dataladdare på enheten.</string>
     <string name="permission_premium_sms_services_label">Premium SMS-tillgång</string>
     <string name="permission_premium_sms_services_description">Låter appar använda premium textmeddelandetjänster. Detta kommer att kosta dig pengar.</string>
     <string name="permission_unlimited_data_access_label">Obegränsad datatillgång</string>
@@ -263,21 +245,4 @@
     <string name="onboarding_body1">Denna app hjälper dig navigera installerade applikationer och upptäcka behörigheter.</string>
     <string name="onboarding_body2">Permission Pilot samlar in information om installerade applikationer för att möjliggöra listning av dina appar och korsreferering av deras behörigheter när du använder denna applikation.</string>
     <string name="onboarding_body3">Permission Pilot har inga annonser och bearbetar endast data lokalt.</string>
-
-    <string name="apps_details_empty_filter_message">Inga behörigheter matchar aktuella filter. Tryck på filterikonen för att justera.</string>
-    <string name="filter_configurable_label">Konfigurerbar</string>
-    <string name="filter_denied_label">Nekad</string>
-    <string name="filter_granted_label">Beviljad</string>
-    <string name="general_collapse_all_action">Fäll ihop alla</string>
-    <string name="general_expand_all_action">Expandera alla</string>
-    <string name="general_more_options_action">Fler alternativ</string>
-    <string name="permission_full_screen_intent_description">Låter appar visa helskärmsnotifieringar som tar över din skärm när enheten är låst eller används. Används ofta för larm, samtal och andra tidskänsliga händelser.</string>
-    <string name="permission_full_screen_intent_label">Helskärmsnotifieringar</string>
-    <string name="permission_interact_across_profiles_description">Låter appar kommunicera mellan dina arbets- och personliga profiler och dela data och funktionalitet över profilgränser.</string>
-    <string name="permission_interact_across_profiles_label">Anslutna arbets- och personliga appar</string>
-    <string name="permission_loader_usage_stats_description">Låter appar samla in statistik om användning av dataladdare på enheten.</string>
-    <string name="permission_loader_usage_stats_label">Statistik för laddaranvändning</string>
-    <string name="permissions_details_empty_filter_message">Inga appar matchar aktuella filter. Tryck på filterikonen för att justera.</string>
-    <string name="permission_turn_screen_on_description">Låter appar slå på enhetens skärm när de behöver din uppmärksamhet, till exempel för larm eller inkommande samtal.</string>
-    <string name="permission_turn_screen_on_label">Slå på skärm</string>
 </resources>

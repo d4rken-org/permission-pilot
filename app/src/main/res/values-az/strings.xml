@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">İcazə Pilot</string>
     <string name="app_name_pro">İcazə Pilot Pro</string>
@@ -33,14 +34,12 @@
     <string name="settings_privacy_policy_desc">Məlumatları məsuliyyətlə idarə etmək.</string>
     <string name="settings_support_label">Dəstək</string>
     <string name="documentation_label">Sənədlər</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Bir yerdir ki, suallar verə bilərsiniz.</string>
     <string name="issue_tracker_label">İş izləyici</string>
     <string name="issue_tracker_description">Xətalar və xüsusiyyət sorğuları üçün ictimai iş izləyici.</string>
     <string name="permissions_page_label">İcazələr</string>
     <string name="apps_page_label">Tətbiqlər</string>
     <string name="app_type_system_label">Sistem Tətbiqi</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Naməlum icazədir. Bu tətbiq tərəfindən tələb olunur, lakin heç bir başqa tətbiq onu elan etmir.</string>
     <string name="permissions_unknown_description">Naməlum icazədir. Tətbiqlər onu tələb edir, lakin heç yerdə elan olunmur.</string>
     <string name="permissions_app_type_declaring_description">Bu icazə bu tətbiq tərəfindən yaradılıb.</string>
@@ -72,12 +71,14 @@
     <string name="permissions_filter_special_label">Xüsusi istifadə</string>
     <string name="permissions_filter_installtime_label">Avtomatik olaraq verilir</string>
     <string name="permissions_filter_installtime_hide_label">Avtomatik olaraq verilməyib</string>
+    <string name="filter_granted_label">Verilən</string>
+    <string name="filter_denied_label">Rədd edilən</string>
+    <string name="filter_configurable_label">Konfiqurasiya edilə bilən</string>
     <string name="permissions_sort_apps_granted_label"># az sayda tətbiqlər verilmişdir</string>
     <string name="permissions_sort_apps_requested_label"># az sayda tətbiqlər tələb olunmuşdur</string>
     <string name="permissions_search_list_hint">İcazələri axtarın</string>
     <string name="apps_search_list_hint">Tətbiqləri axtarın</string>
     <string name="permissions_details_protection_label">Mühafizə səviyyəsi</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Təhlükəli</string>
     <string name="permissions_protection_type_signature_label">İmza</string>
     <string name="permissions_protection_type_signatureorsystem_label">İmza və ya sistem</string>
@@ -97,12 +98,12 @@
     <string name="apps_details_siblings_label">Qardaş</string>
     <string name="apps_known_installer_gplay_label">Google Play Mağazası</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppMarket</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Mağazası</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android Sistemi</string>
     <string name="general_refresh_action">Yenilə</string>
+    <string name="general_expand_all_action">Hamısını genişlət</string>
+    <string name="general_collapse_all_action">Hamısını yığ</string>
+    <string name="general_more_options_action">Daha çox seçim</string>
     <string name="apps_details_twins_label">Eyni</string>
     <string name="apps_details_twins_descriptions">Başqa istifadəçi profillərində quraşdırılıb.</string>
     <string name="install_date_label">Quraşdırma tarixi</string>
@@ -121,6 +122,7 @@
     <string name="apps_details_description_uninstalled_caveat">Bu tətbiq silinib, lakin məlumatları saxlanılıb. Silinmiş tətbiqlər üçün icazə vəziyyətini müəyyən etmək mümkün deyil.</string>
     <string name="apps_details_description_secondary_description">"%d icazə tələb edir."</string>
     <string name="apps_details_description_primary_description">"%1$d-də %2$d icazə verilib."</string>
+    <string name="apps_details_empty_filter_message">Cari filtrlərə uyğun icazə yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
     <string name="api_target_level_x">Hedef versiya: %s</string>
     <string name="api_minimum_level_x">Min. versiya: %s</string>
     <string name="api_build_level_x">Kompilyasiya versiyası: %s</string>
@@ -152,7 +154,7 @@
     <string name="permissions_details_count_user_apps">"İstifadəçi tətbiqləri: %1$d-də %2$d verilmiştir."</string>
     <string name="permissions_details_count_system_apps">"Sistem tətbiqləri: %1$d-də %2$d verilmiştir."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Android məhdudiyyətləri səbəbindən quraşdırıldığı üçün yuxarıda göstərilən məlumatlar bəzi istifadəçi profillərindən kənardakı tətbiqləri nəzərə almır.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Cari filtrlərə uyğun tətbiq yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
     <string name="permission_nfc_description">Tətbiqlərə Near Field Communication (NFC) etiketləri, kartları və oxuyucularla əlaqə saxlamağa icazə verir.</string>
     <string name="permission_manage_media_label">Mediya İdarəetmə</string>
     <string name="permission_manage_media_description">Tətbiqlərə digər tətbiqlərin yaratdığı media fayllarını dəyişdirməyə və ya silməyə icazə verir, bu barədə sizə xəbərdarlıq etməz. Tətbiq fayllara və mediyaya girişi olan icazəyə malik olmalıdır.</string>
@@ -198,6 +200,14 @@
     <string name="permission_do_not_disturb_permission_description">Tətbiqlərə Dinsizlik Rejimini aktivləşdirmək/dəaktivləşdirmək və əlaqəli parametrləri dəyişdirmək üçün icazə verir.</string>
     <string name="permission_alarms_and_reminders_label">Alarm və Xatırlatmalar</string>
     <string name="permission_alarms_and_reminders_description">Tətbiqlərə alarm təyin etmək və zamanla həssas hərəkətləri planlamağa icazə verir. Bu, arxa planda işləməyə imkan verir və batareya istehlakını artıra bilər. Bu icazənin söndürülməsi tətbiqin təyin etdiyi mövcud siqnalların və zamanla planlanan hadisələrin işləməsini dayandıra bilər.</string>
+    <string name="permission_turn_screen_on_label">Ekranı Yandır</string>
+    <string name="permission_turn_screen_on_description">Tətbiqlərə siqnallar və ya gələn zənglər kimi diqqətinizə ehtiyac olduqda cihaz ekranını yandırmağa icazə verir.</string>
+    <string name="permission_full_screen_intent_label">Tam Ekran Bildirişlər</string>
+    <string name="permission_full_screen_intent_description">Tətbiqlərə cihaz kilidli və ya istifadədə olarkən ekranınızı əhatə edən tam ekran bildirişlər göstərməyə icazə verir. Adətən siqnallar, zənglər və digər vacib hadisələr üçün istifadə olunur.</string>
+    <string name="permission_interact_across_profiles_label">Bağlı İş və Şəxsi Tətbiqlər</string>
+    <string name="permission_interact_across_profiles_description">Tətbiqlərə iş və şəxsi profilləriniz arasında ünsiyyət qurmağa, profil sərhədləri arasında məlumat və funksionallıq paylaşmağa icazə verir.</string>
+    <string name="permission_loader_usage_stats_label">Yükləyici İstifadə Statistikası</string>
+    <string name="permission_loader_usage_stats_description">Tətbiqlərə cihazda məlumat yükləyicisinin istifadəsi haqqında statistika toplamağa icazə verir.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Xidmətləri Girişi</string>
     <string name="permission_premium_sms_services_description">Tətbiqlərə premium SMS xidmətlərindən istifadə etməyə icazə verir. Bu sizə pul başa gələ bilər.</string>
     <string name="permission_unlimited_data_access_label">Sərhədsiz Məlumat Girişi</string>
@@ -235,11 +245,11 @@
     <string name="overview_summary_apps_active_profile_label">Aktiv Tərifdə Tətbiqlər</string>
     <string name="overview_summary_apps_other_profile_label">Başqa İstifadəçi Tərifində Tətbiqlər, eyni tətbiqlər xaric</string>
     <string name="overview_summary_apps_sideloaded_label">Xarici mənbələrdən yüklənmiş tətbiqlər</string>
-    <string name="overview_summary_apps_installers_label">"Naməlum mənbədən quraşdırmaya icazə verilmiş tətbiqlər"</string>
-    <string name="overview_summary_apps_overlayers_label">"Başqa tətbiqlərin üstündə göstərə bilən tətbiqlər"</string>
-    <string name="overview_summary_apps_offline_label">"İnternet icazəsi olmayan tətbiqlər"</string>
-    <string name="overview_summary_apps_clones_label">"Başqa məkanlardaki eyni tətbiqlər"</string>
-    <string name="overview_summary_apps_sharedids_label">"Paylaşılan İstifadəçi ID olan tətbiqlər"</string>
+    <string name="overview_summary_apps_installers_label">Naməlum mənbədən quraşdırmaya icazə verilmiş tətbiqlər</string>
+    <string name="overview_summary_apps_overlayers_label">Başqa tətbiqlərin üstündə göstərə bilən tətbiqlər</string>
+    <string name="overview_summary_apps_offline_label">İnternet icazəsi olmayan tətbiqlər</string>
+    <string name="overview_summary_apps_clones_label">Başqa məkanlardaki eyni tətbiqlər</string>
+    <string name="overview_summary_apps_sharedids_label">Paylaşılan İstifadəçi ID olan tətbiqlər</string>
     <string name="permission_bind_accessibility_service_label">Genişləndirilmiş xidmət təklif et</string>
     <string name="permission_bind_accessibility_service_description">Tətbiqə sistem parametrləri daxilində genişlənmiş xidməti təklif etməyə icazə verir.</string>
     <string name="debug_debuglog_sensitive_information_message">Bu fayl məxfi məlumatlar (məsələn, sizin yüklənmiş tətbiqlərinizi) ehtiva edir. Yalnız güvənilən şəxslərlə paylaşın.</string>
@@ -247,21 +257,4 @@
     <string name="onboarding_body1">Bu tətbiqetmə sizə yüklənmiş tətbiqləri nəzərdən keçirməyə və icazələri aşkar etməyə kömək edir.</string>
     <string name="onboarding_body2">İcazə Pilot yüklənmiş Tətbiq Məlumatlarını toplayır, tətbiqlərinizi siyahıya almaq və istifadə edərkən icazələrini qüsursuz göstərmək üçün istifadə edir.</string>
     <string name="onboarding_body3">İcazə Pilot reklamları yoxdur və məlumatları yalnız yerli olaraq işləyir.</string>
-
-    <string name="apps_details_empty_filter_message">Cari filtrlərə uyğun icazə yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
-    <string name="filter_configurable_label">Konfiqurasiya edilə bilən</string>
-    <string name="filter_denied_label">Rədd edilən</string>
-    <string name="filter_granted_label">Verilən</string>
-    <string name="general_collapse_all_action">Hamısını yığ</string>
-    <string name="general_expand_all_action">Hamısını genişlət</string>
-    <string name="general_more_options_action">Daha çox seçim</string>
-    <string name="permission_full_screen_intent_description">Tətbiqlərə cihaz kilidli və ya istifadədə olarkən ekranınızı əhatə edən tam ekran bildirişlər göstərməyə icazə verir. Adətən siqnallar, zənglər və digər vacib hadisələr üçün istifadə olunur.</string>
-    <string name="permission_full_screen_intent_label">Tam Ekran Bildirişlər</string>
-    <string name="permission_interact_across_profiles_description">Tətbiqlərə iş və şəxsi profilləriniz arasında ünsiyyət qurmağa, profil sərhədləri arasında məlumat və funksionallıq paylaşmağa icazə verir.</string>
-    <string name="permission_interact_across_profiles_label">Bağlı İş və Şəxsi Tətbiqlər</string>
-    <string name="permission_loader_usage_stats_description">Tətbiqlərə cihazda məlumat yükləyicisinin istifadəsi haqqında statistika toplamağa icazə verir.</string>
-    <string name="permission_loader_usage_stats_label">Yükləyici İstifadə Statistikası</string>
-    <string name="permissions_details_empty_filter_message">Cari filtrlərə uyğun tətbiq yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
-    <string name="permission_turn_screen_on_description">Tətbiqlərə siqnallar və ya gələn zənglər kimi diqqətinizə ehtiyac olduqda cihaz ekranını yandırmağa icazə verir.</string>
-    <string name="permission_turn_screen_on_label">Ekranı Yandır</string>
 </resources>

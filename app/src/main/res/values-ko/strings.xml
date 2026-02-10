@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">설정</string>
     <string name="label_help">도움말</string>
-
     <string name="general_error_label">오류</string>
-
     <string name="general_share_action">공유</string>
     <string name="general_done_action">완료</string>
     <string name="general_copy_action">복사</string>
@@ -14,79 +11,67 @@
     <string name="general_open_action">열기</string>
     <string name="general_continue_action">계속</string>
     <string name="general_accept_action">동의</string>
-
     <string name="upgrade_myperm_label">Permission Pilot 업그레이드</string>
     <string name="upgrade_myperm_description">이 앱에 광고가 없고 데이터를 수집하지 않는다는 점이 마음에 드시나요?\n지원을 보여주기 위해 프로 버전을 구매하세요!</string>
     <string name="upgrade_buy_pro_action">프로 버전 구매</string>
     <string name="general_no_action">아니요</string>
     <string name="upgrade_donate_action">기부</string>
-
     <string name="debug_debuglog_size_label">크기</string>
     <string name="debug_debuglog_size_compressed_label">압축된 크기</string>
     <string name="debug_notification_channel_label">디버그 알림</string>
     <string name="debug_debuglog_file_label">기록된 로그 파일</string>
     <string name="debug_debuglog_record_action">디버그 로그 기록</string>
-
     <string name="settings_category_other_label">기타</string>
-
     <string name="general_settings_label">일반</string>
     <string name="general_settings_desc">전체 앱에 영향을 주는 일반 설정입니다.</string>
-
     <string name="changelog_label">변경 로그</string>
     <string name="settings_acknowledgements_label">감사의 글</string>
     <string name="general_thank_you_label">감사합니다</string>
     <string name="settings_licenses_label">라이선스</string>
     <string name="settings_privacy_policy_label">개인정보 처리방침</string>
     <string name="settings_privacy_policy_desc">데이터의 책임감 있는 처리.</string>
-
     <string name="settings_support_label">지원</string>
     <string name="documentation_label">문서</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">대화하고 질문할 수 있는 장소입니다.</string>
     <string name="issue_tracker_label">이슈 트래커</string>
     <string name="issue_tracker_description">버그 리포트와 기능 요청을 위한 공개 이슈 트래커입니다.</string>
     <string name="permissions_page_label">권한</string>
     <string name="apps_page_label">앱</string>
     <string name="app_type_system_label">시스템 앱</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">알 수 없는 권한입니다. 이 앱에서 요청하지만 다른 앱에서는 선언하지 않습니다.</string>
     <string name="permissions_unknown_description">알 수 없는 권한입니다. 앱에서 요청하지만 어디에도 선언되지 않았습니다.</string>
     <string name="permissions_app_type_declaring_description">권한이 이 앱에 의해 생성됩니다.</string>
     <string name="permissions_app_type_requesting_description">앱이 권한을 요청합니다.</string>
-
     <string name="general_filter_action">필터</string>
     <string name="general_cancel_action">취소</string>
-
     <string name="apps_filter_userapps_label">사용자 앱</string>
     <string name="apps_filter_systemapps_label">시스템 앱</string>
     <string name="apps_filter_nointernet_label">인터넷 액세스가 없는 앱</string>
     <string name="apps_filter_sideloaded_label">사이드로드된 앱</string>
     <string name="apps_filter_gplay_label">Google Play 스토어</string>
     <string name="apps_filter_oemstore_label">OEM 스토어</string>
-
     <string name="apps_sort_permissions_granted_label">허용된 권한</string>
     <string name="apps_sort_permissions_requested_label">요청된 권한</string>
     <string name="apps_sort_permissions_declared_label">선언된 권한</string>
     <string name="apps_sort_app_name_label">앱 이름</string>
     <string name="apps_sort_install_date_label">설치 날짜</string>
     <string name="apps_sort_update_date_label">마지막 업데이트</string>
-
     <string name="general_sort_action">정렬</string>
     <string name="apps_permissions_x_of_x_granted">%2$d개 중 %1$d개 허용됨.</string>
     <string name="apps_permissions_x_requested">%1$d개 권한이 요청됨.</string>
     <string name="apps_permissions_declares_x">%1$d개 권한을 선언함.</string>
     <string name="apps_details_installer_label">설치 소스</string>
     <string name="apps_details_installer_unknown_label">정보를 사용할 수 없음</string>
-
     <string name="permissions_filter_manifest_label">AOSP 권한</string>
     <string name="permissions_filter_system_label">시스템 앱에 의해 선언됨</string>
     <string name="permissions_filter_user_label">사용자 앱에 의해 선언됨</string>
-
     <string name="permissions_filter_runtime_label">런타임에 요청됨</string>
     <string name="permissions_filter_special_label">특별 사용</string>
     <string name="permissions_filter_installtime_label">자동으로 허용됨</string>
     <string name="permissions_filter_installtime_hide_label">자동으로 허용되지 않음</string>
-
+    <string name="filter_granted_label">허용됨</string>
+    <string name="filter_denied_label">거부됨</string>
+    <string name="filter_configurable_label">구성 가능</string>
     <string name="permissions_sort_apps_granted_label"># 허용된 앱</string>
     <string name="permissions_sort_apps_requested_label"># 요청한 앱</string>
     <string name="permissions_search_list_hint">권한 검색</string>
@@ -98,7 +83,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">서명 또는 시스템</string>
     <string name="permissions_protection_type_internal_label">내부</string>
     <string name="permissions_protection_type_unknown_label">알 수 없음</string>
-
     <string name="permissions_permission_details_label">권한 세부정보</string>
     <string name="generic_loading_label_0">곧™</string>
     <string name="generic_loading_label_1">버터 전달 중</string>
@@ -112,13 +96,11 @@
     <string name="apps_details_shareduserid_label">공유 사용자 ID를 가진 앱</string>
     <string name="apps_details_siblings_label">형제자매</string>
     <string name="apps_known_installer_gplay_label">Google Play 스토어</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android 시스템</string>
     <string name="general_refresh_action">새로고침</string>
+    <string name="general_expand_all_action">모두 펼치기</string>
+    <string name="general_collapse_all_action">모두 접기</string>
+    <string name="general_more_options_action">더 많은 옵션</string>
     <string name="apps_details_twins_label">복제본</string>
     <string name="apps_details_twins_descriptions">다른 사용자 프로필에 설치됨.</string>
     <string name="install_date_label">설치 날짜</string>
@@ -137,6 +119,7 @@
     <string name="apps_details_description_uninstalled_caveat">이 앱은 삭제되었지만 데이터는 유지되었습니다. 삭제된 앱의 권한 상태는 확인할 수 없습니다.</string>
     <string name="apps_details_description_secondary_description">"%d개 권한이 요청됨."</string>
     <string name="apps_details_description_primary_description">"%2$d개 중 %1$d개 권한이 허용됨."</string>
+    <string name="apps_details_empty_filter_message">현재 필터와 일치하는 권한이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
     <string name="api_target_level_x">대상 버전: %s</string>
     <string name="api_minimum_level_x">최소 버전: %s</string>
     <string name="api_build_level_x">컴파일 버전: %s</string>
@@ -163,7 +146,7 @@
     <string name="permissions_details_count_user_apps">"사용자 앱: %2$d개 중 %1$d개에 허용됨."</string>
     <string name="permissions_details_count_system_apps">"시스템 앱: %2$d개 중 %1$d개에 허용됨."</string>
     <string name="permissions_details_description_restrictions_caveat_description">다른 사용자 프로필에 설치된 앱은 Android 제한으로 인해 위 계산에서 제외되었습니다.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">현재 필터와 일치하는 앱이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
     <string name="permission_nfc_description">앱이 근거리 무선 통신(NFC) 태그, 카드 및 리더와 통신할 수 있도록 허용합니다.</string>
     <string name="permission_manage_media_label">미디어 관리</string>
     <string name="permission_manage_media_description">앱이 다른 앱으로 만든 미디어 파일을 사용자에게 묻지 않고 수정하거나 삭제할 수 있도록 허용합니다. 앱은 파일과 미디어에 액세스할 권한이 있어야 합니다.</string>
@@ -209,6 +192,14 @@
     <string name="permission_do_not_disturb_permission_description">앱이 방해 금지 모드(DND)를 켜거나 끄고 관련 설정을 변경할 수 있도록 허용합니다.</string>
     <string name="permission_alarms_and_reminders_label">알람 및 미리 알림</string>
     <string name="permission_alarms_and_reminders_description">앱이 알람을 설정하고 시간에 민감한 작업을 예약할 수 있도록 허용합니다. 이를 통해 앱이 백그라운드에서 실행될 수 있으며, 더 많은 배터리를 사용할 수 있습니다. 앱에 대해 이 권한을 끄면 해당 특정 앱에서 예약한 기존 알람과 시간 기반 이벤트가 작동하지 않게 됩니다.</string>
+    <string name="permission_turn_screen_on_label">화면 켜기</string>
+    <string name="permission_turn_screen_on_description">알람이나 수신 전화와 같이 주의가 필요할 때 앱이 기기 화면을 켤 수 있도록 허용합니다.</string>
+    <string name="permission_full_screen_intent_label">전체 화면 알림</string>
+    <string name="permission_full_screen_intent_description">기기가 잠겨 있거나 사용 중일 때 화면을 차지하는 전체 화면 알림을 앱이 표시할 수 있도록 허용합니다. 일반적으로 알람, 전화 및 기타 시간에 민감한 이벤트에 사용됩니다.</string>
+    <string name="permission_interact_across_profiles_label">연결된 업무용 및 개인 앱</string>
+    <string name="permission_interact_across_profiles_description">앱이 업무용 프로필과 개인 프로필 간에 통신하여 프로필 경계를 넘어 데이터와 기능을 공유할 수 있도록 허용합니다.</string>
+    <string name="permission_loader_usage_stats_label">로더 사용 통계</string>
+    <string name="permission_loader_usage_stats_description">앱이 기기에서 데이터 로더 사용에 대한 통계를 수집할 수 있도록 허용합니다.</string>
     <string name="permission_premium_sms_services_label">프리미엄 SMS 액세스</string>
     <string name="permission_premium_sms_services_description">앱이 프리미엄 문자 메시지 서비스를 사용할 수 있도록 허용합니다. 이는 비용이 발생합니다.</string>
     <string name="permission_unlimited_data_access_label">무제한 데이터 액세스</string>
@@ -258,20 +249,4 @@
     <string name="onboarding_body1">이 앱은 설치된 애플리케이션을 탐색하고 권한을 발견하는 데 도움이 됩니다.</string>
     <string name="onboarding_body2">Permission Pilot은 이 애플리케이션을 사용할 때 앱을 나열하고 해당 권한을 상호 참조할 수 있도록 설치된 애플리케이션 정보를 수집합니다.</string>
     <string name="onboarding_body3">Permission Pilot에는 광고가 없으며 데이터를 로컬에서만 처리합니다.</string>
-    <string name="apps_details_empty_filter_message">현재 필터와 일치하는 권한이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
-    <string name="filter_configurable_label">구성 가능</string>
-    <string name="filter_denied_label">거부됨</string>
-    <string name="filter_granted_label">허용됨</string>
-    <string name="general_collapse_all_action">모두 접기</string>
-    <string name="general_expand_all_action">모두 펼치기</string>
-    <string name="general_more_options_action">더 많은 옵션</string>
-    <string name="permission_full_screen_intent_description">기기가 잠겨 있거나 사용 중일 때 화면을 차지하는 전체 화면 알림을 앱이 표시할 수 있도록 허용합니다. 일반적으로 알람, 전화 및 기타 시간에 민감한 이벤트에 사용됩니다.</string>
-    <string name="permission_full_screen_intent_label">전체 화면 알림</string>
-    <string name="permission_interact_across_profiles_description">앱이 업무용 프로필과 개인 프로필 간에 통신하여 프로필 경계를 넘어 데이터와 기능을 공유할 수 있도록 허용합니다.</string>
-    <string name="permission_interact_across_profiles_label">연결된 업무용 및 개인 앱</string>
-    <string name="permission_loader_usage_stats_description">앱이 기기에서 데이터 로더 사용에 대한 통계를 수집할 수 있도록 허용합니다.</string>
-    <string name="permission_loader_usage_stats_label">로더 사용 통계</string>
-    <string name="permissions_details_empty_filter_message">현재 필터와 일치하는 앱이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
-    <string name="permission_turn_screen_on_description">알람이나 수신 전화와 같이 주의가 필요할 때 앱이 기기 화면을 켤 수 있도록 허용합니다.</string>
-    <string name="permission_turn_screen_on_label">화면 켜기</string>
 </resources>

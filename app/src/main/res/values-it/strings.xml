@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Impostazioni</string>
     <string name="label_help">Aiuto</string>
-
     <string name="general_error_label">Errore</string>
-
     <string name="general_share_action">Condividi</string>
     <string name="general_done_action">Fatto</string>
     <string name="general_copy_action">Copia</string>
@@ -14,79 +11,66 @@
     <string name="general_open_action">Apri</string>
     <string name="general_continue_action">Continua</string>
     <string name="general_accept_action">Accetta</string>
-
     <string name="upgrade_myperm_label">Aggiorna Permission Pilot</string>
     <string name="upgrade_myperm_description">Ti piace che questa app non abbia pubblicità e non raccolga i tuoi dati?\nAcquista la versione pro per mostrare il tuo supporto!</string>
     <string name="upgrade_buy_pro_action">Acquista versione pro</string>
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Dona</string>
-
     <string name="debug_debuglog_size_label">Dimensione</string>
     <string name="debug_debuglog_size_compressed_label">Dimensione compressa</string>
     <string name="debug_notification_channel_label">Notifiche di debug</string>
     <string name="debug_debuglog_file_label">File di log registrato</string>
     <string name="debug_debuglog_record_action">Registra log di debug</string>
-
     <string name="settings_category_other_label">Altro</string>
-
     <string name="general_settings_label">Generale</string>
     <string name="general_settings_desc">Impostazioni generali che influiscono su tutta l\'app.</string>
-
     <string name="changelog_label">Registro delle modifiche</string>
     <string name="settings_acknowledgements_label">Ringraziamenti</string>
     <string name="general_thank_you_label">Grazie</string>
     <string name="settings_licenses_label">Licenze</string>
     <string name="settings_privacy_policy_label">Politica sulla privacy</string>
     <string name="settings_privacy_policy_desc">Gestione responsabile dei dati.</string>
-
     <string name="settings_support_label">Supporto</string>
     <string name="documentation_label">Documentazione</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Un posto dove rilassarsi e fare domande.</string>
     <string name="issue_tracker_label">Tracker dei problemi</string>
     <string name="issue_tracker_description">Un tracker pubblico dei problemi per segnalazioni di bug e richieste di funzionalità.</string>
     <string name="permissions_page_label">Permessi</string>
     <string name="apps_page_label">App</string>
     <string name="app_type_system_label">App di sistema</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Permesso sconosciuto. È richiesto da questa app, ma nessun\'altra app lo dichiara.</string>
     <string name="permissions_unknown_description">Permesso sconosciuto. È richiesto dalle app, ma non dichiarato da nessuna parte.</string>
     <string name="permissions_app_type_declaring_description">Il permesso è creato da questa app.</string>
     <string name="permissions_app_type_requesting_description">L\'app richiede il permesso.</string>
-
     <string name="general_filter_action">Filtra</string>
     <string name="general_cancel_action">Annulla</string>
-
     <string name="apps_filter_userapps_label">App utente</string>
     <string name="apps_filter_systemapps_label">App di sistema</string>
     <string name="apps_filter_nointernet_label">App senza accesso internet</string>
     <string name="apps_filter_sideloaded_label">App caricate lateralmente</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Store OEM</string>
-
     <string name="apps_sort_permissions_granted_label">Permessi concessi</string>
     <string name="apps_sort_permissions_requested_label">Permessi richiesti</string>
     <string name="apps_sort_permissions_declared_label">Permessi dichiarati</string>
     <string name="apps_sort_app_name_label">Nome app</string>
     <string name="apps_sort_install_date_label">Data di installazione</string>
     <string name="apps_sort_update_date_label">Ultimo aggiornamento</string>
-
     <string name="general_sort_action">Ordina</string>
     <string name="apps_permissions_x_of_x_granted">%1$d di %2$d concessi.</string>
     <string name="apps_permissions_x_requested">%1$d permessi richiesti.</string>
     <string name="apps_permissions_declares_x">Dichiara %1$d permessi.</string>
     <string name="apps_details_installer_label">Fonte di installazione</string>
     <string name="apps_details_installer_unknown_label">Informazioni non disponibili</string>
-
     <string name="permissions_filter_manifest_label">Permessi AOSP</string>
     <string name="permissions_filter_system_label">Dichiarati dall\'app di sistema</string>
     <string name="permissions_filter_user_label">Dichiarati dall\'app utente</string>
-
     <string name="permissions_filter_runtime_label">Richiesti a runtime</string>
     <string name="permissions_filter_special_label">Uso speciale</string>
     <string name="permissions_filter_installtime_label">Concessi automaticamente</string>
     <string name="permissions_filter_installtime_hide_label">Non concessi automaticamente</string>
-
+    <string name="filter_granted_label">Concesso</string>
+    <string name="filter_denied_label">Negato</string>
+    <string name="filter_configurable_label">Configurabile</string>
     <string name="permissions_sort_apps_granted_label"># app concesse</string>
     <string name="permissions_sort_apps_requested_label"># app richieste</string>
     <string name="permissions_search_list_hint">Cerca permessi</string>
@@ -98,7 +82,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">Firma o sistema</string>
     <string name="permissions_protection_type_internal_label">Interno</string>
     <string name="permissions_protection_type_unknown_label">Sconosciuto</string>
-
     <string name="permissions_permission_details_label">Dettagli permesso</string>
     <string name="generic_loading_label_0">Presto™</string>
     <string name="generic_loading_label_1">Passando il burro</string>
@@ -111,14 +94,11 @@
     <string name="apps_app_details_label">Dettagli app</string>
     <string name="apps_details_shareduserid_label">App con ID utente condiviso</string>
     <string name="apps_details_siblings_label">Fratelli</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Sistema Android</string>
     <string name="general_refresh_action">Aggiorna</string>
+    <string name="general_expand_all_action">Espandi tutto</string>
+    <string name="general_collapse_all_action">Comprimi tutto</string>
+    <string name="general_more_options_action">Altre opzioni</string>
     <string name="apps_details_twins_label">Cloni</string>
     <string name="apps_details_twins_descriptions">Installate in altri profili utente.</string>
     <string name="install_date_label">Data di installazione</string>
@@ -137,6 +117,7 @@
     <string name="apps_details_description_uninstalled_caveat">Questa app è stata disinstallata ma i suoi dati sono stati conservati. Lo stato dei permessi non può essere determinato per le app disinstallate.</string>
     <string name="apps_details_description_secondary_description">"%d permessi richiesti."</string>
     <string name="apps_details_description_primary_description">"%1$d di %2$d permessi concessi."</string>
+    <string name="apps_details_empty_filter_message">Nessun permesso corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
     <string name="api_target_level_x">Versione target: %s</string>
     <string name="api_minimum_level_x">Versione minima: %s</string>
     <string name="api_build_level_x">Versione di compilazione: %s</string>
@@ -168,7 +149,7 @@
     <string name="permissions_details_count_user_apps">"App utente: Concesso a %1$d su %2$d."</string>
     <string name="permissions_details_count_system_apps">"App di sistema: Concesso a %1$d su %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Le app installate in altri profili utente sono escluse dal calcolo sopra a causa delle restrizioni Android.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Nessuna app corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
     <string name="permission_nfc_description">Consente alle app di comunicare con tag, carte e lettori Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Gestisci media</string>
     <string name="permission_manage_media_description">Consente alle app di modificare o eliminare file multimediali creati con altre app SENZA chiedertelo. Le app devono avere il permesso di accedere a file e media.</string>
@@ -214,6 +195,14 @@
     <string name="permission_do_not_disturb_permission_description">Consente alle app di attivare o disattivare Non disturbare (DND) e cambiare le impostazioni correlate.</string>
     <string name="permission_alarms_and_reminders_label">Allarmi e promemoria</string>
     <string name="permission_alarms_and_reminders_description">Consente alle app di impostare allarmi e programmare azioni sensibili al tempo. Questo consente alle app di funzionare in background, il che può usare più batteria. Spegnere questo permesso per un\'app farebbe sì che gli allarmi esistenti e gli eventi basati sul tempo programmati da quella particolare app smettano di funzionare.</string>
+    <string name="permission_turn_screen_on_label">Accendi schermo</string>
+    <string name="permission_turn_screen_on_description">Consente alle app di accendere lo schermo del dispositivo quando hanno bisogno della tua attenzione, come per sveglie o chiamate in arrivo.</string>
+    <string name="permission_full_screen_intent_label">Notifiche a schermo intero</string>
+    <string name="permission_full_screen_intent_description">Consente alle app di mostrare notifiche a schermo intero che occupano lo schermo quando il dispositivo è bloccato o in uso. Comunemente usato per sveglie, chiamate e altri eventi urgenti.</string>
+    <string name="permission_interact_across_profiles_label">App di lavoro e personali collegate</string>
+    <string name="permission_interact_across_profiles_description">Consente alle app di comunicare tra i tuoi profili di lavoro e personali, condividendo dati e funzionalità tra i profili.</string>
+    <string name="permission_loader_usage_stats_label">Statistiche utilizzo caricatore</string>
+    <string name="permission_loader_usage_stats_description">Consente alle app di raccogliere statistiche sull\'utilizzo dei caricatori di dati sul dispositivo.</string>
     <string name="permission_premium_sms_services_label">Accesso SMS Premium</string>
     <string name="permission_premium_sms_services_description">Consente alle app di usare servizi di messaggi di testo premium. Questo ti costerà denaro.</string>
     <string name="permission_unlimited_data_access_label">Accesso dati illimitato</string>
@@ -244,7 +233,6 @@
     <string name="permission_group_camera_description">Permessi relativi alla fotocamera.</string>
     <string name="permission_group_audio_label">Microfono</string>
     <string name="permission_group_audio_description">Permessi relativi al microfono.</string>
-    <string name="permission_picture_in_picture_label">Picture in Picture</string>
     <string name="overview_device_android_version_label">Versione Android</string>
     <string name="overview_device_name_label">Dispositivo</string>
     <string name="overview_device_android_patch_label">Livello patch</string>
@@ -263,21 +251,4 @@
     <string name="onboarding_body1">Questa app ti aiuta a navigare nelle applicazioni installate e scoprire i permessi.</string>
     <string name="onboarding_body2">Permission Pilot raccoglie informazioni sulle applicazioni installate per consentire di elencare le tue app e fare riferimenti incrociati dei loro permessi quando usi questa applicazione.</string>
     <string name="onboarding_body3">Permission Pilot non ha pubblicità e elabora i dati solo localmente.</string>
-
-    <string name="apps_details_empty_filter_message">Nessun permesso corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
-    <string name="filter_configurable_label">Configurabile</string>
-    <string name="filter_denied_label">Negato</string>
-    <string name="filter_granted_label">Concesso</string>
-    <string name="general_collapse_all_action">Comprimi tutto</string>
-    <string name="general_expand_all_action">Espandi tutto</string>
-    <string name="general_more_options_action">Altre opzioni</string>
-    <string name="permission_full_screen_intent_description">Consente alle app di mostrare notifiche a schermo intero che occupano lo schermo quando il dispositivo è bloccato o in uso. Comunemente usato per sveglie, chiamate e altri eventi urgenti.</string>
-    <string name="permission_full_screen_intent_label">Notifiche a schermo intero</string>
-    <string name="permission_interact_across_profiles_description">Consente alle app di comunicare tra i tuoi profili di lavoro e personali, condividendo dati e funzionalità tra i profili.</string>
-    <string name="permission_interact_across_profiles_label">App di lavoro e personali collegate</string>
-    <string name="permission_loader_usage_stats_description">Consente alle app di raccogliere statistiche sull\'utilizzo dei caricatori di dati sul dispositivo.</string>
-    <string name="permission_loader_usage_stats_label">Statistiche utilizzo caricatore</string>
-    <string name="permissions_details_empty_filter_message">Nessuna app corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
-    <string name="permission_turn_screen_on_description">Consente alle app di accendere lo schermo del dispositivo quando hanno bisogno della tua attenzione, come per sveglie o chiamate in arrivo.</string>
-    <string name="permission_turn_screen_on_label">Accendi schermo</string>
 </resources>

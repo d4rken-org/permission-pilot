@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="foss_upgrade_donate_label">تبرّع</string>
+    <string name="foss_upgrade_alreadydonated_label">لقد تبرعت مسبقاً</string>
+    <string name="foss_upgrade_no_money_label">أنا أنفق كل أموالي على طلبات التوصيل</string>
+</resources>

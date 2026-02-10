@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">সেটিংস</string>
     <string name="label_help">সাহায্য</string>
-
     <string name="general_error_label">ত্রুটি</string>
-
     <string name="general_share_action">শেয়ার</string>
     <string name="general_done_action">সম্পন্ন</string>
     <string name="general_copy_action">কপি</string>
@@ -14,79 +11,65 @@
     <string name="general_open_action">খুলুন</string>
     <string name="general_continue_action">চালিয়ে যান</string>
     <string name="general_accept_action">গ্রহণ করুন</string>
-
     <string name="upgrade_myperm_label">Permission Pilot আপগ্রেড করুন</string>
     <string name="upgrade_myperm_description">আপনি কি পছন্দ করেন যে এই অ্যাপটিতে কোনো বিজ্ঞাপন নেই এবং আপনার ডেটা সংগ্রহ করে না?\nআপনার সমর্থন দেখানোর জন্য প্রো সংস্করণ কিনুন!</string>
     <string name="upgrade_buy_pro_action">প্রো সংস্করণ কিনুন</string>
     <string name="general_no_action">না</string>
     <string name="upgrade_donate_action">দান করুন</string>
-
     <string name="debug_debuglog_size_label">আকার</string>
     <string name="debug_debuglog_size_compressed_label">সংকুচিত আকার</string>
     <string name="debug_notification_channel_label">ডিবাগ বিজ্ঞপ্তি</string>
     <string name="debug_debuglog_file_label">রেকর্ড করা লগ ফাইল</string>
     <string name="debug_debuglog_record_action">ডিবাগ লগ রেকর্ড করুন</string>
-
     <string name="settings_category_other_label">অন্যান্য</string>
-
     <string name="general_settings_label">সাধারণ</string>
     <string name="general_settings_desc">সাধারণ টুইক যা পুরো অ্যাপকে প্রভাবিত করে।</string>
-
     <string name="changelog_label">পরিবর্তনের তালিকা</string>
     <string name="settings_acknowledgements_label">স্বীকৃতি</string>
     <string name="general_thank_you_label">ধন্যবাদ</string>
     <string name="settings_licenses_label">লাইসেন্স</string>
     <string name="settings_privacy_policy_label">গোপনীয়তা নীতি</string>
     <string name="settings_privacy_policy_desc">দায়িত্বশীলভাবে ডেটা পরিচালনা।</string>
-
     <string name="settings_support_label">সহায়তা</string>
     <string name="documentation_label">ডকুমেন্টেশন</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">আড্ডা দেওয়ার এবং প্রশ্ন জিজ্ঞাসা করার জায়গা।</string>
     <string name="issue_tracker_label">সমস্যা ট্র্যাকার</string>
     <string name="issue_tracker_description">বাগ রিপোর্ট এবং ফিচার অনুরোধের জন্য একটি পাবলিক ইস্যু ট্র্যাকার।</string>
     <string name="permissions_page_label">অনুমতি</string>
     <string name="apps_page_label">অ্যাপস</string>
     <string name="app_type_system_label">সিস্টেম অ্যাপ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">অজানা অনুমতি। এটি এই অ্যাপ দ্বারা অনুরোধ করা হয়েছে, কিন্তু অন্য কোনো অ্যাপ এটি ঘোষণা করে না।</string>
     <string name="permissions_unknown_description">অজানা অনুমতি। এটি অ্যাপগুলি দ্বারা অনুরোধ করা হয়েছে, কিন্তু কোথাও ঘোষণা করা হয়নি।</string>
     <string name="permissions_app_type_declaring_description">অনুমতি এই অ্যাপ দ্বারা তৈরি।</string>
     <string name="permissions_app_type_requesting_description">অ্যাপ অনুমতি অনুরোধ করে।</string>
-
     <string name="general_filter_action">ফিল্টার</string>
     <string name="general_cancel_action">বাতিল</string>
-
     <string name="apps_filter_userapps_label">ব্যবহারকারী অ্যাপস</string>
     <string name="apps_filter_systemapps_label">সিস্টেম অ্যাপস</string>
     <string name="apps_filter_nointernet_label">ইন্টারনেট অ্যাক্সেস ছাড়া অ্যাপস</string>
     <string name="apps_filter_sideloaded_label">সাইডলোড করা অ্যাপস</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="apps_filter_oemstore_label">OEM Store</string>
-
     <string name="apps_sort_permissions_granted_label">প্রদত্ত অনুমতি</string>
     <string name="apps_sort_permissions_requested_label">অনুরোধকৃত অনুমতি</string>
     <string name="apps_sort_permissions_declared_label">ঘোষিত অনুমতি</string>
     <string name="apps_sort_app_name_label">অ্যাপের নাম</string>
     <string name="apps_sort_install_date_label">ইনস্টলের তারিখ</string>
     <string name="apps_sort_update_date_label">সর্বশেষ আপডেট</string>
-
     <string name="general_sort_action">সাজান</string>
     <string name="apps_permissions_x_of_x_granted">%1$d এর মধ্যে %2$d প্রদত্ত।</string>
     <string name="apps_permissions_x_requested">%1$d অনুমতি অনুরোধ করা হয়েছে।</string>
     <string name="apps_permissions_declares_x">%1$d অনুমতি ঘোষণা করে।</string>
     <string name="apps_details_installer_label">ইনস্টল উৎস</string>
     <string name="apps_details_installer_unknown_label">তথ্য উপলব্ধ নেই</string>
-
     <string name="permissions_filter_manifest_label">AOSP অনুমতি</string>
     <string name="permissions_filter_system_label">সিস্টেম অ্যাপ দ্বারা ঘোষিত</string>
     <string name="permissions_filter_user_label">ব্যবহারকারী অ্যাপ দ্বারা ঘোষিত</string>
-
     <string name="permissions_filter_runtime_label">রানটাইমে অনুরোধ করা</string>
     <string name="permissions_filter_special_label">বিশেষ ব্যবহার</string>
     <string name="permissions_filter_installtime_label">স্বয়ংক্রিয়ভাবে প্রদত্ত</string>
     <string name="permissions_filter_installtime_hide_label">স্বয়ংক্রিয়ভাবে প্রদত্ত নয়</string>
-
+    <string name="filter_granted_label">প্রদত্ত</string>
+    <string name="filter_denied_label">প্রত্যাখ্যাত</string>
+    <string name="filter_configurable_label">কনফিগারযোগ্য</string>
     <string name="permissions_sort_apps_granted_label"># অ্যাপস প্রদত্ত</string>
     <string name="permissions_sort_apps_requested_label"># অ্যাপস অনুরোধ করা</string>
     <string name="permissions_search_list_hint">অনুমতি খুঁজুন</string>
@@ -98,7 +81,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">স্বাক্ষর বা সিস্টেম</string>
     <string name="permissions_protection_type_internal_label">অভ্যন্তরীণ</string>
     <string name="permissions_protection_type_unknown_label">অজানা</string>
-
     <string name="permissions_permission_details_label">অনুমতির বিবরণ</string>
     <string name="generic_loading_label_0">শীঘ্রই™</string>
     <string name="generic_loading_label_1">মাখন পাস করা হচ্ছে</string>
@@ -111,14 +93,11 @@
     <string name="apps_app_details_label">অ্যাপের বিবরণ</string>
     <string name="apps_details_shareduserid_label">শেয়ার করা ব্যবহারকারী ID সহ অ্যাপস</string>
     <string name="apps_details_siblings_label">ভাইবোন</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android সিস্টেম</string>
     <string name="general_refresh_action">রিফ্রেশ</string>
+    <string name="general_expand_all_action">সব প্রসারিত করুন</string>
+    <string name="general_collapse_all_action">সব সংকুচিত করুন</string>
+    <string name="general_more_options_action">আরো বিকল্প</string>
     <string name="apps_details_twins_label">ক্লোন</string>
     <string name="apps_details_twins_descriptions">অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা।</string>
     <string name="install_date_label">ইনস্টলের তারিখ</string>
@@ -134,9 +113,10 @@
     <string name="apps_filter_battery_optimization_label">কাস্টম ব্যাটারি বিকল্প সহ অ্যাপস</string>
     <string name="apps_filter_accessibility_label">অ্যাক্সেসিবিলিটি সেবা সহ অ্যাপস</string>
     <string name="apps_details_description_restrictions_caveat_description">এই অ্যাপটি অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা। Android সীমাবদ্ধতার কারণে বর্তমানে সক্রিয় প্রোফাইলে ইনস্টল করা অ্যাপগুলির জন্য শুধুমাত্র প্রদত্ত অনুমতি নির্ধারণ করা যেতে পারে।</string>
+    <string name="apps_details_description_uninstalled_caveat">এই অ্যাপটি আনইনস্টল করা হয়েছে কিন্তু এর ডেটা রক্ষিত আছে। আনইনস্টল করা অ্যাপগুলির জন্য অনুমতির অবস্থা নির্ধারণ করা যায় না।</string>
     <string name="apps_details_description_secondary_description">"%d অনুমতি অনুরোধ করা হয়েছে।"</string>
     <string name="apps_details_description_primary_description">"%1$d এর মধ্যে %2$d অনুমতি প্রদত্ত।"</string>
-    <string name="apps_details_description_uninstalled_caveat">এই অ্যাপটি আনইনস্টল করা হয়েছে কিন্তু এর ডেটা রক্ষিত আছে। আনইনস্টল করা অ্যাপগুলির জন্য অনুমতির অবস্থা নির্ধারণ করা যায় না।</string>
+    <string name="apps_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অনুমতি মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
     <string name="api_target_level_x">লক্ষ্য সংস্করণ: %s</string>
     <string name="api_minimum_level_x">সর্বনিম্ন সংস্করণ: %s</string>
     <string name="api_build_level_x">কম্পাইল সংস্করণ: %s</string>
@@ -168,7 +148,7 @@
     <string name="permissions_details_count_user_apps">"ব্যবহারকারী অ্যাপস: %2$d এর মধ্যে %1$d কে প্রদত্ত।"</string>
     <string name="permissions_details_count_system_apps">"সিস্টেম অ্যাপস: %2$d এর মধ্যে %1$d কে প্রদত্ত।"</string>
     <string name="permissions_details_description_restrictions_caveat_description">Android সীমাবদ্ধতার কারণে অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা অ্যাপগুলি উপরের গণনা থেকে বাদ দেওয়া হয়েছে।</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অ্যাপ মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
     <string name="permission_nfc_description">অ্যাপগুলিকে Near Field Communication (NFC) ট্যাগ, কার্ড এবং রিডারের সাথে যোগাযোগ করার অনুমতি দেয়।</string>
     <string name="permission_manage_media_label">মিডিয়া পরিচালনা</string>
     <string name="permission_manage_media_description">অ্যাপগুলিকে অন্য অ্যাপ দিয়ে তৈরি মিডিয়া ফাইলগুলি আপনাকে না জিজ্ঞাসা করেই পরিবর্তন বা মুছে ফেলার অনুমতি দেয়। অ্যাপগুলির ফাইল এবং মিডিয়া অ্যাক্সেস করার অনুমতি থাকতে হবে।</string>
@@ -214,6 +194,14 @@
     <string name="permission_do_not_disturb_permission_description">অ্যাপগুলিকে বিরক্ত করবেন না (DND) চালু বা বন্ধ করার এবং সংশ্লিষ্ট সেটিংস পরিবর্তন করার অনুমতি দেয়।</string>
     <string name="permission_alarms_and_reminders_label">অ্যালার্ম এবং রিমাইন্ডার</string>
     <string name="permission_alarms_and_reminders_description">অ্যাপগুলিকে অ্যালার্ম সেট করার এবং সময়-সংবেদনশীল কর্ম নির্ধারণ করার অনুমতি দেয়। এটি অ্যাপগুলিকে ব্যাকগ্রাউন্ডে চালানোর অনুমতি দেয়, যা আরও ব্যাটারি ব্যবহার করতে পারে। একটি অ্যাপের জন্য এই অনুমতি বন্ধ করলে সেই নির্দিষ্ট অ্যাপ দ্বারা নির্ধারিত বিদ্যমান অ্যালার্ম এবং সময়-ভিত্তিক ইভেন্টগুলি কাজ করা বন্ধ করে দেবে।</string>
+    <string name="permission_turn_screen_on_label">স্ক্রিন চালু করুন</string>
+    <string name="permission_turn_screen_on_description">অ্যাপগুলিকে ডিভাইসের স্ক্রিন চালু করার অনুমতি দেয় যখন তাদের আপনার মনোযোগ প্রয়োজন, যেমন অ্যালার্ম বা ইনকামিং কলের জন্য।</string>
+    <string name="permission_full_screen_intent_label">পূর্ণ-স্ক্রিন বিজ্ঞপ্তি</string>
+    <string name="permission_full_screen_intent_description">অ্যাপগুলিকে পূর্ণ-স্ক্রিন বিজ্ঞপ্তি দেখানোর অনুমতি দেয় যা ডিভাইস লক থাকা বা ব্যবহারে থাকা অবস্থায় আপনার স্ক্রিন দখল করে। সাধারণত অ্যালার্ম, কল এবং অন্যান্য সময়-সংবেদনশীল ইভেন্টের জন্য ব্যবহৃত হয়।</string>
+    <string name="permission_interact_across_profiles_label">সংযুক্ত কাজ এবং ব্যক্তিগত অ্যাপস</string>
+    <string name="permission_interact_across_profiles_description">অ্যাপগুলিকে আপনার কাজ এবং ব্যক্তিগত প্রোফাইলের মধ্যে যোগাযোগ করতে, প্রোফাইল সীমানা জুড়ে ডেটা এবং কার্যকারিতা ভাগ করার অনুমতি দেয়।</string>
+    <string name="permission_loader_usage_stats_label">লোডার ব্যবহারের পরিসংখ্যান</string>
+    <string name="permission_loader_usage_stats_description">অ্যাপগুলিকে ডিভাইসে ডেটা লোডার ব্যবহার সম্পর্কে পরিসংখ্যান সংগ্রহ করার অনুমতি দেয়।</string>
     <string name="permission_premium_sms_services_label">প্রিমিয়াম SMS অ্যাক্সেস</string>
     <string name="permission_premium_sms_services_description">অ্যাপগুলিকে প্রিমিয়াম টেক্সট বার্তা সেবা ব্যবহার করার অনুমতি দেয়। এটি আপনার অর্থ খরচ করবে।</string>
     <string name="permission_unlimited_data_access_label">সীমাহীন ডেটা অ্যাক্সেস</string>
@@ -263,20 +251,4 @@
     <string name="onboarding_body1">এই অ্যাপ আপনাকে ইনস্টল করা অ্যাপ্লিকেশনগুলি নেভিগেট করতে এবং অনুমতি আবিষ্কার করতে সাহায্য করে।</string>
     <string name="onboarding_body2">Permission Pilot ইনস্টল করা অ্যাপ্লিকেশনের তথ্য সংগ্রহ করে যাতে এই অ্যাপটি ব্যবহার করার সময় আপনার অ্যাপগুলি তালিকাভুক্ত করা এবং তাদের অনুমতিগুলির ক্রস-রেফারেন্স করা সম্ভব হয়।</string>
     <string name="onboarding_body3">Permission Pilot-এ কোনো বিজ্ঞাপন নেই এবং শুধুমাত্র স্থানীয়ভাবে ডেটা প্রক্রিয়া করে।</string>
-    <string name="apps_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অনুমতি মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
-    <string name="filter_configurable_label">কনফিগারযোগ্য</string>
-    <string name="filter_denied_label">প্রত্যাখ্যাত</string>
-    <string name="filter_granted_label">প্রদত্ত</string>
-    <string name="general_collapse_all_action">সব সংকুচিত করুন</string>
-    <string name="general_expand_all_action">সব প্রসারিত করুন</string>
-    <string name="general_more_options_action">আরো বিকল্প</string>
-    <string name="permission_full_screen_intent_description">অ্যাপগুলিকে পূর্ণ-স্ক্রিন বিজ্ঞপ্তি দেখানোর অনুমতি দেয় যা ডিভাইস লক থাকা বা ব্যবহারে থাকা অবস্থায় আপনার স্ক্রিন দখল করে। সাধারণত অ্যালার্ম, কল এবং অন্যান্য সময়-সংবেদনশীল ইভেন্টের জন্য ব্যবহৃত হয়।</string>
-    <string name="permission_full_screen_intent_label">পূর্ণ-স্ক্রিন বিজ্ঞপ্তি</string>
-    <string name="permission_interact_across_profiles_description">অ্যাপগুলিকে আপনার কাজ এবং ব্যক্তিগত প্রোফাইলের মধ্যে যোগাযোগ করতে, প্রোফাইল সীমানা জুড়ে ডেটা এবং কার্যকারিতা ভাগ করার অনুমতি দেয়।</string>
-    <string name="permission_interact_across_profiles_label">সংযুক্ত কাজ এবং ব্যক্তিগত অ্যাপস</string>
-    <string name="permission_loader_usage_stats_description">অ্যাপগুলিকে ডিভাইসে ডেটা লোডার ব্যবহার সম্পর্কে পরিসংখ্যান সংগ্রহ করার অনুমতি দেয়।</string>
-    <string name="permission_loader_usage_stats_label">লোডার ব্যবহারের পরিসংখ্যান</string>
-    <string name="permissions_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অ্যাপ মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
-    <string name="permission_turn_screen_on_description">অ্যাপগুলিকে ডিভাইসের স্ক্রিন চালু করার অনুমতি দেয় যখন তাদের আপনার মনোযোগ প্রয়োজন, যেমন অ্যালার্ম বা ইনকামিং কলের জন্য।</string>
-    <string name="permission_turn_screen_on_label">স্ক্রিন চালু করুন</string>
 </resources>

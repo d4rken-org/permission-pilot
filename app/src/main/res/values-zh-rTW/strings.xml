@@ -1,11 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
     <string name="app_name_pro">Permission Pilot 專業版</string>
     <string name="label_settings">設定</string>
     <string name="label_help">幫助</string>
-
     <string name="general_error_label">錯誤</string>
-
     <string name="general_share_action">分享</string>
     <string name="general_done_action">完成</string>
     <string name="general_copy_action">複製</string>
@@ -14,79 +12,67 @@
     <string name="general_open_action">打開</string>
     <string name="general_continue_action">繼續</string>
     <string name="general_accept_action">接受</string>
-
     <string name="upgrade_myperm_label">升級 Permission Pilot</string>
     <string name="upgrade_myperm_description">您喜歡這款無廣告也不會收集個資的應用程式嗎？\n請購買專業版以表達您的支持！</string>
     <string name="upgrade_buy_pro_action">購買專業版</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">斗內</string>
-
     <string name="debug_debuglog_size_label">大小</string>
     <string name="debug_debuglog_size_compressed_label">壓縮大小</string>
     <string name="debug_notification_channel_label">除錯通知</string>
     <string name="debug_debuglog_file_label">除錯日誌檔案</string>
     <string name="debug_debuglog_record_action">紀錄除錯日誌</string>
-
     <string name="settings_category_other_label">其他</string>
-
     <string name="general_settings_label">一般</string>
     <string name="general_settings_desc">此應用程式的全域設定</string>
-
     <string name="changelog_label">更新日誌</string>
     <string name="settings_acknowledgements_label">鳴謝</string>
     <string name="general_thank_you_label">謝謝你們</string>
     <string name="settings_licenses_label">授權條款</string>
     <string name="settings_privacy_policy_label">隱私政策</string>
     <string name="settings_privacy_policy_desc">謹慎地處理數據。</string>
-
     <string name="settings_support_label">支持</string>
     <string name="documentation_label">說明文件</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">一個交流和提問的地方。</string>
     <string name="issue_tracker_label">問題追蹤器</string>
     <string name="issue_tracker_description">公開的問題追蹤器，用於報告錯誤和提出功能請求。</string>
     <string name="permissions_page_label">權限</string>
     <string name="apps_page_label">應用程式</string>
     <string name="app_type_system_label">系統應用程式</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">未知權限。該應用程式請求該權限，但沒有其他應用程式聲明它。</string>
     <string name="permissions_unknown_description">未知權限。應用程式請求該權限，但沒有在任何地方聲明。</string>
     <string name="permissions_app_type_declaring_description">該應用程式建立了該權限。</string>
     <string name="permissions_app_type_requesting_description">應用程式請求了該權限。</string>
-
     <string name="general_filter_action">篩選</string>
     <string name="general_cancel_action">取消</string>
-
     <string name="apps_filter_userapps_label">使用者應用程式</string>
     <string name="apps_filter_systemapps_label">系統應用程式</string>
     <string name="apps_filter_nointernet_label">離線應用程式</string>
     <string name="apps_filter_sideloaded_label">側載應用程式</string>
     <string name="apps_filter_gplay_label">Google Play 商店</string>
     <string name="apps_filter_oemstore_label">OEM 商店</string>
-
     <string name="apps_sort_permissions_granted_label">已授予權限</string>
     <string name="apps_sort_permissions_requested_label">已請求權限</string>
     <string name="apps_sort_permissions_declared_label">已聲明權限</string>
     <string name="apps_sort_app_name_label">應用程式名稱</string>
     <string name="apps_sort_install_date_label">安裝日期</string>
     <string name="apps_sort_update_date_label">上次更新</string>
-
     <string name="general_sort_action">排序</string>
     <string name="apps_permissions_x_of_x_granted">%2$d 個權限中已授予 %1$d 個。</string>
     <string name="apps_permissions_x_requested">請求了 %1$d 個權限。</string>
     <string name="apps_permissions_declares_x">聲明了 %1$d 個權限。</string>
     <string name="apps_details_installer_label">安裝來源</string>
     <string name="apps_details_installer_unknown_label">缺少資訊</string>
-
     <string name="permissions_filter_manifest_label">AOSP 權限</string>
     <string name="permissions_filter_system_label">由系統應用程式聲明</string>
     <string name="permissions_filter_user_label">由使用者應用程式聲明</string>
-
     <string name="permissions_filter_runtime_label">使用時請求</string>
     <string name="permissions_filter_special_label">特殊用途</string>
     <string name="permissions_filter_installtime_label">自動授予</string>
     <string name="permissions_filter_installtime_hide_label">非自動授予</string>
-
+    <string name="filter_granted_label">已授予</string>
+    <string name="filter_denied_label">已拒絕</string>
+    <string name="filter_configurable_label">可設定</string>
     <string name="permissions_sort_apps_granted_label">已授予的應用程式個數</string>
     <string name="permissions_sort_apps_requested_label">已請求的應用程式個數</string>
     <string name="permissions_search_list_hint">搜尋權限</string>
@@ -118,6 +104,9 @@
     <string name="apps_known_installer_xiaomi_label">小米 GetApps</string>
     <string name="apps_known_android_system_label">Android 系統</string>
     <string name="general_refresh_action">刷新</string>
+    <string name="general_expand_all_action">全部展開</string>
+    <string name="general_collapse_all_action">全部收合</string>
+    <string name="general_more_options_action">更多選項</string>
     <string name="apps_details_twins_label">克隆應用程式</string>
     <string name="apps_details_twins_descriptions">從其他使用者設定檔案中安裝。</string>
     <string name="install_date_label">安裝日期</string>
@@ -133,9 +122,10 @@
     <string name="apps_filter_battery_optimization_label">具有客製化電池選項的應用程式</string>
     <string name="apps_filter_accessibility_label">具有輔助功能服務的應用程式</string>
     <string name="apps_details_description_restrictions_caveat_description">此應用程式因為由其他使用者安裝而無無法偵測在目前設定檔之應用程式的權限。</string>
+    <string name="apps_details_description_uninstalled_caveat">此應用程式已解除安裝，但資料仍被保留。已解除安裝的應用程式無法判斷其權限狀態。</string>
     <string name="apps_details_description_secondary_description">"%d 項權限已請求。"</string>
     <string name="apps_details_description_primary_description">"%2$d 個權限中已授予 %1$d 個。"</string>
-    <string name="apps_details_description_uninstalled_caveat">此應用程式已解除安裝，但資料仍被保留。已解除安裝的應用程式無法判斷其權限狀態。</string>
+    <string name="apps_details_empty_filter_message">沒有權限符合目前篩選條件。點擊篩選圖示進行調整。</string>
     <string name="api_target_level_x">目標版本：%s</string>
     <string name="api_minimum_level_x">最低版本：%s</string>
     <string name="api_build_level_x">編譯版本：%s</string>
@@ -145,29 +135,24 @@
     <string name="apps_filter_profile_active_label">目前設定檔案中的應用程式</string>
     <string name="overview_page_label">概覽</string>
     <plurals name="generic_x_items_label">
-        <item quantity="one">%s 個</item>
         <item quantity="other">%s 個</item>
     </plurals>
     <plurals name="generic_x_groups_label">
-        <item quantity="one">%s 組</item>
         <item quantity="other">%s 組</item>
     </plurals>
     <plurals name="generic_x_apps_label">
-        <item quantity="one">%d 個應用程式</item>
         <item quantity="other">%d 個應用程式</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
-        <item quantity="one">%d 個使用者應用程式</item>
         <item quantity="other">%d 個使用者應用程式</item>
     </plurals>
     <plurals name="generic_x_apps_system_label">
-        <item quantity="one">%d 個系統應用程式</item>
         <item quantity="other">%d 個系統應用程式</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">使用者應用程式：%2$d 個權限中已授予 %1$d 個。</string>
-    <string name="permissions_details_count_system_apps">系統應用程式：%2$d 個權限中已授予 %1$d 個。</string>
+    <string name="permissions_details_count_user_apps">"使用者應用程式：%2$d 個權限中已授予 %1$d 個。"</string>
+    <string name="permissions_details_count_system_apps">"系統應用程式：%2$d 個權限中已授予 %1$d 個。"</string>
     <string name="permissions_details_description_restrictions_caveat_description">由於 Android 限制，上述計算不包括安裝在其他使用者設定檔案中的應用程式。</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
     <string name="permission_nfc_description">允許應用程式與 NFC 標簽、卡片和讀卡器通訊。</string>
     <string name="permission_manage_media_label">管理媒體</string>
     <string name="permission_manage_media_description">允許應用程式修改或刪除其他應用程式所創建的媒體，而無需s取得您的同意。應用程式必須具有取用檔案和媒體的權限。</string>
@@ -213,6 +198,14 @@
     <string name="permission_do_not_disturb_permission_description">允許應用程式開啟或關閉零打擾（DND）並更改相關設定。</string>
     <string name="permission_alarms_and_reminders_label">鬧鐘和提醒</string>
     <string name="permission_alarms_and_reminders_description">允許應用程式設定鬧鐘和安排與時間管理。這使應用程式能在後台運行並消耗更多的電池電量。</string>
+    <string name="permission_turn_screen_on_label">開啟螢幕</string>
+    <string name="permission_turn_screen_on_description">允許應用程式在需要您注意時開啟裝置螢幕，例如鬧鐘或來電。</string>
+    <string name="permission_full_screen_intent_label">全螢幕通知</string>
+    <string name="permission_full_screen_intent_description">允許應用程式顯示全螢幕通知，在裝置鎖定或使用時佔據您的螢幕。通常用於鬧鐘、來電和其他時間敏感事件。</string>
+    <string name="permission_interact_across_profiles_label">關聯的工作和個人應用程式</string>
+    <string name="permission_interact_across_profiles_description">允許應用程式在您的工作和個人設定檔之間進行通訊，跨設定檔邊界共享資料和功能。</string>
+    <string name="permission_loader_usage_stats_label">載入器使用統計</string>
+    <string name="permission_loader_usage_stats_description">允許應用程式收集有關裝置上資料載入器使用情況的統計資訊。</string>
     <string name="permission_premium_sms_services_label">SMS 服務取用</string>
     <string name="permission_premium_sms_services_description">允許應用程式使用 SMS 服務。這將收取一些費用。</string>
     <string name="permission_unlimited_data_access_label">無限數據取用</string>
@@ -262,20 +255,4 @@
     <string name="onboarding_body1">此應用程式讓您方便的查看並管理應用程式權限。</string>
     <string name="onboarding_body2">Permission Pilot 收集應用程式的資訊以在使用時列出權限。</string>
     <string name="onboarding_body3">Permission Pilot 不含廣告，且僅在本地處理數據。</string>
-    <string name="apps_details_empty_filter_message">沒有權限符合目前篩選條件。點擊篩選圖示進行調整。</string>
-    <string name="filter_configurable_label">可設定</string>
-    <string name="filter_denied_label">已拒絕</string>
-    <string name="filter_granted_label">已授予</string>
-    <string name="general_collapse_all_action">全部收合</string>
-    <string name="general_expand_all_action">全部展開</string>
-    <string name="general_more_options_action">更多選項</string>
-    <string name="permission_full_screen_intent_description">允許應用程式顯示全螢幕通知，在裝置鎖定或使用時佔據您的螢幕。通常用於鬧鐘、來電和其他時間敏感事件。</string>
-    <string name="permission_full_screen_intent_label">全螢幕通知</string>
-    <string name="permission_interact_across_profiles_description">允許應用程式在您的工作和個人設定檔之間進行通訊，跨設定檔邊界共享資料和功能。</string>
-    <string name="permission_interact_across_profiles_label">關聯的工作和個人應用程式</string>
-    <string name="permission_loader_usage_stats_description">允許應用程式收集有關裝置上資料載入器使用情況的統計資訊。</string>
-    <string name="permission_loader_usage_stats_label">載入器使用統計</string>
-    <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
-    <string name="permission_turn_screen_on_description">允許應用程式在需要您注意時開啟裝置螢幕，例如鬧鐘或來電。</string>
-    <string name="permission_turn_screen_on_label">開啟螢幕</string>
 </resources>

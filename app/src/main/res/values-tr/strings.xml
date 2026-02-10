@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Ayarlar</string>
     <string name="label_help">Yardım</string>
-
     <string name="general_error_label">Hata</string>
-
     <string name="general_share_action">Paylaş</string>
     <string name="general_done_action">Tamam</string>
     <string name="general_copy_action">Kopyala</string>
@@ -14,91 +11,76 @@
     <string name="general_open_action">Aç</string>
     <string name="general_continue_action">Devam Et</string>
     <string name="general_accept_action">Kabul Et</string>
-
     <string name="upgrade_myperm_label">Permission Pilot\'u Yükselt</string>
     <string name="upgrade_myperm_description">Bu uygulamanın reklam içermemesi ve verilerinizi toplamaması hoşunuza gitti mi?\nDesteğinizi göstermek için pro sürümü satın alın!</string>
     <string name="upgrade_buy_pro_action">Pro sürümü satın al</string>
     <string name="general_no_action">Hayır</string>
     <string name="upgrade_donate_action">Bağış Yap</string>
-
     <string name="debug_debuglog_size_label">Boyut</string>
     <string name="debug_debuglog_size_compressed_label">Sıkıştırılmış boyut</string>
     <string name="debug_notification_channel_label">Hata ayıklama bildirimleri</string>
     <string name="debug_debuglog_file_label">Kaydedilen günlük dosyası</string>
     <string name="debug_debuglog_record_action">Hata ayıklama günlüğünü kaydet</string>
-
     <string name="settings_category_other_label">Diğer</string>
-
     <string name="general_settings_label">Genel</string>
     <string name="general_settings_desc">Tüm uygulamayı etkileyen genel ayarlar.</string>
-
     <string name="changelog_label">Değişiklik günlüğü</string>
     <string name="settings_acknowledgements_label">Teşekkürler</string>
     <string name="general_thank_you_label">Teşekkür ederiz</string>
     <string name="settings_licenses_label">Lisanslar</string>
     <string name="settings_privacy_policy_label">Gizlilik politikası</string>
     <string name="settings_privacy_policy_desc">Verilerin sorumlu bir şekilde işlenmesi.</string>
-
     <string name="settings_support_label">Destek</string>
     <string name="documentation_label">Belgeler</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Takılacağınız ve soru sorabileceğiniz bir yer.</string>
     <string name="issue_tracker_label">Sorun takipçisi</string>
     <string name="issue_tracker_description">Hata raporları ve özellik istekleri için genel sorun takipçisi.</string>
     <string name="permissions_page_label">İzinler</string>
     <string name="apps_page_label">Uygulamalar</string>
     <string name="app_type_system_label">Sistem Uygulaması</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Bilinmeyen izin. Bu uygulama tarafından talep ediliyor ancak başka hiçbir uygulama onu bildirmiyor.</string>
     <string name="permissions_unknown_description">Bilinmeyen izin. Uygulamalar tarafından talep ediliyor ancak hiçbir yerde bildirilmiyor.</string>
     <string name="permissions_app_type_declaring_description">İzin bu uygulama tarafından oluşturuluyor.</string>
     <string name="permissions_app_type_requesting_description">Uygulama izin talep ediyor.</string>
-
     <string name="general_filter_action">Filtrele</string>
     <string name="general_cancel_action">İptal</string>
-
     <string name="apps_filter_userapps_label">Kullanıcı Uygulamaları</string>
     <string name="apps_filter_systemapps_label">Sistem Uygulamaları</string>
     <string name="apps_filter_nointernet_label">İnternet erişimi olmayan uygulamalar</string>
     <string name="apps_filter_sideloaded_label">Yan yüklenen uygulamalar</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM Mağaza</string>
-
     <string name="apps_sort_permissions_granted_label">Verilen izinler</string>
     <string name="apps_sort_permissions_requested_label">Talep edilen izinler</string>
     <string name="apps_sort_permissions_declared_label">Bildirilen izinler</string>
     <string name="apps_sort_app_name_label">Uygulama adı</string>
     <string name="apps_sort_install_date_label">Kurulum tarihi</string>
     <string name="apps_sort_update_date_label">Son güncelleme</string>
-
     <string name="general_sort_action">Sırala</string>
     <string name="apps_permissions_x_of_x_granted">%2$d\'den %1$d tanesi verildi.</string>
     <string name="apps_permissions_x_requested">%1$d izin talep edildi.</string>
     <string name="apps_permissions_declares_x">%1$d izin bildiriyor.</string>
     <string name="apps_details_installer_label">Kurulum kaynağı</string>
     <string name="apps_details_installer_unknown_label">Bilgi mevcut değil</string>
-
     <string name="permissions_filter_manifest_label">AOSP izinleri</string>
     <string name="permissions_filter_system_label">Sistem uygulaması tarafından bildirildi</string>
     <string name="permissions_filter_user_label">Kullanıcı uygulaması tarafından bildirildi</string>
-
     <string name="permissions_filter_runtime_label">Çalışma zamanında talep edildi</string>
     <string name="permissions_filter_special_label">Özel kullanım</string>
     <string name="permissions_filter_installtime_label">Otomatik olarak verildi</string>
     <string name="permissions_filter_installtime_hide_label">Otomatik olarak verilmedi</string>
-
+    <string name="filter_granted_label">Verilen</string>
+    <string name="filter_denied_label">Reddedilen</string>
+    <string name="filter_configurable_label">Yapılandırılabilir</string>
     <string name="permissions_sort_apps_granted_label"># uygulama verildi</string>
     <string name="permissions_sort_apps_requested_label"># uygulama talep edildi</string>
     <string name="permissions_search_list_hint">İzinleri ara</string>
     <string name="apps_search_list_hint">Uygulamaları ara</string>
     <string name="permissions_details_protection_label">Koruma seviyesi</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Tehlikeli</string>
     <string name="permissions_protection_type_signature_label">İmza</string>
     <string name="permissions_protection_type_signatureorsystem_label">İmza veya sistem</string>
     <string name="permissions_protection_type_internal_label">Dahili</string>
     <string name="permissions_protection_type_unknown_label">Bilinmiyor</string>
-
     <string name="permissions_permission_details_label">İzin detayları</string>
     <string name="generic_loading_label_0">Yakında™</string>
     <string name="generic_loading_label_1">Tereyağını geçiriyor</string>
@@ -111,14 +93,11 @@
     <string name="apps_app_details_label">Uygulama Detayları</string>
     <string name="apps_details_shareduserid_label">Paylaşılan Kullanıcı ID\'li Uygulamalar</string>
     <string name="apps_details_siblings_label">Kardeşler</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android Sistemi</string>
     <string name="general_refresh_action">Yenile</string>
+    <string name="general_expand_all_action">Tümünü genişlet</string>
+    <string name="general_collapse_all_action">Tümünü daralt</string>
+    <string name="general_more_options_action">Daha fazla seçenek</string>
     <string name="apps_details_twins_label">Klonlar</string>
     <string name="apps_details_twins_descriptions">Diğer kullanıcı profillerinde yüklü.</string>
     <string name="install_date_label">Kurulum tarihi</string>
@@ -137,6 +116,7 @@
     <string name="apps_details_description_uninstalled_caveat">Bu uygulama kaldırıldı ancak verileri saklandı. Kaldırılmış uygulamaların izin durumları belirlenemiyor.</string>
     <string name="apps_details_description_secondary_description">"%d izin talep edildi."</string>
     <string name="apps_details_description_primary_description">"%2$d izinden %1$d tanesi verildi."</string>
+    <string name="apps_details_empty_filter_message">Mevcut filtrelere uyan izin yok. Ayarlamak için filtre simgesine dokunun.</string>
     <string name="api_target_level_x">Hedef sürüm: %s</string>
     <string name="api_minimum_level_x">Minimum sürüm: %s</string>
     <string name="api_build_level_x">Derleme sürümü: %s</string>
@@ -165,10 +145,10 @@
         <item quantity="one">%d sistem uygulaması</item>
         <item quantity="other">%d sistem uygulaması</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Kullanıcı Uygulamaları: %2$d\'den %1$d\'ine verildi."</string>
-    <string name="permissions_details_count_system_apps">"Sistem Uygulamaları: %2$d\'den %1$d\'ine verildi."</string>
+    <string name="permissions_details_count_user_apps">"Kullanıcı Uygulamaları: %2$d'den %1$d'ine verildi."</string>
+    <string name="permissions_details_count_system_apps">"Sistem Uygulamaları: %2$d'den %1$d'ine verildi."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Diğer kullanıcı profillerinde yüklü uygulamalar Android kısıtlamaları nedeniyle yukarıdaki hesaplamadan çıkarılmıştır.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Mevcut filtrelere uyan uygulama yok. Ayarlamak için filtre simgesine dokunun.</string>
     <string name="permission_nfc_description">Uygulamaların Yakın Alan İletişimi (NFC) etiketleri, kartları ve okuyucularıyla iletişim kurmasına izin verir.</string>
     <string name="permission_manage_media_label">Medyayı Yönet</string>
     <string name="permission_manage_media_description">Uygulamaların diğer uygulamalarla oluşturulan medya dosyalarını size SORMADAN değiştirmesine veya silmesine izin verir. Uygulamaların dosya ve medyaya erişim izni olmalıdır.</string>
@@ -214,6 +194,14 @@
     <string name="permission_do_not_disturb_permission_description">Uygulamaların Rahatsız Etme (DND) modunu açıp kapatmasına ve ilgili ayarları değiştirmesine izin verir.</string>
     <string name="permission_alarms_and_reminders_label">Alarmlar ve Hatırlatıcılar</string>
     <string name="permission_alarms_and_reminders_description">Uygulamaların alarm kurmasına ve zamana duyarlı eylemleri zamanlamasına izin verir. Bu, uygulamaların arka planda çalışmasına izin verir, bu da daha fazla pil kullanabilir. Bir uygulama için bu izni kapatmak, o belirli uygulama tarafından zamanlanan mevcut alarmların ve zaman tabanlı olayların çalışmayı durdurmasına neden olur.</string>
+    <string name="permission_turn_screen_on_label">Ekranı Aç</string>
+    <string name="permission_turn_screen_on_description">Uygulamaların alarmlar veya gelen aramalar gibi dikkatinize ihtiyaç duyduklarında cihaz ekranını açmasına izin verir.</string>
+    <string name="permission_full_screen_intent_label">Tam Ekran Bildirimler</string>
+    <string name="permission_full_screen_intent_description">Uygulamaların, cihaz kilitliyken veya kullanımdayken ekranınızı kaplayan tam ekran bildirimler göstermesine izin verir. Genellikle alarmlar, aramalar ve diğer zamana duyarlı olaylar için kullanılır.</string>
+    <string name="permission_interact_across_profiles_label">Bağlı İş ve Kişisel Uygulamalar</string>
+    <string name="permission_interact_across_profiles_description">Uygulamaların iş ve kişisel profilleriniz arasında iletişim kurmasına, profil sınırları arasında veri ve işlevsellik paylaşmasına izin verir.</string>
+    <string name="permission_loader_usage_stats_label">Yükleyici Kullanım İstatistikleri</string>
+    <string name="permission_loader_usage_stats_description">Uygulamaların cihazdaki veri yükleyici kullanımı hakkında istatistik toplamasına izin verir.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Erişimi</string>
     <string name="permission_premium_sms_services_description">Uygulamaların premium metin mesajı hizmetlerini kullanmasına izin verir. Bu size para mal olacaktır.</string>
     <string name="permission_unlimited_data_access_label">Sınırsız Veri Erişimi</string>
@@ -263,21 +251,4 @@
     <string name="onboarding_body1">Bu uygulama, yüklü uygulamalarda gezinmenize ve izinleri keşfetmenize yardımcı olur.</string>
     <string name="onboarding_body2">Permission Pilot, bu uygulamayı kullanırken uygulamalarınızı listelemek ve izinlerini çapraz referanslamak için Yüklü Uygulama bilgilerini toplar.</string>
     <string name="onboarding_body3">Permission Pilot\'ta reklam yoktur ve verileri yalnızca yerel olarak işler.</string>
-
-    <string name="apps_details_empty_filter_message">Mevcut filtrelere uyan izin yok. Ayarlamak için filtre simgesine dokunun.</string>
-    <string name="filter_configurable_label">Yapılandırılabilir</string>
-    <string name="filter_denied_label">Reddedilen</string>
-    <string name="filter_granted_label">Verilen</string>
-    <string name="general_collapse_all_action">Tümünü daralt</string>
-    <string name="general_expand_all_action">Tümünü genişlet</string>
-    <string name="general_more_options_action">Daha fazla seçenek</string>
-    <string name="permission_full_screen_intent_description">Uygulamaların, cihaz kilitliyken veya kullanımdayken ekranınızı kaplayan tam ekran bildirimler göstermesine izin verir. Genellikle alarmlar, aramalar ve diğer zamana duyarlı olaylar için kullanılır.</string>
-    <string name="permission_full_screen_intent_label">Tam Ekran Bildirimler</string>
-    <string name="permission_interact_across_profiles_description">Uygulamaların iş ve kişisel profilleriniz arasında iletişim kurmasına, profil sınırları arasında veri ve işlevsellik paylaşmasına izin verir.</string>
-    <string name="permission_interact_across_profiles_label">Bağlı İş ve Kişisel Uygulamalar</string>
-    <string name="permission_loader_usage_stats_description">Uygulamaların cihazdaki veri yükleyici kullanımı hakkında istatistik toplamasına izin verir.</string>
-    <string name="permission_loader_usage_stats_label">Yükleyici Kullanım İstatistikleri</string>
-    <string name="permissions_details_empty_filter_message">Mevcut filtrelere uyan uygulama yok. Ayarlamak için filtre simgesine dokunun.</string>
-    <string name="permission_turn_screen_on_description">Uygulamaların alarmlar veya gelen aramalar gibi dikkatinize ihtiyaç duyduklarında cihaz ekranını açmasına izin verir.</string>
-    <string name="permission_turn_screen_on_label">Ekranı Aç</string>
 </resources>

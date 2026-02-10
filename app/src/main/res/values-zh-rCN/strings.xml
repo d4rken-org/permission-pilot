@@ -1,11 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
     <string name="app_name_pro">Permission Pilot 专业版</string>
     <string name="label_settings">设置</string>
     <string name="label_help">帮助</string>
-
     <string name="general_error_label">错误</string>
-
     <string name="general_share_action">分享</string>
     <string name="general_done_action">完成</string>
     <string name="general_copy_action">复制</string>
@@ -14,79 +12,67 @@
     <string name="general_open_action">打开</string>
     <string name="general_continue_action">继续</string>
     <string name="general_accept_action">接受</string>
-
     <string name="upgrade_myperm_label">升级Permission Pilot</string>
     <string name="upgrade_myperm_description">您喜欢这款应用没有广告，也不会收集您的数据吗？\n请购买专业版以表达您的支持！</string>
     <string name="upgrade_buy_pro_action">购买专业版</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">捐赠</string>
-
     <string name="debug_debuglog_size_label">大小</string>
     <string name="debug_debuglog_size_compressed_label">压缩大小</string>
     <string name="debug_notification_channel_label">调试通知</string>
     <string name="debug_debuglog_file_label">记录的日志文件</string>
     <string name="debug_debuglog_record_action">记录调试日志</string>
-
     <string name="settings_category_other_label">其他</string>
-
     <string name="general_settings_label">常规</string>
     <string name="general_settings_desc">影响整个应用的常规调整。</string>
-
     <string name="changelog_label">更新日志</string>
     <string name="settings_acknowledgements_label">鸣谢</string>
     <string name="general_thank_you_label">感谢你</string>
     <string name="settings_licenses_label">许可协议</string>
     <string name="settings_privacy_policy_label">隐私政策</string>
     <string name="settings_privacy_policy_desc">负责处理数据。</string>
-
     <string name="settings_support_label">支持</string>
     <string name="documentation_label">文档</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">一个交流和提问的地方。</string>
     <string name="issue_tracker_label">问题追踪器</string>
     <string name="issue_tracker_description">公开的问题追踪器，用于报告错误和提出功能请求。</string>
     <string name="permissions_page_label">权限</string>
     <string name="apps_page_label">应用</string>
     <string name="app_type_system_label">系统应用</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">未知权限。该应用请求该权限，但没有其他应用声明它。</string>
     <string name="permissions_unknown_description">未知权限。应用请求该权限，但没有在任何地方声明。</string>
     <string name="permissions_app_type_declaring_description">该应用创建了该权限。</string>
     <string name="permissions_app_type_requesting_description">应用请求了该权限。</string>
-
     <string name="general_filter_action">筛选</string>
     <string name="general_cancel_action">取消</string>
-
     <string name="apps_filter_userapps_label">用户应用</string>
     <string name="apps_filter_systemapps_label">系统应用</string>
     <string name="apps_filter_nointernet_label">无网络访问的应用</string>
     <string name="apps_filter_sideloaded_label">侧载应用</string>
     <string name="apps_filter_gplay_label">Google Play 商店</string>
     <string name="apps_filter_oemstore_label">OEM 商店</string>
-
     <string name="apps_sort_permissions_granted_label">已授予权限</string>
     <string name="apps_sort_permissions_requested_label">请求的权限</string>
     <string name="apps_sort_permissions_declared_label">声明的权限</string>
     <string name="apps_sort_app_name_label">应用名称</string>
     <string name="apps_sort_install_date_label">安装日期</string>
     <string name="apps_sort_update_date_label">上次更新</string>
-
     <string name="general_sort_action">排序</string>
     <string name="apps_permissions_x_of_x_granted">%2$d 个权限中已授予 %1$d 个。</string>
     <string name="apps_permissions_x_requested">请求了 %1$d 个权限。</string>
     <string name="apps_permissions_declares_x">声明了 %1$d 个权限。</string>
     <string name="apps_details_installer_label">安装来源</string>
     <string name="apps_details_installer_unknown_label">缺少信息</string>
-
     <string name="permissions_filter_manifest_label">AOSP 权限</string>
     <string name="permissions_filter_system_label">由系统应用声明</string>
     <string name="permissions_filter_user_label">由用户应用声明</string>
-
     <string name="permissions_filter_runtime_label">运行时请求</string>
     <string name="permissions_filter_special_label">特殊用途</string>
     <string name="permissions_filter_installtime_label">自动授予</string>
     <string name="permissions_filter_installtime_hide_label">非自动授予</string>
-
+    <string name="filter_granted_label">已授予</string>
+    <string name="filter_denied_label">已拒绝</string>
+    <string name="filter_configurable_label">可配置</string>
     <string name="permissions_sort_apps_granted_label"># 已授予的应用数</string>
     <string name="permissions_sort_apps_requested_label"># 请求的应用数</string>
     <string name="permissions_search_list_hint">搜索权限</string>
@@ -118,6 +104,9 @@
     <string name="apps_known_installer_xiaomi_label">小米 GetApps</string>
     <string name="apps_known_android_system_label">Android 系统</string>
     <string name="general_refresh_action">刷新</string>
+    <string name="general_expand_all_action">全部展开</string>
+    <string name="general_collapse_all_action">全部折叠</string>
+    <string name="general_more_options_action">更多选项</string>
     <string name="apps_details_twins_label">克隆应用</string>
     <string name="apps_details_twins_descriptions">在其他用户配置文件中安装。</string>
     <string name="install_date_label">安装日期</string>
@@ -136,6 +125,7 @@
     <string name="apps_details_description_uninstalled_caveat">此应用已卸载，但其数据仍被保留。已卸载的应用无法确定其权限状态。</string>
     <string name="apps_details_description_secondary_description">"%d 项权限已请求。"</string>
     <string name="apps_details_description_primary_description">"%2$d 个权限中已授予 %1$d 个。"</string>
+    <string name="apps_details_empty_filter_message">没有权限符合当前筛选条件。点击筛选图标进行调整。</string>
     <string name="api_target_level_x">目标版本：%s</string>
     <string name="api_minimum_level_x">最低版本：%s</string>
     <string name="api_build_level_x">编译版本：%s</string>
@@ -145,29 +135,24 @@
     <string name="apps_filter_profile_active_label">活动配置文件中的应用</string>
     <string name="overview_page_label">概览</string>
     <plurals name="generic_x_items_label">
-        <item quantity="one">%s 个</item>
         <item quantity="other">%s 个</item>
     </plurals>
     <plurals name="generic_x_groups_label">
-        <item quantity="one">%s 组</item>
         <item quantity="other">%s 组</item>
     </plurals>
     <plurals name="generic_x_apps_label">
-        <item quantity="one">%d 个应用</item>
         <item quantity="other">%d 个应用</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
-        <item quantity="one">%d 个用户应用</item>
         <item quantity="other">%d 个用户应用</item>
     </plurals>
     <plurals name="generic_x_apps_system_label">
-        <item quantity="one">%d 个系统应用</item>
         <item quantity="other">%d 个系统应用</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">用户应用：%2$d 个权限中已授予 %1$d 个。</string>
-    <string name="permissions_details_count_system_apps">系统应用：%2$d 个权限中已授予 %1$d 个。</string>
+    <string name="permissions_details_count_user_apps">"用户应用：%2$d 个权限中已授予 %1$d 个。"</string>
+    <string name="permissions_details_count_system_apps">"系统应用：%2$d 个权限中已授予 %1$d 个。"</string>
     <string name="permissions_details_description_restrictions_caveat_description">由于 Android 限制，上述计算不包括安装在其他用户配置文件中的应用。</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">没有应用符合当前筛选条件。点击筛选图标进行调整。</string>
     <string name="permission_nfc_description">允许应用与近场通讯（NFC）标签、卡片和读卡器通信。</string>
     <string name="permission_manage_media_label">管理媒体</string>
     <string name="permission_manage_media_description">允许应用修改或删除其他应用创建的媒体文件，而无需征求您的同意。应用必须具有访问文件和媒体的权限。</string>
@@ -213,6 +198,14 @@
     <string name="permission_do_not_disturb_permission_description">允许应用打开或关闭免打扰（DND）并更改相关设置。</string>
     <string name="permission_alarms_and_reminders_label">闹钟和提醒</string>
     <string name="permission_alarms_and_reminders_description">允许应用设置闹钟和安排与时间敏感的操作。这使应用可以在后台运行，可能会消耗更多的电池电量。对于应用来说，关闭此权限将导致由特定应用安排的现有闹钟和基于时间的事件停止工作。</string>
+    <string name="permission_turn_screen_on_label">打开屏幕</string>
+    <string name="permission_turn_screen_on_description">允许应用在需要您注意时打开设备屏幕，例如闹钟或来电。</string>
+    <string name="permission_full_screen_intent_label">全屏通知</string>
+    <string name="permission_full_screen_intent_description">允许应用显示全屏通知，在设备锁定或使用时占据您的屏幕。通常用于闹钟、来电和其他时间敏感事件。</string>
+    <string name="permission_interact_across_profiles_label">关联的工作和个人应用</string>
+    <string name="permission_interact_across_profiles_description">允许应用在您的工作和个人配置文件之间进行通信，跨配置文件边界共享数据和功能。</string>
+    <string name="permission_loader_usage_stats_label">加载器使用统计</string>
+    <string name="permission_loader_usage_stats_description">允许应用收集有关设备上数据加载器使用情况的统计信息。</string>
     <string name="permission_premium_sms_services_label">高级短信服务访问</string>
     <string name="permission_premium_sms_services_description">允许应用使用高级短信服务。这将花费您的资金。</string>
     <string name="permission_unlimited_data_access_label">无限数据访问</string>
@@ -262,20 +255,4 @@
     <string name="onboarding_body1">这款应用可以帮助您浏览已安装的应用程序并发现其权限。</string>
     <string name="onboarding_body2">Permission Pilot 收集已安装应用程序的信息，以便在使用本应用程序时列出您的应用程序并交叉引用其权限。</string>
     <string name="onboarding_body3">Permission Pilot 不含广告，仅在本地处理数据。</string>
-    <string name="apps_details_empty_filter_message">没有权限符合当前筛选条件。点击筛选图标进行调整。</string>
-    <string name="filter_configurable_label">可配置</string>
-    <string name="filter_denied_label">已拒绝</string>
-    <string name="filter_granted_label">已授予</string>
-    <string name="general_collapse_all_action">全部折叠</string>
-    <string name="general_expand_all_action">全部展开</string>
-    <string name="general_more_options_action">更多选项</string>
-    <string name="permission_full_screen_intent_description">允许应用显示全屏通知，在设备锁定或使用时占据您的屏幕。通常用于闹钟、来电和其他时间敏感事件。</string>
-    <string name="permission_full_screen_intent_label">全屏通知</string>
-    <string name="permission_interact_across_profiles_description">允许应用在您的工作和个人配置文件之间进行通信，跨配置文件边界共享数据和功能。</string>
-    <string name="permission_interact_across_profiles_label">关联的工作和个人应用</string>
-    <string name="permission_loader_usage_stats_description">允许应用收集有关设备上数据加载器使用情况的统计信息。</string>
-    <string name="permission_loader_usage_stats_label">加载器使用统计</string>
-    <string name="permissions_details_empty_filter_message">没有应用符合当前筛选条件。点击筛选图标进行调整。</string>
-    <string name="permission_turn_screen_on_description">允许应用在需要您注意时打开设备屏幕，例如闹钟或来电。</string>
-    <string name="permission_turn_screen_on_label">打开屏幕</string>
 </resources>

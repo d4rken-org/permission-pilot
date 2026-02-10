@@ -1,11 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Настройки</string>
     <string name="label_help">Помощ</string>
-
     <string name="general_error_label">Грешка</string>
-
     <string name="general_share_action">Споделяне</string>
     <string name="general_done_action">Готово</string>
     <string name="general_copy_action">Копиране</string>
@@ -14,79 +11,66 @@
     <string name="general_open_action">Отваряне</string>
     <string name="general_continue_action">Продължаване</string>
     <string name="general_accept_action">Приемане</string>
-
     <string name="upgrade_myperm_label">Надстройка на Permission Pilot</string>
     <string name="upgrade_myperm_description">Харесва ли ви, че това приложение няма реклами и не събира вашите данни?\nКупете про версията, за да покажете подкрепата си!</string>
     <string name="upgrade_buy_pro_action">Купи про версия</string>
     <string name="general_no_action">Не</string>
     <string name="upgrade_donate_action">Дарение</string>
-
     <string name="debug_debuglog_size_label">Размер</string>
     <string name="debug_debuglog_size_compressed_label">Компресиран размер</string>
     <string name="debug_notification_channel_label">Уведомления за отстраняване на грешки</string>
     <string name="debug_debuglog_file_label">Записан лог файл</string>
     <string name="debug_debuglog_record_action">Записване на лог за отстраняване на грешки</string>
-
     <string name="settings_category_other_label">Други</string>
-
     <string name="general_settings_label">Общи</string>
     <string name="general_settings_desc">Общи настройки, които засягат цялото приложение.</string>
-
     <string name="changelog_label">Списък на промените</string>
     <string name="settings_acknowledgements_label">Благодарности</string>
     <string name="general_thank_you_label">Благодаря ви</string>
     <string name="settings_licenses_label">Лицензи</string>
     <string name="settings_privacy_policy_label">Политика за поверителност</string>
     <string name="settings_privacy_policy_desc">Отговорно боравене с данни.</string>
-
     <string name="settings_support_label">Поддръжка</string>
     <string name="documentation_label">Документация</string>
-    <string name="discord_label">Discord</string>
     <string name="discord_description">Място за общуване и задаване на въпроси.</string>
     <string name="issue_tracker_label">Проследяване на проблеми</string>
     <string name="issue_tracker_description">Публичен проследител на проблеми за докладване на грешки и заявки за функции.</string>
     <string name="permissions_page_label">Разрешения</string>
     <string name="apps_page_label">Приложения</string>
     <string name="app_type_system_label">Системно приложение</string>
-    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Неизвестно разрешение. То се изисква от това приложение, но никое друго приложение не го декларира.</string>
     <string name="permissions_unknown_description">Неизвестно разрешение. То се изисква от приложения, но не е декларирано никъде.</string>
     <string name="permissions_app_type_declaring_description">Разрешението е създадено от това приложение.</string>
     <string name="permissions_app_type_requesting_description">Приложението изисква разрешението.</string>
-
     <string name="general_filter_action">Филтриране</string>
     <string name="general_cancel_action">Отказ</string>
-
     <string name="apps_filter_userapps_label">Потребителски приложения</string>
     <string name="apps_filter_systemapps_label">Системни приложения</string>
     <string name="apps_filter_nointernet_label">Приложения без интернет достъп</string>
     <string name="apps_filter_sideloaded_label">Странично инсталирани приложения</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM магазин</string>
-
     <string name="apps_sort_permissions_granted_label">Предоставени разрешения</string>
     <string name="apps_sort_permissions_requested_label">Заявени разрешения</string>
     <string name="apps_sort_permissions_declared_label">Декларирани разрешения</string>
     <string name="apps_sort_app_name_label">Име на приложението</string>
     <string name="apps_sort_install_date_label">Дата на инсталиране</string>
     <string name="apps_sort_update_date_label">Последна актуализация</string>
-
     <string name="general_sort_action">Сортиране</string>
     <string name="apps_permissions_x_of_x_granted">%1$d от %2$d предоставени.</string>
     <string name="apps_permissions_x_requested">%1$d заявени разрешения.</string>
     <string name="apps_permissions_declares_x">Декларира %1$d разрешения.</string>
     <string name="apps_details_installer_label">Източник на инсталация</string>
     <string name="apps_details_installer_unknown_label">Информацията не е налична</string>
-
     <string name="permissions_filter_manifest_label">AOSP разрешения</string>
     <string name="permissions_filter_system_label">Декларирани от системно приложение</string>
     <string name="permissions_filter_user_label">Декларирани от потребителско приложение</string>
-
     <string name="permissions_filter_runtime_label">Заявени по време на изпълнение</string>
     <string name="permissions_filter_special_label">Специална употреба</string>
     <string name="permissions_filter_installtime_label">Предоставени автоматично</string>
     <string name="permissions_filter_installtime_hide_label">Не са предоставени автоматично</string>
-
+    <string name="filter_granted_label">Предоставени</string>
+    <string name="filter_denied_label">Отказани</string>
+    <string name="filter_configurable_label">Конфигурируеми</string>
     <string name="permissions_sort_apps_granted_label"># приложения с предоставени</string>
     <string name="permissions_sort_apps_requested_label"># приложения със заявени</string>
     <string name="permissions_search_list_hint">Търсене на разрешения</string>
@@ -98,7 +82,6 @@
     <string name="permissions_protection_type_signatureorsystem_label">Подпис или система</string>
     <string name="permissions_protection_type_internal_label">Вътрешно</string>
     <string name="permissions_protection_type_unknown_label">Неизвестно</string>
-
     <string name="permissions_permission_details_label">Детайли за разрешението</string>
     <string name="generic_loading_label_0">Скоро™</string>
     <string name="generic_loading_label_1">Подаване на маслото</string>
@@ -111,14 +94,11 @@
     <string name="apps_app_details_label">Детайли за приложението</string>
     <string name="apps_details_shareduserid_label">Приложения със споделен потребителски идентификатор</string>
     <string name="apps_details_siblings_label">Братя и сестри</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android система</string>
     <string name="general_refresh_action">Обновяване</string>
+    <string name="general_expand_all_action">Разгъване на всички</string>
+    <string name="general_collapse_all_action">Свиване на всички</string>
+    <string name="general_more_options_action">Още опции</string>
     <string name="apps_details_twins_label">Клонове</string>
     <string name="apps_details_twins_descriptions">Инсталирани в други потребителски профили.</string>
     <string name="install_date_label">Дата на инсталиране</string>
@@ -137,6 +117,7 @@
     <string name="apps_details_description_uninstalled_caveat">Това приложение е деинсталирано, но данните му са запазени. Състоянието на разрешенията не може да бъде определено за деинсталирани приложения.</string>
     <string name="apps_details_description_secondary_description">"%d заявени разрешения."</string>
     <string name="apps_details_description_primary_description">"%1$d от %2$d предоставени разрешения."</string>
+    <string name="apps_details_empty_filter_message">Няма разрешения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
     <string name="api_target_level_x">Целева версия: %s</string>
     <string name="api_minimum_level_x">Минимална версия: %s</string>
     <string name="api_build_level_x">Версия на компилиране: %s</string>
@@ -168,7 +149,7 @@
     <string name="permissions_details_count_user_apps">"Потребителски приложения: Предоставено на %1$d от %2$d."</string>
     <string name="permissions_details_count_system_apps">"Системни приложения: Предоставено на %1$d от %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, инсталирани в други потребителски профили, са изключени от изчислението по-горе поради ограничения на Android.</string>
-    <string name="permission_nfc_label">NFC</string>
+    <string name="permissions_details_empty_filter_message">Няма приложения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
     <string name="permission_nfc_description">Позволява на приложенията да комуникират с Near Field Communication (NFC) етикети, карти и четци.</string>
     <string name="permission_manage_media_label">Управление на медия</string>
     <string name="permission_manage_media_description">Позволява на приложенията да модифицират или изтриват медийни файлове, създадени с други приложения, БЕЗ да ви питат. Приложенията трябва да имат разрешение за достъп до файлове и медия.</string>
@@ -209,11 +190,19 @@
     <string name="permission_ignore_battery_optimizations_label">Игнориране на оптимизации на батерията</string>
     <string name="permission_ignore_battery_optimizations_description">Позволява на приложенията да работят безпрепятствено във фонов режим. Това може да изразходва батерията. Препоръчва се само за приложения, които извършват непрекъснати/чести резервни копия и/или синхронизации (например Google Photos), много често използвани приложения (например имейл, чат, SMS и др.), както и за приложения, които имат постоянно уведомление.</string>
     <string name="permission_notification_access_label">Достъп до уведомления</string>
-    <string name="permission_notification_access_description">Позволява на приложенията да четат всички ваши уведомления, включително лична информация (като имена на контакти и текст на съобщения, които получавате), да отлагат или отхвърлят уведомления или да задействат бутони за действие, които съдържат (като отговаряне на телефонни обаждания, изтриване на SMS/имейл и др.) и да включват или изключват режим "Не безпокойте" (DND) и да променят свързаните настройки.</string>
-    <string name="permission_do_not_disturb_permission_label">Разрешение за режим "Не безпокойте" (DND)</string>
-    <string name="permission_do_not_disturb_permission_description">Позволява на приложенията да включват или изключват режим "Не безпокойте" (DND) и да променят свързаните настройки.</string>
+    <string name="permission_notification_access_description">Позволява на приложенията да четат всички ваши уведомления, включително лична информация (като имена на контакти и текст на съобщения, които получавате), да отлагат или отхвърлят уведомления или да задействат бутони за действие, които съдържат (като отговаряне на телефонни обаждания, изтриване на SMS/имейл и др.) и да включват или изключват режим \"Не безпокойте\" (DND) и да променят свързаните настройки.</string>
+    <string name="permission_do_not_disturb_permission_label">Разрешение за режим \"Не безпокойте\" (DND)</string>
+    <string name="permission_do_not_disturb_permission_description">Позволява на приложенията да включват или изключват режим \"Не безпокойте\" (DND) и да променят свързаните настройки.</string>
     <string name="permission_alarms_and_reminders_label">Аларми и напомняния</string>
     <string name="permission_alarms_and_reminders_description">Позволява на приложенията да настройват аларми и да планират времево-чувствителни действия. Това позволява на приложенията да работят във фонов режим, което може да използва повече батерия. Изключването на това разрешение за приложение ще доведе до спиране на съществуващите аларми и времево-базирани събития, планирани от това конкретно приложение.</string>
+    <string name="permission_turn_screen_on_label">Включване на екрана</string>
+    <string name="permission_turn_screen_on_description">Позволява на приложенията да включват екрана на устройството, когато се нуждаят от вашето внимание, например за аларми или входящи обаждания.</string>
+    <string name="permission_full_screen_intent_label">Уведомления на цял екран</string>
+    <string name="permission_full_screen_intent_description">Позволява на приложенията да показват уведомления на цял екран, които заемат екрана, когато устройството е заключено или се използва. Често се използва за аларми, обаждания и други времево-чувствителни събития.</string>
+    <string name="permission_interact_across_profiles_label">Свързани работни и лични приложения</string>
+    <string name="permission_interact_across_profiles_description">Позволява на приложенията да комуникират между вашите работни и лични профили, споделяйки данни и функционалност между границите на профилите.</string>
+    <string name="permission_loader_usage_stats_label">Статистика за използване на зареждач</string>
+    <string name="permission_loader_usage_stats_description">Позволява на приложенията да събират статистика за използването на зареждащи данни на устройството.</string>
     <string name="permission_premium_sms_services_label">Достъп до премиум SMS</string>
     <string name="permission_premium_sms_services_description">Позволява на приложенията да използват премиум услуги за текстови съобщения. Това ще ви струва пари.</string>
     <string name="permission_unlimited_data_access_label">Неограничен достъп до данни</string>
@@ -251,9 +240,9 @@
     <string name="overview_summary_apps_active_profile_label">Приложения в активен профил</string>
     <string name="overview_summary_apps_other_profile_label">Приложения в управлявани потребителски профили, изключвайки клонове</string>
     <string name="overview_summary_apps_sideloaded_label">Приложения, странично заредени от външни източници</string>
-    <string name="overview_summary_apps_installers_label">Приложения с разрешено "Инсталиране от неизвестни izvori"</string>
-    <string name="overview_summary_apps_overlayers_label">Приложения, които могат да се "Появяват отгоре"</string>
-    <string name="overview_summary_apps_offline_label">Приложения, които имат разрешения "Без интернет"</string>
+    <string name="overview_summary_apps_installers_label">Приложения с разрешено \"Инсталиране от неизвестни izvori\"</string>
+    <string name="overview_summary_apps_overlayers_label">Приложения, които могат да се \"Появяват отгоре\"</string>
+    <string name="overview_summary_apps_offline_label">Приложения, които имат разрешения \"Без интернет\"</string>
     <string name="overview_summary_apps_clones_label">Приложения с клонове в други профили</string>
     <string name="overview_summary_apps_sharedids_label">Приложения със SharedUserID</string>
     <string name="permission_bind_accessibility_service_label">Предлагане на услуга за достъпност</string>
@@ -263,21 +252,4 @@
     <string name="onboarding_body1">Това приложение ви помага да навигирате в инсталираните приложения и да откриете разрешения.</string>
     <string name="onboarding_body2">Permission Pilot събира информация за инсталирани приложения, за да позволи изброяването на вашите приложения и кръстосано препращане на техните разрешения при използване на това приложение.</string>
     <string name="onboarding_body3">Permission Pilot няма реклами и обработва данните само локално.</string>
-
-    <string name="apps_details_empty_filter_message">Няма разрешения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
-    <string name="filter_configurable_label">Конфигурируеми</string>
-    <string name="filter_denied_label">Отказани</string>
-    <string name="filter_granted_label">Предоставени</string>
-    <string name="general_collapse_all_action">Свиване на всички</string>
-    <string name="general_expand_all_action">Разгъване на всички</string>
-    <string name="general_more_options_action">Още опции</string>
-    <string name="permission_full_screen_intent_description">Позволява на приложенията да показват уведомления на цял екран, които заемат екрана, когато устройството е заключено или се използва. Често се използва за аларми, обаждания и други времево-чувствителни събития.</string>
-    <string name="permission_full_screen_intent_label">Уведомления на цял екран</string>
-    <string name="permission_interact_across_profiles_description">Позволява на приложенията да комуникират между вашите работни и лични профили, споделяйки данни и функционалност между границите на профилите.</string>
-    <string name="permission_interact_across_profiles_label">Свързани работни и лични приложения</string>
-    <string name="permission_loader_usage_stats_description">Позволява на приложенията да събират статистика за използването на зареждащи данни на устройството.</string>
-    <string name="permission_loader_usage_stats_label">Статистика за използване на зареждач</string>
-    <string name="permissions_details_empty_filter_message">Няма приложения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
-    <string name="permission_turn_screen_on_description">Позволява на приложенията да включват екрана на устройството, когато се нуждаят от вашето внимание, например за аларми или входящи обаждания.</string>
-    <string name="permission_turn_screen_on_label">Включване на екрана</string>
 </resources>
