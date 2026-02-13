@@ -16,8 +16,8 @@
     <string name="general_accept_action">Accept</string>
 
     <string name="upgrade_myperm_label">Upgrade Permission Pilot</string>
-    <string name="upgrade_myperm_description">Do you like that this app has no ads and doesn\'t collect your data?\nBuy the pro version to show your support!</string>
-    <string name="upgrade_buy_pro_action">Buy pro version</string>
+    <string name="upgrade_myperm_description">Do you like that this app has no ads and doesn\'t collect your data?\nBuy the Pro version to show your support!</string>
+    <string name="upgrade_buy_pro_action">Buy Pro version</string>
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Donate</string>
 
