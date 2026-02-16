@@ -34,12 +34,14 @@
     <string name="settings_privacy_policy_desc">ውሂብን በተጠቃሚነት ያስተዳድሩ፡፡</string>
     <string name="settings_support_label">ድጋፍ</string>
     <string name="documentation_label">ሰነዶች</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">ለመማርና ለጥያቄዎች ቦታ፡፡</string>
     <string name="issue_tracker_label">ፍለጋ ችግር</string>
     <string name="issue_tracker_description">በተለፎን ግልፅ የተቀመጠ የችግር ተከታታይ፡፡</string>
     <string name="permissions_page_label">ፍቃዶች</string>
     <string name="apps_page_label">መተግበሪያዎች</string>
     <string name="app_type_system_label">የስርዓት መተግበሪያ</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">ያልታወቀ ፍቃድ። በዚህ መተግበሪያ ይጠየቃል ነገር ግን ሌላ መተግበሪያ አይገልጽም።</string>
     <string name="permissions_unknown_description">ያልታወቀ ፍቃድ። መተግበሪያዎች ይጠይቁበት ነገር ግን አይገልጽም።</string>
     <string name="permissions_app_type_declaring_description">ይህ መተግበሪያ የፈቃድ ፍጠራ ነው።</string>
@@ -98,7 +100,11 @@
     <string name="apps_details_shareduserid_label">ከጋራ የተጠቃሚ መለያ ያላቸው መተግበሪያዎች</string>
     <string name="apps_details_siblings_label">እህቶች</string>
     <string name="apps_known_installer_gplay_label">Google Play መደብር</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
     <string name="apps_known_installer_oppo_label">Oppo መተግበሪያ ገበያ</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">አንድሮይድ ስርዓት</string>
     <string name="general_refresh_action">ዳግም አዘምን</string>
     <string name="general_expand_all_action">ሁሉንም አስፋ</string>
@@ -155,6 +161,7 @@
     <string name="permissions_details_count_system_apps">"የስርዓት መተግበሪያዎች፦ %1$d ከ%2$d ተፈቅዷል።"</string>
     <string name="permissions_details_description_restrictions_caveat_description">በሌሎች እንቅስቃሴ ላይ የተጫኑ መተግበሪያዎች ስለ Android ውስስነት ከመተግበሪያ ግልጽ ማስታወቂያ ተገናኝተዋል።</string>
     <string name="permissions_details_empty_filter_message">ከወቅታዊ ማጣሪያዎች ጋር የሚዛመዱ መተግበሪያዎች የሉም። ለማስተካከል የማጣሪያ አዶውን ይጫኑ።</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">ለመተግበሪያዎች ከNear Field Communication (NFC) ከእቃዎች፣ ካርዶችና እንደ Reader ጋር ይገናኛሉ።</string>
     <string name="permission_manage_media_label">ሚዲያ አስተዳደር</string>
     <string name="permission_manage_media_description">ሌሎች መተግበሪያዎች የፈጠሩ ሚዲያ በመቀየርም ማጥፋትም ይችላሉ ሆኖም ፈቃድ ሊያገኙ ይገባል።</string>

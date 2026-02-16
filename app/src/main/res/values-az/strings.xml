@@ -34,12 +34,14 @@
     <string name="settings_privacy_policy_desc">Məlumatları məsuliyyətlə idarə etmək.</string>
     <string name="settings_support_label">Dəstək</string>
     <string name="documentation_label">Sənədlər</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Bir yerdir ki, suallar verə bilərsiniz.</string>
     <string name="issue_tracker_label">İş izləyici</string>
     <string name="issue_tracker_description">Xətalar və xüsusiyyət sorğuları üçün ictimai iş izləyici.</string>
     <string name="permissions_page_label">İcazələr</string>
     <string name="apps_page_label">Tətbiqlər</string>
     <string name="app_type_system_label">Sistem Tətbiqi</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Naməlum icazədir. Bu tətbiq tərəfindən tələb olunur, lakin heç bir başqa tətbiq onu elan etmir.</string>
     <string name="permissions_unknown_description">Naməlum icazədir. Tətbiqlər onu tələb edir, lakin heç yerdə elan olunmur.</string>
     <string name="permissions_app_type_declaring_description">Bu icazə bu tətbiq tərəfindən yaradılıb.</string>
@@ -79,6 +81,7 @@
     <string name="permissions_search_list_hint">İcazələri axtarın</string>
     <string name="apps_search_list_hint">Tətbiqləri axtarın</string>
     <string name="permissions_details_protection_label">Mühafizə səviyyəsi</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Təhlükəli</string>
     <string name="permissions_protection_type_signature_label">İmza</string>
     <string name="permissions_protection_type_signatureorsystem_label">İmza və ya sistem</string>
@@ -98,7 +101,10 @@
     <string name="apps_details_siblings_label">Qardaş</string>
     <string name="apps_known_installer_gplay_label">Google Play Mağazası</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppMarket</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Mağazası</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android Sistemi</string>
     <string name="general_refresh_action">Yenilə</string>
     <string name="general_expand_all_action">Hamısını genişlət</string>
@@ -155,6 +161,7 @@
     <string name="permissions_details_count_system_apps">"Sistem tətbiqləri: %1$d-də %2$d verilmiştir."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Android məhdudiyyətləri səbəbindən quraşdırıldığı üçün yuxarıda göstərilən məlumatlar bəzi istifadəçi profillərindən kənardakı tətbiqləri nəzərə almır.</string>
     <string name="permissions_details_empty_filter_message">Cari filtrlərə uyğun tətbiq yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Tətbiqlərə Near Field Communication (NFC) etiketləri, kartları və oxuyucularla əlaqə saxlamağa icazə verir.</string>
     <string name="permission_manage_media_label">Mediya İdarəetmə</string>
     <string name="permission_manage_media_description">Tətbiqlərə digər tətbiqlərin yaratdığı media fayllarını dəyişdirməyə və ya silməyə icazə verir, bu barədə sizə xəbərdarlıq etməz. Tətbiq fayllara və mediyaya girişi olan icazəyə malik olmalıdır.</string>
