@@ -32,12 +32,14 @@
     <string name="settings_privacy_policy_desc">Zodpovedné spracovanie údajov.</string>
     <string name="settings_support_label">Podpora</string>
     <string name="documentation_label">Dokumentácia</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Miesto na rozhovory a kladenie otázok.</string>
     <string name="issue_tracker_label">Sledovanie problémov</string>
     <string name="issue_tracker_description">Verejný sledovač problémov pre hlásenia chýb a požiadavky na funkcie.</string>
     <string name="permissions_page_label">Oprávnenia</string>
     <string name="apps_page_label">Aplikácie</string>
     <string name="app_type_system_label">Systémová aplikácia</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Neznáme oprávnenie. Táto aplikácia ho požaduje, ale žiadna iná aplikácia ho nedeklaruje.</string>
     <string name="permissions_unknown_description">Neznáme oprávnenie. Aplikácie ho požadujú, ale nie je deklarované nikde.</string>
     <string name="permissions_app_type_declaring_description">Oprávnenie je vytvorené touto aplikáciou.</string>
@@ -48,6 +50,8 @@
     <string name="apps_filter_systemapps_label">Systémové aplikácie</string>
     <string name="apps_filter_nointernet_label">Aplikácie bez prístupu k internetu</string>
     <string name="apps_filter_sideloaded_label">Bočne načítané aplikácie</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">Obchod OEM</string>
     <string name="apps_sort_permissions_granted_label">Udelené oprávnenia</string>
     <string name="apps_sort_permissions_requested_label">Požadované oprávnenia</string>
     <string name="apps_sort_permissions_declared_label">Deklarované oprávnenia</string>
@@ -93,6 +97,13 @@
     <string name="apps_app_details_label">Podrobnosti aplikácie</string>
     <string name="apps_details_shareduserid_label">Aplikácie so Shared User ID</string>
     <string name="apps_details_siblings_label">Súrodenci</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_android_system_label">Systém Android</string>
     <string name="general_refresh_action">Obnoviť</string>
     <string name="general_expand_all_action">Rozbaliť všetko</string>
     <string name="general_collapse_all_action">Zbaliť všetko</string>
@@ -158,6 +169,7 @@
     <string name="permissions_details_count_system_apps">"Systémové aplikácie: Udelené %1$d z %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikácie nainštalované v iných používateľských profiloch sú z výpočtu vyššie vylúčené kvôli obmedzeniam Androidu.</string>
     <string name="permissions_details_empty_filter_message">Žiadne aplikácie nezodpovedajú aktuálnym filtrom. Ťuknite na ikonu filtra pre úpravu.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Umožňuje aplikáciám komunikovať so značkami, kartami a čítačkami Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Správa médií</string>
     <string name="permission_manage_media_description">Umožňuje aplikáciám upravovať alebo mazať mediálne súbory vytvorené inými aplikáciami BEZ vášho pýtania. Aplikácie musia mať oprávnenie na prístup k súborom a médiám.</string>

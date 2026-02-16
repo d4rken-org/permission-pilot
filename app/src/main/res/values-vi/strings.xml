@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Cài đặt</string>
     <string name="label_help">Trợ giúp</string>
     <string name="general_error_label">Lỗi</string>
@@ -32,12 +34,14 @@
     <string name="settings_privacy_policy_desc">Xử lý dữ liệu có trách nhiệm.</string>
     <string name="settings_support_label">Hỗ trợ</string>
     <string name="documentation_label">Tài liệu</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Nơi để trò chuyện và đặt câu hỏi.</string>
     <string name="issue_tracker_label">Theo dõi vấn đề</string>
     <string name="issue_tracker_description">Công cụ theo dõi vấn đề công khai cho báo cáo lỗi và yêu cầu tính năng.</string>
     <string name="permissions_page_label">Quyền</string>
     <string name="apps_page_label">Ứng dụng</string>
     <string name="app_type_system_label">Ứng dụng hệ thống</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Quyền không xác định. Nó được yêu cầu bởi ứng dụng này, nhưng không có ứng dụng nào khác khai báo nó.</string>
     <string name="permissions_unknown_description">Quyền không xác định. Nó được yêu cầu bởi các ứng dụng, nhưng không được khai báo ở đâu cả.</string>
     <string name="permissions_app_type_declaring_description">Quyền được tạo bởi ứng dụng này.</string>
@@ -48,6 +52,7 @@
     <string name="apps_filter_systemapps_label">Ứng dụng hệ thống</string>
     <string name="apps_filter_nointernet_label">Ứng dụng không có quyền truy cập internet</string>
     <string name="apps_filter_sideloaded_label">Ứng dụng cài đặt ngoài</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Cửa hàng OEM</string>
     <string name="apps_sort_permissions_granted_label">Quyền đã cấp</string>
     <string name="apps_sort_permissions_requested_label">Quyền đã yêu cầu</string>
@@ -94,6 +99,12 @@
     <string name="apps_app_details_label">Chi tiết ứng dụng</string>
     <string name="apps_details_shareduserid_label">Ứng dụng có ID người dùng chung</string>
     <string name="apps_details_siblings_label">Anh chị em</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Hệ thống Android</string>
     <string name="general_refresh_action">Làm mới</string>
     <string name="general_expand_all_action">Mở rộng tất cả</string>
@@ -145,6 +156,7 @@
     <string name="permissions_details_count_system_apps">"Ứng dụng hệ thống: Đã cấp cho %1$d trong %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Ứng dụng được cài đặt trong các hồ sơ người dùng khác bị loại trừ khỏi tính toán trên do hạn chế của Android.</string>
     <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Cho phép ứng dụng giao tiếp với thẻ, thẻ và đầu đọc Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Quản lý phương tiện</string>
     <string name="permission_manage_media_description">Cho phép ứng dụng sửa đổi hoặc xóa tệp phương tiện được tạo bằng ứng dụng khác mà KHÔNG hỏi bạn. Ứng dụng phải có quyền truy cập vào tệp và phương tiện.</string>
@@ -224,7 +236,9 @@
     <string name="permission_group_apps_description">Quyền truy cập đặc biệt yêu cầu sự đồng ý rõ ràng của người dùng.</string>
     <string name="permission_group_battery_label">Pin</string>
     <string name="permission_group_battery_description">Quyền liên quan đến pin.</string>
+    <string name="permission_group_camera_label">Camera</string>
     <string name="permission_group_camera_description">Quyền liên quan đến camera.</string>
+    <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Quyền liên quan đến microphone.</string>
     <string name="permission_picture_in_picture_label">Hình trong hình</string>
     <string name="overview_device_android_version_label">Phiên bản Android</string>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Ayarlar</string>
     <string name="label_help">Yardım</string>
     <string name="general_error_label">Hata</string>
@@ -32,12 +34,14 @@
     <string name="settings_privacy_policy_desc">Verilerin sorumlu bir şekilde işlenmesi.</string>
     <string name="settings_support_label">Destek</string>
     <string name="documentation_label">Belgeler</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Takılacağınız ve soru sorabileceğiniz bir yer.</string>
     <string name="issue_tracker_label">Sorun takipçisi</string>
     <string name="issue_tracker_description">Hata raporları ve özellik istekleri için genel sorun takipçisi.</string>
     <string name="permissions_page_label">İzinler</string>
     <string name="apps_page_label">Uygulamalar</string>
     <string name="app_type_system_label">Sistem Uygulaması</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Bilinmeyen izin. Bu uygulama tarafından talep ediliyor ancak başka hiçbir uygulama onu bildirmiyor.</string>
     <string name="permissions_unknown_description">Bilinmeyen izin. Uygulamalar tarafından talep ediliyor ancak hiçbir yerde bildirilmiyor.</string>
     <string name="permissions_app_type_declaring_description">İzin bu uygulama tarafından oluşturuluyor.</string>
@@ -48,6 +52,7 @@
     <string name="apps_filter_systemapps_label">Sistem Uygulamaları</string>
     <string name="apps_filter_nointernet_label">İnternet erişimi olmayan uygulamalar</string>
     <string name="apps_filter_sideloaded_label">Yan yüklenen uygulamalar</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM Mağaza</string>
     <string name="apps_sort_permissions_granted_label">Verilen izinler</string>
     <string name="apps_sort_permissions_requested_label">Talep edilen izinler</string>
@@ -76,6 +81,7 @@
     <string name="permissions_search_list_hint">İzinleri ara</string>
     <string name="apps_search_list_hint">Uygulamaları ara</string>
     <string name="permissions_details_protection_label">Koruma seviyesi</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Tehlikeli</string>
     <string name="permissions_protection_type_signature_label">İmza</string>
     <string name="permissions_protection_type_signatureorsystem_label">İmza veya sistem</string>
@@ -93,6 +99,12 @@
     <string name="apps_app_details_label">Uygulama Detayları</string>
     <string name="apps_details_shareduserid_label">Paylaşılan Kullanıcı ID\'li Uygulamalar</string>
     <string name="apps_details_siblings_label">Kardeşler</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android Sistemi</string>
     <string name="general_refresh_action">Yenile</string>
     <string name="general_expand_all_action">Tümünü genişlet</string>
@@ -149,6 +161,7 @@
     <string name="permissions_details_count_system_apps">"Sistem Uygulamaları: %2$d'den %1$d'ine verildi."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Diğer kullanıcı profillerinde yüklü uygulamalar Android kısıtlamaları nedeniyle yukarıdaki hesaplamadan çıkarılmıştır.</string>
     <string name="permissions_details_empty_filter_message">Mevcut filtrelere uyan uygulama yok. Ayarlamak için filtre simgesine dokunun.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Uygulamaların Yakın Alan İletişimi (NFC) etiketleri, kartları ve okuyucularıyla iletişim kurmasına izin verir.</string>
     <string name="permission_manage_media_label">Medyayı Yönet</string>
     <string name="permission_manage_media_description">Uygulamaların diğer uygulamalarla oluşturulan medya dosyalarını size SORMADAN değiştirmesine veya silmesine izin verir. Uygulamaların dosya ve medyaya erişim izni olmalıdır.</string>

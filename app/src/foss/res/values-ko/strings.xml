@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="foss_upgrade_donate_label">기부하기</string>
+    <string name="foss_upgrade_alreadydonated_label">이미 기부했습니다</string>
+    <string name="foss_upgrade_no_money_label">배달 음식에 돈을 다 썼습니다</string>
+</resources>

@@ -242,4 +242,24 @@
     <string name="onboarding_body1">Denne app hjælper dig med at navigere installerede applikationer og opdage tilladelser.</string>
     <string name="onboarding_body2">Permission Pilot indsamler installerede applikationsoplysninger for at kunne liste dine apps og krydshenvise deres tilladelser, når du bruger denne applikation.</string>
     <string name="onboarding_body3">Permission Pilot har ingen reklamer og behandler kun data lokalt.</string>
+    <string name="apps_page_label">Apps</string>
+    <string name="permission_type_aosp_label">AOSP</string>
+    <string name="apps_filter_gplay_label">Google Play Butik</string>
+    <string name="apps_filter_oemstore_label">OEM-butik</string>
+    <string name="discord_label">Discord</string>
+    <string name="settings_support_label">Support</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
+    <string name="apps_known_installer_gplay_label">Google Play Butik</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_android_system_label">Android-system</string>
+    <string name="permission_nfc_label">NFC</string>
+    <string name="permission_group_apps_label">Apps</string>
+    <plurals name="generic_x_apps_label">
+        <item quantity="one">%d app</item>
+        <item quantity="other">%d apps</item>
+    </plurals>
 </resources>

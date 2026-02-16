@@ -32,12 +32,14 @@
     <string name="settings_privacy_policy_desc">Odgovorno rukovanje podacima.</string>
     <string name="settings_support_label">Podrška</string>
     <string name="documentation_label">Dokumentacija</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Mjesto za druženje i postavljanje pitanja.</string>
     <string name="issue_tracker_label">Praćenje problema</string>
     <string name="issue_tracker_description">Javni sustav praćenja problema za izvještaje o greškama i zahtjeve za značajke.</string>
     <string name="permissions_page_label">Dozvole</string>
     <string name="apps_page_label">Aplikacije</string>
     <string name="app_type_system_label">Sistemska aplikacija</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Nepoznata dozvola. Ova aplikacija je traži, ali je nijedna druga aplikacija ne deklarirane.</string>
     <string name="permissions_unknown_description">Nepoznata dozvola. Aplikacije je traže, ali nije deklarirana nigdje.</string>
     <string name="permissions_app_type_declaring_description">Dozvolu je stvorila ova aplikacija.</string>
@@ -48,6 +50,7 @@
     <string name="apps_filter_systemapps_label">Sistemske aplikacije</string>
     <string name="apps_filter_nointernet_label">Aplikacije bez internetskog pristupa</string>
     <string name="apps_filter_sideloaded_label">Aplikacije instalirane izvana</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM trgovina</string>
     <string name="apps_sort_permissions_granted_label">Odobrene dozvole</string>
     <string name="apps_sort_permissions_requested_label">Tražene dozvole</string>
@@ -94,6 +97,12 @@
     <string name="apps_app_details_label">Pojedinosti aplikacije</string>
     <string name="apps_details_shareduserid_label">Aplikacije s dijeljenim korisničkim ID-om</string>
     <string name="apps_details_siblings_label">Braća i sestre</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android sustav</string>
     <string name="general_refresh_action">Osvježi</string>
     <string name="general_expand_all_action">Proširi sve</string>
@@ -155,6 +164,7 @@
     <string name="permissions_details_count_system_apps">"Sistemske aplikacije: Odobreno za %1$d od %2$d."</string>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacije instalirane u drugim korisničkim profilima su isključene iz gornjeg izračuna zbog ograničenja Androida.</string>
     <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Omogućuje aplikacijama komunikaciju s Near Field Communication (NFC) oznakama, karticama i čitačima.</string>
     <string name="permission_manage_media_label">Upravljanje medijima</string>
     <string name="permission_manage_media_description">Omogućuje aplikacijama mijenjanje ili brisanje medijskih datoteka stvorenih s drugim aplikacijama BEZ pitanja. Aplikacije moraju imati dozvolu za pristup datotekama i medijima.</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
     <string name="app_name_pro">Permission Pilot 專業版</string>
     <string name="label_settings">設定</string>
     <string name="label_help">幫助</string>
@@ -33,12 +34,14 @@
     <string name="settings_privacy_policy_desc">謹慎地處理數據。</string>
     <string name="settings_support_label">支持</string>
     <string name="documentation_label">說明文件</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">一個交流和提問的地方。</string>
     <string name="issue_tracker_label">問題追蹤器</string>
     <string name="issue_tracker_description">公開的問題追蹤器，用於報告錯誤和提出功能請求。</string>
     <string name="permissions_page_label">權限</string>
     <string name="apps_page_label">應用程式</string>
     <string name="app_type_system_label">系統應用程式</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">未知權限。該應用程式請求該權限，但沒有其他應用程式聲明它。</string>
     <string name="permissions_unknown_description">未知權限。應用程式請求該權限，但沒有在任何地方聲明。</string>
     <string name="permissions_app_type_declaring_description">該應用程式建立了該權限。</string>
@@ -153,6 +156,7 @@
     <string name="permissions_details_count_system_apps">"系統應用程式：%2$d 個權限中已授予 %1$d 個。"</string>
     <string name="permissions_details_description_restrictions_caveat_description">由於 Android 限制，上述計算不包括安裝在其他使用者設定檔案中的應用程式。</string>
     <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">允許應用程式與 NFC 標簽、卡片和讀卡器通訊。</string>
     <string name="permission_manage_media_label">管理媒體</string>
     <string name="permission_manage_media_description">允許應用程式修改或刪除其他應用程式所創建的媒體，而無需s取得您的同意。應用程式必須具有取用檔案和媒體的權限。</string>
