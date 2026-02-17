@@ -67,13 +67,13 @@ class PermissionOverviewVH(parent: ViewGroup) :
         countUserApps.apply {
             val apps = primaryPkgs.filter { (it as? Installed)?.isSystemApp == false }
             val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
-            text = getString(R.string.permissions_details_count_user_apps, granted.size, apps.size)
+            text = getQuantityString(R.plurals.permissions_details_count_user_apps, granted.size, granted.size, apps.size)
         }
 
         countSystemApps.apply {
             val apps = primaryPkgs.filter { (it as? Installed)?.isSystemApp == true }
             val granted = apps.filter { it.getPermission(perm.id)?.isGranted == true }
-            text = getString(R.string.permissions_details_count_system_apps, granted.size, apps.size)
+            text = getQuantityString(R.plurals.permissions_details_count_system_apps, granted.size, granted.size, apps.size)
         }
 
         appCountsDisclaimer.isGone = !showCaveat

@@ -72,9 +72,18 @@
     <string name="apps_sort_update_date_label">Last updated</string>
 
     <string name="general_sort_action">Sort</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d of %2$d granted.</string>
-    <string name="apps_permissions_x_requested">%1$d permissions requested.</string>
-    <string name="apps_permissions_declares_x">Declares %1$d permissions.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d of %2$d granted.</item>
+        <item quantity="other">%1$d of %2$d granted.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d permission requested.</item>
+        <item quantity="other">%1$d permissions requested.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Declares %1$d permission.</item>
+        <item quantity="other">Declares %1$d permissions.</item>
+    </plurals>
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Information not available</string>
 
@@ -141,8 +150,14 @@
     <string name="apps_filter_accessibility_label">Apps with accessibility services</string>
     <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
     <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
-    <string name="apps_details_description_secondary_description">"%d permissions requested."</string>
-    <string name="apps_details_description_primary_description">"%1$d of %2$d permissions granted."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d permission requested.</item>
+        <item quantity="other">%d permissions requested.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d of %2$d permissions granted.</item>
+        <item quantity="other">%1$d of %2$d permissions granted.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">No permissions match current filters. Tap the filter icon to adjust.</string>
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
@@ -172,8 +187,14 @@
         <item quantity="one">%d system app</item>
         <item quantity="other">%d system apps</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"User Apps: Granted to %1$d out of %2$d."</string>
-    <string name="permissions_details_count_system_apps">"System Apps: Granted to %1$d out of %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">User Apps: Granted to %1$d out of %2$d.</item>
+        <item quantity="other">User Apps: Granted to %1$d out of %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">System Apps: Granted to %1$d out of %2$d.</item>
+        <item quantity="other">System Apps: Granted to %1$d out of %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
     <string name="permissions_details_empty_filter_message">No apps match current filters. Tap the filter icon to adjust.</string>
     <string name="permission_nfc_label">NFC</string>

@@ -51,14 +51,14 @@ class NormalAppVH(parent: ViewGroup) : AppsAdapter.BaseVH<NormalAppVH.Item, Apps
             val grantedCount = app.requestedPermissions.count { it.isGranted }
             val countTotal = app.requestedPermissions.size
             text = if (app is SecondaryPkg || app is UninstalledPkg) {
-                getString(R.string.apps_permissions_x_requested, countTotal)
+                getQuantityString(R.plurals.apps_permissions_x_requested, countTotal, countTotal)
             } else {
-                getString(R.string.apps_permissions_x_of_x_granted, grantedCount, countTotal)
+                getQuantityString(R.plurals.apps_permissions_x_of_x_granted, grantedCount, grantedCount, countTotal)
             }
 
             val declaredCount = app.declaredPermissions.size
             if (declaredCount > 0) {
-                append(" " + getString(R.string.apps_permissions_declares_x, declaredCount))
+                append(" " + getQuantityString(R.plurals.apps_permissions_declares_x, declaredCount, declaredCount))
             }
         }
 

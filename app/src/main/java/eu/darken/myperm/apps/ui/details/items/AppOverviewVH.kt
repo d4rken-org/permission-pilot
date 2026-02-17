@@ -59,16 +59,16 @@ class AppOverviewVH(parent: ViewGroup) : AppDetailsAdapter.BaseVH<AppOverviewVH.
             val countTotal = app.requestedPermissions.size
             text = when (app) {
                 is UninstalledPkg -> {
-                    getString(R.string.apps_details_description_secondary_description, countTotal) + "\n" +
+                    getQuantityString(R.plurals.apps_details_description_secondary_description, countTotal, countTotal) + "\n" +
                             getString(R.string.apps_details_description_uninstalled_caveat)
                 }
                 is SecondaryPkg -> {
-                    getString(R.string.apps_details_description_secondary_description, countTotal) + "\n" +
+                    getQuantityString(R.plurals.apps_details_description_secondary_description, countTotal, countTotal) + "\n" +
                             getString(R.string.apps_details_description_restrictions_caveat_description)
                 }
                 else -> {
                     val grantedCount = app.requestedPermissions.count { it.isGranted }
-                    getString(R.string.apps_details_description_primary_description, grantedCount, countTotal)
+                    getQuantityString(R.plurals.apps_details_description_primary_description, grantedCount, grantedCount, countTotal)
                 }
             }
         }
