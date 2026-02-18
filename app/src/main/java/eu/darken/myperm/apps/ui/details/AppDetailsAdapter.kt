@@ -28,6 +28,7 @@ class AppDetailsAdapter @Inject constructor() :
         modules.add(TypedVHCreatorMod({ data[it] is AppOverviewVH.Item }) { AppOverviewVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is AppTwinsVH.Item }) { AppTwinsVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is AppSiblingsVH.Item }) { AppSiblingsVH(it) })
+        modules.add(TypedVHCreatorMod({ data[it] is AppQueriesVH.Item }) { AppQueriesVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is UsesPermissionVH.Item }) { UsesPermissionVH(it) })
         modules.add(TypedVHCreatorMod({ data[it] is UnknownPermissionVH.Item }) { UnknownPermissionVH(it) })
     }

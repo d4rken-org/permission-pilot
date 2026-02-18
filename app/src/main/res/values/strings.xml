@@ -297,6 +297,26 @@
     <string name="permission_bind_accessibility_service_description">Allows the app to offer an accessibility service that can be enabled in the system settings.</string>
     <string name="debug_debuglog_sensitive_information_message">This file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
+    <string name="apps_details_queries_label">Manifest Queries</string>
+    <string name="apps_details_queries_loading">Analyzing manifest…</string>
+    <string name="apps_details_queries_none">No queries declared</string>
+    <string name="apps_details_queries_unavailable">Manifest not accessible</string>
+    <string name="apps_details_queries_error">Failed to parse manifest</string>
+    <plurals name="apps_details_queries_packages">
+        <item quantity="one">%d package</item>
+        <item quantity="other">%d packages</item>
+    </plurals>
+    <plurals name="apps_details_queries_intents">
+        <item quantity="one">%d intent</item>
+        <item quantity="other">%d intents</item>
+    </plurals>
+    <plurals name="apps_details_queries_providers">
+        <item quantity="one">%d provider</item>
+        <item quantity="other">%d providers</item>
+    </plurals>
+    <string name="apps_details_queries_intent_fallback">intent</string>
+    <string name="apps_details_queries_provider_prefix">provider: %s</string>
+
     <string name="onboarding_body1">This app helps you navigate installed applications and discover permissions.</string>
     <string name="onboarding_body2">Permission Pilot collects Installed Application information to enable listing your apps and cross-referencing their permissions when using this application.</string>
     <string name="onboarding_body3">Permission Pilot has no ads and only processes data locally.</string>
