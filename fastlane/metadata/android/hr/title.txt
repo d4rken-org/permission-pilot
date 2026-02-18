@@ -1,1 +1,1 @@
-Pilot za dopuštenja
+Permission Pilot

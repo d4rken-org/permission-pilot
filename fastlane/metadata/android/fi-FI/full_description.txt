@@ -1,25 +1,25 @@
-<i>Lupapilotti</i> on uudenlainen sovellus, joka auttaa sinua tarkastelemaan sovelluksia ja niiden lupia.
+<i>Permission Pilot</i> on uudenlainen sovellus, joka auttaa sinua tarkastelemaan sovelluksia ja niiden käyttöoikeuksia.
 
-Jokaisen Android-päivityksen myötä luvat muuttuvat monimutkaisemmiksi.
-Se, että Android näyttää luvat eri paikoissa, ei helpota niiden tarkastelua:
+Jokaisen Android-päivityksen myötä käyttöoikeudet muuttuvat monimutkaisemmiksi.
+Android näyttää käyttöoikeudet useissa eri paikoissa, mikä ei helpota niiden tarkastelua:
 
-* Sovelluksen tiedot -sivu
-* Erityiskäyttöoikeudet
-* Lupienhallinta
-* ja paljon muuta...
+* Sovelluksen tietosivulla
+* Erityinen käyttöoikeus
+* Käyttöoikeuksien hallinta
+* ja lisää...
 
-<i>Lupapilotti</i> listaa kaikki luvat yhteen paikkaan, antaen sinulle kokonaiskuvan sovellusten luvista.
+<i>Permission Pilot</i> listaa kaikki käyttöoikeudet yhteen paikkaan, antaen sinulle kokonaiskuvan sovelluksen käyttöoikeuksista.
 
-Saatavilla on kaksi näkymää: Voit joko tarkastella kaikkia sovelluksen pyytämiä lupia tai tarkastella kaikkia sovelluksia, jotka pyytävät tiettyä lupaa.
+Käytettävissä on kaksi näkymää: voit joko tarkastella kaikkia sovelluksen pyytämiä käyttöoikeuksia tai kaikkia sovelluksia, jotka pyytävät tiettyä käyttöoikeutta.
 
 <b>Sovellukset-välilehti</b>
 Kaikki asennetut sovellukset, mukaan lukien järjestelmäsovellukset ja työprofiilin sovellukset.
-Napsauttamalla sovellusta näet luettelon kaikista sen pyytämistä luvista, mukaan lukien ne, jotka näkyvät Lupienhallinnassa ja Erityiskäyttöoikeudet-näkymässä, sekä niiden tilan.
-Tämä sisältää myös internet-luvat ja SharedUserID-tilan!
+Napauttamalla sovellusta näet kaikki sen pyytämät käyttöoikeudet, mukaan lukien ne, jotka näkyvät Käyttöoikeuksien hallinnassa ja Erityinen käyttöoikeus -osiossa, sekä niiden tila.
+Tämä sisältää myös internet-käyttöoikeudet ja SharedUserID-tilan!
 
-<b>Luvat-välilehti</b>
-Kaikki laitteellasi olevat luvat, mukaan lukien ne, jotka näkyvät Lupienhallinnassa ja Erityiskäyttöoikeudet-näkymässä.
-Luvat on ryhmitelty valmiiksi selailun helpottamiseksi, esim. Yhteystiedot, Mikrofoni, Kamera jne.
-Napsauttamalla lupaa näet kaikki sovellukset, jotka pyytävät kyseistä lupaa.
+<b>Käyttöoikeudet-välilehti</b>
+Kaikki laitteellasi olevat käyttöoikeudet, mukaan lukien ne, jotka näkyvät Käyttöoikeuksien hallinnassa ja Erityinen käyttöoikeus -osiossa.
+Käyttöoikeudet on esijaoteltu helpompaa selaamista varten, esim. Yhteystiedot, Mikrofoni, Kamera jne.
+Napauttamalla käyttöoikeutta näet kaikki sovellukset, jotka pyytävät pääsyä siihen.
 
-Sovelluksia ja lupia voi etsiä vapaatekstihaulla sekä lajitella ja suodattaa eri kriteerien mukaan.
+Sovelluksia ja käyttöoikeuksia voi hakea vapaatekstillä, lajitella ja suodattaa eri kriteerien mukaan.

@@ -6,7 +6,7 @@ Android affiche les autorisations à divers endroits, ce qui ne facilite pas leu
 * Page d'informations sur l'application
 * Accès spécial
 * Gestionnaire d'autorisations
-* et plus...
+* et bien plus encore...
 
 <i>Pilote de permission</i> regroupe toutes les autorisations en un seul lieu, vous offrant une vue d'ensemble des autorisations des applications.
 

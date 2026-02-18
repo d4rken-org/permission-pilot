@@ -1,1 +1,1 @@
-Visió general dels permisos d'Android
+Visió general dels permisos d'aplicacions Android

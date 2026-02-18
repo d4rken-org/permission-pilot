@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> egy új típusú alkalmazás, amely segít áttekinteni az alkalmazásokat és azok engedélyeit.
+
+Minden Android-frissítéssel egyre összetettebbé válnak az engedélyek.
+Az Android különböző helyeken jeleníti meg az engedélyeket, ami nem könnyíti meg az áttekintést:
+
+* Alkalmazásinfó oldal
+* Speciális hozzáférés
+* Engedélykezelő
+* és még több...
+
+<i>Permission Pilot</i> egyetlen helyen listázza az összes engedélyt, madártávlati képet adva az alkalmazások engedélyeiről.
+
+Két nézőpont érhető el: megtekintheti az összes engedélyt, amelyet egy alkalmazás kér, vagy az összes alkalmazást, amely egy adott engedélyt kér.
+
+<b>Alkalmazások lap</b>
+Az összes telepített alkalmazás, beleértve a rendszeralkalmazásokat és a munkaprofilos alkalmazásokat.
+Bármelyik alkalmazásra kattintva megjelenik az összes engedély, amelyet az alkalmazás kért, beleértve az Engedélykezelő és a Speciális hozzáférés alatt megjelenőket is, valamint azok állapotát.
+Ez az internetengedélyeket és a SharedUserID állapotát is tartalmazza!
+
+<b>Engedélyek lap</b>
+Az összes engedély, amely az eszközön létezik, beleértve az Engedélykezelő és a Speciális hozzáférés alatt megjelenőket.
+Az engedélyek előre csoportosítva vannak a könnyebb navigáció érdekében, pl. Névjegyek, Mikrofon, Kamera stb.
+Egy engedélyre kattintva megjelenik az összes alkalmazás, amely hozzáférést kér ahhoz az engedélyhez.
+
+Az alkalmazások és engedélyek szabad szöveggel kereshetők, különböző szempontok szerint rendezhetők és szűrhetők.

@@ -1,25 +1,25 @@
-<i>Pilot de permisiuni</i> este o aplicație de un nou gen, concepută pentru a vă ajuta să analizați aplicațiile și permisiunile acestora.
+<i>Permission Pilot</i> este un nou tip de aplicație care te ajută să revizuieşti aplicațiile şi permisiunile acestora.
 
-Cu fiecare actualizare Android, gestionarea permisiunilor devine tot mai complexă.
-Android afișează permisiunile în diverse locuri, ceea ce îngreunează verificarea lor:
+Cu fiecare actualizare Android, permisiunile devin tot mai complexe.
+Faptul că Android afişează permisiunile în locații diferite nu uşurează deloc revizuirea lor:
 
-* Pagina de informații a aplicației
+* Pagina Informații aplicație
 * Acces special
-* Manager de permisiuni
-* și altele...
+* Manager permisiuni
+* şi altele...
 
-<i>Pilot de permisiuni</i> centralizează toate permisiunile într-un singur loc, oferindu-vă o imagine de ansamblu clară.
+<i>Permission Pilot</i> listează toate permisiunile într-un singur loc, oferêndu-ți o vedere de ansamblu asupra permisiunilor aplicațiilor.
 
-Sunt disponibile două perspective: puteți vizualiza toate permisiunile solicitate de o anumită aplicație sau toate aplicațiile care solicită o anumită permisiune.
+Sunt disponibile două perspective: poți vizualiza fie toate permisiunile solicitate de o aplicație, fie toate aplicațiile care solicită o anumită permisiune.
 
 <b>Fila Aplicații</b>
-Toate aplicațiile instalate, inclusiv cele de sistem și cele din profilul de serviciu.
-La selectarea unei aplicații, veți vedea o listă cu toate permisiunile solicitate, inclusiv cele din Managerul de permisiuni și Acces special, împreună cu starea lor.
-Sunt incluse și permisiunile de internet și starea SharedUserID!
+Toate aplicațiile instalate, inclusiv aplicațiile de sistem şi aplicațiile din profilul de serviciu.
+Apăsând pe orice aplicație vei vedea toate permisiunile solicitate de aceasta, inclusiv cele care apar în Manager permisiuni şi Acces special, împreună cu starea lor.
+Aceasta va include şi permisiunile de internet, starea SharedUserID!
 
 <b>Fila Permisiuni</b>
-Toate permisiunile existente pe dispozitiv, inclusiv cele din Managerul de permisiuni și Acces special.
-Permisiunile sunt grupate pentru o navigare mai ușoară (de ex., Contacte, Microfon, Cameră foto etc.).
-La selectarea unei permisiuni, veți vedea toate aplicațiile care o solicită.
+Toate permisiunile existente pe dispozitivul tău, inclusiv cele care apar în Manager permisiuni şi Acces special.
+Permisiunile sunt pre-grupate pentru o navigare mai uşoară, de ex. Contacte, Microfon, Cameră etc.
+Apăsând pe o permisiune vei vedea toate aplicațiile care solicită acces la acea permisiune.
 
-Aplicațiile și permisiunile pot fi căutate folosind text, sortate și filtrate după diverse criterii.
+Aplicațiile şi permisiunile pot fi căutate prin text liber, sortate şi filtrate după diferite criterii.

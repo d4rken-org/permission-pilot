@@ -1,1 +1,1 @@
-Pilot de permisiuni
+Permission Pilot

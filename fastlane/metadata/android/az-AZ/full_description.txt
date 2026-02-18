@@ -1,25 +1,25 @@
-<i>İcazə Pilot</i> tətbiqetmələrinizin icazələrini nəzərdən keçirmək üçün yeni bir tətbiq növüdür.
+<i>Permission Pilot</i> tətbiqləri və onların icəzələrini nəzərdən keçirməyə kömək edən yeni növ bir tətbiqdir.
 
-Hər bir Android yeniləməsi ilə icazələr daha da mürəkkəbləşir.
-Android-in icazələri müxtəlif yerlərdə göstərməsi onların nəzərdən keçirilməsini çətinləşdirir:
+Hər Android yeniləməsi ilə icəzələr daha mürəkkəb hala gəlir.
+Android-in icəzələri müxtəlif yerlərdə göstərməsi onları nəzərdən keçirməyi asanlaşdırmır:
 
-* Tətbiq Məlumatı səhifəsi
-* Xüsusi Giriş
+* Tətbiq məlumatı səhifəsi
+* Xüsusu Giriş
 * İcazə Meneceri
 * və daha çox...
 
-<i>İcazə Pilot</i> bütün icazələri tək bir yerdə toplam ilə sizə proqram icazələrinə quş baxışı təmin edir.
+<i>Permission Pilot</i> bütün icəzələri tək bir yerlə sıralayır və tətbiq icəzələrinə quşbaxışı görünüş verir.
 
-İki perspektiv mövcuddur: Ya tətbiqin tələb etdiyi bütün icazələri görə bilərsiniz, ya da icazə tələb edən bütün tətbiqləri görə bilərsiniz.
+İki perspektiv mövcuddur: bir tətbiqin tələb etdiyi bütün icəzələri və ya bir icəzəni tələb edən bütün tətbiqləri görə bilərsiniz.
 
 <b>Tətbiqlər nişanı</b>
-Bütün yüklənmiş tətbiqlər, sistem tətbiqləri və iş profil tətbiqləri daxil olmaqla.
-Hər hansı bir tətbiqi basdığınız zaman tətbiqin tələb etdiyi bütün icazələr göstərilir, İcazə Meneceri və Xüsusi Giriş altında göstərilənlər ilə birlikdə, vəziyyətləri ilə.
-Bu həmçinin internet icazələrini, SharedUserID vəziyyətini də ehtiva edəcəkdir!
+Sistem tətbiqləri və iş profili tətbiqləri daxil olmaqla bütün quraşdırılmış tətbiqlər.
+İstənilən tətbiqə klikləmək, İcazə Meneceri və Xüsusu Giriş altında görünənlər də daxil olmaqla, tətbiqin tələb etdiyi bütün icəzələri statusları ilə birlikdə sıralayır.
+Buraya internet icəzələri və SharedUserID statusu da daxil olacaq!
 
 <b>İcazələr nişanı</b>
-Cihazınızda mövcud olan bütün icazələr, İcazə Meneceri və Xüsusi Giriş altında göstərilənlər daxil olmaqla.
-İcazələr daha asan naviqasiya üçün öncədən qruplaşdırılmışdır, məsələn Əlaqələr, Mikrofon, Kamera və s.
-Bir icazəyə basıldığında, həmin icazəyə çıxışı tələb edən bütün tətbiqlər göstərilir.
+Cihazınızda mövcud olan bütün icəzələr, İcazə Meneceri və Xüsusu Giriş altında görünənlər də daxil olmaqla.
+İcazələr daha asan naviqasiya üçün əvvəlcədən qruplaşdırılıb, məsələn Kontaktlar, Mikrofon, Kamera və s.
+Bir icəzəyə klikləmək həmin icəzəyə giriş tələb edən bütün tətbiqləri göstərir.
 
-Tətbiqlər və icazələr axtarılaraq, müxtəlif meyarlara görə sıralanıb filtrlənə bilər.
+Tətbiqlər və icəzələr sərbəst mətn istifadə edərək axtarıla, müxtəlif meyarlara görə sıralana və filtrə edilə bilər.

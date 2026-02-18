@@ -1,25 +1,25 @@
-<i>Pilot povolení</i> je nový druh aplikácie, ktorá vám pomôže kontrolovať aplikácie a ich povolenia.
+<i>Permission Pilot</i> je nový typ aplikácie, ktorá vám pomáha kontrolovať aplikácie a ich oprávnenia.
 
-S každou aktualizáciou systému Android sa povolenia stávajú zložitejšími.
-Zobrazovanie povolení v systéme Android na rôznych miestach ich kontrolu neuľahčuje:
+S každou aktualizáciou Androidu sa oprávnenia stávajú čoraz zložitejšími.
+Android zobrazuje oprávnenia na rôznych miestach, čo ich kontrolu nijak neuľahčuje:
 
-* Stránka s informáciami o aplikácii
+* Stránka Info o aplikácii
 * Špeciálny prístup
-* Správca povolení
+* Správca oprávnení
 * a ďalšie...
 
-<i>Pilot povolení</i> zhromažďuje všetky povolenia na jednom mieste a poskytuje vám tak prehľad o povoleniach aplikácií z vtáčej perspektívy.
+<i>Permission Pilot</i> zobrazuje všetky oprávnenia na jednom mieste a poskytuje vám prehľad oprávnení aplikácií z vtáčej perspektívy.
 
-K dispozícii sú dve perspektívy: môžete si zobraziť buď všetky povolenia, ktoré aplikácia požaduje, alebo všetky aplikácie, ktoré požadujú určité povolenie.
+K dispozícii sú dva pohľady: môžete zobraziť všetky oprávnenia, ktoré aplikácia vyžaduje, alebo všetky aplikácie, ktoré vyžadujú určité oprávnenie.
 
-<b>Karta Aplikácie</b>
+<b>Záložka Aplikácie</b>
 Všetky nainštalované aplikácie vrátane systémových aplikácií a aplikácií pracovného profilu.
-Kliknutím na ľubovoľnú aplikáciu sa zobrazí zoznam všetkých povolení, ktoré aplikácia požadovala, vrátane tých, ktoré sa zobrazujú v Správcovi povolení a Špeciálnom prístupe, spolu s ich stavom.
-To zahŕňa aj internetové povolenia, stav SharedUserID!
+Kliknutím na ľubovoľnú aplikáciu zobrazíte všetky oprávnenia, ktoré aplikácia vyžiadala, vrátane tých, ktoré sa zobrazujú v Správcovi oprávnení a Špeciálnom prístupe, spolu s ich stavom.
+Zahrnuté sú aj internetové oprávnenia a stav SharedUserID!
 
-<b>Karta Povolenia</b>
-Všetky povolenia, ktoré existujú vo vašom zariadení, vrátane tých, ktoré sa zobrazujú v Správcovi povolení a Špeciálnom prístupe.
-Povolenia sú vopred zoskupené pre jednoduchšiu navigáciu, napr. Kontakty, Mikrofón, Fotoaparát atď.
-Kliknutím na povolenie sa zobrazia všetky aplikácie, ktoré žiadajú o prístup k danému povoleniu.
+<b>Záložka Oprávnenia</b>
+Všetky oprávnenia existujúce na vašom zariadení vrátane tých, ktoré sa zobrazujú v Správcovi oprávnení a Špeciálnom prístupe.
+Oprávnenia sú vopred zoskupené pre jednoduchšiu navigáciu, napr. Kontakty, Mikrofón, Fotoaparát atď.
+Kliknutím na oprávnenie zobrazíte všetky aplikácie, ktoré požadujú prístup k danému oprávneniu.
 
-Aplikácie a povolenia možno vyhľadávať pomocou voľného textu, triediť a filtrovať podľa rôznych kritérií.
+Aplikácie a oprávnenia je možné vyhľadávať pomocou voľného textu, triediť a filtrovať podľa rôznych kritérií.

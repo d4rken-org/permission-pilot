@@ -1,25 +1,25 @@
-<i>Permission Pilot</i> er en ny slags app, der hjælper dig med at gennemgå apps og deres tilladelser.
+<i>Permission Pilot</i> er en ny type app, der hjælper dig med at gennemgå apps og deres tilladelser.
 
-For hver Android-opdatering bliver tilladelser mere komplekse.
-At Android viser tilladelser forskellige steder, gør det ikke lettere at gennemgå dem:
+Med hver Android-opdatering bliver tilladelser mere komplekse.
+At Android viser tilladelser på mange forskellige steder gør det ikke lettere at gennemgå dem:
 
-* App-infosiden
+* App-info-side
 * Særlig adgang
-* Tilladelsesadministrator
+* Tilladelsesstyring
 * og mere...
 
-<i>Permission Pilot</i> samler alle tilladelser på ét sted, hvilket giver dig et fugleperspektiv over app-tilladelser.
+<i>Permission Pilot</i> viser alle tilladelser på ét sted og giver dig et overblik over app-tilladelser.
 
-To perspektiver er tilgængelige: Du kan enten se alle tilladelser, en app anmoder om, eller se alle apps, der anmoder om en bestemt tilladelse.
+To perspektiver er tilgængelige: Du kan enten se alle tilladelser, som en app anmoder om, eller se alle apps, der anmoder om en bestemt tilladelse.
 
-<b>Apps-faneblad</b>
-Alle installerede apps, inklusive systemapps og arbejdsprofil-apps.
-Når du klikker på en app, vises alle de tilladelser, appen har anmodet om, inklusive dem, der vises under Tilladelsesadministrator og Særlig adgang, sammen med deres status.
-Dette vil også omfatte internettilladelser, SharedUserID-status!
+<b>Apps-fanen</b>
+Alle installerede apps, herunder systemapps og arbejdsprofilapps.
+Klik på en app for at se alle tilladelser, som appen har anmodet om, herunder dem der vises under Tilladelsesstyring og Særlig adgang, samt deres status.
+Dette inkluderer også internetadgang og SharedUserID-status!
 
-<b>Tilladelser-faneblad</b>
-Alle tilladelser, der findes på din enhed, inklusive dem, der vises under Tilladelsesadministrator og Særlig adgang.
-Tilladelser er forhåndsgrupperet for nemmere navigation, f.eks. Kontakter, Mikrofon, Kamera osv.
-Når du klikker på en tilladelse, vises alle de apps, der anmoder om adgang til den pågældende tilladelse.
+<b>Tilladelser-fanen</b>
+Alle tilladelser, der findes på din enhed, herunder dem der vises under Tilladelsesstyring og Særlig adgang.
+Tilladelser er forhåndsgrupperet for lettere navigation, f.eks. Kontakter, Mikrofon, Kamera osv.
+Klik på en tilladelse for at se alle apps, der anmoder om adgang til den pågældende tilladelse.
 
-Apps og tilladelser kan søges ved hjælp af fritekst, sorteres og filtreres efter forskellige kriterier.
+Apps og tilladelser kan søges ved hjælp af fritekst og sorteres og filtreres efter forskellige kriterier.

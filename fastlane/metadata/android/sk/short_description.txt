@@ -1,1 +1,1 @@
-Prehľad povolení aplikácií pre Android
+Prehľad oprávnení aplikácií pre Android

@@ -1,25 +1,25 @@
-<i>Permission Pilot</i> is 'n nuwe tipe toepassing om jou te help om apps en hul toestemmings na te gaan.
+<i>Permission Pilot</i> is 'n nuwe soort program om jou te help om programme en hul toestemmings te hersien.
 
-Met elke Android-opdatering raak toestemmings meer ingewikkeld.
-Android wys toestemmings op verskeie plekke, wat dit nie makliker maak om hulle te hersien nie:
+Met elke Android-opdatering word toestemmings meer kompleks.
+Android wys toestemmings op verskeie verskillende plekke, wat dit nie makliker maak om dit te hersien nie:
 
-* App-inligtingbladsy
+* Programinligting-bladsy
 * Spesiale Toegang
 * Toestemmingsbestuurder
 * en meer...
 
-<i>Permission Pilot</i> lys alle toestemmings op een plek, sodat jy 'n oorsig oor app-toestemmings kry.
+<i>Permission Pilot</i> lys alle toestemmings op een plek en gee jou 'n oorsigtelike beeld van programtoestemmings.
 
-Twee perspektiewe is beskikbaar: Jy kan óf al die toestemmings sien wat 'n app versoek, óf jy kan 'n lys van alle apps sien wat 'n spesifieke toestemming versoek.
+Twee perspektiewe is beskikbaar: Jy kan óf alle toestemmings wat 'n program aanvra sien, óf alle programme sien wat 'n spesifieke toestemming aanvra.
 
-<b>Apps-oortjie</b>
-Al jou geïnstalleerde programme, insluitend stelsel- en werkprofielprogramme.
-As jy op 'n app klik, wys dit al die toestemmings wat die app versoek het — insluitend toestemmings onder Toestemmingsbestuurder en Spesiale Toegang, saam met hul status.
-Dit sluit ook internettoestemming in, asook SharedUserID-status!
+<b>Programme-oortjie</b>
+Alle geïnstalleerde programme, insluitend stelsel-programme en werkprofiel-programme.
+As jy op enige program klik, sal alle toestemmings wat die program aangevra het gelys word, insluitend dié wat onder Toestemmingsbestuurder en Spesiale Toegang verskyn, saam met hul status.
+Dit sal ook internettoestemmings en SharedUserID-status insluit!
 
 <b>Toestemmings-oortjie</b>
 Alle toestemmings wat op jou toestel bestaan, insluitend dié wat onder Toestemmingsbestuurder en Spesiale Toegang verskyn.
-Toestemmings word vooraf gegroepeer vir makliker navigasie, soos Kontakte, Mikrofoon, Kamera, ens.
-As jy op 'n toestemming klik, wys dit al die apps wat daardie toestemming versoek.
+Toestemmings is vooraf gegroepeer vir makliker navigasie, bv. Kontakte, Mikrofoon, Kamera, ens.
+As jy op 'n toestemming klik, word alle programme gewys wat toegang tot daardie toestemming aanvra.
 
-Programme en toestemmings kan gesoek, gesorteer en gefilter word op verskeie kriteria.
+Programme en toestemmings kan deur middel van vrye teks gesoek, gesorteer en gefilter word volgens verskillende kriteria.

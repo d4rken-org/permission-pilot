@@ -1,25 +1,25 @@
-<i>Pilot za dopuštenja</i> nova je vrsta aplikacije koja vam pomaže pregledati aplikacije i njihova dopuštenja.
+<i>Permission Pilot</i> je nova vrsta aplikacije koja vam pomaže pregledati aplikacije i njihova dopuštenja.
 
 Sa svakim ažuriranjem Androida dopuštenja postaju sve složenija.
-To što Android prikazuje dopuštenja na različitim mjestima ne olakšava njihov pregled:
+Iako Android prikazuje dopuštenja na raznim lokacijama, to ne olakšava njihov pregled:
 
-* Stranica s informacijama o aplikaciji
+* Stranica informacija o aplikaciji
 * Poseban pristup
 * Upravitelj dopuštenja
 * i više...
 
-<i>Pilot za dopuštenja</i> navodi sva dopuštenja na jednom mjestu, dajući vam pregled dopuštenja aplikacija iz ptičje perspektive.
+<i>Permission Pilot</i> navodi sva dopuštenja na jednom mjestu i daje vam jednostavan pregled dopuštenja aplikacija.
 
-Dostupne su dvije perspektive: možete vidjeti sva dopuštenja koja aplikacija traži ili sve aplikacije koje traže određeno dopuštenje.
+Dostupne su dvije perspektive: Možete pregledati sva dopuštenja koja aplikacija zahtijeva ili pregledati sve aplikacije koje zahtijevaju određeno dopuštenje.
 
-<b>Kartica Aplikacije</b>
-Sve instalirane aplikacije, uključujući sistemske aplikacije i aplikacije radnog profila.
-Klikom na bilo koju aplikaciju prikazat će se popis svih dopuštenja koja je aplikacija zatražila, uključujući ona koja se prikazuju u Upravitelju dopuštenja i Posebnom pristupu, zajedno s njihovim statusom.
-To će također uključivati internetska dopuštenja, status SharedUserID!
+<b>Kartica aplikacija</b>
+Sve instalirane aplikacije, uključujući aplikacije sustava i aplikacije radnog profila.
+Klikom na bilo koju aplikaciju prikazat će se sva dopuštenja koja je aplikacija zatražila, uključujući ona koja se prikazuju u Upravitelju dopuštenja i Posebnom pristupu, zajedno s njihovim statusom.
+To će također uključivati ​​​​internetske dozvole i SharedUserID status!
 
-<b>Kartica Dopuštenja</b>
+<b>Kartica dopuštenja</b>
 Sva dopuštenja koja postoje na vašem uređaju, uključujući ona koja se prikazuju u Upravitelju dopuštenja i Posebnom pristupu.
-Dopuštenja su unaprijed grupirana radi lakše navigacije, npr. Kontakti, Mikrofon, Kamera itd.
-Klikom na dopuštenje prikazuju se sve aplikacije koje traže pristup tom dopuštenju.
+Dozvole su unaprijed grupirane radi lakše navigacije, npr. Kontakti, Mikrofon, Kamera itd.
+Klikom na dopuštenje prikazuju se sve aplikacije koje zahtijevaju pristup tom dopuštenju.
 
-Aplikacije i dopuštenja mogu se pretraživati slobodnim tekstom, sortirati i filtrirati prema različitim kriterijima.
+Aplikacije i dopuštenja mogu se pretraživati ​​​​pomoću slobodnog teksta, sortirati i filtrirati prema različitim kriterijima.

@@ -1,0 +1,25 @@
+<i>Permission Pilot</i> celebeke nû ya sepanan e ku alîkariya we dike ku hûn sepan û destûrên wan binirxînin.
+
+Bi her nûvekirina Androidê re destûr her tevlihevtir dibin.
+Android destûran li cihên cihê cihê nîşan dide, ev jî nirxandina wan hêsantir nake:
+
+* Rûpela Agahdariya Sepanê
+* Gihîştina Taybet
+* Rêvebirê Destûran
+* û bêtir...
+
+<i>Permission Pilot</i> hemû destûran li yek cihî navnîş dike û ji we re dîmeneke berfireh a destûrên sepanan pêşkêş dike.
+
+Du perspektîf hene: Hûn dikarin hemû destûrên ku sepaneke daxwaz dike bibînin, an jî hemû sepanên ku destûreke daxwaz dikin bibînin.
+
+<b>Tabloya Sepanan</b>
+Hemû sepanên sazkirî, di nav de sepanên pergêlê û sepanên profîla kar.
+Klîkkirina li ser her sepanekê hemû destûrên ku sepan daxwaz kiriye navnîş dike, di nav de yên ku di bin Rêvebirê Destûran û Gihîştina Taybet de xuya dibin, ligel rewşa wan.
+Ev di heman demê de destûrên înternetan û rewşa SharedUserID jî dihewîne!
+
+<b>Tabloya Destûran</b>
+Hemû destûrên ku li ser cêhaza we hene, di nav de yên ku di bin Rêvebirê Destûran û Gihîştina Taybet de xuya dibin.
+Destûr ji bo navîgasyona hêsantir bi pêş-kom hatin kirin, mînak Têkilî, Mîkrofon, Kamera, û hwd.
+Klêkkirina li ser destûreke hemû sepanên ku gihîştina wê destûrê daxwaz dikin nîşan dide.
+
+Sepan û destûr dikarin bi nivîsa azad werin gerîn, li gorî pîvanên cihê werin rêzkirin û fîltrekirin.
