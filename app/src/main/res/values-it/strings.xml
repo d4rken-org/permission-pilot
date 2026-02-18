@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Impostazioni</string>
     <string name="label_help">Aiuto</string>
     <string name="general_error_label">Errore</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Continua</string>
     <string name="general_accept_action">Accetta</string>
     <string name="upgrade_myperm_label">Aggiorna Permission Pilot</string>
-    <string name="upgrade_myperm_description">Ti piace che questa app non abbia pubblicità e non raccolga i tuoi dati?\nAcquista la versione pro per mostrare il tuo supporto!</string>
-    <string name="upgrade_buy_pro_action">Acquista versione pro</string>
+    <string name="upgrade_myperm_description">Ti piace che questa app non abbia pubblicità e non raccolga i tuoi dati?
+Acquista la versione Pro per supportarci!</string>
+    <string name="upgrade_buy_pro_action">Acquista la versione Pro</string>
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Dona</string>
     <string name="debug_debuglog_size_label">Dimensione</string>
@@ -32,12 +35,14 @@
     <string name="settings_privacy_policy_desc">Gestione responsabile dei dati.</string>
     <string name="settings_support_label">Supporto</string>
     <string name="documentation_label">Documentazione</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Un posto dove rilassarsi e fare domande.</string>
     <string name="issue_tracker_label">Tracker dei problemi</string>
     <string name="issue_tracker_description">Un tracker pubblico dei problemi per segnalazioni di bug e richieste di funzionalità.</string>
     <string name="permissions_page_label">Permessi</string>
     <string name="apps_page_label">App</string>
     <string name="app_type_system_label">App di sistema</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Permesso sconosciuto. È richiesto da questa app, ma nessun\'altra app lo dichiara.</string>
     <string name="permissions_unknown_description">Permesso sconosciuto. È richiesto dalle app, ma non dichiarato da nessuna parte.</string>
     <string name="permissions_app_type_declaring_description">Il permesso è creato da questa app.</string>
@@ -48,6 +53,7 @@
     <string name="apps_filter_systemapps_label">App di sistema</string>
     <string name="apps_filter_nointernet_label">App senza accesso internet</string>
     <string name="apps_filter_sideloaded_label">App caricate lateralmente</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Store OEM</string>
     <string name="apps_sort_permissions_granted_label">Permessi concessi</string>
     <string name="apps_sort_permissions_requested_label">Permessi richiesti</string>
@@ -56,9 +62,18 @@
     <string name="apps_sort_install_date_label">Data di installazione</string>
     <string name="apps_sort_update_date_label">Ultimo aggiornamento</string>
     <string name="general_sort_action">Ordina</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d di %2$d concessi.</string>
-    <string name="apps_permissions_x_requested">%1$d permessi richiesti.</string>
-    <string name="apps_permissions_declares_x">Dichiara %1$d permessi.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d di %2$d concesso.</item>
+        <item quantity="other">%1$d di %2$d concessi.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d autorizzazione richiesta.</item>
+        <item quantity="other">%1$d autorizzazioni richieste.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Dichiara %1$d autorizzazione.</item>
+        <item quantity="other">Dichiara %1$d autorizzazioni.</item>
+    </plurals>
     <string name="apps_details_installer_label">Fonte di installazione</string>
     <string name="apps_details_installer_unknown_label">Informazioni non disponibili</string>
     <string name="permissions_filter_manifest_label">Permessi AOSP</string>
@@ -94,6 +109,12 @@
     <string name="apps_app_details_label">Dettagli app</string>
     <string name="apps_details_shareduserid_label">App con ID utente condiviso</string>
     <string name="apps_details_siblings_label">Fratelli</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Sistema Android</string>
     <string name="general_refresh_action">Aggiorna</string>
     <string name="general_expand_all_action">Espandi tutto</string>
@@ -115,8 +136,14 @@
     <string name="apps_filter_accessibility_label">App con servizi di accessibilità</string>
     <string name="apps_details_description_restrictions_caveat_description">Questa app è installata in un altro profilo utente. I permessi concessi possono essere determinati solo per le app installate nel profilo attualmente attivo, a causa delle restrizioni Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Questa app è stata disinstallata ma i suoi dati sono stati conservati. Lo stato dei permessi non può essere determinato per le app disinstallate.</string>
-    <string name="apps_details_description_secondary_description">"%d permessi richiesti."</string>
-    <string name="apps_details_description_primary_description">"%1$d di %2$d permessi concessi."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d autorizzazione richiesta.</item>
+        <item quantity="other">%d autorizzazioni richieste.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d di %2$d autorizzazione concessa.</item>
+        <item quantity="other">%1$d di %2$d autorizzazioni concesse.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Nessun permesso corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
     <string name="api_target_level_x">Versione target: %s</string>
     <string name="api_minimum_level_x">Versione minima: %s</string>
@@ -146,10 +173,17 @@
         <item quantity="one">%d app di sistema</item>
         <item quantity="other">%d app di sistema</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"App utente: Concesso a %1$d su %2$d."</string>
-    <string name="permissions_details_count_system_apps">"App di sistema: Concesso a %1$d su %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">App utente: Concesso a %1$d su %2$d.</item>
+        <item quantity="other">App utente: Concesso a %1$d su %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">App di sistema: Concesso a %1$d su %2$d.</item>
+        <item quantity="other">App di sistema: Concesso a %1$d su %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Le app installate in altri profili utente sono escluse dal calcolo sopra a causa delle restrizioni Android.</string>
     <string name="permissions_details_empty_filter_message">Nessuna app corrisponde ai filtri attuali. Tocca l\'icona del filtro per modificarli.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Consente alle app di comunicare con tag, carte e lettori Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Gestisci media</string>
     <string name="permission_manage_media_description">Consente alle app di modificare o eliminare file multimediali creati con altre app SENZA chiedertelo. Le app devono avere il permesso di accedere a file e media.</string>
@@ -233,6 +267,7 @@
     <string name="permission_group_camera_description">Permessi relativi alla fotocamera.</string>
     <string name="permission_group_audio_label">Microfono</string>
     <string name="permission_group_audio_description">Permessi relativi al microfono.</string>
+    <string name="permission_picture_in_picture_label">Immagine nell\'immagine</string>
     <string name="overview_device_android_version_label">Versione Android</string>
     <string name="overview_device_name_label">Dispositivo</string>
     <string name="overview_device_android_patch_label">Livello patch</string>
@@ -251,15 +286,4 @@
     <string name="onboarding_body1">Questa app ti aiuta a navigare nelle applicazioni installate e scoprire i permessi.</string>
     <string name="onboarding_body2">Permission Pilot raccoglie informazioni sulle applicazioni installate per consentire di elencare le tue app e fare riferimenti incrociati dei loro permessi quando usi questa applicazione.</string>
     <string name="onboarding_body3">Permission Pilot non ha pubblicità e elabora i dati solo localmente.</string>
-    <string name="discord_label">Discord</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="permission_nfc_label">NFC</string>
-    <string name="permission_picture_in_picture_label">Immagine nell\'immagine</string>
 </resources>

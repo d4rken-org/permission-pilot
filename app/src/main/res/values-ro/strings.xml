@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Setări</string>
     <string name="label_help">Ajutor</string>
     <string name="general_error_label">Eroare</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Continuă</string>
     <string name="general_accept_action">Acceptă</string>
     <string name="upgrade_myperm_label">Actualizează Permission Pilot</string>
-    <string name="upgrade_myperm_description">Îți place că această aplicație nu are reclame și nu colectează datele tale?\nCumpără versiunea pro pentru a-ți arăta sprijinul!</string>
-    <string name="upgrade_buy_pro_action">Cumpără versiunea pro</string>
+    <string name="upgrade_myperm_description">Îi place că această aplicație nu conține reclame şi nu colectează datele tale?
+Cumpară versiunea Pro pentru a-ți arăta sprijinul!</string>
+    <string name="upgrade_buy_pro_action">Cumpară versiunea Pro</string>
     <string name="general_no_action">Nu</string>
     <string name="upgrade_donate_action">Donează</string>
     <string name="debug_debuglog_size_label">Dimensiune</string>
@@ -22,6 +25,7 @@
     <string name="debug_debuglog_file_label">Fișier jurnal înregistrat</string>
     <string name="debug_debuglog_record_action">Înregistrează jurnalul de depanare</string>
     <string name="settings_category_other_label">Altele</string>
+    <string name="general_settings_label">General</string>
     <string name="general_settings_desc">Setări generale care afectează întreaga aplicație.</string>
     <string name="changelog_label">Jurnal de modificări</string>
     <string name="settings_acknowledgements_label">Mulțumiri</string>
@@ -31,12 +35,14 @@
     <string name="settings_privacy_policy_desc">Gestionarea responsabilă a datelor.</string>
     <string name="settings_support_label">Suport</string>
     <string name="documentation_label">Documentație</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Un loc pentru a socializa și pune întrebări.</string>
     <string name="issue_tracker_label">Urmărire probleme</string>
     <string name="issue_tracker_description">Urmăritor public de probleme pentru rapoarte de erori și cereri de funcționalități.</string>
     <string name="permissions_page_label">Permisiuni</string>
     <string name="apps_page_label">Aplicații</string>
     <string name="app_type_system_label">Aplicație de sistem</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Permisiune necunoscută. Este solicitată de această aplicație, dar nicio altă aplicație nu o declară.</string>
     <string name="permissions_unknown_description">Permisiune necunoscută. Este solicitată de aplicații, dar nu este declarată nicăieri.</string>
     <string name="permissions_app_type_declaring_description">Permisiunea este creată de această aplicație.</string>
@@ -47,6 +53,8 @@
     <string name="apps_filter_systemapps_label">Aplicații de sistem</string>
     <string name="apps_filter_nointernet_label">Aplicații fără acces la internet</string>
     <string name="apps_filter_sideloaded_label">Aplicații încărcate lateral</string>
+    <string name="apps_filter_gplay_label">Magazin Google Play</string>
+    <string name="apps_filter_oemstore_label">Magazin OEM</string>
     <string name="apps_sort_permissions_granted_label">Permisiuni acordate</string>
     <string name="apps_sort_permissions_requested_label">Permisiuni solicitate</string>
     <string name="apps_sort_permissions_declared_label">Permisiuni declarate</string>
@@ -54,9 +62,21 @@
     <string name="apps_sort_install_date_label">Data instalării</string>
     <string name="apps_sort_update_date_label">Ultima actualizare</string>
     <string name="general_sort_action">Sortează</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d din %2$d acordate.</string>
-    <string name="apps_permissions_x_requested">%1$d permisiuni solicitate.</string>
-    <string name="apps_permissions_declares_x">Declară %1$d permisiuni.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d din %2$d acordată.</item>
+        <item quantity="few">%1$d din %2$d acordate.</item>
+        <item quantity="other">%1$d din %2$d acordate.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d permisiune solicitată.</item>
+        <item quantity="few">%1$d permisiuni solicitate.</item>
+        <item quantity="other">%1$d de permisiuni solicitate.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Declară %1$d permisiune.</item>
+        <item quantity="few">Declară %1$d permisiuni.</item>
+        <item quantity="other">Declară %1$d de permisiuni.</item>
+    </plurals>
     <string name="apps_details_installer_label">Sursa de instalare</string>
     <string name="apps_details_installer_unknown_label">Informație nu este disponibilă</string>
     <string name="permissions_filter_manifest_label">Permisiuni AOSP</string>
@@ -74,6 +94,7 @@
     <string name="permissions_search_list_hint">Caută permisiuni</string>
     <string name="apps_search_list_hint">Caută aplicații</string>
     <string name="permissions_details_protection_label">Nivel de protecție</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Periculos</string>
     <string name="permissions_protection_type_signature_label">Semnătură</string>
     <string name="permissions_protection_type_signatureorsystem_label">Semnătură sau sistem</string>
@@ -91,6 +112,12 @@
     <string name="apps_app_details_label">Detalii aplicație</string>
     <string name="apps_details_shareduserid_label">Aplicații cu ID Utilizator Partajat</string>
     <string name="apps_details_siblings_label">Aplicații înrudite</string>
+    <string name="apps_known_installer_gplay_label">Magazin Google Play</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Sistem Android</string>
     <string name="general_refresh_action">Actualizează</string>
     <string name="general_expand_all_action">Extinde tot</string>
@@ -112,8 +139,16 @@
     <string name="apps_filter_accessibility_label">Aplicații cu servicii de accesibilitate</string>
     <string name="apps_details_description_restrictions_caveat_description">Această aplicație este instalată într-un alt profil de utilizator. Permisiunile acordate pot fi determinate doar pentru aplicațiile instalate în Profilul Activ curent, din cauza restricțiilor Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Această aplicație a fost dezinstalată, dar datele sale au fost păstrate. Starea permisiunilor nu poate fi determinată pentru aplicațiile dezinstalate.</string>
-    <string name="apps_details_description_secondary_description">"%d permisiuni solicitate."</string>
-    <string name="apps_details_description_primary_description">"%1$d din %2$d permisiuni acordate."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d permisiune solicitată.</item>
+        <item quantity="few">%d permisiuni solicitate.</item>
+        <item quantity="other">%d de permisiuni solicitate.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d din %2$d permisiuni acordată.</item>
+        <item quantity="few">%1$d din %2$d permisiuni acordate.</item>
+        <item quantity="other">%1$d din %2$d de permisiuni acordate.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Nicio permisiune nu corespunde filtrelor curente. Apăsați pictograma de filtrare pentru a ajusta.</string>
     <string name="api_target_level_x">Versiune țintă: %s</string>
     <string name="api_minimum_level_x">Versiune minimă: %s</string>
@@ -148,10 +183,19 @@
         <item quantity="few">%d aplicații de sistem</item>
         <item quantity="other">%d de aplicații de sistem</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Aplicații de utilizator: Acordate la %1$d din %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Aplicații de sistem: Acordate la %1$d din %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Aplicații utilizator: Acordată la %1$d din %2$d.</item>
+        <item quantity="few">Aplicații utilizator: Acordate la %1$d din %2$d.</item>
+        <item quantity="other">Aplicații utilizator: Acordate la %1$d din %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Aplicații sistem: Acordată la %1$d din %2$d.</item>
+        <item quantity="few">Aplicații sistem: Acordate la %1$d din %2$d.</item>
+        <item quantity="other">Aplicații sistem: Acordate la %1$d din %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplicațiile instalate în alte profiluri de utilizator sunt excluse din calculul de mai sus din cauza restricțiilor Android.</string>
     <string name="permissions_details_empty_filter_message">Nicio aplicație nu corespunde filtrelor curente. Apăsați pictograma de filtrare pentru a ajusta.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Permite aplicațiilor să comunice cu etichete, carduri și cititoare NFC (Near Field Communication).</string>
     <string name="permission_manage_media_label">Gestionare media</string>
     <string name="permission_manage_media_description">Permite aplicațiilor să modifice sau să șteargă fișiere media create cu alte aplicații FĂRĂ a vă întreba. Aplicațiile trebuie să aibă permisiunea de a accesa fișiere și media.</string>
@@ -209,6 +253,7 @@
     <string name="permission_premium_sms_services_description">Permite aplicațiilor să folosească servicii de mesaje text premium. Aceasta te va costa bani.</string>
     <string name="permission_unlimited_data_access_label">Acces nelimitat la date</string>
     <string name="permission_unlimited_data_access_description">Permite aplicațiilor să acceseze date nelimitat. Aplicațiile pot consuma date chiar și când Economisorul de Date este ACTIVAT.</string>
+    <string name="permission_group_calendar_label">Calendar</string>
     <string name="permission_group_calendar_description"><![CDATA[Permisiuni legate de calendar, de ex. vizualizarea și editarea intrărilor.]]></string>
     <string name="permission_group_files_label">Fișiere și media</string>
     <string name="permission_group_files_description">Permisiuni legate de fișiere. Acces la stocare, documente și media.</string>
@@ -253,20 +298,4 @@
     <string name="onboarding_body1">Această aplicație vă ajută să navigați prin aplicațiile instalate și să descoperiți permisiunile.</string>
     <string name="onboarding_body2">Permission Pilot colectează informații despre aplicațiile instalate pentru a permite listarea aplicațiilor și compararea permisiunilor acestora când utilizați această aplicație.</string>
     <string name="onboarding_body3">Permission Pilot nu are reclame și procesează datele doar local.</string>
-    <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="general_settings_label">General</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="discord_label">Discord</string>
-    <string name="apps_filter_gplay_label">Magazin Google Play</string>
-    <string name="apps_filter_oemstore_label">Magazin OEM</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
-    <string name="apps_known_installer_gplay_label">Magazin Google Play</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="permission_nfc_label">NFC</string>
-    <string name="permission_group_calendar_label">Calendar</string>
 </resources>

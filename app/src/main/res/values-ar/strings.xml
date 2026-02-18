@@ -14,8 +14,8 @@
     <string name="general_continue_action">استمر</string>
     <string name="general_accept_action">اقبل</string>
     <string name="upgrade_myperm_label">ترقية بايلوت الأذونات</string>
-    <string name="upgrade_myperm_description">هل أعجبك أن هذا التطبيق خالي من الإعلانات ولا يجمع بياناتك؟\nاشترِ النسخة الاحترافية لدعمنا!</string>
-    <string name="upgrade_buy_pro_action">شراء النسخة الاحترافية</string>
+    <string name="upgrade_myperm_description">هل يعجبك أن هذا التطبيق خالٍ من الإعلانات ولا يجمع بياناتك؟\nاشترِ Pro version لإظهار دعمك!</string>
+    <string name="upgrade_buy_pro_action">شراء Pro version</string>
     <string name="general_no_action">لا</string>
     <string name="upgrade_donate_action">تبرع</string>
     <string name="debug_debuglog_size_label">الحجم</string>
@@ -61,9 +61,30 @@
     <string name="apps_sort_install_date_label">تاريخ التثبيت</string>
     <string name="apps_sort_update_date_label">آخر تحديث</string>
     <string name="general_sort_action">رتّب</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d من %2$d تم منحهم.</string>
-    <string name="apps_permissions_x_requested">%1$d إذن مطلوب.</string>
-    <string name="apps_permissions_declares_x">يُعلن %1$d أذون.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="zero">تم منح %1$d من %2$d.</item>
+        <item quantity="one">تم منح %1$d من %2$d.</item>
+        <item quantity="two">تم منح %1$d من %2$d.</item>
+        <item quantity="few">تم منح %1$d من %2$d.</item>
+        <item quantity="many">تم منح %1$d من %2$d.</item>
+        <item quantity="other">تم منح %1$d من %2$d.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="zero">لا توجد أذونات مطلوبة.</item>
+        <item quantity="one">تم طلب %1$d إذن.</item>
+        <item quantity="two">تم طلب %1$d إذنين.</item>
+        <item quantity="few">تم طلب %1$d أذونات.</item>
+        <item quantity="many">تم طلب %1$d إذنًا.</item>
+        <item quantity="other">تم طلب %1$d إذن.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="zero">لا تُعلن عن أي أذونات.</item>
+        <item quantity="one">تُعلن عن %1$d إذن.</item>
+        <item quantity="two">تُعلن عن %1$d إذنين.</item>
+        <item quantity="few">تُعلن عن %1$d أذونات.</item>
+        <item quantity="many">تُعلن عن %1$d إذنًا.</item>
+        <item quantity="other">تُعلن عن %1$d إذن.</item>
+    </plurals>
     <string name="apps_details_installer_label">مصدر التثبيت</string>
     <string name="apps_details_installer_unknown_label">المعلومات غير متوفرة</string>
     <string name="permissions_filter_manifest_label">أذونات AOSP</string>
@@ -126,8 +147,22 @@
     <string name="apps_filter_accessibility_label">تطبيقات بخدمات وصول</string>
     <string name="apps_details_description_restrictions_caveat_description">ثُبِّت هذا التطبيق في ملف مستخدم آخر. يمكن تحديد الأذونات الممنوحة للتطبيقات في الملف الحالي النشط فقط، بسبب قيود أندرويد.</string>
     <string name="apps_details_description_uninstalled_caveat">أُزيل هذا التطبيق لكن احتُفظ ببياناته. لا يمكن تحديد حالة الأذونات للتطبيقات المُزالة.</string>
-    <string name="apps_details_description_secondary_description">"%d أذونات مطلوبة."</string>
-    <string name="apps_details_description_primary_description">"%1$d من %2$d أذونات ممنوحة."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="zero">لا توجد أذونات مطلوبة.</item>
+        <item quantity="one">تم طلب %d إذن.</item>
+        <item quantity="two">تم طلب %d إذنين.</item>
+        <item quantity="few">تم طلب %d أذونات.</item>
+        <item quantity="many">تم طلب %d إذنًا.</item>
+        <item quantity="other">تم طلب %d إذن.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="zero">تم منح %1$d من %2$d أذونات.</item>
+        <item quantity="one">تم منح %1$d من %2$d أذونات.</item>
+        <item quantity="two">تم منح %1$d من %2$d أذونات.</item>
+        <item quantity="few">تم منح %1$d من %2$d أذونات.</item>
+        <item quantity="many">تم منح %1$d من %2$d أذونات.</item>
+        <item quantity="other">تم منح %1$d من %2$d أذونات.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">لا توجد أذونات تطابق الفلاتر الحالية. اضغط على أيقونة الفلتر للتعديل.</string>
     <string name="api_target_level_x">إصدار الهدف: %s</string>
     <string name="api_minimum_level_x">أدنى إصدار: %s</string>
@@ -177,8 +212,22 @@
         <item quantity="many">%d تطبيقات نظام</item>
         <item quantity="other">%d تطبيقات نظام</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"تطبيقات المستخدم: %1$d من %2$d منحوا الإذن."</string>
-    <string name="permissions_details_count_system_apps">"تطبيقات النظام: %1$d من %2$d منحوا الإذن."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="zero">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="one">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="two">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="few">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="many">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="other">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="zero">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="one">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="two">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="few">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="many">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+        <item quantity="other">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">يُستثنى من الحساب التطبيقات المثبّتة في حسابات مستخدمين آخرين بسبب قيود أندرويد.</string>
     <string name="permissions_details_empty_filter_message">لا توجد تطبيقات تطابق الفلاتر الحالية. اضغط على أيقونة الفلتر للتعديل.</string>
     <string name="permission_nfc_label">NFC</string>

@@ -14,7 +14,8 @@
     <string name="general_continue_action">Devam Et</string>
     <string name="general_accept_action">Kabul Et</string>
     <string name="upgrade_myperm_label">Permission Pilot\'u Yükselt</string>
-    <string name="upgrade_myperm_description">Bu uygulamanın reklam içermemesi ve verilerinizi toplamaması hoşunuza gitti mi?\nDesteğinizi göstermek için pro sürümü satın alın!</string>
+    <string name="upgrade_myperm_description">Bu uygulamanın reklam içermediğini ve verilerinizi toplamadığını beğendiniz mi?
+Desteğinizi göstermek için Pro sürümü satın alın!</string>
     <string name="upgrade_buy_pro_action">Pro sürümü satın al</string>
     <string name="general_no_action">Hayır</string>
     <string name="upgrade_donate_action">Bağış Yap</string>
@@ -61,9 +62,18 @@
     <string name="apps_sort_install_date_label">Kurulum tarihi</string>
     <string name="apps_sort_update_date_label">Son güncelleme</string>
     <string name="general_sort_action">Sırala</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d\'den %1$d tanesi verildi.</string>
-    <string name="apps_permissions_x_requested">%1$d izin talep edildi.</string>
-    <string name="apps_permissions_declares_x">%1$d izin bildiriyor.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%2$d içinden %1$d izin verildi.</item>
+        <item quantity="other">%2$d içinden %1$d izin verildi.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d izin istendi.</item>
+        <item quantity="other">%1$d izin istendi.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">%1$d izin bildiriliyor.</item>
+        <item quantity="other">%1$d izin bildiriliyor.</item>
+    </plurals>
     <string name="apps_details_installer_label">Kurulum kaynağı</string>
     <string name="apps_details_installer_unknown_label">Bilgi mevcut değil</string>
     <string name="permissions_filter_manifest_label">AOSP izinleri</string>
@@ -126,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Erişilebilirlik hizmetleri olan uygulamalar</string>
     <string name="apps_details_description_restrictions_caveat_description">Bu uygulama başka bir kullanıcı profilinde yüklü. Android kısıtlamaları nedeniyle verilen izinler yalnızca şu anda etkin profilde yüklü uygulamalar için belirlenebilir.</string>
     <string name="apps_details_description_uninstalled_caveat">Bu uygulama kaldırıldı ancak verileri saklandı. Kaldırılmış uygulamaların izin durumları belirlenemiyor.</string>
-    <string name="apps_details_description_secondary_description">"%d izin talep edildi."</string>
-    <string name="apps_details_description_primary_description">"%2$d izinden %1$d tanesi verildi."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d izin istendi.</item>
+        <item quantity="other">%d izin istendi.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%2$d iznin %1$d\'ine izin verildi.</item>
+        <item quantity="other">%2$d iznin %1$d\'ine izin verildi.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Mevcut filtrelere uyan izin yok. Ayarlamak için filtre simgesine dokunun.</string>
     <string name="api_target_level_x">Hedef sürüm: %s</string>
     <string name="api_minimum_level_x">Minimum sürüm: %s</string>
@@ -157,8 +173,14 @@
         <item quantity="one">%d sistem uygulaması</item>
         <item quantity="other">%d sistem uygulaması</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Kullanıcı Uygulamaları: %2$d'den %1$d'ine verildi."</string>
-    <string name="permissions_details_count_system_apps">"Sistem Uygulamaları: %2$d'den %1$d'ine verildi."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Kullanıcı Uygulamaları: %2$d uygulamadan %1$d\'ine izin verildi.</item>
+        <item quantity="other">Kullanıcı Uygulamaları: %2$d uygulamadan %1$d\'ine izin verildi.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Sistem Uygulamaları: %2$d uygulamadan %1$d\'ine izin verildi.</item>
+        <item quantity="other">Sistem Uygulamaları: %2$d uygulamadan %1$d\'ine izin verildi.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Diğer kullanıcı profillerinde yüklü uygulamalar Android kısıtlamaları nedeniyle yukarıdaki hesaplamadan çıkarılmıştır.</string>
     <string name="permissions_details_empty_filter_message">Mevcut filtrelere uyan uygulama yok. Ayarlamak için filtre simgesine dokunun.</string>
     <string name="permission_nfc_label">NFC</string>

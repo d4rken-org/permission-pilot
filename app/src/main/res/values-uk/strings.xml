@@ -14,8 +14,9 @@
     <string name="general_continue_action">Продовжити</string>
     <string name="general_accept_action">Прийняти</string>
     <string name="upgrade_myperm_label">Оновити Permission Pilot</string>
-    <string name="upgrade_myperm_description">Вам подобається, що ця програма не має реклами і не збирає ваші дані?\nКупіть професійну версію, щоб показати вашу підтримку!</string>
-    <string name="upgrade_buy_pro_action">Купити про-версію</string>
+    <string name="upgrade_myperm_description">Вам подобається, що цей застосунок не містить реклами та не збирає ваші дані?
+Придбайте Pro-версію, щоб підтримати розробника!</string>
+    <string name="upgrade_buy_pro_action">Придбати Pro-версію</string>
     <string name="general_no_action">Ні</string>
     <string name="upgrade_donate_action">Пожертвувати</string>
     <string name="debug_debuglog_size_label">Розмір</string>
@@ -34,12 +35,14 @@
     <string name="settings_privacy_policy_desc">Відповідальне поводження з даними.</string>
     <string name="settings_support_label">Підтримка</string>
     <string name="documentation_label">Документація</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Місце для спілкування та запитань.</string>
     <string name="issue_tracker_label">Відстеження проблем</string>
     <string name="issue_tracker_description">Публічний трекер проблем для звітів про помилки та запитів функцій.</string>
     <string name="permissions_page_label">Дозволи</string>
     <string name="apps_page_label">Програми</string>
     <string name="app_type_system_label">Системна програма</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Невідомий дозвіл. Він запитується цією програмою, але жодна інша програма не оголошує його.</string>
     <string name="permissions_unknown_description">Невідомий дозвіл. Він запитується програмами, але не оголошений ніде.</string>
     <string name="permissions_app_type_declaring_description">Дозвіл створюється цією програмою.</string>
@@ -50,6 +53,8 @@
     <string name="apps_filter_systemapps_label">Системні програми</string>
     <string name="apps_filter_nointernet_label">Програми без доступу до інтернету</string>
     <string name="apps_filter_sideloaded_label">Сторонні програми</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
+    <string name="apps_filter_oemstore_label">Магазин OEM</string>
     <string name="apps_sort_permissions_granted_label">Надані дозволи</string>
     <string name="apps_sort_permissions_requested_label">Запитані дозволи</string>
     <string name="apps_sort_permissions_declared_label">Оголошені дозволи</string>
@@ -57,9 +62,24 @@
     <string name="apps_sort_install_date_label">Дата встановлення</string>
     <string name="apps_sort_update_date_label">Останнє оновлення</string>
     <string name="general_sort_action">Сортувати</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d з %2$d надано.</string>
-    <string name="apps_permissions_x_requested">%1$d дозволів запитано.</string>
-    <string name="apps_permissions_declares_x">Оголошує %1$d дозволів.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d з %2$d надано.</item>
+        <item quantity="few">%1$d з %2$d надано.</item>
+        <item quantity="many">%1$d з %2$d надано.</item>
+        <item quantity="other">%1$d з %2$d надано.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d дозвіл запитано.</item>
+        <item quantity="few">%1$d дозволи запитано.</item>
+        <item quantity="many">%1$d дозволів запитано.</item>
+        <item quantity="other">%1$d дозволу запитано.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Оголошено %1$d дозвіл.</item>
+        <item quantity="few">Оголошено %1$d дозволи.</item>
+        <item quantity="many">Оголошено %1$d дозволів.</item>
+        <item quantity="other">Оголошено %1$d дозволу.</item>
+    </plurals>
     <string name="apps_details_installer_label">Джерело встановлення</string>
     <string name="apps_details_installer_unknown_label">Інформація недоступна</string>
     <string name="permissions_filter_manifest_label">AOSP дозволи</string>
@@ -95,6 +115,12 @@
     <string name="apps_app_details_label">Деталі програми</string>
     <string name="apps_details_shareduserid_label">Програми зі спільним ID користувача</string>
     <string name="apps_details_siblings_label">Сестринські</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Система Android</string>
     <string name="general_refresh_action">Оновити</string>
     <string name="general_expand_all_action">Розгорнути все</string>
@@ -116,8 +142,18 @@
     <string name="apps_filter_accessibility_label">Програми з службами доступності</string>
     <string name="apps_details_description_restrictions_caveat_description">Ця програма встановлена в іншому профілі користувача. Надані дозволи можна визначити лише для програм, встановлених у наразі активному профілі, через обмеження Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Цю програму було видалено, але її дані збережено. Стан дозволів неможливо визначити для видалених програм.</string>
-    <string name="apps_details_description_secondary_description">"%d дозволів запитано."</string>
-    <string name="apps_details_description_primary_description">"%1$d з %2$d дозволів надано."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d дозвіл запитано.</item>
+        <item quantity="few">%d дозволи запитано.</item>
+        <item quantity="many">%d дозволів запитано.</item>
+        <item quantity="other">%d дозволу запитано.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d з %2$d дозволів надано.</item>
+        <item quantity="few">%1$d з %2$d дозволів надано.</item>
+        <item quantity="many">%1$d з %2$d дозволів надано.</item>
+        <item quantity="other">%1$d з %2$d дозволів надано.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Немає дозволів, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
     <string name="api_target_level_x">Цільова версія: %s</string>
     <string name="api_minimum_level_x">Мінімальна версія: %s</string>
@@ -157,10 +193,21 @@
         <item quantity="many">%d системних програм</item>
         <item quantity="other">%d системних програм</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Користувацькі програми: Надано %1$d з %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Системні програми: Надано %1$d з %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Користувацькі застосунки: надано %1$d з %2$d.</item>
+        <item quantity="few">Користувацькі застосунки: надано %1$d з %2$d.</item>
+        <item quantity="many">Користувацькі застосунки: надано %1$d з %2$d.</item>
+        <item quantity="other">Користувацькі застосунки: надано %1$d з %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Системні застосунки: надано %1$d з %2$d.</item>
+        <item quantity="few">Системні застосунки: надано %1$d з %2$d.</item>
+        <item quantity="many">Системні застосунки: надано %1$d з %2$d.</item>
+        <item quantity="other">Системні застосунки: надано %1$d з %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Програми, встановлені в інших профілях користувачів, виключені з розрахунку вище через обмеження Android.</string>
     <string name="permissions_details_empty_filter_message">Немає програм, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Дозволяє програмам спілкуватися з тегами, картками та зчитувачами Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Керувати медіа</string>
     <string name="permission_manage_media_description">Дозволяє програмам змінювати або видаляти медіафайли, створені іншими програмами, БЕЗ запиту. Програми повинні мати дозвіл на доступ до файлів і медіа.</string>
@@ -263,15 +310,4 @@
     <string name="onboarding_body1">Ця програма допомагає вам навігувати встановленими програмами та виявляти дозволи.</string>
     <string name="onboarding_body2">Permission Pilot збирає інформацію про встановлені програми, щоб дозволити перелічувати ваші програми та перехресно посилатися на їх дозволи під час використання цієї програми.</string>
     <string name="onboarding_body3">Permission Pilot не має реклами і обробляє дані лише локально.</string>
-    <string name="discord_label">Discord</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_filter_oemstore_label">Магазин OEM</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="permission_nfc_label">NFC</string>
 </resources>

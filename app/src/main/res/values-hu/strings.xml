@@ -14,8 +14,9 @@
     <string name="general_continue_action">Folytatas</string>
     <string name="general_accept_action">Elfogadas</string>
     <string name="upgrade_myperm_label">Permission Pilot frissitese</string>
-    <string name="upgrade_myperm_description">Tetszik, hogy ez az alkalmazas reklamok nelkul mukodik es nem gyujti az adataidat?\nVasarold meg a Pro verziot, hogy kifejezd tamogatasod!</string>
-    <string name="upgrade_buy_pro_action">Pro verzio vasarlasa</string>
+    <string name="upgrade_myperm_description">Tetszik, hogy ez az alkalmazás nem tartalmaz hirdetéseket és nem gyűjti az adatait?
+Vásárolja meg a Pro verziót a támogatás kifejezéseként!</string>
+    <string name="upgrade_buy_pro_action">Pro verzió megvásárlása</string>
     <string name="general_no_action">Nem</string>
     <string name="upgrade_donate_action">Adomanyozas</string>
     <string name="debug_debuglog_size_label">Meret</string>
@@ -61,9 +62,18 @@
     <string name="apps_sort_install_date_label">Telepites datuma</string>
     <string name="apps_sort_update_date_label">Utolso frissites</string>
     <string name="general_sort_action">Rendezes</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d-bol/-bol %1$d megadva.</string>
-    <string name="apps_permissions_x_requested">%1$d engedely kerelmezes.</string>
-    <string name="apps_permissions_declares_x">%1$d engedelyt dekleral.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d / %2$d megadva.</item>
+        <item quantity="other">%1$d / %2$d megadva.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d engedély kérve.</item>
+        <item quantity="other">%1$d engedély kérve.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">%1$d engedélyt deklarál.</item>
+        <item quantity="other">%1$d engedélyt deklarál.</item>
+    </plurals>
     <string name="apps_details_installer_label">Telepitesi forras</string>
     <string name="apps_details_installer_unknown_label">Informacio nem elerheto</string>
     <string name="permissions_filter_manifest_label">AOSP engedelyek</string>
@@ -81,7 +91,7 @@
     <string name="permissions_search_list_hint">Engedelyek keresese</string>
     <string name="apps_search_list_hint">Alkalmazasok keresese</string>
     <string name="permissions_details_protection_label">Vedelmi szint</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
+    <string name="permissions_protection_type_normal_label">Normál</string>
     <string name="permissions_protection_type_dangerous_label">Veszelyes</string>
     <string name="permissions_protection_type_signature_label">Alairas</string>
     <string name="permissions_protection_type_signatureorsystem_label">Alairas vagy rendszer</string>
@@ -126,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Akadalymentesitesi szolgaltatasokkal rendelkezo alkalmazasok</string>
     <string name="apps_details_description_restrictions_caveat_description">Ez az alkalmazas egy masik felhasznaloi profilban van telepitve. A megadott engedelyek csak az aktiv profilban telepitett alkalmazasoknal hatarozhatok meg az Android korlatozasai miatt.</string>
     <string name="apps_details_description_uninstalled_caveat">Ez az alkalmazas el lett tavolitva, de az adatai megmaradtak. Az eltavolitott alkalmazasok engedelyallapotai nem hatarozhatok meg.</string>
-    <string name="apps_details_description_secondary_description">"%d engedely kerelmezes."</string>
-    <string name="apps_details_description_primary_description">"%2$d-bol/-bol %1$d engedely megadva."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d engedély kérve.</item>
+        <item quantity="other">%d engedély kérve.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d / %2$d engedély megadva.</item>
+        <item quantity="other">%1$d / %2$d engedély megadva.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Egyetlen engedely sem felel meg a jelenlegi szuroknek. Koppints a szuro ikonra a modositashoz.</string>
     <string name="api_target_level_x">Cel verzio: %s</string>
     <string name="api_minimum_level_x">Minimum verzio: %s</string>
@@ -157,8 +173,14 @@
         <item quantity="one">%d rendszeralkalmazas</item>
         <item quantity="other">%d rendszeralkalmazas</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Felhasznaloi alkalmazasok: %2$d-bol/-bol %1$d-nek megadva."</string>
-    <string name="permissions_details_count_system_apps">"Rendszeralkalmazasok: %2$d-bol/-bol %1$d-nek megadva."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Felhasználói alkalmazások: %1$d / %2$d számára megadva.</item>
+        <item quantity="other">Felhasználói alkalmazások: %1$d / %2$d számára megadva.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Rendszeralkalmazások: %1$d / %2$d számára megadva.</item>
+        <item quantity="other">Rendszeralkalmazások: %1$d / %2$d számára megadva.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">A mas felhasznaloi profilokban telepitett alkalmazasok ki vannak zarva a fenti szamitasbol az Android korlatozasai miatt.</string>
     <string name="permissions_details_empty_filter_message">Egyetlen alkalmazas sem felel meg a jelenlegi szuroknek. Koppints a szuro ikonra a modositashoz.</string>
     <string name="permission_nfc_label">NFC</string>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Instellingen</string>
     <string name="label_help">Help</string>
     <string name="general_error_label">Fout</string>
@@ -12,7 +14,8 @@
     <string name="general_continue_action">Doorgaan</string>
     <string name="general_accept_action">Accepteren</string>
     <string name="upgrade_myperm_label">Permission Pilot upgraden</string>
-    <string name="upgrade_myperm_description">Vind je het fijn dat deze app geen advertenties heeft en je gegevens niet verzamelt?\nKoop de pro-versie om je steun te tonen!</string>
+    <string name="upgrade_myperm_description">Vind je het fijn dat deze app geen advertenties heeft en je gegevens niet verzamelt?
+Koop de Pro-versie om je steun te tonen!</string>
     <string name="upgrade_buy_pro_action">Pro-versie kopen</string>
     <string name="general_no_action">Nee</string>
     <string name="upgrade_donate_action">Doneren</string>
@@ -59,9 +62,18 @@
     <string name="apps_sort_install_date_label">Installatiedatum</string>
     <string name="apps_sort_update_date_label">Laatste update</string>
     <string name="general_sort_action">Sorteren</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d van %2$d verleend.</string>
-    <string name="apps_permissions_x_requested">%1$d machtigingen aangevraagd.</string>
-    <string name="apps_permissions_declares_x">Declareert %1$d machtigingen.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d van %2$d verleend.</item>
+        <item quantity="other">%1$d van %2$d verleend.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d toestemming aangevraagd.</item>
+        <item quantity="other">%1$d toestemmingen aangevraagd.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Verklaart %1$d toestemming.</item>
+        <item quantity="other">Verklaart %1$d toestemmingen.</item>
+    </plurals>
     <string name="apps_details_installer_label">Installatiebron</string>
     <string name="apps_details_installer_unknown_label">Informatie niet beschikbaar</string>
     <string name="permissions_filter_manifest_label">AOSP-machtigingen</string>
@@ -124,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Apps met toegankelijkheidsdiensten</string>
     <string name="apps_details_description_restrictions_caveat_description">Deze app is geïnstalleerd in een ander gebruikersprofiel. Verleende machtigingen kunnen alleen worden bepaald voor apps die zijn geïnstalleerd in het momenteel actieve profiel, vanwege Android-beperkingen.</string>
     <string name="apps_details_description_uninstalled_caveat">Deze app is verwijderd maar de gegevens zijn behouden. Machtigingsstatussen kunnen niet worden bepaald voor verwijderde apps.</string>
-    <string name="apps_details_description_secondary_description">"%d machtigingen aangevraagd."</string>
-    <string name="apps_details_description_primary_description">"%1$d van %2$d machtigingen verleend."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d toestemming aangevraagd.</item>
+        <item quantity="other">%d toestemmingen aangevraagd.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d van %2$d toestemmingen verleend.</item>
+        <item quantity="other">%1$d van %2$d toestemmingen verleend.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Geen machtigingen komen overeen met de huidige filters. Tik op het filterpictogram om aan te passen.</string>
     <string name="api_target_level_x">Doelversie: %s</string>
     <string name="api_minimum_level_x">Minimumversie: %s</string>
@@ -155,8 +173,14 @@
         <item quantity="one">%d systeem-app</item>
         <item quantity="other">%d systeem-apps</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Gebruiker-apps: Verleend aan %1$d van %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Systeem-apps: Verleend aan %1$d van %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Gebruikersapps: verleend aan %1$d van %2$d.</item>
+        <item quantity="other">Gebruikersapps: verleend aan %1$d van %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Systeemapps: verleend aan %1$d van %2$d.</item>
+        <item quantity="other">Systeemapps: verleend aan %1$d van %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps die zijn geïnstalleerd in andere gebruikersprofielen zijn uitgesloten van de bovenstaande berekening vanwege Android-beperkingen.</string>
     <string name="permissions_details_empty_filter_message">Geen apps komen overeen met de huidige filters. Tik op het filterpictogram om aan te passen.</string>
     <string name="permission_nfc_label">NFC</string>

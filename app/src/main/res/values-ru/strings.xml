@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Настройки</string>
     <string name="label_help">Помощь</string>
     <string name="general_error_label">Ошибка</string>
@@ -12,8 +14,8 @@
     <string name="general_continue_action">Продолжить</string>
     <string name="general_accept_action">Принять</string>
     <string name="upgrade_myperm_label">Усовершенствовать Permission Pilot</string>
-    <string name="upgrade_myperm_description">Вам нравится, что в приложении нет рекламы, и оно не собирает личных данных?\nКупите версию pro и покажите Вашу поддержку!</string>
-    <string name="upgrade_buy_pro_action">Купить версию pro</string>
+    <string name="upgrade_myperm_description">Вам нравится, что в этом приложении нет рекламы и оно не собирает ваши данные?\nКупите версию Pro, чтобы поддержать разработку!</string>
+    <string name="upgrade_buy_pro_action">Купить версию Pro</string>
     <string name="general_no_action">Нет</string>
     <string name="upgrade_donate_action">Пожертвовать</string>
     <string name="debug_debuglog_size_label">Размер</string>
@@ -59,9 +61,24 @@
     <string name="apps_sort_install_date_label">Дата установки</string>
     <string name="apps_sort_update_date_label">Последнее обновление</string>
     <string name="general_sort_action">Сортировка</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d из %2$d предоставлено.</string>
-    <string name="apps_permissions_x_requested">%1$d разреш. запрошено.</string>
-    <string name="apps_permissions_declares_x">Объявляет %1$d разреш.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">Предоставлено %1$d из %2$d.</item>
+        <item quantity="few">Предоставлено %1$d из %2$d.</item>
+        <item quantity="many">Предоставлено %1$d из %2$d.</item>
+        <item quantity="other">Предоставлено %1$d из %2$d.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">Запрошено %1$d разрешение.</item>
+        <item quantity="few">Запрошено %1$d разрешения.</item>
+        <item quantity="many">Запрошено %1$d разрешений.</item>
+        <item quantity="other">Запрошено %1$d разрешения.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Объявлено %1$d разрешение.</item>
+        <item quantity="few">Объявлено %1$d разрешения.</item>
+        <item quantity="many">Объявлено %1$d разрешений.</item>
+        <item quantity="other">Объявлено %1$d разрешения.</item>
+    </plurals>
     <string name="apps_details_installer_label">Источник установки</string>
     <string name="apps_details_installer_unknown_label">Информация недоступна</string>
     <string name="permissions_filter_manifest_label">Разрешения AOSP</string>
@@ -124,8 +141,18 @@
     <string name="apps_filter_accessibility_label">Прил. со службами спецвозможностей</string>
     <string name="apps_details_description_restrictions_caveat_description">Приложение установлено в другом профиле пользователя. Из-за ограничений Android, предоставленные разрешения могут быть определены только для приложений, установленных в текущем активном профиле.</string>
     <string name="apps_details_description_uninstalled_caveat">Это приложение было удалено, но его данные сохранены. Состояние разрешений невозможно определить для удалённых приложений.</string>
-    <string name="apps_details_description_secondary_description">"%d разреш. запрошено."</string>
-    <string name="apps_details_description_primary_description">"%1$d из %2$d разреш. предоставлено."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">Запрошено %d разрешение.</item>
+        <item quantity="few">Запрошено %d разрешения.</item>
+        <item quantity="many">Запрошено %d разрешений.</item>
+        <item quantity="other">Запрошено %d разрешения.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">Предоставлено %1$d из %2$d разрешений.</item>
+        <item quantity="few">Предоставлено %1$d из %2$d разрешений.</item>
+        <item quantity="many">Предоставлено %1$d из %2$d разрешений.</item>
+        <item quantity="other">Предоставлено %1$d из %2$d разрешений.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Нет разрешений, соответствующих текущим фильтрам. Нажмите на значок фильтра для настройки.</string>
     <string name="api_target_level_x">Целевая версия: %s</string>
     <string name="api_minimum_level_x">Минимальная версия: %s</string>
@@ -165,8 +192,18 @@
         <item quantity="many">%d сист. прил.</item>
         <item quantity="other">%d сист. прил.</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Польз. приложения: предоставлено %1$d из %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Сист. приложения: предоставлено %1$d из %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="few">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="many">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="other">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Системные приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="few">Системные приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="many">Системные приложения: предоставлено %1$d из %2$d.</item>
+        <item quantity="other">Системные приложения: предоставлено %1$d из %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, установленные в других профилях пользователя, исключаются из обработки из-за ограничений Android.</string>
     <string name="permissions_details_empty_filter_message">Нет приложений, соответствующих текущим фильтрам. Нажмите на значок фильтра для настройки.</string>
     <string name="permission_nfc_label">NFC</string>
@@ -211,7 +248,7 @@
     <string name="permission_ignore_battery_optimizations_description">Разрешение приложениям работы в фоне. Может разряжать батарею. Рекомендуется только для приложений, которые выполняют постоянные/ частые сохранения и/ или синхронизацию (напр. Google Photos), часто используемых приложений (напр. почта, чат, СМС и др.), а также для приложений с постоянными уведомлениями.</string>
     <string name="permission_notification_access_label">Доступ к уведомлениям</string>
     <string name="permission_notification_access_description">Разрешение приложениям читать все уведомления, включая персональную информацию (такую, как имена контактов и текст получаемых сообщений), переносить и пропускать уведомления, запускать кнопки действий (ответ на вызовы, удаление СМС/ писем и др.), включать и выключать режим Не беспокоить (DND) или менять соответствующие настройки.</string>
-    <string name="permission_do_not_disturb_permission_label">Разрешение на доступ к Не беспокоить (DND</string>
+    <string name="permission_do_not_disturb_permission_label">Разрешение на доступ к Не беспокоить (DND)</string>
     <string name="permission_do_not_disturb_permission_description">Разрешение приложениям включать и выключать режим Не беспокоить (DND) или менять соответствующие настройки.</string>
     <string name="permission_alarms_and_reminders_label">Будильники и напоминания</string>
     <string name="permission_alarms_and_reminders_description">Разрешение приложениям включать будильники и планировать действия по времени. Это разрешает приложениям работать в фоне, при этом расходуется заряд. Отключение данного разрешения остановит работу существующих будильников и напоминаний, установленных этим приложением.</string>

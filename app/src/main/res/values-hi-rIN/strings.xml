@@ -14,7 +14,8 @@
     <string name="general_continue_action">जारी रखें</string>
     <string name="general_accept_action">स्वीकार करें</string>
     <string name="upgrade_myperm_label">Permission Pilot अपग्रेड करें</string>
-    <string name="upgrade_myperm_description">क्या आपको पसंद है कि इस ऐप में कोई विज्ञापन नहीं है और यह आपका डेटा एकत्र नहीं करता?\nअपना समर्थन दिखाने के लिए Pro संस्करण खरीदें!</string>
+    <string name="upgrade_myperm_description">क्या आपको पसंद है कि इस ऐप में कोई विज्ञापन नहीं है और यह आपका डेटा एकत्र नहीं करता?
+अपना समर्थन दिखाने के लिए Pro संस्करण खरीदें!</string>
     <string name="upgrade_buy_pro_action">Pro संस्करण खरीदें</string>
     <string name="general_no_action">नहीं</string>
     <string name="upgrade_donate_action">दान करें</string>
@@ -61,9 +62,18 @@
     <string name="apps_sort_install_date_label">इंस्टॉल तिथि</string>
     <string name="apps_sort_update_date_label">अंतिम अपडेट</string>
     <string name="general_sort_action">क्रमबद्ध करें</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d में से %1$d दी गई।</string>
-    <string name="apps_permissions_x_requested">%1$d अनुमतियां अनुरोध की गईं।</string>
-    <string name="apps_permissions_declares_x">%1$d अनुमतियां घोषित करता है।</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%2$d में से %1$d अनुमति दी गई।</item>
+        <item quantity="other">%2$d में से %1$d अनुमतियाँ दी गई।</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d अनुमति का अनुरोध किया गया।</item>
+        <item quantity="other">%1$d अनुमतियों का अनुरोध किया गया।</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">%1$d अनुमति घोषित की गई।</item>
+        <item quantity="other">%1$d अनुमतियाँ घोषित की गई।</item>
+    </plurals>
     <string name="apps_details_installer_label">इंस्टॉल स्रोत</string>
     <string name="apps_details_installer_unknown_label">जानकारी उपलब्ध नहीं</string>
     <string name="permissions_filter_manifest_label">AOSP अनुमतियां</string>
@@ -126,8 +136,14 @@
     <string name="apps_filter_accessibility_label">एक्सेसिबिलिटी सेवाओं वाले ऐप्स</string>
     <string name="apps_details_description_restrictions_caveat_description">यह ऐप किसी अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किया गया है। Android प्रतिबंधों के कारण, दी गई अनुमतियां केवल वर्तमान सक्रिय प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स के लिए निर्धारित की जा सकती हैं।</string>
     <string name="apps_details_description_uninstalled_caveat">यह ऐप अनइंस्टॉल कर दिया गया है लेकिन इसका डेटा रखा गया है। अनइंस्टॉल किए गए ऐप्स के लिए अनुमति स्थिति निर्धारित नहीं की जा सकती।</string>
-    <string name="apps_details_description_secondary_description">"%d अनुमतियां अनुरोध की गईं।"</string>
-    <string name="apps_details_description_primary_description">"%2$d में से %1$d अनुमतियां दी गईं।"</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d अनुमति का अनुरोध किया गया।</item>
+        <item quantity="other">%d अनुमतियों का अनुरोध किया गया।</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%2$d में से %1$d अनुमति दी गई।</item>
+        <item quantity="other">%2$d में से %1$d अनुमतियाँ दी गई।</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">वर्तमान फ़िल्टर से कोई अनुमति मेल नहीं खाती। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
     <string name="api_target_level_x">लक्ष्य संस्करण: %s</string>
     <string name="api_minimum_level_x">न्यूनतम संस्करण: %s</string>
@@ -157,8 +173,14 @@
         <item quantity="one">%d सिस्टम ऐप</item>
         <item quantity="other">%d सिस्टम ऐप्स</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"उपयोगकर्ता ऐप्स: %2$d में से %1$d को दी गई।"</string>
-    <string name="permissions_details_count_system_apps">"सिस्टम ऐप्स: %2$d में से %1$d को दी गई।"</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">उपयोगकर्ता ऐप्स: %2$d में से %1$d को दी गई।</item>
+        <item quantity="other">उपयोगकर्ता ऐप्स: %2$d में से %1$d को दी गई।</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">सिस्टम ऐप्स: %2$d में से %1$d को दी गई।</item>
+        <item quantity="other">सिस्टम ऐप्स: %2$d में से %1$d को दी गई।</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android प्रतिबंधों के कारण अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स को उपरोक्त गणना से बाहर रखा गया है।</string>
     <string name="permissions_details_empty_filter_message">वर्तमान फ़िल्टर से कोई ऐप मेल नहीं खाता। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
     <string name="permission_nfc_label">NFC</string>

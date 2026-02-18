@@ -14,8 +14,9 @@
     <string name="general_continue_action">繼續</string>
     <string name="general_accept_action">接受</string>
     <string name="upgrade_myperm_label">升級 Permission Pilot</string>
-    <string name="upgrade_myperm_description">您喜歡這款無廣告也不會收集個資的應用程式嗎？\n請購買專業版以表達您的支持！</string>
-    <string name="upgrade_buy_pro_action">購買專業版</string>
+    <string name="upgrade_myperm_description">您喜歡這款應用程式沒有廣告且不收集您的資料嗎？
+購買 Pro 版本以表達您的支持！</string>
+    <string name="upgrade_buy_pro_action">購買 Pro 版本</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">斗內</string>
     <string name="debug_debuglog_size_label">大小</string>
@@ -61,9 +62,15 @@
     <string name="apps_sort_install_date_label">安裝日期</string>
     <string name="apps_sort_update_date_label">上次更新</string>
     <string name="general_sort_action">排序</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d 個權限中已授予 %1$d 個。</string>
-    <string name="apps_permissions_x_requested">請求了 %1$d 個權限。</string>
-    <string name="apps_permissions_declares_x">聲明了 %1$d 個權限。</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">已授予 %1$d／%2$d 項。</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">已請求 %1$d 項權限。</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">宣告了 %1$d 項權限。</item>
+    </plurals>
     <string name="apps_details_installer_label">安裝來源</string>
     <string name="apps_details_installer_unknown_label">缺少資訊</string>
     <string name="permissions_filter_manifest_label">AOSP 權限</string>
@@ -126,8 +133,12 @@
     <string name="apps_filter_accessibility_label">具有輔助功能服務的應用程式</string>
     <string name="apps_details_description_restrictions_caveat_description">此應用程式因為由其他使用者安裝而無無法偵測在目前設定檔之應用程式的權限。</string>
     <string name="apps_details_description_uninstalled_caveat">此應用程式已解除安裝，但資料仍被保留。已解除安裝的應用程式無法判斷其權限狀態。</string>
-    <string name="apps_details_description_secondary_description">"%d 項權限已請求。"</string>
-    <string name="apps_details_description_primary_description">"%2$d 個權限中已授予 %1$d 個。"</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">已請求 %d 項權限。</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">已授予 %1$d／%2$d 項權限。</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">沒有權限符合目前篩選條件。點擊篩選圖示進行調整。</string>
     <string name="api_target_level_x">目標版本：%s</string>
     <string name="api_minimum_level_x">最低版本：%s</string>
@@ -152,14 +163,18 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d 個系統應用程式</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"使用者應用程式：%2$d 個權限中已授予 %1$d 個。"</string>
-    <string name="permissions_details_count_system_apps">"系統應用程式：%2$d 個權限中已授予 %1$d 個。"</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">一般應用程式：已授予 %1$d／%2$d 個。</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">系統應用程式：已授予 %1$d／%2$d 個。</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">由於 Android 限制，上述計算不包括安裝在其他使用者設定檔案中的應用程式。</string>
     <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">允許應用程式與 NFC 標簽、卡片和讀卡器通訊。</string>
     <string name="permission_manage_media_label">管理媒體</string>
-    <string name="permission_manage_media_description">允許應用程式修改或刪除其他應用程式所創建的媒體，而無需s取得您的同意。應用程式必須具有取用檔案和媒體的權限。</string>
+    <string name="permission_manage_media_description">允許應用程式修改或刪除其他應用程式所創建的媒體，而無需取得您的同意。應用程式必須具有取用檔案和媒體的權限。</string>
     <string name="permission_usage_data_access_label">取用使用數據</string>
     <string name="permission_usage_data_access_description">允許應用程式跟蹤您使用的其他應用程式以及使用頻率，識別您的服務提供商、語言設定和其他使用數據。</string>
     <string name="permission_modify_system_settings_label">允許修改系統設定</string>

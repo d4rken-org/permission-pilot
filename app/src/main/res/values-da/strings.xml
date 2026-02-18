@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Indstillinger</string>
     <string name="label_help">Hjælp</string>
     <string name="general_error_label">Fejl</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Fortsæt</string>
     <string name="general_accept_action">Acceptér</string>
     <string name="upgrade_myperm_label">Opgradér Permission Pilot</string>
-    <string name="upgrade_myperm_description">Kan du lide, at denne app ikke har reklamer og ikke indsamler dine data?\nKøb pro-versionen for at vise din støtte!</string>
-    <string name="upgrade_buy_pro_action">Køb pro-version</string>
+    <string name="upgrade_myperm_description">Kan du lide, at denne app ikke har reklamer og ikke indsamler dine data?
+Køb Pro-versionen for at vise din støtte!</string>
+    <string name="upgrade_buy_pro_action">Køb Pro-version</string>
     <string name="general_no_action">Nej</string>
     <string name="upgrade_donate_action">Donér</string>
     <string name="debug_debuglog_size_label">Størrelse</string>
@@ -30,12 +33,16 @@
     <string name="settings_licenses_label">Licenser</string>
     <string name="settings_privacy_policy_label">Privatlivspolitik</string>
     <string name="settings_privacy_policy_desc">Ansvarlig håndtering af data.</string>
+    <string name="settings_support_label">Support</string>
     <string name="documentation_label">Dokumentation</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Et sted at hænge ud og stille spørgsmål.</string>
     <string name="issue_tracker_label">Problemsporing</string>
     <string name="issue_tracker_description">En offentlig problemsporing for fejlrapporter og funktionsanmodninger.</string>
     <string name="permissions_page_label">Tilladelser</string>
+    <string name="apps_page_label">Apps</string>
     <string name="app_type_system_label">System-app</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Ukendt tilladelse. Den anmodes af denne app, men ingen anden app erklærer den.</string>
     <string name="permissions_unknown_description">Ukendt tilladelse. Den anmodes af apps, men er ikke erklæret nogen steder.</string>
     <string name="permissions_app_type_declaring_description">Tilladelse er oprettet af denne app.</string>
@@ -46,6 +53,8 @@
     <string name="apps_filter_systemapps_label">System-apps</string>
     <string name="apps_filter_nointernet_label">Apps uden internetadgang</string>
     <string name="apps_filter_sideloaded_label">Sideloadede apps</string>
+    <string name="apps_filter_gplay_label">Google Play Butik</string>
+    <string name="apps_filter_oemstore_label">OEM-butik</string>
     <string name="apps_sort_permissions_granted_label">Tildelte tilladelser</string>
     <string name="apps_sort_permissions_requested_label">Anmodede tilladelser</string>
     <string name="apps_sort_permissions_declared_label">Erklærede tilladelser</string>
@@ -53,9 +62,18 @@
     <string name="apps_sort_install_date_label">Installationsdato</string>
     <string name="apps_sort_update_date_label">Sidst opdateret</string>
     <string name="general_sort_action">Sortér</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d af %2$d tildelt.</string>
-    <string name="apps_permissions_x_requested">%1$d tilladelser anmodet.</string>
-    <string name="apps_permissions_declares_x">Erklærer %1$d tilladelser.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d af %2$d tildelt.</item>
+        <item quantity="other">%1$d af %2$d tildelt.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d tilladelse anmodet.</item>
+        <item quantity="other">%1$d tilladelser anmodet.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Erklærer %1$d tilladelse.</item>
+        <item quantity="other">Erklærer %1$d tilladelser.</item>
+    </plurals>
     <string name="apps_details_installer_label">Installationskilde</string>
     <string name="apps_details_installer_unknown_label">Information ikke tilgængelig</string>
     <string name="permissions_filter_manifest_label">AOSP-tilladelser</string>
@@ -73,6 +91,7 @@
     <string name="permissions_search_list_hint">Søg tilladelser</string>
     <string name="apps_search_list_hint">Søg apps</string>
     <string name="permissions_details_protection_label">Beskyttelsesniveau</string>
+    <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Farlig</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
     <string name="permissions_protection_type_signatureorsystem_label">Signatur eller system</string>
@@ -90,6 +109,13 @@
     <string name="apps_app_details_label">App-detaljer</string>
     <string name="apps_details_shareduserid_label">Apps med delt bruger-ID</string>
     <string name="apps_details_siblings_label">Søskende</string>
+    <string name="apps_known_installer_gplay_label">Google Play Butik</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_android_system_label">Android-system</string>
     <string name="general_refresh_action">Opdatér</string>
     <string name="general_expand_all_action">Udvid alle</string>
     <string name="general_collapse_all_action">Skjul alle</string>
@@ -110,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Apps med tilgængelighedstjenester</string>
     <string name="apps_details_description_restrictions_caveat_description">Denne app er installeret i en anden brugerprofil. Tildelte tilladelser kan kun bestemmes for apps installeret i den aktuelt aktive profil på grund af Android-begrænsninger.</string>
     <string name="apps_details_description_uninstalled_caveat">Denne app er blevet afinstalleret, men dens data er blevet bevaret. Tilladelsestilstande kan ikke bestemmes for afinstallerede apps.</string>
-    <string name="apps_details_description_secondary_description">"%d tilladelser anmodet."</string>
-    <string name="apps_details_description_primary_description">"%1$d af %2$d tilladelser tildelt."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d tilladelse anmodet.</item>
+        <item quantity="other">%d tilladelser anmodet.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d af %2$d tilladelse tildelt.</item>
+        <item quantity="other">%1$d af %2$d tilladelser tildelt.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Ingen tilladelser matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
     <string name="api_target_level_x">Målversion: %s</string>
     <string name="api_minimum_level_x">Minimumversion: %s</string>
@@ -129,6 +161,10 @@
         <item quantity="one">%s gruppe</item>
         <item quantity="other">%s grupper</item>
     </plurals>
+    <plurals name="generic_x_apps_label">
+        <item quantity="one">%d app</item>
+        <item quantity="other">%d apps</item>
+    </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">%d bruger-app</item>
         <item quantity="other">%d bruger-apps</item>
@@ -137,10 +173,17 @@
         <item quantity="one">%d system-app</item>
         <item quantity="other">%d system-apps</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Bruger-apps: Tildelt til %1$d ud af %2$d."</string>
-    <string name="permissions_details_count_system_apps">"System-apps: Tildelt til %1$d ud af %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Brugerapper: Tildelt til %1$d ud af %2$d.</item>
+        <item quantity="other">Brugerapper: Tildelt til %1$d ud af %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Systemapps: Tildelt til %1$d ud af %2$d.</item>
+        <item quantity="other">Systemapps: Tildelt til %1$d ud af %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installeret i andre brugerprofiler er udelukket fra beregningen ovenfor på grund af Android-begrænsninger.</string>
     <string name="permissions_details_empty_filter_message">Ingen apps matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Tillader apps at kommunikere med Near Field Communication (NFC) tags, kort og læsere.</string>
     <string name="permission_manage_media_label">Administrer medier</string>
     <string name="permission_manage_media_description">Tillader apps at ændre eller slette mediefiler oprettet med andre apps UDEN at spørge dig. Apps skal have tilladelse til at tilgå filer og medier.</string>
@@ -216,6 +259,7 @@
     <string name="permission_group_location_description">Lokationsrelaterede tilladelser.</string>
     <string name="permission_group_contacts_label">Kontakter</string>
     <string name="permission_group_contacts_description">"Læsning og skrivning af kontakter."</string>
+    <string name="permission_group_apps_label">Apps</string>
     <string name="permission_group_apps_description">Særlige adgangstilladelser, der kræver eksplicit brugersamtykke.</string>
     <string name="permission_group_battery_label">Batteri</string>
     <string name="permission_group_battery_description">Batterirelaterede tilladelser.</string>
@@ -242,24 +286,4 @@
     <string name="onboarding_body1">Denne app hjælper dig med at navigere installerede applikationer og opdage tilladelser.</string>
     <string name="onboarding_body2">Permission Pilot indsamler installerede applikationsoplysninger for at kunne liste dine apps og krydshenvise deres tilladelser, når du bruger denne applikation.</string>
     <string name="onboarding_body3">Permission Pilot har ingen reklamer og behandler kun data lokalt.</string>
-    <string name="apps_page_label">Apps</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_filter_gplay_label">Google Play Butik</string>
-    <string name="apps_filter_oemstore_label">OEM-butik</string>
-    <string name="discord_label">Discord</string>
-    <string name="settings_support_label">Support</string>
-    <string name="permissions_protection_type_normal_label">Normal</string>
-    <string name="apps_known_installer_gplay_label">Google Play Butik</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="apps_known_android_system_label">Android-system</string>
-    <string name="permission_nfc_label">NFC</string>
-    <string name="permission_group_apps_label">Apps</string>
-    <plurals name="generic_x_apps_label">
-        <item quantity="one">%d app</item>
-        <item quantity="other">%d apps</item>
-    </plurals>
 </resources>

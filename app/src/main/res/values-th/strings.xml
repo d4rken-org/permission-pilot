@@ -14,8 +14,8 @@
     <string name="general_continue_action">ดำเนินการต่อ</string>
     <string name="general_accept_action">ยอมรับ</string>
     <string name="upgrade_myperm_label">อัปเกรด Permission Pilot</string>
-    <string name="upgrade_myperm_description">คุณชอบที่แอปนี้ไม่มีโฆษณาและไม่เก็บข้อมูลของคุณหรือไม่?\nซื้อเวอร์ชันโปรเพื่อแสดงการสนับสนุนของคุณ!</string>
-    <string name="upgrade_buy_pro_action">ซื้อเวอร์ชันโปร</string>
+    <string name="upgrade_myperm_description">คุณชอบที่แอปนี้ไม่มีโฆษณาและไม่เก็บข้อมูลของคุณหรือไม่?\nซื้อเวอร์ชัน Pro เพื่อแสดงการสนับสนุนของคุณ!</string>
+    <string name="upgrade_buy_pro_action">ซื้อเวอร์ชัน Pro</string>
     <string name="general_no_action">ไม่</string>
     <string name="upgrade_donate_action">บริจาค</string>
     <string name="debug_debuglog_size_label">ขนาด</string>
@@ -61,9 +61,15 @@
     <string name="apps_sort_install_date_label">วันที่ติดตั้ง</string>
     <string name="apps_sort_update_date_label">อัปเดตล่าสุด</string>
     <string name="general_sort_action">เรียงลำดับ</string>
-    <string name="apps_permissions_x_of_x_granted">อนุญาต %1$d จาก %2$d</string>
-    <string name="apps_permissions_x_requested">ร้องขอสิทธิ์ %1$d รายการ</string>
-    <string name="apps_permissions_declares_x">ประกาศสิทธิ์ %1$d รายการ</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">%1$d จาก %2$d ได้รับอนุญาต</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">ขอสิทธิ์ %1$d รายการ</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">ประกาศสิทธิ์ %1$d รายการ</item>
+    </plurals>
     <string name="apps_details_installer_label">แหล่งที่มาของการติดตั้ง</string>
     <string name="apps_details_installer_unknown_label">ข้อมูลไม่พร้อมใช้งาน</string>
     <string name="permissions_filter_manifest_label">สิทธิ์ AOSP</string>
@@ -126,8 +132,12 @@
     <string name="apps_filter_accessibility_label">แอปที่มีบริการการเข้าถึง</string>
     <string name="apps_details_description_restrictions_caveat_description">แอปนี้ติดตั้งในโปรไฟล์ผู้ใช้อื่น สิทธิ์ที่ได้รับสามารถกำหนดได้เฉพาะแอปที่ติดตั้งในโปรไฟล์ที่ใช้งานอยู่ในปัจจุบัน เนื่องจากข้อจำกัดของ Android</string>
     <string name="apps_details_description_uninstalled_caveat">แอปนี้ถูกถอนการติดตั้งแล้ว แต่ยังคงเก็บข้อมูลไว้ ไม่สามารถระบุสถานะสิทธิ์ได้สำหรับแอปที่ถูกถอนการติดตั้ง</string>
-    <string name="apps_details_description_secondary_description">"%d สิทธิ์ที่ร้องขอ"</string>
-    <string name="apps_details_description_primary_description">"%1$d จาก %2$d สิทธิ์ที่ได้รับอนุญาต"</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">ขอสิทธิ์ %d รายการ</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">ได้รับอนุญาต %1$d จาก %2$d สิทธิ์</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">ไม่มีสิทธิ์ที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
     <string name="api_target_level_x">เวอร์ชันเป้าหมาย: %s</string>
     <string name="api_minimum_level_x">เวอร์ชันต่ำสุด: %s</string>
@@ -152,8 +162,12 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d แอประบบ</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"แอปผู้ใช้: อนุญาตให้ %1$d จาก %2$d"</string>
-    <string name="permissions_details_count_system_apps">"แอประบบ: อนุญาตให้ %1$d จาก %2$d"</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">แอปของผู้ใช้: ได้รับอนุญาต %1$d จาก %2$d</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">แอประบบ: ได้รับอนุญาต %1$d จาก %2$d</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">แอปที่ติดตั้งในโปรไฟล์ผู้ใช้อื่นถูกยกเว้นจากการคำนวณข้างต้นเนื่องจากข้อจำกัดของ Android</string>
     <string name="permissions_details_empty_filter_message">ไม่มีแอปที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
     <string name="permission_nfc_label">NFC</string>

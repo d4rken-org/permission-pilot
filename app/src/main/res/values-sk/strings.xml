@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Nastavenia</string>
     <string name="label_help">Pomocník</string>
     <string name="general_error_label">Chyba</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Pokračovať</string>
     <string name="general_accept_action">Prijať</string>
     <string name="upgrade_myperm_label">Aktualizovať Permission Pilot</string>
-    <string name="upgrade_myperm_description">Páči sa vám, že táto aplikácia nemá reklamy a nezbiera vaše údaje?\nKúpte si pro verziu na podporu vývoja!</string>
-    <string name="upgrade_buy_pro_action">Kúpiť pro verziu</string>
+    <string name="upgrade_myperm_description">Páči sa vám, že táto aplikácia neobsahuje reklamy a nezbiera vaše údaje?
+Kúpte si verziu Pro a ukážte svoju podporu!</string>
+    <string name="upgrade_buy_pro_action">Kúpiť verziu Pro</string>
     <string name="general_no_action">Nie</string>
     <string name="upgrade_donate_action">Darovať</string>
     <string name="debug_debuglog_size_label">Veľkosť</string>
@@ -59,9 +62,24 @@
     <string name="apps_sort_install_date_label">Dátum inštalácie</string>
     <string name="apps_sort_update_date_label">Posledná aktualizácia</string>
     <string name="general_sort_action">Triediť</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d z %2$d udelených.</string>
-    <string name="apps_permissions_x_requested">%1$d oprávnení požadovaných.</string>
-    <string name="apps_permissions_declares_x">Deklaruje %1$d oprávnení.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d z %2$d udelené.</item>
+        <item quantity="few">%1$d z %2$d udelené.</item>
+        <item quantity="many">%1$d z %2$d udelené.</item>
+        <item quantity="other">%1$d z %2$d udelených.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d oprávnenie vyžiadané.</item>
+        <item quantity="few">%1$d oprávnenia vyžiadané.</item>
+        <item quantity="many">%1$d oprávnenia vyžiadané.</item>
+        <item quantity="other">%1$d oprávnení vyžiadaných.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Deklaruje %1$d oprávnenie.</item>
+        <item quantity="few">Deklaruje %1$d oprávnenia.</item>
+        <item quantity="many">Deklaruje %1$d oprávnenia.</item>
+        <item quantity="other">Deklaruje %1$d oprávnení.</item>
+    </plurals>
     <string name="apps_details_installer_label">Zdroj inštalácie</string>
     <string name="apps_details_installer_unknown_label">Informácie nie sú dostupné</string>
     <string name="permissions_filter_manifest_label">AOSP oprávnenia</string>
@@ -124,8 +142,18 @@
     <string name="apps_filter_accessibility_label">Aplikácie so službami prístupnosti</string>
     <string name="apps_details_description_restrictions_caveat_description">Táto aplikácia je nainštalovaná v inom používateľskom profile. Udelené oprávnenia možno zistiť len pre aplikácie nainštalované v aktuálne aktívnom profile kvôli obmedzeniam Androidu.</string>
     <string name="apps_details_description_uninstalled_caveat">Táto aplikácia bola odinštalovaná, ale jej údaje boli zachované. Pre odinštalované aplikácie nie je možné určiť stav oprávnení.</string>
-    <string name="apps_details_description_secondary_description">"%d oprávnení požadovaných."</string>
-    <string name="apps_details_description_primary_description">"%1$d z %2$d oprávnení udelených."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d oprávnenie vyžiadané.</item>
+        <item quantity="few">%d oprávnenia vyžiadané.</item>
+        <item quantity="many">%d oprávnenia vyžiadané.</item>
+        <item quantity="other">%d oprávnení vyžiadaných.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d z %2$d oprávnení udelené.</item>
+        <item quantity="few">%1$d z %2$d oprávnení udelené.</item>
+        <item quantity="many">%1$d z %2$d oprávnení udelené.</item>
+        <item quantity="other">%1$d z %2$d oprávnení udelených.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Žiadne oprávnenia nezodpovedajú aktuálnym filtrom. Ťuknite na ikonu filtra pre úpravu.</string>
     <string name="api_target_level_x">Cieľová verzia: %s</string>
     <string name="api_minimum_level_x">Minimálna verzia: %s</string>
@@ -165,8 +193,18 @@
         <item quantity="many">%d systémových aplikácií</item>
         <item quantity="other">%d systémových aplikácií</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Používateľské aplikácie: Udelené %1$d z %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Systémové aplikácie: Udelené %1$d z %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Používateľské aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="few">Používateľské aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="many">Používateľské aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="other">Používateľské aplikácie: Udelené %1$d z %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Systémové aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="few">Systémové aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="many">Systémové aplikácie: Udelené %1$d z %2$d.</item>
+        <item quantity="other">Systémové aplikácie: Udelené %1$d z %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikácie nainštalované v iných používateľských profiloch sú z výpočtu vyššie vylúčené kvôli obmedzeniam Androidu.</string>
     <string name="permissions_details_empty_filter_message">Žiadne aplikácie nezodpovedajú aktuálnym filtrom. Ťuknite na ikonu filtra pre úpravu.</string>
     <string name="permission_nfc_label">NFC</string>

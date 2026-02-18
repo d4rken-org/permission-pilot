@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Настройки</string>
     <string name="label_help">Помощ</string>
     <string name="general_error_label">Грешка</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Продължаване</string>
     <string name="general_accept_action">Приемане</string>
     <string name="upgrade_myperm_label">Надстройка на Permission Pilot</string>
-    <string name="upgrade_myperm_description">Харесва ли ви, че това приложение няма реклами и не събира вашите данни?\nКупете про версията, за да покажете подкрепата си!</string>
-    <string name="upgrade_buy_pro_action">Купи про версия</string>
+    <string name="upgrade_myperm_description">Харесва ли ви, че това приложение няма реклами и не събира вашите данни?
+Купете версията Pro, за да покажете своята подкрепа!</string>
+    <string name="upgrade_buy_pro_action">Купи версия Pro</string>
     <string name="general_no_action">Не</string>
     <string name="upgrade_donate_action">Дарение</string>
     <string name="debug_debuglog_size_label">Размер</string>
@@ -32,12 +35,14 @@
     <string name="settings_privacy_policy_desc">Отговорно боравене с данни.</string>
     <string name="settings_support_label">Поддръжка</string>
     <string name="documentation_label">Документация</string>
+    <string name="discord_label">Discord</string>
     <string name="discord_description">Място за общуване и задаване на въпроси.</string>
     <string name="issue_tracker_label">Проследяване на проблеми</string>
     <string name="issue_tracker_description">Публичен проследител на проблеми за докладване на грешки и заявки за функции.</string>
     <string name="permissions_page_label">Разрешения</string>
     <string name="apps_page_label">Приложения</string>
     <string name="app_type_system_label">Системно приложение</string>
+    <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Неизвестно разрешение. То се изисква от това приложение, но никое друго приложение не го декларира.</string>
     <string name="permissions_unknown_description">Неизвестно разрешение. То се изисква от приложения, но не е декларирано никъде.</string>
     <string name="permissions_app_type_declaring_description">Разрешението е създадено от това приложение.</string>
@@ -48,6 +53,7 @@
     <string name="apps_filter_systemapps_label">Системни приложения</string>
     <string name="apps_filter_nointernet_label">Приложения без интернет достъп</string>
     <string name="apps_filter_sideloaded_label">Странично инсталирани приложения</string>
+    <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM магазин</string>
     <string name="apps_sort_permissions_granted_label">Предоставени разрешения</string>
     <string name="apps_sort_permissions_requested_label">Заявени разрешения</string>
@@ -56,9 +62,18 @@
     <string name="apps_sort_install_date_label">Дата на инсталиране</string>
     <string name="apps_sort_update_date_label">Последна актуализация</string>
     <string name="general_sort_action">Сортиране</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d от %2$d предоставени.</string>
-    <string name="apps_permissions_x_requested">%1$d заявени разрешения.</string>
-    <string name="apps_permissions_declares_x">Декларира %1$d разрешения.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d от %2$d предоставено.</item>
+        <item quantity="other">%1$d от %2$d предоставени.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d заявено разрешение.</item>
+        <item quantity="other">%1$d заявени разрешения.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Декларира %1$d разрешение.</item>
+        <item quantity="other">Декларира %1$d разрешения.</item>
+    </plurals>
     <string name="apps_details_installer_label">Източник на инсталация</string>
     <string name="apps_details_installer_unknown_label">Информацията не е налична</string>
     <string name="permissions_filter_manifest_label">AOSP разрешения</string>
@@ -94,6 +109,12 @@
     <string name="apps_app_details_label">Детайли за приложението</string>
     <string name="apps_details_shareduserid_label">Приложения със споделен потребителски идентификатор</string>
     <string name="apps_details_siblings_label">Братя и сестри</string>
+    <string name="apps_known_installer_gplay_label">Google Play Store</string>
+    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
+    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
+    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
+    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
+    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_android_system_label">Android система</string>
     <string name="general_refresh_action">Обновяване</string>
     <string name="general_expand_all_action">Разгъване на всички</string>
@@ -115,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Приложения с услуги за достъпност</string>
     <string name="apps_details_description_restrictions_caveat_description">Това приложение е инсталирано в друг потребителски профил. Предоставените разрешения могат да бъдат определени само за приложения, инсталирани в текущо активния профил, поради ограничения на Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Това приложение е деинсталирано, но данните му са запазени. Състоянието на разрешенията не може да бъде определено за деинсталирани приложения.</string>
-    <string name="apps_details_description_secondary_description">"%d заявени разрешения."</string>
-    <string name="apps_details_description_primary_description">"%1$d от %2$d предоставени разрешения."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d заявено разрешение.</item>
+        <item quantity="other">%d заявени разрешения.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d от %2$d разрешения предоставено.</item>
+        <item quantity="other">%1$d от %2$d разрешения предоставени.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Няма разрешения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
     <string name="api_target_level_x">Целева версия: %s</string>
     <string name="api_minimum_level_x">Минимална версия: %s</string>
@@ -146,10 +173,17 @@
         <item quantity="one">%d системно приложение</item>
         <item quantity="other">%d системни приложения</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Потребителски приложения: Предоставено на %1$d от %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Системни приложения: Предоставено на %1$d от %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Потребителски приложения: Предоставено на %1$d от %2$d.</item>
+        <item quantity="other">Потребителски приложения: Предоставено на %1$d от %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Системни приложения: Предоставено на %1$d от %2$d.</item>
+        <item quantity="other">Системни приложения: Предоставено на %1$d от %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, инсталирани в други потребителски профили, са изключени от изчислението по-горе поради ограничения на Android.</string>
     <string name="permissions_details_empty_filter_message">Няма приложения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
+    <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Позволява на приложенията да комуникират с Near Field Communication (NFC) етикети, карти и четци.</string>
     <string name="permission_manage_media_label">Управление на медия</string>
     <string name="permission_manage_media_description">Позволява на приложенията да модифицират или изтриват медийни файлове, създадени с други приложения, БЕЗ да ви питат. Приложенията трябва да имат разрешение за достъп до файлове и медия.</string>
@@ -240,7 +274,7 @@
     <string name="overview_summary_apps_active_profile_label">Приложения в активен профил</string>
     <string name="overview_summary_apps_other_profile_label">Приложения в управлявани потребителски профили, изключвайки клонове</string>
     <string name="overview_summary_apps_sideloaded_label">Приложения, странично заредени от външни източници</string>
-    <string name="overview_summary_apps_installers_label">Приложения с разрешено \"Инсталиране от неизвестни izvori\"</string>
+    <string name="overview_summary_apps_installers_label">Приложения с разрешено \"Инсталиране от неизвестни източници\"</string>
     <string name="overview_summary_apps_overlayers_label">Приложения, които могат да се \"Появяват отгоре\"</string>
     <string name="overview_summary_apps_offline_label">Приложения, които имат разрешения \"Без интернет\"</string>
     <string name="overview_summary_apps_clones_label">Приложения с клонове в други профили</string>
@@ -252,14 +286,4 @@
     <string name="onboarding_body1">Това приложение ви помага да навигирате в инсталираните приложения и да откриете разрешения.</string>
     <string name="onboarding_body2">Permission Pilot събира информация за инсталирани приложения, за да позволи изброяването на вашите приложения и кръстосано препращане на техните разрешения при използване на това приложение.</string>
     <string name="onboarding_body3">Permission Pilot няма реклами и обработва данните само локално.</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_filter_gplay_label">Google Play Store</string>
-    <string name="discord_label">Discord</string>
-    <string name="apps_known_installer_gplay_label">Google Play Store</string>
-    <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
-    <string name="apps_known_installer_oppo_label">Oppo App Market</string>
-    <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
-    <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
-    <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
-    <string name="permission_nfc_label">NFC</string>
 </resources>

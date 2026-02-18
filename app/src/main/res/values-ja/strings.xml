@@ -14,8 +14,8 @@
     <string name="general_continue_action">続行</string>
     <string name="general_accept_action">同意</string>
     <string name="upgrade_myperm_label">Permission Pilotをアップグレード</string>
-    <string name="upgrade_myperm_description">このアプリに広告がなく、データを収集しないことを気に入っていませんか？\nサポートを示すためにプロ版を購入してください！</string>
-    <string name="upgrade_buy_pro_action">プロ版を購入</string>
+    <string name="upgrade_myperm_description">このアプリに広告がなく、データを収集しないことが気に入っていただけましたか？\nサポートを示すために Pro バージョンをご購入ください！</string>
+    <string name="upgrade_buy_pro_action">Pro バージョンを購入する</string>
     <string name="general_no_action">いいえ</string>
     <string name="upgrade_donate_action">寄付</string>
     <string name="debug_debuglog_size_label">サイズ</string>
@@ -61,9 +61,15 @@
     <string name="apps_sort_install_date_label">インストール日</string>
     <string name="apps_sort_update_date_label">最終更新</string>
     <string name="general_sort_action">並び替え</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d中%1$d個付与。</string>
-    <string name="apps_permissions_x_requested">%1$d個の権限が要求されました。</string>
-    <string name="apps_permissions_declares_x">%1$d個の権限を宣言。</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">%2$d 件中 %1$d 件が許可されています。</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">%1$d 件の権限がリクエストされています。</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">%1$d 件の権限を宣言しています。</item>
+    </plurals>
     <string name="apps_details_installer_label">インストール元</string>
     <string name="apps_details_installer_unknown_label">情報が利用できません</string>
     <string name="permissions_filter_manifest_label">AOSP権限</string>
@@ -126,8 +132,12 @@
     <string name="apps_filter_accessibility_label">アクセシビリティサービスを持つアプリ</string>
     <string name="apps_details_description_restrictions_caveat_description">このアプリは別のユーザープロファイルにインストールされています。Androidの制限により、現在アクティブなプロファイルにインストールされたアプリについてのみ、付与された権限を判定できます。</string>
     <string name="apps_details_description_uninstalled_caveat">このアプリはアンインストールされましたが、データは保持されています。アンインストールされたアプリの権限状態は確認できません。</string>
-    <string name="apps_details_description_secondary_description">"%d個の権限が要求されました。"</string>
-    <string name="apps_details_description_primary_description">"%2$d個中%1$d個の権限が付与されました。"</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">%d 件の権限がリクエストされています。</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">%2$d 件中 %1$d 件の権限が許可されています。</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">現在のフィルターに一致する権限がありません。調整するにはフィルターアイコンをタップしてください。</string>
     <string name="api_target_level_x">ターゲットバージョン：%s</string>
     <string name="api_minimum_level_x">最小バージョン：%s</string>
@@ -152,8 +162,12 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%dシステムアプリ</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"ユーザーアプリ：%2$d中%1$dに付与。"</string>
-    <string name="permissions_details_count_system_apps">"システムアプリ：%2$d中%1$dに付与。"</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">ユーザーアプリ：%2$d 件中 %1$d 件に許可されています。</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">システムアプリ：%2$d 件中 %1$d 件に許可されています。</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">他のユーザープロファイルにインストールされたアプリは、Androidの制限により上記の計算から除外されています。</string>
     <string name="permissions_details_empty_filter_message">現在のフィルターに一致するアプリがありません。調整するにはフィルターアイコンをタップしてください。</string>
     <string name="permission_nfc_label">NFC</string>

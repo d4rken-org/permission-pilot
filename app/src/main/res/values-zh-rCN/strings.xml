@@ -14,8 +14,8 @@
     <string name="general_continue_action">继续</string>
     <string name="general_accept_action">接受</string>
     <string name="upgrade_myperm_label">升级Permission Pilot</string>
-    <string name="upgrade_myperm_description">您喜欢这款应用没有广告，也不会收集您的数据吗？\n请购买专业版以表达您的支持！</string>
-    <string name="upgrade_buy_pro_action">购买专业版</string>
+    <string name="upgrade_myperm_description">您喜欢这款无广告且不收集您数据的应用吗？\n购买 Pro 版本以表达您的支持！</string>
+    <string name="upgrade_buy_pro_action">购买 Pro 版本</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">捐赠</string>
     <string name="debug_debuglog_size_label">大小</string>
@@ -61,9 +61,15 @@
     <string name="apps_sort_install_date_label">安装日期</string>
     <string name="apps_sort_update_date_label">上次更新</string>
     <string name="general_sort_action">排序</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d 个权限中已授予 %1$d 个。</string>
-    <string name="apps_permissions_x_requested">请求了 %1$d 个权限。</string>
-    <string name="apps_permissions_declares_x">声明了 %1$d 个权限。</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">已授予 %1$d / %2$d 个权限。</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">已请求 %1$d 个权限。</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">已声明 %1$d 个权限。</item>
+    </plurals>
     <string name="apps_details_installer_label">安装来源</string>
     <string name="apps_details_installer_unknown_label">缺少信息</string>
     <string name="permissions_filter_manifest_label">AOSP 权限</string>
@@ -126,8 +132,12 @@
     <string name="apps_filter_accessibility_label">具有辅助功能服务的应用</string>
     <string name="apps_details_description_restrictions_caveat_description">此应用已安装在另一个用户配置文件中。由于 Android 限制，只能确定在当前活动配置文件中安装的应用的授予的权限。</string>
     <string name="apps_details_description_uninstalled_caveat">此应用已卸载，但其数据仍被保留。已卸载的应用无法确定其权限状态。</string>
-    <string name="apps_details_description_secondary_description">"%d 项权限已请求。"</string>
-    <string name="apps_details_description_primary_description">"%2$d 个权限中已授予 %1$d 个。"</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">已请求 %d 个权限。</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">已授予 %1$d / %2$d 个权限。</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">没有权限符合当前筛选条件。点击筛选图标进行调整。</string>
     <string name="api_target_level_x">目标版本：%s</string>
     <string name="api_minimum_level_x">最低版本：%s</string>
@@ -152,8 +162,12 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d 个系统应用</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"用户应用：%2$d 个权限中已授予 %1$d 个。"</string>
-    <string name="permissions_details_count_system_apps">"系统应用：%2$d 个权限中已授予 %1$d 个。"</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">用户应用：已授予 %1$d / %2$d 个。</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">系统应用：已授予 %1$d / %2$d 个。</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">由于 Android 限制，上述计算不包括安装在其他用户配置文件中的应用。</string>
     <string name="permissions_details_empty_filter_message">没有应用符合当前筛选条件。点击筛选图标进行调整。</string>
     <string name="permission_nfc_label">NFC</string>

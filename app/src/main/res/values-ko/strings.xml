@@ -14,8 +14,8 @@
     <string name="general_continue_action">계속</string>
     <string name="general_accept_action">동의</string>
     <string name="upgrade_myperm_label">Permission Pilot 업그레이드</string>
-    <string name="upgrade_myperm_description">이 앱에 광고가 없고 데이터를 수집하지 않는다는 점이 마음에 드시나요?\n지원을 보여주기 위해 프로 버전을 구매하세요!</string>
-    <string name="upgrade_buy_pro_action">프로 버전 구매</string>
+    <string name="upgrade_myperm_description">이 앱에 광고가 없고 데이터를 수집하지 않는 것이 마음에 드시나요?\nPro 버전을 구매하여 지원을 표현해 주세요!</string>
+    <string name="upgrade_buy_pro_action">Pro 버전 구매</string>
     <string name="general_no_action">아니요</string>
     <string name="upgrade_donate_action">기부</string>
     <string name="debug_debuglog_size_label">크기</string>
@@ -61,9 +61,15 @@
     <string name="apps_sort_install_date_label">설치 날짜</string>
     <string name="apps_sort_update_date_label">마지막 업데이트</string>
     <string name="general_sort_action">정렬</string>
-    <string name="apps_permissions_x_of_x_granted">%2$d개 중 %1$d개 허용됨.</string>
-    <string name="apps_permissions_x_requested">%1$d개 권한이 요청됨.</string>
-    <string name="apps_permissions_declares_x">%1$d개 권한을 선언함.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">%2$d개 중 %1$d개 허용됨.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">%1$d개의 권한이 요청됨.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">%1$d개의 권한 선언됨.</item>
+    </plurals>
     <string name="apps_details_installer_label">설치 소스</string>
     <string name="apps_details_installer_unknown_label">정보를 사용할 수 없음</string>
     <string name="permissions_filter_manifest_label">AOSP 권한</string>
@@ -126,8 +132,12 @@
     <string name="apps_filter_accessibility_label">접근성 서비스가 있는 앱</string>
     <string name="apps_details_description_restrictions_caveat_description">이 앱은 다른 사용자 프로필에 설치되어 있습니다. Android 제한으로 인해 현재 활성 프로필에 설치된 앱에 대해서만 허용된 권한을 확인할 수 있습니다.</string>
     <string name="apps_details_description_uninstalled_caveat">이 앱은 삭제되었지만 데이터는 유지되었습니다. 삭제된 앱의 권한 상태는 확인할 수 없습니다.</string>
-    <string name="apps_details_description_secondary_description">"%d개 권한이 요청됨."</string>
-    <string name="apps_details_description_primary_description">"%2$d개 중 %1$d개 권한이 허용됨."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">%d개의 권한이 요청됨.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">%2$d개 중 %1$d개의 권한 허용됨.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">현재 필터와 일치하는 권한이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
     <string name="api_target_level_x">대상 버전: %s</string>
     <string name="api_minimum_level_x">최소 버전: %s</string>
@@ -152,8 +162,12 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d개 시스템 앱</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"사용자 앱: %2$d개 중 %1$d개에 허용됨."</string>
-    <string name="permissions_details_count_system_apps">"시스템 앱: %2$d개 중 %1$d개에 허용됨."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">사용자 앱: %2$d개 중 %1$d개에 허용됨.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">시스템 앱: %2$d개 중 %1$d개에 허용됨.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">다른 사용자 프로필에 설치된 앱은 Android 제한으로 인해 위 계산에서 제외되었습니다.</string>
     <string name="permissions_details_empty_filter_message">현재 필터와 일치하는 앱이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
     <string name="permission_nfc_label">NFC</string>

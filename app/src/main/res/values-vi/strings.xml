@@ -14,8 +14,8 @@
     <string name="general_continue_action">Tiếp tục</string>
     <string name="general_accept_action">Chấp nhận</string>
     <string name="upgrade_myperm_label">Nâng cấp Permission Pilot</string>
-    <string name="upgrade_myperm_description">Bạn có thích ứng dụng này không có quảng cáo và không thu thập dữ liệu của bạn không?\nMua phiên bản pro để thể hiện sự ủng hộ của bạn!</string>
-    <string name="upgrade_buy_pro_action">Mua phiên bản pro</string>
+    <string name="upgrade_myperm_description">Bạn có thích việc ứng dụng này không có quảng cáo và không thu thập dữ liệu của bạn không?\nMua phiên bản Pro để ủng hộ chúng tôi!</string>
+    <string name="upgrade_buy_pro_action">Mua phiên bản Pro</string>
     <string name="general_no_action">Không</string>
     <string name="upgrade_donate_action">Quyên góp</string>
     <string name="debug_debuglog_size_label">Kích thước</string>
@@ -61,9 +61,15 @@
     <string name="apps_sort_install_date_label">Ngày cài đặt</string>
     <string name="apps_sort_update_date_label">Cập nhật lần cuối</string>
     <string name="general_sort_action">Sắp xếp</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d trong %2$d đã cấp.</string>
-    <string name="apps_permissions_x_requested">%1$d quyền đã yêu cầu.</string>
-    <string name="apps_permissions_declares_x">Khai báo %1$d quyền.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="other">%1$d trong số %2$d đã được cấp.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="other">%1$d quyền được yêu cầu.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="other">Khai báo %1$d quyền.</item>
+    </plurals>
     <string name="apps_details_installer_label">Nguồn cài đặt</string>
     <string name="apps_details_installer_unknown_label">Thông tin không có sẵn</string>
     <string name="permissions_filter_manifest_label">Quyền AOSP</string>
@@ -126,8 +132,12 @@
     <string name="apps_filter_accessibility_label">Ứng dụng có dịch vụ trợ năng</string>
     <string name="apps_details_description_restrictions_caveat_description">Ứng dụng này được cài đặt trong hồ sơ người dùng khác. Quyền đã cấp chỉ có thể được xác định cho các ứng dụng được cài đặt trong hồ sơ hiện đang hoạt động, do hạn chế của Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Ứng dụng này đã bị gỡ cài đặt nhưng dữ liệu của nó vẫn được giữ lại. Không thể xác định trạng thái quyền cho các ứng dụng đã gỡ cài đặt.</string>
-    <string name="apps_details_description_secondary_description">"%d quyền đã yêu cầu."</string>
-    <string name="apps_details_description_primary_description">"%1$d trong %2$d quyền đã cấp."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="other">%d quyền được yêu cầu.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="other">%1$d trong số %2$d quyền được cấp.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Không có quyền nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
     <string name="api_target_level_x">Phiên bản mục tiêu: %s</string>
     <string name="api_minimum_level_x">Phiên bản tối thiểu: %s</string>
@@ -152,8 +162,12 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d ứng dụng hệ thống</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Ứng dụng người dùng: Đã cấp cho %1$d trong %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Ứng dụng hệ thống: Đã cấp cho %1$d trong %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="other">Ứng dụng người dùng: Đã cấp cho %1$d trong số %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="other">Ứng dụng hệ thống: Đã cấp cho %1$d trong số %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Ứng dụng được cài đặt trong các hồ sơ người dùng khác bị loại trừ khỏi tính toán trên do hạn chế của Android.</string>
     <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
     <string name="permission_nfc_label">NFC</string>
@@ -238,7 +252,7 @@
     <string name="permission_group_battery_description">Quyền liên quan đến pin.</string>
     <string name="permission_group_camera_label">Camera</string>
     <string name="permission_group_camera_description">Quyền liên quan đến camera.</string>
-    <string name="permission_group_audio_label">Microphone</string>
+    <string name="permission_group_audio_label">Micrô</string>
     <string name="permission_group_audio_description">Quyền liên quan đến microphone.</string>
     <string name="permission_picture_in_picture_label">Hình trong hình</string>
     <string name="overview_device_android_version_label">Phiên bản Android</string>

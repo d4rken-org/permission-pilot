@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">Permission Pilot</string>
+    <string name="app_name_pro">Permission Pilot Pro</string>
     <string name="label_settings">Configurações</string>
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Erro</string>
@@ -12,8 +14,9 @@
     <string name="general_continue_action">Continuar</string>
     <string name="general_accept_action">Aceitar</string>
     <string name="upgrade_myperm_label">Atualizar Permission Pilot</string>
-    <string name="upgrade_myperm_description">Você gosta que este app não tem anúncios e não coleta seus dados?\nCompre a versão pro para mostrar seu apoio!</string>
-    <string name="upgrade_buy_pro_action">Comprar versão pro</string>
+    <string name="upgrade_myperm_description">Gosta que este aplicativo não tem anúncios e não coleta seus dados?
+Compre a versão Pro para mostrar seu apoio!</string>
+    <string name="upgrade_buy_pro_action">Comprar versão Pro</string>
     <string name="general_no_action">Não</string>
     <string name="upgrade_donate_action">Doar</string>
     <string name="debug_debuglog_size_label">Tamanho</string>
@@ -37,7 +40,7 @@
     <string name="issue_tracker_label">Rastreador de problemas</string>
     <string name="issue_tracker_description">Um rastreador público de problemas para relatórios de bugs e solicitações de recursos.</string>
     <string name="permissions_page_label">Permissões</string>
-    <string name="apps_page_label">Apps</string>
+    <string name="apps_page_label">Aplicativos</string>
     <string name="app_type_system_label">App do Sistema</string>
     <string name="permission_type_aosp_label">AOSP</string>
     <string name="apps_permission_unknown_description">Permissão desconhecida. É solicitada por este app, mas nenhum outro app a declara.</string>
@@ -59,9 +62,18 @@
     <string name="apps_sort_install_date_label">Data de instalação</string>
     <string name="apps_sort_update_date_label">Última atualização</string>
     <string name="general_sort_action">Ordenar</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d de %2$d concedidas.</string>
-    <string name="apps_permissions_x_requested">%1$d permissões solicitadas.</string>
-    <string name="apps_permissions_declares_x">Declara %1$d permissões.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d de %2$d concedida.</item>
+        <item quantity="other">%1$d de %2$d concedidas.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d permissão solicitada.</item>
+        <item quantity="other">%1$d permissões solicitadas.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Declara %1$d permissão.</item>
+        <item quantity="other">Declara %1$d permissões.</item>
+    </plurals>
     <string name="apps_details_installer_label">Origem da instalação</string>
     <string name="apps_details_installer_unknown_label">Informação não disponível</string>
     <string name="permissions_filter_manifest_label">Permissões AOSP</string>
@@ -124,8 +136,14 @@
     <string name="apps_filter_accessibility_label">Apps com serviços de acessibilidade</string>
     <string name="apps_details_description_restrictions_caveat_description">Este app está instalado em outro perfil de usuário. Permissões concedidas podem ser determinadas apenas para apps instalados no Perfil Atualmente Ativo, devido às restrições do Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Este app foi desinstalado, mas seus dados foram mantidos. O estado das permissões não pode ser determinado para apps desinstalados.</string>
-    <string name="apps_details_description_secondary_description">"%d permissões solicitadas."</string>
-    <string name="apps_details_description_primary_description">"%1$d de %2$d permissões concedidas."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d permissão solicitada.</item>
+        <item quantity="other">%d permissões solicitadas.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d de %2$d permissão concedida.</item>
+        <item quantity="other">%1$d de %2$d permissões concedidas.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Nenhuma permissão corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
     <string name="api_target_level_x">Versão alvo: %s</string>
     <string name="api_minimum_level_x">Versão mínima: %s</string>
@@ -144,8 +162,8 @@
         <item quantity="other">%s grupos</item>
     </plurals>
     <plurals name="generic_x_apps_label">
-        <item quantity="one">%d app</item>
-        <item quantity="other">%d apps</item>
+        <item quantity="one">%d aplicativo</item>
+        <item quantity="other">%d aplicativos</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">%d app do usuário</item>
@@ -155,8 +173,14 @@
         <item quantity="one">%d app do sistema</item>
         <item quantity="other">%d apps do sistema</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Apps do Usuário: Concedidas para %1$d de %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Apps do Sistema: Concedidas para %1$d de %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Aplicativos de usuário: concedida para %1$d de %2$d.</item>
+        <item quantity="other">Aplicativos de usuário: concedida para %1$d de %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Aplicativos do sistema: concedida para %1$d de %2$d.</item>
+        <item quantity="other">Aplicativos do sistema: concedida para %1$d de %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps instalados em outros perfis de usuário são excluídos do cálculo acima devido às restrições do Android.</string>
     <string name="permissions_details_empty_filter_message">Nenhum app corresponde aos filtros atuais. Toque no ícone de filtro para ajustar.</string>
     <string name="permission_nfc_label">NFC</string>
@@ -235,7 +259,7 @@
     <string name="permission_group_location_description">Permissões relacionadas à localização.</string>
     <string name="permission_group_contacts_label">Contatos</string>
     <string name="permission_group_contacts_description">"Ler e escrever contatos."</string>
-    <string name="permission_group_apps_label">Apps</string>
+    <string name="permission_group_apps_label">Aplicativos</string>
     <string name="permission_group_apps_description">Permissões de Acesso Especial que requerem consentimento explícito do usuário.</string>
     <string name="permission_group_battery_label">Bateria</string>
     <string name="permission_group_battery_description">Permissões relacionadas à bateria.</string>

@@ -14,8 +14,8 @@
     <string name="general_continue_action">Nastavi</string>
     <string name="general_accept_action">Prihvati</string>
     <string name="upgrade_myperm_label">Nadogradi Permission Pilot</string>
-    <string name="upgrade_myperm_description">Sviđa li vam se što ova aplikacija nema reklame i ne prikuplja vaše podatke?\nKupite pro verziju kako biste pokazali svoju podršku!</string>
-    <string name="upgrade_buy_pro_action">Kupi pro verziju</string>
+    <string name="upgrade_myperm_description">Sviđa li vam se što ova aplikacija nema oglase i ne prikuplja vaše podatke?\nKupite Pro version kako biste pokazali svoju podršku!</string>
+    <string name="upgrade_buy_pro_action">Kupi Pro version</string>
     <string name="general_no_action">Ne</string>
     <string name="upgrade_donate_action">Doniraj</string>
     <string name="debug_debuglog_size_label">Veličina</string>
@@ -61,9 +61,21 @@
     <string name="apps_sort_install_date_label">Datum instalacije</string>
     <string name="apps_sort_update_date_label">Zadnje ažurirano</string>
     <string name="general_sort_action">Sortiraj</string>
-    <string name="apps_permissions_x_of_x_granted">%1$d od %2$d odobreno.</string>
-    <string name="apps_permissions_x_requested">Traženo %1$d dozvola.</string>
-    <string name="apps_permissions_declares_x">Deklarirale %1$d dozvola.</string>
+    <plurals name="apps_permissions_x_of_x_granted">
+        <item quantity="one">%1$d od %2$d odobreno.</item>
+        <item quantity="few">%1$d od %2$d odobreno.</item>
+        <item quantity="other">%1$d od %2$d odobreno.</item>
+    </plurals>
+    <plurals name="apps_permissions_x_requested">
+        <item quantity="one">%1$d dopuštenje zatraženo.</item>
+        <item quantity="few">%1$d dopuštenja zatražena.</item>
+        <item quantity="other">%1$d dopuštenja zatraženo.</item>
+    </plurals>
+    <plurals name="apps_permissions_declares_x">
+        <item quantity="one">Deklarira %1$d dopuštenje.</item>
+        <item quantity="few">Deklarira %1$d dopuštenja.</item>
+        <item quantity="other">Deklarira %1$d dopuštenja.</item>
+    </plurals>
     <string name="apps_details_installer_label">Izvor instalacije</string>
     <string name="apps_details_installer_unknown_label">Informacije nisu dostupne</string>
     <string name="permissions_filter_manifest_label">AOSP dozvole</string>
@@ -126,8 +138,16 @@
     <string name="apps_filter_accessibility_label">Aplikacije s uslugama pristupačnosti</string>
     <string name="apps_details_description_restrictions_caveat_description">Ova aplikacija je instalirana u drugom korisničkom profilu. Odobrene dozvole mogu se odrediti samo za aplikacije instalirane u trenutno aktivnom profilu, zbog ograničenja Androida.</string>
     <string name="apps_details_description_uninstalled_caveat">Ova aplikacija je deinstalirana, ali njezini podaci su zadržani. Stanje dozvola nije moguće odrediti za deinstalirane aplikacije.</string>
-    <string name="apps_details_description_secondary_description">"%d traženih dozvola."</string>
-    <string name="apps_details_description_primary_description">"%1$d od %2$d odobrenih dozvola."</string>
+    <plurals name="apps_details_description_secondary_description">
+        <item quantity="one">%d dopuštenje zatraženo.</item>
+        <item quantity="few">%d dopuštenja zatražena.</item>
+        <item quantity="other">%d dopuštenja zatraženo.</item>
+    </plurals>
+    <plurals name="apps_details_description_primary_description">
+        <item quantity="one">%1$d od %2$d dopuštenja odobreno.</item>
+        <item quantity="few">%1$d od %2$d dopuštenja odobreno.</item>
+        <item quantity="other">%1$d od %2$d dopuštenja odobreno.</item>
+    </plurals>
     <string name="apps_details_empty_filter_message">Nijedna dozvola ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
     <string name="api_target_level_x">Ciljna verzija: %s</string>
     <string name="api_minimum_level_x">Minimalna verzija: %s</string>
@@ -162,8 +182,16 @@
         <item quantity="few">%d sistemske aplikacije</item>
         <item quantity="other">%d sistemskih aplikacija</item>
     </plurals>
-    <string name="permissions_details_count_user_apps">"Korisničke aplikacije: Odobreno za %1$d od %2$d."</string>
-    <string name="permissions_details_count_system_apps">"Sistemske aplikacije: Odobreno za %1$d od %2$d."</string>
+    <plurals name="permissions_details_count_user_apps">
+        <item quantity="one">Korisničke aplikacije: Odobreno %1$d od %2$d.</item>
+        <item quantity="few">Korisničke aplikacije: Odobreno %1$d od %2$d.</item>
+        <item quantity="other">Korisničke aplikacije: Odobreno %1$d od %2$d.</item>
+    </plurals>
+    <plurals name="permissions_details_count_system_apps">
+        <item quantity="one">Sistemske aplikacije: Odobreno %1$d od %2$d.</item>
+        <item quantity="few">Sistemske aplikacije: Odobreno %1$d od %2$d.</item>
+        <item quantity="other">Sistemske aplikacije: Odobreno %1$d od %2$d.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacije instalirane u drugim korisničkim profilima su isključene iz gornjeg izračuna zbog ograničenja Androida.</string>
     <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
     <string name="permission_nfc_label">NFC</string>
