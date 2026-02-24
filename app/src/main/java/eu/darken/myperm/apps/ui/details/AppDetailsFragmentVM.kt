@@ -12,7 +12,9 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.apps
 import eu.darken.myperm.apps.core.features.ReadableApk
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.queries.QueriesRepo
 import eu.darken.myperm.apps.ui.details.items.AppOverviewVH
+import eu.darken.myperm.apps.ui.details.items.AppQueriesVH
 import eu.darken.myperm.apps.ui.details.items.AppSiblingsVH
 import eu.darken.myperm.apps.ui.details.items.AppTwinsVH
 import eu.darken.myperm.apps.ui.details.items.UnknownPermissionVH
@@ -34,8 +36,12 @@ import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
@@ -51,6 +57,7 @@ class AppDetailsFragmentVM @Inject constructor(
     appRepo: AppRepo,
     permissionRepo: PermissionRepo,
     appStoreTool: AppStoreTool,
+    private val queriesRepo: QueriesRepo,
     private val generalSettings: GeneralSettings
 ) : ViewModel3(dispatcherProvider = dispatcherProvider) {
 
@@ -66,10 +73,23 @@ class AppDetailsFragmentVM @Inject constructor(
         val isEmptyDueToFilter: Boolean = false,
     )
 
+    private val appFlow = appRepo.apps.map { apps -> apps.single { it.id == navArgs.appId } }
+
+    private val queriesFlow: Flow<AppQueriesVH.State> = appFlow
+        .distinctUntilChangedBy { it.id }
+        .flatMapLatest { app ->
+            flow {
+                emit(AppQueriesVH.State.Loading)
+                val result = queriesRepo.getQueries(app)
+                emit(AppQueriesVH.State.from(result))
+            }
+        }
+
     val details: LiveData<Details> = combine(
-        appRepo.apps.map { apps -> apps.single { it.id == navArgs.appId } },
-        filterOptions
-    ) { app, filterOpts ->
+        appFlow,
+        filterOptions,
+        queriesFlow.onStart { emit(AppQueriesVH.State.Loading) }
+    ) { app, filterOpts, currentQueriesState ->
         val infoItems = mutableListOf<AppDetailsAdapter.Item>()
         val permissions = permissionRepo.permissions.first()
 
@@ -116,6 +136,8 @@ class AppDetailsFragmentVM @Inject constructor(
                 }
             ).run { infoItems.add(this) }
         }
+
+        AppQueriesVH.Item(state = currentQueriesState).run { infoItems.add(this) }
 
         val allPermissions = (app as? ReadableApk)?.requestedPermissions
             ?.map { usesPerm ->

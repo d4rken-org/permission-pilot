@@ -210,6 +210,8 @@ dependencies {
 
     implementation("com.squareup.okio:okio:3.1.0")
 
+    implementation("net.dongliu:apk-parser:2.6.10")
+
     implementation("io.coil-kt:coil:2.4.0")
 
     "gplayImplementation"("com.android.billingclient:billing:8.0.0")
