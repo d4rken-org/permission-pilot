@@ -5,33 +5,35 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
-import eu.darken.myperm.common.livedata.SingleLiveEvent
+import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.uix.ViewModel2
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.take
 import javax.inject.Inject
 
-
 @HiltViewModel
 class MainActivityVM @Inject constructor(
     dispatcherProvider: DispatcherProvider,
-    handle: SavedStateHandle,
+    @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     private val upgradeRepo: UpgradeRepo,
     private val generalSettings: GeneralSettings,
 ) : ViewModel2(dispatcherProvider = dispatcherProvider) {
 
-    private val readyStateInternal = MutableStateFlow(true)
-    val readyState = readyStateInternal.asLiveData2()
+    private val _readyState = MutableStateFlow(false)
+    val readyState = _readyState.asStateFlow()
 
-    val showUpgradeNag = SingleLiveEvent<(Activity) -> Unit>()
+    val upgradeNag = SingleEventFlow<(Activity) -> Unit>()
 
     init {
         upgradeRepo.upgradeInfo
             .take(1)
             .onEach {
+                _readyState.value = true
+
                 if (it.isPro) return@onEach
 
                 val launchCount = generalSettings.launchCount.value
@@ -39,8 +41,8 @@ class MainActivityVM @Inject constructor(
                 log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
                 if (skipNag) return@onEach
 
-                showUpgradeNag.postValue {
-                    upgradeRepo.launchBillingFlow(it)
+                upgradeNag.emit { activity ->
+                    upgradeRepo.launchBillingFlow(activity)
                 }
             }
             .launchInViewModel()
@@ -52,5 +54,4 @@ class MainActivityVM @Inject constructor(
             it + 1
         }
     }
-
 }

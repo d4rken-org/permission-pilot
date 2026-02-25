@@ -282,6 +282,10 @@
     <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Microphone related permissions.</string>
     <string name="permission_picture_in_picture_label">Picture in Picture</string>
+    <string name="settings_page_label">Settings</string>
+    <string name="overview_summary_title_label">Summary</string>
+    <string name="permissions_details_declaring_apps_label">Declaring apps</string>
+    <string name="permissions_details_requesting_apps_label">Requesting apps</string>
     <string name="overview_device_android_version_label">Android version</string>
     <string name="overview_device_name_label">Device</string>
     <string name="overview_device_android_patch_label">Patch level</string>

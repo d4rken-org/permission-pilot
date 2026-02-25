@@ -8,7 +8,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.PluralsRes
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 
 
 @ColorInt
@@ -23,15 +22,9 @@ fun Context.getColorForAttr(@AttrRes attrId: Int): Int {
 }
 
 @ColorInt
-fun Fragment.getColorForAttr(@AttrRes attrId: Int): Int = requireContext().getColorForAttr(attrId)
-
-@ColorInt
 fun Context.getCompatColor(@ColorRes attrId: Int): Int {
     return ContextCompat.getColor(this, attrId)
 }
-
-@ColorInt
-fun Fragment.getCompatColor(@ColorRes attrId: Int): Int = requireContext().getCompatColor(attrId)
 
 fun Context.dpToPx(dp: Float): Int {
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics).toInt()

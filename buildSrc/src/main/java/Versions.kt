@@ -10,9 +10,17 @@ object Versions {
 
     object AndroidX {
         const val core = ""
+    }
 
-        object Navigation {
-            const val core = "2.7.7"
-        }
+    object Compose {
+        const val bom = "2025.06.01"
+    }
+
+    object Navigation3 {
+        const val core = "1.0.0"
+    }
+
+    object Serialization {
+        const val core = "1.9.0"
     }
 }

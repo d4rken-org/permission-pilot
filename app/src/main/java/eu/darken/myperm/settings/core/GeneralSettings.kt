@@ -2,16 +2,12 @@ package eu.darken.myperm.settings.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceDataStore
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.ui.details.AppDetailsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsSortOptions
-import eu.darken.myperm.common.debug.autoreport.DebugSettings
 import eu.darken.myperm.common.debug.logging.logTag
-import eu.darken.myperm.common.preferences.PreferenceStoreMapper
-import eu.darken.myperm.common.preferences.Settings
 import eu.darken.myperm.common.preferences.createFlowPreference
 import eu.darken.myperm.common.preferences.moshiReader
 import eu.darken.myperm.common.preferences.moshiWriter
@@ -25,11 +21,9 @@ import javax.inject.Singleton
 class GeneralSettings @Inject constructor(
     @ApplicationContext private val context: Context,
     private val moshi: Moshi,
-    private val debugSettings: DebugSettings,
+) {
 
-    ) : Settings() {
-
-    override val preferences: SharedPreferences = context.getSharedPreferences("settings_core", Context.MODE_PRIVATE)
+    val preferences: SharedPreferences = context.getSharedPreferences("settings_core", Context.MODE_PRIVATE)
 
     val launchCount = preferences.createFlowPreference("core.stats.launches", 0)
 
@@ -70,10 +64,6 @@ class GeneralSettings @Inject constructor(
     )
 
     val ipcParallelisation = preferences.createFlowPreference("core.ipc.parallelisation", 0)
-
-    override val preferenceDataStore: PreferenceDataStore = PreferenceStoreMapper(
-        debugSettings.isAutoReportingEnabled
-    )
 
     companion object {
         internal val TAG = logTag("Core", "Settings")

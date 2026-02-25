@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 apply(plugin = "dagger.hilt.android.plugin")
-apply(plugin = "androidx.navigation.safeargs.kotlin")
 
 android {
     val packageName = "eu.darken.myperm"
@@ -94,6 +94,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
     }
 
     compileOptions {
@@ -191,17 +192,17 @@ dependencies {
     implementation("com.google.dagger:dagger:${Versions.Dagger.core}")
     implementation("com.google.dagger:dagger-android:${Versions.Dagger.core}")
 
-    kapt("com.google.dagger:dagger-compiler:${Versions.Dagger.core}")
-    kapt("com.google.dagger:dagger-android-processor:${Versions.Dagger.core}")
+    ksp("com.google.dagger:dagger-compiler:${Versions.Dagger.core}")
+    ksp("com.google.dagger:dagger-android-processor:${Versions.Dagger.core}")
 
     implementation("com.google.dagger:hilt-android:${Versions.Dagger.core}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    ksp("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
 
     testImplementation("com.google.dagger:hilt-android-testing:${Versions.Dagger.core}")
-    kaptTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    kspTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
 
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.Dagger.core}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
+    kspAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
 
     val moshiVersion = "1.15.1"
     implementation("com.squareup.moshi:moshi:$moshiVersion")
@@ -211,34 +212,48 @@ dependencies {
     implementation("com.squareup.okio:okio:3.1.0")
 
     implementation("io.coil-kt:coil:2.4.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // Compose
+    val composeBom = platform("androidx.compose:compose-bom:${Versions.Compose.bom}")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.activity:activity-compose:1.12.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0-alpha01")
+
+    // Navigation3
+    implementation("androidx.navigation3:navigation3-runtime:${Versions.Navigation3.core}")
+    implementation("androidx.navigation3:navigation3-ui:${Versions.Navigation3.core}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:2.10.0")
+    // Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Serialization.core}")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Serialization.core}")
 
     "gplayImplementation"("com.android.billingclient:billing:8.0.0")
 
     // Support libs
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("androidx.annotation:annotation:1.8.0")
 
     implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("androidx.fragment:fragment-ktx:1.8.1")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.3")
     implementation("androidx.lifecycle:lifecycle-process:2.8.3")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.Navigation.core}")
-    implementation("androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.Navigation.core}")
-    androidTestImplementation("androidx.navigation:navigation-testing:${Versions.AndroidX.Navigation.core}")
-
-    implementation("androidx.preference:preference-ktx:1.2.1")
-
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
-
-//    implementation("androidx.work:work-runtime:${Versions.AndroidX.WorkManager.core}")
-//    testImplementation("androidx.work:work-testing:${Versions.AndroidX.WorkManager.core}")
-
-    implementation("com.google.android.flexbox:flexbox:3.0.0")
 
     // UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

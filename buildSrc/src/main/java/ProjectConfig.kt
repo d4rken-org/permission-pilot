@@ -8,7 +8,7 @@ import java.io.FileInputStream
 import java.util.Properties
 
 object ProjectConfig {
-    const val minSdk = 21
+    const val minSdk = 23
     const val compileSdk = 36
     const val targetSdk = 36
 
