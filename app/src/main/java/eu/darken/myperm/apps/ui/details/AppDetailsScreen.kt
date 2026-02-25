@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.NewReleases
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Group
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -38,6 +39,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -114,6 +116,11 @@ fun AppDetailsScreen(
     onInstallerClicked: (String) -> Unit,
 ) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
+    var showPermHelpDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showPermHelpDialog) {
+        PermissionHelpDialog(onDismiss = { showPermHelpDialog = false })
+    }
 
     if (showFilterDialog) {
         MultiChoiceFilterDialog(
@@ -369,6 +376,7 @@ fun AppDetailsScreen(
                         SectionHeader(
                             title = stringResource(R.string.permissions_page_label),
                             count = state.permissions.size,
+                            onHelpClicked = { showPermHelpDialog = true },
                         )
                     }
                 }
@@ -539,9 +547,11 @@ private fun MetadataGrid(
 }
 
 @Composable
-private fun SectionHeader(title: String, count: Int? = null) {
+private fun SectionHeader(title: String, count: Int? = null, onHelpClicked: (() -> Unit)? = null) {
     Row(
-        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
@@ -561,6 +571,20 @@ private fun SectionHeader(title: String, count: Int? = null) {
                     )
                     .padding(horizontal = 8.dp, vertical = 2.dp),
             )
+        }
+        if (onHelpClicked != null) {
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(
+                onClick = onHelpClicked,
+                modifier = Modifier.size(32.dp),
+            ) {
+                Icon(
+                    Icons.AutoMirrored.Filled.HelpOutline,
+                    contentDescription = stringResource(R.string.label_help),
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
@@ -649,19 +673,19 @@ private fun PermissionRow(
             ) {
                 if (item.isRuntime) {
                     PermTypeTag(
-                        text = "Runtime",
+                        text = stringResource(R.string.apps_details_perm_tag_runtime),
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
                         contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                     )
                 } else if (item.isSpecialAccess) {
                     PermTypeTag(
-                        text = "Special",
+                        text = stringResource(R.string.apps_details_perm_tag_special),
                         containerColor = MaterialTheme.colorScheme.errorContainer,
                         contentColor = MaterialTheme.colorScheme.onErrorContainer,
                     )
                 } else {
                     PermTypeTag(
-                        text = "Install",
+                        text = stringResource(R.string.apps_details_perm_tag_install),
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -680,4 +704,78 @@ private fun PermissionRow(
             }
         }
     }
+}
+
+@Composable
+private fun PermissionHelpDialog(onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.apps_details_perm_help_title)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    PermTypeTag(
+                        text = stringResource(R.string.apps_details_perm_tag_runtime),
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                    Text(
+                        text = stringResource(R.string.apps_details_perm_help_runtime),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    PermTypeTag(
+                        text = stringResource(R.string.apps_details_perm_tag_special),
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                    )
+                    Text(
+                        text = stringResource(R.string.apps_details_perm_help_special),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    PermTypeTag(
+                        text = stringResource(R.string.apps_details_perm_tag_install),
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    Text(
+                        text = stringResource(R.string.apps_details_perm_help_install),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.NewReleases,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.tertiary,
+                        modifier = Modifier.size(14.dp),
+                    )
+                    Text(
+                        text = stringResource(R.string.apps_details_perm_help_declared),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.general_done_action))
+            }
+        },
+    )
 }

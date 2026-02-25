@@ -159,6 +159,14 @@
         <item quantity="other">%1$d of %2$d permissions granted.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">No permissions match current filters. Tap the filter icon to adjust.</string>
+    <string name="apps_details_perm_tag_runtime">Runtime</string>
+    <string name="apps_details_perm_tag_special">Special</string>
+    <string name="apps_details_perm_tag_install">Install</string>
+    <string name="apps_details_perm_help_title">Permission indicators</string>
+    <string name="apps_details_perm_help_runtime">Runtime — The app must ask you before using this permission. You can grant or deny it.</string>
+    <string name="apps_details_perm_help_special">Special — Requires toggling a switch in system settings.</string>
+    <string name="apps_details_perm_help_install">Install — Granted automatically when the app is installed. No user action needed.</string>
+    <string name="apps_details_perm_help_declared">The ⚠ icon means this permission is created by the app itself, rather than being a standard Android permission.</string>
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
     <string name="api_build_level_x">Compile version: %s</string>
