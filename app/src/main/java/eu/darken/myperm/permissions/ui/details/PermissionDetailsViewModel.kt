@@ -6,10 +6,10 @@ import android.os.Process
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.features.Installed
-import eu.darken.myperm.apps.core.features.getPermission
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.core.features.getPermissionUses
-import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -21,6 +21,13 @@ import eu.darken.myperm.permissions.core.ProtectionFlag
 import eu.darken.myperm.permissions.core.ProtectionType
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
+import eu.darken.myperm.permissions.core.features.Highlighted
+import eu.darken.myperm.permissions.core.features.InstallTimeGrant
+import eu.darken.myperm.permissions.core.features.ManifestDoc
+import eu.darken.myperm.permissions.core.features.NotNormalPerm
+import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
@@ -61,8 +68,7 @@ class PermissionDetailsViewModel @Inject constructor(
         val pkg: Pkg,
         val label: String?,
         val isSystemApp: Boolean,
-        val isGranted: Boolean,
-        val statusLabel: String,
+        val status: UsesPermission.Status,
         val userHandle: Int,
     )
 
@@ -72,7 +78,10 @@ class PermissionDetailsViewModel @Inject constructor(
         val permission: BasePermission? = null,
         val description: String? = null,
         val fullDescription: String? = null,
-        val protectionLevel: String? = null,
+        val protectionType: ProtectionType? = null,
+        val protectionFlags: List<ProtectionFlag> = emptyList(),
+        val protectionFlagOverflow: Int = 0,
+        val tags: List<PermissionTag> = emptyList(),
         val grantedUserCount: Int = 0,
         val totalUserCount: Int = 0,
         val grantedSystemCount: Int = 0,
@@ -105,30 +114,37 @@ class PermissionDetailsViewModel @Inject constructor(
                     app !is Installed || filterOpts.keys.any { filter -> filter.matches(app) }
                 }
 
+            val statusRank = mapOf(
+                UsesPermission.Status.GRANTED to 0,
+                UsesPermission.Status.GRANTED_IN_USE to 1,
+                UsesPermission.Status.DENIED to 2,
+                UsesPermission.Status.UNKNOWN to 3,
+            )
+
             val requesting = requestingPkgs
                 .map { app ->
-                    val status = app.getPermissionUses(perm.id).status
                     RequestingAppItem(
                         pkgName = app.packageName,
                         pkg = app,
                         label = app.getLabel(context),
                         isSystemApp = app.isSystemApp,
-                        isGranted = app.getPermission(perm.id)?.isGranted == true,
-                        statusLabel = status.name,
+                        status = app.getPermissionUses(perm.id).status,
                         userHandle = Process.myUserHandle().hashCode(),
                     )
                 }
-                .sortedWith(compareBy<RequestingAppItem> { it.statusLabel }.thenBy { it.isSystemApp })
+                .sortedWith(
+                    compareBy<RequestingAppItem> { statusRank[it.status] ?: 99 }
+                        .thenBy { it.isSystemApp }
+                        .thenBy { it.label ?: it.pkgName }
+                )
 
-            val protectionLevelStr = (perm as? DeclaredPermission)?.let { declared ->
-                val typeLabel = context.getString(declared.protectionType.labelRes)
-                val flags = declared.protectionFlags
-                if (flags.isNotEmpty()) {
-                    "$typeLabel (${flags.joinToString(", ") { it.name }})"
-                } else {
-                    typeLabel
-                }
+            val isGrantedStatus = { app: BasePkg ->
+                val s = app.getPermissionUses(perm.id).status
+                s == UsesPermission.Status.GRANTED || s == UsesPermission.Status.GRANTED_IN_USE
             }
+
+            val allProtectionFlags = (perm as? DeclaredPermission)?.protectionFlags
+                ?.sortedBy { it.ordinal } ?: emptyList()
 
             State(
                 label = perm.id.value.split(".").lastOrNull() ?: perm.id.value,
@@ -136,10 +152,22 @@ class PermissionDetailsViewModel @Inject constructor(
                 permission = perm,
                 description = perm.getLabel(context),
                 fullDescription = perm.getDescription(context),
-                protectionLevel = protectionLevelStr,
-                grantedUserCount = requestingPkgs.count { !it.isSystemApp && it.getPermission(perm.id)?.isGranted == true },
+                protectionType = (perm as? DeclaredPermission)?.protectionType,
+                protectionFlags = allProtectionFlags.take(3),
+                protectionFlagOverflow = (allProtectionFlags.size - 3).coerceAtLeast(0),
+                tags = perm.tags.sortedBy { tag ->
+                    when (tag) {
+                        is RuntimeGrant -> 0
+                        is SpecialAccess -> 1
+                        is InstallTimeGrant -> 2
+                        is ManifestDoc -> 3
+                        is Highlighted -> 4
+                        is NotNormalPerm -> 5
+                    }
+                },
+                grantedUserCount = requestingPkgs.count { !it.isSystemApp && isGrantedStatus(it) },
                 totalUserCount = requestingPkgs.count { !it.isSystemApp },
-                grantedSystemCount = requestingPkgs.count { it.isSystemApp && it.getPermission(perm.id)?.isGranted == true },
+                grantedSystemCount = requestingPkgs.count { it.isSystemApp && isGrantedStatus(it) },
                 totalSystemCount = requestingPkgs.count { it.isSystemApp },
                 declaringApps = declaring,
                 requestingApps = requesting,

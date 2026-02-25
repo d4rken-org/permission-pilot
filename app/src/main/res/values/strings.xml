@@ -205,6 +205,47 @@
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
     <string name="permissions_details_empty_filter_message">No apps match current filters. Tap the filter icon to adjust.</string>
+
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Runtime</string>
+    <string name="permissions_tag_install_time_label">Install-time</string>
+    <string name="permissions_tag_special_access_label">Special access</string>
+    <string name="permissions_tag_documented_label">Documented</string>
+    <string name="permissions_tag_notable_label">Notable</string>
+    <string name="permissions_tag_non_standard_label">Non-standard</string>
+
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">In use</string>
+    <string name="permissions_status_unknown_label">Unknown</string>
+
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">System</string>
+
+    <!-- Flag overflow -->
+    <string name="permissions_details_flags_more_label">+%d more</string>
+
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Permission indicators</string>
+    <string name="permissions_details_help_section_protection">Protection type</string>
+    <string name="permissions_details_help_dangerous">Dangerous — Requires explicit user approval at runtime. Can access sensitive data or device features.</string>
+    <string name="permissions_details_help_normal">Normal — Granted automatically at install. Poses minimal risk to other apps or the system.</string>
+    <string name="permissions_details_help_signature">Signature — Only granted to apps signed with the same certificate as the app that declared the permission.</string>
+    <string name="permissions_details_help_internal">Internal — Reserved for Android system internals. Not available to third-party apps.</string>
+    <string name="permissions_details_help_section_tags">Permission tags</string>
+    <string name="permissions_details_help_tag_runtime">Runtime — The app must ask you before using this permission.</string>
+    <string name="permissions_details_help_tag_install_time">Install-time — Granted automatically when the app is installed.</string>
+    <string name="permissions_details_help_tag_special_access">Special access — Requires toggling a switch in system settings.</string>
+    <string name="permissions_details_help_tag_documented">Documented — Listed in the official Android manifest documentation.</string>
+    <string name="permissions_details_help_tag_notable">Notable — Particularly noteworthy due to its impact on privacy or security.</string>
+    <string name="permissions_details_help_tag_non_standard">Non-standard — Not part of the standard Android permission set. Declared by a third-party app or OEM.</string>
+    <string name="permissions_details_status_help_title">Status indicators</string>
+    <string name="permissions_details_help_section_status">Grant status</string>
+    <string name="permissions_details_help_status_granted">Granted — The app has been given this permission.</string>
+    <string name="permissions_details_help_status_in_use">In use — Granted and currently being actively used by the app.</string>
+    <string name="permissions_details_help_status_denied">Denied — The app requested this permission but it was not granted.</string>
+    <string name="permissions_details_help_status_unknown">Unknown — The grant state cannot be determined, e.g. for apps in other user profiles.</string>
+    <string name="permissions_details_help_section_badges">Badges</string>
+    <string name="permissions_details_help_system_badge">System — The app is a pre-installed system app.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Allows apps to communicate with Near Field Communication (NFC) tags, cards and readers.</string>
     <string name="permission_manage_media_label">Manage Media</string>
