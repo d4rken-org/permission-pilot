@@ -100,8 +100,8 @@
     <string name="filter_denied_label">Denied</string>
     <string name="filter_configurable_label">Configurable</string>
 
-    <string name="permissions_sort_apps_granted_label"># of apps granted</string>
-    <string name="permissions_sort_apps_requested_label"># of apps requested</string>
+    <string name="permissions_sort_apps_granted_label">Number of granted apps</string>
+    <string name="permissions_sort_apps_requested_label">Number of requested apps</string>
     <string name="permissions_search_list_hint">Search permissions</string>
     <string name="apps_search_list_hint">Search apps</string>
     <string name="permissions_details_protection_label">Protection level</string>
@@ -208,7 +208,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth Advertise</string>
     <string name="permission_bluetooth_advertise_description">Allows apps to advertise to nearby Bluetooth devices.</string>
     <string name="permission_get_accounts_label">Get Accounts</string>
-    <string name="permission_get_accounts_description">Allows apps to get the list of accounts known by the phone. This may include any accounts created by applications that you have installed.</string>
+    <string name="permission_get_accounts_description">Allows apps to get the list of accounts known by the device. This may include any accounts created by applications that you have installed.</string>
     <string name="permission_access_background_location_label">Access Background Location</string>
     <string name="permission_access_background_location_description">Allows apps to access location any time, even when they are not in use.</string>
     <string name="permission_access_media_location_label">Access Media Location</string>
