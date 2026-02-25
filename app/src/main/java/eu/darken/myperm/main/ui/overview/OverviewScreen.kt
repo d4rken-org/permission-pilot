@@ -32,6 +32,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -178,4 +180,24 @@ private fun SummaryRow(label: String, userCount: Int, systemCount: Int) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewPreviewData.loadedState(),
+        onRefresh = {},
+        onSettings = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun OverviewScreenLoadingPreview() = PreviewWrapper {
+    OverviewScreen(
+        state = OverviewPreviewData.loadingState(),
+        onRefresh = {},
+        onSettings = {},
+    )
 }

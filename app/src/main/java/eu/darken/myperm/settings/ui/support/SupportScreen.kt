@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.navigation.LocalNavigationController
 
 @Composable
@@ -61,4 +63,10 @@ fun SupportScreen(
             )
         }
     }
+}
+
+@Preview2
+@Composable
+private fun SupportScreenPreview() = PreviewWrapper {
+    SupportScreen(onBack = {})
 }

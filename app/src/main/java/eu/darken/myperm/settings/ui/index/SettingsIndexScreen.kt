@@ -24,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 import eu.darken.myperm.R
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.PrivacyPolicy
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.navigation.LocalNavigationController
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.settings.SettingsBaseItem
@@ -100,4 +102,10 @@ fun SettingsIndexScreen(
             )
         }
     }
+}
+
+@Preview2
+@Composable
+private fun SettingsIndexScreenPreview() = PreviewWrapper {
+    SettingsIndexScreen(onBack = {}, onGeneral = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = null)
 }

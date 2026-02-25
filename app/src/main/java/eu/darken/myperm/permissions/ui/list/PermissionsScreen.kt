@@ -57,11 +57,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.permissions.core.PermissionGroup
+import eu.darken.myperm.permissions.core.known.APermGrp
 
 @Composable
 fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
@@ -348,4 +351,64 @@ private fun PermissionListItem(
             }
         }
     }
+}
+
+@Preview2
+@Composable
+private fun PermissionsScreenReadyPreview() = PreviewWrapper {
+    PermissionsScreen(
+        state = PermissionsPreviewData.readyState(),
+        onSearchChanged = {},
+        onGroupClicked = {},
+        onPermClicked = {},
+        onExpandAll = {},
+        onCollapseAll = {},
+        onRefresh = {},
+        onSettings = {},
+        onFilterClicked = {},
+        onSortClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionsScreenEmptyPreview() = PreviewWrapper {
+    PermissionsScreen(
+        state = PermissionsPreviewData.emptyReadyState(),
+        onSearchChanged = {},
+        onGroupClicked = {},
+        onPermClicked = {},
+        onExpandAll = {},
+        onCollapseAll = {},
+        onRefresh = {},
+        onSettings = {},
+        onFilterClicked = {},
+        onSortClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionsScreenLoadingPreview() = PreviewWrapper {
+    PermissionsScreen(
+        state = PermissionsViewModel.State.Loading,
+        onSearchChanged = {},
+        onGroupClicked = {},
+        onPermClicked = {},
+        onExpandAll = {},
+        onCollapseAll = {},
+        onRefresh = {},
+        onSettings = {},
+        onFilterClicked = {},
+        onSortClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionGroupHeaderPreview() = PreviewWrapper {
+    PermissionGroupHeader(
+        item = PermissionsViewModel.GroupItem(group = APermGrp.Camera, permCount = 5, isExpanded = true),
+        onClick = {},
+    )
 }

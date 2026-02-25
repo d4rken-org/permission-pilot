@@ -47,6 +47,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
@@ -286,4 +288,46 @@ private fun AppListItem(
             )
         }
     }
+}
+
+@Preview2
+@Composable
+private fun AppsScreenReadyPreview() = PreviewWrapper {
+    AppsScreen(
+        state = AppsPreviewData.readyState(),
+        onSearchChanged = {},
+        onAppClicked = {},
+        onFilter = {},
+        onSort = {},
+        onRefresh = {},
+        onSettings = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun AppsScreenEmptyPreview() = PreviewWrapper {
+    AppsScreen(
+        state = AppsPreviewData.emptyReadyState(),
+        onSearchChanged = {},
+        onAppClicked = {},
+        onFilter = {},
+        onSort = {},
+        onRefresh = {},
+        onSettings = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun AppsScreenLoadingPreview() = PreviewWrapper {
+    AppsScreen(
+        state = AppsViewModel.State.Loading,
+        onSearchChanged = {},
+        onAppClicked = {},
+        onFilter = {},
+        onSort = {},
+        onRefresh = {},
+        onSettings = {},
+    )
 }

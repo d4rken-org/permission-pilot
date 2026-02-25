@@ -65,6 +65,8 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
@@ -778,4 +780,74 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
             }
         },
     )
+}
+
+@Preview2
+@Composable
+private fun AppDetailsScreenPreview() = PreviewWrapper {
+    AppDetailsScreen(
+        state = AppDetailsPreviewData.loadedState(),
+        onBack = {},
+        onPermClicked = {},
+        onTwinClicked = {},
+        onSiblingClicked = {},
+        onGoSettings = {},
+        onOpenApp = {},
+        onFilter = {},
+        onInstallerClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun AppDetailsScreenLoadingPreview() = PreviewWrapper {
+    AppDetailsScreen(
+        state = AppDetailsPreviewData.loadingState(),
+        onBack = {},
+        onPermClicked = {},
+        onTwinClicked = {},
+        onSiblingClicked = {},
+        onGoSettings = {},
+        onOpenApp = {},
+        onFilter = {},
+        onInstallerClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun AppDetailsScreenSystemAppPreview() = PreviewWrapper {
+    AppDetailsScreen(
+        state = AppDetailsPreviewData.systemAppState(),
+        onBack = {},
+        onPermClicked = {},
+        onTwinClicked = {},
+        onSiblingClicked = {},
+        onGoSettings = {},
+        onOpenApp = {},
+        onFilter = {},
+        onInstallerClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun AppDetailsScreenEmptyFilterPreview() = PreviewWrapper {
+    AppDetailsScreen(
+        state = AppDetailsPreviewData.emptyFilterState(),
+        onBack = {},
+        onPermClicked = {},
+        onTwinClicked = {},
+        onSiblingClicked = {},
+        onGoSettings = {},
+        onOpenApp = {},
+        onFilter = {},
+        onInstallerClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionHelpDialogPreview() = PreviewWrapper {
+    PermissionHelpDialog(onDismiss = {})
 }

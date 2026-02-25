@@ -56,6 +56,8 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
@@ -691,4 +693,30 @@ private fun HelpRow(
         Pill(text = pill, containerColor = containerColor, contentColor = contentColor)
         Text(text = description, style = MaterialTheme.typography.bodySmall)
     }
+}
+
+@Preview2
+@Composable
+private fun PermissionDetailsScreenPreview() = PreviewWrapper {
+    PermissionDetailsScreen(
+        state = PermissionDetailsPreviewData.loadedState(),
+        onBack = {},
+        onAppClicked = { _, _ -> },
+        onFilterClicked = {},
+        onPermissionHelpClicked = {},
+        onStatusHelpClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionDetailsScreenLoadingPreview() = PreviewWrapper {
+    PermissionDetailsScreen(
+        state = PermissionDetailsPreviewData.loadingState(),
+        onBack = {},
+        onAppClicked = { _, _ -> },
+        onFilterClicked = {},
+        onPermissionHelpClicked = {},
+        onStatusHelpClicked = {},
+    )
 }

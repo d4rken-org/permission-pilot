@@ -22,6 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.ui.details.AppDetailsFilterOptions
+import eu.darken.myperm.apps.ui.list.AppsSortOptions
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 
 data class LabeledOption<T>(
     val value: T,
@@ -124,5 +128,29 @@ fun <T> SingleChoiceSortDialog(
                 Text(stringResource(android.R.string.cancel))
             }
         },
+    )
+}
+
+@Preview2
+@Composable
+private fun MultiChoiceFilterDialogPreview() = PreviewWrapper {
+    MultiChoiceFilterDialog(
+        title = "Filter",
+        options = AppDetailsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
+        selected = setOf(AppDetailsFilterOptions.Filter.GRANTED),
+        onConfirm = {},
+        onDismiss = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun SingleChoiceSortDialogPreview() = PreviewWrapper {
+    SingleChoiceSortDialog(
+        title = "Sort",
+        options = AppsSortOptions.Sort.entries.map { LabeledOption(it, it.labelRes) },
+        selected = AppsSortOptions.Sort.UPDATED_AT,
+        onSelect = {},
+        onDismiss = {},
     )
 }
