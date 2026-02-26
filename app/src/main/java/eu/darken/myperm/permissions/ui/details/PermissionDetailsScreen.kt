@@ -46,15 +46,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
@@ -186,15 +186,11 @@ fun PermissionDetailsScreen(
                                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                state.permission?.let { perm ->
-                                    AsyncImage(
-                                        model = perm,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(48.dp),
-                                        fallback = painterResource(R.drawable.ic_baseline_security_24),
-                                        error = painterResource(R.drawable.ic_baseline_security_24),
-                                    )
-                                }
+                                PermissionIcon(
+                                    permissionId = state.permission?.id ?: eu.darken.myperm.permissions.core.Permission.Id(state.permissionId),
+                                    modifier = Modifier.size(48.dp),
+                                    fallbackModel = state.permission,
+                                )
                                 Column(modifier = Modifier.weight(1f)) {
                                     Text(
                                         text = state.description ?: state.label,
@@ -290,12 +286,10 @@ fun PermissionDetailsScreen(
                                 .padding(horizontal = 16.dp, vertical = 8.dp),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            AsyncImage(
-                                model = app.pkg,
-                                contentDescription = app.label,
+                            AppIcon(
+                                pkg = app.pkg,
+                                isSystemApp = app.isSystemApp,
                                 modifier = Modifier.size(32.dp),
-                                fallback = painterResource(R.drawable.ic_baseline_apps_24),
-                                error = painterResource(R.drawable.ic_baseline_apps_24),
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(
@@ -362,12 +356,10 @@ fun PermissionDetailsScreen(
                                 .padding(horizontal = 16.dp, vertical = 8.dp),
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
-                            AsyncImage(
-                                model = app.pkg,
-                                contentDescription = app.label,
+                            AppIcon(
+                                pkg = app.pkg,
+                                isSystemApp = app.isSystemApp,
                                 modifier = Modifier.size(32.dp),
-                                fallback = painterResource(R.drawable.ic_baseline_apps_24),
-                                error = painterResource(R.drawable.ic_baseline_apps_24),
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(

@@ -52,7 +52,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -60,10 +59,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
@@ -194,12 +194,10 @@ fun AppDetailsScreen(
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
                                 state.pkg?.let { pkg ->
-                                    AsyncImage(
-                                        model = pkg,
-                                        contentDescription = state.label,
+                                    AppIcon(
+                                        pkg = pkg,
+                                        isSystemApp = state.isSystemApp,
                                         modifier = Modifier.size(56.dp),
-                                        fallback = painterResource(R.drawable.ic_baseline_apps_24),
-                                        error = painterResource(R.drawable.ic_baseline_apps_24),
                                     )
                                 }
                                 Column(modifier = Modifier.weight(1f)) {
@@ -650,12 +648,10 @@ private fun PermissionRow(
         StatusIcon(status = item.status)
 
         // Permission icon
-        AsyncImage(
-            model = item.usesPermission,
-            contentDescription = null,
+        PermissionIcon(
+            permissionId = item.permId,
             modifier = Modifier.size(20.dp),
-            fallback = painterResource(R.drawable.ic_baseline_security_24),
-            error = painterResource(R.drawable.ic_baseline_security_24),
+            fallbackModel = item.usesPermission,
         )
 
         // Label, ID, type tags

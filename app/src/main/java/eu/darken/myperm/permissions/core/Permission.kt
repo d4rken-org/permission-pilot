@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Parcelable
-import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.permissions.core.features.*
@@ -72,16 +71,6 @@ interface Permission {
             .getPermissionInfo2(id, PackageManager.GET_META_DATA)
             ?.takeIf { it.icon != 0 }
             ?.loadIcon(pm)
-            ?.let { return it }
-
-        APerm.values.singleOrNull { it.id == id }
-            ?.iconRes
-            ?.let { ContextCompat.getDrawable(context, it) }
-            ?.let { return it }
-
-        AExtraPerm.values.singleOrNull { it.id == id }
-            ?.iconRes
-            ?.let { ContextCompat.getDrawable(context, it) }
             ?.let { return it }
 
         return null

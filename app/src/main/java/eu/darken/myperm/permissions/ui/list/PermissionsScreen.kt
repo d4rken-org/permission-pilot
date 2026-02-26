@@ -46,15 +46,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.PermissionIcon
+import eu.darken.myperm.common.compose.icon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
@@ -275,7 +275,7 @@ private fun PermissionGroupHeader(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Icon(
-                painter = painterResource(item.group.iconRes),
+                imageVector = item.group.icon,
                 contentDescription = null,
                 modifier = Modifier.size(24.dp),
                 tint = MaterialTheme.colorScheme.primary,
@@ -322,12 +322,10 @@ private fun PermissionListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        AsyncImage(
-            model = item.permission,
-            contentDescription = null,
+        PermissionIcon(
+            permissionId = item.permission.id,
             modifier = Modifier.size(24.dp),
-            fallback = painterResource(R.drawable.ic_baseline_security_24),
-            error = painterResource(R.drawable.ic_baseline_security_24),
+            fallbackModel = item.permission,
         )
         Column(modifier = Modifier.weight(1f)) {
             Text(

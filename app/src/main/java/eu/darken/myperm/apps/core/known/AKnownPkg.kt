@@ -1,6 +1,5 @@
 package eu.darken.myperm.apps.core.known
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
@@ -13,7 +12,6 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
     constructor(rawPkgId: String) : this(Pkg.Id(rawPkgId))
 
     @get:StringRes open val labelRes: Int? = null
-    @get:DrawableRes open val iconRes: Int? = R.drawable.ic_default_app_icon_24
 
     object AndroidSystem : AKnownPkg("android") {
         override val labelRes: Int = R.string.apps_known_android_system_label
@@ -21,7 +19,6 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
 
     object GooglePlay : AKnownPkg("com.android.vending"), AppStore {
         override val labelRes: Int = R.string.apps_known_installer_gplay_label
-        override val iconRes: Int = R.drawable.ic_baseline_gplay_24
         override val urlGenerator: ((Pkg.Id) -> String) = {
             "https://play.google.com/store/apps/details?id=${it.pkgName}"
         }

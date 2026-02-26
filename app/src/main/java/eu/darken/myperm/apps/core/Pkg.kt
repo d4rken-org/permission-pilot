@@ -8,7 +8,6 @@ import android.os.Parcelable
 import android.os.Process
 import android.os.UserHandle
 import android.provider.Settings
-import androidx.core.content.ContextCompat
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
 
@@ -31,12 +30,6 @@ interface Pkg {
 
     fun getIcon(context: Context): Drawable? {
         context.packageManager.getIcon2(id)?.let { return it }
-
-        AKnownPkg.values
-            .singleOrNull { it.id == id }
-            ?.iconRes
-            ?.let { ContextCompat.getDrawable(context, it) }
-            ?.let { return it }
 
         return null
     }

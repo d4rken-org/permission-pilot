@@ -5,7 +5,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.UserHandle
-import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.InstallerInfo
@@ -39,11 +38,10 @@ class UninstalledDataPkg(
         return newLabel
     }
 
-    override fun getIcon(context: Context): Drawable =
+    override fun getIcon(context: Context): Drawable? =
         context.packageManager.getIcon2(id)
             ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
             ?: super.getIcon(context)
-            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
 
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()

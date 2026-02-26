@@ -8,7 +8,6 @@ import android.content.pm.PermissionInfo
 import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
-import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
@@ -60,7 +59,7 @@ class SecondaryProfilePkg(
         return newLabel
     }
 
-    override fun getIcon(context: Context): Drawable {
+    override fun getIcon(context: Context): Drawable? {
         val pm = context.packageManager
         return try {
             val loadedIcon = launcherAppInfo.loadIcon(pm)
@@ -74,7 +73,6 @@ class SecondaryProfilePkg(
         }
             ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
             ?: super.getIcon(context)
-            ?: context.getDrawable(R.drawable.ic_default_app_icon_24)!!
     }
 
     override var siblings: Collection<Pkg> = emptyList()

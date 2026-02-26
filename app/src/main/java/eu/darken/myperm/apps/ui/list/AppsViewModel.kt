@@ -18,8 +18,9 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
+import androidx.compose.ui.graphics.vector.ImageVector
+import eu.darken.myperm.common.compose.toIcon
 import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -52,7 +53,7 @@ class AppsViewModel @Inject constructor(
         val grantedCount: Int,
         val totalCount: Int,
         val declaredCount: Int,
-        val tagIconRes: List<Int>,
+        val tagIcons: List<ImageVector>,
         val installerInfo: InstallerInfo?,
         val userHandle: UserHandle,
     )
@@ -93,7 +94,7 @@ class AppsViewModel @Inject constructor(
             val readableApk = app as? ReadableApk
             val requestedPerms = readableApk?.requestedPermissions ?: emptyList()
             val tagIcons = requestedPerms
-                .mapNotNull { usesPerm -> APerm.values.firstOrNull { it.id == usesPerm.id }?.iconRes }
+                .mapNotNull { it.id.toIcon() }
                 .distinct()
                 .take(5)
 
@@ -107,7 +108,7 @@ class AppsViewModel @Inject constructor(
                 grantedCount = requestedPerms.count { it.isGranted },
                 totalCount = requestedPerms.size,
                 declaredCount = readableApk?.declaredPermissions?.size ?: 0,
-                tagIconRes = tagIcons,
+                tagIcons = tagIcons,
                 installerInfo = (app as? Installed)?.installerInfo,
                 userHandle = app.userHandle,
             )
