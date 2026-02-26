@@ -45,6 +45,9 @@
     <string name="discord_description">A place to hang out in and ask questions.</string>
     <string name="issue_tracker_label">Issue tracker</string>
     <string name="issue_tracker_description">A public issue tracker for bug reports and feature requests.</string>
+
+    <string name="acks_maxpatchs_desc">Thanks for the lovely icons.</string>
+    <string name="acks_crowdin_desc">For supporting translation of open-source projects.</string>
     <string name="permissions_page_label">Permissions</string>
     <string name="apps_page_label">Apps</string>
     <string name="app_type_system_label">System App</string>
