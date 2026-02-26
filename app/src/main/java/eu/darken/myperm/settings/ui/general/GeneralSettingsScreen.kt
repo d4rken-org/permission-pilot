@@ -23,6 +23,7 @@ import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.navigation.LocalNavigationController
 
+// TODO: No UI entry point yet — reserved for future general settings
 @Composable
 fun GeneralSettingsScreenHost() {
     val navCtrl = LocalNavigationController.current

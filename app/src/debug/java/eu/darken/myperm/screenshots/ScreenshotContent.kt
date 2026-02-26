@@ -150,10 +150,10 @@ internal fun PermissionDetailsContent() = PreviewWrapper {
 internal fun SettingsIndexContent() = PreviewWrapper {
     SettingsIndexScreen(
         onBack = {},
-        onGeneral = {},
+        onChangelog = {},
         onSupport = {},
         onAcknowledgements = {},
-        onPrivacyPolicy = null,
+        onPrivacyPolicy = {},
         versionSubtitle = "v1.2.3",
     )
 }

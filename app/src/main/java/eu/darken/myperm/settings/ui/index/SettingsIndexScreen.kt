@@ -7,23 +7,22 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.twotone.FormatListNumbered
 import androidx.compose.material.icons.twotone.Favorite
+import androidx.compose.material.icons.automirrored.twotone.HelpOutline
 import androidx.compose.material.icons.twotone.Info
-import androidx.compose.material.icons.twotone.Policy
-import androidx.compose.material.icons.twotone.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.BuildConfigWrap
-import eu.darken.myperm.common.PrivacyPolicy
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.navigation.LocalNavigationController
@@ -35,13 +34,14 @@ import eu.darken.myperm.common.settings.SettingsDivider
 @Composable
 fun SettingsIndexScreenHost() {
     val navCtrl = LocalNavigationController.current
+    val vm: SettingsIndexViewModel = hiltViewModel()
 
     SettingsIndexScreen(
         onBack = { navCtrl?.up() },
-        onGeneral = { navCtrl?.goTo(Nav.Settings.General) },
+        onChangelog = { vm.openChangelog() },
         onSupport = { navCtrl?.goTo(Nav.Settings.Support) },
         onAcknowledgements = { navCtrl?.goTo(Nav.Settings.Acknowledgements) },
-        onPrivacyPolicy = null, // Handled via WebpageTool — will be wired later
+        onPrivacyPolicy = { vm.openPrivacyPolicy() },
     )
 }
 
@@ -49,10 +49,10 @@ fun SettingsIndexScreenHost() {
 @Composable
 fun SettingsIndexScreen(
     onBack: () -> Unit,
-    onGeneral: () -> Unit,
+    onChangelog: () -> Unit,
     onSupport: () -> Unit,
     onAcknowledgements: () -> Unit,
-    onPrivacyPolicy: (() -> Unit)?,
+    onPrivacyPolicy: () -> Unit,
     versionSubtitle: String = BuildConfigWrap.VERSION_DESCRIPTION,
 ) {
     Scaffold(
@@ -73,33 +73,34 @@ fun SettingsIndexScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
-            SettingsBaseItem(
-                title = stringResource(R.string.general_settings_label),
-                subtitle = versionSubtitle,
-                icon = Icons.TwoTone.Settings,
-                onClick = onGeneral,
-            )
-            SettingsDivider()
-
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
 
             SettingsBaseItem(
-                title = stringResource(R.string.settings_privacy_policy_label),
-                subtitle = stringResource(R.string.settings_privacy_policy_desc),
-                icon = Icons.TwoTone.Policy,
-                onClick = { onPrivacyPolicy?.invoke() },
+                title = stringResource(R.string.changelog_label),
+                subtitle = versionSubtitle,
+                icon = Icons.TwoTone.FormatListNumbered,
+                onClick = onChangelog,
             )
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.settings_support_label),
-                icon = Icons.TwoTone.Favorite,
+                subtitle = "\u00AF\\_(ツ)_/\u00AF",
+                icon = Icons.AutoMirrored.TwoTone.HelpOutline,
                 onClick = onSupport,
             )
             SettingsDivider()
             SettingsBaseItem(
-                title = stringResource(R.string.settings_licenses_label),
-                icon = Icons.TwoTone.Info,
+                title = stringResource(R.string.settings_acknowledgements_label),
+                subtitle = stringResource(R.string.general_thank_you_label),
+                icon = Icons.TwoTone.Favorite,
                 onClick = onAcknowledgements,
+            )
+            SettingsDivider()
+            SettingsBaseItem(
+                title = stringResource(R.string.settings_privacy_policy_label),
+                subtitle = stringResource(R.string.settings_privacy_policy_desc),
+                icon = Icons.TwoTone.Info,
+                onClick = onPrivacyPolicy,
             )
         }
     }
@@ -108,5 +109,5 @@ fun SettingsIndexScreen(
 @Preview2
 @Composable
 private fun SettingsIndexScreenPreview() = PreviewWrapper {
-    SettingsIndexScreen(onBack = {}, onGeneral = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = null)
+    SettingsIndexScreen(onBack = {}, onChangelog = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = {})
 }
