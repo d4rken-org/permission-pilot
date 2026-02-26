@@ -46,6 +46,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -190,6 +191,8 @@ fun PermissionDetailsScreen(
                                         model = perm,
                                         contentDescription = null,
                                         modifier = Modifier.size(48.dp),
+                                        fallback = painterResource(R.drawable.ic_baseline_security_24),
+                                        error = painterResource(R.drawable.ic_baseline_security_24),
                                     )
                                 }
                                 Column(modifier = Modifier.weight(1f)) {
@@ -291,6 +294,8 @@ fun PermissionDetailsScreen(
                                 model = app.pkg,
                                 contentDescription = app.label,
                                 modifier = Modifier.size(32.dp),
+                                fallback = painterResource(R.drawable.ic_baseline_apps_24),
+                                error = painterResource(R.drawable.ic_baseline_apps_24),
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(
@@ -361,6 +366,8 @@ fun PermissionDetailsScreen(
                                 model = app.pkg,
                                 contentDescription = app.label,
                                 modifier = Modifier.size(32.dp),
+                                fallback = painterResource(R.drawable.ic_baseline_apps_24),
+                                error = painterResource(R.drawable.ic_baseline_apps_24),
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Row(

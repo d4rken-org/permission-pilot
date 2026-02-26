@@ -231,6 +231,8 @@ private fun AppListItem(
             model = item.pkg,
             contentDescription = item.label,
             modifier = Modifier.size(40.dp),
+            fallback = painterResource(R.drawable.ic_baseline_apps_24),
+            error = painterResource(R.drawable.ic_baseline_apps_24),
         )
 
         Column(modifier = Modifier.weight(1f)) {
@@ -285,6 +287,8 @@ private fun AppListItem(
                 model = item.installerInfo.installer,
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
+                fallback = painterResource(R.drawable.ic_baseline_apps_24),
+                error = painterResource(R.drawable.ic_baseline_apps_24),
             )
         }
     }

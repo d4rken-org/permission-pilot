@@ -326,6 +326,8 @@ private fun PermissionListItem(
             model = item.permission,
             contentDescription = null,
             modifier = Modifier.size(24.dp),
+            fallback = painterResource(R.drawable.ic_baseline_security_24),
+            error = painterResource(R.drawable.ic_baseline_security_24),
         )
         Column(modifier = Modifier.weight(1f)) {
             Text(
