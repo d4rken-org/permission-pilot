@@ -30,23 +30,44 @@ internal object PermissionsPreviewData {
     fun readyState() = PermissionsViewModel.State.Ready(
         listData = listOf(
             PermissionsViewModel.ListItem.Group(
-                PermissionsViewModel.GroupItem(group = APermGrp.Camera, permCount = 2, isExpanded = true)
+                PermissionsViewModel.GroupItem(group = APermGrp.Apps, permCount = 9, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Calendar, permCount = 2, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Calls, permCount = 8, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Camera, permCount = 1, isExpanded = true)
             ),
             PermissionsViewModel.ListItem.Perm(
-                permItem("android.permission.CAMERA", "Camera", "declared", requestingCount = 45, grantedCount = 12)
+                permItem("android.permission.CAMERA", "take pictures and videos", "declared", requestingCount = 34, grantedCount = 15)
             ),
-            PermissionsViewModel.ListItem.Perm(
-                permItem("android.permission.RECORD_VIDEO", null, "extra", requestingCount = 8, grantedCount = 3)
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Connectivity, permCount = 3, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Contacts, permCount = 2, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Files, permCount = 4, isExpanded = false)
             ),
             PermissionsViewModel.ListItem.Group(
                 PermissionsViewModel.GroupItem(group = APermGrp.Location, permCount = 3, isExpanded = false)
             ),
             PermissionsViewModel.ListItem.Group(
-                PermissionsViewModel.GroupItem(group = APermGrp.Contacts, permCount = 2, isExpanded = false)
+                PermissionsViewModel.GroupItem(group = APermGrp.Messaging, permCount = 6, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Audio, permCount = 1, isExpanded = false)
+            ),
+            PermissionsViewModel.ListItem.Group(
+                PermissionsViewModel.GroupItem(group = APermGrp.Sensors, permCount = 3, isExpanded = false)
             ),
         ),
-        countPermissions = 7,
-        countGroups = 3,
+        countPermissions = 42,
+        countGroups = 11,
     )
 
     fun emptyReadyState() = PermissionsViewModel.State.Ready(

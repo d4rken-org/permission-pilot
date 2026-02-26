@@ -53,6 +53,7 @@ fun SettingsIndexScreen(
     onSupport: () -> Unit,
     onAcknowledgements: () -> Unit,
     onPrivacyPolicy: (() -> Unit)?,
+    versionSubtitle: String = BuildConfigWrap.VERSION_DESCRIPTION,
 ) {
     Scaffold(
         topBar = {
@@ -74,7 +75,7 @@ fun SettingsIndexScreen(
         ) {
             SettingsBaseItem(
                 title = stringResource(R.string.general_settings_label),
-                subtitle = BuildConfigWrap.VERSION_DESCRIPTION,
+                subtitle = versionSubtitle,
                 icon = Icons.TwoTone.Settings,
                 onClick = onGeneral,
             )

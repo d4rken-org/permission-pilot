@@ -7,6 +7,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.android.compose.screenshot") version "0.0.1-alpha13"
 }
 apply(plugin = "dagger.hilt.android.plugin")
 
@@ -122,6 +123,8 @@ android {
             assets.srcDirs(files("$projectDir/schemas"))
         }
     }
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
+
     namespace = "eu.darken.myperm"
 }
 
@@ -291,4 +294,9 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
     androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.4.0")
+
+    // Compose Preview Screenshot Testing
+    "screenshotTestImplementation"(platform("androidx.compose:compose-bom:${Versions.Compose.bom}"))
+    "screenshotTestImplementation"("com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha13")
+    "screenshotTestImplementation"("androidx.compose.ui:ui-tooling")
 }

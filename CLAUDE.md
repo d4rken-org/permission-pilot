@@ -46,6 +46,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ./gradlew lintFossDebug
 ```
 
+### Screenshot Commands
+
+```bash
+# Generate all localized screenshots (39 locales × 7 screens, batched)
+./fastlane/generate_screenshots.sh
+
+# Smoke test (6 locales for fast iteration)
+./fastlane/generate_screenshots.sh --smoke
+
+# Custom batch size
+./fastlane/generate_screenshots.sh --batch-size 4
+
+# Copy generated PNGs to fastlane metadata directories
+./fastlane/copy_screenshots.sh
+
+# Clean existing screenshots before copying
+./fastlane/copy_screenshots.sh --clean
+
+# Direct Gradle task (single batch, all locales — may OOM)
+./gradlew updateGplayDebugScreenshotTest
+```
+
 ### Release Commands
 
 ```bash
