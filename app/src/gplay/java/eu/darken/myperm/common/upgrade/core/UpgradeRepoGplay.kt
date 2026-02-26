@@ -73,7 +73,6 @@ class UpgradeRepoGplay @Inject constructor(
 
     override fun launchBillingFlow(activity: Activity) {
         MaterialAlertDialogBuilder(activity).apply {
-            setIcon(R.drawable.ic_heart)
             setTitle(R.string.upgrade_myperm_label)
             setMessage(R.string.upgrade_myperm_description)
             setPositiveButton(R.string.upgrade_buy_pro_action) { _, _ ->

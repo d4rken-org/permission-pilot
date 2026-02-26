@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -38,12 +37,10 @@ data class InstallerInfo(
         return installingPkg?.getLabel(context) ?: installer!!.id.pkgName
     }
 
-    fun getIcon(context: Context): Drawable {
-        if (installer == null) return ContextCompat.getDrawable(context, R.drawable.ic_baseline_user_24)!!
+    fun getIcon(context: Context): Drawable? {
+        if (installer == null) return null
 
-        installer!!.getIcon(context)?.let { return it }
-
-        return ContextCompat.getDrawable(context, R.drawable.ic_default_app_icon_24)!!
+        return installer!!.getIcon(context)
     }
 }
 

@@ -1,6 +1,7 @@
 package eu.darken.myperm.apps.ui.list
 
 import android.os.Process
+import androidx.compose.ui.graphics.vector.ImageVector
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.InstallerInfo
 
@@ -13,7 +14,7 @@ internal object AppsPreviewData {
         grantedCount: Int = 0,
         totalCount: Int = 0,
         declaredCount: Int = 0,
-        tagIconRes: List<Int> = emptyList(),
+        tagIcons: List<ImageVector> = emptyList(),
         hasInstaller: Boolean = false,
     ) = AppsViewModel.AppItem(
         id = Pkg.Id(pkgName),
@@ -25,7 +26,7 @@ internal object AppsPreviewData {
         grantedCount = grantedCount,
         totalCount = totalCount,
         declaredCount = declaredCount,
-        tagIconRes = tagIconRes,
+        tagIcons = tagIcons,
         installerInfo = if (hasInstaller) InstallerInfo(installingPkg = Pkg.Container(Pkg.Id("com.android.vending"))) else null,
         userHandle = Process.myUserHandle(),
     )

@@ -37,14 +37,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.twotone.Android
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import coil.compose.AsyncImage
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
@@ -227,12 +229,10 @@ private fun AppListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        AsyncImage(
-            model = item.pkg,
-            contentDescription = item.label,
+        AppIcon(
+            pkg = item.pkg,
+            isSystemApp = item.isSystemApp,
             modifier = Modifier.size(40.dp),
-            fallback = painterResource(R.drawable.ic_baseline_apps_24),
-            error = painterResource(R.drawable.ic_baseline_apps_24),
         )
 
         Column(modifier = Modifier.weight(1f)) {
@@ -265,14 +265,14 @@ private fun AppListItem(
                     overflow = TextOverflow.Ellipsis,
                 )
             }
-            if (item.tagIconRes.isNotEmpty()) {
+            if (item.tagIcons.isNotEmpty()) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.padding(top = 2.dp),
                 ) {
-                    item.tagIconRes.forEach { iconRes ->
+                    item.tagIcons.forEach { icon ->
                         Icon(
-                            painter = painterResource(iconRes),
+                            imageVector = icon,
                             contentDescription = null,
                             modifier = Modifier.size(16.dp),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -287,8 +287,8 @@ private fun AppListItem(
                 model = item.installerInfo.installer,
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
-                fallback = painterResource(R.drawable.ic_baseline_apps_24),
-                error = painterResource(R.drawable.ic_baseline_apps_24),
+                error = rememberVectorPainter(Icons.TwoTone.Android),
+                fallback = rememberVectorPainter(Icons.TwoTone.Android),
             )
         }
     }

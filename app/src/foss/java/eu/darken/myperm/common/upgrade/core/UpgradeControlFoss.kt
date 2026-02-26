@@ -32,7 +32,6 @@ class UpgradeControlFoss @Inject constructor(
 
     override fun launchBillingFlow(activity: Activity) {
         MaterialAlertDialogBuilder(activity).apply {
-            setIcon(R.drawable.ic_heart)
             setTitle(R.string.upgrade_myperm_label)
             setMessage(R.string.upgrade_myperm_description)
             setPositiveButton(R.string.foss_upgrade_donate_label) { _, _ ->
