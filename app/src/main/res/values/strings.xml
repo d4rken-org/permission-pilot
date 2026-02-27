@@ -333,6 +333,8 @@
     <string name="permission_group_camera_description">Camera related permissions.</string>
     <string name="permission_group_audio_label">Microphone</string>
     <string name="permission_group_audio_description">Microphone related permissions.</string>
+    <string name="permissions_list_empty_message">No permissions to show.</string>
+    <string name="permissions_list_empty_search_message">No permissions match your search.</string>
     <string name="permission_picture_in_picture_label">Picture in Picture</string>
     <string name="settings_page_label">Settings</string>
     <string name="overview_summary_title_label">Summary</string>

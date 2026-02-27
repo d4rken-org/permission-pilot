@@ -2,8 +2,11 @@ package eu.darken.myperm.permissions.ui.list
 
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
+import eu.darken.myperm.permissions.core.features.InstallTimeGrant
 import eu.darken.myperm.permissions.core.features.ManifestDoc
+import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.known.APermGrp
 
 internal object PermissionsPreviewData {
@@ -14,6 +17,7 @@ internal object PermissionsPreviewData {
         type: String = "declared",
         requestingCount: Int = 0,
         grantedCount: Int = 0,
+        tags: Set<PermissionTag> = emptySet(),
     ) = PermissionsViewModel.PermItem(
         id = Permission.Id(permName),
         label = label,
@@ -22,7 +26,7 @@ internal object PermissionsPreviewData {
         grantedCount = grantedCount,
         permission = UnknownPermission(
             id = Permission.Id(permName),
-            tags = if (type == "declared") setOf(RuntimeGrant, ManifestDoc) else emptySet(),
+            tags = tags,
             groupIds = emptySet(),
         ),
     )
@@ -39,10 +43,37 @@ internal object PermissionsPreviewData {
                 PermissionsViewModel.GroupItem(group = APermGrp.Calls, permCount = 8, isExpanded = false)
             ),
             PermissionsViewModel.ListItem.Group(
-                PermissionsViewModel.GroupItem(group = APermGrp.Camera, permCount = 1, isExpanded = true)
+                PermissionsViewModel.GroupItem(group = APermGrp.Camera, permCount = 3, isExpanded = true)
             ),
             PermissionsViewModel.ListItem.Perm(
-                permItem("android.permission.CAMERA", "take pictures and videos", "declared", requestingCount = 34, grantedCount = 15)
+                permItem(
+                    "android.permission.CAMERA",
+                    "Camera access",
+                    "declared",
+                    requestingCount = 45,
+                    grantedCount = 6,
+                    tags = setOf(RuntimeGrant, ManifestDoc),
+                )
+            ),
+            PermissionsViewModel.ListItem.Perm(
+                permItem(
+                    "android.permission.RECORD_VIDEO",
+                    null,
+                    "extra",
+                    requestingCount = 12,
+                    grantedCount = 3,
+                    tags = emptySet(),
+                )
+            ),
+            PermissionsViewModel.ListItem.Perm(
+                permItem(
+                    "android.permission.MANAGE_APP_OPS_MODES",
+                    "Special camera access",
+                    "declared",
+                    requestingCount = 8,
+                    grantedCount = 8,
+                    tags = setOf(SpecialAccess),
+                )
             ),
             PermissionsViewModel.ListItem.Group(
                 PermissionsViewModel.GroupItem(group = APermGrp.Connectivity, permCount = 3, isExpanded = false)
@@ -74,5 +105,13 @@ internal object PermissionsPreviewData {
         listData = emptyList(),
         countPermissions = 0,
         countGroups = 0,
+    )
+
+    fun activeFilterState() = PermissionsViewModel.State.Ready(
+        listData = emptyList(),
+        countPermissions = 0,
+        countGroups = 0,
+        filterOptions = PermsFilterOptions(keys = setOf(PermsFilterOptions.Filter.RUNTIME)),
+        sortOptions = PermsSortOptions(mainSort = PermsSortOptions.Sort.APPS_GRANTED),
     )
 }

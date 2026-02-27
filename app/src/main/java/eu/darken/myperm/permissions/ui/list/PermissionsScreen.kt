@@ -1,7 +1,9 @@
 package eu.darken.myperm.permissions.ui.list
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,29 +17,36 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.UnfoldLess
 import androidx.compose.material.icons.filled.UnfoldMore
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,24 +55,34 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
-import eu.darken.myperm.common.compose.PermissionIcon
-import eu.darken.myperm.common.compose.icon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.Pill
+import eu.darken.myperm.common.compose.PermissionIcon
+import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
+import eu.darken.myperm.common.compose.icon
 import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.permissions.core.PermissionGroup
+import eu.darken.myperm.permissions.core.features.InstallTimeGrant
+import eu.darken.myperm.permissions.core.features.PermissionTag
+import eu.darken.myperm.permissions.core.features.RuntimeGrant
+import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.known.APermGrp
 
 @Composable
@@ -137,6 +156,11 @@ fun PermissionsScreen(
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
+    var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
+
+    if (showTagHelpDialog) {
+        PermissionTagHelpDialog(onDismiss = { showTagHelpDialog = false })
+    }
 
     Scaffold(
         topBar = {
@@ -145,9 +169,8 @@ fun PermissionsScreen(
                     Column {
                         Text(text = stringResource(R.string.permissions_page_label))
                         if (state is PermissionsViewModel.State.Ready) {
-                            val ready = state as PermissionsViewModel.State.Ready
                             Text(
-                                text = "${pluralStringResource(R.plurals.generic_x_groups_label, ready.countGroups, ready.countGroups)}, ${pluralStringResource(R.plurals.generic_x_items_label, ready.countPermissions, ready.countPermissions)}",
+                                text = "${pluralStringResource(R.plurals.generic_x_groups_label, state.countGroups, state.countGroups)}, ${pluralStringResource(R.plurals.generic_x_items_label, state.countPermissions, state.countPermissions)}",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
@@ -155,13 +178,13 @@ fun PermissionsScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = onFilterClicked) {
-                        Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.general_filter_action))
-                    }
-                    IconButton(onClick = onSortClicked) {
-                        Icon(Icons.Filled.Sort, contentDescription = stringResource(R.string.general_sort_action))
-                    }
-                    IconButton(onClick = { isSearchActive = !isSearchActive }) {
+                    IconButton(onClick = {
+                        isSearchActive = !isSearchActive
+                        if (!isSearchActive) {
+                            searchQuery = ""
+                            onSearchChanged(null)
+                        }
+                    }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.permissions_search_list_hint))
                     }
                     Box {
@@ -199,7 +222,46 @@ fun PermissionsScreen(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            if (isSearchActive) {
+            // Filter/Sort chip row + help icon
+            if (state is PermissionsViewModel.State.Ready) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 12.dp, end = 4.dp, top = 4.dp, bottom = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .weight(1f)
+                            .horizontalScroll(rememberScrollState()),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        val hasActiveFilter = state.filterOptions.keys != PermsFilterOptions().keys
+                        FilterChip(
+                            selected = hasActiveFilter,
+                            onClick = onFilterClicked,
+                            label = { Text(stringResource(R.string.general_filter_action)) },
+                            leadingIcon = { Icon(Icons.Filled.FilterList, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                        )
+                        FilterChip(
+                            selected = false,
+                            onClick = onSortClicked,
+                            label = { Text("${stringResource(R.string.general_sort_action)}: ${stringResource(state.sortOptions.mainSort.labelRes)}") },
+                            leadingIcon = { Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                        )
+                    }
+                    IconButton(onClick = { showTagHelpDialog = true }) {
+                        Icon(
+                            Icons.AutoMirrored.Filled.HelpOutline,
+                            contentDescription = stringResource(R.string.label_help),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+            }
+
+            // Search bar
+            AnimatedVisibility(visible = isSearchActive) {
                 OutlinedTextField(
                     value = searchQuery,
                     onValueChange = {
@@ -225,20 +287,66 @@ fun PermissionsScreen(
                 }
 
                 is PermissionsViewModel.State.Ready -> {
-                    LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items(state.listData) { listItem ->
-                            when (listItem) {
-                                is PermissionsViewModel.ListItem.Group -> PermissionGroupHeader(
-                                    item = listItem.item,
-                                    onClick = { onGroupClicked(listItem.item.group.id) },
-                                )
+                    if (state.listData.isEmpty()) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = if (searchQuery.isNotBlank()) {
+                                    stringResource(R.string.permissions_list_empty_search_message)
+                                } else {
+                                    stringResource(R.string.permissions_list_empty_message)
+                                },
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(32.dp),
+                            )
+                        }
+                    } else {
+                        LazyColumn(modifier = Modifier.fillMaxSize()) {
+                            itemsIndexed(
+                                items = state.listData,
+                                key = { _, item ->
+                                    when (item) {
+                                        is PermissionsViewModel.ListItem.Group -> "group_${item.item.group.id.value}"
+                                        is PermissionsViewModel.ListItem.Perm -> "perm_${item.item.id.value}"
+                                    }
+                                }
+                            ) { index, listItem ->
+                                when (listItem) {
+                                    is PermissionsViewModel.ListItem.Group -> {
+                                        // Full-width divider between groups (not before first)
+                                        if (index > 0) {
+                                            val prevItem = state.listData[index - 1]
+                                            if (prevItem is PermissionsViewModel.ListItem.Group ||
+                                                prevItem is PermissionsViewModel.ListItem.Perm
+                                            ) {
+                                                HorizontalDivider()
+                                            }
+                                        }
+                                        PermissionGroupHeader(
+                                            item = listItem.item,
+                                            onClick = { onGroupClicked(listItem.item.group.id) },
+                                        )
+                                    }
 
-                                is PermissionsViewModel.ListItem.Perm -> PermissionListItem(
-                                    item = listItem.item,
-                                    onClick = { onPermClicked(listItem.item) },
-                                )
+                                    is PermissionsViewModel.ListItem.Perm -> {
+                                        // Inset divider between permission items
+                                        if (index > 0 && state.listData[index - 1] is PermissionsViewModel.ListItem.Perm) {
+                                            HorizontalDivider(
+                                                modifier = Modifier.padding(start = 48.dp),
+                                                thickness = 0.5.dp,
+                                                color = MaterialTheme.colorScheme.outlineVariant,
+                                            )
+                                        }
+                                        PermissionListItem(
+                                            item = listItem.item,
+                                            onClick = { onPermClicked(listItem.item) },
+                                        )
+                                    }
+                                }
                             }
-                            HorizontalDivider()
                         }
                     }
                 }
@@ -281,12 +389,28 @@ private fun PermissionGroupHeader(
                 tint = MaterialTheme.colorScheme.primary,
             )
             Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = stringResource(item.group.labelRes),
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Medium,
-                    color = MaterialTheme.colorScheme.primary,
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Text(
+                        text = stringResource(item.group.labelRes),
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        text = item.permCount.toString(),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier
+                            .background(
+                                MaterialTheme.colorScheme.secondaryContainer,
+                                RoundedCornerShape(10.dp),
+                            )
+                            .padding(horizontal = 8.dp, vertical = 2.dp),
+                    )
+                }
                 Text(
                     text = stringResource(item.group.descriptionRes),
                     style = MaterialTheme.typography.bodySmall,
@@ -294,15 +418,14 @@ private fun PermissionGroupHeader(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                Text(
-                    text = pluralStringResource(R.plurals.generic_x_items_label, item.permCount, item.permCount),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
             }
             Icon(
                 imageVector = if (item.isExpanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
-                contentDescription = null,
+                contentDescription = if (item.isExpanded) {
+                    stringResource(R.string.general_collapse_all_action)
+                } else {
+                    stringResource(R.string.general_expand_all_action)
+                },
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
@@ -317,39 +440,142 @@ private fun PermissionListItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(start = 32.dp, end = 16.dp, top = 8.dp, bottom = 8.dp),
+            .height(IntrinsicSize.Min)
+            .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        PermissionIcon(
-            permissionId = item.permission.id,
-            modifier = Modifier.size(24.dp),
-            fallbackModel = item.permission,
+        // Left accent connector bar
+        Box(
+            modifier = Modifier
+                .width(4.dp)
+                .fillMaxHeight()
+                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.15f))
         )
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = item.id.value,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 12.dp, end = 16.dp, top = 10.dp, bottom = 10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            PermissionIcon(
+                permissionId = item.permission.id,
+                modifier = Modifier.size(24.dp),
+                fallbackModel = item.permission,
             )
-            Text(
-                text = "Granted to ${item.grantedCount} out of ${item.requestingCount} apps.",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            val label = item.label
-            if (label != null && label.lowercase() != item.id.value.lowercase()) {
+            Column(modifier = Modifier.weight(1f)) {
+                // Label + type pill row
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Text(
+                        text = item.label ?: item.id.value.substringAfterLast('.'),
+                        style = MaterialTheme.typography.bodyMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f),
+                    )
+                    val displayTag = pickDisplayTag(item.permission.tags)
+                    if (displayTag != null) {
+                        PermissionTagPill(tag = displayTag, compact = true)
+                    }
+                }
+                // Permission ID
                 Text(
-                    text = label,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = item.id.value,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
+                // Grant ratio row
+                val progress = if (item.requestingCount > 0) {
+                    (item.grantedCount.toFloat() / item.requestingCount).coerceIn(0f, 1f)
+                } else {
+                    0f
+                }
+                val ratioDescription = "${item.grantedCount} of ${item.requestingCount} granted"
+                Row(
+                    modifier = Modifier.semantics { contentDescription = ratioDescription },
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    LinearProgressIndicator(
+                        progress = { progress },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(4.dp)
+                            .clip(RoundedCornerShape(2.dp)),
+                        color = MaterialTheme.colorScheme.primary,
+                        trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    )
+                    Text(
+                        text = "${item.grantedCount}/${item.requestingCount}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
         }
+    }
+}
+
+private fun pickDisplayTag(tags: Collection<PermissionTag>): PermissionTag? = when {
+    tags.any { it is RuntimeGrant } -> RuntimeGrant
+    tags.any { it is SpecialAccess } -> SpecialAccess
+    tags.any { it is InstallTimeGrant } -> InstallTimeGrant
+    else -> null
+}
+
+@Composable
+private fun PermissionTagHelpDialog(onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.permissions_details_help_section_tags)) },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                TagHelpRow(
+                    pill = stringResource(R.string.permissions_tag_runtime_label),
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                    description = stringResource(R.string.permissions_details_help_tag_runtime),
+                )
+                TagHelpRow(
+                    pill = stringResource(R.string.permissions_tag_special_access_label),
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                    description = stringResource(R.string.permissions_details_help_tag_special_access),
+                )
+                TagHelpRow(
+                    pill = stringResource(R.string.permissions_tag_install_time_label),
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    description = stringResource(R.string.permissions_details_help_tag_install_time),
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onDismiss) {
+                Text(stringResource(R.string.general_done_action))
+            }
+        },
+    )
+}
+
+@Composable
+private fun TagHelpRow(
+    pill: String,
+    containerColor: Color,
+    contentColor: Color,
+    description: String,
+) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.Top,
+    ) {
+        Pill(text = pill, containerColor = containerColor, contentColor = contentColor)
+        Text(text = description, style = MaterialTheme.typography.bodySmall)
     }
 }
 
@@ -392,6 +618,23 @@ private fun PermissionsScreenEmptyPreview() = PreviewWrapper {
 private fun PermissionsScreenLoadingPreview() = PreviewWrapper {
     PermissionsScreen(
         state = PermissionsViewModel.State.Loading,
+        onSearchChanged = {},
+        onGroupClicked = {},
+        onPermClicked = {},
+        onExpandAll = {},
+        onCollapseAll = {},
+        onRefresh = {},
+        onSettings = {},
+        onFilterClicked = {},
+        onSortClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermissionsScreenActiveFilterPreview() = PreviewWrapper {
+    PermissionsScreen(
+        state = PermissionsPreviewData.activeFilterState(),
         onSearchChanged = {},
         onGroupClicked = {},
         onPermClicked = {},

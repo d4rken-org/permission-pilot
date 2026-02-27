@@ -63,6 +63,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
@@ -592,17 +593,6 @@ private fun SectionHeader(title: String, count: Int? = null, onHelpClicked: (() 
     }
 }
 
-@Composable
-private fun PermTypeTag(text: String, containerColor: Color, contentColor: Color) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp),
-        color = contentColor,
-        modifier = Modifier
-            .background(containerColor, RoundedCornerShape(4.dp))
-            .padding(horizontal = 4.dp, vertical = 1.dp),
-    )
-}
 
 @Composable
 private fun StatusIcon(status: UsesPermission.Status) {
@@ -675,22 +665,25 @@ private fun PermissionRow(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 if (item.isRuntime) {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_runtime),
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        compact = true,
                     )
                 } else if (item.isSpecialAccess) {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_special),
-                        containerColor = MaterialTheme.colorScheme.errorContainer,
-                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                        compact = true,
                     )
                 } else {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_install),
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        compact = true,
                     )
                 }
                 if (item.isDeclaredByApp) {
@@ -720,10 +713,11 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.Top,
                 ) {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_runtime),
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        compact = true,
                     )
                     Text(
                         text = stringResource(R.string.apps_details_perm_help_runtime),
@@ -734,10 +728,11 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.Top,
                 ) {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_special),
-                        containerColor = MaterialTheme.colorScheme.errorContainer,
-                        contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                        compact = true,
                     )
                     Text(
                         text = stringResource(R.string.apps_details_perm_help_special),
@@ -748,10 +743,11 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.Top,
                 ) {
-                    PermTypeTag(
+                    Pill(
                         text = stringResource(R.string.apps_details_perm_tag_install),
                         containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        compact = true,
                     )
                     Text(
                         text = stringResource(R.string.apps_details_perm_help_install),
