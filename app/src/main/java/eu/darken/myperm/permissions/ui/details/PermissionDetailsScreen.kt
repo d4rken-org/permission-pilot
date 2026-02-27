@@ -63,15 +63,10 @@ import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.common.compose.Pill
+import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.permissions.core.ProtectionFlag
 import eu.darken.myperm.permissions.core.ProtectionType
-import eu.darken.myperm.permissions.core.features.Highlighted
-import eu.darken.myperm.permissions.core.features.InstallTimeGrant
-import eu.darken.myperm.permissions.core.features.ManifestDoc
-import eu.darken.myperm.permissions.core.features.NotNormalPerm
-import eu.darken.myperm.permissions.core.features.PermissionTag
-import eu.darken.myperm.permissions.core.features.RuntimeGrant
-import eu.darken.myperm.permissions.core.features.SpecialAccess
 
 @Composable
 fun PermissionDetailsScreenHost(
@@ -396,23 +391,6 @@ fun PermissionDetailsScreen(
 }
 
 @Composable
-private fun Pill(
-    text: String,
-    containerColor: Color,
-    contentColor: Color,
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        text = text,
-        style = MaterialTheme.typography.labelSmall,
-        color = contentColor,
-        modifier = modifier
-            .background(containerColor, RoundedCornerShape(4.dp))
-            .padding(horizontal = 6.dp, vertical = 2.dp),
-    )
-}
-
-@Composable
 private fun GrantRatioRow(label: String, granted: Int, total: Int) {
     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
         Row(
@@ -458,43 +436,6 @@ private fun ProtectionFlagPill(flag: ProtectionFlag) {
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
     )
-}
-
-@Composable
-private fun PermissionTagPill(tag: PermissionTag) {
-    val (text, containerColor, contentColor) = when (tag) {
-        is RuntimeGrant -> Triple(
-            stringResource(R.string.permissions_tag_runtime_label),
-            MaterialTheme.colorScheme.secondaryContainer,
-            MaterialTheme.colorScheme.onSecondaryContainer,
-        )
-        is SpecialAccess -> Triple(
-            stringResource(R.string.permissions_tag_special_access_label),
-            MaterialTheme.colorScheme.tertiaryContainer,
-            MaterialTheme.colorScheme.onTertiaryContainer,
-        )
-        is InstallTimeGrant -> Triple(
-            stringResource(R.string.permissions_tag_install_time_label),
-            MaterialTheme.colorScheme.primaryContainer,
-            MaterialTheme.colorScheme.onPrimaryContainer,
-        )
-        is ManifestDoc -> Triple(
-            stringResource(R.string.permissions_tag_documented_label),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        is Highlighted -> Triple(
-            stringResource(R.string.permissions_tag_notable_label),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        is NotNormalPerm -> Triple(
-            stringResource(R.string.permissions_tag_non_standard_label),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-    Pill(text = text, containerColor = containerColor, contentColor = contentColor)
 }
 
 @Composable

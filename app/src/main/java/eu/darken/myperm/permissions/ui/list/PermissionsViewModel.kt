@@ -144,6 +144,7 @@ class PermissionsViewModel @Inject constructor(
                     GroupItem(group = APermGrp.Other, permCount = permItems.size, isExpanded = isExpanded)
                 )
             )
+            groupCount++
             permissionCount += permItems.size
             if (isExpanded) listItems.addAll(permItems.map { ListItem.Perm(it) })
         }
