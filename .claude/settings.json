@@ -7,7 +7,6 @@
 	  "Bash(find:*)",
 	  "Bash(ls:*)",
 	  "Bash(grep:*)",
-	  "Bash(rg:*)",
 	  "Bash(git add:*)",
 	  "Bash(git log:*)",
 	  "Bash(git commit:*)",
@@ -15,5 +14,12 @@
 	  "WebSearch",
 	  "WebFetch(domain:developer.android.com)"
 	]
+  },
+  "enabledPlugins": {
+	"android-translation@claude-code-cafe": true,
+	"debugbadger@claude-code-cafe": true,
+	"jvm-tools@claude-code-cafe": true,
+	"frontend-design@claude-plugins-official": true,
+	"kotlin-lsp@claude-plugins-official": true
   }
 }

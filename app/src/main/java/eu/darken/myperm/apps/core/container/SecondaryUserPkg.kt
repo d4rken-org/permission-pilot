@@ -39,20 +39,35 @@ class SecondaryUserPkg(
     override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
 
     private var _label: String? = null
+    private var _resolvingLabel = false
     override fun getLabel(context: Context): String {
         _label?.let { return it }
-        val newLabel = context.packageManager.getLabel2(id)
-            ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
-            ?: super.getLabel(context)
-            ?: id.pkgName
-        _label = newLabel
-        return newLabel
+        if (_resolvingLabel) return id.pkgName
+        _resolvingLabel = true
+        try {
+            val newLabel = context.packageManager.getLabel2(id)
+                ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
+                ?: super.getLabel(context)
+                ?: id.pkgName
+            _label = newLabel
+            return newLabel
+        } finally {
+            _resolvingLabel = false
+        }
     }
 
-    override fun getIcon(context: Context): Drawable? =
-        context.packageManager.getIcon2(id)
-            ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
-            ?: super.getIcon(context)
+    private var _resolvingIcon = false
+    override fun getIcon(context: Context): Drawable? {
+        if (_resolvingIcon) return null
+        _resolvingIcon = true
+        return try {
+            context.packageManager.getIcon2(id)
+                ?: twins.firstNotNullOfOrNull { it.getIcon(context) }
+                ?: super.getIcon(context)
+        } finally {
+            _resolvingIcon = false
+        }
+    }
 
     override var siblings: Collection<Pkg> = emptyList()
     override var twins: Collection<Installed> = emptyList()
