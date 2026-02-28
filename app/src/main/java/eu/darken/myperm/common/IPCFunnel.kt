@@ -146,7 +146,12 @@ class IPCFunnel @Inject constructor(
         }
 
         suspend fun checkOpNoThrow(op: String, uid: Int, packageName: String): Int = ipcFunnel.execute {
-            service.unsafeCheckOpNoThrow(op, uid, packageName)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                service.unsafeCheckOpNoThrow(op, uid, packageName)
+            } else {
+                @Suppress("DEPRECATION")
+                service.checkOpNoThrow(op, uid, packageName)
+            }
         }
     }
 
