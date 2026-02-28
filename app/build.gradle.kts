@@ -242,7 +242,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.Serialization.core}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Serialization.core}")
 
-    "gplayImplementation"("com.android.billingclient:billing:8.0.0")
+    "gplayImplementation"("com.android.billingclient:billing:8.3.0")
 
     // Support libs
     implementation("androidx.core:core-ktx:1.13.1")
@@ -259,7 +259,6 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
 
     // UI
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.6.1")
 
     // Testing
