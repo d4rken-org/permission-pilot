@@ -32,12 +32,16 @@ interface Permission {
 
         val pm = context.packageManager
 
-        pm
-            .getPermissionInfo2(id, PackageManager.GET_META_DATA)
-            ?.takeIf { it.labelRes != 0 }
-            ?.loadLabel(pm)
-            ?.takeIf { it.isNotEmpty() && it != id.value }
-            ?.let { return it.toString() }
+        try {
+            pm
+                .getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                ?.takeIf { it.labelRes != 0 }
+                ?.loadLabel(pm)
+                ?.takeIf { it.isNotEmpty() && it != id.value }
+                ?.let { return it.toString() }
+        } catch (_: Exception) {
+            // Package resources may be unavailable (uninstalled, split APK, secondary profile)
+        }
 
         return null
     }
@@ -54,12 +58,16 @@ interface Permission {
 
         val pm = context.packageManager
 
-        pm
-            .getPermissionInfo2(id, PackageManager.GET_META_DATA)
-            ?.takeIf { it.labelRes != 0 }
-            ?.loadDescription(pm)
-            ?.takeIf { it.isNotEmpty() && it != id.value }
-            ?.let { return it.toString() }
+        try {
+            pm
+                .getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                ?.takeIf { it.labelRes != 0 }
+                ?.loadDescription(pm)
+                ?.takeIf { it.isNotEmpty() && it != id.value }
+                ?.let { return it.toString() }
+        } catch (_: Exception) {
+            // Package resources may be unavailable (uninstalled, split APK, secondary profile)
+        }
 
         return null
     }
@@ -67,11 +75,15 @@ interface Permission {
     fun getIcon(context: Context): Drawable? {
         val pm = context.packageManager
 
-        pm
-            .getPermissionInfo2(id, PackageManager.GET_META_DATA)
-            ?.takeIf { it.icon != 0 }
-            ?.loadIcon(pm)
-            ?.let { return it }
+        try {
+            pm
+                .getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                ?.takeIf { it.icon != 0 }
+                ?.loadIcon(pm)
+                ?.let { return it }
+        } catch (_: Exception) {
+            // Package resources may be unavailable (uninstalled, split APK, secondary profile)
+        }
 
         return null
     }
