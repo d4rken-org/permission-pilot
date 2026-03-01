@@ -45,6 +45,9 @@ object Nav {
         data object Support : Settings
 
         @Serializable
+        data object ContactForm : Settings
+
+        @Serializable
         data object Acknowledgements : Settings
     }
 }

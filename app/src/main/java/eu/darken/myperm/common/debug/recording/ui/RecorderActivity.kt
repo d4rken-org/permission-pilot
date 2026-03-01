@@ -10,7 +10,9 @@ import android.text.style.URLSpan
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.view.isInvisible
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import eu.darken.myperm.R
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.error.asErrorDialogBuilder
 import eu.darken.myperm.common.uix.Activity2
@@ -31,6 +33,7 @@ class RecorderActivity : Activity2() {
         vm.state.observe2 { state ->
             ui.loadingIndicator.isInvisible = !state.loading
             ui.shareAction.isInvisible = state.loading
+            ui.keepAction.isInvisible = state.loading
 
             ui.recordingPath.text = state.normalPath
 
@@ -46,8 +49,20 @@ class RecorderActivity : Activity2() {
             it.asErrorDialogBuilder(this).show()
         }
 
+        vm.shortRecordingEvent.observe2 {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.recorder_short_recording_title)
+                .setMessage(R.string.recorder_short_recording_message)
+                .setPositiveButton(android.R.string.ok, null)
+                .show()
+        }
+
         ui.shareAction.setOnClickListener { vm.share() }
         vm.shareEvent.observe2 { startActivity(it) }
+
+        ui.discardAction.setOnClickListener { vm.discard() }
+        ui.keepAction.setOnClickListener { vm.keep() }
+        vm.finishEvent.observe2 { finish() }
 
         ui.privacyPolicyAction.apply {
             setOnClickListener { vm.goPrivacyPolicy() }
@@ -56,17 +71,17 @@ class RecorderActivity : Activity2() {
             }
             setText(sp, TextView.BufferType.SPANNABLE)
         }
-
-        ui.cancelAction.setOnClickListener { finish() }
     }
 
     companion object {
         internal val TAG = logTag("Debug", "Log", "RecorderActivity")
         const val RECORD_PATH = "logPath"
+        const val RECORDING_STARTED_AT = "recordingStartedAt"
 
-        fun getLaunchIntent(context: Context, path: String): Intent {
+        fun getLaunchIntent(context: Context, path: String, startedAt: Long = 0L): Intent {
             val intent = Intent(context, RecorderActivity::class.java)
             intent.putExtra(RECORD_PATH, path)
+            intent.putExtra(RECORDING_STARTED_AT, startedAt)
             return intent
         }
     }

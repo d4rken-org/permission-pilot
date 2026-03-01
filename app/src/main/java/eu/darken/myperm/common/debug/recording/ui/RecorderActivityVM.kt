@@ -13,6 +13,7 @@ import eu.darken.myperm.common.PrivacyPolicy
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.compression.Zipper
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.DynamicStateFlow
 import eu.darken.myperm.common.flow.onError
@@ -36,6 +37,10 @@ class RecorderActivityVM @Inject constructor(
 ) : ViewModel3(dispatcherProvider) {
 
     private val recordedPath = handle.get<String>(RecorderActivity.RECORD_PATH)!!
+    private val recordingStartedAt = handle.get<Long>(RecorderActivity.RECORDING_STARTED_AT) ?: 0L
+
+    val shortRecordingEvent = SingleLiveEvent<Unit>()
+
     private val pathCache = MutableStateFlow(recordedPath)
     private val resultCacheObs = pathCache
         .map { path -> Pair(path, File(path).length()) }
@@ -53,8 +58,17 @@ class RecorderActivityVM @Inject constructor(
     val state = stater.asLiveData2()
 
     val shareEvent = SingleLiveEvent<Intent>()
+    val finishEvent = SingleLiveEvent<Unit>()
 
     init {
+        if (recordingStartedAt > 0L) {
+            val durationMs = System.currentTimeMillis() - recordingStartedAt
+            if (durationMs < SHORT_RECORDING_THRESHOLD_MS) {
+                log(TAG) { "Short recording detected: ${durationMs}ms" }
+                shortRecordingEvent.postValue(Unit)
+            }
+        }
+
         resultCacheObs
             .onEach { (path, size) ->
                 stater.updateBlocking { copy(normalPath = path, normalSize = size) }
@@ -105,6 +119,20 @@ class RecorderActivityVM @Inject constructor(
         shareEvent.postValue(chooserIntent)
     }
 
+    fun discard() = launch {
+        log(TAG) { "discard()" }
+        val logFile = File(recordedPath)
+        val zipFile = File("$recordedPath.zip")
+        logFile.delete()
+        zipFile.delete()
+        finishEvent.postValue(Unit)
+    }
+
+    fun keep() {
+        log(TAG) { "keep()" }
+        finishEvent.postValue(Unit)
+    }
+
     fun goPrivacyPolicy() {
         webpageTool.open(PrivacyPolicy.URL)
     }
@@ -119,5 +147,6 @@ class RecorderActivityVM @Inject constructor(
 
     companion object {
         private val TAG = logTag("Debug", "Recorder", "VM")
+        private const val SHORT_RECORDING_THRESHOLD_MS = 5_000L
     }
 }

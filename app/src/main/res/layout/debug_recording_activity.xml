@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Widget.Material3.CardView.Outlined"
     android:layout_width="wrap_content"
@@ -17,8 +18,7 @@
             style="@style/TextAppearance.Material3.LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recorded file"
-            tools:ignore="HardcodedText" />
+            android:text="@string/debug_debuglog_file_label" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/recording_path"
@@ -27,22 +27,41 @@
             android:layout_height="wrap_content"
             tools:text="/storage/emulated/0/Android/data/.../cache/log_files/some_log_file_123124.log" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/sensitive_info_warning"
-            style="@style/TextAppearance.Material3.BodyMedium"
+        <!-- Privacy warning card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/debug_debuglog_sensitive_information_message" />
+            app:cardBackgroundColor="?colorErrorContainer">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/privacy_policy_action"
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/settings_privacy_policy_label" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/sensitive_info_warning"
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recorder_privacy_warning"
+                    android:textColor="?colorOnErrorContainer" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/privacy_policy_action"
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/settings_privacy_policy_label"
+                    android:textColor="?colorOnErrorContainer" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,28 +124,45 @@
             android:layout_marginTop="16dp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/cancel_action"
+                android:id="@+id/discard_action"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="@string/general_cancel_action" />
+                android:text="@string/recorder_discard_action"
+                android:textColor="?colorError"
+                app:strokeColor="?colorError" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/share_action"
-                style="@style/Widget.Material3.Button"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@string/general_share_action"
-                android:visibility="invisible" />
+                android:orientation="horizontal">
 
-            <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/loading_indicator"
-                style="@style/Widget.Material3.CircularProgressIndicator.Medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/keep_action"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/recorder_keep_action" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/share_action"
+                    style="@style/Widget.Material3.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/general_share_action"
+                    android:visibility="invisible" />
+
+                <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/loading_indicator"
+                    style="@style/Widget.Material3.CircularProgressIndicator.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
 
         </FrameLayout>
 
