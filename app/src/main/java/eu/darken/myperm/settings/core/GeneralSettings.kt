@@ -11,6 +11,9 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.preferences.createFlowPreference
 import eu.darken.myperm.common.preferences.moshiReader
 import eu.darken.myperm.common.preferences.moshiWriter
+import eu.darken.myperm.common.theming.ThemeColor
+import eu.darken.myperm.common.theming.ThemeMode
+import eu.darken.myperm.common.theming.ThemeStyle
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsSortOptions
@@ -28,6 +31,22 @@ class GeneralSettings @Inject constructor(
     val launchCount = preferences.createFlowPreference("core.stats.launches", 0)
 
     val isOnboardingFinished = preferences.createFlowPreference("core.onboarding.finished", false)
+
+    val themeMode = preferences.createFlowPreference(
+        "core.ui.theme.mode",
+        moshiReader(moshi, ThemeMode.SYSTEM, fallbackToDefault = true),
+        moshiWriter(moshi),
+    )
+    val themeStyle = preferences.createFlowPreference(
+        "core.ui.theme.style",
+        moshiReader(moshi, ThemeStyle.DEFAULT, fallbackToDefault = true),
+        moshiWriter(moshi),
+    )
+    val themeColor = preferences.createFlowPreference(
+        "core.ui.theme.color",
+        moshiReader(moshi, ThemeColor.BLUE, fallbackToDefault = true),
+        moshiWriter(moshi),
+    )
 
     val appsFilterOptions = preferences.createFlowPreference(
         "apps.list.options.filter",

@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -27,7 +28,6 @@ import eu.darken.myperm.common.navigation.NavigationController
 import eu.darken.myperm.common.navigation.NavigationEntry
 import eu.darken.myperm.common.theming.PermPilotTheme
 import eu.darken.myperm.common.uix.Activity2
-import eu.darken.myperm.settings.core.GeneralSettings
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,7 +37,6 @@ class MainActivity : Activity2() {
 
     @Inject lateinit var navCtrl: NavigationController
     @Inject lateinit var navigationEntries: Set<@JvmSuppressWildcards NavigationEntry>
-    @Inject lateinit var generalSettings: GeneralSettings
 
     private var showSplashScreen by mutableStateOf(true)
 
@@ -50,7 +49,7 @@ class MainActivity : Activity2() {
 
         vm.increaseLaunchCount()
 
-        val startDestination: NavKey = if (generalSettings.isOnboardingFinished.value) {
+        val startDestination: NavKey = if (vm.isOnboardingFinished) {
             Nav.Tab.Apps
         } else {
             Nav.Main.Onboarding
@@ -58,14 +57,18 @@ class MainActivity : Activity2() {
 
         setContent {
             val readyState by vm.readyState.collectAsState()
-            if (readyState) showSplashScreen = false
+            LaunchedEffect(readyState) {
+                if (readyState) showSplashScreen = false
+            }
 
             val upgradeNag by vm.upgradeNag.collectAsState(initial = null)
 
             val backStack = rememberNavBackStack(startDestination)
             navCtrl.setup(backStack)
 
-            PermPilotTheme {
+            val themeState by vm.themeState.collectAsState()
+
+            PermPilotTheme(state = themeState) {
                 val backgroundColor = MaterialTheme.colorScheme.background
                 val useDarkIcons = backgroundColor.luminance() > 0.5f
                 SideEffect {

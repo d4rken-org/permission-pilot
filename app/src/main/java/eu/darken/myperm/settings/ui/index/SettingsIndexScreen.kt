@@ -7,6 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.FormatListNumbered
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material.icons.automirrored.twotone.HelpOutline
@@ -38,6 +39,7 @@ fun SettingsIndexScreenHost() {
 
     SettingsIndexScreen(
         onBack = { navCtrl?.up() },
+        onGeneralSettings = { navCtrl?.goTo(Nav.Settings.General) },
         onChangelog = { vm.openChangelog() },
         onSupport = { navCtrl?.goTo(Nav.Settings.Support) },
         onAcknowledgements = { navCtrl?.goTo(Nav.Settings.Acknowledgements) },
@@ -49,6 +51,7 @@ fun SettingsIndexScreenHost() {
 @Composable
 fun SettingsIndexScreen(
     onBack: () -> Unit,
+    onGeneralSettings: () -> Unit = {},
     onChangelog: () -> Unit,
     onSupport: () -> Unit,
     onAcknowledgements: () -> Unit,
@@ -73,6 +76,15 @@ fun SettingsIndexScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
+            SettingsCategoryHeader(text = stringResource(R.string.settings_category_appearance_label))
+
+            SettingsBaseItem(
+                title = stringResource(R.string.general_settings_label),
+                subtitle = stringResource(R.string.general_settings_desc),
+                icon = Icons.TwoTone.ColorLens,
+                onClick = onGeneralSettings,
+            )
+
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
 
             SettingsBaseItem(
@@ -109,5 +121,5 @@ fun SettingsIndexScreen(
 @Preview2
 @Composable
 private fun SettingsIndexScreenPreview() = PreviewWrapper {
-    SettingsIndexScreen(onBack = {}, onChangelog = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = {})
+    SettingsIndexScreen(onBack = {}, onGeneralSettings = {}, onChangelog = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = {})
 }
