@@ -150,6 +150,7 @@ internal fun PermissionDetailsContent() = PreviewWrapper {
 internal fun SettingsIndexContent() = PreviewWrapper {
     SettingsIndexScreen(
         onBack = {},
+        onGeneralSettings = {},
         onChangelog = {},
         onSupport = {},
         onAcknowledgements = {},

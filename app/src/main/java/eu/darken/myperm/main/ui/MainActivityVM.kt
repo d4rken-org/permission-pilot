@@ -6,12 +6,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.flow.SingleEventFlow
+import eu.darken.myperm.common.theming.ThemeState
+import eu.darken.myperm.settings.core.themeState
+import eu.darken.myperm.settings.core.themeStateBlocking
 import eu.darken.myperm.common.uix.ViewModel2
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.take
 import javax.inject.Inject
 
@@ -25,6 +31,15 @@ class MainActivityVM @Inject constructor(
 
     private val _readyState = MutableStateFlow(false)
     val readyState = _readyState.asStateFlow()
+
+    val themeState: StateFlow<ThemeState> = generalSettings.themeState.stateIn(
+        vmScope,
+        SharingStarted.Eagerly,
+        generalSettings.themeStateBlocking,
+    )
+
+    val isOnboardingFinished: Boolean
+        get() = generalSettings.isOnboardingFinished.value
 
     val upgradeNag = SingleEventFlow<(Activity) -> Unit>()
 
