@@ -11,7 +11,10 @@ import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,7 +27,9 @@ class GeneralSettingsViewModel @Inject constructor(
     val themeMode: Flow<ThemeMode> = generalSettings.themeMode.flow
     val themeStyle: Flow<ThemeStyle> = generalSettings.themeStyle.flow
     val themeColor: Flow<ThemeColor> = generalSettings.themeColor.flow
-    val isPro: Flow<Boolean> = upgradeRepo.upgradeInfo.map { it.isPro }
+    val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
+        .map { it.isPro }
+        .stateIn(vmScope, SharingStarted.Eagerly, true)
 
     fun setThemeMode(mode: ThemeMode) {
         generalSettings.themeMode.value = mode
