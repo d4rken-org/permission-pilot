@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -11,9 +12,12 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.DarkMode
+import androidx.compose.material.icons.twotone.Lock
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -52,7 +56,7 @@ fun GeneralSettingsScreenHost() {
     val themeStyle by vm.themeStyle.collectAsState(initial = ThemeStyle.DEFAULT)
     val themeColor by vm.themeColor.collectAsState(initial = ThemeColor.BLUE)
     val isDynamicColorActive = LocalIsDynamicColorActive.current
-    val isPro by vm.isPro.collectAsState(initial = false)
+    val isPro by vm.isPro.collectAsState()
     val activity = LocalContext.current as? Activity
 
     GeneralSettingsScreen(
@@ -105,46 +109,52 @@ fun GeneralSettingsScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
-            SettingsCategoryHeader(text = stringResource(R.string.settings_category_appearance_label))
+            SettingsCategoryHeader(
+                text = stringResource(R.string.settings_category_appearance_label),
+                action = if (!isPro) {{
+                    FilledTonalButton(onClick = onUpgrade) {
+                        Icon(
+                            Icons.TwoTone.Lock,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                        )
+                        Text(
+                            text = stringResource(R.string.upgrade_required_subtitle),
+                            modifier = Modifier.padding(start = 6.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+                }} else null,
+            )
 
             SettingsBaseItem(
                 title = stringResource(R.string.ui_theme_mode_label),
-                subtitle = if (isPro) {
-                    stringResource(themeMode.labelRes)
-                } else {
-                    stringResource(R.string.upgrade_required_subtitle)
-                },
+                subtitle = stringResource(themeMode.labelRes),
                 icon = Icons.TwoTone.DarkMode,
                 enabled = isPro,
-                onClick = if (isPro) {{ openDialog = ThemeDialog.MODE }} else onUpgrade,
+                onClick = { openDialog = ThemeDialog.MODE },
             )
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.ui_theme_style_label),
-                subtitle = if (isPro) {
-                    stringResource(themeStyle.labelRes)
-                } else {
-                    stringResource(R.string.upgrade_required_subtitle)
-                },
+                subtitle = stringResource(themeStyle.labelRes),
                 icon = Icons.TwoTone.Contrast,
                 enabled = isPro,
-                onClick = if (isPro) {{ openDialog = ThemeDialog.STYLE }} else onUpgrade,
+                onClick = { openDialog = ThemeDialog.STYLE },
             )
             SettingsDivider()
 
             val colorEnabled = isPro && !isDynamicColorActive
             SettingsBaseItem(
                 title = stringResource(R.string.ui_theme_color_label),
-                subtitle = if (!isPro) {
-                    stringResource(R.string.upgrade_required_subtitle)
-                } else if (!isDynamicColorActive) {
+                subtitle = if (!isDynamicColorActive) {
                     stringResource(themeColor.labelRes)
                 } else {
                     stringResource(R.string.ui_theme_color_disabled_subtitle)
                 },
                 icon = Icons.TwoTone.ColorLens,
                 enabled = colorEnabled,
-                onClick = if (isPro) {{ openDialog = ThemeDialog.COLOR }} else onUpgrade,
+                onClick = { openDialog = ThemeDialog.COLOR },
             )
         }
     }
