@@ -37,7 +37,7 @@
 
         <activity
             android:name="eu.darken.myperm.common.debug.recording.ui.RecorderActivity"
-            android:theme="@style/AppThemeFloating" />
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

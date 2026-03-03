@@ -3,73 +3,73 @@ package eu.darken.myperm.common.debug.recording.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.format.Formatter
-import android.text.style.URLSpan
-import android.widget.TextView
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.core.view.isInvisible
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
+import androidx.core.view.WindowCompat
+import androidx.compose.runtime.collectAsState
 import dagger.hilt.android.AndroidEntryPoint
-import eu.darken.myperm.R
 import eu.darken.myperm.common.debug.logging.logTag
-import eu.darken.myperm.common.error.asErrorDialogBuilder
+import eu.darken.myperm.common.theming.PermPilotTheme
 import eu.darken.myperm.common.uix.Activity2
-import eu.darken.myperm.databinding.DebugRecordingActivityBinding
 
 @AndroidEntryPoint
 class RecorderActivity : Activity2() {
 
-    private lateinit var ui: DebugRecordingActivityBinding
     private val vm: RecorderActivityVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        ui = DebugRecordingActivityBinding.inflate(layoutInflater)
-        setContentView(ui.root)
-
-        vm.state.observe2 { state ->
-            ui.loadingIndicator.isInvisible = !state.loading
-            ui.shareAction.isInvisible = state.loading
-            ui.keepAction.isInvisible = state.loading
-
-            ui.recordingPath.text = state.normalPath
-
-            if (state.normalSize != -1L) {
-                ui.recordingSize.text = Formatter.formatShortFileSize(this, state.normalSize)
-            }
-            if (state.compressedSize != -1L) {
-                ui.recordingSizeCompressed.text = Formatter.formatShortFileSize(this, state.compressedSize)
-            }
+        if (intent.getStringExtra(RECORD_PATH) == null) {
+            finish()
+            return
         }
 
-        vm.errorEvents.observe2 {
-            it.asErrorDialogBuilder(this).show()
-        }
+        setContent {
+            PermPilotTheme {
+                val backgroundColor = MaterialTheme.colorScheme.background
+                val useDarkIcons = backgroundColor.luminance() > 0.5f
+                SideEffect {
+                    window.decorView.setBackgroundColor(backgroundColor.toArgb())
+                    val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+                    insetsController.isAppearanceLightStatusBars = useDarkIcons
+                    insetsController.isAppearanceLightNavigationBars = useDarkIcons
+                }
 
-        vm.shortRecordingEvent.observe2 {
-            MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.recorder_short_recording_title)
-                .setMessage(R.string.recorder_short_recording_message)
-                .setPositiveButton(android.R.string.ok, null)
-                .show()
-        }
+                LaunchedEffect(Unit) {
+                    vm.events.collect { event ->
+                        when (event) {
+                            is RecorderActivityVM.Event.ShareIntent -> {
+                                try {
+                                    startActivity(event.intent)
+                                } catch (_: Exception) {
+                                }
+                            }
 
-        ui.shareAction.setOnClickListener { vm.share() }
-        vm.shareEvent.observe2 { startActivity(it) }
+                            is RecorderActivityVM.Event.Finish -> finish()
+                        }
+                    }
+                }
 
-        ui.discardAction.setOnClickListener { vm.discard() }
-        ui.keepAction.setOnClickListener { vm.keep() }
-        vm.finishEvent.observe2 { finish() }
-
-        ui.privacyPolicyAction.apply {
-            setOnClickListener { vm.goPrivacyPolicy() }
-            val sp = SpannableString(text).apply {
-                setSpan(URLSpan(""), 0, length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                val state by vm.state.collectAsState(initial = null)
+                state?.let {
+                    RecorderScreen(
+                        state = it,
+                        onShare = { vm.share() },
+                        onKeep = { vm.keep() },
+                        onDiscard = { vm.discard() },
+                        onPrivacyPolicy = { vm.goPrivacyPolicy() },
+                    )
+                }
             }
-            setText(sp, TextView.BufferType.SPANNABLE)
         }
     }
 
