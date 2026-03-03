@@ -15,7 +15,7 @@ class DebugLogZipper @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
     fun zipAndGetUri(logDir: File): Uri {
-        val logFiles = logDir.listFiles()?.toList()
+        val logFiles = logDir.listFiles()?.toList()?.takeIf { it.isNotEmpty() }
             ?: throw IllegalStateException("No log files in $logDir")
 
         val zipFile = File(logDir.parentFile, "${logDir.name}.zip")

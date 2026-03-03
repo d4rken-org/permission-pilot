@@ -124,7 +124,9 @@ class RecorderModule @Inject constructor(
 
         val parent = primaryParent ?: File(context.cacheDir, "debug/logs").also { it.mkdirs() }
         val sessionDir = File(parent, dirName)
-        sessionDir.mkdirs()
+        if (!sessionDir.mkdirs() && !sessionDir.exists()) {
+            throw java.io.IOException("Failed to create session directory: $sessionDir")
+        }
 
         log(TAG) { "Created session dir: $sessionDir" }
         return sessionDir
