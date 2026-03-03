@@ -369,6 +369,7 @@
 
     <!-- Contact form -->
     <string name="contact_support_label">Contact Support</string>
+    <string name="contact_category_label">Category</string>
     <string name="contact_category_question_label">Question</string>
     <string name="contact_category_feature_label">Feature Request</string>
     <string name="contact_category_bug_label">Bug Report</string>

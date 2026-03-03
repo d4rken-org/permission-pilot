@@ -33,7 +33,7 @@ class ContactFormViewModel @Inject constructor(
     val category = MutableStateFlow(Category.QUESTION)
     val description = MutableStateFlow("")
     val expectedBehavior = MutableStateFlow("")
-    val selectedLogFile = MutableStateFlow<File?>(null)
+    val selectedLogDir = MutableStateFlow<File?>(null)
 
     val emailEvent = SingleEventFlow<Intent>()
 
@@ -41,13 +41,19 @@ class ContactFormViewModel @Inject constructor(
 
     val isRecording: Flow<Boolean> = recorderModule.state.map { it.isRecording }
 
-    val logFiles: Flow<List<File>> = combine(
+    val logDirs: Flow<List<File>> = combine(
         refreshTrigger,
         recorderModule.state,
     ) { _, state ->
-        recorderModule.getLogFiles()
-            .filter { it.extension == "log" }
-            .filter { it != state.currentLogPath }
+        recorderModule.getLogDirectories()
+            .flatMap { dir ->
+                if (!dir.exists()) return@flatMap emptyList()
+                dir.listFiles()
+                    ?.filter { it.isDirectory }
+                    ?.filter { it != state.currentLogDir }
+                    ?: emptyList()
+            }
+            .sortedByDescending { it.lastModified() }
     }
 
     val descriptionWordCount: Flow<Int> = description.map { countWords(it) }
@@ -79,15 +85,15 @@ class ContactFormViewModel @Inject constructor(
         expectedBehavior.value = text
     }
 
-    fun selectLogFile(file: File?) {
-        selectedLogFile.value = file
+    fun selectLogDir(dir: File?) {
+        selectedLogDir.value = dir
     }
 
-    fun deleteLogFile(file: File) = launch {
-        if (selectedLogFile.value == file) selectedLogFile.value = null
-        recorderModule.deleteLogFile(file)
+    fun deleteLogDir(dir: File) = launch {
+        if (selectedLogDir.value == dir) selectedLogDir.value = null
+        dir.deleteRecursively()
         refreshTrigger.value++
-        log(TAG) { "deleteLogFile(): $file" }
+        log(TAG) { "deleteLogDir(): $dir" }
     }
 
     fun startRecording() = launch {
@@ -95,7 +101,7 @@ class ContactFormViewModel @Inject constructor(
     }
 
     fun stopRecording() = launch {
-        recorderModule.stopRecorder()
+        recorderModule.stopRecorder(showResultUi = false)
         refreshTrigger.value++
         log(TAG) { "stopRecording(): done" }
     }
@@ -106,7 +112,7 @@ class ContactFormViewModel @Inject constructor(
             val cat = category.value
             val desc = description.value.trim()
             val expected = expectedBehavior.value.trim()
-            val logFile = selectedLogFile.value
+            val logDir = selectedLogDir.value
 
             val categoryTag = when (cat) {
                 Category.QUESTION -> "Question"
@@ -131,11 +137,11 @@ class ContactFormViewModel @Inject constructor(
                 appendLine("Android: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})")
             }
 
-            val attachmentUri = if (logFile != null && logFile.exists()) {
+            val attachmentUri = if (logDir != null && logDir.exists()) {
                 try {
-                    debugLogZipper.zipAndGetUri(logFile)
+                    debugLogZipper.zipAndGetUri(logDir)
                 } catch (e: Exception) {
-                    log(TAG) { "Failed to zip log file: $e" }
+                    log(TAG) { "Failed to zip log dir: $e" }
                     null
                 }
             } else null

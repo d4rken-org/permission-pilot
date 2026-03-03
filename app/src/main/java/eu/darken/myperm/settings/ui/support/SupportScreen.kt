@@ -1,6 +1,5 @@
 package eu.darken.myperm.settings.ui.support
 
-import android.content.Intent
 import android.text.format.Formatter
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,7 +24,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,22 +49,6 @@ fun SupportScreenHost() {
     val vm: SupportViewModel = hiltViewModel()
     val recorderState by vm.recorderState.collectAsState(initial = RecorderModule.State())
     val folderStats by vm.logFolderStats.collectAsState(initial = SupportViewModel.LogFolderStats())
-    val context = LocalContext.current
-
-    LaunchedEffect(Unit) {
-        vm.stoppedRecording.collect { stopped ->
-            try {
-                val intent = Intent().apply {
-                    setClassName(context, "eu.darken.myperm.common.debug.recording.ui.RecorderActivity")
-                    putExtra("logPath", stopped.path)
-                    putExtra("recordingStartedAt", stopped.startedAt)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }
-                context.startActivity(intent)
-            } catch (_: Exception) {
-            }
-        }
-    }
 
     SupportScreen(
         onBack = { navCtrl?.up() },

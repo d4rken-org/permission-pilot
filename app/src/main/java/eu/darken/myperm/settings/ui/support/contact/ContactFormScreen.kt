@@ -79,9 +79,9 @@ fun ContactFormScreenHost() {
     val category by vm.category.collectAsState()
     val description by vm.description.collectAsState()
     val expectedBehavior by vm.expectedBehavior.collectAsState()
-    val selectedLogFile by vm.selectedLogFile.collectAsState()
+    val selectedLogDir by vm.selectedLogDir.collectAsState()
     val isRecording by vm.isRecording.collectAsState(initial = false)
-    val logFiles by vm.logFiles.collectAsState(initial = emptyList())
+    val logDirs by vm.logDirs.collectAsState(initial = emptyList())
     val descWordCount by vm.descriptionWordCount.collectAsState(initial = 0)
     val expectedWordCount by vm.expectedBehaviorWordCount.collectAsState(initial = 0)
     val canSend by vm.canSend.collectAsState(initial = false)
@@ -109,10 +109,10 @@ fun ContactFormScreenHost() {
         onExpectedBehaviorChange = { vm.setExpectedBehavior(it) },
         expectedWordCount = expectedWordCount,
         isRecording = isRecording,
-        logFiles = logFiles,
-        selectedLogFile = selectedLogFile,
-        onSelectLogFile = { vm.selectLogFile(it) },
-        onDeleteLogFile = { vm.deleteLogFile(it) },
+        logFiles = logDirs,
+        selectedLogFile = selectedLogDir,
+        onSelectLogFile = { vm.selectLogDir(it) },
+        onDeleteLogFile = { vm.deleteLogDir(it) },
         onStartRecording = { vm.startRecording() },
         onStopRecording = { vm.stopRecording() },
         canSend = canSend,
@@ -168,7 +168,7 @@ fun ContactFormScreen(
                 .padding(horizontal = 16.dp),
         ) {
             // Category chips
-            SectionCard(title = stringResource(R.string.contact_category_question_label).let { "Category" }) {
+            SectionCard(title = stringResource(R.string.contact_category_label)) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(
                         selected = category == Category.QUESTION,

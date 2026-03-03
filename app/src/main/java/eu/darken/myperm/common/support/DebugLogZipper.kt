@@ -14,17 +14,25 @@ import javax.inject.Inject
 class DebugLogZipper @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
+    fun zipAndGetUri(logDir: File): Uri {
+        val logFiles = logDir.listFiles()?.toList()
+            ?: throw IllegalStateException("No log files in $logDir")
 
-    fun zipAndGetUri(logFile: File): Uri {
-        require(logFile.exists()) { "Log file does not exist: $logFile" }
-
-        val zipPath = logFile.path + ".zip"
-        Zipper().zip(arrayOf(logFile.path), zipPath)
+        val zipFile = File(logDir.parentFile, "${logDir.name}.zip")
+        Zipper().zip(logFiles.map { it.path }.toTypedArray(), zipFile.path)
 
         return FileProvider.getUriForFile(
             context,
             BuildConfigWrap.APPLICATION_ID + ".provider",
-            File(zipPath)
+            zipFile,
+        )
+    }
+
+    fun getUriForZip(zipFile: File): Uri {
+        return FileProvider.getUriForFile(
+            context,
+            BuildConfigWrap.APPLICATION_ID + ".provider",
+            zipFile,
         )
     }
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <cache-path
-        name="debug_logs"
+        name="debug_logs_cache"
+        path="debug/logs" />
+    <external-files-path
+        name="debug_logs_external"
         path="debug/logs" />
 </paths>
