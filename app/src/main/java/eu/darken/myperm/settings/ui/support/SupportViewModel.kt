@@ -82,8 +82,9 @@ class SupportViewModel @Inject constructor(
     }
 
     fun onDebugLogToggle() = launch {
-        if (stater.value().isRecording) {
-            doStopDebugLog()
+        val current = stater.value()
+        if (current.isRecording) {
+            doStopDebugLog(current)
         } else {
             events.tryEmit(Event.ShowConsentDialog)
         }
@@ -94,30 +95,26 @@ class SupportViewModel @Inject constructor(
         recorderModule.startRecorder()
     }
 
-    private suspend fun doStopDebugLog() {
-        val duration = SystemClock.elapsedRealtime() - stater.value().recordingStartedAt
+    private suspend fun doStopDebugLog(current: State) {
+        val duration = SystemClock.elapsedRealtime() - current.recordingStartedAt
         if (duration < 5_000L) {
             events.tryEmit(Event.ShowShortRecordingWarning)
             return
         }
         log(TAG) { "stopDebugLog()" }
-        recorderModule.stopRecorder()
+        recorderModule.stopRecorder(showResultUi = true)
         doRefreshLogSize()
     }
 
     fun forceStopDebugLog() = launch {
         log(TAG) { "forceStopDebugLog()" }
-        recorderModule.stopRecorder()
+        recorderModule.stopRecorder(showResultUi = true)
         doRefreshLogSize()
     }
 
     fun clearDebugLogs() = launch {
         log(TAG) { "clearDebugLogs()" }
         recorderModule.deleteAllLogs()
-        doRefreshLogSize()
-    }
-
-    fun refreshLogSize() = launch {
         doRefreshLogSize()
     }
 
