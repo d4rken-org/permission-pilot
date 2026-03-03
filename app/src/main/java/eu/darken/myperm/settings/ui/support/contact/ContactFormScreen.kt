@@ -118,6 +118,7 @@ fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
             onDismiss = { showConsentDialog = false },
             onPrivacyPolicy = {
                 showConsentDialog = false
+                vm.openPrivacyPolicy()
             },
         )
     }

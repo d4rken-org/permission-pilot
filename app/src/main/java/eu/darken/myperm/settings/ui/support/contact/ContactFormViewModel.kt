@@ -8,7 +8,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.R
 import eu.darken.myperm.common.BuildConfigWrap
+import eu.darken.myperm.common.PrivacyPolicy
 import eu.darken.myperm.common.SupportLinks
+import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -31,6 +33,7 @@ class ContactFormViewModel @Inject constructor(
     private val recorderModule: RecorderModule,
     private val emailTool: EmailTool,
     private val debugLogZipper: DebugLogZipper,
+    private val webpageTool: WebpageTool,
 ) : ViewModel4(dispatcherProvider) {
 
     enum class Category { QUESTION, FEATURE, BUG }
@@ -150,6 +153,10 @@ class ContactFormViewModel @Inject constructor(
         }
     }
 
+    fun openPrivacyPolicy() {
+        webpageTool.open(PrivacyPolicy.URL)
+    }
+
     fun startRecording() {
         events.tryEmit(Event.ShowConsentDialog)
     }
@@ -197,7 +204,7 @@ class ContactFormViewModel @Inject constructor(
                     } catch (e: Exception) {
                         log(TAG) { "Failed to prepare attachment: $e" }
                         events.tryEmit(
-                            Event.ShowSnackbar(context.getString(R.string.support_contact_debuglog_zip_error))
+                            Event.ShowSnackbar(context.getString(R.string.contact_debuglog_zip_error))
                         )
                         null
                     }
