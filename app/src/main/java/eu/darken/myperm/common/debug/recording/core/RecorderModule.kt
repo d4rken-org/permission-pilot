@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Environment
+import android.os.SystemClock
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.InstallId
@@ -69,7 +70,7 @@ class RecorderModule @Inject constructor(
                         copy(
                             recorder = newRecorder,
                             currentLogDir = sessionDir,
-                            recordingStartedAt = System.currentTimeMillis(),
+                            recordingStartedAt = SystemClock.elapsedRealtime(),
                         )
                     } else if (!shouldRecord && isRecording) {
                         recorder!!.stop()
@@ -81,7 +82,7 @@ class RecorderModule @Inject constructor(
                         val logDir = currentLogDir!!
 
                         if (showResultUi) {
-                            val intent = RecorderActivity.getLaunchIntent(context, logDir.path).apply {
+                            val intent = RecorderActivity.getLaunchIntent(context, logDir.path, recordingStartedAt).apply {
                                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             }
                             context.startActivity(intent)
@@ -108,9 +109,14 @@ class RecorderModule @Inject constructor(
         val dirName = "myperm_${BuildConfigWrap.VERSION_NAME}_${timestamp}_$installIdPrefix"
 
         val primaryParent = try {
-            val dir = File(context.getExternalFilesDir(null), "debug/logs")
-            dir.mkdirs()
-            if (dir.canWrite()) dir else null
+            val externalDir = context.getExternalFilesDir(null)
+            if (externalDir != null) {
+                val dir = File(externalDir, "debug/logs")
+                dir.mkdirs()
+                if (dir.canWrite()) dir else null
+            } else {
+                null
+            }
         } catch (e: Exception) {
             log(TAG, WARN) { "External files dir unavailable: $e" }
             null
