@@ -21,14 +21,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.BugReport
-import androidx.compose.material.icons.twotone.ContactSupport
+import androidx.compose.material.icons.automirrored.twotone.ContactSupport
 import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material.icons.twotone.Email
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -45,12 +44,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,91 +57,146 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
-import eu.darken.myperm.common.navigation.LocalNavigationController
+import eu.darken.myperm.common.compose.SectionCard
+import eu.darken.myperm.common.compose.waitForState
+import eu.darken.myperm.common.debug.recording.ui.RecorderConsentDialog
+import eu.darken.myperm.common.error.ErrorEventHandler
+import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Category
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Companion.MIN_WORDS
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Companion.MIN_WORDS_EXPECTED
-import kotlinx.coroutines.launch
 import java.io.File
 
 @Composable
-fun ContactFormScreenHost() {
-    val navCtrl = LocalNavigationController.current
-    val vm: ContactFormViewModel = hiltViewModel()
+fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
+    ErrorEventHandler(vm)
+    NavigationEventHandler(vm)
+
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
 
-    val category by vm.category.collectAsState()
-    val description by vm.description.collectAsState()
-    val expectedBehavior by vm.expectedBehavior.collectAsState()
-    val selectedLogDir by vm.selectedLogDir.collectAsState()
-    val isRecording by vm.isRecording.collectAsState(initial = false)
-    val logDirs by vm.logDirs.collectAsState(initial = emptyList())
-    val descWordCount by vm.descriptionWordCount.collectAsState(initial = 0)
-    val expectedWordCount by vm.expectedBehaviorWordCount.collectAsState(initial = 0)
-    val canSend by vm.canSend.collectAsState(initial = false)
+    val state by waitForState(vm.state)
 
-    val noEmailMsg = stringResource(R.string.contact_no_email_app)
+    var showConsentDialog by remember { mutableStateOf(false) }
+    var showShortRecordingWarning by remember { mutableStateOf(false) }
+    var fileToDelete by remember { mutableStateOf<File?>(null) }
+
     LaunchedEffect(Unit) {
-        vm.emailEvent.collect { intent ->
-            try {
-                context.startActivity(intent)
-            } catch (_: ActivityNotFoundException) {
-                snackbarHostState.showSnackbar(noEmailMsg)
+        vm.events.collect { event ->
+            when (event) {
+                is ContactFormViewModel.Event.OpenEmail -> {
+                    try {
+                        context.startActivity(event.intent)
+                    } catch (_: ActivityNotFoundException) {
+                        snackbarHostState.showSnackbar(
+                            context.getString(R.string.contact_no_email_app)
+                        )
+                    }
+                }
+
+                is ContactFormViewModel.Event.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(event.message)
+                }
+
+                ContactFormViewModel.Event.ShowConsentDialog -> {
+                    showConsentDialog = true
+                }
+
+                ContactFormViewModel.Event.ShowShortRecordingWarning -> {
+                    showShortRecordingWarning = true
+                }
             }
         }
     }
 
-    ContactFormScreen(
-        snackbarHostState = snackbarHostState,
-        onBack = { navCtrl?.up() },
-        category = category,
-        onCategoryChange = { vm.setCategory(it) },
-        description = description,
-        onDescriptionChange = { vm.setDescription(it) },
-        descWordCount = descWordCount,
-        expectedBehavior = expectedBehavior,
-        onExpectedBehaviorChange = { vm.setExpectedBehavior(it) },
-        expectedWordCount = expectedWordCount,
-        isRecording = isRecording,
-        logFiles = logDirs,
-        selectedLogFile = selectedLogDir,
-        onSelectLogFile = { vm.selectLogDir(it) },
-        onDeleteLogFile = { vm.deleteLogDir(it) },
-        onStartRecording = { vm.startRecording() },
-        onStopRecording = { vm.stopRecording() },
-        canSend = canSend,
-        onSend = { vm.send() },
-    )
+    if (showConsentDialog) {
+        RecorderConsentDialog(
+            onConfirm = {
+                showConsentDialog = false
+                vm.doStartRecording()
+            },
+            onDismiss = { showConsentDialog = false },
+            onPrivacyPolicy = {
+                showConsentDialog = false
+            },
+        )
+    }
+
+    if (showShortRecordingWarning) {
+        AlertDialog(
+            onDismissRequest = { showShortRecordingWarning = false },
+            title = { Text(stringResource(R.string.debug_debuglog_short_recording_title)) },
+            text = { Text(stringResource(R.string.debug_debuglog_short_recording_message)) },
+            confirmButton = {
+                TextButton(onClick = { showShortRecordingWarning = false }) {
+                    Text(stringResource(R.string.debug_debuglog_short_recording_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    showShortRecordingWarning = false
+                    vm.forceStopRecording()
+                }) {
+                    Text(stringResource(R.string.debug_debuglog_short_recording_stop))
+                }
+            },
+        )
+    }
+
+    fileToDelete?.let { file ->
+        AlertDialog(
+            onDismissRequest = { fileToDelete = null },
+            title = { Text(stringResource(R.string.contact_debuglog_delete_title)) },
+            text = { Text(stringResource(R.string.contact_debuglog_delete_message)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    vm.deleteLogSession(file)
+                    fileToDelete = null
+                }) {
+                    Text(stringResource(android.R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { fileToDelete = null }) {
+                    Text(stringResource(android.R.string.cancel))
+                }
+            },
+        )
+    }
+
+    state?.let {
+        ContactFormScreen(
+            state = it,
+            snackbarHostState = snackbarHostState,
+            onBack = { vm.navUp() },
+            onCategoryChange = { cat -> vm.updateCategory(cat) },
+            onDescriptionChange = { text -> vm.updateDescription(text) },
+            onExpectedBehaviorChange = { text -> vm.updateExpectedBehavior(text) },
+            onSelectSession = { path -> vm.selectLogSession(path) },
+            onDeleteSession = { path -> fileToDelete = path },
+            onStartRecording = { vm.startRecording() },
+            onStopRecording = { vm.stopRecording() },
+            onSend = { vm.send() },
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun ContactFormScreen(
+    state: ContactFormViewModel.State,
     snackbarHostState: SnackbarHostState,
     onBack: () -> Unit,
-    category: Category,
     onCategoryChange: (Category) -> Unit,
-    description: String,
     onDescriptionChange: (String) -> Unit,
-    descWordCount: Int,
-    expectedBehavior: String,
     onExpectedBehaviorChange: (String) -> Unit,
-    expectedWordCount: Int,
-    isRecording: Boolean,
-    logFiles: List<File>,
-    selectedLogFile: File?,
-    onSelectLogFile: (File?) -> Unit,
-    onDeleteLogFile: (File) -> Unit,
+    onSelectSession: (File) -> Unit,
+    onDeleteSession: (File) -> Unit,
     onStartRecording: () -> Unit,
     onStopRecording: () -> Unit,
-    canSend: Boolean,
     onSend: () -> Unit,
 ) {
-    val isBug = category == Category.BUG
-    var showRecordConsentDialog by rememberSaveable { mutableStateOf(false) }
-    var fileToDelete by remember { mutableStateOf<File?>(null) }
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -171,17 +222,17 @@ fun ContactFormScreen(
             SectionCard(title = stringResource(R.string.contact_category_label)) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(
-                        selected = category == Category.QUESTION,
+                        selected = state.category == Category.QUESTION,
                         onClick = { onCategoryChange(Category.QUESTION) },
                         label = { Text(stringResource(R.string.contact_category_question_label)) },
                     )
                     FilterChip(
-                        selected = category == Category.FEATURE,
+                        selected = state.category == Category.FEATURE,
                         onClick = { onCategoryChange(Category.FEATURE) },
                         label = { Text(stringResource(R.string.contact_category_feature_label)) },
                     )
                     FilterChip(
-                        selected = category == Category.BUG,
+                        selected = state.category == Category.BUG,
                         onClick = { onCategoryChange(Category.BUG) },
                         label = { Text(stringResource(R.string.contact_category_bug_label)) },
                     )
@@ -191,15 +242,15 @@ fun ContactFormScreen(
             Spacer(modifier = Modifier.height(12.dp))
 
             // Debug log picker (BUG only)
-            AnimatedVisibility(visible = isBug) {
+            AnimatedVisibility(visible = state.isBug) {
                 Column {
                     DebugLogPickerCard(
-                        isRecording = isRecording,
-                        logFiles = logFiles,
-                        selectedLogFile = selectedLogFile,
-                        onSelectLogFile = onSelectLogFile,
-                        onDeleteLogFile = { fileToDelete = it },
-                        onStartRecording = { showRecordConsentDialog = true },
+                        isRecording = state.isRecording,
+                        sessions = state.sessions,
+                        selectedSessionPath = state.selectedSessionPath,
+                        onSelectSession = onSelectSession,
+                        onDeleteSession = onDeleteSession,
+                        onStartRecording = onStartRecording,
                         onStopRecording = onStopRecording,
                     )
                     Spacer(modifier = Modifier.height(12.dp))
@@ -207,37 +258,37 @@ fun ContactFormScreen(
             }
 
             // Description
-            val descHint = when (category) {
+            val descHint = when (state.category) {
                 Category.QUESTION -> stringResource(R.string.contact_description_hint_question)
                 Category.FEATURE -> stringResource(R.string.contact_description_hint_feature)
                 Category.BUG -> stringResource(R.string.contact_description_hint_bug)
             }
             OutlinedTextField(
-                value = description,
+                value = state.description,
                 onValueChange = onDescriptionChange,
                 label = { Text(stringResource(R.string.contact_description_label)) },
                 placeholder = { Text(descHint) },
                 modifier = Modifier.fillMaxWidth(),
                 minLines = 4,
                 supportingText = {
-                    WordCountText(count = descWordCount, minimum = MIN_WORDS)
+                    WordCountText(count = state.descriptionWords, minimum = MIN_WORDS)
                 },
             )
 
             Spacer(modifier = Modifier.height(12.dp))
 
             // Expected behavior (BUG only)
-            AnimatedVisibility(visible = isBug) {
+            AnimatedVisibility(visible = state.isBug) {
                 Column {
                     OutlinedTextField(
-                        value = expectedBehavior,
+                        value = state.expectedBehavior,
                         onValueChange = onExpectedBehaviorChange,
                         label = { Text(stringResource(R.string.contact_expected_behavior_label)) },
                         placeholder = { Text(stringResource(R.string.contact_expected_behavior_hint)) },
                         modifier = Modifier.fillMaxWidth(),
                         minLines = 3,
                         supportingText = {
-                            WordCountText(count = expectedWordCount, minimum = MIN_WORDS_EXPECTED)
+                            WordCountText(count = state.expectedWords, minimum = MIN_WORDS_EXPECTED)
                         },
                     )
                     Spacer(modifier = Modifier.height(12.dp))
@@ -253,7 +304,7 @@ fun ContactFormScreen(
                     verticalAlignment = Alignment.Top,
                 ) {
                     Icon(
-                        imageVector = Icons.TwoTone.ContactSupport,
+                        imageVector = Icons.AutoMirrored.TwoTone.ContactSupport,
                         contentDescription = null,
                         modifier = Modifier.size(32.dp),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -271,14 +322,21 @@ fun ContactFormScreen(
             // Send button
             Button(
                 onClick = onSend,
-                enabled = canSend,
+                enabled = state.canSend,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Icon(
-                    imageVector = Icons.TwoTone.Email,
-                    contentDescription = null,
-                    modifier = Modifier.size(ButtonDefaults.IconSize),
-                )
+                if (state.isSending) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
+                        strokeWidth = 2.dp,
+                    )
+                } else {
+                    Icon(
+                        imageVector = Icons.TwoTone.Email,
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
+                    )
+                }
                 Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
                 Text(stringResource(R.string.contact_send_action))
             }
@@ -299,66 +357,6 @@ fun ContactFormScreen(
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
-
-    // Recording consent dialog
-    if (showRecordConsentDialog) {
-        AlertDialog(
-            onDismissRequest = { showRecordConsentDialog = false },
-            title = { Text(stringResource(R.string.support_debuglog_label)) },
-            text = { Text(stringResource(R.string.settings_debuglog_explanation)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    showRecordConsentDialog = false
-                    onStartRecording()
-                }) {
-                    Text(stringResource(android.R.string.ok))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showRecordConsentDialog = false }) {
-                    Text(stringResource(android.R.string.cancel))
-                }
-            },
-        )
-    }
-
-    // Delete log confirmation dialog
-    fileToDelete?.let { file ->
-        AlertDialog(
-            onDismissRequest = { fileToDelete = null },
-            title = { Text(stringResource(R.string.contact_debuglog_delete_title)) },
-            text = { Text(stringResource(R.string.contact_debuglog_delete_message, file.name)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    onDeleteLogFile(file)
-                    fileToDelete = null
-                }) {
-                    Text(stringResource(android.R.string.ok))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { fileToDelete = null }) {
-                    Text(stringResource(android.R.string.cancel))
-                }
-            },
-        )
-    }
-}
-
-@Composable
-private fun SectionCard(
-    title: String,
-    content: @Composable () -> Unit,
-) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(bottom = 8.dp),
-        )
-        content()
-    }
 }
 
 @Composable
@@ -377,10 +375,10 @@ private fun WordCountText(count: Int, minimum: Int) {
 @Composable
 private fun DebugLogPickerCard(
     isRecording: Boolean,
-    logFiles: List<File>,
-    selectedLogFile: File?,
-    onSelectLogFile: (File?) -> Unit,
-    onDeleteLogFile: (File) -> Unit,
+    sessions: List<ContactFormViewModel.LogSessionItem>,
+    selectedSessionPath: File?,
+    onSelectSession: (File) -> Unit,
+    onDeleteSession: (File) -> Unit,
     onStartRecording: () -> Unit,
     onStopRecording: () -> Unit,
 ) {
@@ -410,7 +408,7 @@ private fun DebugLogPickerCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            if (logFiles.isEmpty() && !isRecording) {
+            if (sessions.isEmpty() && !isRecording) {
                 Text(
                     text = stringResource(R.string.contact_debuglog_empty),
                     style = MaterialTheme.typography.bodySmall,
@@ -419,34 +417,32 @@ private fun DebugLogPickerCard(
                 )
             }
 
-            logFiles.forEach { file ->
-                val isSelected = selectedLogFile == file
+            sessions.forEach { session ->
+                val isSelected = selectedSessionPath == session.path
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable {
-                            onSelectLogFile(if (isSelected) null else file)
-                        }
+                        .clickable { onSelectSession(session.path) }
                         .padding(vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     RadioButton(
                         selected = isSelected,
-                        onClick = { onSelectLogFile(if (isSelected) null else file) },
+                        onClick = { onSelectSession(session.path) },
                     )
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = file.name,
+                            text = session.path.name,
                             style = MaterialTheme.typography.bodySmall,
                             maxLines = 1,
                         )
                         Text(
-                            text = Formatter.formatShortFileSize(context, file.length()),
+                            text = Formatter.formatShortFileSize(context, session.size),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    IconButton(onClick = { onDeleteLogFile(file) }) {
+                    IconButton(onClick = { onDeleteSession(session.path) }) {
                         Icon(
                             imageVector = Icons.TwoTone.Delete,
                             contentDescription = null,

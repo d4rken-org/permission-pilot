@@ -402,11 +402,12 @@
     <string name="contact_debuglog_empty">No debug logs found. Record one first.</string>
     <string name="contact_debuglog_record_action">Record debug log</string>
     <string name="contact_debuglog_stop_action">Stop recording</string>
-    <string name="contact_debuglog_delete_title">Delete?</string>
-    <string name="contact_debuglog_delete_message">Delete: %s?</string>
+    <string name="contact_debuglog_delete_title">Delete debug log?</string>
+    <string name="contact_debuglog_delete_message">This debug log will be permanently deleted.</string>
+    <string name="support_contact_debuglog_zip_error">Failed to compress debug log</string>
     <string name="contact_no_email_app">No email app found on this device.</string>
     <string name="contact_welcome_message">I read every message myself and do my best to reply. Since I handle development, bug fixes, and support on my own, it can take a little time. Thanks for your patience.</string>
-    <string name="contact_footer_message">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email.</string>
+    <string name="contact_footer_message">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email. Please write in English if possible.</string>
 
     <!-- RecorderActivity -->
     <string name="recorder_discard_action">Discard</string>
