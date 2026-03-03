@@ -27,6 +27,8 @@
     <string name="debug_debuglog_record_action">Record debug log</string>
 
     <string name="settings_category_other_label">Other</string>
+    <string name="settings_category_gethelp_label">Get help</string>
+    <string name="settings_category_debug_label">Debug</string>
 
     <string name="general_settings_label">General</string>
     <string name="general_settings_desc">General tweaks that affect the whole app.</string>
@@ -356,12 +358,23 @@
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
     <string name="support_debuglog_recording">Recording…</string>
     <string name="support_debuglog_stop_label">Stop debug log</string>
+    <string name="support_contact_label">Contact developer</string>
+    <string name="support_contact_desc">Fill out a form to send the developer an email.</string>
+    <string name="support_debuglog_clear_action">Clear stored debug logs</string>
+    <string name="debug_debuglog_short_recording_title">Recording too short</string>
+    <string name="debug_debuglog_short_recording_message">A debug log needs to capture the issue while it happens. Start the recording, reproduce your issue, then stop the recording.</string>
+    <string name="debug_debuglog_short_recording_continue">Continue recording</string>
+    <string name="debug_debuglog_short_recording_stop">Stop anyway</string>
 
     <!-- Debug log folder -->
     <string name="support_debuglog_folder_label">Debug log folder</string>
     <plurals name="support_debuglog_folder_stats">
         <item quantity="one">%1$d file, %2$s</item>
         <item quantity="other">%1$d files, %2$s</item>
+    </plurals>
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d debug log (%2$s)</item>
+        <item quantity="other">%1$d debug logs (%2$s)</item>
     </plurals>
     <string name="support_debuglog_folder_empty">No debug logs</string>
     <string name="support_debuglog_clear_title">Clear debug logs?</string>
