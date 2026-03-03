@@ -21,9 +21,6 @@
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Donate</string>
 
-    <string name="debug_debuglog_size_label">Size</string>
-    <string name="debug_debuglog_size_compressed_label">Compressed size</string>
-<string name="debug_debuglog_file_label">Recorded log file</string>
     <string name="debug_debuglog_record_action">Record debug log</string>
 
     <string name="settings_category_other_label">Other</string>
@@ -367,16 +364,10 @@
     <string name="debug_debuglog_short_recording_stop">Stop anyway</string>
 
     <!-- Debug log folder -->
-    <string name="support_debuglog_folder_label">Debug log folder</string>
-    <plurals name="support_debuglog_folder_stats">
-        <item quantity="one">%1$d file, %2$s</item>
-        <item quantity="other">%1$d files, %2$s</item>
-    </plurals>
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d debug log (%2$s)</item>
         <item quantity="other">%1$d debug logs (%2$s)</item>
     </plurals>
-    <string name="support_debuglog_folder_empty">No debug logs</string>
     <string name="support_debuglog_clear_title">Clear debug logs?</string>
     <string name="support_debuglog_clear_message">This will delete all stored debug log files.</string>
 
@@ -410,11 +401,7 @@
     <string name="contact_footer_message">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email. Please write in English if possible.</string>
 
     <!-- RecorderActivity -->
-    <string name="recorder_discard_action">Discard</string>
     <string name="recorder_keep_action">Keep</string>
-    <string name="recorder_privacy_warning">This file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
-    <string name="recorder_short_recording_title">Recording too short</string>
-    <string name="recorder_short_recording_message">The debug log was only recorded for a few seconds. This is a continuous recording, not a snapshot.\n\nFor a useful debug log, start the recording, then reproduce the issue you are experiencing, and only then stop the recording.</string>
 
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Debug Log</string>
