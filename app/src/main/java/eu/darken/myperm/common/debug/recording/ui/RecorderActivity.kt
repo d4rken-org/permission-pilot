@@ -15,6 +15,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
 import androidx.compose.runtime.collectAsState
 import dagger.hilt.android.AndroidEntryPoint
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.theming.PermPilotTheme
 import eu.darken.myperm.common.uix.Activity2
@@ -50,7 +52,8 @@ class RecorderActivity : Activity2() {
                             is RecorderActivityVM.Event.ShareIntent -> {
                                 try {
                                     startActivity(event.intent)
-                                } catch (_: Exception) {
+                                } catch (e: Exception) {
+                                    log(TAG, WARN) { "Failed to start share activity: $e" }
                                 }
                             }
 
