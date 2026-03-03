@@ -1,6 +1,7 @@
 package eu.darken.myperm.settings.ui.support
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.darken.myperm.common.SupportLinks
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
@@ -48,11 +49,11 @@ class SupportViewModel @Inject constructor(
     }
 
     fun openIssueTracker() {
-        webpageTool.open("https://github.com/d4rken-org/permission-pilot/issues")
+        webpageTool.open(SupportLinks.GITHUB_ISSUES_URL)
     }
 
     fun openDiscord() {
-        webpageTool.open("https://discord.gg/7gGWxfM5yv")
+        webpageTool.open(SupportLinks.DISCORD_URL)
     }
 
     fun navigateToContactForm() {

@@ -1,33 +1,32 @@
 package eu.darken.myperm.common.support
 
 import android.content.ClipData
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import dagger.Reusable
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 @Reusable
-class EmailTool @Inject constructor(
-    @ApplicationContext private val context: Context,
-) {
+class EmailTool @Inject constructor() {
 
-    fun build(
-        recipient: String,
-        subject: String,
-        body: String,
-        attachmentUri: Uri? = null,
-    ): Intent {
+    data class Email(
+        val recipients: List<String>,
+        val subject: String,
+        val body: String,
+        val attachment: Uri? = null,
+    )
+
+    fun build(email: Email, offerChooser: Boolean = true): Intent {
         val intent = Intent(Intent.ACTION_SEND).apply {
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
-            putExtra(Intent.EXTRA_SUBJECT, subject)
-            putExtra(Intent.EXTRA_TEXT, body)
+            putExtra(Intent.EXTRA_EMAIL, email.recipients.toTypedArray())
+            addCategory(Intent.CATEGORY_DEFAULT)
+            putExtra(Intent.EXTRA_SUBJECT, email.subject)
+            putExtra(Intent.EXTRA_TEXT, email.body)
 
-            if (attachmentUri != null) {
+            if (email.attachment != null) {
                 type = "application/zip"
-                putExtra(Intent.EXTRA_STREAM, attachmentUri)
-                clipData = ClipData.newRawUri("", attachmentUri)
+                putExtra(Intent.EXTRA_STREAM, email.attachment)
+                clipData = ClipData.newRawUri("", email.attachment)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             } else {
                 type = "message/rfc822"
@@ -36,6 +35,6 @@ class EmailTool @Inject constructor(
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
-        return Intent.createChooser(intent, null)
+        return if (offerChooser) Intent.createChooser(intent, null) else intent
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.BuildConfigWrap
+import eu.darken.myperm.common.SupportLinks
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -140,10 +141,12 @@ class ContactFormViewModel @Inject constructor(
             } else null
 
             val intent = emailTool.build(
-                recipient = "support@darken.eu",
-                subject = subject,
-                body = body,
-                attachmentUri = attachmentUri,
+                EmailTool.Email(
+                    recipients = listOf(SupportLinks.SUPPORT_EMAIL),
+                    subject = subject,
+                    body = body,
+                    attachment = attachmentUri,
+                )
             )
 
             emailEvent.emit(intent)
