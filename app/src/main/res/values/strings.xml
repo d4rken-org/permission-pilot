@@ -370,6 +370,12 @@
     </plurals>
     <string name="support_debuglog_clear_title">Clear debug logs?</string>
     <string name="support_debuglog_clear_message">This will delete all stored debug log files.</string>
+    <string name="support_debuglog_sessions_title">Debug logs</string>
+    <string name="support_debuglog_session_delete_title">Delete debug log?</string>
+    <string name="support_debuglog_session_delete_message">This debug log will be permanently deleted.</string>
+    <string name="support_debuglog_sessions_empty">No debug logs</string>
+    <string name="support_debuglog_session_invalid">Invalid session</string>
+    <string name="debug_debuglog_screen_delete_action">Delete</string>
 
     <!-- Contact form -->
     <string name="contact_support_label">Contact Support</string>

@@ -2,6 +2,7 @@ package eu.darken.myperm.common.debug.recording.ui
 
 import android.content.Context
 import android.content.Intent
+import android.os.SystemClock
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -38,9 +39,8 @@ class RecorderActivityVM @Inject constructor(
         val logDir: File? = null,
         val logEntries: List<LogEntry> = emptyList(),
         val totalSize: Long = 0L,
-        val compressedSize: Long = -1L,
         val recordingDurationSecs: Long = 0L,
-        val isWorking: Boolean = true,
+        val isWorking: Boolean = false,
     )
 
     sealed interface Event {
@@ -61,16 +61,8 @@ class RecorderActivityVM @Inject constructor(
         val entries = files.map { LogEntry(it, it.length()) }
         val totalSize = entries.sumOf { it.size }
 
-        val compressedSize = try {
-            debugLogZipper.zipAndGetUri(logDir)
-            File(logDir.parentFile, "${logDir.name}.zip").length()
-        } catch (e: Exception) {
-            log(TAG) { "Failed to zip: $e" }
-            -1L
-        }
-
         val durationSecs = if (recordingStartedAt > 0L) {
-            val durationMs = android.os.SystemClock.elapsedRealtime() - recordingStartedAt
+            val durationMs = SystemClock.elapsedRealtime() - recordingStartedAt
             (durationMs / 1000).coerceAtLeast(0)
         } else {
             val dirCreated = logDir.lastModified()
@@ -82,9 +74,7 @@ class RecorderActivityVM @Inject constructor(
             logDir = logDir,
             logEntries = entries,
             totalSize = totalSize,
-            compressedSize = compressedSize,
             recordingDurationSecs = durationSecs,
-            isWorking = false,
         )
     }
     val state = stater.flow
@@ -125,7 +115,7 @@ class RecorderActivityVM @Inject constructor(
         events.tryEmit(Event.Finish)
     }
 
-    fun discard() = launch {
+    fun delete() = launch {
         val currentState = stater.flow.first()
         val dir = currentState.logDir ?: return@launch
 

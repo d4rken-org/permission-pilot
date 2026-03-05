@@ -60,7 +60,7 @@ fun RecorderScreen(
     state: RecorderActivityVM.State,
     onShare: () -> Unit,
     onKeep: () -> Unit,
-    onDiscard: () -> Unit,
+    onDelete: () -> Unit,
     onPrivacyPolicy: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -91,7 +91,7 @@ fun RecorderScreen(
 
                 LogFilesSection(
                     entries = state.logEntries,
-                    compressedSize = state.compressedSize,
+                    totalSize = state.totalSize,
                     recordingDurationSecs = state.recordingDurationSecs,
                     context = context,
                 )
@@ -100,7 +100,7 @@ fun RecorderScreen(
 
         BottomActionBar(
             isWorking = state.isWorking,
-            onDiscard = onDiscard,
+            onDelete = onDelete,
             onKeep = onKeep,
             onShare = onShare,
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -226,16 +226,12 @@ private fun SessionPathCard(path: String) {
 @Composable
 private fun LogFilesSection(
     entries: List<RecorderActivityVM.LogEntry>,
-    compressedSize: Long,
+    totalSize: Long,
     recordingDurationSecs: Long,
     context: android.content.Context,
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        val compressedText = if (compressedSize >= 0) {
-            "ZIP: ${Formatter.formatShortFileSize(context, compressedSize)}"
-        } else {
-            "..."
-        }
+        val sizeText = Formatter.formatShortFileSize(context, totalSize)
         val durationText = formatDuration(recordingDurationSecs)
 
         Card(
@@ -264,7 +260,7 @@ private fun LogFilesSection(
                             R.plurals.debug_debuglog_screen_log_files_ready,
                             entries.size,
                             entries.size,
-                            compressedText,
+                            sizeText,
                         ) + " \u00B7 $durationText",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -347,7 +343,7 @@ private fun LogFileItem(
 @Composable
 private fun BottomActionBar(
     isWorking: Boolean,
-    onDiscard: () -> Unit,
+    onDelete: () -> Unit,
     onKeep: () -> Unit,
     onShare: () -> Unit,
     modifier: Modifier = Modifier,
@@ -368,10 +364,10 @@ private fun BottomActionBar(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 OutlinedButton(
-                    onClick = onDiscard,
+                    onClick = onDelete,
                     modifier = Modifier.weight(1f),
                 ) {
-                    Text(text = stringResource(R.string.debug_debuglog_screen_discard_action))
+                    Text(text = stringResource(R.string.debug_debuglog_screen_delete_action))
                 }
                 FilledTonalButton(
                     onClick = onKeep,
@@ -421,13 +417,13 @@ private fun RecorderScreenPreview() = PreviewWrapper {
             logEntries = listOf(
                 RecorderActivityVM.LogEntry(File("/path/core.log"), 6400L),
             ),
-            compressedSize = 1200L,
+            totalSize = 6400L,
             recordingDurationSecs = 3,
             isWorking = false,
         ),
         onShare = {},
         onKeep = {},
-        onDiscard = {},
+        onDelete = {},
         onPrivacyPolicy = {},
     )
 }

@@ -8,14 +8,14 @@ import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
-import eu.darken.myperm.common.debug.recording.core.RecorderModule
+import eu.darken.myperm.common.debug.recording.core.DebugSessionManager
 import eu.darken.myperm.common.flow.DynamicStateFlow
 import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import java.io.File
 import javax.inject.Inject
 
@@ -23,46 +23,45 @@ import javax.inject.Inject
 class SupportViewModel @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val webpageTool: WebpageTool,
-    private val recorderModule: RecorderModule,
+    private val debugSessionManager: DebugSessionManager,
 ) : ViewModel4(dispatcherProvider) {
 
     data class State(
         val isRecording: Boolean = false,
         val currentLogPath: File? = null,
         val recordingStartedAt: Long = 0L,
-        val logFolderSize: Long = 0L,
-        val logSessionCount: Int = 0,
-    )
+        val sessions: List<DebugSessionManager.LogSession> = emptyList(),
+    ) {
+        val hasAnySessions: Boolean get() = sessions.isNotEmpty()
+        val storedSessionCount: Int get() = sessions.count { it !is DebugSessionManager.LogSession.Recording }
+        val storedSessionSize: Long get() = sessions.filterNot { it is DebugSessionManager.LogSession.Recording }.sumOf { it.size }
+    }
 
     sealed interface Event {
         data object ShowConsentDialog : Event
         data object ShowShortRecordingWarning : Event
+        data class OpenRecorderActivity(val path: File) : Event
     }
 
     val events = SingleEventFlow<Event>()
 
-    private val stater = DynamicStateFlow(TAG, vmScope) {
-        State(
-            logFolderSize = recorderModule.getLogFolderSize(),
-            logSessionCount = recorderModule.getLogSessionCount(),
-        )
-    }
+    private val stater = DynamicStateFlow(TAG, vmScope) { State() }
     val state: Flow<State> = stater.flow
 
     init {
-        recorderModule.state
-            .onEach { recorderState ->
-                stater.updateBlocking {
-                    copy(
-                        isRecording = recorderState.isRecording,
-                        currentLogPath = recorderState.currentLogPath,
-                        recordingStartedAt = recorderState.recordingStartedAt,
-                        logFolderSize = recorderModule.getLogFolderSize(),
-                        logSessionCount = recorderModule.getLogSessionCount(),
-                    )
-                }
+        combine(
+            debugSessionManager.recorderState,
+            debugSessionManager.sessions,
+        ) { recorderState, sessions ->
+            stater.updateBlocking {
+                copy(
+                    isRecording = recorderState.isRecording,
+                    currentLogPath = recorderState.currentLogPath,
+                    recordingStartedAt = recorderState.recordingStartedAt,
+                    sessions = sessions,
+                )
             }
-            .launchIn(vmScope)
+        }.launchIn(vmScope)
     }
 
     fun openIssueTracker() {
@@ -92,7 +91,7 @@ class SupportViewModel @Inject constructor(
 
     fun startDebugLog() = launch {
         log(TAG) { "startDebugLog()" }
-        recorderModule.startRecorder()
+        debugSessionManager.startRecorder()
     }
 
     private suspend fun doStopDebugLog(current: State) {
@@ -102,29 +101,31 @@ class SupportViewModel @Inject constructor(
             return
         }
         log(TAG) { "stopDebugLog()" }
-        recorderModule.stopRecorder(showResultUi = true)
-        doRefreshLogSize()
+        debugSessionManager.stopRecorder(showResultUi = true)
     }
 
     fun forceStopDebugLog() = launch {
         log(TAG) { "forceStopDebugLog()" }
-        recorderModule.stopRecorder(showResultUi = true)
-        doRefreshLogSize()
+        debugSessionManager.stopRecorder(showResultUi = true)
+    }
+
+    fun stopActiveRecording() = launch {
+        log(TAG) { "stopActiveRecording()" }
+        debugSessionManager.stopActiveRecording()
+    }
+
+    fun openSession(session: DebugSessionManager.LogSession.Ready) {
+        events.tryEmit(Event.OpenRecorderActivity(session.path))
+    }
+
+    fun deleteLogSession(session: DebugSessionManager.LogSession) = launch {
+        log(TAG) { "deleteLogSession(${session.path})" }
+        debugSessionManager.deleteLogSession(session)
     }
 
     fun clearDebugLogs() = launch {
         log(TAG) { "clearDebugLogs()" }
-        recorderModule.deleteAllLogs()
-        doRefreshLogSize()
-    }
-
-    private suspend fun doRefreshLogSize() {
-        stater.updateBlocking {
-            copy(
-                logFolderSize = recorderModule.getLogFolderSize(),
-                logSessionCount = recorderModule.getLogSessionCount(),
-            )
-        }
+        debugSessionManager.deleteAllLogs()
     }
 
     companion object {

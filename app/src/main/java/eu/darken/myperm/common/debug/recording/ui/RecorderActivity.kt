@@ -68,7 +68,7 @@ class RecorderActivity : Activity2() {
                         state = it,
                         onShare = { vm.share() },
                         onKeep = { vm.keep() },
-                        onDiscard = { vm.discard() },
+                        onDelete = { vm.delete() },
                         onPrivacyPolicy = { vm.goPrivacyPolicy() },
                     )
                 }

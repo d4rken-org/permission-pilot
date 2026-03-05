@@ -132,7 +132,7 @@ class RecorderModule @Inject constructor(
         return sessionDir
     }
 
-    fun getLogDirectories(): List<File> = listOfNotNull(
+    internal fun getLogDirectories(): List<File> = listOfNotNull(
         try {
             context.getExternalFilesDir(null)?.let { File(it, "debug/logs") }
         } catch (e: Exception) {
@@ -141,46 +141,7 @@ class RecorderModule @Inject constructor(
         File(context.cacheDir, "debug/logs"),
     )
 
-    fun getLogSessionCount(): Int {
-        return getLogDirectories().sumOf { dir ->
-            if (!dir.exists()) return@sumOf 0
-            dir.listFiles()?.count {
-                it.isDirectory || (it.isFile && (it.extension == "zip" || it.extension == "log"))
-            } ?: 0
-        }
-    }
-
-    fun getLogFolderSize(): Long {
-        return getLogDirectories().sumOf { dir ->
-            if (!dir.exists()) return@sumOf 0L
-            dir.listFiles()?.sumOf { entry ->
-                if (entry.isDirectory) {
-                    entry.walkTopDown().filter { it.isFile }.sumOf { it.length() }
-                } else {
-                    entry.length()
-                }
-            } ?: 0L
-        }
-    }
-
-    suspend fun deleteAllLogs() {
-        val activeDir = internalState.value().currentLogDir
-        getLogDirectories().forEach { dir ->
-            if (!dir.exists()) return@forEach
-            dir.listFiles()?.forEach { entry ->
-                if (entry == activeDir) {
-                    log(TAG) { "Skipping active session dir: $entry" }
-                    return@forEach
-                }
-                if (entry.isDirectory) {
-                    entry.deleteRecursively()
-                } else {
-                    entry.delete()
-                }
-            }
-        }
-        log(TAG) { "All stored logs deleted" }
-    }
+    internal suspend fun getActiveLogDir(): File? = internalState.value().currentLogDir
 
     suspend fun startRecorder(): File {
         internalState.updateBlocking {

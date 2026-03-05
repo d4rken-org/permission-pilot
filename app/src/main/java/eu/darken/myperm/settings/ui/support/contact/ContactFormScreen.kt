@@ -62,6 +62,7 @@ import eu.darken.myperm.common.compose.waitForState
 import eu.darken.myperm.common.debug.recording.ui.RecorderConsentDialog
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.common.debug.recording.core.DebugSessionManager
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Category
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Companion.MIN_WORDS
 import eu.darken.myperm.settings.ui.support.contact.ContactFormViewModel.Companion.MIN_WORDS_EXPECTED
@@ -79,7 +80,7 @@ fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
 
     var showConsentDialog by remember { mutableStateOf(false) }
     var showShortRecordingWarning by remember { mutableStateOf(false) }
-    var fileToDelete by remember { mutableStateOf<File?>(null) }
+    var sessionToDelete by remember { mutableStateOf<DebugSessionManager.LogSession?>(null) }
 
     LaunchedEffect(Unit) {
         vm.events.collect { event ->
@@ -144,21 +145,21 @@ fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
         )
     }
 
-    fileToDelete?.let { file ->
+    sessionToDelete?.let { session ->
         AlertDialog(
-            onDismissRequest = { fileToDelete = null },
+            onDismissRequest = { sessionToDelete = null },
             title = { Text(stringResource(R.string.contact_debuglog_delete_title)) },
             text = { Text(stringResource(R.string.contact_debuglog_delete_message)) },
             confirmButton = {
                 TextButton(onClick = {
-                    vm.deleteLogSession(file)
-                    fileToDelete = null
+                    vm.deleteLogSession(session)
+                    sessionToDelete = null
                 }) {
                     Text(stringResource(android.R.string.ok))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { fileToDelete = null }) {
+                TextButton(onClick = { sessionToDelete = null }) {
                     Text(stringResource(android.R.string.cancel))
                 }
             },
@@ -174,7 +175,7 @@ fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
             onDescriptionChange = { text -> vm.updateDescription(text) },
             onExpectedBehaviorChange = { text -> vm.updateExpectedBehavior(text) },
             onSelectSession = { path -> vm.selectLogSession(path) },
-            onDeleteSession = { path -> fileToDelete = path },
+            onDeleteSession = { session -> sessionToDelete = session },
             onStartRecording = { vm.startRecording() },
             onStopRecording = { vm.stopRecording() },
             onSend = { vm.send() },
@@ -192,7 +193,7 @@ fun ContactFormScreen(
     onDescriptionChange: (String) -> Unit,
     onExpectedBehaviorChange: (String) -> Unit,
     onSelectSession: (File) -> Unit,
-    onDeleteSession: (File) -> Unit,
+    onDeleteSession: (DebugSessionManager.LogSession) -> Unit,
     onStartRecording: () -> Unit,
     onStopRecording: () -> Unit,
     onSend: () -> Unit,
@@ -376,10 +377,10 @@ private fun WordCountText(count: Int, minimum: Int) {
 @Composable
 private fun DebugLogPickerCard(
     isRecording: Boolean,
-    sessions: List<ContactFormViewModel.LogSessionItem>,
+    sessions: List<DebugSessionManager.LogSession>,
     selectedSessionPath: File?,
     onSelectSession: (File) -> Unit,
-    onDeleteSession: (File) -> Unit,
+    onDeleteSession: (DebugSessionManager.LogSession) -> Unit,
     onStartRecording: () -> Unit,
     onStopRecording: () -> Unit,
 ) {
@@ -443,7 +444,7 @@ private fun DebugLogPickerCard(
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    IconButton(onClick = { onDeleteSession(session.path) }) {
+                    IconButton(onClick = { onDeleteSession(session) }) {
                         Icon(
                             imageVector = Icons.TwoTone.Delete,
                             contentDescription = null,
