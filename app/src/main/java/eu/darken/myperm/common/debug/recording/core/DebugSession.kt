@@ -1,0 +1,54 @@
+package eu.darken.myperm.common.debug.recording.core
+
+import java.io.File
+import java.time.Instant
+
+sealed interface DebugSession {
+    val id: String
+    val displayName: String
+    val createdAt: Instant
+    val diskSize: Long
+
+    data class Recording(
+        override val id: String,
+        override val displayName: String,
+        override val createdAt: Instant,
+        override val diskSize: Long,
+        val path: File,
+        val startedAt: Long,
+    ) : DebugSession
+
+    data class Compressing(
+        override val id: String,
+        override val displayName: String,
+        override val createdAt: Instant,
+        override val diskSize: Long,
+        val path: File,
+    ) : DebugSession
+
+    data class Ready(
+        override val id: String,
+        override val displayName: String,
+        override val createdAt: Instant,
+        override val diskSize: Long,
+        val logDir: File? = null,
+        val zipFile: File? = null,
+        val compressedSize: Long = -1L,
+    ) : DebugSession
+
+    data class Failed(
+        override val id: String,
+        override val displayName: String,
+        override val createdAt: Instant,
+        override val diskSize: Long,
+        val path: File,
+        val reason: Reason,
+    ) : DebugSession {
+        enum class Reason {
+            EMPTY_LOG,
+            MISSING_LOG,
+            CORRUPT_ZIP,
+            ZIP_FAILED,
+        }
+    }
+}
