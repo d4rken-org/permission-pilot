@@ -15,7 +15,7 @@ class SettingsIndexViewModel @Inject constructor(
 ) : ViewModel4(dispatcherProvider) {
 
     fun openChangelog() {
-        webpageTool.open("https://github.com/d4rken-org/permission-pilot/releases")
+        webpageTool.open("https://myperm.darken.eu/changelog")
     }
 
     fun openPrivacyPolicy() {

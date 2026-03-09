@@ -21,13 +21,11 @@
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Donate</string>
 
-    <string name="debug_debuglog_size_label">Size</string>
-    <string name="debug_debuglog_size_compressed_label">Compressed size</string>
-    <string name="debug_notification_channel_label">Debug notifications</string>
-    <string name="debug_debuglog_file_label">Recorded log file</string>
     <string name="debug_debuglog_record_action">Record debug log</string>
 
     <string name="settings_category_other_label">Other</string>
+    <string name="settings_category_gethelp_label">Get help</string>
+    <string name="settings_category_debug_label">Debug</string>
 
     <string name="general_settings_label">General</string>
     <string name="general_settings_desc">General tweaks that affect the whole app.</string>
@@ -355,6 +353,98 @@
     <string name="permission_bind_accessibility_service_description">Allows the app to offer an accessibility service that can be enabled in the system settings.</string>
     <string name="debug_debuglog_sensitive_information_message">This file contains sensitive information (e.g. your installed applications). Only share it with trusted parties.</string>
     <string name="settings_debuglog_explanation">This feature records everything the app is doing into a shareable file. The generated file contains sensitive information (e.g. your installed applications). Only share it with trusted parties (e.g. the app developer if you are troubleshooting an issue together).</string>
+    <string name="support_debuglog_recording">Recording…</string>
+    <string name="support_debuglog_stop_label">Stop debug log</string>
+    <string name="support_contact_label">Contact developer</string>
+    <string name="support_contact_desc">Fill out a form to send the developer an email.</string>
+    <string name="support_debuglog_clear_action">Clear stored debug logs</string>
+    <string name="debug_debuglog_short_recording_title">Recording too short</string>
+    <string name="debug_debuglog_short_recording_message">A debug log needs to capture the issue while it happens. Start the recording, reproduce your issue, then stop the recording.</string>
+    <string name="debug_debuglog_short_recording_continue">Continue recording</string>
+    <string name="debug_debuglog_short_recording_stop">Stop anyway</string>
+
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d debug log (%2$s)</item>
+        <item quantity="other">%1$d debug logs (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Clear debug logs?</string>
+    <string name="support_debuglog_clear_message">This will delete all stored debug log files.</string>
+    <string name="support_debuglog_sessions_title">Debug logs</string>
+    <string name="support_debuglog_session_delete_title">Delete debug log?</string>
+    <string name="support_debuglog_session_delete_message">This debug log will be permanently deleted.</string>
+    <string name="support_debuglog_sessions_empty">No debug logs</string>
+    <string name="support_debuglog_session_invalid">Invalid session</string>
+    <string name="support_debuglog_session_recording">Recording…</string>
+    <string name="support_debuglog_session_compressing">Compressing…</string>
+    <string name="support_debuglog_failed_empty_log">Empty log file</string>
+    <string name="support_debuglog_failed_missing_log">Missing log file</string>
+    <string name="support_debuglog_failed_corrupt_zip">Corrupt ZIP file</string>
+    <string name="support_debuglog_failed_zip_failed">Compression failed</string>
+    <string name="support_debuglog_sent_title">Log sent?</string>
+    <string name="support_debuglog_sent_message">If you sent the debug log, it can be deleted to free up space.</string>
+    <string name="support_contact_sent_title">Message sent?</string>
+    <string name="support_contact_sent_message">If you sent the email, this session can be cleaned up.</string>
+    <string name="general_close_action">Close</string>
+    <string name="debug_debuglog_screen_delete_action">Delete</string>
+
+    <!-- Contact form -->
+    <string name="contact_support_label">Contact Support</string>
+    <string name="contact_category_label">Category</string>
+    <string name="contact_category_question_label">Question</string>
+    <string name="contact_category_feature_label">Feature Request</string>
+    <string name="contact_category_bug_label">Bug Report</string>
+    <string name="contact_description_label">Description</string>
+    <string name="contact_description_hint_question">Describe your question in detail. Please be specific (minimum 20 words).</string>
+    <string name="contact_description_hint_feature">Describe the feature you would like to see. Please be specific (minimum 20 words).</string>
+    <string name="contact_description_hint_bug">Describe what happened and how to reproduce the issue. Please be specific (minimum 20 words).</string>
+    <string name="contact_expected_behavior_label">Expected behavior</string>
+    <string name="contact_expected_behavior_hint">Describe what you expected to happen (minimum 10 words).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d word</item>
+        <item quantity="other">%1$d / %2$d words</item>
+    </plurals>
+    <string name="contact_send_action">Open email app</string>
+    <string name="contact_debuglog_picker_label">Debug log</string>
+    <string name="contact_debuglog_picker_hint">Attach an existing debug log, or record a new one.</string>
+    <string name="contact_debuglog_empty">No debug logs found. Record one first.</string>
+    <string name="contact_debuglog_record_action">Record debug log</string>
+    <string name="contact_debuglog_stop_action">Stop recording</string>
+    <string name="contact_debuglog_delete_title">Delete debug log?</string>
+    <string name="contact_debuglog_delete_message">This debug log will be permanently deleted.</string>
+    <string name="contact_debuglog_zip_error">Failed to compress debug log</string>
+    <string name="contact_no_email_app">No email app found on this device.</string>
+    <string name="contact_welcome_message">I read every message myself and do my best to reply. Since I handle development, bug fixes, and support on my own, it can take a little time. Thanks for your patience.</string>
+    <string name="contact_footer_message">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email. Please write in English if possible.</string>
+
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Keep</string>
+
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Debug Log</string>
+    <string name="debug_debuglog_screen_subtitle">Export debug information for troubleshooting</string>
+    <string name="debug_debuglog_screen_sensitive_title">Sensitive Information</string>
+    <string name="debug_debuglog_screen_session_path_label">Session Path</string>
+    <string name="debug_debuglog_screen_log_files_label">Log Files</string>
+    <string name="debug_debuglog_screen_discard_action">Discard</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d file ready (%2$s)</item>
+        <item quantity="other">%1$d files ready (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
+    <string name="debug_debuglog_screen_duration_s">%1$ds</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Question</string>
+    <string name="contact_email_tag_feature">Feature</string>
+    <string name="contact_email_tag_bug">Bug</string>
+    <string name="contact_email_section_expected_behavior">--- Expected Behavior ---</string>
+    <string name="contact_email_section_device_info">--- Device Info ---</string>
+
     <string name="onboarding_body1">This app helps you navigate installed applications and discover permissions.</string>
     <string name="onboarding_body2">Permission Pilot collects Installed Application information to enable listing your apps and cross-referencing their permissions when using this application.</string>
     <string name="onboarding_body3">Permission Pilot has no ads and only processes data locally.</string>

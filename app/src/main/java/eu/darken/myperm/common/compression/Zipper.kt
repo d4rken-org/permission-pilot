@@ -14,23 +14,19 @@ import java.util.zip.ZipOutputStream
 class Zipper {
 
     @Throws(Exception::class)
-    fun zip(files: Array<String>, zipFile: String) {
+    fun zip(files: List<String>, zipFile: String) {
+        ZipOutputStream(BufferedOutputStream(FileOutputStream(zipFile))).use { out ->
+            for (filePath in files) {
+                log(TAG, VERBOSE) { "Compressing $filePath into $zipFile" }
+                val origin = BufferedInputStream(FileInputStream(filePath), BUFFER)
 
-        var origin: BufferedInputStream?
-        val out = ZipOutputStream(BufferedOutputStream(FileOutputStream(zipFile)))
+                val entry = ZipEntry(filePath.substring(filePath.lastIndexOf("/") + 1))
+                out.putNextEntry(entry)
 
-        for (i in files.indices) {
-            log(TAG, VERBOSE) { "Compressing ${files[i]} into $zipFile" }
-            origin = BufferedInputStream(FileInputStream(files[i]), BUFFER)
-
-            val entry = ZipEntry(files[i].substring(files[i].lastIndexOf("/") + 1))
-            out.putNextEntry(entry)
-
-            origin.use { input -> input.copyTo(out) }
+                origin.use { input -> input.copyTo(out) }
+            }
+            out.finish()
         }
-
-        out.finish()
-        out.close()
     }
 
     companion object {
