@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import androidx.annotation.VisibleForTesting
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -67,7 +68,13 @@ class RecorderModule @Inject constructor(
 
                 internalState.updateBlocking {
                     if (shouldRecord && !isRecording) {
-                        val sessionDir = createSessionDir()
+                        val existingDir = findExistingSessionDir(getLogDirectories())
+                        val sessionDir = existingDir ?: createSessionDir()
+
+                        if (existingDir != null) {
+                            log(TAG, INFO) { "Resuming recording in existing session: ${existingDir.name}" }
+                        }
+
                         val logFile = File(sessionDir, "core.log")
                         val newRecorder = Recorder()
                         newRecorder.start(logFile)
@@ -80,7 +87,11 @@ class RecorderModule @Inject constructor(
 
                         copy(
                             recorder = newRecorder,
-                            recordingStartedAt = System.currentTimeMillis(),
+                            recordingStartedAt = if (existingDir != null) {
+                                existingDir.lastModified()
+                            } else {
+                                System.currentTimeMillis()
+                            },
                             logDir = sessionDir,
                         )
                     } else if (!shouldRecord && isRecording) {
@@ -193,5 +204,18 @@ class RecorderModule @Inject constructor(
         internal val TAG = logTag("Debug", "Log", "Recorder", "Module")
         private const val FORCE_FILE = "myperm_force_debug_run"
         internal const val MIN_RECORDING_MS = 5_000L
+
+        @VisibleForTesting
+        internal fun findExistingSessionDir(logDirectories: List<File>): File? {
+            for (parent in logDirectories) {
+                if (!parent.exists()) continue
+                val dirs = parent.listFiles { f -> f.isDirectory && f.name.startsWith("myperm_") }
+                    ?: continue
+                val mostRecent = dirs.maxByOrNull { it.lastModified() } ?: continue
+                val coreLog = File(mostRecent, "core.log")
+                if (coreLog.exists()) return mostRecent
+            }
+            return null
+        }
     }
 }
