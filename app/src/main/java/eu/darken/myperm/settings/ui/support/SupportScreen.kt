@@ -23,6 +23,7 @@ import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material.icons.twotone.Email
 import androidx.compose.material.icons.twotone.FiberManualRecord
 import androidx.compose.material.icons.twotone.Folder
+import androidx.compose.material.icons.twotone.QuestionAnswer
 import androidx.compose.material.icons.twotone.Stop
 import androidx.compose.material.icons.twotone.Warning
 import androidx.compose.material3.AlertDialog
@@ -190,6 +191,7 @@ fun SupportScreenHost(vm: SupportViewModel = hiltViewModel()) {
             state = currentState,
             onBack = { vm.navUp() },
             onContactSupport = { vm.navigateToContactForm() },
+            onFaq = { vm.openFaq() },
             onIssueTracker = { vm.openIssueTracker() },
             onDiscord = { vm.openDiscord() },
             onDebugLogToggle = { vm.onDebugLogToggle() },
@@ -215,6 +217,7 @@ fun SupportScreen(
     state: SupportViewModel.State,
     onBack: () -> Unit,
     onContactSupport: () -> Unit,
+    onFaq: () -> Unit,
     onIssueTracker: () -> Unit,
     onDiscord: () -> Unit,
     onDebugLogToggle: () -> Unit,
@@ -239,17 +242,17 @@ fun SupportScreen(
                 .fillMaxSize()
                 .padding(innerPadding),
         ) {
-            item {
-                SettingsBaseItem(
-                    title = stringResource(R.string.support_contact_label),
-                    subtitle = stringResource(R.string.support_contact_desc),
-                    icon = Icons.TwoTone.Email,
-                    onClick = onContactSupport,
-                )
-            }
-
             item { SettingsCategoryHeader(text = stringResource(R.string.settings_category_gethelp_label)) }
 
+            item {
+                SettingsBaseItem(
+                    title = stringResource(R.string.faq_label),
+                    subtitle = stringResource(R.string.faq_description),
+                    icon = Icons.TwoTone.QuestionAnswer,
+                    onClick = onFaq,
+                )
+            }
+            item { SettingsDivider() }
             item {
                 SettingsBaseItem(
                     title = stringResource(R.string.issue_tracker_label),
@@ -265,6 +268,15 @@ fun SupportScreen(
                     subtitle = stringResource(R.string.discord_description),
                     icon = Icons.TwoTone.ChatBubble,
                     onClick = onDiscord,
+                )
+            }
+            item { SettingsDivider() }
+            item {
+                SettingsBaseItem(
+                    title = stringResource(R.string.support_contact_label),
+                    subtitle = stringResource(R.string.support_contact_desc),
+                    icon = Icons.TwoTone.Email,
+                    onClick = onContactSupport,
                 )
             }
 
@@ -510,6 +522,7 @@ private fun SupportScreenPreview() = PreviewWrapper {
         state = SupportViewModel.State(),
         onBack = {},
         onContactSupport = {},
+        onFaq = {},
         onIssueTracker = {},
         onDiscord = {},
         onDebugLogToggle = {},
