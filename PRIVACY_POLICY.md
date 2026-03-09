@@ -25,5 +25,4 @@ contained in manually generated [debug logs](#debug-log).
 
 ## Debug log
 
-This is not available in the Google Play variant of Permission Pilot.
-The FOSS build variant of Permission Pilot has debug functionality that can be used to assist troubleshooting efforts. It is manually triggered by the user through an option in the app settings. This feature creates a log file that contains verbose output of what the app is doing. The recorded log file can be shared with compatible apps (e.g. your email app) through the system's share dialog. As this log file may contain sensitive information (e.g. your installed applications) it should only be shared with trusted parties.
+Permission Pilot has debug functionality that can be used to assist troubleshooting efforts. It is manually triggered by the user through an option in the app settings. This feature creates a log file that contains verbose output of what the app is doing. The recorded log file can be shared with compatible apps (e.g. your email app) through the system's share dialog. As this log file may contain sensitive information (e.g. your installed applications) it should only be shared with trusted parties.

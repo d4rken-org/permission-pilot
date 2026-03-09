@@ -69,6 +69,10 @@ class SupportViewModel @Inject constructor(
         webpageTool.open(SupportLinks.DISCORD_URL)
     }
 
+    fun openFaq() {
+        webpageTool.open(SupportLinks.FAQ_URL)
+    }
+
     fun openPrivacyPolicy() {
         webpageTool.open(PrivacyPolicy.URL)
     }

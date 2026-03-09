@@ -21,7 +21,7 @@
     <string name="general_no_action">No</string>
     <string name="upgrade_donate_action">Donate</string>
 
-    <string name="debug_debuglog_record_action">Record debug log</string>
+    <string name="debug_debuglog_record_action">Record</string>
 
     <string name="settings_category_other_label">Other</string>
     <string name="settings_category_gethelp_label">Get help</string>
@@ -43,6 +43,8 @@
     <string name="discord_description">A place to hang out in and ask questions.</string>
     <string name="issue_tracker_label">Issue tracker</string>
     <string name="issue_tracker_description">A public issue tracker for bug reports and feature requests.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">Frequently asked questions and common solutions.</string>
 
     <string name="acks_maxpatchs_desc">Thanks for the lovely icons.</string>
     <string name="acks_crowdin_desc">For supporting translation of open-source projects.</string>

@@ -76,17 +76,17 @@ fun SettingsIndexScreen(
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
 
             SettingsBaseItem(
-                title = stringResource(R.string.changelog_label),
-                subtitle = versionSubtitle,
-                icon = Icons.TwoTone.FormatListNumbered,
-                onClick = onChangelog,
-            )
-            SettingsDivider()
-            SettingsBaseItem(
                 title = stringResource(R.string.settings_support_label),
                 subtitle = "\u00AF\\_(ツ)_/\u00AF",
                 icon = Icons.AutoMirrored.TwoTone.HelpOutline,
                 onClick = onSupport,
+            )
+            SettingsDivider()
+            SettingsBaseItem(
+                title = stringResource(R.string.changelog_label),
+                subtitle = versionSubtitle,
+                icon = Icons.TwoTone.FormatListNumbered,
+                onClick = onChangelog,
             )
             SettingsDivider()
             SettingsBaseItem(
