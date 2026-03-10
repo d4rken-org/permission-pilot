@@ -113,10 +113,9 @@ class SupportViewModel @Inject constructor(
 
     fun forceStopDebugLog() = launch {
         log(TAG) { "forceStopDebugLog()" }
-        val logDir = debugSessionManager.forceStopRecording()
-        if (logDir != null) {
-            val sessionId = DebugSessionManager.deriveSessionId(logDir)
-            events.tryEmit(Event.OpenRecorderActivity(sessionId, logDir.path))
+        val result = debugSessionManager.forceStopRecording()
+        if (result != null) {
+            events.tryEmit(Event.OpenRecorderActivity(result.sessionId, result.logDir.path))
         }
     }
 
