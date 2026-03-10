@@ -1,6 +1,7 @@
 package eu.darken.myperm.common.upgrade.core.data
 
 import android.app.Activity
+import com.android.billingclient.api.Purchase
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.Bugs
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -46,7 +47,7 @@ class BillingDataRepo @Inject constructor(
     val billingData: Flow<BillingData> = connectionProvider
         .flatMapLatest { it.purchases }
         .map { BillingData(purchases = it) }
-        .setupCommonEventHandlers(TAG) { "iapData" }
+        .setupCommonEventHandlers(TAG) { "billingData" }
         .replayingShare(scope)
 
     init {
@@ -56,6 +57,7 @@ class BillingDataRepo @Inject constructor(
             }
             .onEach { (client, purchases) ->
                 purchases
+                    .filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }
                     .filter {
                         val needsAck = !it.isAcknowledged
 
@@ -100,28 +102,37 @@ class BillingDataRepo @Inject constructor(
             .launchIn(scope)
     }
 
-    suspend fun getIapData(): BillingData = try {
+    suspend fun querySkus(vararg skus: Sku): Collection<SkuDetails> = try {
         val clientConnection = connectionProvider.first()
-        val iaps = clientConnection.queryPurchases()
-
-        BillingData(
-            purchases = iaps
-        )
+        clientConnection.querySkus(*skus)
     } catch (e: Exception) {
         throw e.tryMapUserFriendly()
     }
 
-    suspend fun startIapFlow(activity: Activity, sku: Sku) {
+    suspend fun launchBillingFlow(
+        activity: Activity,
+        skuDetails: SkuDetails,
+        offer: Sku.Subscription.Offer? = null,
+    ) {
         try {
             val clientConnection = connectionProvider.first()
-            clientConnection.launchBillingFlow(activity, sku)
+            clientConnection.launchBillingFlow(activity, skuDetails, offer)
         } catch (e: Exception) {
-            log(TAG, WARN) { "Failed to start IAP flow:\n${e.asLog()}" }
+            log(TAG, WARN) { "Failed to launch billing flow:\n${e.asLog()}" }
             val ignoredCodes = listOf(3, 6)
             if (e !is BillingResultException || !e.result.responseCode.let { ignoredCodes.contains(it) }) {
-                Bugs.report(RuntimeException("IAP flow failed for $sku", e))
+                Bugs.report(RuntimeException("Billing flow failed for ${skuDetails.sku}", e))
             }
 
+            throw e.tryMapUserFriendly()
+        }
+    }
+
+    suspend fun refresh() {
+        try {
+            val clientConnection = connectionProvider.first()
+            clientConnection.refreshPurchases()
+        } catch (e: Exception) {
             throw e.tryMapUserFriendly()
         }
     }

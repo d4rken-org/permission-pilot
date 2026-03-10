@@ -1,6 +1,5 @@
 package eu.darken.myperm.main.ui
 
-import android.app.Activity
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -40,7 +39,7 @@ class MainActivityVM @Inject constructor(
     val isOnboardingFinished: Boolean
         get() = generalSettings.isOnboardingFinished.valueBlocking
 
-    val upgradeNag = SingleEventFlow<(Activity) -> Unit>()
+    val upgradeNag = SingleEventFlow<Unit>()
 
     init {
         upgradeRepo.upgradeInfo
@@ -55,9 +54,7 @@ class MainActivityVM @Inject constructor(
                 log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
                 if (skipNag) return@onEach
 
-                upgradeNag.emit { activity ->
-                    upgradeRepo.launchBillingFlow(activity)
-                }
+                upgradeNag.emit(Unit)
             }
             .launchInViewModel()
     }

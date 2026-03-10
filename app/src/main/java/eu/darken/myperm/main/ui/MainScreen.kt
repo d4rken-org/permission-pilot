@@ -1,6 +1,5 @@
 package eu.darken.myperm.main.ui
 
-import android.app.Activity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -14,7 +13,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -36,16 +34,9 @@ fun MainScreen(
     backStack: NavBackStack<NavKey>,
     navCtrl: NavigationController,
     navigationEntries: Set<NavigationEntry>,
-    onUpgradeNag: ((Activity) -> Unit)?,
 ) {
     val context = LocalContext.current
-    val activity = context as? Activity
-
-    onUpgradeNag?.let { nag ->
-        LaunchedEffect(nag) {
-            activity?.let { nag(it) }
-        }
-    }
+    val activity = context as? android.app.Activity
 
     val currentEntry = backStack.lastOrNull()
     val isTabScreen = currentEntry is Nav.Tab

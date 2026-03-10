@@ -1,27 +1,25 @@
 package eu.darken.myperm.common.upgrade.core
 
 import android.app.Activity
-import android.widget.Toast
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import eu.darken.myperm.R
 import eu.darken.myperm.common.coroutine.AppScope
-import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
-import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
-import eu.darken.myperm.common.error.asErrorDialogBuilder
-import eu.darken.myperm.common.flow.replayingShare
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.core.client.BillingException
 import eu.darken.myperm.common.upgrade.core.data.BillingData
 import eu.darken.myperm.common.upgrade.core.data.BillingDataRepo
 import eu.darken.myperm.common.upgrade.core.data.PurchasedSku
+import eu.darken.myperm.common.upgrade.core.data.Sku
+import eu.darken.myperm.common.upgrade.core.data.SkuDetails
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.retryWhen
+import kotlinx.coroutines.flow.stateIn
+import java.io.IOException
 import java.time.Instant
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -29,88 +27,64 @@ import javax.inject.Singleton
 @Singleton
 class UpgradeRepoGplay @Inject constructor(
     @AppScope private val scope: CoroutineScope,
-    private val dispatcherProvider: DispatcherProvider,
     private val billingDataRepo: BillingDataRepo,
     private val billingCache: BillingCache,
 ) : UpgradeRepo {
 
     private var lastProStateAt: Long
         get() = billingCache.lastProStateAt.valueBlocking
-        set(value) { billingCache.lastProStateAt.valueBlocking = value }
+        set(value) {
+            billingCache.lastProStateAt.valueBlocking = value
+        }
 
-    override val upgradeInfo: Flow<UpgradeRepo.Info> = billingDataRepo.billingData
-        .map { data -> // Only relinquish pro state if we haven't had it for a while
+    override val upgradeInfo: StateFlow<UpgradeRepo.Info> = billingDataRepo.billingData
+        .map { data ->
             val now = System.currentTimeMillis()
             val proSku = data.getProSku()
             log(TAG) { "now=$now, lastProStateAt=$lastProStateAt, data=${data}" }
             when {
                 proSku != null -> {
-                    // If we are pro refresh timestamp
                     lastProStateAt = now
                     Info(billingData = data)
                 }
-                (now - lastProStateAt) < 6 * 60 * 60 * 1000L -> { // 6 hours
+
+                (now - lastProStateAt) < GRACE_PERIOD_NORMAL_MS -> {
                     log(TAG, VERBOSE) { "We are not pro, but were recently, did GPlay try annoy us again?" }
                     Info(gracePeriod = true, billingData = null)
                 }
+
                 else -> {
                     Info(billingData = data)
                 }
             }
         }
-        .catch {
-            // Ignore Google Play errors if the last pro state was recent
+        .retryWhen { cause, _ ->
+            if (cause !is BillingException && cause !is IOException) return@retryWhen false
             val now = System.currentTimeMillis()
-            log(TAG) { "now=$now, lastProStateAt=$lastProStateAt, error=$it" }
-            if ((now - lastProStateAt) < 24 * 60 * 60 * 1000L) { // 24 hours
-                log(TAG, VERBOSE) { "We are not pro, but were recently, and just and an error, what is GPlay doing???" }
+            log(TAG) { "now=$now, lastProStateAt=$lastProStateAt, error=$cause" }
+            if ((now - lastProStateAt) < GRACE_PERIOD_ERROR_MS) {
+                log(TAG, VERBOSE) { "Grace period active after billing error, retrying..." }
                 emit(Info(gracePeriod = true, billingData = null))
-            } else {
-                throw it
             }
+            delay(RETRY_DELAY_MS)
+            true
         }
-        .replayingShare(scope)
+        .stateIn(scope, SharingStarted.Eagerly, cachedInfo())
 
-    override fun launchBillingFlow(activity: Activity) {
-        MaterialAlertDialogBuilder(activity).apply {
-            setTitle(R.string.upgrade_myperm_label)
-            setMessage(R.string.upgrade_myperm_description)
-            setPositiveButton(R.string.upgrade_buy_pro_action) { _, _ ->
-                scope.launch {
-                    try {
-                        billingDataRepo.startIapFlow(activity, MyPermSku.PRO_UPGRADE.sku)
-                    } catch (e: Exception) {
-                        log(TAG) { "startIapFlow failed:${e.asLog()}" }
-                        withContext(dispatcherProvider.Main) {
-                            e.asErrorDialogBuilder(activity).show()
-                        }
-                    }
-                }
-            }
-            setNeutralButton(R.string.general_check_action) { dialog, _ ->
-                log(TAG) { "recheck()" }
-                scope.launch {
-                    try {
-                        val data = billingDataRepo.getIapData()
-                        log(TAG) { "Recheck successful: $data" }
-                        withContext(dispatcherProvider.Main) {
-                            if (data.purchases.isEmpty()) {
-                                Toast.makeText(
-                                    activity,
-                                    R.string.upgrades_no_purchases_found_check_account,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                    } catch (e: Exception) {
-                        log(TAG) { "Recheck failed:${e.asLog()}" }
-                        withContext(dispatcherProvider.Main) {
-                            e.asErrorDialogBuilder(activity).show()
-                        }
-                    }
-                }
-            }
-        }.show()
+    suspend fun querySkus(): Collection<SkuDetails> {
+        return billingDataRepo.querySkus(*MyPermSku.PRO_SKUS.toTypedArray())
+    }
+
+    suspend fun launchBillingFlow(
+        activity: Activity,
+        skuDetails: SkuDetails,
+        offer: Sku.Subscription.Offer? = null,
+    ) {
+        billingDataRepo.launchBillingFlow(activity, skuDetails, offer)
+    }
+
+    override suspend fun refresh() {
+        billingDataRepo.refresh()
     }
 
     data class Info(
@@ -131,9 +105,20 @@ class UpgradeRepoGplay @Inject constructor(
                 ?.let { Instant.ofEpochMilli(it) }
     }
 
+    private fun cachedInfo(): Info {
+        val now = System.currentTimeMillis()
+        val inGracePeriod = lastProStateAt > 0 && (now - lastProStateAt) < GRACE_PERIOD_ERROR_MS
+        log(TAG) { "cachedInfo(): now=$now, lastProStateAt=$lastProStateAt, inGracePeriod=$inGracePeriod" }
+        return Info(gracePeriod = inGracePeriod, billingData = null)
+    }
+
     companion object {
+        private const val GRACE_PERIOD_NORMAL_MS = 6 * 60 * 60 * 1000L   // 6h - GPlay transient unavailability
+        private const val GRACE_PERIOD_ERROR_MS = 24 * 60 * 60 * 1000L    // 24h - billing errors / cold start
+        private const val RETRY_DELAY_MS = 60_000L                         // 1min before re-subscribing
+
         private fun BillingData.getProSku(): PurchasedSku? = purchasedSkus
-            .firstOrNull { it.sku == MyPermSku.PRO_UPGRADE.sku }
+            .firstOrNull { it.sku in MyPermSku.PRO_SKUS }
 
         val TAG: String = logTag("Upgrade", "Gplay", "Control")
     }

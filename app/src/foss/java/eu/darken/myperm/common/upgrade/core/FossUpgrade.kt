@@ -14,6 +14,7 @@ data class FossUpgrade(
     enum class Reason {
         @SerialName("foss.upgrade.reason.donated") DONATED,
         @SerialName("foss.upgrade.reason.alreadydonated") ALREADY_DONATED,
-        @SerialName("foss.upgrade.reason.nomoney") NO_MONEY;
+        @SerialName("foss.upgrade.reason.nomoney") NO_MONEY,
+        @SerialName("foss.upgrade.reason.github_sponsors") GITHUB_SPONSORS;
     }
 }

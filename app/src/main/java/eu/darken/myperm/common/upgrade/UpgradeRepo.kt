@@ -1,13 +1,12 @@
 package eu.darken.myperm.common.upgrade
 
-import android.app.Activity
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import java.time.Instant
 
 interface UpgradeRepo {
-    val upgradeInfo: Flow<Info>
+    val upgradeInfo: StateFlow<Info>
 
-    fun launchBillingFlow(activity: Activity)
+    suspend fun refresh()
 
     interface Info {
         val type: Type

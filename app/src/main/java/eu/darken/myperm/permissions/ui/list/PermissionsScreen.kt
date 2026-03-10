@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.automirrored.filled.Sort
+import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material.icons.filled.UnfoldLess
 import androidx.compose.material.icons.filled.UnfoldMore
 import androidx.compose.material3.AlertDialog
@@ -91,6 +92,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val isPro by vm.isPro.collectAsState()
 
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showSortDialog by rememberSaveable { mutableStateOf(false) }
@@ -98,6 +100,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     state?.let {
         PermissionsScreen(
             state = it,
+            isPro = isPro,
             onSearchChanged = { vm.onSearchInputChanged(it) },
             onGroupClicked = { vm.toggleGroup(it) },
             onPermClicked = { vm.onPermissionClicked(it) },
@@ -107,6 +110,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
             onSettings = { vm.goToSettings() },
             onFilterClicked = { showFilterDialog = true },
             onSortClicked = { showSortDialog = true },
+            onUpgrade = { vm.onUpgrade() },
         )
     }
 
@@ -143,6 +147,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
 @Composable
 fun PermissionsScreen(
     state: PermissionsViewModel.State,
+    isPro: Boolean = true,
     onSearchChanged: (String?) -> Unit,
     onGroupClicked: (PermissionGroup.Id) -> Unit,
     onPermClicked: (PermissionsViewModel.PermItem) -> Unit,
@@ -152,6 +157,7 @@ fun PermissionsScreen(
     onSettings: () -> Unit,
     onFilterClicked: () -> Unit,
     onSortClicked: () -> Unit,
+    onUpgrade: () -> Unit = {},
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
@@ -178,6 +184,11 @@ fun PermissionsScreen(
                     }
                 },
                 actions = {
+                    if (!isPro) {
+                        IconButton(onClick = onUpgrade) {
+                            Icon(Icons.TwoTone.Stars, contentDescription = stringResource(R.string.upgrade_required_subtitle))
+                        }
+                    }
                     IconButton(onClick = {
                         isSearchActive = !isSearchActive
                         if (!isSearchActive) {
@@ -593,6 +604,7 @@ private fun PermissionsScreenReadyPreview() = PreviewWrapper {
         onSettings = {},
         onFilterClicked = {},
         onSortClicked = {},
+        onUpgrade = {},
     )
 }
 
@@ -610,6 +622,7 @@ private fun PermissionsScreenEmptyPreview() = PreviewWrapper {
         onSettings = {},
         onFilterClicked = {},
         onSortClicked = {},
+        onUpgrade = {},
     )
 }
 
@@ -627,6 +640,7 @@ private fun PermissionsScreenLoadingPreview() = PreviewWrapper {
         onSettings = {},
         onFilterClicked = {},
         onSortClicked = {},
+        onUpgrade = {},
     )
 }
 
@@ -644,6 +658,7 @@ private fun PermissionsScreenActiveFilterPreview() = PreviewWrapper {
         onSettings = {},
         onFilterClicked = {},
         onSortClicked = {},
+        onUpgrade = {},
     )
 }
 

@@ -20,9 +20,14 @@ import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.getGroupIds
 import eu.darken.myperm.permissions.core.known.APermGrp
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -34,7 +39,12 @@ class PermissionsViewModel @Inject constructor(
     permissionRepo: PermissionRepo,
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
+    upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
+
+    val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
+        .map { it.isPro }
+        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
 
     private val searchTerm = MutableStateFlow<String?>(null)
     private val filterOptions = generalSettings.permissionsFilterOptions.flow
@@ -193,6 +203,10 @@ class PermissionsViewModel @Inject constructor(
 
     fun goToSettings() {
         navTo(Nav.Settings.Index)
+    }
+
+    fun onUpgrade() {
+        navTo(Nav.Main.Upgrade)
     }
 
     companion object {
