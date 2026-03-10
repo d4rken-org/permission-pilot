@@ -22,8 +22,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import eu.darken.myperm.common.compose.toIcon
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -35,7 +40,12 @@ class AppsViewModel @Inject constructor(
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val permissionRepo: PermissionRepo,
+    upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
+
+    val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
+        .map { it.isPro }
+        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
 
     private val searchTerm = MutableStateFlow<String?>(null)
     private val filterOptions = generalSettings.appsFilterOptions.flow
@@ -145,6 +155,10 @@ class AppsViewModel @Inject constructor(
 
     fun goToSettings() {
         navTo(Nav.Settings.Index)
+    }
+
+    fun onUpgrade() {
+        navTo(Nav.Main.Upgrade)
     }
 
     companion object {

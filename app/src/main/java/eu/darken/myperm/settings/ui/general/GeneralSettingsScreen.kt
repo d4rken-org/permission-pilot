@@ -1,6 +1,5 @@
 package eu.darken.myperm.settings.ui.general
 
-import android.app.Activity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -28,7 +27,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -37,7 +35,9 @@ import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
+import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.LocalNavigationController
+import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.common.settings.SettingsBaseItem
 import eu.darken.myperm.common.settings.SettingsCategoryHeader
 import eu.darken.myperm.common.settings.SettingsDivider
@@ -52,12 +52,14 @@ fun GeneralSettingsScreenHost() {
     val navCtrl = LocalNavigationController.current
     val vm: GeneralSettingsViewModel = hiltViewModel()
 
+    ErrorEventHandler(vm)
+    NavigationEventHandler(vm)
+
     val themeMode by vm.themeMode.collectAsState(initial = ThemeMode.SYSTEM)
     val themeStyle by vm.themeStyle.collectAsState(initial = ThemeStyle.DEFAULT)
     val themeColor by vm.themeColor.collectAsState(initial = ThemeColor.BLUE)
     val isDynamicColorActive = LocalIsDynamicColorActive.current
     val isPro by vm.isPro.collectAsState()
-    val activity = LocalContext.current as? Activity
 
     GeneralSettingsScreen(
         onBack = { navCtrl?.up() },
@@ -69,7 +71,7 @@ fun GeneralSettingsScreenHost() {
         onThemeModeSelected = { vm.setThemeMode(it) },
         onThemeStyleSelected = { vm.setThemeStyle(it) },
         onThemeColorSelected = { vm.setThemeColor(it) },
-        onUpgrade = { activity?.let { vm.onUpgrade(it) } },
+        onUpgrade = { vm.onUpgrade() },
     )
 }
 

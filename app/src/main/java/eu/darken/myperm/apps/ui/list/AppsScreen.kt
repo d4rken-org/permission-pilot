@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -62,18 +63,21 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val isPro by vm.isPro.collectAsState()
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showSortDialog by rememberSaveable { mutableStateOf(false) }
 
     state?.let {
         AppsScreen(
             state = it,
+            isPro = isPro,
             onSearchChanged = { vm.onSearchInputChanged(it) },
             onAppClicked = { vm.onAppClicked(it) },
             onFilter = { showFilterDialog = true },
             onSort = { showSortDialog = true },
             onRefresh = { vm.onRefresh() },
             onSettings = { vm.goToSettings() },
+            onUpgrade = { vm.onUpgrade() },
         )
     }
 
@@ -110,12 +114,14 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 @Composable
 fun AppsScreen(
     state: AppsViewModel.State,
+    isPro: Boolean = true,
     onSearchChanged: (String?) -> Unit,
     onAppClicked: (AppsViewModel.AppItem) -> Unit,
     onFilter: () -> Unit,
     onSort: () -> Unit,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
+    onUpgrade: () -> Unit = {},
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
@@ -141,11 +147,10 @@ fun AppsScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = onFilter) {
-                        Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.general_filter_action))
-                    }
-                    IconButton(onClick = onSort) {
-                        Icon(Icons.Filled.Sort, contentDescription = stringResource(R.string.general_sort_action))
+                    if (!isPro) {
+                        IconButton(onClick = onUpgrade) {
+                            Icon(Icons.TwoTone.Stars, contentDescription = stringResource(R.string.upgrade_required_subtitle))
+                        }
                     }
                     IconButton(onClick = { isSearchActive = !isSearchActive }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
@@ -158,6 +163,16 @@ fun AppsScreen(
                             expanded = showOverflowMenu,
                             onDismissRequest = { showOverflowMenu = false },
                         ) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.general_filter_action)) },
+                                onClick = { showOverflowMenu = false; onFilter() },
+                                leadingIcon = { Icon(Icons.Filled.FilterList, contentDescription = null) },
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.general_sort_action)) },
+                                onClick = { showOverflowMenu = false; onSort() },
+                                leadingIcon = { Icon(Icons.Filled.Sort, contentDescription = null) },
+                            )
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.general_refresh_action)) },
                                 onClick = { showOverflowMenu = false; onRefresh() },
@@ -305,6 +320,7 @@ private fun AppsScreenReadyPreview() = PreviewWrapper {
         onSort = {},
         onRefresh = {},
         onSettings = {},
+        onUpgrade = {},
     )
 }
 
@@ -319,6 +335,7 @@ private fun AppsScreenEmptyPreview() = PreviewWrapper {
         onSort = {},
         onRefresh = {},
         onSettings = {},
+        onUpgrade = {},
     )
 }
 
@@ -333,5 +350,6 @@ private fun AppsScreenLoadingPreview() = PreviewWrapper {
         onSort = {},
         onRefresh = {},
         onSettings = {},
+        onUpgrade = {},
     )
 }

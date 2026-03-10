@@ -1,24 +1,23 @@
 package eu.darken.myperm.common.upgrade.core
 
-import android.app.Activity
-import android.widget.Toast
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import eu.darken.myperm.R
-import eu.darken.myperm.common.WebpageTool
+import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.upgrade.UpgradeRepo
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import java.time.Instant
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class UpgradeControlFoss @Inject constructor(
+    @AppScope private val scope: CoroutineScope,
     private val fossCache: FossCache,
-    private val webpageTool: WebpageTool,
 ) : UpgradeRepo {
 
-    override val upgradeInfo: Flow<UpgradeRepo.Info> = fossCache.upgrade.flow.map { data ->
+    override val upgradeInfo: StateFlow<UpgradeRepo.Info> = fossCache.upgrade.flow.map { data ->
         if (data == null) {
             Info()
         } else {
@@ -28,35 +27,22 @@ class UpgradeControlFoss @Inject constructor(
                 upgradeReason = data.reason
             )
         }
+    }.stateIn(scope, SharingStarted.Eagerly, cachedInfo())
+
+    private fun cachedInfo(): Info {
+        val data = fossCache.upgrade.valueBlocking
+        return if (data != null) Info(isPro = true, upgradedAt = data.upgradedAt, upgradeReason = data.reason) else Info()
     }
 
-    override fun launchBillingFlow(activity: Activity) {
-        MaterialAlertDialogBuilder(activity).apply {
-            setTitle(R.string.upgrade_myperm_label)
-            setMessage(R.string.upgrade_myperm_description)
-            setPositiveButton(R.string.foss_upgrade_donate_label) { _, _ ->
-                fossCache.upgrade.valueBlocking = FossUpgrade(
-                    upgradedAt = Instant.now(),
-                    reason = FossUpgrade.Reason.DONATED
-                )
-                webpageTool.open("https://github.com/d4rken-org/permission-pilot")
-                Toast.makeText(activity, R.string.general_thank_you_label, Toast.LENGTH_SHORT).show()
-            }
-            setNegativeButton(R.string.foss_upgrade_alreadydonated_label) { _, _ ->
-                fossCache.upgrade.valueBlocking = FossUpgrade(
-                    upgradedAt = Instant.now(),
-                    reason = FossUpgrade.Reason.ALREADY_DONATED
-                )
-                Toast.makeText(activity, R.string.general_thank_you_label, Toast.LENGTH_SHORT).show()
-            }
-            setNeutralButton(R.string.foss_upgrade_no_money_label) { _, _ ->
-                fossCache.upgrade.valueBlocking = FossUpgrade(
-                    upgradedAt = Instant.now(),
-                    reason = FossUpgrade.Reason.NO_MONEY
-                )
-                Toast.makeText(activity, "¯\\_(ツ)_/¯", Toast.LENGTH_SHORT).show()
-            }
-        }.show()
+    fun upgrade(reason: FossUpgrade.Reason) {
+        fossCache.upgrade.valueBlocking = FossUpgrade(
+            upgradedAt = Instant.now(),
+            reason = reason,
+        )
+    }
+
+    override suspend fun refresh() {
+        // No-op for FOSS - upgrade state is local
     }
 
     data class Info(
@@ -66,5 +52,4 @@ class UpgradeControlFoss @Inject constructor(
     ) : UpgradeRepo.Info {
         override val type: UpgradeRepo.Type = UpgradeRepo.Type.FOSS
     }
-
 }

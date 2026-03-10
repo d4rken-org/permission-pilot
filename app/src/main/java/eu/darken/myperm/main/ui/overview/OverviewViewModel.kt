@@ -16,7 +16,6 @@ import eu.darken.myperm.common.BuildWrap
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
-import eu.darken.myperm.common.navigation.NavEvent
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -122,8 +121,8 @@ class OverviewViewModel @Inject constructor(
         // Trigger repo refresh via AppRepo
     }
 
-    fun onUpgrade() = launch {
-        navEvents.emit(NavEvent.Finish) // Handled in host
+    fun onUpgrade() {
+        navTo(Nav.Main.Upgrade)
     }
 
     fun goToSettings() {

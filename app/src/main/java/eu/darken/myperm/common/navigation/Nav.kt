@@ -6,6 +6,9 @@ object Nav {
     sealed interface Main : NavigationDestination {
         @Serializable
         data object Onboarding : Main
+
+        @Serializable
+        data object Upgrade : Main
     }
 
     sealed interface Tab : NavigationDestination {

@@ -11,13 +11,17 @@ import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
 import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.setupCommonEventHandlers
 import eu.darken.myperm.common.upgrade.core.data.Sku
+import eu.darken.myperm.common.upgrade.core.data.SkuDetails
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.supervisorScope
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -25,37 +29,74 @@ data class BillingClientConnection(
     private val client: BillingClient,
     private val purchasesGlobal: Flow<Collection<Purchase>>,
 ) {
-    private val purchasesLocal = MutableStateFlow<Collection<Purchase>>(emptySet())
-    val purchases: Flow<Collection<Purchase>> = combine(purchasesGlobal, purchasesLocal) { global, local ->
+    private val queryCacheIaps = MutableStateFlow<Collection<Purchase>>(emptySet())
+    private val queryCacheSubs = MutableStateFlow<Collection<Purchase>>(emptySet())
+
+    val purchases: Flow<Collection<Purchase>> = combine(
+        purchasesGlobal, queryCacheIaps, queryCacheSubs
+    ) { global, iaps, subs ->
         val combined = mutableMapOf<String, Purchase>()
-        global.plus(local).toSet().sortedByDescending { it.purchaseTime }.forEach { purchase ->
-            combined[purchase.orderId!!] = purchase
+        (global + iaps + subs).forEach { purchase ->
+            val existing = combined[purchase.purchaseToken]
+            if (existing == null) {
+                combined[purchase.purchaseToken] = purchase
+            } else {
+                val existingPurchased = existing.purchaseState == Purchase.PurchaseState.PURCHASED
+                val newPurchased = purchase.purchaseState == Purchase.PurchaseState.PURCHASED
+                when {
+                    newPurchased && !existingPurchased -> combined[purchase.purchaseToken] = purchase
+                    newPurchased == existingPurchased && purchase.purchaseTime > existing.purchaseTime ->
+                        combined[purchase.purchaseToken] = purchase
+                }
+            }
         }
         combined.values
     }
         .setupCommonEventHandlers(TAG) { "purchases" }
 
-    suspend fun queryPurchases(): Collection<Purchase> {
-        val (result: BillingResult, purchases) = suspendCoroutine<Pair<BillingResult, Collection<Purchase>?>> { continuation ->
+    suspend fun refreshPurchases(): Collection<Purchase> = supervisorScope {
+        val iapDeferred = async {
+            runCatching { queryPurchasesByType(BillingClient.ProductType.INAPP) }
+        }
+        val subDeferred = async {
+            runCatching { queryPurchasesByType(BillingClient.ProductType.SUBS) }
+        }
+
+        val iapResult = iapDeferred.await()
+        val subResult = subDeferred.await()
+
+        iapResult.onFailure { log(TAG, WARN) { "IAP purchase query failed: ${it.asLog()}" } }
+        subResult.onFailure { log(TAG, WARN) { "Sub purchase query failed: ${it.asLog()}" } }
+
+        val iaps = iapResult.getOrDefault(emptyList())
+        val subs = subResult.getOrDefault(emptyList())
+
+        queryCacheIaps.value = iaps
+        queryCacheSubs.value = subs
+
+        iaps + subs
+    }
+
+    private suspend fun queryPurchasesByType(productType: String): Collection<Purchase> {
+        val (result, purchases) = suspendCoroutine<Pair<BillingResult, Collection<Purchase>?>> { continuation ->
             val params = QueryPurchasesParams.newBuilder().apply {
-                setProductType(BillingClient.ProductType.INAPP)
+                setProductType(productType)
             }.build()
-            client.queryPurchasesAsync(params) { result, purchases ->
-                continuation.resume(result to purchases)
+            client.queryPurchasesAsync(params) { billingResult, purchaseList ->
+                continuation.resume(billingResult to purchaseList)
             }
         }
 
-        log(TAG) { "queryPurchases(): code=${result.responseCode}, message=${result.debugMessage}, purchases=$purchases" }
-
-        if (!result.isSuccess) {
-            log(TAG, WARN) { "queryPurchases() failed" }
-            throw BillingResultException(result)
-        } else {
-            requireNotNull(purchases)
+        log(TAG) {
+            "queryPurchasesByType($productType): code=${result.responseCode}, message=${result.debugMessage}, purchases=$purchases"
         }
 
-        purchasesLocal.value = purchases
-        return purchases
+        if (!result.isSuccess) {
+            log(TAG, WARN) { "queryPurchasesByType($productType) failed" }
+            throw BillingResultException(result)
+        }
+
+        return purchases ?: emptyList()
     }
 
     suspend fun acknowledgePurchase(purchase: Purchase) {
@@ -72,52 +113,67 @@ data class BillingClientConnection(
         if (!result.isSuccess) throw BillingResultException(result)
     }
 
-    suspend fun querySku(sku: Sku): Sku.Details {
-        val productList = listOf(
-            QueryProductDetailsParams.Product.newBuilder().apply {
-                setProductId(sku.id)
-                setProductType(BillingClient.ProductType.INAPP)
+    suspend fun querySkus(vararg skus: Sku): Collection<SkuDetails> {
+        return skus.groupBy { it.type }.flatMap { (type, skuGroup) ->
+            val productType = when (type) {
+                Sku.Type.IAP -> BillingClient.ProductType.INAPP
+                Sku.Type.SUBSCRIPTION -> BillingClient.ProductType.SUBS
+            }
+            val productList = skuGroup.map { sku ->
+                QueryProductDetailsParams.Product.newBuilder().apply {
+                    setProductId(sku.id)
+                    setProductType(productType)
+                }.build()
+            }
+            val params = QueryProductDetailsParams.newBuilder().apply {
+                setProductList(productList)
             }.build()
-        )
-        val params = QueryProductDetailsParams.newBuilder().apply {
-            setProductList(productList)
+
+            val (result, details) = suspendCoroutine<Pair<BillingResult, Collection<ProductDetails>?>> { continuation ->
+                client.queryProductDetailsAsync(params) { billingResult, productDetailsList ->
+                    continuation.resume(billingResult to productDetailsList.productDetailsList)
+                }
+            }
+
+            log(TAG) {
+                "querySkus(${skuGroup.map { it.id }}): code=${result.responseCode}, debug=${result.debugMessage}, details=$details"
+            }
+
+            if (!result.isSuccess) throw BillingResultException(result)
+
+            details?.map { pd ->
+                val sku = skuGroup.first { it.id == pd.productId }
+                SkuDetails(sku, pd)
+            } ?: emptyList()
+        }
+    }
+
+    suspend fun launchBillingFlow(
+        activity: Activity,
+        skuDetails: SkuDetails,
+        offer: Sku.Subscription.Offer? = null,
+    ): BillingResult {
+        log(TAG) { "launchBillingFlow(activity=$activity, skuDetails=$skuDetails, offer=$offer)" }
+
+        val productDetailsParams = BillingFlowParams.ProductDetailsParams.newBuilder().apply {
+            setProductDetails(skuDetails.details)
+            if (offer != null && skuDetails.sku is Sku.Subscription) {
+                val offerDetails = skuDetails.details.subscriptionOfferDetails
+                    ?.firstOrNull { offer.matches(it) }
+                if (offerDetails != null) {
+                    setOfferToken(offerDetails.offerToken)
+                } else {
+                    log(TAG, WARN) { "Offer $offer not found, falling back to default offer" }
+                    val fallback = skuDetails.details.subscriptionOfferDetails?.firstOrNull()
+                    if (fallback != null) setOfferToken(fallback.offerToken)
+                }
+            }
         }.build()
 
-        val (result, details) = suspendCoroutine<Pair<BillingResult, Collection<ProductDetails>?>> { continuation ->
-            client.queryProductDetailsAsync(params) { result, productDetailsList ->
-                continuation.resume(result to productDetailsList.productDetailsList)
-            }
-        }
-
-        log(TAG) {
-            "querySku(sku=$sku): code=${result.responseCode}, debug=${result.debugMessage}), productDetails=$details"
-        }
-
-        if (!result.isSuccess) throw BillingResultException(result)
-
-        if (details.isNullOrEmpty()) throw IllegalStateException("Unknown SKU, no details available.")
-
-        return Sku.Details(sku, details)
-    }
-
-    suspend fun launchBillingFlow(activity: Activity, sku: Sku): BillingResult {
-        log(TAG) { "launchBillingFlow(activity=$activity, sku=$sku)" }
-        val skuDetails = querySku(sku)
-        return launchBillingFlow(activity, skuDetails)
-    }
-
-    suspend fun launchBillingFlow(activity: Activity, skuDetails: Sku.Details): BillingResult {
-        log(TAG) { "launchBillingFlow(activity=$activity, skuDetails=$skuDetails)" }
-        val productDetails = skuDetails.details.single()
-        val productDetailsParamsList = listOf(
-            BillingFlowParams.ProductDetailsParams.newBuilder().apply {
-                setProductDetails(productDetails)
-            }.build()
-        )
         return client.launchBillingFlow(
             activity,
             BillingFlowParams.newBuilder()
-                .setProductDetailsParamsList(productDetailsParamsList)
+                .setProductDetailsParamsList(listOf(productDetailsParams))
                 .build()
         )
     }

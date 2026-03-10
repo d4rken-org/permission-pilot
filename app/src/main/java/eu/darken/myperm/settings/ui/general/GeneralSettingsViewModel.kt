@@ -1,9 +1,9 @@
 package eu.darken.myperm.settings.ui.general
 
-import android.app.Activity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.theming.ThemeColor
 import eu.darken.myperm.common.theming.ThemeMode
 import eu.darken.myperm.common.theming.ThemeStyle
@@ -29,7 +29,7 @@ class GeneralSettingsViewModel @Inject constructor(
     val themeColor: Flow<ThemeColor> = generalSettings.themeColor.flow
     val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
         .map { it.isPro }
-        .stateIn(vmScope, SharingStarted.Eagerly, true)
+        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
 
     fun setThemeMode(mode: ThemeMode) = launch {
         generalSettings.themeMode.value(mode)
@@ -43,8 +43,8 @@ class GeneralSettingsViewModel @Inject constructor(
         generalSettings.themeColor.value(color)
     }
 
-    fun onUpgrade(activity: Activity) {
-        upgradeRepo.launchBillingFlow(activity)
+    fun onUpgrade() {
+        navTo(Nav.Main.Upgrade)
     }
 
     companion object {

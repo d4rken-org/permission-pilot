@@ -1,6 +1,5 @@
 package eu.darken.myperm.main.ui
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -61,8 +60,6 @@ class MainActivity : Activity2() {
                 if (readyState) showSplashScreen = false
             }
 
-            val upgradeNag by vm.upgradeNag.collectAsState(initial = null)
-
             val backStack = rememberNavBackStack(startDestination)
             navCtrl.setup(backStack)
 
@@ -79,11 +76,16 @@ class MainActivity : Activity2() {
                 }
 
                 CompositionLocalProvider(LocalNavigationController provides navCtrl) {
+                    LaunchedEffect(Unit) {
+                        vm.upgradeNag.collect {
+                            navCtrl.goTo(Nav.Main.Upgrade)
+                        }
+                    }
+
                     MainScreen(
                         backStack = backStack,
                         navCtrl = navCtrl,
                         navigationEntries = navigationEntries,
-                        onUpgradeNag = upgradeNag,
                     )
                 }
             }
