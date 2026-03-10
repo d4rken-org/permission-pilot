@@ -3,24 +3,22 @@ package eu.darken.myperm.common.datastore
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.squareup.moshi.Moshi
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.log
+import kotlinx.serialization.json.Json
 
-inline fun <reified T> moshiReader(
-    moshi: Moshi,
+inline fun <reified T> kotlinxReader(
+    json: Json,
     defaultValue: T,
     fallbackToDefault: Boolean = false,
 ): (Any?) -> T {
-    val adapter = moshi.adapter(T::class.java)
     return { rawValue ->
-        rawValue as String?
-        rawValue
+        (rawValue as? String)
             ?.let {
                 try {
-                    adapter.fromJson(it)
+                    json.decodeFromString<T>(it)
                 } catch (e: Exception) {
-                    log("Moshi", ERROR) { "Failed to decode rawValue=$rawValue, returning default=$defaultValue" }
+                    log("Kotlinx", ERROR) { "Failed to decode rawValue=$rawValue, returning default=$defaultValue" }
                     if (fallbackToDefault) null else throw e
                 }
             }
@@ -28,23 +26,22 @@ inline fun <reified T> moshiReader(
     }
 }
 
-inline fun <reified T> moshiWriter(
-    moshi: Moshi,
+inline fun <reified T> kotlinxWriter(
+    json: Json,
 ): (T) -> Any? {
-    val adapter = moshi.adapter(T::class.java)
     return { newValue: T ->
-        newValue?.let { adapter.toJson(it) }
+        newValue?.let { json.encodeToString<T>(it) }
     }
 }
 
 inline fun <reified T : Any?> DataStore<Preferences>.createValue(
     keyName: String,
     defaultValue: T = null as T,
-    moshi: Moshi,
+    json: Json,
     fallbackToDefault: Boolean = true,
 ): DataStoreValue<T> = DataStoreValue(
     dataStore = this,
     key = stringPreferencesKey(keyName),
-    reader = moshiReader(moshi, defaultValue, fallbackToDefault),
-    writer = moshiWriter(moshi),
+    reader = kotlinxReader(json, defaultValue, fallbackToDefault),
+    writer = kotlinxWriter(json),
 )

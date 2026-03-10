@@ -2,8 +2,6 @@ package eu.darken.myperm.permissions.ui.list
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.features.InstallTimeGrant
@@ -11,18 +9,20 @@ import eu.darken.myperm.permissions.core.features.ManifestDoc
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Parcelize
-@JsonClass(generateAdapter = true)
+@Serializable
 data class PermsFilterOptions(
-    @Json(name = "filters") val keys: Set<Filter> = setOf(
+    @SerialName("filters") val keys: Set<Filter> = setOf(
         Filter.MANIFEST,
         Filter.SYSTEM,
         Filter.NOT_INSTALLTIME,
     )
 ) : Parcelable {
 
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Filter(
         @StringRes val labelRes: Int,
         val matches: (BasePermission) -> Boolean

@@ -6,14 +6,13 @@ import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.squareup.moshi.Moshi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.ui.details.AppDetailsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.apps.ui.list.AppsSortOptions
 import eu.darken.myperm.common.datastore.createValue
-import eu.darken.myperm.common.datastore.moshiReader
-import eu.darken.myperm.common.datastore.moshiWriter
+import eu.darken.myperm.common.datastore.kotlinxReader
+import eu.darken.myperm.common.datastore.kotlinxWriter
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.theming.ThemeColor
 import eu.darken.myperm.common.theming.ThemeMode
@@ -21,6 +20,7 @@ import eu.darken.myperm.common.theming.ThemeStyle
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsFilterOptions
 import eu.darken.myperm.permissions.ui.list.PermsSortOptions
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -35,7 +35,7 @@ private val Context.dataStore by preferencesDataStore(
 @Singleton
 class GeneralSettings @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val moshi: Moshi,
+    private val json: Json,
 ) {
 
     private val dataStore get() = context.dataStore
@@ -46,52 +46,52 @@ class GeneralSettings @Inject constructor(
 
     val themeMode = dataStore.createValue(
         key = stringPreferencesKey("core.ui.theme.mode"),
-        reader = moshiReader(moshi, ThemeMode.SYSTEM, fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, ThemeMode.SYSTEM, fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
     val themeStyle = dataStore.createValue(
         key = stringPreferencesKey("core.ui.theme.style"),
-        reader = moshiReader(moshi, ThemeStyle.DEFAULT, fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, ThemeStyle.DEFAULT, fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
     val themeColor = dataStore.createValue(
         key = stringPreferencesKey("core.ui.theme.color"),
-        reader = moshiReader(moshi, ThemeColor.BLUE, fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, ThemeColor.BLUE, fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
 
     val appsFilterOptions = dataStore.createValue(
         key = stringPreferencesKey("apps.list.options.filter"),
-        reader = moshiReader(moshi, AppsFilterOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, AppsFilterOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
     val appsSortOptions = dataStore.createValue(
         key = stringPreferencesKey("apps.list.options.sort"),
-        reader = moshiReader(moshi, AppsSortOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, AppsSortOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
 
     val appDetailsFilterOptions = dataStore.createValue(
         key = stringPreferencesKey("apps.details.options.filter"),
-        reader = moshiReader(moshi, AppDetailsFilterOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, AppDetailsFilterOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
 
     val permissionsFilterOptions = dataStore.createValue(
         key = stringPreferencesKey("permissions.list.options.filter"),
-        reader = moshiReader(moshi, PermsFilterOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, PermsFilterOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
     val permissionsSortOptions = dataStore.createValue(
         key = stringPreferencesKey("permissions.list.options.sort"),
-        reader = moshiReader(moshi, PermsSortOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, PermsSortOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
 
     val permissionDetailsFilterOptions = dataStore.createValue(
         key = stringPreferencesKey("permissions.details.options.filter"),
-        reader = moshiReader(moshi, PermissionDetailsFilterOptions(), fallbackToDefault = true),
-        writer = moshiWriter(moshi),
+        reader = kotlinxReader(json, PermissionDetailsFilterOptions(), fallbackToDefault = true),
+        writer = kotlinxWriter(json),
     )
 
     val ipcParallelisation = dataStore.createValue("core.ipc.parallelisation", 0)

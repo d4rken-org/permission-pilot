@@ -3,8 +3,6 @@ package eu.darken.myperm.permissions.ui.list
 import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.ProtectionFlag
 import eu.darken.myperm.permissions.core.ProtectionType
@@ -12,15 +10,16 @@ import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.isHighlighted
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 @Parcelize
-@JsonClass(generateAdapter = true)
+@Serializable
 data class PermsSortOptions(
-    @Json(name = "mainSort") val mainSort: Sort = Sort.RELEVANCE,
-    @Json(name = "reversed") val reversed: Boolean = false
+    val mainSort: Sort = Sort.RELEVANCE,
+    val reversed: Boolean = false
 ) : Parcelable {
 
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Sort(
         @StringRes val labelRes: Int,
     ) {

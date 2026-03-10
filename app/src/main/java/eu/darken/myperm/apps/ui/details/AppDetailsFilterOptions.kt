@@ -2,22 +2,22 @@ package eu.darken.myperm.apps.ui.details
 
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Parcelize
-@JsonClass(generateAdapter = true)
+@Serializable
 data class AppDetailsFilterOptions(
-    @Json(name = "filters") val keys: Set<Filter> = setOf(Filter.GRANTED, Filter.DENIED, Filter.CONFIGURABLE)
+    @SerialName("filters") val keys: Set<Filter> = setOf(Filter.GRANTED, Filter.DENIED, Filter.CONFIGURABLE)
 ) : Parcelable {
 
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Filter(
         @StringRes val labelRes: Int
     ) {
