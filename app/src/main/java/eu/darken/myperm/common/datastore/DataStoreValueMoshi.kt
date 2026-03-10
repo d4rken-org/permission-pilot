@@ -1,6 +1,8 @@
-package eu.darken.myperm.common.preferences
+package eu.darken.myperm.common.datastore
 
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.squareup.moshi.Moshi
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.log
@@ -16,7 +18,6 @@ inline fun <reified T> moshiReader(
         rawValue
             ?.let {
                 try {
-
                     adapter.fromJson(it)
                 } catch (e: Exception) {
                     log("Moshi", ERROR) { "Failed to decode rawValue=$rawValue, returning default=$defaultValue" }
@@ -36,13 +37,14 @@ inline fun <reified T> moshiWriter(
     }
 }
 
-inline fun <reified T : Any?> SharedPreferences.createFlowPreference(
-    key: String,
+inline fun <reified T : Any?> DataStore<Preferences>.createValue(
+    keyName: String,
     defaultValue: T = null as T,
     moshi: Moshi,
-) = FlowPreference(
-    preferences = this,
-    key = key,
-    rawReader = moshiReader(moshi, defaultValue),
-    rawWriter = moshiWriter(moshi)
+    fallbackToDefault: Boolean = true,
+): DataStoreValue<T> = DataStoreValue(
+    dataStore = this,
+    key = stringPreferencesKey(keyName),
+    reader = moshiReader(moshi, defaultValue, fallbackToDefault),
+    writer = moshiWriter(moshi),
 )

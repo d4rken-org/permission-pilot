@@ -228,7 +228,7 @@ class AppDetailsViewModel @Inject constructor(
         )
     }
 
-    fun updateFilterOptions(action: (AppDetailsFilterOptions) -> AppDetailsFilterOptions) {
+    fun updateFilterOptions(action: (AppDetailsFilterOptions) -> AppDetailsFilterOptions) = launch {
         generalSettings.appDetailsFilterOptions.update { action(it) }
     }
 

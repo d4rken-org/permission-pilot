@@ -177,7 +177,7 @@ class PermissionDetailsViewModel @Inject constructor(
         }.onStart { emit(State(label = initialLabel ?: permId.value)) }
     }
 
-    fun updateFilterOptions(action: (PermissionDetailsFilterOptions) -> PermissionDetailsFilterOptions) {
+    fun updateFilterOptions(action: (PermissionDetailsFilterOptions) -> PermissionDetailsFilterOptions) = launch {
         generalSettings.permissionDetailsFilterOptions.update { action(it) }
     }
 

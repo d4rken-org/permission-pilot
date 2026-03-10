@@ -61,9 +61,9 @@ open class App : Application() {
 
             if (isIpcIssue) {
                 log(TAG, WARN) { "Crashing due to IPC buffer overflow!" }
-                if (generalSettings.ipcParallelisation.value == 0) {
+                if (generalSettings.ipcParallelisation.valueBlocking == 0) {
                     log(TAG, WARN) { "Reducing `ipcParallelisation` from AUTO (0) to 1" }
-                    generalSettings.ipcParallelisation.value = 1
+                    generalSettings.ipcParallelisation.valueBlocking = 1
                 }
             }
             defaultHandler?.uncaughtException(thread, throwable)

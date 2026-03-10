@@ -33,7 +33,7 @@ class IPCFunnel @Inject constructor(
 ) {
 
     private val execLock by lazy {
-        val parallel = generalSettings.ipcParallelisation.value
+        val parallel = generalSettings.ipcParallelisation.valueBlocking
         Semaphore(
             when {
                 parallel != 0 -> {

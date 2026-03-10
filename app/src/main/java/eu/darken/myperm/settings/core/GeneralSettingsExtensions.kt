@@ -15,7 +15,7 @@ val GeneralSettings.themeState: Flow<ThemeState>
 
 val GeneralSettings.themeStateBlocking: ThemeState
     get() = ThemeState(
-        mode = themeMode.value,
-        style = themeStyle.value,
-        color = themeColor.value,
+        mode = themeMode.valueBlocking,
+        style = themeStyle.valueBlocking,
+        color = themeColor.valueBlocking,
     )

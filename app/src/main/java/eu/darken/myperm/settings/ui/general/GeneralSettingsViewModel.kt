@@ -31,16 +31,16 @@ class GeneralSettingsViewModel @Inject constructor(
         .map { it.isPro }
         .stateIn(vmScope, SharingStarted.Eagerly, true)
 
-    fun setThemeMode(mode: ThemeMode) {
-        generalSettings.themeMode.value = mode
+    fun setThemeMode(mode: ThemeMode) = launch {
+        generalSettings.themeMode.value(mode)
     }
 
-    fun setThemeStyle(style: ThemeStyle) {
-        generalSettings.themeStyle.value = style
+    fun setThemeStyle(style: ThemeStyle) = launch {
+        generalSettings.themeStyle.value(style)
     }
 
-    fun setThemeColor(color: ThemeColor) {
-        generalSettings.themeColor.value = color
+    fun setThemeColor(color: ThemeColor) = launch {
+        generalSettings.themeColor.value(color)
     }
 
     fun onUpgrade(activity: Activity) {

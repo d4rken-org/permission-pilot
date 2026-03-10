@@ -35,7 +35,7 @@ class UpgradeControlFoss @Inject constructor(
             setTitle(R.string.upgrade_myperm_label)
             setMessage(R.string.upgrade_myperm_description)
             setPositiveButton(R.string.foss_upgrade_donate_label) { _, _ ->
-                fossCache.upgrade.value = FossUpgrade(
+                fossCache.upgrade.valueBlocking = FossUpgrade(
                     upgradedAt = Instant.now(),
                     reason = FossUpgrade.Reason.DONATED
                 )
@@ -43,14 +43,14 @@ class UpgradeControlFoss @Inject constructor(
                 Toast.makeText(activity, R.string.general_thank_you_label, Toast.LENGTH_SHORT).show()
             }
             setNegativeButton(R.string.foss_upgrade_alreadydonated_label) { _, _ ->
-                fossCache.upgrade.value = FossUpgrade(
+                fossCache.upgrade.valueBlocking = FossUpgrade(
                     upgradedAt = Instant.now(),
                     reason = FossUpgrade.Reason.ALREADY_DONATED
                 )
                 Toast.makeText(activity, R.string.general_thank_you_label, Toast.LENGTH_SHORT).show()
             }
             setNeutralButton(R.string.foss_upgrade_no_money_label) { _, _ ->
-                fossCache.upgrade.value = FossUpgrade(
+                fossCache.upgrade.valueBlocking = FossUpgrade(
                     upgradedAt = Instant.now(),
                     reason = FossUpgrade.Reason.NO_MONEY
                 )

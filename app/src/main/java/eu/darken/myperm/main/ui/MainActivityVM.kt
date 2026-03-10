@@ -39,7 +39,7 @@ class MainActivityVM @Inject constructor(
     )
 
     val isOnboardingFinished: Boolean
-        get() = generalSettings.isOnboardingFinished.value
+        get() = generalSettings.isOnboardingFinished.valueBlocking
 
     val upgradeNag = SingleEventFlow<(Activity) -> Unit>()
 
@@ -51,7 +51,7 @@ class MainActivityVM @Inject constructor(
 
                 if (it.isPro) return@onEach
 
-                val launchCount = generalSettings.launchCount.value
+                val launchCount = generalSettings.launchCount.valueBlocking
                 val skipNag = launchCount == 0 || launchCount % 8 != 0
                 log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
                 if (skipNag) return@onEach
@@ -63,7 +63,7 @@ class MainActivityVM @Inject constructor(
             .launchInViewModel()
     }
 
-    fun increaseLaunchCount() {
+    fun increaseLaunchCount() = launch {
         generalSettings.launchCount.update {
             log { "LaunchCount was $it" }
             it + 1

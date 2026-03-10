@@ -185,11 +185,11 @@ class PermissionsViewModel @Inject constructor(
         appRepo.refresh()
     }
 
-    fun updateFilterOptions(action: (PermsFilterOptions) -> PermsFilterOptions) {
+    fun updateFilterOptions(action: (PermsFilterOptions) -> PermsFilterOptions) = launch {
         generalSettings.permissionsFilterOptions.update { action(it) }
     }
 
-    fun updateSortOptions(action: (PermsSortOptions) -> PermsSortOptions) {
+    fun updateSortOptions(action: (PermsSortOptions) -> PermsSortOptions) = launch {
         generalSettings.permissionsSortOptions.update { action(it) }
     }
 

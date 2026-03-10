@@ -132,11 +132,11 @@ class AppsViewModel @Inject constructor(
         )
     }
 
-    fun updateFilterOptions(action: (AppsFilterOptions) -> AppsFilterOptions) {
+    fun updateFilterOptions(action: (AppsFilterOptions) -> AppsFilterOptions) = launch {
         generalSettings.appsFilterOptions.update { action(it) }
     }
 
-    fun updateSortOptions(action: (AppsSortOptions) -> AppsSortOptions) {
+    fun updateSortOptions(action: (AppsSortOptions) -> AppsSortOptions) = launch {
         generalSettings.appsSortOptions.update { action(it) }
     }
 

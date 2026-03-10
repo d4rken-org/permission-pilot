@@ -22,7 +22,7 @@ class OnboardingViewModel @Inject constructor(
     }
 
     fun finishOnboarding() = launch {
-        generalSettings.isOnboardingFinished.value = true
+        generalSettings.isOnboardingFinished.value(true)
         navTo(Nav.Tab.Apps, popUpTo = Nav.Main.Onboarding, inclusive = true)
     }
 
