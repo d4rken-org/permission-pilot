@@ -55,7 +55,12 @@ class RecorderModule @Inject constructor(
 
     private val internalState = DynamicStateFlow(TAG, appScope + dispatcherProvider.IO) {
         val triggerFileExists = triggerFile.exists()
-        State(shouldRecord = triggerFileExists)
+        val persistedInfo = if (triggerFileExists) readTriggerFile() else null
+        State(
+            shouldRecord = triggerFileExists,
+            persistedLogDir = persistedInfo?.logDir,
+            recordingStartedAt = persistedInfo?.startedAt ?: 0L,
+        )
     }
     val state: Flow<State> = internalState.flow
 
@@ -68,17 +73,19 @@ class RecorderModule @Inject constructor(
 
                 internalState.updateBlocking {
                     if (shouldRecord && !isRecording) {
-                        val existingDir = findExistingSessionDir(getLogDirectories())
-                        val sessionDir = existingDir ?: createSessionDir()
-
-                        if (existingDir != null) {
-                            log(TAG, INFO) { "Resuming recording in existing session: ${existingDir.name}" }
+                        val resumed = persistedLogDir?.takeIf { it.exists() && it.isDirectory }
+                        val sessionDir = resumed ?: createSessionDir()
+                        val startTime = if (resumed != null) {
+                            log(TAG, INFO) { "Resuming recording in existing session: ${resumed.name}" }
+                            recordingStartedAt
+                        } else {
+                            System.currentTimeMillis()
                         }
 
                         val logFile = File(sessionDir, "core.log")
                         val newRecorder = Recorder()
                         newRecorder.start(logFile)
-                        triggerFile.createNewFile()
+                        writeTriggerFile(sessionDir, startTime)
 
                         log(TAG, INFO) { "Build.Fingerprint: ${Build.FINGERPRINT}" }
                         log(TAG, INFO) { "BuildConfig.Versions: ${BuildConfigWrap.VERSION_DESCRIPTION}" }
@@ -87,11 +94,8 @@ class RecorderModule @Inject constructor(
 
                         copy(
                             recorder = newRecorder,
-                            recordingStartedAt = if (existingDir != null) {
-                                existingDir.lastModified()
-                            } else {
-                                System.currentTimeMillis()
-                            },
+                            persistedLogDir = null,
+                            recordingStartedAt = startTime,
                             logDir = sessionDir,
                         )
                     } else if (!shouldRecord && isRecording) {
@@ -105,6 +109,7 @@ class RecorderModule @Inject constructor(
 
                         copy(
                             recorder = null,
+                            persistedLogDir = null,
                             recordingStartedAt = 0L,
                             logDir = null,
                         )
@@ -147,14 +152,15 @@ class RecorderModule @Inject constructor(
         return sessionDir
     }
 
-    internal fun getLogDirectories(): List<File> = listOfNotNull(
-        try {
-            context.getExternalFilesDir(null)?.let { File(it, "debug/logs") }
-        } catch (e: Exception) {
-            null
-        },
-        File(context.cacheDir, "debug/logs"),
-    )
+    internal val externalLogDir: File? = try {
+        context.getExternalFilesDir(null)?.let { File(it, "debug/logs") }
+    } catch (e: Exception) {
+        null
+    }
+
+    internal val cacheLogDir: File = File(context.cacheDir, "debug/logs")
+
+    internal fun getLogDirectories(): List<File> = listOfNotNull(externalLogDir, cacheLogDir)
 
     suspend fun startRecorder(): File {
         internalState.updateBlocking {
@@ -177,7 +183,7 @@ class RecorderModule @Inject constructor(
         if (duration < MIN_RECORDING_MS) return StopResult.TooShort
 
         val logDir = stopRecorder() ?: return StopResult.NotRecording
-        val sessionId = DebugSessionManager.deriveSessionId(logDir)
+        val sessionId = DebugSessionManager.deriveBaseName(logDir)
         return StopResult.Stopped(logDir, sessionId)
     }
 
@@ -195,9 +201,35 @@ class RecorderModule @Inject constructor(
         internal val recorder: Recorder? = null,
         val recordingStartedAt: Long = 0L,
         val logDir: File? = null,
+        internal val persistedLogDir: File? = null,
     ) {
         val isRecording: Boolean
             get() = recorder != null
+    }
+
+    data class TriggerInfo(val logDir: File, val startedAt: Long)
+
+    internal fun readTriggerFile(): TriggerInfo? {
+        return try {
+            val content = triggerFile.readText()
+            parseTriggerContent(content)
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Failed to read trigger file: $e" }
+            null
+        }
+    }
+
+    private fun writeTriggerFile(sessionDir: File, startTime: Long) {
+        try {
+            triggerFile.writeText("${sessionDir.absolutePath}\n$startTime")
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Failed to write trigger file metadata: $e" }
+            try {
+                triggerFile.createNewFile()
+            } catch (e2: Exception) {
+                log(TAG, ERROR) { "Failed to create trigger file: $e2" }
+            }
+        }
     }
 
     companion object {
@@ -206,16 +238,19 @@ class RecorderModule @Inject constructor(
         internal const val MIN_RECORDING_MS = 5_000L
 
         @VisibleForTesting
-        internal fun findExistingSessionDir(logDirectories: List<File>): File? {
-            for (parent in logDirectories) {
-                if (!parent.exists()) continue
-                val dirs = parent.listFiles { f -> f.isDirectory && f.name.startsWith("myperm_") }
-                    ?: continue
-                val mostRecent = dirs.maxByOrNull { it.lastModified() } ?: continue
-                val coreLog = File(mostRecent, "core.log")
-                if (coreLog.exists()) return mostRecent
-            }
-            return null
+        internal fun parseTriggerContent(content: String): TriggerInfo? {
+            if (content.isBlank()) return null
+            val lines = content.trim().lines()
+            if (lines.size != 2) return null
+
+            val dir = File(lines[0])
+            if (!dir.exists() || !dir.isDirectory) return null
+
+            val timestamp = lines[1].toLongOrNull() ?: return null
+            val now = System.currentTimeMillis()
+            if (timestamp < 1 || timestamp > now + 60_000L) return null
+
+            return TriggerInfo(logDir = dir, startedAt = timestamp)
         }
     }
 }

@@ -152,7 +152,6 @@ class ContactFormViewModel @Inject constructor(
             is RecorderModule.StopResult.Stopped -> {
                 log(TAG) { "Recording stopped: ${result.sessionId}" }
                 autoSelectSessionId = result.sessionId
-                debugSessionManager.zipSession(result.sessionId)
             }
             is RecorderModule.StopResult.NotRecording -> {
                 log(TAG) { "stopRecording: not recording" }
@@ -162,11 +161,9 @@ class ContactFormViewModel @Inject constructor(
 
     fun forceStopRecording() = launch {
         log(TAG) { "forceStopRecording()" }
-        val logDir = debugSessionManager.forceStopRecording()
-        if (logDir != null) {
-            val sessionId = DebugSessionManager.deriveSessionId(logDir)
-            autoSelectSessionId = sessionId
-            debugSessionManager.zipSession(sessionId)
+        val result = debugSessionManager.forceStopRecording()
+        if (result != null) {
+            autoSelectSessionId = result.sessionId
         }
     }
 
@@ -191,15 +188,7 @@ class ContactFormViewModel @Inject constructor(
             val attachmentUri = if (currentState.isBug) {
                 currentState.selectedSessionId?.let { sessionId ->
                     try {
-                        val uri = debugSessionManager.getZipUri(sessionId)
-                        if (uri == null) {
-                            log(TAG) { "getZipUri returned null for session $sessionId" }
-                            events.tryEmit(
-                                Event.ShowSnackbar(context.getString(R.string.contact_debuglog_zip_error))
-                            )
-                            return@launch
-                        }
-                        uri
+                        debugSessionManager.getZipUri(sessionId)
                     } catch (e: Exception) {
                         log(TAG) { "Failed to prepare attachment: $e" }
                         events.tryEmit(

@@ -3,6 +3,7 @@ package eu.darken.myperm.common.debug.recording.core
 import android.content.Context
 import eu.darken.myperm.common.InstallId
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -93,88 +94,71 @@ class RecorderModuleTest {
     }
 
     @Nested
-    inner class FindExistingSessionDir {
+    inner class ParseTriggerContent {
         @Test
-        fun `returns null when no directories exist`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs")
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe null
+        fun `returns TriggerInfo for valid content`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            val startTime = System.currentTimeMillis() - 10_000L
+            val content = "${sessionDir.absolutePath}\n$startTime"
+
+            val result = RecorderModule.parseTriggerContent(content)
+
+            result shouldBe RecorderModule.TriggerInfo(logDir = sessionDir, startedAt = startTime)
         }
 
         @Test
-        fun `returns null when log directory is empty`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe null
+        fun `returns null for empty content`() {
+            RecorderModule.parseTriggerContent("").shouldBeNull()
         }
 
         @Test
-        fun `returns null when session dir has no core log`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-            File(logDir, "myperm_1.0_20260309T120000Z_abc12345").mkdirs()
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe null
+        fun `returns null for blank content`() {
+            RecorderModule.parseTriggerContent("   ").shouldBeNull()
         }
 
         @Test
-        fun `returns null for non-myperm directories`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-            val dir = File(logDir, "some_other_dir").also { it.mkdirs() }
-            File(dir, "core.log").createNewFile()
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe null
+        fun `returns null when missing timestamp line`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            RecorderModule.parseTriggerContent(sessionDir.absolutePath).shouldBeNull()
         }
 
         @Test
-        fun `finds existing session with core log`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-            val sessionDir = File(logDir, "myperm_1.0_20260309T120000Z_abc12345").also { it.mkdirs() }
-            File(sessionDir, "core.log").createNewFile()
-
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe sessionDir
+        fun `returns null for invalid timestamp`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            RecorderModule.parseTriggerContent("${sessionDir.absolutePath}\nnotanumber").shouldBeNull()
         }
 
         @Test
-        fun `returns most recent session when multiple exist`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-
-            val older = File(logDir, "myperm_1.0_20260308T100000Z_abc12345").also { it.mkdirs() }
-            File(older, "core.log").createNewFile()
-            older.setLastModified(1000L)
-
-            val newer = File(logDir, "myperm_1.0_20260309T120000Z_abc12345").also { it.mkdirs() }
-            File(newer, "core.log").createNewFile()
-            newer.setLastModified(2000L)
-
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe newer
+        fun `returns null for future timestamp beyond tolerance`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            val futureTime = System.currentTimeMillis() + 120_000L
+            RecorderModule.parseTriggerContent("${sessionDir.absolutePath}\n$futureTime").shouldBeNull()
         }
 
         @Test
-        fun `returns null when most recent session has no core log`(@TempDir tempDir: File) {
-            val logDir = File(tempDir, "debug/logs").also { it.mkdirs() }
-
-            val withLog = File(logDir, "myperm_1.0_20260308T100000Z_abc12345").also { it.mkdirs() }
-            File(withLog, "core.log").createNewFile()
-            withLog.setLastModified(1000L)
-
-            val withoutLog = File(logDir, "myperm_1.0_20260309T120000Z_abc12345").also { it.mkdirs() }
-            withoutLog.setLastModified(2000L)
-
-            // Only checks the most recent dir - if it has no core.log, returns null
-            RecorderModule.findExistingSessionDir(listOf(logDir)) shouldBe null
+        fun `returns null for zero timestamp`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            RecorderModule.parseTriggerContent("${sessionDir.absolutePath}\n0").shouldBeNull()
         }
 
         @Test
-        fun `prefers first directory with a match`(@TempDir tempDir: File) {
-            val extDir = File(tempDir, "ext/debug/logs").also { it.mkdirs() }
-            val cacheDir = File(tempDir, "cache/debug/logs").also { it.mkdirs() }
+        fun `returns null for non-existent directory`() {
+            val content = "/non/existent/path\n${System.currentTimeMillis()}"
+            RecorderModule.parseTriggerContent(content).shouldBeNull()
+        }
 
-            val extSession = File(extDir, "myperm_1.0_20260309T120000Z_abc12345").also { it.mkdirs() }
-            File(extSession, "core.log").createNewFile()
-            extSession.setLastModified(1000L)
+        @Test
+        fun `returns null when path points to a file not directory`(@TempDir tempDir: File) {
+            val file = File(tempDir, "not_a_dir").also { it.createNewFile() }
+            val content = "${file.absolutePath}\n${System.currentTimeMillis()}"
+            RecorderModule.parseTriggerContent(content).shouldBeNull()
+        }
 
-            val cacheSession = File(cacheDir, "myperm_1.0_20260309T130000Z_abc12345").also { it.mkdirs() }
-            File(cacheSession, "core.log").createNewFile()
-            cacheSession.setLastModified(2000L)
-
-            // Returns from first directory that has a match (ext), not the globally most recent
-            RecorderModule.findExistingSessionDir(listOf(extDir, cacheDir)) shouldBe extSession
+        @Test
+        fun `returns null for extra lines`(@TempDir tempDir: File) {
+            val sessionDir = File(tempDir, "myperm_session").also { it.mkdirs() }
+            val content = "${sessionDir.absolutePath}\n${System.currentTimeMillis()}\nextra"
+            RecorderModule.parseTriggerContent(content).shouldBeNull()
         }
     }
 }
