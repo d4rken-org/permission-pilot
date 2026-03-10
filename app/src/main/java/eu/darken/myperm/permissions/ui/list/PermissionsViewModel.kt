@@ -21,10 +21,8 @@ import eu.darken.myperm.permissions.core.container.UnknownPermission
 import eu.darken.myperm.permissions.core.getGroupIds
 import eu.darken.myperm.permissions.core.known.APermGrp
 import eu.darken.myperm.settings.core.GeneralSettings
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -74,7 +72,7 @@ class PermissionsViewModel @Inject constructor(
         ) : State()
     }
 
-    val state: Flow<State> = combine(
+    val state = combine(
         permissionRepo.state,
         expandedGroups,
         searchTerm,
@@ -156,7 +154,7 @@ class PermissionsViewModel @Inject constructor(
             filterOptions = filterOptions,
             sortOptions = sortOptions,
         )
-    }.onStart { emit(State.Loading) }
+    }.asStateFlow()
 
     fun toggleGroup(id: PermissionGroup.Id) {
         expandedGroups.value = expandedGroups.value.toMutableMap().apply {

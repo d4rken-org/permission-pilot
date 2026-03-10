@@ -1,6 +1,5 @@
 package eu.darken.myperm.common.uix
 
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import eu.darken.myperm.common.coroutine.DefaultDispatcherProvider
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -8,10 +7,12 @@ import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.error.ErrorEventSource
-import eu.darken.myperm.common.flow.DynamicStateFlow
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.stateIn
 import kotlin.coroutines.CoroutineContext
 
 
@@ -42,9 +43,11 @@ abstract class ViewModel2(
         return null
     }
 
-    fun <T : Any> DynamicStateFlow<T>.asLiveData2() = flow.asLiveData2()
-
-    fun <T> Flow<T>.asLiveData2() = this.asLiveData(context = getVMContext())
+    fun <T> Flow<T>.asStateFlow(defaultValue: T? = null): StateFlow<T?> = stateIn(
+        vmScope,
+        SharingStarted.WhileSubscribed(5000),
+        defaultValue,
+    )
 
     fun launch(
         scope: CoroutineScope = viewModelScope,

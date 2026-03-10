@@ -30,10 +30,8 @@ import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -92,7 +90,7 @@ class PermissionDetailsViewModel @Inject constructor(
         val filterOptions: PermissionDetailsFilterOptions = PermissionDetailsFilterOptions(),
     )
 
-    val state: Flow<State> by lazy {
+    val state by lazy {
         combine(
             permissionsRepo.permissions.map { perms -> perms.singleOrNull { it.id == permId } },
             generalSettings.permissionDetailsFilterOptions.flow,
@@ -174,7 +172,7 @@ class PermissionDetailsViewModel @Inject constructor(
                 isLoading = false,
                 filterOptions = filterOpts,
             )
-        }.onStart { emit(State(label = initialLabel ?: permId.value)) }
+        }.asStateFlow()
     }
 
     fun updateFilterOptions(action: (PermissionDetailsFilterOptions) -> PermissionDetailsFilterOptions) = launch {

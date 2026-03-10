@@ -75,7 +75,7 @@ import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
 import eu.darken.myperm.common.compose.icon
-import eu.darken.myperm.common.compose.waitForState
+import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.permissions.core.PermissionGroup
@@ -90,7 +90,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)
 
-    val state by waitForState(vm.state)
+    val state by vm.state.collectAsState()
 
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showSortDialog by rememberSaveable { mutableStateOf(false) }

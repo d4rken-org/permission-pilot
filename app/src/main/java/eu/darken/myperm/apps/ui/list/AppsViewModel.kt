@@ -22,10 +22,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import eu.darken.myperm.common.compose.toIcon
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.settings.core.GeneralSettings
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -68,7 +66,7 @@ class AppsViewModel @Inject constructor(
         ) : State()
     }
 
-    val state: Flow<State> = combine(
+    val state = combine(
         appRepo.state,
         permissionRepo.state,
         searchTerm,
@@ -114,7 +112,7 @@ class AppsViewModel @Inject constructor(
             )
         }
         State.Ready(items = listItems, itemCount = listItems.size, filterOptions = filterOptions, sortOptions = sortOptions)
-    }.onStart { emit(State.Loading) }
+    }.asStateFlow()
 
     fun onSearchInputChanged(term: String?) {
         log(TAG) { "onSearchInputChanged(term=$term)" }

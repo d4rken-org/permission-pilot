@@ -31,11 +31,9 @@ import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 import java.time.Instant
 import javax.inject.Inject
 
@@ -107,7 +105,7 @@ class AppDetailsViewModel @Inject constructor(
         val isLoading: Boolean = true,
     )
 
-    val state: Flow<State> by lazy {
+    val state by lazy {
         combine(
             appRepo.apps.map { apps -> apps.singleOrNull { it.id == pkgId } },
             generalSettings.appDetailsFilterOptions.flow,
@@ -197,8 +195,7 @@ class AppDetailsViewModel @Inject constructor(
                 filterOptions = filterOpts.keys,
                 isLoading = false,
             )
-        }
-            .onStart { emit(State(label = initialLabel ?: pkgId.pkgName)) }
+        }.asStateFlow()
     }
 
     fun onPermissionClicked(item: PermItem) {
