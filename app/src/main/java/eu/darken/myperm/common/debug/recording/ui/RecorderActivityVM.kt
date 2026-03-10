@@ -41,6 +41,7 @@ class RecorderActivityVM @Inject constructor(
     data class State(
         val logDir: File? = null,
         val logEntries: List<LogEntry> = emptyList(),
+        val totalSize: Long = 0L,
         val compressedSize: Long = -1L,
         val recordingDurationSecs: Long = 0L,
         val isWorking: Boolean = true,
@@ -55,33 +56,42 @@ class RecorderActivityVM @Inject constructor(
     private val legacyPath: String? = handle.get<String>(RecorderActivity.RECORD_PATH)
 
     private val stater = DynamicStateFlow(TAG, vmScope + dispatcherProvider.IO) {
-        val resolved = resolveSession()
-        if (resolved == null) {
-            return@DynamicStateFlow State(logDir = null, isWorking = false)
+        val session = resolveSession()
+        val logDir = when (session) {
+            is DebugSession.Ready -> session.logDir
+            is DebugSession.Compressing -> session.path
+            is DebugSession.Failed -> session.path.takeIf { it.isDirectory }
+            is DebugSession.Recording -> session.path
+            null -> legacyPath?.let { File(it) }
         }
 
-        val logDir = resolved.logDir
-        val files = if (logDir != null) {
-            logDir.listFiles()?.filter { it.isFile }?.toList() ?: emptyList()
-        } else {
-            listOfNotNull(resolved.zipFile)
+        val isCompressing = session is DebugSession.Compressing
+
+        if (logDir == null || !logDir.exists()) {
+            return@DynamicStateFlow State(logDir = null, isWorking = isCompressing)
         }
+
+        val files = logDir.listFiles()?.toList() ?: emptyList()
         val entries = files.map { LogEntry(it, it.length()) }
+        val totalSize = entries.sumOf { it.size }
 
-        val durationSecs = if (logDir != null) {
-            val dirCreated = logDir.lastModified()
-            val latestFileModified = files.maxOfOrNull { it.lastModified() } ?: dirCreated
-            ((latestFileModified - dirCreated) / 1000).coerceAtLeast(0)
-        } else {
-            0L
+        val compressedSize = when (session) {
+            is DebugSession.Compressing -> -1L
+            is DebugSession.Ready -> session.compressedSize.takeIf { it > 0 } ?: -1L
+            else -> -1L
         }
+
+        val dirCreated = logDir.lastModified()
+        val latestFileModified = files.maxOfOrNull { it.lastModified() } ?: dirCreated
+        val durationSecs = ((latestFileModified - dirCreated) / 1000).coerceAtLeast(0)
 
         State(
             logDir = logDir,
             logEntries = entries,
-            compressedSize = resolved.compressedSize,
+            totalSize = totalSize,
+            compressedSize = compressedSize,
             recordingDurationSecs = durationSecs,
-            isWorking = resolved.compressedSize < 0L,
+            isWorking = isCompressing,
         )
     }
     val state = stater.flow
@@ -89,28 +99,21 @@ class RecorderActivityVM @Inject constructor(
     val events = SingleEventFlow<Event>()
 
     init {
-        // Watch for compression completion
         sessionManager.sessions
             .onEach { allSessions ->
                 val sid = sessionId ?: return@onEach
-                val session = allSessions.firstOrNull { it.id == sid }
+                val session = allSessions.firstOrNull { it.id == sid } ?: return@onEach
                 when (session) {
+                    is DebugSession.Compressing -> {
+                        stater.updateBlocking { copy(isWorking = true) }
+                    }
                     is DebugSession.Ready -> {
                         stater.updateBlocking {
+                            if (!isWorking) return@updateBlocking this
                             copy(
-                                compressedSize = session.compressedSize,
+                                compressedSize = session.compressedSize.takeIf { it > 0 } ?: -1L,
                                 isWorking = false,
                             )
-                        }
-                    }
-                    is DebugSession.Failed -> {
-                        stater.updateBlocking {
-                            copy(isWorking = false)
-                        }
-                    }
-                    is DebugSession.Compressing -> {
-                        stater.updateBlocking {
-                            copy(isWorking = true)
                         }
                     }
                     else -> {}
@@ -118,81 +121,50 @@ class RecorderActivityVM @Inject constructor(
             }
             .launchIn(vmScope)
 
-        // Auto-zip if not yet zipped
         if (sessionId != null) {
-            launch {
-                sessionManager.zipSession(sessionId)
-            }
+            launch { sessionManager.zipSession(sessionId) }
         }
     }
 
-    private suspend fun resolveSession(): DebugSession.Ready? {
+    private suspend fun resolveSession(): DebugSession? {
         if (sessionId != null) {
-            val sessions = sessionManager.sessions.first()
-            val session = sessions.firstOrNull { it.id == sessionId }
-            if (session is DebugSession.Ready) return session
-            // If not yet ready (e.g. compressing), build a placeholder from legacy path
-            if (legacyPath != null) {
-                val dir = File(legacyPath)
-                if (dir.exists()) {
-                    return DebugSession.Ready(
-                        id = sessionId,
-                        displayName = dir.name,
-                        createdAt = DebugSessionManager.parseCreatedAt(dir.name),
-                        diskSize = dir.walkTopDown().filter { it.isFile }.sumOf { it.length() },
-                        logDir = dir,
-                    )
-                }
-            }
+            val session = sessionManager.sessions.first().firstOrNull { it.id == sessionId }
+            if (session != null) return session
+            sessionManager.refresh()
+            return sessionManager.sessions.first().firstOrNull { it.id == sessionId }
         }
-        // Legacy path fallback
         if (legacyPath != null) {
-            val dir = File(legacyPath)
-            if (dir.exists()) {
-                val id = DebugSessionManager.deriveSessionId(dir)
-                return DebugSession.Ready(
-                    id = id,
-                    displayName = dir.name,
-                    createdAt = DebugSessionManager.parseCreatedAt(dir.name),
-                    diskSize = dir.walkTopDown().filter { it.isFile }.sumOf { it.length() },
-                    logDir = dir,
-                )
-            }
+            val file = File(legacyPath)
+            val derivedId = DebugSessionManager.deriveSessionId(file)
+            sessionManager.refresh()
+            return sessionManager.sessions.first().firstOrNull { it.id == derivedId }
         }
         return null
     }
 
     fun share() = launch {
-        val sid = sessionId ?: legacyPath?.let { DebugSessionManager.deriveSessionId(File(it)) } ?: return@launch
+        val sid = sessionId ?: return@launch
 
         stater.updateBlocking { copy(isWorking = true) }
 
         try {
-            val uri = try {
-                sessionManager.getZipUri(sid)
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to get zip URI for session $sid: $e" }
-                null
-            }
-            if (uri == null) {
-                log(TAG, WARN) { "Failed to get zip URI for session $sid" }
-                return@launch
-            }
+            val uri = sessionManager.getZipUri(sid)
 
-            val currentState = stater.flow.first()
-            val dirName = currentState.logDir?.name ?: sid
+            val displayName = stater.flow.first().logDir?.name ?: sid
 
             val intent = Intent(Intent.ACTION_SEND).apply {
                 putExtra(Intent.EXTRA_STREAM, uri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 type = "application/zip"
                 addCategory(Intent.CATEGORY_DEFAULT)
-                putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.support_debuglog_share_subject, dirName))
+                putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.support_debuglog_share_subject, displayName))
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
 
             val chooserIntent = Intent.createChooser(intent, context.getString(R.string.support_debuglog_label))
             events.tryEmit(Event.ShareIntent(chooserIntent))
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Failed to share session $sid: $e" }
         } finally {
             stater.updateBlocking { copy(isWorking = false) }
         }
@@ -203,7 +175,7 @@ class RecorderActivityVM @Inject constructor(
     }
 
     fun discard() = launch {
-        val sid = sessionId ?: legacyPath?.let { DebugSessionManager.deriveSessionId(File(it)) } ?: return@launch
+        val sid = sessionId ?: return@launch
         sessionManager.deleteSession(sid)
         events.tryEmit(Event.Finish)
     }
