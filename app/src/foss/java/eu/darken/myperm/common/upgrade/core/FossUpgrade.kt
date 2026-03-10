@@ -1,18 +1,19 @@
 package eu.darken.myperm.common.upgrade.core
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import eu.darken.myperm.common.serialization.InstantSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.time.Instant
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class FossUpgrade(
-    val upgradedAt: Instant,
+    @Serializable(with = InstantSerializer::class) val upgradedAt: Instant,
     val reason: Reason
 ) {
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Reason {
-        @Json(name = "foss.upgrade.reason.donated") DONATED,
-        @Json(name = "foss.upgrade.reason.alreadydonated") ALREADY_DONATED,
-        @Json(name = "foss.upgrade.reason.nomoney") NO_MONEY;
+        @SerialName("foss.upgrade.reason.donated") DONATED,
+        @SerialName("foss.upgrade.reason.alreadydonated") ALREADY_DONATED,
+        @SerialName("foss.upgrade.reason.nomoney") NO_MONEY;
     }
 }

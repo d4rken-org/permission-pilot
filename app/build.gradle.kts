@@ -207,13 +207,6 @@ dependencies {
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.Dagger.core}")
     kspAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
 
-    val moshiVersion = "1.15.1"
-    implementation("com.squareup.moshi:moshi:$moshiVersion")
-    implementation("com.squareup.moshi:moshi-adapters:$moshiVersion")
-    ksp("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
-
-    implementation("com.squareup.okio:okio:3.1.0")
-
     implementation("androidx.datastore:datastore-preferences:1.1.4")
 
     implementation("io.coil-kt:coil:2.4.0")

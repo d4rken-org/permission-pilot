@@ -3,8 +3,6 @@ package eu.darken.myperm.apps.ui.list
 import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.Installed
@@ -12,15 +10,16 @@ import eu.darken.myperm.apps.core.features.ReadableApk
 import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 import java.time.Instant
 
 @Parcelize
-@JsonClass(generateAdapter = true)
+@Serializable
 data class AppsSortOptions(
-    @Json(name = "mainSort") val mainSort: Sort = Sort.UPDATED_AT,
-    @Json(name = "reversed") val reversed: Boolean = false
+    val mainSort: Sort = Sort.UPDATED_AT,
+    val reversed: Boolean = false
 ) : Parcelable {
-    @JsonClass(generateAdapter = false)
+    @Serializable
     enum class Sort(
         @StringRes val labelRes: Int
     ) {
