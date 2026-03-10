@@ -15,7 +15,6 @@ import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.take
@@ -30,7 +29,7 @@ class MainActivityVM @Inject constructor(
 ) : ViewModel2(dispatcherProvider = dispatcherProvider) {
 
     private val _readyState = MutableStateFlow(false)
-    val readyState = _readyState.asStateFlow()
+    val readyState: StateFlow<Boolean> = _readyState
 
     val themeState: StateFlow<ThemeState> = generalSettings.themeState.stateIn(
         vmScope,

@@ -80,7 +80,7 @@ class OverviewViewModel @Inject constructor(
         )
     }
 
-    val state: Flow<State> = combine(
+    val state = combine(
         deviceData.onStart { emit(DeviceInfo("", "", "")) },
         combine(
             packageRepo.state,
@@ -116,7 +116,7 @@ class OverviewViewModel @Inject constructor(
             upgradeInfo = upgrade,
             isLoading = summary == null,
         )
-    }
+    }.asStateFlow()
 
     fun onRefresh() = launch {
         // Trigger repo refresh via AppRepo

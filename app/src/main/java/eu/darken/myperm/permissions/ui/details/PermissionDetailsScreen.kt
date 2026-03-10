@@ -59,7 +59,7 @@ import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
-import eu.darken.myperm.common.compose.waitForState
+import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -78,7 +78,7 @@ fun PermissionDetailsScreenHost(
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)
 
-    val state by waitForState(vm.state)
+    val state by vm.state.collectAsState()
 
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showPermissionHelpDialog by rememberSaveable { mutableStateOf(false) }
