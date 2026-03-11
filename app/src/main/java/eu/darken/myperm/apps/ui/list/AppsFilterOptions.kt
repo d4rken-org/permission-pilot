@@ -3,12 +3,9 @@ package eu.darken.myperm.apps.ui.list
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
-import eu.darken.myperm.apps.core.features.BatteryOptimization
-import eu.darken.myperm.apps.core.features.Installed
-import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.room.entity.PkgType
+import eu.darken.myperm.common.room.snapshot.DisplayableApp
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -22,71 +19,64 @@ data class AppsFilterOptions(
     @Serializable
     enum class Filter(
         @StringRes val labelRes: Int,
-        val matches: (Pkg) -> Boolean
+        val matches: (DisplayableApp) -> Boolean
     ) {
         SYSTEM_APP(
             labelRes = R.string.apps_filter_systemapps_label,
-            matches = { it is Installed && it.isSystemApp }
+            matches = { it.isSystemApp }
         ),
         USER_APP(
             labelRes = R.string.apps_filter_userapps_label,
-            matches = { it is Installed && !it.isSystemApp }
+            matches = { !it.isSystemApp }
         ),
         GOOGLE_PLAY(
             labelRes = R.string.apps_filter_gplay_label,
-            matches = { pkg ->
-                pkg is Installed
-                        && !pkg.isSystemApp
-                        && pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id }
+            matches = { app ->
+                !app.isSystemApp
+                        && app.allInstallerPkgNames.any { it == AKnownPkg.GooglePlay.id.pkgName }
             }
         ),
         OEM_STORE(
             labelRes = R.string.apps_filter_oemstore_label,
-            matches = { pkg ->
-                pkg is Installed && !pkg.isSystemApp && pkg.installerInfo.allInstallers.any { installer ->
-                    AKnownPkg.OEM_STORES.map { it.id }.contains(installer.id)
-                }
+            matches = { app ->
+                val oemPkgNames = AKnownPkg.OEM_STORES.map { it.id.pkgName }.toSet()
+                !app.isSystemApp && app.allInstallerPkgNames.any { it in oemPkgNames }
             }
         ),
         SIDELOADED(
             labelRes = R.string.apps_filter_sideloaded_label,
-            matches = { pkg ->
-                pkg is Installed && !pkg.isSystemApp && pkg.installerInfo.allInstallers.none { installer ->
-                    AKnownPkg.APP_STORES.map { it.id }.contains(installer.id)
-                }
+            matches = { app ->
+                val storePkgNames = AKnownPkg.APP_STORES.map { it.id.pkgName }.toSet()
+                !app.isSystemApp && app.allInstallerPkgNames.none { it in storePkgNames }
             }
         ),
         NO_INTERNET(
             labelRes = R.string.apps_filter_nointernet_label,
-            matches = {
-                it is Installed
-                        && it.internetAccess != InternetAccess.DIRECT
-                        && it.internetAccess != InternetAccess.UNKNOWN
-            }
+            matches = { it.internetAccess != "DIRECT" && it.internetAccess != "UNKNOWN" }
         ),
         SHARED_ID(
             labelRes = R.string.apps_filter_sharedid_label,
-            matches = { it is Installed && it.siblings.isNotEmpty() }
+            matches = { it.siblingCount > 0 }
         ),
         MULTI_PROFILE(
             labelRes = R.string.apps_filter_multipleprofiles_label,
-            matches = { it is Installed && (it.twins.isNotEmpty()) }
+            matches = { it.twinCount > 0 }
         ),
         PRIMARY_PROFILE(
             labelRes = R.string.apps_filter_profile_active_label,
-            matches = { it is eu.darken.myperm.apps.core.container.PrimaryProfilePkg }
+            matches = { it.pkgType == PkgType.PRIMARY.name }
         ),
         SECONDARY_PROFILE(
             labelRes = R.string.apps_filter_profile_secondary_label,
-            matches = { it is SecondaryProfilePkg }
+            matches = { it.pkgType == PkgType.SECONDARY_PROFILE.name }
         ),
         BATTERY_OPTIMIZATION(
             labelRes = R.string.apps_filter_battery_optimization_label,
-            matches = { it is Installed && it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM }
+            matches = { it.batteryOptimization != "MANAGED_BY_SYSTEM" }
         ),
         ACCESSIBILITY(
             labelRes = R.string.apps_filter_accessibility_label,
-            matches = { it is Installed && it.accessibilityServices.isNotEmpty() }
+            matches = { it.hasAccessibilityServices }
         )
         ;
     }

@@ -37,6 +37,14 @@ object Nav {
         ) : Details
     }
 
+    sealed interface Watcher : NavigationDestination {
+        @Serializable
+        data object Reports : Watcher
+
+        @Serializable
+        data class ReportDetail(val reportId: Long) : Watcher
+    }
+
     sealed interface Settings : NavigationDestination {
         @Serializable
         data object Index : Settings

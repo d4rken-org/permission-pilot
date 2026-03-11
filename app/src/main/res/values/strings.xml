@@ -477,4 +477,36 @@
 
     <string name="general_upgrade_action">Upgrade</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+
+    <!-- Permission Watcher -->
+    <string name="watcher_channel_name">Permission Watcher</string>
+    <string name="watcher_channel_description">Notifications about permission changes in installed apps</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s gained %2$d new permission</item>
+        <item quantity="other">%1$s gained %2$d new permissions</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d permission changed</item>
+        <item quantity="other">%1$s: %2$d permissions changed</item>
+    </plurals>
+    <string name="watcher_settings_label">Permission Watcher</string>
+    <string name="watcher_enabled_label">Enable watcher</string>
+    <string name="watcher_enabled_desc">Detect permission changes when apps are installed or updated</string>
+    <string name="watcher_scope_label">Watch scope</string>
+    <string name="watcher_scope_all">All apps</string>
+    <string name="watcher_scope_non_system">Non-system apps only</string>
+    <string name="watcher_reports_label">Permission change reports</string>
+    <string name="watcher_reports_empty">No permission changes detected yet</string>
+    <string name="watcher_report_detail_label">Change Report</string>
+    <string name="watcher_diff_added_permissions">New permissions</string>
+    <string name="watcher_diff_removed_permissions">Removed permissions</string>
+    <string name="watcher_diff_grant_changes">Grant changes</string>
+    <string name="watcher_diff_added_declared">New declared permissions</string>
+    <string name="watcher_diff_removed_declared">Removed declared permissions</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Installed</string>
+    <string name="watcher_event_update">Updated</string>
+    <string name="watcher_event_removed">Removed</string>
+    <string name="watcher_mark_all_seen">Mark all as seen</string>
+    <string name="watcher_view_reports">View reports</string>
 </resources>

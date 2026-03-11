@@ -3,6 +3,8 @@ package eu.darken.myperm
 import android.app.Application
 import android.os.DeadObjectException
 import android.os.TransactionTooLargeException
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
 import coil.Coil
 import coil.ImageLoaderFactory
 import dagger.hilt.android.HiltAndroidApp
@@ -19,12 +21,16 @@ import eu.darken.myperm.settings.core.GeneralSettings
 import javax.inject.Inject
 
 @HiltAndroidApp
-open class App : Application() {
+open class App : Application(), Configuration.Provider {
 
     @Inject lateinit var bugReporter: AutomaticBugReporter
     @Inject lateinit var recorderModule: RecorderModule
     @Inject lateinit var imageLoaderFactory: ImageLoaderFactory
     @Inject lateinit var generalSettings: GeneralSettings
+    @Inject lateinit var workerFactory: HiltWorkerFactory
+
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder().setWorkerFactory(workerFactory).build()
 
     override fun onCreate() {
         super.onCreate()

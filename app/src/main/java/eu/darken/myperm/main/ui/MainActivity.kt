@@ -1,5 +1,6 @@
 package eu.darken.myperm.main.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -47,6 +48,7 @@ class MainActivity : Activity2() {
         splashScreen.setKeepVisibleCondition { showSplashScreen && savedInstanceState == null }
 
         vm.increaseLaunchCount()
+        vm.handleIntent(intent)
 
         val startDestination: NavKey = if (vm.isOnboardingFinished) {
             Nav.Tab.Apps
@@ -81,6 +83,11 @@ class MainActivity : Activity2() {
                             navCtrl.goTo(Nav.Main.Upgrade)
                         }
                     }
+                    LaunchedEffect(Unit) {
+                        vm.deepLinkNav.collect {
+                            navCtrl.goTo(it)
+                        }
+                    }
 
                     MainScreen(
                         backStack = backStack,
@@ -90,6 +97,11 @@ class MainActivity : Activity2() {
                 }
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        vm.handleIntent(intent)
     }
 
     companion object {

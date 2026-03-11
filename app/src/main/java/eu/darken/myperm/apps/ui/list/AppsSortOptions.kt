@@ -1,14 +1,11 @@
 package eu.darken.myperm.apps.ui.list
 
-import android.content.Context
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.Installed
-import eu.darken.myperm.apps.core.features.ReadableApk
-import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.common.room.snapshot.DisplayableApp
+import eu.darken.myperm.apps.core.features.UsesPermission
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import java.time.Instant
@@ -27,65 +24,63 @@ data class AppsSortOptions(
         PERMISSIONS_GRANTED(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? ReadableApk)?.requestedPermissions?.count { it.isGranted } ?: 0
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+                app.requestedPermissions.count { it.status == UsesPermission.Status.GRANTED || it.status == UsesPermission.Status.GRANTED_IN_USE }
             }.reversed()
         },
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? ReadableApk)?.requestedPermissions?.size ?: 0
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+                app.requestedPermissions.size
             }.reversed()
         },
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Int> { app ->
-                (app as? ReadableApk)?.declaredPermissions?.size ?: 0
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+                app.declaredPermissionCount
             }.reversed()
         },
         APP_NAME(
             labelRes = R.string.apps_sort_app_name_label,
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing {
-                it.getLabel(c) ?: ""
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing {
+                it.label
             }
         },
         INSTALLED_AT(
             labelRes = R.string.apps_sort_install_date_label,
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Instant> {
-                (it as? Installed)?.installedAt ?: Instant.MIN
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Instant> {
+                it.installedAt ?: Instant.MIN
             }.reversed()
         },
         UPDATED_AT(
             labelRes = R.string.apps_sort_update_date_label
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, Instant> {
-                (it as? Installed)?.updatedAt ?: Instant.MIN
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Instant> {
+                it.updatedAt ?: Instant.MIN
             }.reversed()
         },
         INSTALL_SOURCE(
             labelRes = R.string.apps_sort_install_source_label
         ) {
-            override fun getComparator(c: Context): Comparator<Pkg> = Comparator.comparing<Pkg, String> { pkg ->
-                if (pkg !is Installed) return@comparing "ZZ"
-                if (pkg.installerInfo.allInstallers.isEmpty()) return@comparing "Z"
+            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, String> { app ->
+                if (app.allInstallerPkgNames.isEmpty()) return@comparing "Z"
 
-                val byGplay = pkg.installerInfo.allInstallers.any { it.id == AKnownPkg.GooglePlay.id }
-                if (byGplay) return@comparing "A" + AKnownPkg.GooglePlay.id.pkgName
+                val gplayPkgName = AKnownPkg.GooglePlay.id.pkgName
+                if (gplayPkgName in app.allInstallerPkgNames) return@comparing "A$gplayPkgName"
 
-                val oemIds = AKnownPkg.OEM_STORES.map { it.id }
-                val byOem = pkg.installerInfo.allInstallers.firstOrNull { oemIds.contains(it.id) }
-                if (byOem != null) return@comparing "B" + byOem.packageName
+                val oemPkgNames = AKnownPkg.OEM_STORES.map { it.id.pkgName }.toSet()
+                val byOem = app.allInstallerPkgNames.firstOrNull { it in oemPkgNames }
+                if (byOem != null) return@comparing "B$byOem"
 
-
-                return@comparing "C" + pkg.installerInfo.allInstallers.joinToString()
+                return@comparing "C" + app.allInstallerPkgNames.joinToString()
             }
         }
         ;
 
-        abstract fun getComparator(c: Context): Comparator<Pkg>
+        abstract fun getComparator(): Comparator<DisplayableApp>
     }
 }

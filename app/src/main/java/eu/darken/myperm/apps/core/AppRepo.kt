@@ -8,15 +8,21 @@ import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
+import eu.darken.myperm.common.room.entity.TriggerReason
+import eu.darken.myperm.common.room.snapshot.DisplayableApp
+import eu.darken.myperm.common.room.snapshot.LiveAppInfo
+import eu.darken.myperm.common.room.snapshot.SnapshotRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import java.time.Instant
 import java.util.*
 import javax.inject.Inject
@@ -30,6 +36,7 @@ class AppRepo @Inject constructor(
     private val dispatcherProvider: DispatcherProvider,
     packageEventListener: PackageEventListener,
     private val ipcFunnel: IPCFunnel,
+    private val snapshotRepo: SnapshotRepo,
 ) {
 
     private val refreshTrigger = MutableStateFlow(UUID.randomUUID())
@@ -121,14 +128,61 @@ class AppRepo @Inject constructor(
         val stop = System.currentTimeMillis()
         log(TAG) { "Perf: Total pkgs: ${allPkgs.size} in ${stop - start}ms" }
 
-        emit(State.Ready(pkgs = allPkgs))
+        emit(State.Ready(pkgs = allPkgs, scanDurationMs = stop - start))
     }
         .onStart { emit(State.Loading()) }
+        .onEach { appState ->
+            if (appState is State.Ready) {
+                appScope.launch(dispatcherProvider.IO) {
+                    try {
+                        snapshotRepo.saveSnapshot(appState.pkgs, TriggerReason.APP_LAUNCH, appState.scanDurationMs)
+                    } catch (e: Exception) {
+                        log(TAG, WARN) { "Failed to save snapshot: ${e.asLog()}" }
+                    }
+                }
+            }
+        }
         .catch {
             log(TAG, ERROR) { "Failed to generate app data: ${it.asLog()}" }
             throw it
         }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
+
+    val displayState: Flow<DisplayState> = flow {
+        val displayStart = System.currentTimeMillis()
+        val cached = try {
+            snapshotRepo.loadCachedApps()
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Failed to load cached apps: ${e.asLog()}" }
+            null
+        }
+
+        if (cached != null) {
+            log(TAG) { "Perf: Cache loaded and emitted ${cached.size} apps in ${System.currentTimeMillis() - displayStart}ms" }
+            emit(DisplayState.Ready(apps = cached))
+        } else {
+            log(TAG) { "Perf: No cache available, showing loading state (${System.currentTimeMillis() - displayStart}ms)" }
+            emit(DisplayState.Loading())
+        }
+
+        state.collect { appState ->
+            when (appState) {
+                is State.Loading -> {
+                    if (cached == null) emit(DisplayState.Loading())
+                }
+                is State.Ready -> {
+                    val liveApps = appState.pkgs.map { LiveAppInfo(it, context) }
+                    log(TAG) { "Perf: Live data emitted, replacing cache (${liveApps.size} apps)" }
+                    emit(DisplayState.Ready(apps = liveApps))
+                }
+            }
+        }
+    }.shareLatest(scope = appScope, started = SharingStarted.Lazily)
+
+    sealed class DisplayState {
+        data class Loading(val startedAt: Instant = Instant.now()) : DisplayState()
+        data class Ready(val apps: List<DisplayableApp>) : DisplayState()
+    }
 
     sealed class State {
         data class Loading(
@@ -139,6 +193,7 @@ class AppRepo @Inject constructor(
             val updatedAt: Instant = Instant.now(),
             val pkgs: Collection<BasePkg>,
             val id: UUID = UUID.randomUUID(),
+            val scanDurationMs: Long = 0,
         ) : State()
     }
 

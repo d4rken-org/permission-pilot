@@ -126,6 +126,10 @@ android {
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     namespace = "eu.darken.myperm"
+
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 }
 
 androidComponents {
@@ -172,7 +176,8 @@ tasks.withType<KotlinCompile> {
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             "-opt-in=kotlinx.coroutines.FlowPreview",
             "-opt-in=kotlin.time.ExperimentalTime",
-            "-opt-in=kotlin.RequiresOptIn"
+            "-opt-in=kotlin.RequiresOptIn",
+            "-XXLanguage:+PropertyParamAnnotationDefaultTargetMode"
         )
     }
 }
@@ -208,6 +213,14 @@ dependencies {
     kspAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Dagger.core}")
 
     implementation("androidx.datastore:datastore-preferences:1.1.4")
+
+    implementation("androidx.room:room-runtime:${Versions.Room.core}")
+    implementation("androidx.room:room-ktx:${Versions.Room.core}")
+    ksp("androidx.room:room-compiler:${Versions.Room.core}")
+
+    implementation("androidx.work:work-runtime-ktx:${Versions.Work.core}")
+    implementation("androidx.hilt:hilt-work:${Versions.HiltX.core}")
+    ksp("androidx.hilt:hilt-compiler:${Versions.HiltX.core}")
 
     implementation("io.coil-kt:coil:2.4.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
