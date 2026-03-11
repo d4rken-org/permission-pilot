@@ -53,6 +53,9 @@ object Nav {
         data object General : Settings
 
         @Serializable
+        data object Watcher : Settings
+
+        @Serializable
         data object Support : Settings
 
         @Serializable

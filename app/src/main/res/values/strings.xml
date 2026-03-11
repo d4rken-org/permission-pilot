@@ -490,6 +490,7 @@
         <item quantity="other">%1$s: %2$d permissions changed</item>
     </plurals>
     <string name="watcher_settings_label">Permission Watcher</string>
+    <string name="watcher_settings_desc">Monitor apps for permission changes</string>
     <string name="watcher_enabled_label">Enable watcher</string>
     <string name="watcher_enabled_desc">Detect permission changes when apps are installed or updated</string>
     <string name="watcher_scope_label">Watch scope</string>

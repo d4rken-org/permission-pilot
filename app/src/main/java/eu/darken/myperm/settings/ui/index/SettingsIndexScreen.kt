@@ -10,6 +10,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.FormatListNumbered
 import androidx.compose.material.icons.twotone.Favorite
+import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.automirrored.twotone.HelpOutline
 import androidx.compose.material.icons.twotone.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,6 +41,7 @@ fun SettingsIndexScreenHost() {
     SettingsIndexScreen(
         onBack = { navCtrl?.up() },
         onGeneralSettings = { navCtrl?.goTo(Nav.Settings.General) },
+        onWatcherSettings = { navCtrl?.goTo(Nav.Settings.Watcher) },
         onChangelog = { vm.openChangelog() },
         onSupport = { navCtrl?.goTo(Nav.Settings.Support) },
         onAcknowledgements = { navCtrl?.goTo(Nav.Settings.Acknowledgements) },
@@ -52,6 +54,7 @@ fun SettingsIndexScreenHost() {
 fun SettingsIndexScreen(
     onBack: () -> Unit,
     onGeneralSettings: () -> Unit = {},
+    onWatcherSettings: () -> Unit = {},
     onChangelog: () -> Unit,
     onSupport: () -> Unit,
     onAcknowledgements: () -> Unit,
@@ -76,13 +79,18 @@ fun SettingsIndexScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
-            SettingsCategoryHeader(text = stringResource(R.string.settings_category_appearance_label))
-
             SettingsBaseItem(
                 title = stringResource(R.string.general_settings_label),
                 subtitle = stringResource(R.string.general_settings_desc),
                 icon = Icons.TwoTone.ColorLens,
                 onClick = onGeneralSettings,
+            )
+            SettingsDivider()
+            SettingsBaseItem(
+                title = stringResource(R.string.watcher_settings_label),
+                subtitle = stringResource(R.string.watcher_settings_desc),
+                icon = Icons.TwoTone.Notifications,
+                onClick = onWatcherSettings,
             )
 
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
@@ -121,5 +129,5 @@ fun SettingsIndexScreen(
 @Preview2
 @Composable
 private fun SettingsIndexScreenPreview() = PreviewWrapper {
-    SettingsIndexScreen(onBack = {}, onGeneralSettings = {}, onChangelog = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = {})
+    SettingsIndexScreen(onBack = {}, onGeneralSettings = {}, onWatcherSettings = {}, onChangelog = {}, onSupport = {}, onAcknowledgements = {}, onPrivacyPolicy = {})
 }

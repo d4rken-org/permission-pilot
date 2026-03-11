@@ -11,10 +11,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.DarkMode
-import androidx.compose.material.icons.twotone.FilterList
-import androidx.compose.material.icons.twotone.History
 import androidx.compose.material.icons.twotone.Lock
-import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
@@ -44,13 +41,11 @@ import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.common.settings.SettingsBaseItem
 import eu.darken.myperm.common.settings.SettingsCategoryHeader
 import eu.darken.myperm.common.settings.SettingsDivider
-import eu.darken.myperm.common.settings.SettingsSwitchItem
 import eu.darken.myperm.common.settings.ThemeColorSelectorDialog
 import eu.darken.myperm.common.theming.LocalIsDynamicColorActive
 import eu.darken.myperm.common.theming.ThemeColor
 import eu.darken.myperm.common.theming.ThemeMode
 import eu.darken.myperm.common.theming.ThemeStyle
-import eu.darken.myperm.watcher.core.WatcherScope
 
 @Composable
 fun GeneralSettingsScreenHost() {
@@ -65,8 +60,6 @@ fun GeneralSettingsScreenHost() {
     val themeColor by vm.themeColor.collectAsState(initial = ThemeColor.BLUE)
     val isDynamicColorActive = LocalIsDynamicColorActive.current
     val isPro by vm.isPro.collectAsState()
-    val isWatcherEnabled by vm.isWatcherEnabled.collectAsState(initial = false)
-    val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
 
     GeneralSettingsScreen(
         onBack = { navCtrl?.up() },
@@ -79,16 +72,10 @@ fun GeneralSettingsScreenHost() {
         onThemeStyleSelected = { vm.setThemeStyle(it) },
         onThemeColorSelected = { vm.setThemeColor(it) },
         onUpgrade = { vm.onUpgrade() },
-        isWatcherEnabled = isWatcherEnabled,
-        watcherScope = watcherScope,
-        onWatcherEnabledChanged = { vm.setWatcherEnabled(it) },
-        onWatcherScopeSelected = { vm.setWatcherScope(it) },
-        onViewReports = { vm.goToReports() },
     )
 }
 
 private enum class ThemeDialog { MODE, STYLE, COLOR }
-private enum class WatcherDialog { SCOPE }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,14 +90,8 @@ fun GeneralSettingsScreen(
     onThemeStyleSelected: (ThemeStyle) -> Unit = {},
     onThemeColorSelected: (ThemeColor) -> Unit = {},
     onUpgrade: () -> Unit = {},
-    isWatcherEnabled: Boolean = false,
-    watcherScope: WatcherScope = WatcherScope.NON_SYSTEM,
-    onWatcherEnabledChanged: (Boolean) -> Unit = {},
-    onWatcherScopeSelected: (WatcherScope) -> Unit = {},
-    onViewReports: () -> Unit = {},
 ) {
     var openDialog by remember { mutableStateOf<ThemeDialog?>(null) }
-    var openWatcherDialog by remember { mutableStateOf<WatcherDialog?>(null) }
 
     Scaffold(
         topBar = {
@@ -177,34 +158,6 @@ fun GeneralSettingsScreen(
                 enabled = colorEnabled,
                 onClick = { openDialog = ThemeDialog.COLOR },
             )
-
-            SettingsCategoryHeader(text = stringResource(R.string.watcher_settings_label))
-
-            SettingsSwitchItem(
-                icon = Icons.TwoTone.Notifications,
-                title = stringResource(R.string.watcher_enabled_label),
-                subtitle = stringResource(R.string.watcher_enabled_desc),
-                checked = isWatcherEnabled,
-                onCheckedChange = onWatcherEnabledChanged,
-            )
-            SettingsDivider()
-            SettingsBaseItem(
-                title = stringResource(R.string.watcher_scope_label),
-                subtitle = when (watcherScope) {
-                    WatcherScope.ALL -> stringResource(R.string.watcher_scope_all)
-                    WatcherScope.NON_SYSTEM -> stringResource(R.string.watcher_scope_non_system)
-                },
-                icon = Icons.TwoTone.FilterList,
-                enabled = isWatcherEnabled,
-                onClick = { openWatcherDialog = WatcherDialog.SCOPE },
-            )
-            SettingsDivider()
-            SettingsBaseItem(
-                title = stringResource(R.string.watcher_view_reports),
-                subtitle = null,
-                icon = Icons.TwoTone.History,
-                onClick = onViewReports,
-            )
         }
     }
 
@@ -238,28 +191,6 @@ fun GeneralSettingsScreen(
                 openDialog = null
             },
             onDismiss = { openDialog = null },
-        )
-
-        null -> {}
-    }
-
-    when (openWatcherDialog) {
-        WatcherDialog.SCOPE -> SingleChoiceSortDialog(
-            title = stringResource(R.string.watcher_scope_label),
-            options = WatcherScope.entries.map {
-                LabeledOption(
-                    it, when (it) {
-                        WatcherScope.ALL -> R.string.watcher_scope_all
-                        WatcherScope.NON_SYSTEM -> R.string.watcher_scope_non_system
-                    }
-                )
-            },
-            selected = watcherScope,
-            onSelect = {
-                onWatcherScopeSelected(it)
-                openWatcherDialog = null
-            },
-            onDismiss = { openWatcherDialog = null },
         )
 
         null -> {}
