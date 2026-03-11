@@ -28,6 +28,15 @@ interface SnapshotPkgDao {
     @Query("SELECT * FROM snapshot_pkg_declared_perms WHERE snapshotId = :snapshotId")
     suspend fun getDeclaredPermsForSnapshot(snapshotId: String): List<SnapshotPkgDeclaredPermEntity>
 
+    @Query("SELECT pkgName, userHandleId, COUNT(*) as declaredCount FROM snapshot_pkg_declared_perms WHERE snapshotId = :snapshotId GROUP BY pkgName, userHandleId")
+    suspend fun getDeclaredPermCountsForSnapshot(snapshotId: String): List<DeclaredPermCount>
+
+    data class DeclaredPermCount(
+        val pkgName: String,
+        val userHandleId: Int,
+        val declaredCount: Int,
+    )
+
     @Query("SELECT * FROM snapshot_pkg_perms WHERE snapshotId = :snapshotId AND pkgName = :pkgName AND userHandleId = :userHandleId")
     suspend fun getPermsForPkg(snapshotId: String, pkgName: String, userHandleId: Int): List<SnapshotPkgPermEntity>
 

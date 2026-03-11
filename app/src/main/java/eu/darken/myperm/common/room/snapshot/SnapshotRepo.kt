@@ -8,7 +8,12 @@ import eu.darken.myperm.common.room.PermPilotDatabase
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.room.entity.SnapshotEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.util.UUID
@@ -35,7 +40,15 @@ class SnapshotRepo @Inject constructor(
         log(TAG) { "saveSnapshot($snapshotId, reason=$reason, pkgs=${pkgs.size})" }
 
         val mapStart = System.currentTimeMillis()
-        val mapped = pkgs.map { snapshotMapper.toEntities(snapshotId, it) }
+        val allPkgEntities = ArrayList<SnapshotPkgEntity>(pkgs.size)
+        val allPermEntities = ArrayList<SnapshotPkgPermEntity>()
+        val allDeclaredPermEntities = ArrayList<SnapshotPkgDeclaredPermEntity>()
+        for (pkg in pkgs) {
+            val entities = snapshotMapper.toEntities(snapshotId, pkg)
+            allPkgEntities.add(entities.pkg)
+            allPermEntities.addAll(entities.permissions)
+            allDeclaredPermEntities.addAll(entities.declaredPermissions)
+        }
         log(TAG) { "Perf: saveSnapshot() mapped ${pkgs.size} pkgs in ${System.currentTimeMillis() - mapStart}ms" }
 
         val txStart = System.currentTimeMillis()
@@ -49,9 +62,9 @@ class SnapshotRepo @Inject constructor(
                     durationMs = durationMs,
                 )
             )
-            snapshotPkgDao.insertPkgs(mapped.map { it.pkg })
-            snapshotPkgDao.insertPermissions(mapped.flatMap { it.permissions })
-            snapshotPkgDao.insertDeclaredPermissions(mapped.flatMap { it.declaredPermissions })
+            snapshotPkgDao.insertPkgs(allPkgEntities)
+            snapshotPkgDao.insertPermissions(allPermEntities)
+            snapshotPkgDao.insertDeclaredPermissions(allDeclaredPermEntities)
         }
         log(TAG) { "Perf: saveSnapshot() DB transaction in ${System.currentTimeMillis() - txStart}ms" }
 
@@ -67,21 +80,27 @@ class SnapshotRepo @Inject constructor(
         }
         log(TAG) { "loadCachedApps() from snapshot ${latest.snapshotId}" }
 
-        val pkgEntities = snapshotPkgDao.getPkgsForSnapshot(latest.snapshotId)
+        val (pkgEntities, allPerms, declaredCounts) = coroutineScope {
+            val pkgsDeferred = async { snapshotPkgDao.getPkgsForSnapshot(latest.snapshotId) }
+            val permsDeferred = async { snapshotPkgDao.getPermsForSnapshot(latest.snapshotId) }
+            val declaredDeferred = async { snapshotPkgDao.getDeclaredPermCountsForSnapshot(latest.snapshotId) }
+            Triple(pkgsDeferred.await(), permsDeferred.await(), declaredDeferred.await())
+        }
+
         if (pkgEntities.isEmpty()) return null
 
-        val allPerms = snapshotPkgDao.getPermsForSnapshot(latest.snapshotId)
-        val allDeclaredPerms = snapshotPkgDao.getDeclaredPermsForSnapshot(latest.snapshotId)
-
-        val permsByPkg = allPerms.groupBy { Triple(it.snapshotId, it.pkgName, it.userHandleId) }
-        val declaredCountByPkg = allDeclaredPerms.groupBy { Triple(it.snapshotId, it.pkgName, it.userHandleId) }
+        val permsByPkg = allPerms.groupBy { Pair(it.pkgName, it.userHandleId) }
+        val declaredCountByPkg = declaredCounts.associateBy(
+            keySelector = { Pair(it.pkgName, it.userHandleId) },
+            valueTransform = { it.declaredCount },
+        )
 
         val result = pkgEntities.map { pkgEntity ->
-            val key = Triple(pkgEntity.snapshotId, pkgEntity.pkgName, pkgEntity.userHandleId)
+            val key = Pair(pkgEntity.pkgName, pkgEntity.userHandleId)
             snapshotMapper.toCachedAppInfo(
                 pkgEntity = pkgEntity,
                 permEntities = permsByPkg[key] ?: emptyList(),
-                declaredPermCount = declaredCountByPkg[key]?.size ?: 0,
+                declaredPermCount = declaredCountByPkg[key] ?: 0,
             )
         }
         log(TAG) { "Perf: loadCachedApps() loaded ${result.size} apps in ${System.currentTimeMillis() - start}ms" }
