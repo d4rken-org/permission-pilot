@@ -23,9 +23,7 @@ class RoomModule {
         context,
         PermPilotDatabase::class.java,
         "permpilot.db",
-    )
-        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
-        .build()
+    ).build()
 
     @Provides
     fun snapshotDao(db: PermPilotDatabase): SnapshotDao = db.snapshotDao()
