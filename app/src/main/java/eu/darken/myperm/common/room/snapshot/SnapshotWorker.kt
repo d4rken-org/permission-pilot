@@ -25,6 +25,7 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.watcher.core.PermissionWatcherWorker
+import eu.darken.myperm.watcher.core.WatcherDiffRunner
 
 @HiltWorker
 class SnapshotWorker @AssistedInject constructor(
@@ -33,6 +34,7 @@ class SnapshotWorker @AssistedInject constructor(
     private val appRepo: AppRepo,
     private val pendingEventDao: PendingSnapshotEventDao,
     private val snapshotDao: SnapshotDao,
+    private val watcherDiffRunner: WatcherDiffRunner,
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
@@ -50,7 +52,6 @@ class SnapshotWorker @AssistedInject constructor(
         val pendingEvents = pendingEventDao.getAll()
         if (pendingEvents.isEmpty()) {
             log(TAG) { "No pending events, skipping" }
-            enqueueWatcher()
             return Result.success()
         }
 
@@ -68,12 +69,15 @@ class SnapshotWorker @AssistedInject constructor(
 
         pendingEventDao.deleteByMaxId(maxId)
 
-        enqueueWatcher()
+        // Inline diff: process new snapshots immediately instead of enqueuing a separate worker
+        watcherDiffRunner.processNewSnapshots()
+
+        // Aggressive prune: all diffs are done, safe to shrink back to 2 snapshots
+        appRepo.pruneSnapshots(keepCount = 2)
+
         log(TAG) { "doWork() completed" }
         return Result.success()
     }
-
-    private fun enqueueWatcher() = enqueueWatcher(WorkManager.getInstance(applicationContext))
 
     private fun createForegroundInfo(): ForegroundInfo {
         ensureNotificationChannel()
@@ -116,7 +120,7 @@ class SnapshotWorker @AssistedInject constructor(
 
         fun enqueueWatcher(workManager: WorkManager) {
             val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
-            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.REPLACE, request)
+            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.KEEP, request)
             log(TAG) { "Enqueued PermissionWatcherWorker" }
         }
     }

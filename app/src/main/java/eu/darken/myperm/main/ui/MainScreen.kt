@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Apps
+import eu.darken.myperm.common.compose.LucideRadar
 import androidx.compose.material.icons.filled.PhoneAndroid
 import androidx.compose.material.icons.filled.Security
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -34,6 +37,7 @@ fun MainScreen(
     backStack: NavBackStack<NavKey>,
     navCtrl: NavigationController,
     navigationEntries: Set<NavigationEntry>,
+    unseenWatcherCount: Int = 0,
 ) {
     val context = LocalContext.current
     val activity = context as? android.app.Activity
@@ -83,6 +87,22 @@ fun MainScreen(
                     onClick = { navCtrl.replace(Nav.Tab.Permissions) },
                     icon = { Icon(Icons.Filled.Security, contentDescription = null) },
                     label = { Text(stringResource(R.string.permissions_page_label)) },
+                )
+                NavigationBarItem(
+                    selected = currentEntry is Nav.Tab.Watcher,
+                    onClick = { navCtrl.replace(Nav.Tab.Watcher) },
+                    icon = {
+                        BadgedBox(
+                            badge = {
+                                if (unseenWatcherCount > 0) {
+                                    Badge { Text(unseenWatcherCount.toString()) }
+                                }
+                            }
+                        ) {
+                            Icon(LucideRadar, contentDescription = null)
+                        }
+                    },
+                    label = { Text(stringResource(R.string.watcher_tab_label)) },
                 )
             }
         }

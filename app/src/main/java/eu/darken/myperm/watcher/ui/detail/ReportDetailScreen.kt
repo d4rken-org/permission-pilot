@@ -8,10 +8,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,6 +20,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
@@ -52,7 +52,6 @@ fun ReportDetailScreenHost(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReportDetailScreen(
     state: ReportDetailViewModel.State,
@@ -95,8 +94,14 @@ fun ReportDetailScreen(
                 "REMOVED" -> stringResource(R.string.watcher_event_removed)
                 else -> state.eventType
             }
+            val versionSuffix = when {
+                state.versionName == null -> ""
+                state.eventType == "UPDATE" && state.previousVersionName != null ->
+                    " (v${state.previousVersionName} → v${state.versionName})"
+                else -> " (v${state.versionName})"
+            }
             Text(
-                text = "$eventLabel${state.versionName?.let { " (v$it)" } ?: ""}",
+                text = "$eventLabel$versionSuffix",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(top = 4.dp),
             )
@@ -159,6 +164,32 @@ private fun SectionHeader(text: String) {
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(top = 12.dp, bottom = 4.dp),
     )
+}
+
+@Preview
+@Composable
+private fun ReportDetailScreenPreview() {
+    MaterialTheme {
+        ReportDetailScreen(
+            state = ReportDetailViewModel.State(
+                isLoading = false,
+                packageName = "com.example.app",
+                appLabel = "Example App",
+                eventType = "UPDATE",
+                versionName = "2.1.0",
+                previousVersionName = "2.0.3",
+                detectedAt = System.currentTimeMillis(),
+                diff = PermissionDiff(
+                    addedPermissions = listOf("android.permission.CAMERA", "android.permission.RECORD_AUDIO"),
+                    removedPermissions = listOf("android.permission.READ_CONTACTS"),
+                    grantChanges = listOf(
+                        PermissionDiff.GrantChange("android.permission.LOCATION", "denied", "granted"),
+                    ),
+                ),
+            ),
+            onBack = {},
+        )
+    }
 }
 
 @Composable

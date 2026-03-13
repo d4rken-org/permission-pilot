@@ -1,4 +1,4 @@
-package eu.darken.myperm.watcher.ui.reports
+package eu.darken.myperm.watcher.ui.dashboard
 
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
@@ -11,9 +11,9 @@ import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEntry
 import javax.inject.Inject
 
-class ReportsNavigation @Inject constructor() : NavigationEntry {
+class WatcherDashboardNavigation @Inject constructor() : NavigationEntry {
     override fun EntryProviderScope<NavKey>.setup() {
-        entry<Nav.Watcher.Reports> { ReportsScreenHost() }
+        entry<Nav.Tab.Watcher> { WatcherDashboardScreenHost() }
     }
 
     @Module
@@ -21,6 +21,6 @@ class ReportsNavigation @Inject constructor() : NavigationEntry {
     abstract class Mod {
         @Binds
         @IntoSet
-        abstract fun bind(entry: ReportsNavigation): NavigationEntry
+        abstract fun bind(entry: WatcherDashboardNavigation): NavigationEntry
     }
 }
