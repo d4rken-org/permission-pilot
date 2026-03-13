@@ -79,7 +79,7 @@ class AppRepoTest : BaseTest() {
         verify {
             workManager.enqueueUniqueWork(
                 eq(SnapshotWorker.WATCHER_WORK_NAME),
-                eq(ExistingWorkPolicy.KEEP),
+                eq(ExistingWorkPolicy.REPLACE),
                 any<OneTimeWorkRequest>(),
             )
         }
@@ -97,7 +97,7 @@ class AppRepoTest : BaseTest() {
         verify {
             workManager.enqueueUniqueWork(
                 eq(SnapshotWorker.WATCHER_WORK_NAME),
-                eq(ExistingWorkPolicy.KEEP),
+                eq(ExistingWorkPolicy.REPLACE),
                 any<OneTimeWorkRequest>(),
             )
         }
