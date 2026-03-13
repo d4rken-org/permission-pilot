@@ -62,12 +62,18 @@ class DataStoreValue<T>(
         set(newValue) = runBlocking { value(newValue) }
 }
 
-inline fun <reified T> basicKey(keyName: String, defaultValue: T): Preferences.Key<*> = when (defaultValue) {
-    is Boolean -> booleanPreferencesKey(keyName)
-    is Int -> intPreferencesKey(keyName)
-    is Long -> longPreferencesKey(keyName)
-    is Float -> floatPreferencesKey(keyName)
-    is String -> stringPreferencesKey(keyName)
+inline fun <reified T> basicKey(keyName: String, defaultValue: T): Preferences.Key<*> = when {
+    defaultValue is Boolean -> booleanPreferencesKey(keyName)
+    defaultValue is Int -> intPreferencesKey(keyName)
+    defaultValue is Long -> longPreferencesKey(keyName)
+    defaultValue is Float -> floatPreferencesKey(keyName)
+    defaultValue is String -> stringPreferencesKey(keyName)
+    // Handle nullable types by checking the reified type parameter
+    T::class == String::class -> stringPreferencesKey(keyName)
+    T::class == Boolean::class -> booleanPreferencesKey(keyName)
+    T::class == Int::class -> intPreferencesKey(keyName)
+    T::class == Long::class -> longPreferencesKey(keyName)
+    T::class == Float::class -> floatPreferencesKey(keyName)
     else -> throw NotImplementedError("No basic key for type ${T::class}")
 }
 

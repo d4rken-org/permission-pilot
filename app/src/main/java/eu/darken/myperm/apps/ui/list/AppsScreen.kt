@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.twotone.Android
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import coil.compose.AsyncImage
+import eu.darken.myperm.apps.core.Pkg
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.AppIcon
@@ -217,7 +218,7 @@ fun AppsScreen(
 
                 is AppsViewModel.State.Ready -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items(state.items, key = { "${it.id.pkgName}:${it.userHandle}" }) { item ->
+                        items(state.items, key = { "${it.pkgName}:${it.userHandleId}" }) { item ->
                             AppListItem(
                                 item = item,
                                 onClick = { onAppClicked(item) },
@@ -245,21 +246,21 @@ private fun AppListItem(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         AppIcon(
-            pkg = item.pkg,
+            pkg = item.iconModel,
             isSystemApp = item.isSystemApp,
             modifier = Modifier.size(40.dp),
         )
 
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = item.packageName,
+                text = item.pkgName,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = item.label ?: item.packageName,
+                text = item.label,
                 style = MaterialTheme.typography.bodyLarge,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -297,9 +298,9 @@ private fun AppListItem(
             }
         }
 
-        if (item.installerInfo?.installer != null) {
+        if (item.installerPkgName != null) {
             AsyncImage(
-                model = item.installerInfo.installer,
+                model = Pkg.Container(Pkg.Id(item.installerPkgName)),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
                 error = rememberVectorPainter(Icons.TwoTone.Android),

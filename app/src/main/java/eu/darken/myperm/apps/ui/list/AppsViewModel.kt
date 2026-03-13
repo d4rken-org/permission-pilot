@@ -1,28 +1,21 @@
 package eu.darken.myperm.apps.ui.list
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Process
-import android.os.UserHandle
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.Installed
-import eu.darken.myperm.apps.core.features.InstallerInfo
-import eu.darken.myperm.apps.core.features.ReadableApk
-import eu.darken.myperm.apps.core.features.isGranted
+import eu.darken.myperm.common.compose.toIcon
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
-import androidx.compose.ui.graphics.vector.ImageVector
-import eu.darken.myperm.common.compose.toIcon
-import eu.darken.myperm.permissions.core.PermissionRepo
-import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -36,10 +29,8 @@ import javax.inject.Inject
 class AppsViewModel @Inject constructor(
     @Suppress("unused") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
-    @ApplicationContext private val context: Context,
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
-    private val permissionRepo: PermissionRepo,
     upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -52,18 +43,17 @@ class AppsViewModel @Inject constructor(
     private val sortOptions = generalSettings.appsSortOptions.flow
 
     data class AppItem(
-        val id: Pkg.Id,
-        val pkg: Pkg,
-        val label: String?,
-        val packageName: String,
+        val pkgName: String,
+        val userHandleId: Int,
+        val iconModel: Pkg,
+        val label: String,
         val isSystemApp: Boolean,
         val permissionCount: Int,
         val grantedCount: Int,
         val totalCount: Int,
         val declaredCount: Int,
         val tagIcons: List<ImageVector>,
-        val installerInfo: InstallerInfo?,
-        val userHandle: UserHandle,
+        val installerPkgName: String?,
     )
 
     sealed class State {
@@ -77,48 +67,41 @@ class AppsViewModel @Inject constructor(
     }
 
     val state = combine(
-        appRepo.state,
-        permissionRepo.state,
+        appRepo.appData,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { appRepoState, permissionRepoState, searchTerm, filterOptions, sortOptions ->
-        val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs
-        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
-        if (apps == null || permissions == null) return@combine State.Loading
-        if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine State.Loading
+    ) { appDataState, searchTerm, filterOptions, sortOptions ->
+        val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
-                if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
-                if (it.getLabel(context)?.lowercase()?.contains(prunedTerm) == true) return@filter true
+                if (it.pkgName.lowercase().contains(prunedTerm)) return@filter true
+                if (it.label.lowercase().contains(prunedTerm)) return@filter true
                 false
             }
-            .sortedWith(sortOptions.mainSort.getComparator(context))
+            .sortedWith(sortOptions.mainSort.getComparator())
 
         val listItems = filtered.map { app ->
-            val readableApk = app as? ReadableApk
-            val requestedPerms = readableApk?.requestedPermissions ?: emptyList()
-            val tagIcons = requestedPerms
-                .mapNotNull { it.id.toIcon() }
+            val tagIcons = app.requestedPermissions
+                .mapNotNull { Permission.Id(it.permissionId).toIcon() }
                 .distinct()
                 .take(5)
 
             AppItem(
-                id = app.id,
-                pkg = app,
-                label = app.getLabel(context),
-                packageName = app.packageName,
+                pkgName = app.pkgName,
+                userHandleId = app.userHandleId,
+                iconModel = Pkg.Container(Pkg.Id(app.pkgName)),
+                label = app.label,
                 isSystemApp = app.isSystemApp,
-                permissionCount = requestedPerms.size,
-                grantedCount = requestedPerms.count { it.isGranted },
-                totalCount = requestedPerms.size,
-                declaredCount = readableApk?.declaredPermissions?.size ?: 0,
+                permissionCount = app.requestedPermissions.size,
+                grantedCount = app.requestedPermissions.count { it.status.isGranted },
+                totalCount = app.requestedPermissions.size,
+                declaredCount = app.declaredPermissionCount,
                 tagIcons = tagIcons,
-                installerInfo = (app as? Installed)?.installerInfo,
-                userHandle = app.userHandle,
+                installerPkgName = app.installerPkgName,
             )
         }
         State.Ready(items = listItems, itemCount = listItems.size, filterOptions = filterOptions, sortOptions = sortOptions)
@@ -130,11 +113,11 @@ class AppsViewModel @Inject constructor(
     }
 
     fun onAppClicked(item: AppItem) {
-        log(TAG) { "Navigating to ${item.id}" }
+        log(TAG) { "Navigating to ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.id.pkgName,
-                userHandle = Process.myUserHandle().hashCode(), // UserHandle int representation
+                pkgName = item.pkgName,
+                userHandle = item.userHandleId,
                 appLabel = item.label,
             )
         )

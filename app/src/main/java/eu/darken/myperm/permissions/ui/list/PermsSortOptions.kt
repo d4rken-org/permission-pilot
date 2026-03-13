@@ -45,7 +45,7 @@ data class PermsSortOptions(
         ) {
             override fun getComparator(c: Context): Comparator<BasePermission> =
                 Comparator.comparing<BasePermission, Int> { perm ->
-                    perm.grantingPkgs.size
+                    perm.grantingApps.size
                 }.reversed()
         },
         APPS_REQUESTED(
@@ -53,7 +53,7 @@ data class PermsSortOptions(
         ) {
             override fun getComparator(c: Context): Comparator<BasePermission> =
                 Comparator.comparing<BasePermission, Int> { perm ->
-                    perm.requestingPkgs.size
+                    perm.requestingApps.size
                 }.reversed()
         },
         ;

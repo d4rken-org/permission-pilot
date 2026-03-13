@@ -3,23 +3,21 @@ package eu.darken.myperm.apps.ui.details
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.os.Process
+import android.content.pm.PackageManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.apps
 import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.features.Installed
-import eu.darken.myperm.apps.core.features.ReadableApk
 import eu.darken.myperm.apps.core.features.UsesPermission
-import eu.darken.myperm.apps.core.features.isGranted
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
+import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -32,7 +30,6 @@ import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.time.Instant
 import javax.inject.Inject
@@ -42,26 +39,27 @@ import javax.inject.Inject
 class AppDetailsViewModel @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
-    appRepo: AppRepo,
+    private val appRepo: AppRepo,
     private val permissionRepo: PermissionRepo,
     private val generalSettings: GeneralSettings,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
-    // Set from the screen host when the route is known
-    var pkgId: Pkg.Id = Pkg.Id("", Process.myUserHandle())
+    var pkgName: String = ""
+        private set
+    var userHandleId: Int = 0
         private set
     var initialLabel: String? = null
         private set
 
     fun init(route: Nav.Details.AppDetails) {
-        pkgId = Pkg.Id(route.pkgName, Process.myUserHandle()) // TODO: reconstruct proper UserHandle from route.userHandle
+        pkgName = route.pkgName
+        userHandleId = route.userHandle
         initialLabel = route.appLabel
     }
 
     data class PermItem(
         val permId: Permission.Id,
         val permLabel: String?,
-        val usesPermission: UsesPermission,
         val status: UsesPermission.Status,
         val type: String,
         val isRuntime: Boolean,
@@ -70,13 +68,15 @@ class AppDetailsViewModel @Inject constructor(
     )
 
     data class TwinItem(
-        val pkgId: Pkg.Id,
-        val label: String?,
+        val pkgName: String,
+        val userHandleId: Int,
+        val label: String,
     )
 
     data class SiblingItem(
-        val pkgId: Pkg.Id,
-        val label: String?,
+        val pkgName: String,
+        val userHandleId: Int,
+        val label: String,
     )
 
     data class State(
@@ -107,44 +107,43 @@ class AppDetailsViewModel @Inject constructor(
 
     val state by lazy {
         combine(
-            appRepo.apps.map { apps -> apps.singleOrNull { it.id == pkgId } },
+            appRepo.appData.map { state ->
+                (state as? AppRepo.AppDataState.Ready)?.apps
+            },
+            permissionRepo.permissions,
             generalSettings.appDetailsFilterOptions.flow,
-        ) { app, filterOpts ->
-            if (app == null) return@combine State(label = initialLabel ?: pkgId.pkgName, isLoading = true)
+        ) { allApps, permissions, filterOpts ->
+            if (allApps == null) return@combine State(label = initialLabel ?: pkgName, isLoading = true)
 
-            val permissions = permissionRepo.permissions.first()
-            val readableApk = app as? ReadableApk
-            val installed = app as? Installed
+            val appInfo = allApps.singleOrNull { it.pkgName == pkgName && it.userHandleId == userHandleId }
+                ?: return@combine State(label = initialLabel ?: pkgName, isLoading = true)
 
-            val allPerms = readableApk?.requestedPermissions
-                ?.mapNotNull { usesPerm ->
-                    val basePerm = permissions.singleOrNull { it.id == usesPerm.id } ?: return@mapNotNull null
-                    usesPerm to basePerm
+            val allPerms = appInfo.requestedPermissions
+                .mapNotNull { cachedPerm ->
+                    val basePerm = permissions.singleOrNull { it.id == Permission.Id(cachedPerm.permissionId) }
+                        ?: return@mapNotNull null
+                    cachedPerm to basePerm
                 }
-                ?: emptyList()
 
             val filteredPerms = allPerms
-                .filter { (usesPerm, basePerm) ->
-                    usesPerm.status == UsesPermission.Status.UNKNOWN ||
-                            filterOpts.keys.any { filter -> filter.matches(usesPerm, basePerm) }
+                .filter { (cachedPerm, basePerm) ->
+                    cachedPerm.status == UsesPermission.Status.UNKNOWN ||
+                            filterOpts.keys.any { filter -> filter.matches(cachedPerm, basePerm) }
                 }
                 .sortedWith(
-                    compareByDescending<Pair<UsesPermission, BasePermission>> { (_, basePerm) ->
+                    compareByDescending<Pair<PermissionUse, BasePermission>> { (_, basePerm) ->
                         when (basePerm) {
                             is DeclaredPermission -> 2
                             is ExtraPermission -> 1
                             is UnknownPermission -> 0
                         }
-                    }.thenBy { (usesPerm, _) -> usesPerm.status.ordinal }
+                    }.thenBy { (cachedPerm, _) -> cachedPerm.status.ordinal }
                 )
-                .map { (usesPerm, basePerm) ->
-                    val isDeclaredByApp = readableApk?.declaredPermissions
-                        ?.any { it.name == basePerm.id.value } == true
+                .map { (cachedPerm, basePerm) ->
                     PermItem(
                         permId = basePerm.id,
                         permLabel = basePerm.getLabel(context),
-                        usesPermission = usesPerm,
-                        status = usesPerm.status,
+                        status = cachedPerm.status,
                         type = when (basePerm) {
                             is DeclaredPermission -> "declared"
                             is ExtraPermission -> "extra"
@@ -152,16 +151,26 @@ class AppDetailsViewModel @Inject constructor(
                         },
                         isRuntime = basePerm.tags.contains(RuntimeGrant),
                         isSpecialAccess = basePerm.tags.contains(SpecialAccess),
-                        isDeclaredByApp = isDeclaredByApp,
+                        isDeclaredByApp = basePerm.declaringApps.any { it.pkgName == appInfo.pkgName && it.userHandleId == appInfo.userHandleId },
                     )
                 }
 
-            val twins = app.twins.map { twin ->
-                TwinItem(pkgId = twin.id, label = twin.getLabel(context))
-            }
+            // Compute twins: same pkgName, different userHandleId
+            val twins = allApps
+                .filter { it.pkgName == appInfo.pkgName && it.userHandleId != appInfo.userHandleId }
+                .map { TwinItem(pkgName = it.pkgName, userHandleId = it.userHandleId, label = it.label) }
 
-            val siblings = app.siblings.map { sibling ->
-                SiblingItem(pkgId = sibling.id, label = sibling.getLabel(context))
+            // Compute siblings: same non-null sharedUserId, same userHandleId, different pkgName
+            val siblings = if (appInfo.sharedUserId != null) {
+                allApps
+                    .filter {
+                        it.sharedUserId == appInfo.sharedUserId
+                                && it.userHandleId == appInfo.userHandleId
+                                && it.pkgName != appInfo.pkgName
+                    }
+                    .map { SiblingItem(pkgName = it.pkgName, userHandleId = it.userHandleId, label = it.label) }
+            } else {
+                emptyList()
             }
 
             fun formatApiLevel(level: Int?): String? {
@@ -170,25 +179,35 @@ class AppDetailsViewModel @Inject constructor(
                 return versionCode?.longFormat ?: "? (?) [$level]"
             }
 
+            // Resolve installer label from PackageManager
+            val installerAppName = appInfo.allInstallerPkgNames.firstNotNullOfOrNull { installerPkg ->
+                try {
+                    val ai = context.packageManager.getApplicationInfo(installerPkg, 0)
+                    context.packageManager.getApplicationLabel(ai)?.toString()
+                } catch (_: PackageManager.NameNotFoundException) {
+                    null
+                }
+            }
+
             State(
-                label = app.getLabel(context) ?: app.packageName,
-                packageName = app.packageName,
-                pkg = app,
-                isSystemApp = app.isSystemApp,
-                versionName = readableApk?.versionName,
-                versionCode = readableApk?.versionCode,
-                grantedCount = allPerms.count { it.first.isGranted },
+                label = appInfo.label,
+                packageName = appInfo.pkgName,
+                pkg = Pkg.Container(Pkg.Id(appInfo.pkgName)),
+                isSystemApp = appInfo.isSystemApp,
+                versionName = appInfo.versionName,
+                versionCode = appInfo.versionCode,
+                grantedCount = allPerms.count { it.first.status.isGranted },
                 totalPermCount = allPerms.size,
-                installedAt = installed?.installedAt,
-                updatedAt = installed?.updatedAt,
-                apiTargetDesc = readableApk?.apiTargetLevel?.let { context.getString(R.string.api_target_level_x, formatApiLevel(it)) },
-                apiMinimumDesc = readableApk?.apiMinimumLevel?.let { context.getString(R.string.api_minimum_level_x, formatApiLevel(it)) },
-                apiCompileDesc = readableApk?.apiCompileLevel?.let { context.getString(R.string.api_build_level_x, formatApiLevel(it)) },
-                installerLabel = installed?.installerInfo?.getLabel(context),
+                installedAt = appInfo.installedAt,
+                updatedAt = appInfo.updatedAt,
+                apiTargetDesc = appInfo.apiTargetLevel?.let { context.getString(R.string.api_target_level_x, formatApiLevel(it)) },
+                apiMinimumDesc = appInfo.apiMinimumLevel?.let { context.getString(R.string.api_minimum_level_x, formatApiLevel(it)) },
+                apiCompileDesc = appInfo.apiCompileLevel?.let { context.getString(R.string.api_build_level_x, formatApiLevel(it)) },
+                installerLabel = appInfo.installerPkgName,
                 installerSourceLabel = context.getString(R.string.apps_details_installer_label),
-                canOpen = context.packageManager.getLaunchIntentForPackage(app.packageName) != null,
-                installerPkgNames = installed?.installerInfo?.allInstallers?.map { it.packageName } ?: emptyList(),
-                installerAppName = installed?.installerInfo?.allInstallers?.mapNotNull { it.getLabel(context) }?.firstOrNull(),
+                canOpen = context.packageManager.getLaunchIntentForPackage(appInfo.pkgName) != null,
+                installerPkgNames = appInfo.allInstallerPkgNames,
+                installerAppName = installerAppName,
                 permissions = filteredPerms,
                 twins = twins,
                 siblings = siblings,
@@ -204,22 +223,22 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     fun onTwinClicked(item: TwinItem) {
-        log(TAG) { "Navigating to twin ${item.pkgId}" }
+        log(TAG) { "Navigating to twin ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.pkgId.pkgName,
-                userHandle = Process.myUserHandle().hashCode(),
+                pkgName = item.pkgName,
+                userHandle = item.userHandleId,
                 appLabel = item.label,
             )
         )
     }
 
     fun onSiblingClicked(item: SiblingItem) {
-        log(TAG) { "Navigating to sibling ${item.pkgId}" }
+        log(TAG) { "Navigating to sibling ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.pkgId.pkgName,
-                userHandle = Process.myUserHandle().hashCode(),
+                pkgName = item.pkgName,
+                userHandle = item.userHandleId,
                 appLabel = item.label,
             )
         )
@@ -230,8 +249,8 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     fun onGoSettings() {
-        log(TAG) { "onGoSettings for $pkgId" }
-        val pkg = Pkg.Container(pkgId)
+        log(TAG) { "onGoSettings for $pkgName" }
+        val pkg = Pkg.Container(Pkg.Id(pkgName))
         val intent = pkg.getSettingsIntent(context).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
@@ -239,8 +258,8 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     fun onOpenApp() {
-        log(TAG) { "onOpenApp for $pkgId" }
-        val intent = context.packageManager.getLaunchIntentForPackage(pkgId.pkgName) ?: return
+        log(TAG) { "onOpenApp for $pkgName" }
+        val intent = context.packageManager.getLaunchIntentForPackage(pkgName) ?: return
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
@@ -250,7 +269,7 @@ class AppDetailsViewModel @Inject constructor(
         navTo(
             Nav.Details.AppDetails(
                 pkgName = pkgName,
-                userHandle = Process.myUserHandle().hashCode(),
+                userHandle = userHandleId,
                 appLabel = null,
             )
         )

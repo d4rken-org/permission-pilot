@@ -12,7 +12,9 @@ sealed class UsesPermission {
         GRANTED,
         GRANTED_IN_USE,
         DENIED,
-        UNKNOWN,
+        UNKNOWN;
+
+        val isGranted: Boolean get() = this == GRANTED || this == GRANTED_IN_USE
     }
 
     class WithState(
@@ -44,7 +46,7 @@ sealed class UsesPermission {
 }
 
 val UsesPermission.isGranted: Boolean
-    get() = status == UsesPermission.Status.GRANTED
+    get() = status.isGranted
 
 fun Pkg.getPermissionUses(id: Permission.Id): UsesPermission =
     (this as? ReadableApk)?.requestedPermissions

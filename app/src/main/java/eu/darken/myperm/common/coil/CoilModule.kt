@@ -36,7 +36,10 @@ class CoilModule {
             val logger = object : Logger {
                 override var level: Int = Log.VERBOSE
                 override fun log(tag: String, priority: Int, message: String?, throwable: Throwable?) {
-                    log("Coil:$tag", Logging.Priority.fromAndroid(priority)) { "$message ${throwable?.asLog()}" }
+                    val mappedPriority = Logging.Priority.fromAndroid(priority).let {
+                        if (it <= Logging.Priority.INFO) Logging.Priority.VERBOSE else it
+                    }
+                    log("Coil:$tag", mappedPriority) { "$message ${throwable?.asLog()}" }
                 }
             }
             logger(logger)

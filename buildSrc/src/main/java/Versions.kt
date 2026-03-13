@@ -23,4 +23,16 @@ object Versions {
     object Serialization {
         const val core = "1.9.0"
     }
+
+    object Room {
+        const val core = "2.7.1"
+    }
+
+    object Work {
+        const val core = "2.10.1"
+    }
+
+    object HiltX {
+        const val core = "1.2.0"
+    }
 }

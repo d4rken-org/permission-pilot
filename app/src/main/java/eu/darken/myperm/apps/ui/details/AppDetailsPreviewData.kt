@@ -17,7 +17,6 @@ internal object AppDetailsPreviewData {
     ) = AppDetailsViewModel.PermItem(
         permId = Permission.Id(permName),
         permLabel = label,
-        usesPermission = UsesPermission.WithState(Permission.Id(permName), flags = null, overrideStatus = status),
         status = status,
         type = "declared",
         isRuntime = isRuntime,
@@ -53,10 +52,10 @@ internal object AppDetailsPreviewData {
             permItem("com.google.chrome.DYNAMIC_RECEIVER", null, UsesPermission.Status.UNKNOWN, isDeclaredByApp = true),
         ),
         twins = listOf(
-            AppDetailsViewModel.TwinItem(Pkg.Id("com.google.chrome"), "Chrome (Work)"),
+            AppDetailsViewModel.TwinItem("com.google.chrome", 10, "Chrome (Work)"),
         ),
         siblings = listOf(
-            AppDetailsViewModel.SiblingItem(Pkg.Id("com.google.android.webview"), "Android System WebView"),
+            AppDetailsViewModel.SiblingItem("com.google.android.webview", 0, "Android System WebView"),
         ),
         isLoading = false,
     )

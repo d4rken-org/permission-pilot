@@ -297,20 +297,18 @@ fun AppDetailsScreen(
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = twin.label ?: twin.pkgId.pkgName,
+                                    text = twin.label,
                                     style = MaterialTheme.typography.bodyMedium,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                 )
-                                if (twin.label != null) {
-                                    Text(
-                                        text = twin.pkgId.pkgName,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
-                                }
+                                Text(
+                                    text = twin.pkgName,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
                             }
                             Icon(
                                 Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -348,20 +346,18 @@ fun AppDetailsScreen(
                             )
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
-                                    text = sibling.label ?: sibling.pkgId.pkgName,
+                                    text = sibling.label,
                                     style = MaterialTheme.typography.bodyMedium,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                 )
-                                if (sibling.label != null) {
-                                    Text(
-                                        text = sibling.pkgId.pkgName,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
-                                }
+                                Text(
+                                    text = sibling.pkgName,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
                             }
                             Icon(
                                 Icons.AutoMirrored.Filled.KeyboardArrowRight,
@@ -641,7 +637,7 @@ private fun PermissionRow(
         PermissionIcon(
             permissionId = item.permId,
             modifier = Modifier.size(20.dp),
-            fallbackModel = item.usesPermission,
+            fallbackModel = null,
         )
 
         // Label, ID, type tags

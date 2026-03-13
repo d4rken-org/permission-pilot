@@ -5,20 +5,17 @@ import android.os.Build
 import android.os.Process
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.features.InternetAccess
-import eu.darken.myperm.apps.core.features.getPermission
-import eu.darken.myperm.apps.core.features.isGranted
-import eu.darken.myperm.apps.core.features.isSideloaded
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.BuildWrap
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
+import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
-import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
@@ -32,8 +29,7 @@ import javax.inject.Inject
 class OverviewViewModel @Inject constructor(
     @Suppress("unused") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
-    packageRepo: AppRepo,
-    permissionRepo: PermissionRepo,
+    private val appRepo: AppRepo,
     private val upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -79,33 +75,14 @@ class OverviewViewModel @Inject constructor(
         )
     }
 
+    private val myUserHandleId = Process.myUserHandle().hashCode()
+    private val storePkgNames = AKnownPkg.APP_STORES.map { it.id.pkgName }.toSet()
+
     val state = combine(
         deviceData.onStart { emit(DeviceInfo("", "", "")) },
-        combine(
-            packageRepo.state,
-            permissionRepo.state,
-        ) { appRepoState, permissionRepoState ->
-            val apps = (appRepoState as? AppRepo.State.Ready)?.pkgs ?: return@combine null
-            val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions ?: return@combine null
-            if (appRepoState.id != permissionRepoState.basedOnAppState) return@combine null
-
-            SummaryInfo(
-                activeProfileUser = apps.count { it.userHandle == Process.myUserHandle() && !it.isSystemApp },
-                activeProfileSystem = apps.count { it.userHandle == Process.myUserHandle() && it.isSystemApp },
-                otherProfileUser = apps.count { it.userHandle != Process.myUserHandle() && !it.isSystemApp },
-                otherProfileSystem = apps.count { it.userHandle != Process.myUserHandle() && it.isSystemApp },
-                sideloaded = apps.count { it.isSideloaded() },
-                installerAppsUser = apps.count { !it.isSystemApp && it.getPermission(APerm.REQUEST_INSTALL_PACKAGES)?.isGranted ?: false },
-                installerAppsSystem = apps.count { it.isSystemApp && it.getPermission(APerm.REQUEST_INSTALL_PACKAGES)?.isGranted ?: false },
-                systemAlertWindowUser = apps.count { !it.isSystemApp && it.getPermission(APerm.SYSTEM_ALERT_WINDOW)?.isGranted ?: false },
-                systemAlertWindowSystem = apps.count { it.isSystemApp && it.getPermission(APerm.SYSTEM_ALERT_WINDOW)?.isGranted ?: false },
-                noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
-                noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
-                clonesUser = apps.count { !it.isSystemApp && it.twins.isNotEmpty() },
-                clonesSystem = apps.count { it.isSystemApp && it.twins.isNotEmpty() },
-                sharedIdsUser = apps.count { !it.isSystemApp && it.siblings.isNotEmpty() },
-                sharedIdsSystem = apps.count { it.isSystemApp && it.siblings.isNotEmpty() },
-            )
+        appRepo.appData.map { appDataState ->
+            val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@map null
+            buildSummary(apps)
         }.onStart { emit(null) },
         upgradeRepo.upgradeInfo.map<UpgradeRepo.Info, UpgradeRepo.Info?> { it }.onStart { emit(null) },
     ) { device, summary, upgrade ->
@@ -116,6 +93,32 @@ class OverviewViewModel @Inject constructor(
             isLoading = summary == null,
         )
     }.asStateFlow()
+
+    private fun buildSummary(apps: List<AppInfo>): SummaryInfo {
+        val installPackagesId = APerm.REQUEST_INSTALL_PACKAGES.id.value
+        val systemAlertWindowId = APerm.SYSTEM_ALERT_WINDOW.id.value
+
+        return SummaryInfo(
+            activeProfileUser = apps.count { it.userHandleId == myUserHandleId && !it.isSystemApp },
+            activeProfileSystem = apps.count { it.userHandleId == myUserHandleId && it.isSystemApp },
+            otherProfileUser = apps.count { it.userHandleId != myUserHandleId && !it.isSystemApp },
+            otherProfileSystem = apps.count { it.userHandleId != myUserHandleId && it.isSystemApp },
+            sideloaded = apps.count { !it.isSystemApp && it.allInstallerPkgNames.none { pkg -> pkg in storePkgNames } },
+            installerAppsUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
+            installerAppsSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
+            systemAlertWindowUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
+            systemAlertWindowSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
+            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != "DIRECT" },
+            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != "DIRECT" },
+            clonesUser = apps.count { !it.isSystemApp && it.twinCount > 0 },
+            clonesSystem = apps.count { it.isSystemApp && it.twinCount > 0 },
+            sharedIdsUser = apps.count { !it.isSystemApp && it.siblingCount > 0 },
+            sharedIdsSystem = apps.count { it.isSystemApp && it.siblingCount > 0 },
+        )
+    }
+
+    private fun AppInfo.hasGrantedPermission(permissionId: String): Boolean =
+        requestedPermissions.any { it.permissionId == permissionId && it.status.isGranted }
 
     fun onRefresh() = launch {
         // Trigger repo refresh via AppRepo
