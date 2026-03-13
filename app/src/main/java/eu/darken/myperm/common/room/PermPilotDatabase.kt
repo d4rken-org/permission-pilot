@@ -23,7 +23,7 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
         PermissionChangeEntity::class,
         PendingSnapshotEventEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 abstract class PermPilotDatabase : RoomDatabase() {

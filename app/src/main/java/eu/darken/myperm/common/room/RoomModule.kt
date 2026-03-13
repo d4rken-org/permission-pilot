@@ -24,7 +24,7 @@ class RoomModule {
         PermPilotDatabase::class.java,
         "permpilot.db",
     )
-        .addMigrations(MIGRATION_1_2)
+        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
         .build()
 
     @Provides

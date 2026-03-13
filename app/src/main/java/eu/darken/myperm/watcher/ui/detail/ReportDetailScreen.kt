@@ -95,8 +95,14 @@ fun ReportDetailScreen(
                 "REMOVED" -> stringResource(R.string.watcher_event_removed)
                 else -> state.eventType
             }
+            val versionSuffix = when {
+                state.versionName == null -> ""
+                state.eventType == "UPDATE" && state.previousVersionName != null ->
+                    " (v${state.previousVersionName} → v${state.versionName})"
+                else -> " (v${state.versionName})"
+            }
             Text(
-                text = "$eventLabel${state.versionName?.let { " (v$it)" } ?: ""}",
+                text = "$eventLabel$versionSuffix",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(top = 4.dp),
             )

@@ -115,10 +115,15 @@ class PermissionWatcherWorker @AssistedInject constructor(
             val diff: PermissionDiff
 
             when {
-                // New package appeared
+                // New package installed
                 oldPkg == null && newPkg != null -> {
-                    // First time seeing this package — baseline, no report
-                    continue
+                    eventType = "INSTALL"
+                    val requested = newPermsAll.requested[key] ?: emptyList()
+                    val declared = newPermsAll.declared[key] ?: emptyList()
+                    diff = PermissionDiff(
+                        addedPermissions = requested.map { it.permissionId },
+                        addedDeclared = declared.map { it.permissionId },
+                    )
                 }
                 // Package removed
                 oldPkg != null && newPkg == null -> {
@@ -150,7 +155,7 @@ class PermissionWatcherWorker @AssistedInject constructor(
                 else -> continue
             }
 
-            if (diff.isEmpty) continue
+            if (diff.isEmpty && eventType != "INSTALL") continue
 
             log(TAG) { "Permission changes detected for $pkgName: $diff" }
 
@@ -161,6 +166,8 @@ class PermissionWatcherWorker @AssistedInject constructor(
                     appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
                     versionCode = newPkg?.versionCode ?: oldPkg?.versionCode ?: 0L,
                     versionName = newPkg?.versionName ?: oldPkg?.versionName,
+                    previousVersionCode = oldPkg?.versionCode,
+                    previousVersionName = oldPkg?.versionName,
                     eventType = eventType,
                     changesJson = json.encodeToString(diff),
                     detectedAt = System.currentTimeMillis(),

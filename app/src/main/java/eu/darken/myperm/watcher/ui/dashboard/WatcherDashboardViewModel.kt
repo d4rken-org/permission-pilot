@@ -1,0 +1,94 @@
+package eu.darken.myperm.watcher.ui.dashboard
+
+import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.navigation.Nav
+import eu.darken.myperm.common.room.dao.PermissionChangeDao
+import eu.darken.myperm.common.room.entity.PermissionChangeEntity
+import eu.darken.myperm.common.uix.ViewModel4
+import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.settings.core.GeneralSettings
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+
+@HiltViewModel
+class WatcherDashboardViewModel @Inject constructor(
+    dispatcherProvider: DispatcherProvider,
+    private val generalSettings: GeneralSettings,
+    private val changeDao: PermissionChangeDao,
+    private val upgradeRepo: UpgradeRepo,
+) : ViewModel4(dispatcherProvider) {
+
+    data class ReportItem(
+        val id: Long,
+        val packageName: String,
+        val appLabel: String?,
+        val versionName: String?,
+        val previousVersionName: String?,
+        val eventType: String,
+        val detectedAt: Long,
+        val isSeen: Boolean,
+    )
+
+    data class State(
+        val isWatcherEnabled: Boolean = false,
+        val isPro: Boolean = false,
+        val reports: List<ReportItem> = emptyList(),
+    )
+
+    val state = combine(
+        generalSettings.isWatcherEnabled.flow,
+        upgradeRepo.upgradeInfo.map { it.isPro },
+        changeDao.getAll(),
+    ) { isEnabled, isPro, entities ->
+        State(
+            isWatcherEnabled = isEnabled,
+            isPro = isPro,
+            reports = entities.map { it.toItem() },
+        )
+    }.asStateFlow(State())
+
+    fun toggleWatcher() = launch {
+        val isPro = upgradeRepo.upgradeInfo.value.isPro
+        if (!isPro) {
+            log(TAG) { "Not pro, navigating to upgrade" }
+            navTo(Nav.Main.Upgrade)
+            return@launch
+        }
+
+        val current = generalSettings.isWatcherEnabled.value()
+        log(TAG) { "Toggling watcher: $current -> ${!current}" }
+        generalSettings.isWatcherEnabled.value(!current)
+    }
+
+    fun onReportClicked(item: ReportItem) = launch {
+        changeDao.markSeen(item.id)
+        navTo(Nav.Watcher.ReportDetail(item.id))
+    }
+
+    fun markAllSeen() = launch {
+        changeDao.markAllSeen()
+    }
+
+    fun goToSettings() {
+        navTo(Nav.Settings.Index)
+    }
+
+    private fun PermissionChangeEntity.toItem() = ReportItem(
+        id = id,
+        packageName = packageName,
+        appLabel = appLabel,
+        versionName = versionName,
+        previousVersionName = previousVersionName,
+        eventType = eventType,
+        detectedAt = detectedAt,
+        isSeen = isSeen,
+    )
+
+    companion object {
+        private val TAG = logTag("Watcher", "Dashboard", "VM")
+    }
+}

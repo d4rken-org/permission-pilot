@@ -17,6 +17,8 @@ data class PermissionChangeEntity(
     val versionName: String?,
     val eventType: String,
     val changesJson: String,
+    val previousVersionCode: Long? = null,
+    val previousVersionName: String? = null,
     val detectedAt: Long,
     val isSeen: Boolean = false,
 )
