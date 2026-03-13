@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
 import androidx.compose.material.icons.filled.NotificationsOff
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -105,6 +106,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
     WatcherDashboardScreen(
         state = state,
         onToggle = { vm.toggleWatcher() },
+        onRefresh = { vm.refreshNow() },
         onReportClicked = { vm.onReportClicked(it) },
         onMarkAllSeen = { vm.markAllSeen() },
         onSettings = { vm.goToSettings() },
@@ -118,6 +120,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
 fun WatcherDashboardScreen(
     state: WatcherDashboardViewModel.State?,
     onToggle: () -> Unit,
+    onRefresh: () -> Unit = {},
     onReportClicked: (WatcherDashboardViewModel.ReportItem) -> Unit,
     onMarkAllSeen: () -> Unit,
     onSettings: () -> Unit,
@@ -126,6 +129,7 @@ fun WatcherDashboardScreen(
     useSettingsFallback: Boolean = false,
 ) {
     val isEnabled = state?.isWatcherEnabled ?: false
+    val isRefreshing = state?.isRefreshing ?: false
     val reports = state?.reports ?: emptyList()
     val hasUnseen = reports.any { !it.isSeen }
 
@@ -134,6 +138,11 @@ fun WatcherDashboardScreen(
             TopAppBar(
                 title = { Text(text = stringResource(R.string.watcher_tab_label)) },
                 actions = {
+                    if (isEnabled) {
+                        IconButton(onClick = onRefresh, enabled = !isRefreshing) {
+                            Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                        }
+                    }
                     if (isEnabled && hasUnseen) {
                         IconButton(onClick = onMarkAllSeen) {
                             Icon(Icons.Filled.DoneAll, contentDescription = stringResource(R.string.watcher_mark_all_seen))
@@ -386,6 +395,7 @@ private fun ReportListItem(
                         "INSTALL" -> stringResource(R.string.watcher_event_install)
                         "UPDATE" -> stringResource(R.string.watcher_event_update)
                         "REMOVED" -> stringResource(R.string.watcher_event_removed)
+                        "GRANT_CHANGE" -> stringResource(R.string.watcher_event_grant_change)
                         else -> item.eventType
                     }
                     Text(
@@ -447,6 +457,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
             ),
         ),
         onToggle = {},
+        onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
@@ -476,6 +487,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
             ),
         ),
         onToggle = {},
+        onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
@@ -488,6 +500,7 @@ private fun WatcherDashboardDisabledPreview() = PreviewWrapper {
     WatcherDashboardScreen(
         state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isPro = false),
         onToggle = {},
+        onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
@@ -500,6 +513,7 @@ private fun WatcherDashboardDisabledProPreview() = PreviewWrapper {
     WatcherDashboardScreen(
         state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isPro = true),
         onToggle = {},
+        onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
@@ -512,6 +526,7 @@ private fun WatcherDashboardEmptyPreview() = PreviewWrapper {
     WatcherDashboardScreen(
         state = WatcherDashboardViewModel.State(isWatcherEnabled = true, isPro = true),
         onToggle = {},
+        onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},

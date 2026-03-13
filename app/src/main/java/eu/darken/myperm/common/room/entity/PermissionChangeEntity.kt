@@ -6,7 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "permission_change_reports",
-    indices = [Index("isSeen", "detectedAt")],
+    indices = [
+        Index("isSeen", "detectedAt"),
+        Index("packageName", "userHandleId", "sourceSnapshotId", unique = true),
+    ],
 )
 data class PermissionChangeEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,

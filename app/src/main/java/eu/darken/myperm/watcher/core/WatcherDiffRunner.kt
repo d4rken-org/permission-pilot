@@ -139,7 +139,6 @@ class WatcherDiffRunner @Inject constructor(
                     )
                 }
                 oldPkg != null && newPkg != null -> {
-                    eventType = "UPDATE"
                     val oldRequested = oldPermsAll.requested[key] ?: emptyList()
                     val oldDeclared = oldPermsAll.declared[key] ?: emptyList()
                     val newRequested = newPermsAll.requested[key] ?: emptyList()
@@ -153,6 +152,15 @@ class WatcherDiffRunner @Inject constructor(
                         },
                         currentDeclared = newDeclared.map { it.permissionId },
                     )
+
+                    val isVersionUnchanged = oldPkg.versionCode == newPkg.versionCode
+                    val isGrantChangeOnly = diff.addedPermissions.isEmpty()
+                            && diff.removedPermissions.isEmpty()
+                            && diff.addedDeclared.isEmpty()
+                            && diff.removedDeclared.isEmpty()
+                            && diff.grantChanges.isNotEmpty()
+
+                    eventType = if (isVersionUnchanged && isGrantChangeOnly) "GRANT_CHANGE" else "UPDATE"
                 }
                 else -> continue
             }

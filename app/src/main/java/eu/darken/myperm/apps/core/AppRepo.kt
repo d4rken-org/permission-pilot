@@ -18,7 +18,11 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.room.snapshot.SnapshotWorker
+import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.WatcherDiffRunner
+import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.CoroutineScope
+import dagger.Lazy
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.sync.Mutex
@@ -38,6 +42,9 @@ class AppRepo @Inject constructor(
     private val snapshotPkgDao: SnapshotPkgDao,
     private val snapshotMapper: SnapshotMapper,
     private val workManager: WorkManager,
+    private val generalSettings: GeneralSettings,
+    private val watcherDiffRunner: Lazy<WatcherDiffRunner>,
+    private val watcherWorkScheduler: WatcherWorkScheduler,
 ) {
 
     // ── UI state ────────────────────────────────────────────────────────
@@ -96,6 +103,11 @@ class AppRepo @Inject constructor(
                 log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
             }
         }.launchIn(appScope)
+
+        // Ensure periodic poll worker is scheduled on startup
+        generalSettings.isWatcherEnabled.flow.onEach {
+            watcherWorkScheduler.ensureScheduled()
+        }.launchIn(appScope)
     }
 
     fun refresh() {
@@ -104,6 +116,12 @@ class AppRepo @Inject constructor(
     }
 
     private fun enqueuePermissionWatcher() = SnapshotWorker.enqueueWatcher(workManager)
+
+    suspend fun scanDiffAndPrune(reason: TriggerReason, keepCount: Int = 2) {
+        scanAndSave(reason)
+        watcherDiffRunner.get().processNewSnapshots()
+        pruneSnapshots(keepCount)
+    }
 
     suspend fun scanAndSave(reason: TriggerReason) {
         val start = System.currentTimeMillis()

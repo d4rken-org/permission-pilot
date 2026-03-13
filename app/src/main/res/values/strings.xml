@@ -513,6 +513,7 @@
     <string name="watcher_event_install">Installed</string>
     <string name="watcher_event_update">Updated</string>
     <string name="watcher_event_removed">Removed</string>
+    <string name="watcher_event_grant_change">Permission changed</string>
     <string name="watcher_mark_all_seen">Mark all as seen</string>
     <string name="watcher_notification_action_mark_seen">Mark seen</string>
     <string name="watcher_notification_action_delete">Delete</string>
@@ -543,6 +544,12 @@
     <string name="watcher_notification_permission_grant">Grant permission</string>
     <string name="watcher_notification_permission_open_settings">Open settings</string>
     <string name="watcher_notification_permission_disable">Disable notifications</string>
+
+    <string name="watcher_settings_polling_label">Background check interval</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Every %d hour</item>
+        <item quantity="other">Every %d hours</item>
+    </plurals>
 
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>

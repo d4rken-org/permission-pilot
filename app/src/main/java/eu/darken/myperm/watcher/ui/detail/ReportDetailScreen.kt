@@ -92,6 +92,7 @@ fun ReportDetailScreen(
                 "INSTALL" -> stringResource(R.string.watcher_event_install)
                 "UPDATE" -> stringResource(R.string.watcher_event_update)
                 "REMOVED" -> stringResource(R.string.watcher_event_removed)
+                "GRANT_CHANGE" -> stringResource(R.string.watcher_event_grant_change)
                 else -> state.eventType
             }
             val versionSuffix = when {

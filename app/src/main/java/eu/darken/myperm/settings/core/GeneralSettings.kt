@@ -104,6 +104,8 @@ class GeneralSettings @Inject constructor(
     val isWatcherNotificationsEnabled = dataStore.createValue("watcher.notifications.enabled", true)
     val watcherRetentionDays = dataStore.createValue("watcher.retention.days", 30)
 
+    val watcherPollingIntervalHours = dataStore.createValue("watcher.polling.interval.hours", 4)
+
     val lastDiffedSnapshotId = dataStore.createValue("watcher.lastDiffedSnapshotId", null as String?)
 
     val ipcParallelisation = dataStore.createValue("core.ipc.parallelisation", 0)
