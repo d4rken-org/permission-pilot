@@ -84,15 +84,21 @@ class MainActivity : Activity2() {
                         }
                     }
                     LaunchedEffect(Unit) {
-                        vm.deepLinkNav.collect {
-                            navCtrl.goTo(it)
+                        vm.deepLinkNav.collect { dest ->
+                            when (dest) {
+                                is Nav.Tab -> navCtrl.replace(dest)
+                                else -> navCtrl.goTo(dest)
+                            }
                         }
                     }
+
+                    val unseenWatcherCount by vm.unseenWatcherCount.collectAsState()
 
                     MainScreen(
                         backStack = backStack,
                         navCtrl = navCtrl,
                         navigationEntries = navigationEntries,
+                        unseenWatcherCount = unseenWatcherCount,
                     )
                 }
             }

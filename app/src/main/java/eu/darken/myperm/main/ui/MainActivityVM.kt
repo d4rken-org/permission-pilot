@@ -8,6 +8,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationDestination
+import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.theming.ThemeState
 import eu.darken.myperm.settings.core.themeState
 import eu.darken.myperm.settings.core.themeStateBlocking
@@ -18,6 +19,7 @@ import eu.darken.myperm.watcher.core.WatcherNotifications
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.take
@@ -29,6 +31,7 @@ class MainActivityVM @Inject constructor(
     @Suppress("UNUSED_PARAMETER") handle: SavedStateHandle,
     private val upgradeRepo: UpgradeRepo,
     private val generalSettings: GeneralSettings,
+    changeDao: PermissionChangeDao,
 ) : ViewModel2(dispatcherProvider = dispatcherProvider) {
 
     private val _readyState = MutableStateFlow(false)
@@ -42,6 +45,13 @@ class MainActivityVM @Inject constructor(
 
     val isOnboardingFinished: Boolean
         get() = generalSettings.isOnboardingFinished.valueBlocking
+
+    val unseenWatcherCount: StateFlow<Int> = combine(
+        generalSettings.isWatcherEnabled.flow,
+        changeDao.getUnseenCount(),
+    ) { isEnabled, count ->
+        if (isEnabled) count else 0
+    }.stateIn(vmScope, SharingStarted.WhileSubscribed(5000), 0)
 
     val upgradeNag = SingleEventFlow<Unit>()
     val deepLinkNav = SingleEventFlow<NavigationDestination>()
@@ -75,7 +85,10 @@ class MainActivityVM @Inject constructor(
         val reportId = intent?.getLongExtra(WatcherNotifications.EXTRA_REPORT_ID, -1L) ?: -1L
         if (reportId > 0) {
             log { "Deep-link to watcher report: $reportId" }
-            launch { deepLinkNav.emit(Nav.Watcher.ReportDetail(reportId)) }
+            launch {
+                deepLinkNav.emit(Nav.Tab.Watcher)
+                deepLinkNav.emit(Nav.Watcher.ReportDetail(reportId))
+            }
         }
     }
 }

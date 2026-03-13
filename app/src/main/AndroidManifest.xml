@@ -53,6 +53,10 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name="eu.darken.myperm.watcher.core.WatcherActionReceiver"
+            android:exported="false" />
+
         <service
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync"

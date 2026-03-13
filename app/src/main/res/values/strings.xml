@@ -479,6 +479,11 @@
     <string name="upgrade_title_prefix">Permission Pilot</string>
 
     <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Watcher</string>
+    <string name="watcher_dashboard_feature_title">Permission Watcher</string>
+    <string name="watcher_dashboard_feature_description">Get notified when an app update adds new permissions or changes existing ones. Permission Watcher checks your apps after each update and creates a report if anything changed.</string>
+    <string name="watcher_dashboard_manage_in_settings">Can be disabled and configured in Settings</string>
+    <string name="watcher_enable_action">Enable</string>
     <string name="watcher_channel_name">Permission Watcher</string>
     <string name="watcher_channel_description">Notifications about permission changes in installed apps</string>
     <plurals name="watcher_notification_new_permissions">
@@ -509,7 +514,23 @@
     <string name="watcher_event_update">Updated</string>
     <string name="watcher_event_removed">Removed</string>
     <string name="watcher_mark_all_seen">Mark all as seen</string>
-    <string name="watcher_view_reports">View reports</string>
+    <string name="watcher_notification_action_mark_seen">Mark seen</string>
+    <string name="watcher_notification_action_delete">Delete</string>
+    <string name="watcher_settings_notifications_label">Show notifications</string>
+    <string name="watcher_settings_notifications_desc">Show a notification when permission changes are detected</string>
+    <string name="watcher_settings_retention_label">Keep reports</string>
+    <string name="watcher_settings_retention_7">7 days</string>
+    <string name="watcher_settings_retention_14">14 days</string>
+    <string name="watcher_settings_retention_30">30 days</string>
+    <string name="watcher_settings_retention_60">60 days</string>
+    <string name="watcher_settings_retention_90">90 days</string>
+    <string name="watcher_settings_clear_reports_label">Clear all reports</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Clear all reports?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">All permission change reports will be permanently deleted.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d report</item>
+        <item quantity="other">%d reports</item>
+    </plurals>
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>
     <string name="snapshot_sync_notification_title">Syncing app data…</string>
