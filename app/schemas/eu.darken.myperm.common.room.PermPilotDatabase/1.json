@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1d0439787bd71483ee4517aa773f0861",
+    "identityHash": "182783317e6becba40d9ab00ffdf7a03",
     "entities": [
       {
         "tableName": "snapshots",
@@ -460,6 +460,17 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_permission_change_reports_isSeen_detectedAt` ON `${TABLE_NAME}` (`isSeen`, `detectedAt`)"
+          },
+          {
+            "name": "index_permission_change_reports_packageName_userHandleId_sourceSnapshotId",
+            "unique": true,
+            "columnNames": [
+              "packageName",
+              "userHandleId",
+              "sourceSnapshotId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_permission_change_reports_packageName_userHandleId_sourceSnapshotId` ON `${TABLE_NAME}` (`packageName`, `userHandleId`, `sourceSnapshotId`)"
           }
         ]
       },
@@ -520,7 +531,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d0439787bd71483ee4517aa773f0861')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '182783317e6becba40d9ab00ffdf7a03')"
     ]
   }
 }

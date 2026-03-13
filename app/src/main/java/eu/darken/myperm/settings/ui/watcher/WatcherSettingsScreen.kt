@@ -1,8 +1,12 @@
 package eu.darken.myperm.settings.ui.watcher
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -12,8 +16,11 @@ import androidx.compose.material.icons.twotone.FilterList
 import eu.darken.myperm.common.compose.LucideRadar
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Schedule
+import androidx.compose.material.icons.twotone.Timer
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -26,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,6 +62,7 @@ fun WatcherSettingsScreenHost() {
     val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
     val isNotificationsEnabled by vm.isNotificationsEnabled.collectAsState(initial = true)
     val retentionDays by vm.retentionDays.collectAsState(initial = 30)
+    val pollingIntervalHours by vm.pollingIntervalHours.collectAsState(initial = 4)
     val reportCount by vm.reportCount.collectAsState(initial = 0)
 
     WatcherSettingsScreen(
@@ -66,6 +75,8 @@ fun WatcherSettingsScreenHost() {
         onNotificationsEnabledChanged = { vm.setNotificationsEnabled(it) },
         retentionDays = retentionDays,
         onRetentionDaysSelected = { vm.setRetentionDays(it) },
+        pollingIntervalHours = pollingIntervalHours,
+        onPollingIntervalChanged = { vm.setPollingIntervalHours(it) },
         onClearReports = { vm.clearAllReports() },
         reportCount = reportCount,
     )
@@ -82,6 +93,8 @@ fun WatcherSettingsScreen(
     onNotificationsEnabledChanged: (Boolean) -> Unit = {},
     retentionDays: Int = 30,
     onRetentionDaysSelected: (Int) -> Unit = {},
+    pollingIntervalHours: Int = 4,
+    onPollingIntervalChanged: (Int) -> Unit = {},
     onClearReports: () -> Unit = {},
     reportCount: Int = 0,
 ) {
@@ -123,6 +136,12 @@ fun WatcherSettingsScreen(
                 },
                 icon = Icons.TwoTone.FilterList,
                 onClick = { showScopeDialog = true },
+            )
+            SettingsDivider()
+            PollingIntervalItem(
+                intervalHours = pollingIntervalHours,
+                enabled = isWatcherEnabled,
+                onIntervalChanged = onPollingIntervalChanged,
             )
             SettingsDivider()
             SettingsSwitchItem(
@@ -213,6 +232,52 @@ fun WatcherSettingsScreen(
                 }
             },
         )
+    }
+}
+
+@Composable
+private fun PollingIntervalItem(
+    intervalHours: Int,
+    enabled: Boolean,
+    onIntervalChanged: (Int) -> Unit,
+) {
+    val alpha = if (enabled) 1f else 0.38f
+    var sliderValue by remember(intervalHours) { mutableStateOf(intervalHours.toFloat()) }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        Icon(
+            imageVector = Icons.TwoTone.Timer,
+            contentDescription = null,
+            modifier = Modifier
+                .size(24.dp)
+                .padding(top = 2.dp),
+            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = alpha),
+        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(R.string.watcher_settings_polling_label),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = alpha),
+            )
+            Text(
+                text = pluralStringResource(R.plurals.watcher_settings_polling_interval, sliderValue.toInt(), sliderValue.toInt()),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = alpha),
+            )
+            Slider(
+                value = sliderValue,
+                onValueChange = { sliderValue = it },
+                onValueChangeFinished = { onIntervalChanged(sliderValue.toInt()) },
+                valueRange = 2f..24f,
+                steps = 21,
+                enabled = enabled,
+            )
+        }
     }
 }
 

@@ -8,6 +8,7 @@ import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherScope
+import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.flow.Flow
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -17,17 +18,20 @@ class WatcherSettingsViewModel @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val generalSettings: GeneralSettings,
     private val changeDao: PermissionChangeDao,
+    private val watcherWorkScheduler: WatcherWorkScheduler,
 ) : ViewModel4(dispatcherProvider) {
 
     val isWatcherEnabled: Flow<Boolean> = generalSettings.isWatcherEnabled.flow
     val watcherScope: Flow<WatcherScope> = generalSettings.watcherScope.flow
     val isNotificationsEnabled: Flow<Boolean> = generalSettings.isWatcherNotificationsEnabled.flow
     val retentionDays: Flow<Int> = generalSettings.watcherRetentionDays.flow
+    val pollingIntervalHours: Flow<Int> = generalSettings.watcherPollingIntervalHours.flow
     val reportCount: Flow<Int> = changeDao.getTotalCount()
 
     fun setWatcherEnabled(enabled: Boolean) = launch {
         log(TAG) { "Setting watcher enabled: $enabled" }
         generalSettings.isWatcherEnabled.value(enabled)
+        watcherWorkScheduler.ensureScheduled()
     }
 
     fun setWatcherScope(scope: WatcherScope) = launch {
@@ -43,6 +47,12 @@ class WatcherSettingsViewModel @Inject constructor(
         generalSettings.watcherRetentionDays.value(days)
         val cutoff = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days.toLong())
         changeDao.deleteOlderThan(cutoff)
+    }
+
+    fun setPollingIntervalHours(hours: Int) = launch {
+        log(TAG) { "Setting polling interval to $hours hours" }
+        generalSettings.watcherPollingIntervalHours.value(hours)
+        watcherWorkScheduler.reschedule(hours)
     }
 
     fun clearAllReports() = launch {

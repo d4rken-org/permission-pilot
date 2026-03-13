@@ -25,7 +25,6 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.watcher.core.PermissionWatcherWorker
-import eu.darken.myperm.watcher.core.WatcherDiffRunner
 
 @HiltWorker
 class SnapshotWorker @AssistedInject constructor(
@@ -34,7 +33,6 @@ class SnapshotWorker @AssistedInject constructor(
     private val appRepo: AppRepo,
     private val pendingEventDao: PendingSnapshotEventDao,
     private val snapshotDao: SnapshotDao,
-    private val watcherDiffRunner: WatcherDiffRunner,
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
@@ -62,18 +60,12 @@ class SnapshotWorker @AssistedInject constructor(
 
         if (latestSnapshot != null && latestSnapshot.createdAt >= oldestEventTime) {
             log(TAG) { "Snapshot ${latestSnapshot.snapshotId} already covers pending events, skipping scan" }
+            pendingEventDao.deleteByMaxId(maxId)
         } else {
             log(TAG) { "Processing ${pendingEvents.size} pending events (maxId=$maxId), scanning packages" }
-            appRepo.scanAndSave(TriggerReason.PACKAGE_CHANGE)
+            pendingEventDao.deleteByMaxId(maxId)
+            appRepo.scanDiffAndPrune(TriggerReason.PACKAGE_CHANGE)
         }
-
-        pendingEventDao.deleteByMaxId(maxId)
-
-        // Inline diff: process new snapshots immediately instead of enqueuing a separate worker
-        watcherDiffRunner.processNewSnapshots()
-
-        // Aggressive prune: all diffs are done, safe to shrink back to 2 snapshots
-        appRepo.pruneSnapshots(keepCount = 2)
 
         log(TAG) { "doWork() completed" }
         return Result.success()

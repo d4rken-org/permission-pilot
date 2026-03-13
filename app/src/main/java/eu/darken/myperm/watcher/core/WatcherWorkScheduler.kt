@@ -1,0 +1,51 @@
+package eu.darken.myperm.watcher.core
+
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.settings.core.GeneralSettings
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class WatcherWorkScheduler @Inject constructor(
+    private val workManager: WorkManager,
+    private val generalSettings: GeneralSettings,
+) {
+
+    suspend fun ensureScheduled() {
+        val isEnabled = generalSettings.isWatcherEnabled.value()
+        if (isEnabled) {
+            val intervalHours = generalSettings.watcherPollingIntervalHours.value()
+            enqueue(intervalHours, ExistingPeriodicWorkPolicy.KEEP)
+        } else {
+            cancel()
+        }
+    }
+
+    fun reschedule(intervalHours: Int) {
+        log(TAG) { "reschedule(intervalHours=$intervalHours)" }
+        enqueue(intervalHours, ExistingPeriodicWorkPolicy.UPDATE)
+    }
+
+    fun cancel() {
+        log(TAG) { "cancel()" }
+        workManager.cancelUniqueWork(WORK_NAME)
+    }
+
+    private fun enqueue(intervalHours: Int, policy: ExistingPeriodicWorkPolicy) {
+        log(TAG) { "enqueue(intervalHours=$intervalHours, policy=$policy)" }
+        val request = PeriodicWorkRequestBuilder<PermissionPollWorker>(
+            intervalHours.toLong(), TimeUnit.HOURS,
+        ).build()
+        workManager.enqueueUniquePeriodicWork(WORK_NAME, policy, request)
+    }
+
+    companion object {
+        private const val WORK_NAME = "permission_poll"
+        private val TAG = logTag("Watcher", "WorkScheduler")
+    }
+}
