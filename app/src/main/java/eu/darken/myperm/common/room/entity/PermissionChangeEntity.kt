@@ -21,4 +21,5 @@ data class PermissionChangeEntity(
     val previousVersionName: String? = null,
     val detectedAt: Long,
     val isSeen: Boolean = false,
+    val sourceSnapshotId: String? = null,
 )

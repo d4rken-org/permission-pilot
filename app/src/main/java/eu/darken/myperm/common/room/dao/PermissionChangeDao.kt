@@ -41,4 +41,7 @@ interface PermissionChangeDao {
 
     @Query("DELETE FROM permission_change_reports WHERE detectedAt < :epochMs")
     suspend fun deleteOlderThan(epochMs: Long)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM permission_change_reports WHERE packageName = :pkgName AND userHandleId = :userHandleId AND sourceSnapshotId = :snapshotId)")
+    suspend fun existsByPackageAndSnapshot(pkgName: String, userHandleId: Int, snapshotId: String): Boolean
 }

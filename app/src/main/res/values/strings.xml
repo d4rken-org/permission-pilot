@@ -516,6 +516,10 @@
     <string name="watcher_mark_all_seen">Mark all as seen</string>
     <string name="watcher_notification_action_mark_seen">Mark seen</string>
     <string name="watcher_notification_action_delete">Delete</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d app changed permissions</item>
+        <item quantity="other">%d apps changed permissions</item>
+    </plurals>
     <string name="watcher_settings_notifications_label">Show notifications</string>
     <string name="watcher_settings_notifications_desc">Show a notification when permission changes are detected</string>
     <string name="watcher_settings_retention_label">Keep reports</string>

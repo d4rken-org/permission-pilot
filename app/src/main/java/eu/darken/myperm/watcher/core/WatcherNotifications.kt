@@ -125,6 +125,7 @@ class WatcherNotifications @Inject constructor(
             .setContentTitle(title)
             .setAutoCancel(true)
             .setContentIntent(contentPendingIntent)
+            .setGroup(GROUP_KEY)
             .addAction(0, context.getString(R.string.watcher_notification_action_mark_seen), markSeenPendingIntent)
             .addAction(0, context.getString(R.string.watcher_notification_action_delete), deletePendingIntent)
             .build()
@@ -132,9 +133,50 @@ class WatcherNotifications @Inject constructor(
         notificationManager.notify(packageName.hashCode(), notification)
     }
 
+    suspend fun postSummaryNotification(reportCount: Int) {
+        if (!generalSettings.isWatcherNotificationsEnabled.value()) return
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+            if (granted != PackageManager.PERMISSION_GRANTED) return
+        }
+
+        ensureChannel()
+
+        val title = context.resources.getQuantityString(
+            R.plurals.watcher_notification_summary_title,
+            reportCount,
+            reportCount,
+        )
+
+        val summaryIntent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val summaryPendingIntent = PendingIntent.getActivity(
+            context,
+            SUMMARY_NOTIFICATION_ID,
+            summaryIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
+
+        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_baseline_bug_report_24)
+            .setContentTitle(title)
+            .setAutoCancel(true)
+            .setContentIntent(summaryPendingIntent)
+            .setGroup(GROUP_KEY)
+            .setGroupSummary(true)
+            .setStyle(NotificationCompat.InboxStyle())
+            .build()
+
+        notificationManager.notify(SUMMARY_NOTIFICATION_ID, notification)
+    }
+
     companion object {
         const val CHANNEL_ID = "channel_permission_watcher"
         const val EXTRA_REPORT_ID = "watcher_report_id"
+        private const val GROUP_KEY = "permission_watcher_reports"
+        private const val SUMMARY_NOTIFICATION_ID = 42_100
         private val TAG = logTag("Watcher", "Notifications")
     }
 }

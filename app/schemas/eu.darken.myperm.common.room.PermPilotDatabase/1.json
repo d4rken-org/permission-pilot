@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0c6ae7f7b4b9c1e74aa30912ee67fcd0",
+    "identityHash": "1d0439787bd71483ee4517aa773f0861",
     "entities": [
       {
         "tableName": "snapshots",
@@ -368,7 +368,7 @@
       },
       {
         "tableName": "permission_change_reports",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `packageName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `appLabel` TEXT, `versionCode` INTEGER NOT NULL, `versionName` TEXT, `eventType` TEXT NOT NULL, `changesJson` TEXT NOT NULL, `previousVersionCode` INTEGER, `previousVersionName` TEXT, `detectedAt` INTEGER NOT NULL, `isSeen` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `packageName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `appLabel` TEXT, `versionCode` INTEGER NOT NULL, `versionName` TEXT, `eventType` TEXT NOT NULL, `changesJson` TEXT NOT NULL, `previousVersionCode` INTEGER, `previousVersionName` TEXT, `detectedAt` INTEGER NOT NULL, `isSeen` INTEGER NOT NULL, `sourceSnapshotId` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -437,6 +437,11 @@
             "columnName": "isSeen",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "sourceSnapshotId",
+            "columnName": "sourceSnapshotId",
+            "affinity": "TEXT"
           }
         ],
         "primaryKey": {
@@ -515,7 +520,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0c6ae7f7b4b9c1e74aa30912ee67fcd0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d0439787bd71483ee4517aa773f0861')"
     ]
   }
 }
