@@ -71,10 +71,11 @@ class PermissionWatcherWorker @AssistedInject constructor(
         log(TAG) { "Processing ${chain.pairs.size} new snapshot pair(s)" }
 
         val reportedPackages = mutableSetOf<Pair<String, Int>>()
+        val permCache = mutableMapOf<String, AppRepo.SnapshotPermissions>()
 
         try {
             for (pair in chain.pairs) {
-                diffSnapshotPair(pair, scope, reportedPackages)
+                diffSnapshotPair(pair, scope, reportedPackages, permCache)
             }
         } catch (e: Exception) {
             log(TAG, WARN) { "Error during snapshot diff: ${e.asLog()}" }
@@ -90,15 +91,16 @@ class PermissionWatcherWorker @AssistedInject constructor(
         pair: AppRepo.SnapshotPair,
         scope: WatcherScope,
         reportedPackages: MutableSet<Pair<String, Int>>,
+        permCache: MutableMap<String, AppRepo.SnapshotPermissions>,
     ) {
         val oldPkgMap = pair.oldPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
         val newPkgMap = pair.newPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
 
         // Bulk-fetch permissions for both snapshots (avoids per-package N+1 queries)
-        val oldPermsAll = appRepo.getSnapshotPermissions(pair.oldSnapshotId)
-        val newPermsAll = appRepo.getSnapshotPermissions(pair.newSnapshotId)
+        val oldPermsAll = permCache.getOrPut(pair.oldSnapshotId) { appRepo.getSnapshotPermissions(pair.oldSnapshotId) }
+        val newPermsAll = permCache.getOrPut(pair.newSnapshotId) { appRepo.getSnapshotPermissions(pair.newSnapshotId) }
 
-        val allPkgKeys = oldPkgMap.keys + newPkgMap.keys
+        val allPkgKeys = (oldPkgMap.keys + newPkgMap.keys).toSet()
 
         for (key in allPkgKeys) {
             val (pkgName, userHandleId) = key

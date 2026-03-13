@@ -116,7 +116,7 @@ class SnapshotWorker @AssistedInject constructor(
 
         fun enqueueWatcher(workManager: WorkManager) {
             val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
-            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.KEEP, request)
+            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.REPLACE, request)
             log(TAG) { "Enqueued PermissionWatcherWorker" }
         }
     }
