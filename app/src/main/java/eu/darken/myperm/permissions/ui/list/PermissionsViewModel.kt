@@ -111,8 +111,8 @@ class PermissionsViewModel @Inject constructor(
                     is ExtraPermission -> "extra"
                     is UnknownPermission -> "unknown"
                 },
-                requestingCount = perm.requestingPkgs.size,
-                grantedCount = perm.grantingPkgs.size,
+                requestingCount = perm.requestingApps.size,
+                grantedCount = perm.grantingApps.size,
                 permission = perm,
             )
         }.toMutableList()

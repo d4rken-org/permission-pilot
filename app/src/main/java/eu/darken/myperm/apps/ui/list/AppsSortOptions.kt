@@ -4,7 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.known.AKnownPkg
-import eu.darken.myperm.common.room.snapshot.DisplayableApp
+import eu.darken.myperm.apps.core.AppInfo
 import eu.darken.myperm.apps.core.features.UsesPermission
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
@@ -24,49 +24,49 @@ data class AppsSortOptions(
         PERMISSIONS_GRANTED(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Int> { app ->
                 app.requestedPermissions.count { it.status == UsesPermission.Status.GRANTED || it.status == UsesPermission.Status.GRANTED_IN_USE }
             }.reversed()
         },
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Int> { app ->
                 app.requestedPermissions.size
             }.reversed()
         },
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Int> { app ->
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Int> { app ->
                 app.declaredPermissionCount
             }.reversed()
         },
         APP_NAME(
             labelRes = R.string.apps_sort_app_name_label,
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing {
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing {
                 it.label
             }
         },
         INSTALLED_AT(
             labelRes = R.string.apps_sort_install_date_label,
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Instant> {
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Instant> {
                 it.installedAt ?: Instant.MIN
             }.reversed()
         },
         UPDATED_AT(
             labelRes = R.string.apps_sort_update_date_label
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, Instant> {
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Instant> {
                 it.updatedAt ?: Instant.MIN
             }.reversed()
         },
         INSTALL_SOURCE(
             labelRes = R.string.apps_sort_install_source_label
         ) {
-            override fun getComparator(): Comparator<DisplayableApp> = Comparator.comparing<DisplayableApp, String> { app ->
+            override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, String> { app ->
                 if (app.allInstallerPkgNames.isEmpty()) return@comparing "Z"
 
                 val gplayPkgName = AKnownPkg.GooglePlay.id.pkgName
@@ -81,6 +81,6 @@ data class AppsSortOptions(
         }
         ;
 
-        abstract fun getComparator(): Comparator<DisplayableApp>
+        abstract fun getComparator(): Comparator<AppInfo>
     }
 }

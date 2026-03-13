@@ -26,13 +26,20 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.LocalNavigationController
+import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.watcher.core.PermissionDiff
 import java.text.DateFormat
 import java.util.Date
 
 @Composable
-fun ReportDetailScreenHost(vm: ReportDetailViewModel = hiltViewModel()) {
+fun ReportDetailScreenHost(
+    route: Nav.Watcher.ReportDetail,
+    vm: ReportDetailViewModel = hiltViewModel(
+        key = "report_${route.reportId}",
+        creationCallback = { factory: ReportDetailViewModel.Factory -> factory.create(route.reportId) },
+    ),
+) {
     val navCtrl = LocalNavigationController.current
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)

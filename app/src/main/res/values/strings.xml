@@ -510,4 +510,7 @@
     <string name="watcher_event_removed">Removed</string>
     <string name="watcher_mark_all_seen">Mark all as seen</string>
     <string name="watcher_view_reports">View reports</string>
+    <string name="snapshot_sync_channel_name">Snapshot Sync</string>
+    <string name="snapshot_sync_channel_description">Background app data synchronization</string>
+    <string name="snapshot_sync_notification_title">Syncing app data…</string>
 </resources>

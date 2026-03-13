@@ -7,13 +7,11 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.toIcon
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
-import eu.darken.myperm.common.room.snapshot.DisplayableApp
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.Permission
@@ -69,12 +67,12 @@ class AppsViewModel @Inject constructor(
     }
 
     val state = combine(
-        appRepo.displayState,
+        appRepo.appData,
         searchTerm,
         filterOptions,
         sortOptions
-    ) { displayState, searchTerm, filterOptions, sortOptions ->
-        val apps = (displayState as? AppRepo.DisplayState.Ready)?.apps ?: return@combine State.Loading
+    ) { appDataState, searchTerm, filterOptions, sortOptions ->
+        val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
             .filter { app -> filterOptions.keys.all { it.matches(app) } }
@@ -99,9 +97,7 @@ class AppsViewModel @Inject constructor(
                 label = app.label,
                 isSystemApp = app.isSystemApp,
                 permissionCount = app.requestedPermissions.size,
-                grantedCount = app.requestedPermissions.count {
-                    it.status == UsesPermission.Status.GRANTED || it.status == UsesPermission.Status.GRANTED_IN_USE
-                },
+                grantedCount = app.requestedPermissions.count { it.status.isGranted },
                 totalCount = app.requestedPermissions.size,
                 declaredCount = app.declaredPermissionCount,
                 tagIcons = tagIcons,

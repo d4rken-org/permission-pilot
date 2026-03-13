@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -31,7 +32,7 @@ class SnapshotDifferTest : BaseTest() {
         protectionLevel = null,
     )
 
-    private fun current(id: String, status: String) = SnapshotDiffer.CurrentPermission(id, status)
+    private fun current(id: String, status: String) = SnapshotDiffer.CurrentPermission(id, UsesPermission.Status.valueOf(status))
 
     @Test
     fun `empty previous and empty current produces empty diff`() {

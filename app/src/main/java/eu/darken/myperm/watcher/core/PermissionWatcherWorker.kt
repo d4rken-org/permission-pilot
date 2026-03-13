@@ -1,21 +1,20 @@
 package eu.darken.myperm.watcher.core
 
 import android.content.Context
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import eu.darken.myperm.common.IPCFunnel
+import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
-import eu.darken.myperm.common.room.snapshot.SnapshotRepo
+import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -24,8 +23,7 @@ import kotlinx.serialization.json.Json
 class PermissionWatcherWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val ipcFunnel: IPCFunnel,
-    private val snapshotRepo: SnapshotRepo,
+    private val appRepo: AppRepo,
     private val snapshotDiffer: SnapshotDiffer,
     private val changeDao: PermissionChangeDao,
     private val watcherNotifications: WatcherNotifications,
@@ -40,140 +38,147 @@ class PermissionWatcherWorker @AssistedInject constructor(
             return Result.success()
         }
 
-        val packageName = inputData.getString(KEY_PACKAGE_NAME) ?: return Result.failure()
-        val eventType = inputData.getString(KEY_EVENT_TYPE) ?: return Result.failure()
+        val scope = generalSettings.watcherScope.value()
+        log(TAG) { "doWork: scope=$scope" }
 
-        log(TAG) { "doWork: $eventType for $packageName" }
+        val lastDiffedId = generalSettings.lastDiffedSnapshotId.value()
+        val latestSnapshotId = appRepo.getLatestSnapshotId()
 
-        if (eventType == "REMOVED") {
-            return handleRemoval(packageName)
+        if (latestSnapshotId == null) {
+            log(TAG) { "No snapshots available, skipping" }
+            return Result.success()
         }
 
-        val pkgInfo: PackageInfo = try {
-            ipcFunnel.packageManager.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS)
-                ?: return Result.retry()
+        // Fast-forward: first run or just enabled — set baseline without replaying history
+        if (lastDiffedId == null) {
+            log(TAG) { "First run, fast-forwarding to snapshot $latestSnapshotId" }
+            generalSettings.lastDiffedSnapshotId.update { latestSnapshotId }
+            return Result.success()
+        }
+
+        val chain = appRepo.getSnapshotChainSince(lastDiffedId)
+        if (chain == null) {
+            log(TAG, WARN) { "Anchor snapshot $lastDiffedId not found (pruned?), fast-forwarding" }
+            generalSettings.lastDiffedSnapshotId.update { latestSnapshotId }
+            return Result.success()
+        }
+
+        if (chain.pairs.isEmpty()) {
+            log(TAG) { "No new snapshots since $lastDiffedId" }
+            return Result.success()
+        }
+
+        log(TAG) { "Processing ${chain.pairs.size} new snapshot pair(s)" }
+
+        val reportedPackages = mutableSetOf<Pair<String, Int>>()
+
+        try {
+            for (pair in chain.pairs) {
+                diffSnapshotPair(pair, scope, reportedPackages)
+            }
         } catch (e: Exception) {
-            log(TAG, WARN) { "Failed to get PackageInfo for $packageName: ${e.asLog()}" }
+            log(TAG, WARN) { "Error during snapshot diff: ${e.asLog()}" }
             return Result.retry()
         }
 
-        val isSystemApp = pkgInfo.applicationInfo?.let {
-            it.flags and android.content.pm.ApplicationInfo.FLAG_SYSTEM != 0
-        } ?: false
-
-        val scope = generalSettings.watcherScope.value()
-        if (scope == WatcherScope.NON_SYSTEM && isSystemApp) {
-            log(TAG) { "Skipping system app: $packageName" }
-            return Result.success()
-        }
-
-        val userHandleId = android.os.Process.myUserHandle().hashCode()
-        val previousSnapshot = snapshotRepo.getLatestPkgSnapshot(packageName, userHandleId)
-
-        if (previousSnapshot == null) {
-            log(TAG) { "No previous snapshot for $packageName, skipping diff (first baseline)" }
-            return Result.success()
-        }
-
-        val currentPerms = pkgInfo.requestedPermissions?.mapIndexed { index, permId ->
-            val flags = pkgInfo.requestedPermissionsFlags?.get(index) ?: 0
-            val status = when {
-                flags and PackageInfo.REQUESTED_PERMISSION_GRANTED != 0 -> "GRANTED"
-                else -> "DENIED"
-            }
-            SnapshotDiffer.CurrentPermission(permId, status)
-        } ?: emptyList()
-
-        val currentDeclared = pkgInfo.permissions?.map { it.name } ?: emptyList()
-
-        val diff = snapshotDiffer.diff(
-            previousPerms = previousSnapshot.permissions,
-            previousDeclared = previousSnapshot.declaredPermissions,
-            currentPerms = currentPerms,
-            currentDeclared = currentDeclared,
-        )
-
-        if (diff.isEmpty) {
-            log(TAG) { "No permission changes for $packageName" }
-            return Result.success()
-        }
-
-        log(TAG) { "Permission changes detected for $packageName: $diff" }
-
-        val appLabel = try {
-            pkgInfo.applicationInfo?.let {
-                applicationContext.packageManager.getApplicationLabel(it).toString()
-            }
-        } catch (_: Exception) {
-            null
-        }
-
-        val versionCode = try {
-            androidx.core.content.pm.PackageInfoCompat.getLongVersionCode(pkgInfo)
-        } catch (_: Exception) {
-            0L
-        }
-
-        val reportId = changeDao.insert(
-            PermissionChangeEntity(
-                packageName = packageName,
-                userHandleId = userHandleId,
-                appLabel = appLabel,
-                versionCode = versionCode,
-                versionName = pkgInfo.versionName,
-                eventType = eventType,
-                changesJson = json.encodeToString(diff),
-                detectedAt = System.currentTimeMillis(),
-            )
-        )
-
-        watcherNotifications.postChangeNotification(
-            reportId = reportId,
-            appLabel = appLabel,
-            packageName = packageName,
-            diff = diff,
-        )
-
+        generalSettings.lastDiffedSnapshotId.update { chain.latestSnapshotId }
+        log(TAG) { "Updated lastDiffedSnapshotId to ${chain.latestSnapshotId}" }
         return Result.success()
     }
 
-    private suspend fun handleRemoval(packageName: String): Result {
-        val userHandleId = android.os.Process.myUserHandle().hashCode()
-        val previousSnapshot = snapshotRepo.getLatestPkgSnapshot(packageName, userHandleId) ?: return Result.success()
+    private suspend fun diffSnapshotPair(
+        pair: AppRepo.SnapshotPair,
+        scope: WatcherScope,
+        reportedPackages: MutableSet<Pair<String, Int>>,
+    ) {
+        val oldPkgMap = pair.oldPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
+        val newPkgMap = pair.newPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
 
-        val diff = PermissionDiff(
-            removedPermissions = previousSnapshot.permissions.map { it.permissionId },
-            removedDeclared = previousSnapshot.declaredPermissions.map { it.permissionId },
-        )
+        // Bulk-fetch permissions for both snapshots (avoids per-package N+1 queries)
+        val oldPermsAll = appRepo.getSnapshotPermissions(pair.oldSnapshotId)
+        val newPermsAll = appRepo.getSnapshotPermissions(pair.newSnapshotId)
 
-        if (diff.isEmpty) return Result.success()
+        val allPkgKeys = oldPkgMap.keys + newPkgMap.keys
 
-        val reportId = changeDao.insert(
-            PermissionChangeEntity(
-                packageName = packageName,
-                userHandleId = userHandleId,
-                appLabel = previousSnapshot.pkg.cachedLabel,
-                versionCode = previousSnapshot.pkg.versionCode,
-                versionName = previousSnapshot.pkg.versionName,
-                eventType = "REMOVED",
-                changesJson = json.encodeToString(diff),
-                detectedAt = System.currentTimeMillis(),
+        for (key in allPkgKeys) {
+            val (pkgName, userHandleId) = key
+            if (key in reportedPackages) continue
+
+            val oldPkg = oldPkgMap[key]
+            val newPkg = newPkgMap[key]
+
+            // Filter by watcher scope
+            val isSystemApp = (newPkg ?: oldPkg)?.isSystemApp ?: false
+            if (scope == WatcherScope.NON_SYSTEM && isSystemApp) continue
+
+            val eventType: String
+            val diff: PermissionDiff
+
+            when {
+                // New package appeared
+                oldPkg == null && newPkg != null -> {
+                    // First time seeing this package — baseline, no report
+                    continue
+                }
+                // Package removed
+                oldPkg != null && newPkg == null -> {
+                    eventType = "REMOVED"
+                    val requested = oldPermsAll.requested[key] ?: emptyList()
+                    val declared = oldPermsAll.declared[key] ?: emptyList()
+                    diff = PermissionDiff(
+                        removedPermissions = requested.map { it.permissionId },
+                        removedDeclared = declared.map { it.permissionId },
+                    )
+                }
+                // Package exists in both — check for changes
+                oldPkg != null && newPkg != null -> {
+                    eventType = "UPDATE"
+                    val oldRequested = oldPermsAll.requested[key] ?: emptyList()
+                    val oldDeclared = oldPermsAll.declared[key] ?: emptyList()
+                    val newRequested = newPermsAll.requested[key] ?: emptyList()
+                    val newDeclared = newPermsAll.declared[key] ?: emptyList()
+
+                    diff = snapshotDiffer.diff(
+                        previousPerms = oldRequested,
+                        previousDeclared = oldDeclared,
+                        currentPerms = newRequested.map {
+                            SnapshotDiffer.CurrentPermission(it.permissionId, UsesPermission.Status.valueOf(it.status))
+                        },
+                        currentDeclared = newDeclared.map { it.permissionId },
+                    )
+                }
+                else -> continue
+            }
+
+            if (diff.isEmpty) continue
+
+            log(TAG) { "Permission changes detected for $pkgName: $diff" }
+
+            val reportId = changeDao.insert(
+                PermissionChangeEntity(
+                    packageName = pkgName,
+                    userHandleId = userHandleId,
+                    appLabel = newPkgMap[key]?.cachedLabel ?: oldPkgMap[key]?.cachedLabel,
+                    versionCode = newPkgMap[key]?.versionCode ?: oldPkgMap[key]?.versionCode ?: 0L,
+                    versionName = newPkgMap[key]?.versionName ?: oldPkgMap[key]?.versionName,
+                    eventType = eventType,
+                    changesJson = json.encodeToString(diff),
+                    detectedAt = System.currentTimeMillis(),
+                )
             )
-        )
 
-        watcherNotifications.postChangeNotification(
-            reportId = reportId,
-            appLabel = previousSnapshot.pkg.cachedLabel,
-            packageName = packageName,
-            diff = diff,
-        )
+            watcherNotifications.postChangeNotification(
+                reportId = reportId,
+                appLabel = newPkgMap[key]?.cachedLabel ?: oldPkgMap[key]?.cachedLabel,
+                packageName = pkgName,
+                diff = diff,
+            )
 
-        return Result.success()
+            reportedPackages.add(key)
+        }
     }
 
     companion object {
-        const val KEY_PACKAGE_NAME = "package_name"
-        const val KEY_EVENT_TYPE = "event_type"
         private val TAG = logTag("Watcher", "Worker")
     }
 }

@@ -33,11 +33,11 @@ data class PermsFilterOptions(
         ),
         SYSTEM(
             labelRes = R.string.permissions_filter_system_label,
-            matches = { pkg -> pkg.declaringPkgs.any { it.isSystemApp } }
+            matches = { pkg -> pkg.declaringApps.any { it.isSystemApp } }
         ),
         USER(
             labelRes = R.string.permissions_filter_user_label,
-            matches = { pkg -> pkg.declaringPkgs.none { it.isSystemApp } }
+            matches = { pkg -> pkg.declaringApps.none { it.isSystemApp } }
         ),
 
         RUNTIME(

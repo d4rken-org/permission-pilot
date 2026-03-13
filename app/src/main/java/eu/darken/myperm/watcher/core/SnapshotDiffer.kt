@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class SnapshotDiffer @Inject constructor() {
         val addedPermissions = (currPermIds - prevPermIds).toList()
         val removedPermissions = (prevPermIds - currPermIds).toList()
 
-        val prevStatusMap = previousPerms.associate { it.permissionId to it.status }
+        val prevStatusMap = previousPerms.associate { it.permissionId to UsesPermission.Status.valueOf(it.status) }
         val grantChanges = currentPerms
             .filter { it.permissionId in prevPermIds }
             .mapNotNull { curr ->
@@ -28,8 +29,8 @@ class SnapshotDiffer @Inject constructor() {
                 if (prevStatus != curr.status) {
                     PermissionDiff.GrantChange(
                         permissionId = curr.permissionId,
-                        oldStatus = prevStatus,
-                        newStatus = curr.status,
+                        oldStatus = prevStatus.name,
+                        newStatus = curr.status.name,
                     )
                 } else null
             }
@@ -50,6 +51,6 @@ class SnapshotDiffer @Inject constructor() {
 
     data class CurrentPermission(
         val permissionId: String,
-        val status: String,
+        val status: UsesPermission.Status,
     )
 }

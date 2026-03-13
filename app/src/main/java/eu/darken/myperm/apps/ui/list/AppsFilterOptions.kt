@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.room.entity.PkgType
-import eu.darken.myperm.common.room.snapshot.DisplayableApp
+import eu.darken.myperm.apps.core.AppInfo
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -19,7 +19,7 @@ data class AppsFilterOptions(
     @Serializable
     enum class Filter(
         @StringRes val labelRes: Int,
-        val matches: (DisplayableApp) -> Boolean
+        val matches: (AppInfo) -> Boolean
     ) {
         SYSTEM_APP(
             labelRes = R.string.apps_filter_systemapps_label,

@@ -102,6 +102,8 @@ class GeneralSettings @Inject constructor(
         writer = kotlinxWriter(json),
     )
 
+    val lastDiffedSnapshotId = dataStore.createValue("watcher.lastDiffedSnapshotId", null as String?)
+
     val ipcParallelisation = dataStore.createValue("core.ipc.parallelisation", 0)
 
     companion object {

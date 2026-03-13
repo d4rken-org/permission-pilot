@@ -15,3 +15,7 @@
 /fastlane/Appfile
 /fastlane/README.md
 app/src/screenshotTestGplayDebug/reference/
+testapp/output/
+testapp/.gradle/
+testapp/build/
+testapp/local.properties

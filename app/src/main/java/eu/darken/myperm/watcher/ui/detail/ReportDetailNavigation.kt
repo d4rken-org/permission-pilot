@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class ReportDetailNavigation @Inject constructor() : NavigationEntry {
     override fun EntryProviderScope<NavKey>.setup() {
-        entry<Nav.Watcher.ReportDetail> { ReportDetailScreenHost() }
+        entry<Nav.Watcher.ReportDetail> { key -> ReportDetailScreenHost(route = key) }
     }
 
     @Module

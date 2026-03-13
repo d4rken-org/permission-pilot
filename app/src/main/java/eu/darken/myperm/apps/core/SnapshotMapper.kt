@@ -1,4 +1,4 @@
-package eu.darken.myperm.common.room.snapshot
+package eu.darken.myperm.apps.core
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -83,11 +83,11 @@ class SnapshotMapper @Inject constructor(
         return PkgEntities(pkgEntity, permEntities, declaredPermEntities)
     }
 
-    fun toCachedAppInfo(
+    fun toAppInfo(
         pkgEntity: SnapshotPkgEntity,
         permEntities: List<SnapshotPkgPermEntity>,
         declaredPermCount: Int,
-    ): CachedAppInfo = CachedAppInfo(
+    ): AppInfo = AppInfo(
         pkgName = pkgEntity.pkgName,
         userHandleId = pkgEntity.userHandleId,
         label = pkgEntity.cachedLabel ?: pkgEntity.pkgName,
@@ -103,7 +103,7 @@ class SnapshotMapper @Inject constructor(
         installedAt = pkgEntity.installedAt?.let { Instant.ofEpochMilli(it) },
         updatedAt = pkgEntity.updatedAt?.let { Instant.ofEpochMilli(it) },
         requestedPermissions = permEntities.map { perm ->
-            CachedPermissionUse(
+            PermissionUse(
                 permissionId = perm.permissionId,
                 status = try {
                     UsesPermission.Status.valueOf(perm.status)
@@ -121,6 +121,7 @@ class SnapshotMapper @Inject constructor(
             ?.split(",")
             ?.filter { it.isNotBlank() }
             ?: emptyList(),
+        sharedUserId = pkgEntity.sharedUserId,
     )
 
     data class PkgEntities(

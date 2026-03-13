@@ -1,6 +1,8 @@
 package eu.darken.myperm.watcher.ui.detail
 
-import androidx.lifecycle.SavedStateHandle
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
@@ -10,17 +12,19 @@ import eu.darken.myperm.watcher.core.PermissionDiff
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.json.Json
-import javax.inject.Inject
 
-@HiltViewModel
-class ReportDetailViewModel @Inject constructor(
-    handle: SavedStateHandle,
+@HiltViewModel(assistedFactory = ReportDetailViewModel.Factory::class)
+class ReportDetailViewModel @AssistedInject constructor(
+    @Assisted private val reportId: Long,
     dispatcherProvider: DispatcherProvider,
     private val changeDao: PermissionChangeDao,
     private val json: Json,
 ) : ViewModel4(dispatcherProvider) {
 
-    private val reportId: Long = handle["reportId"] ?: 0L
+    @AssistedFactory
+    interface Factory {
+        fun create(reportId: Long): ReportDetailViewModel
+    }
 
     data class State(
         val packageName: String = "",

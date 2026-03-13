@@ -5,8 +5,6 @@ import android.os.Build
 import android.os.Process
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.BuildConfigWrap
@@ -14,7 +12,8 @@ import eu.darken.myperm.common.BuildWrap
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
-import eu.darken.myperm.common.room.snapshot.DisplayableApp
+import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.known.APerm
@@ -30,7 +29,7 @@ import javax.inject.Inject
 class OverviewViewModel @Inject constructor(
     @Suppress("unused") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
-    appRepo: AppRepo,
+    private val appRepo: AppRepo,
     private val upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -81,8 +80,8 @@ class OverviewViewModel @Inject constructor(
 
     val state = combine(
         deviceData.onStart { emit(DeviceInfo("", "", "")) },
-        appRepo.displayState.map { displayState ->
-            val apps = (displayState as? AppRepo.DisplayState.Ready)?.apps ?: return@map null
+        appRepo.appData.map { appDataState ->
+            val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@map null
             buildSummary(apps)
         }.onStart { emit(null) },
         upgradeRepo.upgradeInfo.map<UpgradeRepo.Info, UpgradeRepo.Info?> { it }.onStart { emit(null) },
@@ -95,7 +94,7 @@ class OverviewViewModel @Inject constructor(
         )
     }.asStateFlow()
 
-    private fun buildSummary(apps: List<DisplayableApp>): SummaryInfo {
+    private fun buildSummary(apps: List<AppInfo>): SummaryInfo {
         val installPackagesId = APerm.REQUEST_INSTALL_PACKAGES.id.value
         val systemAlertWindowId = APerm.SYSTEM_ALERT_WINDOW.id.value
 
@@ -118,11 +117,8 @@ class OverviewViewModel @Inject constructor(
         )
     }
 
-    private fun DisplayableApp.hasGrantedPermission(permissionId: String): Boolean =
-        requestedPermissions.any {
-            it.permissionId == permissionId &&
-                    (it.status == UsesPermission.Status.GRANTED || it.status == UsesPermission.Status.GRANTED_IN_USE)
-        }
+    private fun AppInfo.hasGrantedPermission(permissionId: String): Boolean =
+        requestedPermissions.any { it.permissionId == permissionId && it.status.isGranted }
 
     fun onRefresh() = launch {
         // Trigger repo refresh via AppRepo
