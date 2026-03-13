@@ -4,7 +4,6 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
-import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.theming.ThemeState
 import eu.darken.myperm.settings.core.themeState
 import eu.darken.myperm.settings.core.themeStateBlocking
@@ -39,23 +38,10 @@ class MainActivityVM @Inject constructor(
     val isOnboardingFinished: Boolean
         get() = generalSettings.isOnboardingFinished.valueBlocking
 
-    val upgradeNag = SingleEventFlow<Unit>()
-
     init {
         upgradeRepo.upgradeInfo
             .take(1)
-            .onEach {
-                _readyState.value = true
-
-                if (it.isPro) return@onEach
-
-                val launchCount = generalSettings.launchCount.valueBlocking
-                val skipNag = launchCount == 0 || launchCount % 8 != 0
-                log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
-                if (skipNag) return@onEach
-
-                upgradeNag.emit(Unit)
-            }
+            .onEach { _readyState.value = true }
             .launchInViewModel()
     }
 
