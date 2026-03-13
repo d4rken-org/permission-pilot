@@ -158,9 +158,9 @@ class PermissionWatcherWorker @AssistedInject constructor(
                 PermissionChangeEntity(
                     packageName = pkgName,
                     userHandleId = userHandleId,
-                    appLabel = newPkgMap[key]?.cachedLabel ?: oldPkgMap[key]?.cachedLabel,
-                    versionCode = newPkgMap[key]?.versionCode ?: oldPkgMap[key]?.versionCode ?: 0L,
-                    versionName = newPkgMap[key]?.versionName ?: oldPkgMap[key]?.versionName,
+                    appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
+                    versionCode = newPkg?.versionCode ?: oldPkg?.versionCode ?: 0L,
+                    versionName = newPkg?.versionName ?: oldPkg?.versionName,
                     eventType = eventType,
                     changesJson = json.encodeToString(diff),
                     detectedAt = System.currentTimeMillis(),
@@ -169,7 +169,7 @@ class PermissionWatcherWorker @AssistedInject constructor(
 
             watcherNotifications.postChangeNotification(
                 reportId = reportId,
-                appLabel = newPkgMap[key]?.cachedLabel ?: oldPkgMap[key]?.cachedLabel,
+                appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
                 packageName = pkgName,
                 diff = diff,
             )

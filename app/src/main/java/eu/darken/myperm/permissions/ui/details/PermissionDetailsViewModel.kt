@@ -105,7 +105,7 @@ class PermissionDetailsViewModel @Inject constructor(
             }
 
             val filteredRefs = perm.requestingApps
-                .filter { ref -> filterOpts.keys.all { filter -> filter.matches(ref) } }
+                .filter { ref -> filterOpts.keys.any { filter -> filter.matches(ref) } }
 
             val statusRank = mapOf(
                 UsesPermission.Status.GRANTED to 0,

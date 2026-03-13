@@ -151,8 +151,7 @@ class AppDetailsViewModel @Inject constructor(
                         },
                         isRuntime = basePerm.tags.contains(RuntimeGrant),
                         isSpecialAccess = basePerm.tags.contains(SpecialAccess),
-                        isDeclaredByApp = appInfo.declaredPermissionCount > 0
-                                && basePerm.declaringApps.any { it.pkgName == appInfo.pkgName && it.userHandleId == appInfo.userHandleId },
+                        isDeclaredByApp = basePerm.declaringApps.any { it.pkgName == appInfo.pkgName && it.userHandleId == appInfo.userHandleId },
                     )
                 }
 

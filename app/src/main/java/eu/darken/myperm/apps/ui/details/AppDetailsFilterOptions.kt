@@ -27,8 +27,7 @@ data class AppDetailsFilterOptions(
         CONFIGURABLE(R.string.filter_configurable_label);
 
         fun matches(cachedPerm: PermissionUse, basePerm: BasePermission): Boolean = when (this) {
-            GRANTED -> cachedPerm.status == UsesPermission.Status.GRANTED ||
-                    cachedPerm.status == UsesPermission.Status.GRANTED_IN_USE
+            GRANTED -> cachedPerm.status.isGranted
 
             DENIED -> cachedPerm.status == UsesPermission.Status.DENIED
             CONFIGURABLE -> basePerm.tags.contains(RuntimeGrant) || basePerm.tags.contains(SpecialAccess)

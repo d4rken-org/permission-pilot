@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.AppInfo
-import eu.darken.myperm.apps.core.features.UsesPermission
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import java.time.Instant
@@ -25,7 +24,7 @@ data class AppsSortOptions(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
             override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Int> { app ->
-                app.requestedPermissions.count { it.status == UsesPermission.Status.GRANTED || it.status == UsesPermission.Status.GRANTED_IN_USE }
+                app.requestedPermissions.count { it.status.isGranted }
             }.reversed()
         },
         PERMISSIONS_REQUESTED(

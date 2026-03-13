@@ -1,7 +1,5 @@
 package eu.darken.myperm.apps.core
 
-import androidx.work.ExistingWorkPolicy
-import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -20,7 +18,6 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.room.snapshot.SnapshotWorker
-import eu.darken.myperm.watcher.core.PermissionWatcherWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -106,15 +103,7 @@ class AppRepo @Inject constructor(
         refreshTrigger.tryEmit(TriggerReason.MANUAL_REFRESH)
     }
 
-    private fun enqueuePermissionWatcher() {
-        val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
-        workManager.enqueueUniqueWork(
-            SnapshotWorker.WATCHER_WORK_NAME,
-            ExistingWorkPolicy.KEEP,
-            request,
-        )
-        log(TAG) { "Enqueued PermissionWatcherWorker" }
-    }
+    private fun enqueuePermissionWatcher() = SnapshotWorker.enqueueWatcher(workManager)
 
     suspend fun scanAndSave(reason: TriggerReason) {
         val start = System.currentTimeMillis()

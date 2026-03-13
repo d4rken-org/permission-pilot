@@ -56,10 +56,10 @@ class SnapshotWorker @AssistedInject constructor(
 
         val maxId = pendingEvents.last().id
 
-        val oldestEventTime = pendingEventDao.getOldestCreatedAt()
+        val oldestEventTime = pendingEvents.first().createdAt
         val latestSnapshot = snapshotDao.getLatestSnapshot()
 
-        if (oldestEventTime != null && latestSnapshot != null && latestSnapshot.createdAt >= oldestEventTime) {
+        if (latestSnapshot != null && latestSnapshot.createdAt >= oldestEventTime) {
             log(TAG) { "Snapshot ${latestSnapshot.snapshotId} already covers pending events, skipping scan" }
         } else {
             log(TAG) { "Processing ${pendingEvents.size} pending events (maxId=$maxId), scanning packages" }
@@ -73,15 +73,7 @@ class SnapshotWorker @AssistedInject constructor(
         return Result.success()
     }
 
-    private fun enqueueWatcher() {
-        val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
-        WorkManager.getInstance(applicationContext).enqueueUniqueWork(
-            WATCHER_WORK_NAME,
-            ExistingWorkPolicy.KEEP,
-            request,
-        )
-        log(TAG) { "Enqueued PermissionWatcherWorker" }
-    }
+    private fun enqueueWatcher() = enqueueWatcher(WorkManager.getInstance(applicationContext))
 
     private fun createForegroundInfo(): ForegroundInfo {
         ensureNotificationChannel()
@@ -121,5 +113,11 @@ class SnapshotWorker @AssistedInject constructor(
         private const val NOTIFICATION_ID = 42_001
         private const val TTL_MS = 60 * 60 * 1000L // 1 hour
         internal val TAG = logTag("Snapshot", "Worker")
+
+        fun enqueueWatcher(workManager: WorkManager) {
+            val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
+            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.KEEP, request)
+            log(TAG) { "Enqueued PermissionWatcherWorker" }
+        }
     }
 }
