@@ -76,12 +76,6 @@ class MainActivity : Activity2() {
                 }
 
                 CompositionLocalProvider(LocalNavigationController provides navCtrl) {
-                    LaunchedEffect(Unit) {
-                        vm.upgradeNag.collect {
-                            navCtrl.goTo(Nav.Main.Upgrade)
-                        }
-                    }
-
                     MainScreen(
                         backStack = backStack,
                         navCtrl = navCtrl,
