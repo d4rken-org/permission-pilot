@@ -45,22 +45,10 @@ class MainActivityVM @Inject constructor(
 
     val upgradeNag = SingleEventFlow<Unit>()
     val deepLinkNav = SingleEventFlow<NavigationDestination>()
-
     init {
         upgradeRepo.upgradeInfo
             .take(1)
-            .onEach {
-                _readyState.value = true
-
-                if (it.isPro) return@onEach
-
-                val launchCount = generalSettings.launchCount.valueBlocking
-                val skipNag = launchCount == 0 || launchCount % 8 != 0
-                log { "LaunchCount: $launchCount (skipNag=$skipNag)" }
-                if (skipNag) return@onEach
-
-                upgradeNag.emit(Unit)
-            }
+            .onEach { _readyState.value = true }
             .launchInViewModel()
     }
 
