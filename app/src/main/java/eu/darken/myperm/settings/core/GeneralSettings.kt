@@ -101,6 +101,8 @@ class GeneralSettings @Inject constructor(
         reader = kotlinxReader(json, WatcherScope.NON_SYSTEM, fallbackToDefault = true),
         writer = kotlinxWriter(json),
     )
+    val isWatcherNotificationsEnabled = dataStore.createValue("watcher.notifications.enabled", true)
+    val watcherRetentionDays = dataStore.createValue("watcher.retention.days", 30)
 
     val lastDiffedSnapshotId = dataStore.createValue("watcher.lastDiffedSnapshotId", null as String?)
 

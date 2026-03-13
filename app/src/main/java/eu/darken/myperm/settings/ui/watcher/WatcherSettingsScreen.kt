@@ -7,14 +7,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.twotone.DeleteSweep
 import androidx.compose.material.icons.twotone.FilterList
-import androidx.compose.material.icons.twotone.History
+import eu.darken.myperm.common.compose.LucideRadar
 import androidx.compose.material.icons.twotone.Notifications
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material.icons.twotone.Schedule
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -23,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
@@ -48,28 +52,42 @@ fun WatcherSettingsScreenHost() {
 
     val isWatcherEnabled by vm.isWatcherEnabled.collectAsState(initial = false)
     val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
+    val isNotificationsEnabled by vm.isNotificationsEnabled.collectAsState(initial = true)
+    val retentionDays by vm.retentionDays.collectAsState(initial = 30)
+    val reportCount by vm.reportCount.collectAsState(initial = 0)
 
     WatcherSettingsScreen(
         onBack = { navCtrl?.up() },
         isWatcherEnabled = isWatcherEnabled,
-        watcherScope = watcherScope,
         onWatcherEnabledChanged = { vm.setWatcherEnabled(it) },
+        watcherScope = watcherScope,
         onWatcherScopeSelected = { vm.setWatcherScope(it) },
-        onViewReports = { vm.goToReports() },
+        isNotificationsEnabled = isNotificationsEnabled,
+        onNotificationsEnabledChanged = { vm.setNotificationsEnabled(it) },
+        retentionDays = retentionDays,
+        onRetentionDaysSelected = { vm.setRetentionDays(it) },
+        onClearReports = { vm.clearAllReports() },
+        reportCount = reportCount,
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WatcherSettingsScreen(
     onBack: () -> Unit,
     isWatcherEnabled: Boolean = false,
-    watcherScope: WatcherScope = WatcherScope.NON_SYSTEM,
     onWatcherEnabledChanged: (Boolean) -> Unit = {},
+    watcherScope: WatcherScope = WatcherScope.NON_SYSTEM,
     onWatcherScopeSelected: (WatcherScope) -> Unit = {},
-    onViewReports: () -> Unit = {},
+    isNotificationsEnabled: Boolean = true,
+    onNotificationsEnabledChanged: (Boolean) -> Unit = {},
+    retentionDays: Int = 30,
+    onRetentionDaysSelected: (Int) -> Unit = {},
+    onClearReports: () -> Unit = {},
+    reportCount: Int = 0,
 ) {
     var showScopeDialog by remember { mutableStateOf(false) }
+    var showRetentionDialog by remember { mutableStateOf(false) }
+    var showClearConfirmDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -90,7 +108,7 @@ fun WatcherSettingsScreen(
                 .verticalScroll(rememberScrollState()),
         ) {
             SettingsSwitchItem(
-                icon = Icons.TwoTone.Notifications,
+                icon = LucideRadar,
                 title = stringResource(R.string.watcher_enabled_label),
                 subtitle = stringResource(R.string.watcher_enabled_desc),
                 checked = isWatcherEnabled,
@@ -104,15 +122,35 @@ fun WatcherSettingsScreen(
                     WatcherScope.NON_SYSTEM -> stringResource(R.string.watcher_scope_non_system)
                 },
                 icon = Icons.TwoTone.FilterList,
-                enabled = isWatcherEnabled,
                 onClick = { showScopeDialog = true },
             )
             SettingsDivider()
+            SettingsSwitchItem(
+                icon = Icons.TwoTone.Notifications,
+                title = stringResource(R.string.watcher_settings_notifications_label),
+                subtitle = stringResource(R.string.watcher_settings_notifications_desc),
+                checked = isNotificationsEnabled,
+                onCheckedChange = onNotificationsEnabledChanged,
+            )
+            SettingsDivider()
             SettingsBaseItem(
-                title = stringResource(R.string.watcher_view_reports),
-                subtitle = null,
-                icon = Icons.TwoTone.History,
-                onClick = onViewReports,
+                title = stringResource(R.string.watcher_settings_retention_label),
+                subtitle = when (retentionDays) {
+                    7 -> stringResource(R.string.watcher_settings_retention_7)
+                    14 -> stringResource(R.string.watcher_settings_retention_14)
+                    60 -> stringResource(R.string.watcher_settings_retention_60)
+                    90 -> stringResource(R.string.watcher_settings_retention_90)
+                    else -> stringResource(R.string.watcher_settings_retention_30)
+                },
+                icon = Icons.TwoTone.Schedule,
+                onClick = { showRetentionDialog = true },
+            )
+            SettingsDivider()
+            SettingsBaseItem(
+                title = stringResource(R.string.watcher_settings_clear_reports_label),
+                subtitle = pluralStringResource(R.plurals.watcher_settings_report_count, reportCount, reportCount),
+                icon = Icons.TwoTone.DeleteSweep,
+                onClick = { showClearConfirmDialog = true },
             )
         }
     }
@@ -134,6 +172,46 @@ fun WatcherSettingsScreen(
                 showScopeDialog = false
             },
             onDismiss = { showScopeDialog = false },
+        )
+    }
+
+    if (showRetentionDialog) {
+        SingleChoiceSortDialog(
+            title = stringResource(R.string.watcher_settings_retention_label),
+            options = listOf(
+                LabeledOption(7, R.string.watcher_settings_retention_7),
+                LabeledOption(14, R.string.watcher_settings_retention_14),
+                LabeledOption(30, R.string.watcher_settings_retention_30),
+                LabeledOption(60, R.string.watcher_settings_retention_60),
+                LabeledOption(90, R.string.watcher_settings_retention_90),
+            ),
+            selected = retentionDays,
+            onSelect = {
+                onRetentionDaysSelected(it)
+                showRetentionDialog = false
+            },
+            onDismiss = { showRetentionDialog = false },
+        )
+    }
+
+    if (showClearConfirmDialog) {
+        AlertDialog(
+            onDismissRequest = { showClearConfirmDialog = false },
+            title = { Text(stringResource(R.string.watcher_settings_clear_reports_confirm_title)) },
+            text = { Text(stringResource(R.string.watcher_settings_clear_reports_confirm_message)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    onClearReports()
+                    showClearConfirmDialog = false
+                }) {
+                    Text(stringResource(R.string.general_done_action))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showClearConfirmDialog = false }) {
+                    Text(stringResource(R.string.general_cancel_action))
+                }
+            },
         )
     }
 }

@@ -21,6 +21,9 @@ interface PermissionChangeDao {
     @Query("SELECT * FROM permission_change_reports WHERE isSeen = 0 ORDER BY detectedAt DESC")
     fun getUnseen(): Flow<List<PermissionChangeEntity>>
 
+    @Query("SELECT COUNT(*) FROM permission_change_reports")
+    fun getTotalCount(): Flow<Int>
+
     @Query("SELECT COUNT(*) FROM permission_change_reports WHERE isSeen = 0")
     fun getUnseenCount(): Flow<Int>
 
@@ -30,6 +33,15 @@ interface PermissionChangeDao {
     @Query("UPDATE permission_change_reports SET isSeen = 1")
     suspend fun markAllSeen()
 
+    @Query("DELETE FROM permission_change_reports WHERE id = :id")
+    suspend fun deleteById(id: Long)
+
+    @Query("DELETE FROM permission_change_reports")
+    suspend fun deleteAll()
+
     @Query("DELETE FROM permission_change_reports WHERE detectedAt < :epochMs")
     suspend fun deleteOlderThan(epochMs: Long)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM permission_change_reports WHERE packageName = :pkgName AND userHandleId = :userHandleId AND sourceSnapshotId = :snapshotId)")
+    suspend fun existsByPackageAndSnapshot(pkgName: String, userHandleId: Int, snapshotId: String): Boolean
 }

@@ -79,20 +79,21 @@ class MainActivity : Activity2() {
 
                 CompositionLocalProvider(LocalNavigationController provides navCtrl) {
                     LaunchedEffect(Unit) {
-                        vm.upgradeNag.collect {
-                            navCtrl.goTo(Nav.Main.Upgrade)
+                        vm.deepLinkNav.collect { dest ->
+                            when (dest) {
+                                is Nav.Tab -> navCtrl.replace(dest)
+                                else -> navCtrl.goTo(dest)
+                            }
                         }
                     }
-                    LaunchedEffect(Unit) {
-                        vm.deepLinkNav.collect {
-                            navCtrl.goTo(it)
-                        }
-                    }
+
+                    val unseenWatcherCount by vm.unseenWatcherCount.collectAsState()
 
                     MainScreen(
                         backStack = backStack,
                         navCtrl = navCtrl,
                         navigationEntries = navigationEntries,
+                        unseenWatcherCount = unseenWatcherCount,
                     )
                 }
             }

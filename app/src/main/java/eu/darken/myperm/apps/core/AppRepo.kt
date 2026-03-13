@@ -159,7 +159,7 @@ class AppRepo @Inject constructor(
         log(TAG) { "Perf: saveSnapshot() total in ${System.currentTimeMillis() - totalStart}ms" }
     }
 
-    private suspend fun pruneSnapshots(keepCount: Int = 5) {
+    suspend fun pruneSnapshots(keepCount: Int = 20) {
         val oldIds = snapshotDao.getOldSnapshotIds(keepCount)
         if (oldIds.isNotEmpty()) {
             log(TAG) { "pruneSnapshots(): deleting ${oldIds.size} old snapshots" }

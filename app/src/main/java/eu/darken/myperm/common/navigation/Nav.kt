@@ -20,6 +20,9 @@ object Nav {
 
         @Serializable
         data object Permissions : Tab
+
+        @Serializable
+        data object Watcher : Tab
     }
 
     sealed interface Details : NavigationDestination {
@@ -38,9 +41,6 @@ object Nav {
     }
 
     sealed interface Watcher : NavigationDestination {
-        @Serializable
-        data object Reports : Watcher
-
         @Serializable
         data class ReportDetail(val reportId: Long) : Watcher
     }
