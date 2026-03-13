@@ -1,16 +1,13 @@
 package eu.darken.myperm.watcher.core
 
-import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.R
 import eu.darken.myperm.common.debug.logging.log
@@ -25,6 +22,7 @@ class WatcherNotifications @Inject constructor(
     @ApplicationContext private val context: Context,
     private val notificationManager: NotificationManagerCompat,
     private val generalSettings: GeneralSettings,
+    private val capability: WatcherNotificationCapability,
 ) {
 
     private var channelCreated = false
@@ -55,12 +53,9 @@ class WatcherNotifications @Inject constructor(
             return
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-            if (granted != PackageManager.PERMISSION_GRANTED) {
-                log(TAG) { "POST_NOTIFICATIONS not granted, skipping notification for $packageName" }
-                return
-            }
+        if (!capability.areNotificationsEnabled()) {
+            log(TAG) { "Notifications not available, skipping notification for $packageName" }
+            return
         }
 
         ensureChannel()
@@ -108,26 +103,31 @@ class WatcherNotifications @Inject constructor(
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
 
-        val deleteIntent = Intent(context, WatcherActionReceiver::class.java).apply {
-            action = WatcherActionReceiver.ACTION_DELETE
-            putExtra(WatcherActionReceiver.EXTRA_REPORT_ID, reportId)
-            putExtra(WatcherActionReceiver.EXTRA_PACKAGE_NAME, packageName)
+        val details = buildList {
+            if (diff.addedPermissions.isNotEmpty()) {
+                add(context.getString(R.string.watcher_notification_body_added, diff.addedPermissions.joinToString()))
+            }
+            if (diff.removedPermissions.isNotEmpty()) {
+                add(context.getString(R.string.watcher_notification_body_removed, diff.removedPermissions.joinToString()))
+            }
+            if (diff.grantChanges.isNotEmpty()) {
+                val names = diff.grantChanges.map { it.permissionId.substringAfterLast('.') }
+                add(context.getString(R.string.watcher_notification_body_grant_changed, names.joinToString()))
+            }
         }
-        val deletePendingIntent = PendingIntent.getBroadcast(
-            context,
-            ("delete_$reportId").hashCode(),
-            deleteIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-        )
+        val contentText = details.firstOrNull()
+        val bigText = details.joinToString("\n")
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_baseline_bug_report_24)
+            .setSmallIcon(R.drawable.ic_notification_radar)
             .setContentTitle(title)
+            .setContentText(contentText)
+            .setSubText(context.getString(R.string.watcher_channel_name))
+            .setStyle(NotificationCompat.BigTextStyle().bigText(bigText))
             .setAutoCancel(true)
             .setContentIntent(contentPendingIntent)
             .setGroup(GROUP_KEY)
             .addAction(0, context.getString(R.string.watcher_notification_action_mark_seen), markSeenPendingIntent)
-            .addAction(0, context.getString(R.string.watcher_notification_action_delete), deletePendingIntent)
             .build()
 
         notificationManager.notify(packageName.hashCode(), notification)
@@ -136,10 +136,7 @@ class WatcherNotifications @Inject constructor(
     suspend fun postSummaryNotification(reportCount: Int) {
         if (!generalSettings.isWatcherNotificationsEnabled.value()) return
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
-            if (granted != PackageManager.PERMISSION_GRANTED) return
-        }
+        if (!capability.areNotificationsEnabled()) return
 
         ensureChannel()
 
@@ -160,8 +157,9 @@ class WatcherNotifications @Inject constructor(
         )
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_baseline_bug_report_24)
+            .setSmallIcon(R.drawable.ic_notification_radar)
             .setContentTitle(title)
+            .setSubText(context.getString(R.string.watcher_channel_name))
             .setAutoCancel(true)
             .setContentIntent(summaryPendingIntent)
             .setGroup(GROUP_KEY)

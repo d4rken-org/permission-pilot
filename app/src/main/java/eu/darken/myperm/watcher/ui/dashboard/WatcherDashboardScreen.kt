@@ -1,5 +1,11 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
+import android.Manifest
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +20,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
+import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -24,16 +31,23 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.compose.AppIcon
@@ -51,6 +65,42 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val context = LocalContext.current
+
+    var useSettingsFallback by rememberSaveable { mutableStateOf(false) }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (!isGranted) {
+            val activity = context as? android.app.Activity
+            if (activity != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val showRationale = ActivityCompat.shouldShowRequestPermissionRationale(
+                    activity, Manifest.permission.POST_NOTIFICATIONS
+                )
+                if (!showRationale) useSettingsFallback = true
+            }
+        }
+        vm.refreshNotificationState()
+    }
+
+    LifecycleResumeEffect(Unit) {
+        vm.refreshNotificationState()
+        onPauseOrDispose {}
+    }
+
+    val canRequest = state?.canRequestNotificationPermission ?: false
+
+    val onGrantNotificationPermission: () -> Unit = {
+        if (canRequest && !useSettingsFallback && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        } else {
+            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+            }
+            context.startActivity(intent)
+        }
+    }
 
     WatcherDashboardScreen(
         state = state,
@@ -58,6 +108,9 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onReportClicked = { vm.onReportClicked(it) },
         onMarkAllSeen = { vm.markAllSeen() },
         onSettings = { vm.goToSettings() },
+        onGrantNotificationPermission = onGrantNotificationPermission,
+        onDisableNotifications = { vm.disableNotifications() },
+        useSettingsFallback = useSettingsFallback,
     )
 }
 
@@ -68,6 +121,9 @@ fun WatcherDashboardScreen(
     onReportClicked: (WatcherDashboardViewModel.ReportItem) -> Unit,
     onMarkAllSeen: () -> Unit,
     onSettings: () -> Unit,
+    onGrantNotificationPermission: () -> Unit = {},
+    onDisableNotifications: () -> Unit = {},
+    useSettingsFallback: Boolean = false,
 ) {
     val isEnabled = state?.isWatcherEnabled ?: false
     val reports = state?.reports ?: emptyList()
@@ -106,6 +162,11 @@ fun WatcherDashboardScreen(
                     .padding(innerPadding),
                 reports = reports,
                 onReportClicked = onReportClicked,
+                showNotificationPermissionCard = state?.showNotificationPermissionCard ?: false,
+                canRequestNotificationPermission = state?.canRequestNotificationPermission ?: false,
+                useSettingsFallback = useSettingsFallback,
+                onGrantNotificationPermission = onGrantNotificationPermission,
+                onDisableNotifications = onDisableNotifications,
             )
         }
     }
@@ -177,26 +238,107 @@ private fun EnabledContent(
     modifier: Modifier = Modifier,
     reports: List<WatcherDashboardViewModel.ReportItem>,
     onReportClicked: (WatcherDashboardViewModel.ReportItem) -> Unit,
+    showNotificationPermissionCard: Boolean = false,
+    canRequestNotificationPermission: Boolean = false,
+    useSettingsFallback: Boolean = false,
+    onGrantNotificationPermission: () -> Unit = {},
+    onDisableNotifications: () -> Unit = {},
 ) {
-    if (reports.isEmpty()) {
-        Box(
-            modifier = modifier,
-            contentAlignment = Alignment.Center,
-        ) {
-            Text(
-                text = stringResource(R.string.watcher_reports_empty),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+    LazyColumn(modifier = modifier) {
+        if (showNotificationPermissionCard) {
+            item(key = "notification_permission") {
+                NotificationPermissionCard(
+                    canRequestPermission = canRequestNotificationPermission && !useSettingsFallback,
+                    onAction = onGrantNotificationPermission,
+                    onDisable = onDisableNotifications,
+                    modifier = Modifier.padding(16.dp),
+                )
+            }
         }
-    } else {
-        LazyColumn(modifier = modifier) {
+        if (reports.isEmpty()) {
+            item(key = "empty") {
+                Box(
+                    modifier = Modifier
+                        .fillParentMaxSize()
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = stringResource(R.string.watcher_reports_empty),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+        } else {
             items(reports, key = { it.id }) { item ->
                 ReportListItem(
                     item = item,
                     onClick = { onReportClicked(item) },
                 )
                 HorizontalDivider()
+            }
+        }
+    }
+}
+
+@Composable
+private fun NotificationPermissionCard(
+    canRequestPermission: Boolean,
+    onAction: () -> Unit,
+    onDisable: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.NotificationsOff,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+                Text(
+                    text = stringResource(R.string.watcher_notification_permission_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+            }
+            Text(
+                text = stringResource(R.string.watcher_notification_permission_description),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                TextButton(onClick = onDisable) {
+                    Text(text = stringResource(R.string.watcher_notification_permission_disable))
+                }
+                Button(onClick = onAction) {
+                    Text(
+                        text = if (canRequestPermission) {
+                            stringResource(R.string.watcher_notification_permission_grant)
+                        } else {
+                            stringResource(R.string.watcher_notification_permission_open_settings)
+                        }
+                    )
+                }
             }
         }
     }
@@ -301,6 +443,35 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     eventType = "INSTALL",
                     detectedAt = System.currentTimeMillis() - 86400000,
                     isSeen = true,
+                ),
+            ),
+        ),
+        onToggle = {},
+        onReportClicked = {},
+        onMarkAllSeen = {},
+        onSettings = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
+    WatcherDashboardScreen(
+        state = WatcherDashboardViewModel.State(
+            isWatcherEnabled = true,
+            isPro = true,
+            showNotificationPermissionCard = true,
+            canRequestNotificationPermission = true,
+            reports = listOf(
+                WatcherDashboardViewModel.ReportItem(
+                    id = 1,
+                    packageName = "com.example.app",
+                    appLabel = "Example App",
+                    versionName = "2.1.0",
+                    previousVersionName = "1.8.3",
+                    eventType = "UPDATE",
+                    detectedAt = System.currentTimeMillis(),
+                    isSeen = false,
                 ),
             ),
         ),

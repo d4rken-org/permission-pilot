@@ -516,6 +516,9 @@
     <string name="watcher_mark_all_seen">Mark all as seen</string>
     <string name="watcher_notification_action_mark_seen">Mark seen</string>
     <string name="watcher_notification_action_delete">Delete</string>
+    <string name="watcher_notification_body_added">Added: %s</string>
+    <string name="watcher_notification_body_removed">Removed: %s</string>
+    <string name="watcher_notification_body_grant_changed">Grant changed: %s</string>
     <plurals name="watcher_notification_summary_title">
         <item quantity="one">%d app changed permissions</item>
         <item quantity="other">%d apps changed permissions</item>
@@ -535,6 +538,12 @@
         <item quantity="one">%d report</item>
         <item quantity="other">%d reports</item>
     </plurals>
+    <string name="watcher_notification_permission_title">Notifications unavailable</string>
+    <string name="watcher_notification_permission_description">Permission changes are being tracked, but notifications can\'t be shown. Enable notifications to receive alerts about permission changes.</string>
+    <string name="watcher_notification_permission_grant">Grant permission</string>
+    <string name="watcher_notification_permission_open_settings">Open settings</string>
+    <string name="watcher_notification_permission_disable">Disable notifications</string>
+
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>
     <string name="snapshot_sync_notification_title">Syncing app data…</string>
