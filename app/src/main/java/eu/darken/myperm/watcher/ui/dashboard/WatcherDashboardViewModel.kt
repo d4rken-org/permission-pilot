@@ -10,6 +10,8 @@ import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.WatcherNotificationCapability
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -20,6 +22,7 @@ class WatcherDashboardViewModel @Inject constructor(
     private val generalSettings: GeneralSettings,
     private val changeDao: PermissionChangeDao,
     private val upgradeRepo: UpgradeRepo,
+    private val capability: WatcherNotificationCapability,
 ) : ViewModel4(dispatcherProvider) {
 
     data class ReportItem(
@@ -37,17 +40,29 @@ class WatcherDashboardViewModel @Inject constructor(
         val isWatcherEnabled: Boolean = false,
         val isPro: Boolean = false,
         val reports: List<ReportItem> = emptyList(),
+        val showNotificationPermissionCard: Boolean = false,
+        val canRequestNotificationPermission: Boolean = false,
     )
+
+    private val notificationsAvailable = MutableStateFlow(capability.areNotificationsEnabled())
+
+    fun refreshNotificationState() {
+        notificationsAvailable.value = capability.areNotificationsEnabled()
+    }
 
     val state = combine(
         generalSettings.isWatcherEnabled.flow,
         upgradeRepo.upgradeInfo.map { it.isPro },
         changeDao.getAll(),
-    ) { isEnabled, isPro, entities ->
+        generalSettings.isWatcherNotificationsEnabled.flow,
+        notificationsAvailable,
+    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable ->
         State(
             isWatcherEnabled = isEnabled,
             isPro = isPro,
             reports = entities.map { it.toItem() },
+            showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable,
+            canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
         )
     }.asStateFlow(State())
 
@@ -71,6 +86,10 @@ class WatcherDashboardViewModel @Inject constructor(
 
     fun markAllSeen() = launch {
         changeDao.markAllSeen()
+    }
+
+    fun disableNotifications() = launch {
+        generalSettings.isWatcherNotificationsEnabled.value(false)
     }
 
     fun goToSettings() {
