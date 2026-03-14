@@ -149,10 +149,9 @@ class WatcherDashboardViewModel @Inject constructor(
     private fun PermissionChangeEntity.toItem(): WatcherReportItem {
         val diff = runCatching {
             json.decodeFromString<PermissionDiff>(changesJson)
-        }.getOrElse { e ->
+        }.onFailure { e ->
             log(TAG, WARN) { "Failed to deserialize changesJson for report $id: ${e.asLog()}" }
-            PermissionDiff()
-        }
+        }.getOrNull()
 
         return WatcherReportItem(
             id = id,
@@ -163,8 +162,8 @@ class WatcherDashboardViewModel @Inject constructor(
             eventType = eventType,
             detectedAt = detectedAt,
             isSeen = isSeen,
-            hasAddedPermissions = diff.addedPermissions.isNotEmpty() || diff.addedDeclared.isNotEmpty(),
-            hasLostPermissions = diff.removedPermissions.isNotEmpty() || diff.removedDeclared.isNotEmpty(),
+            hasAddedPermissions = diff?.let { it.addedPermissions.isNotEmpty() || it.addedDeclared.isNotEmpty() } ?: false,
+            hasLostPermissions = diff?.let { it.removedPermissions.isNotEmpty() || it.removedDeclared.isNotEmpty() } ?: false,
         )
     }
 
