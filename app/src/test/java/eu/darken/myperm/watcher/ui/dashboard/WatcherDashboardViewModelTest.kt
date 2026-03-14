@@ -4,7 +4,9 @@ import eu.darken.myperm.common.datastore.DataStoreValue
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
+import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
@@ -36,6 +38,10 @@ class WatcherDashboardViewModelTest : BaseTest() {
     private val changeDao: PermissionChangeDao = mockk(relaxed = true)
     private val upgradeRepo: UpgradeRepo = mockk(relaxed = true)
     private val capability: WatcherNotificationCapability = mockk()
+    private val watcherWorkScheduler: WatcherWorkScheduler = mockk(relaxed = true)
+    private val watcherManager: WatcherManager = mockk(relaxed = true) {
+        every { phase } returns MutableStateFlow(null)
+    }
 
     @BeforeEach
     fun setup() {
@@ -65,6 +71,8 @@ class WatcherDashboardViewModelTest : BaseTest() {
         changeDao = changeDao,
         upgradeRepo = upgradeRepo,
         capability = capability,
+        watcherWorkScheduler = watcherWorkScheduler,
+        watcherManager = watcherManager,
     )
 
     @Test
