@@ -40,6 +40,7 @@ class AppsFilterOptionsTest : BaseTest() {
         twinCount = twinCount,
         siblingCount = siblingCount,
         hasAccessibilityServices = hasAccessibilityServices,
+        hasDeviceAdmin = false,
         allInstallerPkgNames = allInstallerPkgNames,
     )
 

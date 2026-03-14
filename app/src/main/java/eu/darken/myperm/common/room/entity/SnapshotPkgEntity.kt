@@ -41,5 +41,6 @@ data class SnapshotPkgEntity(
     val twinCount: Int = 0,
     val siblingCount: Int = 0,
     val hasAccessibilityServices: Boolean = false,
+    val hasDeviceAdmin: Boolean = false,
     val allInstallerPkgNames: String? = null,
 )

@@ -742,7 +742,7 @@ sealed class APerm(val id: Permission.Id) {
     }
 
     object BIND_DEVICE_ADMIN : APerm("android.permission.BIND_DEVICE_ADMIN") {
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object BIND_DREAM_SERVICE : APerm("android.permission.BIND_DREAM_SERVICE") {

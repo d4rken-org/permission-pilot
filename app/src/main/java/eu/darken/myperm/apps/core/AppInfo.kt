@@ -27,6 +27,7 @@ data class AppInfo(
     val twinCount: Int,
     val siblingCount: Int,
     val hasAccessibilityServices: Boolean,
+    val hasDeviceAdmin: Boolean,
     val allInstallerPkgNames: List<String>,
     val sharedUserId: String? = null,
 )

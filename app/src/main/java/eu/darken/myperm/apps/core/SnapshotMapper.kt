@@ -49,6 +49,7 @@ class SnapshotMapper @Inject constructor(
             twinCount = pkg.twins.size,
             siblingCount = pkg.siblings.size,
             hasAccessibilityServices = pkg.accessibilityServices.isNotEmpty(),
+            hasDeviceAdmin = pkg.deviceAdmins.any { it.isActive },
             allInstallerPkgNames = pkg.installerInfo.allInstallers
                 .map { it.id.pkgName }
                 .takeIf { it.isNotEmpty() }
@@ -117,6 +118,7 @@ class SnapshotMapper @Inject constructor(
         twinCount = pkgEntity.twinCount,
         siblingCount = pkgEntity.siblingCount,
         hasAccessibilityServices = pkgEntity.hasAccessibilityServices,
+        hasDeviceAdmin = pkgEntity.hasDeviceAdmin,
         allInstallerPkgNames = pkgEntity.allInstallerPkgNames
             ?.split(",")
             ?.filter { it.isNotBlank() }

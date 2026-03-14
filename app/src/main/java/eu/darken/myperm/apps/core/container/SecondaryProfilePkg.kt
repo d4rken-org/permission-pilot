@@ -108,7 +108,13 @@ class SecondaryProfilePkg(
                 flags = null
             )
         }
-        base + acsPermissions
+        val deviceAdminPermissions = deviceAdmins.map {
+            UsesPermission.WithState(
+                id = APerm.BIND_DEVICE_ADMIN.id,
+                flags = null
+            )
+        }
+        base + acsPermissions + deviceAdminPermissions
     }
 
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
