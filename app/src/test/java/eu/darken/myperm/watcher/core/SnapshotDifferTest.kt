@@ -221,6 +221,198 @@ class SnapshotDifferTest : BaseTest() {
     }
 
     @Test
+    fun `install - gainedCount only counts granted permissions`() {
+        val diff = differ.diff(
+            previousPerms = emptyList(),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "GRANTED"),
+                current("android.permission.INTERNET", "GRANTED"),
+                current("android.permission.LOCATION", "DENIED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 2
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `install - denied permissions not counted as gained`() {
+        val diff = differ.diff(
+            previousPerms = emptyList(),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "DENIED"),
+                current("android.permission.INTERNET", "DENIED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `update - added granted permission counted as gained`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.INTERNET", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.INTERNET", "GRANTED"),
+                current("android.permission.CAMERA", "GRANTED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 1
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `update - added denied permission not counted as gained`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.INTERNET", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.INTERNET", "GRANTED"),
+                current("android.permission.CAMERA", "DENIED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `grant change - DENIED to GRANTED counted as gained`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "DENIED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "GRANTED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 1
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `grant change - GRANTED to DENIED counted as lost`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "DENIED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 1
+    }
+
+    @Test
+    fun `grant change - DENIED to UNKNOWN not counted`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "DENIED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "UNKNOWN"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `grant change - GRANTED to GRANTED_IN_USE not counted`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "GRANTED_IN_USE"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `removed granted permission counted as lost`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "GRANTED"),
+                perm("android.permission.INTERNET", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.INTERNET", "GRANTED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 1
+    }
+
+    @Test
+    fun `removed denied permission not counted as lost`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "DENIED"),
+                perm("android.permission.INTERNET", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.INTERNET", "GRANTED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 0
+        diff.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `mixed - gains and losses combined correctly`() {
+        val diff = differ.diff(
+            previousPerms = listOf(
+                perm("android.permission.CAMERA", "DENIED"),
+                perm("android.permission.INTERNET", "GRANTED"),
+            ),
+            previousDeclared = emptyList(),
+            currentPerms = listOf(
+                current("android.permission.CAMERA", "GRANTED"),
+                current("android.permission.LOCATION", "GRANTED"),
+            ),
+            currentDeclared = emptyList(),
+        )
+
+        diff.gainedCount shouldBe 2
+        diff.lostCount shouldBe 1
+    }
+
+    @Test
     fun `GRANTED_IN_USE status is preserved in diff`() {
         val diff = differ.diff(
             previousPerms = listOf(

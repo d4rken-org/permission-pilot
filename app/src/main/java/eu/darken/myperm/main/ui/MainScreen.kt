@@ -1,9 +1,11 @@
 package eu.darken.myperm.main.ui
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Apps
 import eu.darken.myperm.common.compose.LucideRadar
@@ -16,11 +18,9 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -45,8 +45,11 @@ fun MainScreen(
     val currentEntry = backStack.lastOrNull()
     val isTabScreen = currentEntry is Nav.Tab
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) {
         NavDisplay(
+            modifier = Modifier
+                .weight(1f)
+                .consumeWindowInsets(WindowInsets.navigationBars),
             backStack = backStack,
             onBack = {
                 if (!navCtrl.up()) {
@@ -66,9 +69,7 @@ fun MainScreen(
 
         if (isTabScreen) {
             NavigationBar(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .navigationBarsPadding(),
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 NavigationBarItem(
                     selected = currentEntry is Nav.Tab.Overview,

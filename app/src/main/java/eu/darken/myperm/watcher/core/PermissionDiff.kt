@@ -10,6 +10,8 @@ data class PermissionDiff(
     val grantChanges: List<GrantChange> = emptyList(),
     val addedDeclared: List<String> = emptyList(),
     val removedDeclared: List<String> = emptyList(),
+    val gainedCount: Int = 0,
+    val lostCount: Int = 0,
 ) {
     @Serializable
     data class GrantChange(

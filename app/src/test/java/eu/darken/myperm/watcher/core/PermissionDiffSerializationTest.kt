@@ -29,7 +29,9 @@ class PermissionDiffSerializationTest : BaseTest() {
                 }
               ],
               "addedDeclared": ["com.example.CUSTOM_PERM"],
-              "removedDeclared": ["com.example.OLD_PERM"]
+              "removedDeclared": ["com.example.OLD_PERM"],
+              "gainedCount": 0,
+              "lostCount": 0
             }
         """.trimIndent()
 
@@ -43,6 +45,8 @@ class PermissionDiffSerializationTest : BaseTest() {
         parsed.grantChanges[0].newStatus shouldBe UsesPermission.Status.GRANTED
         parsed.addedDeclared shouldBe listOf("com.example.CUSTOM_PERM")
         parsed.removedDeclared shouldBe listOf("com.example.OLD_PERM")
+        parsed.gainedCount shouldBe 0
+        parsed.lostCount shouldBe 0
 
         json.encodeToString(parsed).toComparableJson() shouldBe raw.toComparableJson()
     }
@@ -55,7 +59,9 @@ class PermissionDiffSerializationTest : BaseTest() {
               "removedPermissions": [],
               "grantChanges": [],
               "addedDeclared": [],
-              "removedDeclared": []
+              "removedDeclared": [],
+              "gainedCount": 0,
+              "lostCount": 0
             }
         """.trimIndent()
 
@@ -66,6 +72,8 @@ class PermissionDiffSerializationTest : BaseTest() {
         parsed.grantChanges shouldBe emptyList()
         parsed.addedDeclared shouldBe emptyList()
         parsed.removedDeclared shouldBe emptyList()
+        parsed.gainedCount shouldBe 0
+        parsed.lostCount shouldBe 0
 
         json.encodeToString(parsed).toComparableJson() shouldBe raw.toComparableJson()
     }
@@ -95,6 +103,39 @@ class PermissionDiffSerializationTest : BaseTest() {
 
         parsed.addedPermissions shouldBe listOf("android.permission.CAMERA")
         parsed.removedPermissions shouldBe emptyList()
+    }
+
+    @Test
+    fun `old JSON without gainedCount and lostCount deserializes to zero defaults`() {
+        val raw = """
+            {
+              "addedPermissions": ["android.permission.CAMERA"],
+              "removedPermissions": [],
+              "grantChanges": [],
+              "addedDeclared": [],
+              "removedDeclared": []
+            }
+        """.trimIndent()
+
+        val parsed = json.decodeFromString<PermissionDiff>(raw)
+
+        parsed.gainedCount shouldBe 0
+        parsed.lostCount shouldBe 0
+    }
+
+    @Test
+    fun `new JSON with gainedCount and lostCount roundtrips correctly`() {
+        val diff = PermissionDiff(
+            addedPermissions = listOf("android.permission.CAMERA"),
+            gainedCount = 1,
+            lostCount = 2,
+        )
+
+        val serialized = json.encodeToString(diff)
+        val restored = json.decodeFromString<PermissionDiff>(serialized)
+
+        restored.gainedCount shouldBe 1
+        restored.lostCount shouldBe 2
     }
 
     @Test
