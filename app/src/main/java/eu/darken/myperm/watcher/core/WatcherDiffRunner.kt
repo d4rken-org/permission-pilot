@@ -177,12 +177,12 @@ class WatcherDiffRunner @Inject constructor(
                 continue
             }
 
-            val eventType: String
+            val eventType: WatcherEventType
             val diff: PermissionDiff
 
             when {
                 oldPkg == null && newPkg != null -> {
-                    eventType = "INSTALL"
+                    eventType = WatcherEventType.INSTALL
                     val requested = newPermsAll.requested[key] ?: emptyList()
                     val declared = newPermsAll.declared[key] ?: emptyList()
                     diff = PermissionDiff(
@@ -191,7 +191,7 @@ class WatcherDiffRunner @Inject constructor(
                     )
                 }
                 oldPkg != null && newPkg == null -> {
-                    eventType = "REMOVED"
+                    eventType = WatcherEventType.REMOVED
                     val requested = oldPermsAll.requested[key] ?: emptyList()
                     val declared = oldPermsAll.declared[key] ?: emptyList()
                     diff = PermissionDiff(
@@ -221,12 +221,12 @@ class WatcherDiffRunner @Inject constructor(
                             && diff.removedDeclared.isEmpty()
                             && diff.grantChanges.isNotEmpty()
 
-                    eventType = if (isVersionUnchanged && isGrantChangeOnly) "GRANT_CHANGE" else "UPDATE"
+                    eventType = if (isVersionUnchanged && isGrantChangeOnly) WatcherEventType.GRANT_CHANGE else WatcherEventType.UPDATE
                 }
                 else -> continue
             }
 
-            if (diff.isEmpty && eventType != "INSTALL" && eventType != "REMOVED") continue
+            if (diff.isEmpty && eventType != WatcherEventType.INSTALL && eventType != WatcherEventType.REMOVED) continue
 
             log(TAG) { "Permission changes detected for $pkgName: $diff" }
 

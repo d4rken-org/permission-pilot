@@ -3,6 +3,7 @@ package eu.darken.myperm.common.room.entity
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import eu.darken.myperm.watcher.core.WatcherEventType
 
 @Entity(
     tableName = "permission_change_reports",
@@ -18,7 +19,7 @@ data class PermissionChangeEntity(
     val appLabel: String?,
     val versionCode: Long,
     val versionName: String?,
-    val eventType: String,
+    val eventType: WatcherEventType,
     val changesJson: String,
     val previousVersionCode: Long? = null,
     val previousVersionName: String? = null,

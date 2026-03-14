@@ -2,6 +2,7 @@ package eu.darken.myperm.common.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.withTransaction
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
@@ -13,7 +14,9 @@ import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
+import eu.darken.myperm.watcher.core.WatcherEventType
 
+@TypeConverters(WatcherEventType.Converter::class)
 @Database(
     entities = [
         SnapshotEntity::class,

@@ -23,6 +23,7 @@ import eu.darken.myperm.permissions.core.protectionFlagsCompat
 import eu.darken.myperm.permissions.core.protectionTypeCompat
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.watcher.core.PermissionDiff
+import eu.darken.myperm.watcher.core.WatcherEventType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.json.Json
@@ -54,7 +55,7 @@ class ReportDetailViewModel @AssistedInject constructor(
     data class State(
         val packageName: String = "",
         val appLabel: String? = null,
-        val eventType: String = "",
+        val eventType: WatcherEventType = WatcherEventType.INSTALL,
         val versionName: String? = null,
         val previousVersionName: String? = null,
         val versionCode: Long? = null,
