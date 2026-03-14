@@ -3,6 +3,7 @@ package eu.darken.myperm.watcher.ui.dashboard
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
+import eu.darken.myperm.watcher.core.WatcherEventType
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
@@ -25,10 +26,10 @@ data class WatcherFilterOptions(
         @StringRes val labelRes: Int,
         val matches: (WatcherReportItem) -> Boolean,
     ) {
-        INSTALL(Group.EVENT_TYPE, R.string.watcher_event_install, { it.eventType == "INSTALL" }),
-        UPDATE(Group.EVENT_TYPE, R.string.watcher_event_update, { it.eventType == "UPDATE" }),
-        REMOVED(Group.EVENT_TYPE, R.string.watcher_event_removed, { it.eventType == "REMOVED" }),
-        GRANT_CHANGE(Group.EVENT_TYPE, R.string.watcher_event_grant_change, { it.eventType == "GRANT_CHANGE" }),
+        INSTALL(Group.EVENT_TYPE, R.string.watcher_event_install, { it.eventType == WatcherEventType.INSTALL }),
+        UPDATE(Group.EVENT_TYPE, R.string.watcher_event_update, { it.eventType == WatcherEventType.UPDATE }),
+        REMOVED(Group.EVENT_TYPE, R.string.watcher_event_removed, { it.eventType == WatcherEventType.REMOVED }),
+        GRANT_CHANGE(Group.EVENT_TYPE, R.string.watcher_event_grant_change, { it.eventType == WatcherEventType.GRANT_CHANGE }),
         HAS_ADDED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_added_permissions, { it.hasAddedPermissions }),
         HAS_LOST_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_lost_permissions, { it.hasLostPermissions }),
         UNSEEN_ONLY(Group.STATUS, R.string.watcher_filter_unseen_only, { !it.isSeen }),

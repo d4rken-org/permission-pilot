@@ -39,8 +39,8 @@ class PackageChangeReceiver : BroadcastReceiver() {
         val isReplacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
 
         val eventType = when (intent.action) {
-            Intent.ACTION_PACKAGE_ADDED -> if (isReplacing) "UPDATE" else "INSTALL"
-            Intent.ACTION_PACKAGE_REMOVED -> if (isReplacing) return else "REMOVED"
+            Intent.ACTION_PACKAGE_ADDED -> if (isReplacing) WatcherEventType.UPDATE else WatcherEventType.INSTALL
+            Intent.ACTION_PACKAGE_REMOVED -> if (isReplacing) return else WatcherEventType.REMOVED
             else -> return
         }
 

@@ -75,6 +75,7 @@ import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.watcher.core.WatcherEventType
 import eu.darken.myperm.watcher.core.WatcherManager
 import java.text.DateFormat
 import java.util.Date
@@ -530,11 +531,10 @@ private fun ReportListItem(
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     val eventLabel = when (item.eventType) {
-                        "INSTALL" -> stringResource(R.string.watcher_event_install)
-                        "UPDATE" -> stringResource(R.string.watcher_event_update)
-                        "REMOVED" -> stringResource(R.string.watcher_event_removed)
-                        "GRANT_CHANGE" -> stringResource(R.string.watcher_event_grant_change)
-                        else -> item.eventType
+                        WatcherEventType.INSTALL -> stringResource(R.string.watcher_event_install)
+                        WatcherEventType.UPDATE -> stringResource(R.string.watcher_event_update)
+                        WatcherEventType.REMOVED -> stringResource(R.string.watcher_event_removed)
+                        WatcherEventType.GRANT_CHANGE -> stringResource(R.string.watcher_event_grant_change)
                     }
                     Text(
                         text = eventLabel,
@@ -578,7 +578,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     appLabel = "Example App",
                     versionName = "2.1.0",
                     previousVersionName = "1.8.3",
-                    eventType = "UPDATE",
+                    eventType = WatcherEventType.UPDATE,
                     detectedAt = System.currentTimeMillis(),
                     isSeen = false,
                     hasAddedPermissions = true,
@@ -590,7 +590,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     appLabel = "My Browser",
                     versionName = "4.0.1",
                     previousVersionName = null,
-                    eventType = "INSTALL",
+                    eventType = WatcherEventType.INSTALL,
                     detectedAt = System.currentTimeMillis() - 86400000,
                     isSeen = true,
                     hasAddedPermissions = false,
@@ -626,7 +626,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
                     appLabel = "Example App",
                     versionName = "2.1.0",
                     previousVersionName = "1.8.3",
-                    eventType = "UPDATE",
+                    eventType = WatcherEventType.UPDATE,
                     detectedAt = System.currentTimeMillis(),
                     isSeen = false,
                     hasAddedPermissions = true,

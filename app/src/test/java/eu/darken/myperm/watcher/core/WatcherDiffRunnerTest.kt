@@ -17,6 +17,7 @@ import io.mockk.mockk
 import io.mockk.slot
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
+import eu.darken.myperm.watcher.core.WatcherEventType
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
@@ -187,7 +188,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         val slot = slot<PermissionChangeEntity>()
         coVerify { changeDao.insert(capture(slot)) }
 
-        slot.captured.eventType shouldBe "INSTALL"
+        slot.captured.eventType shouldBe WatcherEventType.INSTALL
         slot.captured.packageName shouldBe "com.new.app"
         slot.captured.sourceSnapshotId shouldBe "snap-new"
 
@@ -208,7 +209,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         val slot = slot<PermissionChangeEntity>()
         coVerify { changeDao.insert(capture(slot)) }
 
-        slot.captured.eventType shouldBe "INSTALL"
+        slot.captured.eventType shouldBe WatcherEventType.INSTALL
         slot.captured.packageName shouldBe "com.simple.app"
     }
 
@@ -232,7 +233,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         val slot = slot<PermissionChangeEntity>()
         coVerify { changeDao.insert(capture(slot)) }
 
-        slot.captured.eventType shouldBe "UPDATE"
+        slot.captured.eventType shouldBe WatcherEventType.UPDATE
         val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
         diff.addedPermissions shouldBe listOf("android.permission.CAMERA")
     }
@@ -272,7 +273,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         val slot = slot<PermissionChangeEntity>()
         coVerify { changeDao.insert(capture(slot)) }
 
-        slot.captured.eventType shouldBe "REMOVED"
+        slot.captured.eventType shouldBe WatcherEventType.REMOVED
         val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
         diff.removedPermissions shouldBe listOf("android.permission.CAMERA")
     }
@@ -290,7 +291,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         val slot = slot<PermissionChangeEntity>()
         coVerify { changeDao.insert(capture(slot)) }
 
-        slot.captured.eventType shouldBe "REMOVED"
+        slot.captured.eventType shouldBe WatcherEventType.REMOVED
         slot.captured.packageName shouldBe "com.empty.app"
         val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
         diff.removedPermissions shouldBe emptyList()
@@ -441,7 +442,7 @@ class WatcherDiffRunnerTest : BaseTest() {
 
         val slot = slot<PermissionChangeEntity>()
         coVerify(exactly = 1) { changeDao.insert(capture(slot)) }
-        slot.captured.eventType shouldBe "INSTALL"
+        slot.captured.eventType shouldBe WatcherEventType.INSTALL
         // versionCode should come from pair1's newPkgs (versionCode=1), not pair2's oldPkgs
         slot.captured.versionCode shouldBe 1L
     }
