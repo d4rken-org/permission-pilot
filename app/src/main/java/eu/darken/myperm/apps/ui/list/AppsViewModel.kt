@@ -48,6 +48,7 @@ class AppsViewModel @Inject constructor(
         val iconModel: Pkg,
         val label: String,
         val isSystemApp: Boolean,
+        val showPkgName: Boolean,
         val permissionCount: Int,
         val grantedCount: Int,
         val totalCount: Int,
@@ -84,6 +85,8 @@ class AppsViewModel @Inject constructor(
             }
             .sortedWith(sortOptions.mainSort.getComparator())
 
+        val duplicateLabels = filtered.groupingBy { it.label }.eachCount().filterValues { it > 1 }.keys
+
         val listItems = filtered.map { app ->
             val tagIcons = app.requestedPermissions
                 .mapNotNull { Permission.Id(it.permissionId).toIcon() }
@@ -96,6 +99,7 @@ class AppsViewModel @Inject constructor(
                 iconModel = Pkg.Container(Pkg.Id(app.pkgName)),
                 label = app.label,
                 isSystemApp = app.isSystemApp,
+                showPkgName = app.label in duplicateLabels,
                 permissionCount = app.requestedPermissions.size,
                 grantedCount = app.requestedPermissions.count { it.status.isGranted },
                 totalCount = app.requestedPermissions.size,

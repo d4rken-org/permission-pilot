@@ -74,10 +74,20 @@ class WatcherDashboardViewModel @Inject constructor(
                 false
             }
 
+        val duplicateLabels = filteredItems
+            .filter { it.appLabel != null }
+            .groupBy { it.appLabel }
+            .filterValues { items -> items.distinctBy { it.packageName }.size > 1 }
+            .keys
+
+        val reports = filteredItems.map { item ->
+            item.copy(showPkgName = item.appLabel in duplicateLabels)
+        }
+
         State(
             isWatcherEnabled = isEnabled,
             isPro = isPro,
-            reports = filteredItems,
+            reports = reports,
             showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
             refreshPhase = phase,
@@ -139,7 +149,10 @@ class WatcherDashboardViewModel @Inject constructor(
     private fun PermissionChangeEntity.toItem(): WatcherReportItem {
         val diff = runCatching {
             json.decodeFromString<PermissionDiff>(changesJson)
-        }.getOrElse { PermissionDiff() }
+        }.getOrElse { e ->
+            log(TAG, WARN) { "Failed to deserialize changesJson for report $id: ${e.asLog()}" }
+            PermissionDiff()
+        }
 
         return WatcherReportItem(
             id = id,

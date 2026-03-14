@@ -4,6 +4,7 @@ data class WatcherReportItem(
     val id: Long,
     val packageName: String,
     val appLabel: String?,
+    val showPkgName: Boolean = false,
     val versionName: String?,
     val previousVersionName: String?,
     val eventType: String,

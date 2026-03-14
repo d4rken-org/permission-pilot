@@ -33,6 +33,9 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -48,12 +51,16 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -159,6 +166,7 @@ fun WatcherDashboardScreen(
     val refreshPhase = state?.refreshPhase
     val reports = state?.reports ?: emptyList()
     val hasUnseen = state?.hasUnseen ?: false
+    val hasActiveFilters = state?.filterOptions?.keys?.isNotEmpty() == true
 
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
@@ -201,7 +209,18 @@ fun WatcherDashboardScreen(
                             Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.watcher_search_hint))
                         }
                         IconButton(onClick = onFilter) {
-                            Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.general_filter_action))
+                            Box {
+                                Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.general_filter_action))
+                                if (hasActiveFilters) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(8.dp)
+                                            .align(Alignment.TopEnd)
+                                            .offset(x = 2.dp, y = (-2).dp)
+                                            .background(MaterialTheme.colorScheme.primary, CircleShape),
+                                    )
+                                }
+                            }
                         }
                     }
                     if (isEnabled && hasUnseen) {
@@ -466,6 +485,10 @@ private fun ReportListItem(
     item: WatcherReportItem,
     onClick: () -> Unit,
 ) {
+    val density = LocalDensity.current
+    var textBlockHeight by remember { mutableIntStateOf(0) }
+    val iconSize = with(density) { if (textBlockHeight > 0) textBlockHeight.toDp() else 40.dp }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -474,27 +497,34 @@ private fun ReportListItem(
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalAlignment = Alignment.Top,
         ) {
             AppIcon(
                 pkg = Pkg.Container(Pkg.Id(item.packageName)),
                 isSystemApp = false,
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(iconSize),
             )
 
-            Column(modifier = Modifier.weight(1f)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .onSizeChanged { textBlockHeight = it.height },
+            ) {
                 Text(
                     text = item.appLabel ?: item.packageName,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                Text(
-                    text = item.packageName,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
+                if (item.showPkgName || item.appLabel == null) {
+                    Text(
+                        text = item.packageName,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
