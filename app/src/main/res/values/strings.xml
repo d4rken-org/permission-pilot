@@ -149,6 +149,12 @@
     <string name="apps_filter_profile_secondary_label">Apps in Managed Profile(s)</string>
     <string name="apps_filter_battery_optimization_label">Apps with custom battery options</string>
     <string name="apps_filter_accessibility_label">Apps with accessibility services</string>
+    <string name="apps_filter_section_app_type">App type</string>
+    <string name="apps_filter_section_install_source">Install source</string>
+    <string name="apps_filter_section_properties">Properties</string>
+    <string name="apps_filter_section_profile">Profile</string>
+    <string name="apps_filter_section_sort_by">Sort by</string>
+    <string name="apps_filter_sort_action">Filter &amp; Sort</string>
     <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
     <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
     <plurals name="apps_details_description_secondary_description">

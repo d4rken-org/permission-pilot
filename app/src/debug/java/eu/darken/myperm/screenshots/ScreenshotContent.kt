@@ -94,7 +94,6 @@ internal fun AppsListContent() = PreviewWrapper {
             onSearchChanged = {},
             onAppClicked = {},
             onFilter = {},
-            onSort = {},
             onRefresh = {},
             onSettings = {},
         )
