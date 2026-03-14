@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.Pill
@@ -93,7 +94,19 @@ fun ReportDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.watcher_report_detail_label)) },
+                title = {
+                    Column {
+                        Text(text = stringResource(R.string.watcher_report_detail_label))
+                        if (!state.isLoading && state.detectedAt > 0) {
+                            Text(
+                                text = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+                                    .format(Date(state.detectedAt)),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
@@ -173,18 +186,7 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    EventTypePill(state.eventType)
-                    Text(
-                        text = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
-                            .format(Date(state.detectedAt)),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
+                EventTypePill(state.eventType)
             }
         }
     }
@@ -599,7 +601,7 @@ private fun GrantChangeEntry(
         ) {
             GrantStatusIcon(change.oldStatus, Modifier.size(16.dp))
             Text(
-                text = change.oldStatus,
+                text = grantStatusLabel(change.oldStatus),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -611,7 +613,7 @@ private fun GrantChangeEntry(
             )
             GrantStatusIcon(change.newStatus, Modifier.size(16.dp))
             Text(
-                text = change.newStatus,
+                text = grantStatusLabel(change.newStatus),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -620,23 +622,32 @@ private fun GrantChangeEntry(
 }
 
 @Composable
-private fun GrantStatusIcon(status: String, modifier: Modifier = Modifier) {
-    when (status.lowercase()) {
-        "granted" -> Icon(
+private fun grantStatusLabel(status: UsesPermission.Status): String = when (status) {
+    UsesPermission.Status.GRANTED -> stringResource(R.string.filter_granted_label)
+    UsesPermission.Status.GRANTED_IN_USE -> stringResource(R.string.permissions_status_granted_in_use_label)
+    UsesPermission.Status.DENIED -> stringResource(R.string.filter_denied_label)
+    UsesPermission.Status.UNKNOWN -> stringResource(R.string.watcher_detail_unknown_permission)
+}
+
+@Composable
+private fun GrantStatusIcon(status: UsesPermission.Status, modifier: Modifier = Modifier) {
+    when (status) {
+        UsesPermission.Status.GRANTED,
+        UsesPermission.Status.GRANTED_IN_USE -> Icon(
             Icons.Filled.CheckCircle,
-            contentDescription = status,
+            contentDescription = null,
             tint = MaterialTheme.colorScheme.primary,
             modifier = modifier,
         )
-        "denied" -> Icon(
+        UsesPermission.Status.DENIED -> Icon(
             Icons.Filled.Cancel,
-            contentDescription = status,
+            contentDescription = null,
             tint = MaterialTheme.colorScheme.error,
             modifier = modifier,
         )
-        else -> Icon(
+        UsesPermission.Status.UNKNOWN -> Icon(
             Icons.AutoMirrored.Filled.HelpOutline,
-            contentDescription = status,
+            contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = modifier,
         )
@@ -662,7 +673,7 @@ private fun ReportDetailUpdatePreview() {
                     addedPermissions = listOf("android.permission.CAMERA", "android.permission.RECORD_AUDIO"),
                     removedPermissions = listOf("android.permission.READ_CONTACTS"),
                     grantChanges = listOf(
-                        PermissionDiff.GrantChange("android.permission.LOCATION", "denied", "granted"),
+                        PermissionDiff.GrantChange("android.permission.LOCATION", UsesPermission.Status.DENIED, UsesPermission.Status.GRANTED),
                     ),
                 ),
             ),
@@ -729,8 +740,8 @@ private fun ReportDetailGrantChangePreview() {
                 detectedAt = System.currentTimeMillis(),
                 diff = PermissionDiff(
                     grantChanges = listOf(
-                        PermissionDiff.GrantChange("android.permission.CAMERA", "denied", "granted"),
-                        PermissionDiff.GrantChange("android.permission.LOCATION", "granted", "denied"),
+                        PermissionDiff.GrantChange("android.permission.CAMERA", UsesPermission.Status.DENIED, UsesPermission.Status.GRANTED),
+                        PermissionDiff.GrantChange("android.permission.LOCATION", UsesPermission.Status.GRANTED, UsesPermission.Status.DENIED),
                     ),
                 ),
             ),
