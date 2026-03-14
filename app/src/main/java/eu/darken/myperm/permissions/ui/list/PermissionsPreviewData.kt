@@ -111,7 +111,7 @@ internal object PermissionsPreviewData {
         listData = emptyList(),
         countPermissions = 0,
         countGroups = 0,
-        filterOptions = PermsFilterOptions(keys = setOf(PermsFilterOptions.Filter.RUNTIME)),
+        filterOptions = PermsFilterOptions(filters = setOf(PermsFilterOptions.Filter.RUNTIME)),
         sortOptions = PermsSortOptions(mainSort = PermsSortOptions.Sort.APPS_GRANTED),
     )
 }

@@ -91,9 +91,9 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
         MultiChoiceFilterDialog(
             title = stringResource(R.string.general_filter_action),
             options = AppsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.filterOptions.keys,
+            selected = readyState.filterOptions.filters,
             onConfirm = { selected ->
-                vm.updateFilterOptions { it.copy(keys = selected) }
+                vm.updateFilterOptions { it.copy(filters = selected) }
                 showFilterDialog = false
             },
             onDismiss = { showFilterDialog = false },

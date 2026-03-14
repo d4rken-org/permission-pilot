@@ -9,13 +9,12 @@ import eu.darken.myperm.permissions.core.features.ManifestDoc
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
 data class PermsFilterOptions(
-    @SerialName("filters") val keys: Set<Filter> = setOf(
+    val filters: Set<Filter> = setOf(
         Filter.MANIFEST,
         Filter.SYSTEM,
         Filter.NOT_INSTALLTIME,

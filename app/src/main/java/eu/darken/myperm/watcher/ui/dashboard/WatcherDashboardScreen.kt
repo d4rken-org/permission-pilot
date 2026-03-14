@@ -167,7 +167,7 @@ fun WatcherDashboardScreen(
     val refreshPhase = state?.refreshPhase
     val reports = state?.reports ?: emptyList()
     val hasUnseen = state?.hasUnseen ?: false
-    val hasActiveFilters = state?.filterOptions?.keys?.isNotEmpty() == true
+    val hasActiveFilters = state?.filterOptions?.filters?.isNotEmpty() == true
 
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var searchQuery by rememberSaveable { mutableStateOf("") }

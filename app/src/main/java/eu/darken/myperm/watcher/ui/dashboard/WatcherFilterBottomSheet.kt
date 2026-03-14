@@ -32,7 +32,7 @@ fun WatcherFilterBottomSheet(
 ) {
     val sheetState = rememberModalBottomSheetState()
     val currentSelection = remember {
-        mutableStateSetOf<WatcherFilterOptions.Filter>().apply { addAll(currentOptions.keys) }
+        mutableStateSetOf<WatcherFilterOptions.Filter>().apply { addAll(currentOptions.filters) }
     }
 
     ModalBottomSheet(
@@ -85,7 +85,7 @@ fun WatcherFilterBottomSheet(
                                 onClick = {
                                     if (isSelected) currentSelection.remove(filter)
                                     else currentSelection.add(filter)
-                                    onFilterChanged(WatcherFilterOptions(keys = currentSelection.toSet()))
+                                    onFilterChanged(WatcherFilterOptions(filters = currentSelection.toSet()))
                                 },
                                 label = { Text(stringResource(filter.labelRes)) },
                             )

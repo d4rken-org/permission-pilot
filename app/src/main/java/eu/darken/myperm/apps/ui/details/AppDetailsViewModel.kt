@@ -101,7 +101,7 @@ class AppDetailsViewModel @Inject constructor(
         val permissions: List<PermItem> = emptyList(),
         val twins: List<TwinItem> = emptyList(),
         val siblings: List<SiblingItem> = emptyList(),
-        val filterOptions: Set<AppDetailsFilterOptions.Filter> = AppDetailsFilterOptions().keys,
+        val filterOptions: Set<AppDetailsFilterOptions.Filter> = AppDetailsFilterOptions().filters,
         val isLoading: Boolean = true,
     )
 
@@ -128,7 +128,7 @@ class AppDetailsViewModel @Inject constructor(
             val filteredPerms = allPerms
                 .filter { (cachedPerm, basePerm) ->
                     cachedPerm.status == UsesPermission.Status.UNKNOWN ||
-                            filterOpts.keys.any { filter -> filter.matches(cachedPerm, basePerm) }
+                            filterOpts.filters.any { filter -> filter.matches(cachedPerm, basePerm) }
                 }
                 .sortedWith(
                     compareByDescending<Pair<PermissionUse, BasePermission>> { (_, basePerm) ->
@@ -211,7 +211,7 @@ class AppDetailsViewModel @Inject constructor(
                 permissions = filteredPerms,
                 twins = twins,
                 siblings = siblings,
-                filterOptions = filterOpts.keys,
+                filterOptions = filterOpts.filters,
                 isLoading = false,
             )
         }.asStateFlow()

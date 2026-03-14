@@ -5,13 +5,12 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.container.PermissionAppRef
 import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
 data class PermissionDetailsFilterOptions(
-    @SerialName("filters") val keys: Set<Filter> = setOf(Filter.USER_APP, Filter.SYSTEM_APP)
+    val filters: Set<Filter> = setOf(Filter.USER_APP, Filter.SYSTEM_APP)
 ) : Parcelable {
 
     @Serializable
