@@ -3,6 +3,7 @@ package eu.darken.myperm.watcher.ui.detail
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,18 +14,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.HelpOutline
+import androidx.compose.material.icons.filled.Cancel
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -45,10 +52,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.PermissionIcon
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.LocalNavigationController
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.watcher.core.PermissionDiff
 import java.text.DateFormat
 import java.util.Date
@@ -102,19 +112,28 @@ fun ReportDetailScreen(
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            if (state.isLoading) return@Column
-
-            AppHeaderCard(state)
-            EventDetailsCard(state)
-            PermissionCards(state)
+        if (state.isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                contentAlignment = Alignment.Center,
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .verticalScroll(rememberScrollState())
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                AppHeaderCard(state)
+                EventDetailsCard(state)
+                PermissionCards(state)
+            }
         }
     }
 }
@@ -158,7 +177,7 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    EventTypeChip(state.eventType)
+                    EventTypePill(state.eventType)
                     Text(
                         text = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
                             .format(Date(state.detectedAt)),
@@ -172,7 +191,7 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
 }
 
 @Composable
-private fun EventTypeChip(eventType: String) {
+private fun EventTypePill(eventType: String) {
     val (containerColor, contentColor, label) = when (eventType) {
         "INSTALL" -> Triple(
             MaterialTheme.colorScheme.primaryContainer,
@@ -201,18 +220,7 @@ private fun EventTypeChip(eventType: String) {
         )
     }
 
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = containerColor,
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = contentColor,
-            fontWeight = FontWeight.Medium,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-        )
-    }
+    Pill(text = label, containerColor = containerColor, contentColor = contentColor)
 }
 
 // Section 2: Event Details
@@ -253,7 +261,7 @@ private fun EventDetailsCard(state: ReportDetailViewModel.State) {
                     if (state.previousVersionCode != null || state.versionCode != null) {
                         val fromCode = state.previousVersionCode?.toString() ?: "?"
                         val toCode = state.versionCode?.toString() ?: "?"
-                        DetailRow("Code", "$fromCode \u2192 $toCode")
+                        DetailRow(stringResource(R.string.watcher_detail_version_code_label), "$fromCode \u2192 $toCode")
                     }
                 }
                 "REMOVED" -> {
@@ -411,12 +419,19 @@ private fun PermissionCategoryCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 12.dp),
             )
-            permissions.forEach { permId ->
+            permissions.forEachIndexed { index, permId ->
                 EnrichedPermissionEntry(
                     permissionId = permId,
                     enriched = enrichedMap[permId],
                     showGrantType = showGrantType,
                 )
+                if (index < permissions.lastIndex) {
+                    HorizontalDivider(
+                        modifier = Modifier.padding(start = 28.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant,
+                    )
+                }
             }
         }
     }
@@ -440,48 +455,64 @@ private fun EnrichedPermissionEntry(
                 ) { expanded = !expanded }
                 else Modifier
             )
-            .padding(vertical = 6.dp),
+            .padding(vertical = 8.dp),
     ) {
-        Text(
-            text = enriched?.label ?: permissionId.substringAfterLast('.'),
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold,
-        )
-        Text(
-            text = permissionId,
-            style = MaterialTheme.typography.labelSmall,
-            fontFamily = FontFamily.Monospace,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            PermissionIcon(
+                permissionId = Permission.Id(permissionId),
+                modifier = Modifier.size(20.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = enriched?.label ?: permissionId.substringAfterLast('.'),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = permissionId,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontFamily = FontFamily.Monospace,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            if (hasDescription) {
+                Icon(
+                    imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+                    contentDescription = stringResource(R.string.watcher_detail_toggle_description),
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
         AnimatedVisibility(visible = expanded && hasDescription) {
             Text(
                 text = enriched?.description.orEmpty(),
                 style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.padding(top = 4.dp),
+                modifier = Modifier.padding(start = 28.dp, top = 4.dp),
             )
         }
         if (showGrantType && enriched != null && enriched.grantType != GrantType.UNKNOWN) {
             Spacer(modifier = Modifier.height(4.dp))
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = when (enriched.grantType) {
+            Pill(
+                text = when (enriched.grantType) {
+                    GrantType.RUNTIME, GrantType.SPECIAL_ACCESS -> stringResource(R.string.watcher_detail_grant_type_approval)
+                    else -> stringResource(R.string.watcher_detail_grant_type_automatic)
+                },
+                containerColor = when (enriched.grantType) {
                     GrantType.RUNTIME, GrantType.SPECIAL_ACCESS -> MaterialTheme.colorScheme.errorContainer
                     else -> MaterialTheme.colorScheme.surfaceVariant
                 },
-            ) {
-                Text(
-                    text = when (enriched.grantType) {
-                        GrantType.RUNTIME, GrantType.SPECIAL_ACCESS -> stringResource(R.string.watcher_detail_grant_type_approval)
-                        else -> stringResource(R.string.watcher_detail_grant_type_automatic)
-                    },
-                    style = MaterialTheme.typography.labelSmall,
-                    color = when (enriched.grantType) {
-                        GrantType.RUNTIME, GrantType.SPECIAL_ACCESS -> MaterialTheme.colorScheme.onErrorContainer
-                        else -> MaterialTheme.colorScheme.onSurfaceVariant
-                    },
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                )
-            }
+                contentColor = when (enriched.grantType) {
+                    GrantType.RUNTIME, GrantType.SPECIAL_ACCESS -> MaterialTheme.colorScheme.onErrorContainer
+                    else -> MaterialTheme.colorScheme.onSurfaceVariant
+                },
+                compact = true,
+                modifier = Modifier.padding(start = 28.dp),
+            )
         }
     }
 }
@@ -511,11 +542,18 @@ private fun GrantChangesCategoryCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 12.dp),
             )
-            grantChanges.forEach { change ->
+            grantChanges.forEachIndexed { index, change ->
                 GrantChangeEntry(
                     change = change,
                     enriched = enrichedMap[change.permissionId],
                 )
+                if (index < grantChanges.lastIndex) {
+                    HorizontalDivider(
+                        modifier = Modifier.padding(start = 28.dp),
+                        thickness = 0.5.dp,
+                        color = MaterialTheme.colorScheme.outlineVariant,
+                    )
+                }
             }
         }
     }
@@ -529,24 +567,78 @@ private fun GrantChangeEntry(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 6.dp),
+            .padding(vertical = 8.dp),
     ) {
-        Text(
-            text = enriched?.label ?: change.permissionId.substringAfterLast('.'),
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            PermissionIcon(
+                permissionId = Permission.Id(change.permissionId),
+                modifier = Modifier.size(20.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = enriched?.label ?: change.permissionId.substringAfterLast('.'),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = change.permissionId,
+                    style = MaterialTheme.typography.labelSmall,
+                    fontFamily = FontFamily.Monospace,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            modifier = Modifier.padding(start = 28.dp, top = 4.dp),
+        ) {
+            GrantStatusIcon(change.oldStatus, Modifier.size(16.dp))
+            Text(
+                text = change.oldStatus,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            Icon(
+                Icons.AutoMirrored.Filled.ArrowForward,
+                contentDescription = null,
+                modifier = Modifier.size(14.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            GrantStatusIcon(change.newStatus, Modifier.size(16.dp))
+            Text(
+                text = change.newStatus,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+    }
+}
+
+@Composable
+private fun GrantStatusIcon(status: String, modifier: Modifier = Modifier) {
+    when (status.lowercase()) {
+        "granted" -> Icon(
+            Icons.Filled.CheckCircle,
+            contentDescription = status,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = modifier,
         )
-        Text(
-            text = change.permissionId,
-            style = MaterialTheme.typography.labelSmall,
-            fontFamily = FontFamily.Monospace,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        "denied" -> Icon(
+            Icons.Filled.Cancel,
+            contentDescription = status,
+            tint = MaterialTheme.colorScheme.error,
+            modifier = modifier,
         )
-        Text(
-            text = "${change.oldStatus} \u2192 ${change.newStatus}",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.tertiary,
-            modifier = Modifier.padding(top = 2.dp),
+        else -> Icon(
+            Icons.AutoMirrored.Filled.HelpOutline,
+            contentDescription = status,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = modifier,
         )
     }
 }

@@ -1,6 +1,8 @@
 package eu.darken.myperm.watcher.core
 
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import eu.darken.myperm.common.debug.logging.log
@@ -46,6 +48,13 @@ class WatcherWorkScheduler @Inject constructor(
 
     companion object {
         private const val WORK_NAME = "permission_poll"
+        private const val WATCHER_WORK_NAME = "permission_watcher"
         private val TAG = logTag("Watcher", "WorkScheduler")
+
+        fun enqueueWatcher(workManager: WorkManager) {
+            val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
+            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.KEEP, request)
+            log(TAG) { "Enqueued PermissionWatcherWorker" }
+        }
     }
 }

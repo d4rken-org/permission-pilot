@@ -545,11 +545,41 @@
     <string name="watcher_notification_permission_open_settings">Open settings</string>
     <string name="watcher_notification_permission_disable">Disable notifications</string>
 
+    <string name="watcher_detail_version_label">Version</string>
+    <string name="watcher_detail_version_code_label">Code</string>
+    <string name="watcher_detail_installer_label">Install source</string>
+    <string name="watcher_detail_installer_unknown">Unknown</string>
+    <string name="watcher_detail_app_removed_desc">App was removed from device</string>
+    <string name="watcher_detail_grant_change_desc">Permission grants changed</string>
+    <string name="watcher_detail_permissions_header">Permissions (%d)</string>
+    <string name="watcher_detail_last_permissions_header">Last known permissions (%d)</string>
+    <string name="watcher_detail_new_perms_subtitle">These permissions were added with this app version.</string>
+    <string name="watcher_detail_removed_perms_subtitle">These permissions were removed in this update.</string>
+    <string name="watcher_detail_grant_changes_subtitle">These permissions had their grant status changed.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">These were the permissions the app had before removal.</string>
+    <string name="watcher_detail_grant_type_automatic">Granted automatically</string>
+    <string name="watcher_detail_grant_type_approval">Requires approval</string>
+    <string name="watcher_detail_toggle_description">Toggle description</string>
+    <string name="watcher_detail_unknown_permission">Unknown permission</string>
+
     <string name="watcher_settings_polling_label">Background check interval</string>
     <plurals name="watcher_settings_polling_interval">
         <item quantity="one">Every %d hour</item>
         <item quantity="other">Every %d hours</item>
     </plurals>
+
+    <string name="watcher_refresh_scanning">Scanning apps…</string>
+    <string name="watcher_refresh_checking">Checking changes…</string>
+
+    <string name="watcher_search_hint">Search reports</string>
+    <string name="watcher_filter_has_added_permissions">Has added permissions</string>
+    <string name="watcher_filter_has_lost_permissions">Has lost permissions</string>
+    <string name="watcher_filter_unseen_only">Unseen only</string>
+    <string name="watcher_filter_section_event_type">Event type</string>
+    <string name="watcher_filter_section_permission_changes">Permission changes</string>
+    <string name="watcher_filter_section_status">Status</string>
+    <string name="watcher_filter_reset">Reset</string>
+    <string name="watcher_reports_no_matches">No reports match your search or filters</string>
 
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>

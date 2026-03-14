@@ -6,6 +6,9 @@ import android.os.Build
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,13 +18,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -31,6 +38,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -71,6 +81,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
     val context = LocalContext.current
 
     var useSettingsFallback by rememberSaveable { mutableStateOf(false) }
+    var showFilterSheet by rememberSaveable { mutableStateOf(false) }
 
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -112,10 +123,22 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onReportClicked = { vm.onReportClicked(it) },
         onMarkAllSeen = { vm.markAllSeen() },
         onSettings = { vm.goToSettings() },
+        onSearchChanged = { vm.onSearchInputChanged(it) },
+        onFilter = { showFilterSheet = true },
         onGrantNotificationPermission = onGrantNotificationPermission,
         onDisableNotifications = { vm.disableNotifications() },
         useSettingsFallback = useSettingsFallback,
     )
+
+    if (showFilterSheet) {
+        WatcherFilterBottomSheet(
+            currentOptions = state?.filterOptions ?: WatcherFilterOptions(),
+            onFilterChanged = { newOptions ->
+                vm.updateFilterOptions { newOptions }
+            },
+            onDismiss = { showFilterSheet = false },
+        )
+    }
 }
 
 @Composable
@@ -123,9 +146,11 @@ fun WatcherDashboardScreen(
     state: WatcherDashboardViewModel.State?,
     onToggle: () -> Unit,
     onRefresh: () -> Unit = {},
-    onReportClicked: (WatcherDashboardViewModel.ReportItem) -> Unit,
+    onReportClicked: (WatcherReportItem) -> Unit,
     onMarkAllSeen: () -> Unit,
     onSettings: () -> Unit,
+    onSearchChanged: (String?) -> Unit,
+    onFilter: () -> Unit,
     onGrantNotificationPermission: () -> Unit = {},
     onDisableNotifications: () -> Unit = {},
     useSettingsFallback: Boolean = false,
@@ -133,7 +158,10 @@ fun WatcherDashboardScreen(
     val isEnabled = state?.isWatcherEnabled ?: false
     val refreshPhase = state?.refreshPhase
     val reports = state?.reports ?: emptyList()
-    val hasUnseen = reports.any { !it.isSeen }
+    val hasUnseen = state?.hasUnseen ?: false
+
+    var isSearchActive by rememberSaveable { mutableStateOf(false) }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -163,6 +191,18 @@ fun WatcherDashboardScreen(
                                 Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
                             }
                         }
+                        IconButton(onClick = {
+                            if (isSearchActive) {
+                                searchQuery = ""
+                                onSearchChanged(null)
+                            }
+                            isSearchActive = !isSearchActive
+                        }) {
+                            Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.watcher_search_hint))
+                        }
+                        IconButton(onClick = onFilter) {
+                            Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.general_filter_action))
+                        }
                     }
                     if (isEnabled && hasUnseen) {
                         IconButton(onClick = onMarkAllSeen) {
@@ -186,18 +226,60 @@ fun WatcherDashboardScreen(
                 onToggle = onToggle,
             )
         } else {
-            EnabledContent(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding),
-                reports = reports,
-                onReportClicked = onReportClicked,
-                showNotificationPermissionCard = state?.showNotificationPermissionCard ?: false,
-                canRequestNotificationPermission = state?.canRequestNotificationPermission ?: false,
-                useSettingsFallback = useSettingsFallback,
-                onGrantNotificationPermission = onGrantNotificationPermission,
-                onDisableNotifications = onDisableNotifications,
-            )
+                    .padding(innerPadding)
+            ) {
+                AnimatedVisibility(
+                    visible = isSearchActive,
+                    enter = expandVertically(),
+                    exit = shrinkVertically(),
+                ) {
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = {
+                            searchQuery = it
+                            onSearchChanged(it.ifBlank { null })
+                        },
+                        placeholder = { Text(stringResource(R.string.watcher_search_hint)) },
+                        singleLine = true,
+                        leadingIcon = {
+                            Icon(Icons.Filled.Search, contentDescription = null)
+                        },
+                        trailingIcon = {
+                            if (searchQuery.isNotBlank()) {
+                                IconButton(onClick = {
+                                    searchQuery = ""
+                                    onSearchChanged(null)
+                                }) {
+                                    Icon(Icons.Filled.Close, contentDescription = null)
+                                }
+                            }
+                        },
+                        shape = RoundedCornerShape(50),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 4.dp)
+                            .height(52.dp),
+                    )
+                }
+                EnabledContent(
+                    modifier = Modifier.fillMaxSize(),
+                    reports = reports,
+                    totalReportCount = state?.totalReportCount ?: 0,
+                    onReportClicked = onReportClicked,
+                    showNotificationPermissionCard = state?.showNotificationPermissionCard ?: false,
+                    canRequestNotificationPermission = state?.canRequestNotificationPermission ?: false,
+                    useSettingsFallback = useSettingsFallback,
+                    onGrantNotificationPermission = onGrantNotificationPermission,
+                    onDisableNotifications = onDisableNotifications,
+                )
+            }
         }
     }
 }
@@ -266,8 +348,9 @@ private fun DisabledContent(
 @Composable
 private fun EnabledContent(
     modifier: Modifier = Modifier,
-    reports: List<WatcherDashboardViewModel.ReportItem>,
-    onReportClicked: (WatcherDashboardViewModel.ReportItem) -> Unit,
+    reports: List<WatcherReportItem>,
+    totalReportCount: Int,
+    onReportClicked: (WatcherReportItem) -> Unit,
     showNotificationPermissionCard: Boolean = false,
     canRequestNotificationPermission: Boolean = false,
     useSettingsFallback: Boolean = false,
@@ -294,7 +377,11 @@ private fun EnabledContent(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = stringResource(R.string.watcher_reports_empty),
+                        text = if (totalReportCount > 0) {
+                            stringResource(R.string.watcher_reports_no_matches)
+                        } else {
+                            stringResource(R.string.watcher_reports_empty)
+                        },
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -376,7 +463,7 @@ private fun NotificationPermissionCard(
 
 @Composable
 private fun ReportListItem(
-    item: WatcherDashboardViewModel.ReportItem,
+    item: WatcherReportItem,
     onClick: () -> Unit,
 ) {
     Box(
@@ -455,7 +542,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
             isWatcherEnabled = true,
             isPro = true,
             reports = listOf(
-                WatcherDashboardViewModel.ReportItem(
+                WatcherReportItem(
                     id = 1,
                     packageName = "com.example.app",
                     appLabel = "Example App",
@@ -464,8 +551,10 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     eventType = "UPDATE",
                     detectedAt = System.currentTimeMillis(),
                     isSeen = false,
+                    hasAddedPermissions = true,
+                    hasLostPermissions = false,
                 ),
-                WatcherDashboardViewModel.ReportItem(
+                WatcherReportItem(
                     id = 2,
                     packageName = "com.example.browser",
                     appLabel = "My Browser",
@@ -474,14 +563,20 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     eventType = "INSTALL",
                     detectedAt = System.currentTimeMillis() - 86400000,
                     isSeen = true,
+                    hasAddedPermissions = false,
+                    hasLostPermissions = false,
                 ),
             ),
+            hasUnseen = true,
+            totalReportCount = 2,
         ),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
+        onSearchChanged = {},
+        onFilter = {},
     )
 }
 
@@ -495,7 +590,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
             showNotificationPermissionCard = true,
             canRequestNotificationPermission = true,
             reports = listOf(
-                WatcherDashboardViewModel.ReportItem(
+                WatcherReportItem(
                     id = 1,
                     packageName = "com.example.app",
                     appLabel = "Example App",
@@ -504,14 +599,20 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
                     eventType = "UPDATE",
                     detectedAt = System.currentTimeMillis(),
                     isSeen = false,
+                    hasAddedPermissions = true,
+                    hasLostPermissions = false,
                 ),
             ),
+            hasUnseen = true,
+            totalReportCount = 1,
         ),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
+        onSearchChanged = {},
+        onFilter = {},
     )
 }
 
@@ -525,6 +626,8 @@ private fun WatcherDashboardDisabledPreview() = PreviewWrapper {
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
+        onSearchChanged = {},
+        onFilter = {},
     )
 }
 
@@ -538,6 +641,8 @@ private fun WatcherDashboardDisabledProPreview() = PreviewWrapper {
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
+        onSearchChanged = {},
+        onFilter = {},
     )
 }
 
@@ -551,5 +656,7 @@ private fun WatcherDashboardEmptyPreview() = PreviewWrapper {
         onReportClicked = {},
         onMarkAllSeen = {},
         onSettings = {},
+        onSearchChanged = {},
+        onFilter = {},
     )
 }

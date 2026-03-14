@@ -19,6 +19,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -33,6 +34,7 @@ class WatcherDashboardViewModelTest : BaseTest() {
     private val isWatcherEnabled = MutableStateFlow(false)
     private val isNotificationsEnabled = MutableStateFlow(true)
     private val upgradeInfo = MutableStateFlow<UpgradeRepo.Info>(mockk { every { isPro } returns true })
+    private val watcherFilterOptions = MutableStateFlow(WatcherFilterOptions())
 
     private val generalSettings: GeneralSettings = mockk(relaxed = true)
     private val changeDao: PermissionChangeDao = mockk(relaxed = true)
@@ -42,6 +44,7 @@ class WatcherDashboardViewModelTest : BaseTest() {
     private val watcherManager: WatcherManager = mockk(relaxed = true) {
         every { phase } returns MutableStateFlow(null)
     }
+    private val json: Json = Json { ignoreUnknownKeys = true }
 
     @BeforeEach
     fun setup() {
@@ -52,6 +55,9 @@ class WatcherDashboardViewModelTest : BaseTest() {
         }
         every { generalSettings.isWatcherNotificationsEnabled } returns mockk<DataStoreValue<Boolean>> {
             every { flow } returns isNotificationsEnabled
+        }
+        every { generalSettings.watcherFilterOptions } returns mockk<DataStoreValue<WatcherFilterOptions>> {
+            every { flow } returns watcherFilterOptions
         }
         every { upgradeRepo.upgradeInfo } returns upgradeInfo
         every { changeDao.getAll() } returns flowOf(emptyList())
@@ -73,6 +79,7 @@ class WatcherDashboardViewModelTest : BaseTest() {
         capability = capability,
         watcherWorkScheduler = watcherWorkScheduler,
         watcherManager = watcherManager,
+        json = json,
     )
 
     @Test

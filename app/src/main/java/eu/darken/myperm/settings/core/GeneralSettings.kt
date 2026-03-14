@@ -16,6 +16,7 @@ import eu.darken.myperm.common.datastore.kotlinxWriter
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.theming.ThemeColor
 import eu.darken.myperm.watcher.core.WatcherScope
+import eu.darken.myperm.watcher.ui.dashboard.WatcherFilterOptions
 import eu.darken.myperm.common.theming.ThemeMode
 import eu.darken.myperm.common.theming.ThemeStyle
 import eu.darken.myperm.permissions.ui.details.PermissionDetailsFilterOptions
@@ -99,6 +100,11 @@ class GeneralSettings @Inject constructor(
     val watcherScope = dataStore.createValue(
         key = stringPreferencesKey("watcher.scope"),
         reader = kotlinxReader(json, WatcherScope.NON_SYSTEM, fallbackToDefault = true),
+        writer = kotlinxWriter(json),
+    )
+    val watcherFilterOptions = dataStore.createValue(
+        key = stringPreferencesKey("watcher.dashboard.options.filter"),
+        reader = kotlinxReader(json, WatcherFilterOptions(), fallbackToDefault = true),
         writer = kotlinxWriter(json),
     )
     val isWatcherNotificationsEnabled = dataStore.createValue("watcher.notifications.enabled", true)

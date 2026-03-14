@@ -18,11 +18,8 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.room.snapshot.SnapshotWorker
-import eu.darken.myperm.settings.core.GeneralSettings
-import eu.darken.myperm.watcher.core.WatcherDiffRunner
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.CoroutineScope
-import dagger.Lazy
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.sync.Mutex
@@ -42,9 +39,6 @@ class AppRepo @Inject constructor(
     private val snapshotPkgDao: SnapshotPkgDao,
     private val snapshotMapper: SnapshotMapper,
     private val workManager: WorkManager,
-    private val generalSettings: GeneralSettings,
-    private val watcherDiffRunner: Lazy<WatcherDiffRunner>,
-    private val watcherWorkScheduler: WatcherWorkScheduler,
 ) {
 
     // ── UI state ────────────────────────────────────────────────────────
@@ -103,11 +97,6 @@ class AppRepo @Inject constructor(
                 log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
             }
         }.launchIn(appScope)
-
-        // Ensure periodic poll worker is scheduled on startup
-        generalSettings.isWatcherEnabled.flow.onEach {
-            watcherWorkScheduler.ensureScheduled()
-        }.launchIn(appScope)
     }
 
     fun refresh() {
@@ -115,13 +104,7 @@ class AppRepo @Inject constructor(
         refreshTrigger.tryEmit(TriggerReason.MANUAL_REFRESH)
     }
 
-    private fun enqueuePermissionWatcher() = SnapshotWorker.enqueueWatcher(workManager)
-
-    suspend fun scanDiffAndPrune(reason: TriggerReason, keepCount: Int = 2) {
-        scanAndSave(reason)
-        watcherDiffRunner.get().processNewSnapshots()
-        pruneSnapshots(keepCount)
-    }
+    private fun enqueuePermissionWatcher() = WatcherWorkScheduler.enqueueWatcher(workManager)
 
     suspend fun scanAndSave(reason: TriggerReason) {
         val start = System.currentTimeMillis()
@@ -185,65 +168,19 @@ class AppRepo @Inject constructor(
         }
     }
 
+    suspend fun pruneSnapshotsBefore(anchorId: String) {
+        val oldIds = snapshotDao.getSnapshotIdsBefore(anchorId)
+        if (oldIds.isNotEmpty()) {
+            log(TAG) { "pruneSnapshotsBefore($anchorId): deleting ${oldIds.size} old snapshots" }
+            snapshotDao.deleteSnapshots(oldIds)
+        }
+    }
+
     // ── Queries ─────────────────────────────────────────────────────────
 
     suspend fun getLatestDeclaredPerms(): List<SnapshotPkgDeclaredPermEntity> {
         val latest = snapshotDao.getLatestSnapshot() ?: return emptyList()
         return snapshotPkgDao.getDeclaredPermsForSnapshot(latest.snapshotId)
-    }
-
-    // ── Watcher domain API ──────────────────────────────────────────────
-
-    suspend fun getLatestSnapshotId(): String? {
-        return snapshotDao.getLatestSnapshot()?.snapshotId
-    }
-
-    data class SnapshotChain(
-        val latestSnapshotId: String,
-        val pairs: List<SnapshotPair>,
-    )
-
-    data class SnapshotPair(
-        val oldSnapshotId: String,
-        val newSnapshotId: String,
-        val oldPkgs: List<SnapshotPkgEntity>,
-        val newPkgs: List<SnapshotPkgEntity>,
-    )
-
-    suspend fun getSnapshotChainSince(anchorId: String): SnapshotChain? {
-        val anchor = snapshotDao.getSnapshotById(anchorId) ?: return null
-        val newerSnapshots = snapshotDao.getSnapshotsAfter(anchorId)
-        if (newerSnapshots.isEmpty()) return null
-
-        val chain = listOf(anchor) + newerSnapshots
-        val pairs = (0 until chain.size - 1).map { i ->
-            val oldSnapshot = chain[i]
-            val newSnapshot = chain[i + 1]
-            SnapshotPair(
-                oldSnapshotId = oldSnapshot.snapshotId,
-                newSnapshotId = newSnapshot.snapshotId,
-                oldPkgs = snapshotPkgDao.getPkgsForSnapshot(oldSnapshot.snapshotId),
-                newPkgs = snapshotPkgDao.getPkgsForSnapshot(newSnapshot.snapshotId),
-            )
-        }
-
-        return SnapshotChain(
-            latestSnapshotId = newerSnapshots.last().snapshotId,
-            pairs = pairs,
-        )
-    }
-
-    data class SnapshotPermissions(
-        val requested: Map<Pair<String, Int>, List<SnapshotPkgPermEntity>>,
-        val declared: Map<Pair<String, Int>, List<SnapshotPkgDeclaredPermEntity>>,
-    )
-
-    suspend fun getSnapshotPermissions(snapshotId: String): SnapshotPermissions {
-        val requested = snapshotPkgDao.getPermsForSnapshot(snapshotId)
-            .groupBy { Pair(it.pkgName, it.userHandleId) }
-        val declared = snapshotPkgDao.getDeclaredPermsForSnapshot(snapshotId)
-            .groupBy { Pair(it.pkgName, it.userHandleId) }
-        return SnapshotPermissions(requested, declared)
     }
 
     companion object {

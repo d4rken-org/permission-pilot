@@ -16,29 +16,29 @@ class PermissionWatcherWorkerTest : BaseTest() {
 
     private val context: Context = mockk(relaxed = true)
     private val params: WorkerParameters = mockk(relaxed = true)
-    private val watcherDiffRunner: WatcherDiffRunner = mockk()
+    private val watcherManager: WatcherManager = mockk()
 
     @BeforeEach
     fun setup() {
-        coEvery { watcherDiffRunner.processNewSnapshots() } returns 0
+        coEvery { watcherManager.processChanges() } returns 0
     }
 
     private fun createWorker() = PermissionWatcherWorker(
         context = context,
         params = params,
-        watcherDiffRunner = watcherDiffRunner,
+        watcherManager = watcherManager,
     )
 
     @Test
-    fun `delegates to WatcherDiffRunner and returns success`() = runTest {
+    fun `delegates to WatcherManager and returns success`() = runTest {
         val result = createWorker().doWork()
         result shouldBe ListenableWorker.Result.success()
-        coVerify { watcherDiffRunner.processNewSnapshots() }
+        coVerify { watcherManager.processChanges() }
     }
 
     @Test
     fun `returns retry on exception`() = runTest {
-        coEvery { watcherDiffRunner.processNewSnapshots() } throws RuntimeException("test error")
+        coEvery { watcherManager.processChanges() } throws RuntimeException("test error")
 
         val result = createWorker().doWork()
         result shouldBe ListenableWorker.Result.retry()

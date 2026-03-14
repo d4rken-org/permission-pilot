@@ -15,12 +15,12 @@ import eu.darken.myperm.common.debug.logging.logTag
 class PermissionWatcherWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val watcherDiffRunner: WatcherDiffRunner,
+    private val watcherManager: WatcherManager,
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
         return try {
-            watcherDiffRunner.processNewSnapshots()
+            watcherManager.processChanges()
             Result.success()
         } catch (e: Exception) {
             log(TAG, WARN) { "Error during snapshot diff: ${e.asLog()}" }

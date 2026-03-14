@@ -6,6 +6,7 @@ import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.flow.combine
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
@@ -13,12 +14,13 @@ import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.PermissionDiff
 import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.flow.MutableStateFlow
-import eu.darken.myperm.common.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,29 +32,23 @@ class WatcherDashboardViewModel @Inject constructor(
     private val capability: WatcherNotificationCapability,
     private val watcherWorkScheduler: WatcherWorkScheduler,
     private val watcherManager: WatcherManager,
+    private val json: Json,
 ) : ViewModel4(dispatcherProvider) {
-
-    data class ReportItem(
-        val id: Long,
-        val packageName: String,
-        val appLabel: String?,
-        val versionName: String?,
-        val previousVersionName: String?,
-        val eventType: String,
-        val detectedAt: Long,
-        val isSeen: Boolean,
-    )
 
     data class State(
         val isWatcherEnabled: Boolean = false,
         val isPro: Boolean = false,
-        val reports: List<ReportItem> = emptyList(),
+        val reports: List<WatcherReportItem> = emptyList(),
         val showNotificationPermissionCard: Boolean = false,
         val canRequestNotificationPermission: Boolean = false,
         val refreshPhase: WatcherManager.Phase? = null,
+        val filterOptions: WatcherFilterOptions = WatcherFilterOptions(),
+        val hasUnseen: Boolean = false,
+        val totalReportCount: Int = 0,
     )
 
     private val notificationsAvailable = MutableStateFlow(capability.areNotificationsEnabled())
+    private val searchTerm = MutableStateFlow<String?>(null)
 
     fun refreshNotificationState() {
         notificationsAvailable.value = capability.areNotificationsEnabled()
@@ -65,14 +61,29 @@ class WatcherDashboardViewModel @Inject constructor(
         generalSettings.isWatcherNotificationsEnabled.flow,
         notificationsAvailable,
         watcherManager.phase,
-    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase ->
+        searchTerm,
+        generalSettings.watcherFilterOptions.flow,
+    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase, search, filterOpts ->
+        val allItems = entities.map { it.toItem() }
+        val filteredItems = allItems
+            .filter { filterOpts.matches(it) }
+            .filter {
+                val term = search?.lowercase() ?: return@filter true
+                if (it.packageName.lowercase().contains(term)) return@filter true
+                if (it.appLabel?.lowercase()?.contains(term) == true) return@filter true
+                false
+            }
+
         State(
             isWatcherEnabled = isEnabled,
             isPro = isPro,
-            reports = entities.map { it.toItem() },
+            reports = filteredItems,
             showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
             refreshPhase = phase,
+            filterOptions = filterOpts,
+            hasUnseen = entities.any { !it.isSeen },
+            totalReportCount = allItems.size,
         )
     }.asStateFlow(State())
 
@@ -90,7 +101,7 @@ class WatcherDashboardViewModel @Inject constructor(
         watcherWorkScheduler.ensureScheduled()
     }
 
-    fun onReportClicked(item: ReportItem) = launch {
+    fun onReportClicked(item: WatcherReportItem) = launch {
         changeDao.markSeen(item.id)
         navTo(Nav.Watcher.ReportDetail(item.id))
     }
@@ -116,16 +127,33 @@ class WatcherDashboardViewModel @Inject constructor(
         navTo(Nav.Settings.Index)
     }
 
-    private fun PermissionChangeEntity.toItem() = ReportItem(
-        id = id,
-        packageName = packageName,
-        appLabel = appLabel,
-        versionName = versionName,
-        previousVersionName = previousVersionName,
-        eventType = eventType,
-        detectedAt = detectedAt,
-        isSeen = isSeen,
-    )
+    fun onSearchInputChanged(term: String?) {
+        log(TAG) { "onSearchInputChanged(term=$term)" }
+        searchTerm.value = term
+    }
+
+    fun updateFilterOptions(action: (WatcherFilterOptions) -> WatcherFilterOptions) = launch {
+        generalSettings.watcherFilterOptions.update { action(it) }
+    }
+
+    private fun PermissionChangeEntity.toItem(): WatcherReportItem {
+        val diff = runCatching {
+            json.decodeFromString<PermissionDiff>(changesJson)
+        }.getOrElse { PermissionDiff() }
+
+        return WatcherReportItem(
+            id = id,
+            packageName = packageName,
+            appLabel = appLabel,
+            versionName = versionName,
+            previousVersionName = previousVersionName,
+            eventType = eventType,
+            detectedAt = detectedAt,
+            isSeen = isSeen,
+            hasAddedPermissions = diff.addedPermissions.isNotEmpty() || diff.addedDeclared.isNotEmpty(),
+            hasLostPermissions = diff.removedPermissions.isNotEmpty() || diff.removedDeclared.isNotEmpty(),
+        )
+    }
 
     companion object {
         private val TAG = logTag("Watcher", "Dashboard", "VM")
