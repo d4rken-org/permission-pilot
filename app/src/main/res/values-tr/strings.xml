@@ -98,14 +98,16 @@ Desteğinizi göstermek için Pro sürümü satın alın!</string>
     <string name="permissions_protection_type_internal_label">Dahili</string>
     <string name="permissions_protection_type_unknown_label">Bilinmiyor</string>
     <string name="permissions_permission_details_label">İzin detayları</string>
-    <string name="generic_loading_label_0">Yakında™</string>
-    <string name="generic_loading_label_1">Tereyağını geçiriyor</string>
-    <string name="generic_loading_label_2">Daha fazla RAM indiriliyor</string>
-    <string name="generic_loading_label_3">Hâlâ iPhone\'dan daha hızlı</string>
-    <string name="generic_loading_label_4">Arkanızdaki şey nedir?</string>
-    <string name="generic_loading_label_5">CPU kahve molasında</string>
-    <string name="generic_loading_label_6">Pepe Silvia\'dan veri bekleniyor</string>
-    <string name="generic_loading_label_7">Turbo enkabulatör başlatılıyor</string>
+    <string-array name="generic_loading_labels">
+        <item>Yakında™</item>
+        <item>Tereyağını geçiriyor</item>
+        <item>Daha fazla RAM indiriliyor</item>
+        <item>Hâlâ iPhone\'dan daha hızlı</item>
+        <item>Arkanızdaki şey nedir?</item>
+        <item>CPU kahve molasında</item>
+        <item>Pepe Silvia\'dan veri bekleniyor</item>
+        <item>Turbo enkabulatör başlatılıyor</item>
+    </string-array>
     <string name="apps_app_details_label">Uygulama Detayları</string>
     <string name="apps_details_shareduserid_label">Paylaşılan Kullanıcı ID\'li Uygulamalar</string>
     <string name="apps_details_siblings_label">Kardeşler</string>

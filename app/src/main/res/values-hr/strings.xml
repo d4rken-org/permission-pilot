@@ -100,14 +100,16 @@
     <string name="permissions_protection_type_internal_label">Unutarnja</string>
     <string name="permissions_protection_type_unknown_label">Nepoznata</string>
     <string name="permissions_permission_details_label">Pojedinosti dozvole</string>
-    <string name="generic_loading_label_0">Uskoro™</string>
-    <string name="generic_loading_label_1">Dodavanje maslaca</string>
-    <string name="generic_loading_label_2">Preuzimanje više RAM-a</string>
-    <string name="generic_loading_label_3">Još uvijek brže od iPhone-a</string>
-    <string name="generic_loading_label_4">Što je to iza vas?</string>
-    <string name="generic_loading_label_5">CPU je na pauzi za kavu</string>
-    <string name="generic_loading_label_6">Čekanje podataka od Pepe Silvije</string>
-    <string name="generic_loading_label_7">Turbo enkabulator se pokretnje</string>
+    <string-array name="generic_loading_labels">
+        <item>Uskoro™</item>
+        <item>Dodavanje maslaca</item>
+        <item>Preuzimanje više RAM-a</item>
+        <item>Još uvijek brže od iPhone-a</item>
+        <item>Što je to iza vas?</item>
+        <item>CPU je na pauzi za kavu</item>
+        <item>Čekanje podataka od Pepe Silvije</item>
+        <item>Turbo enkabulator se pokretnje</item>
+    </string-array>
     <string name="apps_app_details_label">Pojedinosti aplikacije</string>
     <string name="apps_details_shareduserid_label">Aplikacije s dijeljenim korisničkim ID-om</string>
     <string name="apps_details_siblings_label">Braća i sestre</string>

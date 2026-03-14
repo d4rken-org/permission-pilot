@@ -104,14 +104,16 @@
     <string name="permissions_protection_type_internal_label">Внутрішній</string>
     <string name="permissions_protection_type_unknown_label">Невідомий</string>
     <string name="permissions_permission_details_label">Деталі дозволу</string>
-    <string name="generic_loading_label_0">Незабаром™</string>
-    <string name="generic_loading_label_1">Передаємо масло</string>
-    <string name="generic_loading_label_2">Завантажуємо більше ОЗП</string>
-    <string name="generic_loading_label_3">Все ще швидше за iPhone</string>
-    <string name="generic_loading_label_4">Що це за вами?</string>
-    <string name="generic_loading_label_5">Процесор на кавовій перерві</string>
-    <string name="generic_loading_label_6">Очікуємо дані від Пепе Сільвії</string>
-    <string name="generic_loading_label_7">Турбо-енкабулятор ініціалізується</string>
+    <string-array name="generic_loading_labels">
+        <item>Незабаром™</item>
+        <item>Передаємо масло</item>
+        <item>Завантажуємо більше ОЗП</item>
+        <item>Все ще швидше за iPhone</item>
+        <item>Що це за вами?</item>
+        <item>Процесор на кавовій перерві</item>
+        <item>Очікуємо дані від Пепе Сільвії</item>
+        <item>Турбо-енкабулятор ініціалізується</item>
+    </string-array>
     <string name="apps_app_details_label">Деталі програми</string>
     <string name="apps_details_shareduserid_label">Програми зі спільним ID користувача</string>
     <string name="apps_details_siblings_label">Сестринські</string>

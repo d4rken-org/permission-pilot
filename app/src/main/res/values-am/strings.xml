@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">ውስጥ</string>
     <string name="permissions_protection_type_unknown_label">ያልታወቀ</string>
     <string name="permissions_permission_details_label">የፍቃድ ዝርዝሮች</string>
-    <string name="generic_loading_label_0">በቅርቡ™</string>
-    <string name="generic_loading_label_1">በቅንጅት ቅድሚያ ነው</string>
-    <string name="generic_loading_label_2">ተጨማሪ ራምን ይከማቻሉ</string>
-    <string name="generic_loading_label_3">ከiPhone በላይ ይሆናል</string>
-    <string name="generic_loading_label_4">ከኋላህ ምን አለ?</string>
-    <string name="generic_loading_label_5">ሲፒዩ እየደነቁ ነው</string>
-    <string name="generic_loading_label_6">ከPepe Silvia ውስጥ ውሂብ እየጠበቀ</string>
-    <string name="generic_loading_label_7">ቱርቦ ኢካቡሌተር እየተጀመረ ነው</string>
+    <string-array name="generic_loading_labels">
+        <item>በቅርቡ™</item>
+        <item>በቅንጅት ቅድሚያ ነው</item>
+        <item>ተጨማሪ ራምን ይከማቻሉ</item>
+        <item>ከiPhone በላይ ይሆናል</item>
+        <item>ከኋላህ ምን አለ?</item>
+        <item>ሲፒዩ እየደነቁ ነው</item>
+        <item>ከPepe Silvia ውስጥ ውሂብ እየጠበቀ</item>
+        <item>ቱርቦ ኢካቡሌተር እየተጀመረ ነው</item>
+    </string-array>
     <string name="apps_app_details_label">የመተግበሪያ ዝርዝሮች</string>
     <string name="apps_details_shareduserid_label">ከጋራ የተጠቃሚ መለያ ያላቸው መተግበሪያዎች</string>
     <string name="apps_details_siblings_label">እህቶች</string>

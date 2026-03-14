@@ -98,14 +98,16 @@ Osta Pro-versio osoittaaksesi tukesi!</string>
     <string name="permissions_protection_type_internal_label">Sisäinen</string>
     <string name="permissions_protection_type_unknown_label">Tuntematon</string>
     <string name="permissions_permission_details_label">Käyttöoikeuden tiedot</string>
-    <string name="generic_loading_label_0">Kohta valmista™</string>
-    <string name="generic_loading_label_1">Syötetään kissalle dataa</string>
-    <string name="generic_loading_label_2">Ladataan lisää RAM-muistia</string>
-    <string name="generic_loading_label_3">Silti nopeampi kuin iPhone</string>
-    <string name="generic_loading_label_4">Mitä tuolla takanasi on?</string>
-    <string name="generic_loading_label_5">Prosessori on kahvitauolla</string>
-    <string name="generic_loading_label_6">Odotetaan dataa Pertti Pasaselta</string>
-    <string name="generic_loading_label_7">Turbokapasitaattori käynnistyy</string>
+    <string-array name="generic_loading_labels">
+        <item>Kohta valmista™</item>
+        <item>Syötetään kissalle dataa</item>
+        <item>Ladataan lisää RAM-muistia</item>
+        <item>Silti nopeampi kuin iPhone</item>
+        <item>Mitä tuolla takanasi on?</item>
+        <item>Prosessori on kahvitauolla</item>
+        <item>Odotetaan dataa Pertti Pasaselta</item>
+        <item>Turbokapasitaattori käynnistyy</item>
+    </string-array>
     <string name="apps_app_details_label">Sovelluksen tiedot</string>
     <string name="apps_details_shareduserid_label">Sovellukset jaetulla käyttäjätunnuksella</string>
     <string name="apps_details_siblings_label">Sisarukset</string>

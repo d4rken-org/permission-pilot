@@ -98,14 +98,16 @@ Köp Pro-versionen för att visa ditt stöd!</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Okänd</string>
     <string name="permissions_permission_details_label">Behörighetsdetaljer</string>
-    <string name="generic_loading_label_0">Snart™</string>
-    <string name="generic_loading_label_1">Skickar smöret</string>
-    <string name="generic_loading_label_2">Laddar ner mer RAM</string>
-    <string name="generic_loading_label_3">Fortfarande snabbare än en iPhone</string>
-    <string name="generic_loading_label_4">Vad är det där bakom dig?</string>
-    <string name="generic_loading_label_5">CPU:n har kaffepaus</string>
-    <string name="generic_loading_label_6">Väntar på data från Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo-enkabulator initialiseras</string>
+    <string-array name="generic_loading_labels">
+        <item>Snart™</item>
+        <item>Skickar smöret</item>
+        <item>Laddar ner mer RAM</item>
+        <item>Fortfarande snabbare än en iPhone</item>
+        <item>Vad är det där bakom dig?</item>
+        <item>CPU:n har kaffepaus</item>
+        <item>Väntar på data från Pepe Silvia</item>
+        <item>Turbo-enkabulator initialiseras</item>
+    </string-array>
     <string name="apps_app_details_label">Appdetaljer</string>
     <string name="apps_details_shareduserid_label">Appar med delat användar-ID</string>
     <string name="apps_details_siblings_label">Syskon</string>

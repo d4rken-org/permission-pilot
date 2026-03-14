@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">Interna</string>
     <string name="permissions_protection_type_unknown_label">Desconocido</string>
     <string name="permissions_permission_details_label">Detalles del permiso</string>
-    <string name="generic_loading_label_0">Pronto™</string>
-    <string name="generic_loading_label_1">Untando la mantequilla</string>
-    <string name="generic_loading_label_2">Descargando más memoria RAM</string>
-    <string name="generic_loading_label_3">Todavía más rápido que un iPhone</string>
-    <string name="generic_loading_label_4">¿Qué es eso detrás de ti?</string>
-    <string name="generic_loading_label_5">La CPU está en un descanso para tomar café</string>
-    <string name="generic_loading_label_6">Esperando datos de Pepe Silvia</string>
-    <string name="generic_loading_label_7">El turboencapsulador se está iniciando</string>
+    <string-array name="generic_loading_labels">
+        <item>Pronto™</item>
+        <item>Untando la mantequilla</item>
+        <item>Descargando más memoria RAM</item>
+        <item>Todavía más rápido que un iPhone</item>
+        <item>¿Qué es eso detrás de ti?</item>
+        <item>La CPU está en un descanso para tomar café</item>
+        <item>Esperando datos de Pepe Silvia</item>
+        <item>El turboencapsulador se está iniciando</item>
+    </string-array>
     <string name="apps_app_details_label">Detalles de la aplicación</string>
     <string name="apps_details_shareduserid_label">Aplicaciones con la ID del usuario compartida</string>
     <string name="apps_details_siblings_label">Hermanos</string>

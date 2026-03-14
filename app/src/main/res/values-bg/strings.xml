@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">Вътрешно</string>
     <string name="permissions_protection_type_unknown_label">Неизвестно</string>
     <string name="permissions_permission_details_label">Детайли за разрешението</string>
-    <string name="generic_loading_label_0">Скоро™</string>
-    <string name="generic_loading_label_1">Подаване на маслото</string>
-    <string name="generic_loading_label_2">Изтегляне на повече RAM</string>
-    <string name="generic_loading_label_3">Все още по-бързо от iPhone</string>
-    <string name="generic_loading_label_4">Какво е това зад теб?</string>
-    <string name="generic_loading_label_5">Процесорът е на кафе почивка</string>
-    <string name="generic_loading_label_6">Очакване на данни от Пепе Силвия</string>
-    <string name="generic_loading_label_7">Турбо енкабулаторът се инициализира</string>
+    <string-array name="generic_loading_labels">
+        <item>Скоро™</item>
+        <item>Подаване на маслото</item>
+        <item>Изтегляне на повече RAM</item>
+        <item>Все още по-бързо от iPhone</item>
+        <item>Какво е това зад теб?</item>
+        <item>Процесорът е на кафе почивка</item>
+        <item>Очакване на данни от Пепе Силвия</item>
+        <item>Турбо енкабулаторът се инициализира</item>
+    </string-array>
     <string name="apps_app_details_label">Детайли за приложението</string>
     <string name="apps_details_shareduserid_label">Приложения със споделен потребителски идентификатор</string>
     <string name="apps_details_siblings_label">Братя и сестри</string>

@@ -98,14 +98,16 @@ Dəstəyinizi göstərmək üçün Pro versiyasını satın alın!</string>
     <string name="permissions_protection_type_internal_label">Daxili</string>
     <string name="permissions_protection_type_unknown_label">Naməlum</string>
     <string name="permissions_permission_details_label">İcazə detallar</string>
-    <string name="generic_loading_label_0">Tezliklə™</string>
-    <string name="generic_loading_label_1">Kərə yağı çevirirəm</string>
-    <string name="generic_loading_label_2">Daha çox RAM yüklənir</string>
-    <string name="generic_loading_label_3">Hələ də iPhone-dan sürətli</string>
-    <string name="generic_loading_label_4">Arxanda nə var?</string>
-    <string name="generic_loading_label_5">CPU fasilədədir</string>
-    <string name="generic_loading_label_6">Pepe Silvia-dan məlumat gözləyilir</string>
-    <string name="generic_loading_label_7">Turbo cihaz işləyir</string>
+    <string-array name="generic_loading_labels">
+        <item>Tezliklə™</item>
+        <item>Kərə yağı çevirirəm</item>
+        <item>Daha çox RAM yüklənir</item>
+        <item>Hələ də iPhone-dan sürətli</item>
+        <item>Arxanda nə var?</item>
+        <item>CPU fasilədədir</item>
+        <item>Pepe Silvia-dan məlumat gözləyilir</item>
+        <item>Turbo cihaz işləyir</item>
+    </string-array>
     <string name="apps_app_details_label">Tətbiq Detalları</string>
     <string name="apps_details_shareduserid_label">Paylaşılan İstifadəçi ID olan tətbiqlər</string>
     <string name="apps_details_siblings_label">Qardaş</string>

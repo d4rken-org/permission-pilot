@@ -109,14 +109,16 @@
     <string name="permissions_protection_type_internal_label">داخلي</string>
     <string name="permissions_protection_type_unknown_label">غير معروف</string>
     <string name="permissions_permission_details_label">تفاصيل الإذن</string>
-    <string name="generic_loading_label_0">قريبًا™</string>
-    <string name="generic_loading_label_1">تمرير الزبدة</string>
-    <string name="generic_loading_label_2">ينزل المزيد من الذاكرة</string>
-    <string name="generic_loading_label_3">أسرع من آيفون رغم ذلك</string>
-    <string name="generic_loading_label_4">ما الذي خلفك؟</string>
-    <string name="generic_loading_label_5">المعالج يأخذ استراحة قهوة</string>
-    <string name="generic_loading_label_6">بانتظار بيانات من Pepe Silvia</string>
-    <string name="generic_loading_label_7">تشغيل منصة توربو</string>
+    <string-array name="generic_loading_labels">
+        <item>قريبًا™</item>
+        <item>تمرير الزبدة</item>
+        <item>ينزل المزيد من الذاكرة</item>
+        <item>أسرع من آيفون رغم ذلك</item>
+        <item>ما الذي خلفك؟</item>
+        <item>المعالج يأخذ استراحة قهوة</item>
+        <item>بانتظار بيانات من Pepe Silvia</item>
+        <item>تشغيل منصة توربو</item>
+    </string-array>
     <string name="apps_app_details_label">تفاصيل التطبيق</string>
     <string name="apps_details_shareduserid_label">تطبيقات مع معرّف المستخدم المشترك</string>
     <string name="apps_details_siblings_label">تطبيقات مرتبطة</string>

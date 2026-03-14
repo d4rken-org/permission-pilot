@@ -52,6 +52,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -88,21 +89,23 @@ fun AppDetailsScreenHost(
 
     val state by vm.state.collectAsState()
 
-    state?.let {
-        AppDetailsScreen(
-            state = it,
-            onBack = { vm.navUp() },
-            onPermClicked = { vm.onPermissionClicked(it) },
-            onTwinClicked = { vm.onTwinClicked(it) },
-            onSiblingClicked = { vm.onSiblingClicked(it) },
-            onGoSettings = { vm.onGoSettings() },
-            onOpenApp = { vm.onOpenApp() },
-            onFilter = { selected ->
-                vm.updateFilterOptions { it.copy(filters = selected) }
-            },
-            onInstallerClicked = { vm.onInstallerClicked(it) },
-        )
-    }
+    val effectiveState = state ?: AppDetailsViewModel.State(
+        label = route.appLabel ?: route.pkgName,
+        isLoading = true,
+    )
+    AppDetailsScreen(
+        state = effectiveState,
+        onBack = { vm.navUp() },
+        onPermClicked = { vm.onPermissionClicked(it) },
+        onTwinClicked = { vm.onTwinClicked(it) },
+        onSiblingClicked = { vm.onSiblingClicked(it) },
+        onGoSettings = { vm.onGoSettings() },
+        onOpenApp = { vm.onOpenApp() },
+        onFilter = { selected ->
+            vm.updateFilterOptions { it.copy(filters = selected) }
+        },
+        onInstallerClicked = { vm.onInstallerClicked(it) },
+    )
 }
 
 @Composable
@@ -169,11 +172,21 @@ fun AppDetailsScreen(
         }
     ) { innerPadding ->
         if (state.isLoading) {
+            val loadingLabels = stringArrayResource(R.array.generic_loading_labels)
+            val loadingLabel = remember(loadingLabels) { loadingLabels.random() }
             Box(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
                 contentAlignment = Alignment.Center,
             ) {
-                CircularProgressIndicator()
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    CircularProgressIndicator()
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = loadingLabel,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
         } else {
             LazyColumn(

@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">आंतरिक</string>
     <string name="permissions_protection_type_unknown_label">अज्ञात</string>
     <string name="permissions_permission_details_label">अनुमति विवरण</string>
-    <string name="generic_loading_label_0">जल्द ही™</string>
-    <string name="generic_loading_label_1">मक्खन पास कर रहे हैं</string>
-    <string name="generic_loading_label_2">और RAM डाउनलोड कर रहे हैं</string>
-    <string name="generic_loading_label_3">फिर भी iPhone से तेज़</string>
-    <string name="generic_loading_label_4">आपके पीछे वो क्या है?</string>
-    <string name="generic_loading_label_5">CPU चाय की छुट्टी पर है</string>
-    <string name="generic_loading_label_6">Pepe Silvia से डेटा का इंतज़ार</string>
-    <string name="generic_loading_label_7">टर्बो एनकैबुलेटर शुरू हो रहा है</string>
+    <string-array name="generic_loading_labels">
+        <item>जल्द ही™</item>
+        <item>मक्खन पास कर रहे हैं</item>
+        <item>और RAM डाउनलोड कर रहे हैं</item>
+        <item>फिर भी iPhone से तेज़</item>
+        <item>आपके पीछे वो क्या है?</item>
+        <item>CPU चाय की छुट्टी पर है</item>
+        <item>Pepe Silvia से डेटा का इंतज़ार</item>
+        <item>टर्बो एनकैबुलेटर शुरू हो रहा है</item>
+    </string-array>
     <string name="apps_app_details_label">ऐप विवरण</string>
     <string name="apps_details_shareduserid_label">साझा उपयोगकर्ता ID वाले ऐप्स</string>
     <string name="apps_details_siblings_label">सहोदर</string>

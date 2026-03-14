@@ -95,14 +95,16 @@
     <string name="permissions_protection_type_internal_label">內部</string>
     <string name="permissions_protection_type_unknown_label">未知</string>
     <string name="permissions_permission_details_label">權限詳細資訊</string>
-    <string name="generic_loading_label_0">快了™</string>
-    <string name="generic_loading_label_1">正在開啟 IE</string>
-    <string name="generic_loading_label_2">正在下載更多內存</string>
-    <string name="generic_loading_label_3">小知識：非洲每過 60 秒，就有一分鐘過去</string>
-    <string name="generic_loading_label_4">快看你背後！</string>
-    <string name="generic_loading_label_5">正在環遊世界中，請稍後...</string>
-    <string name="generic_loading_label_6">兩個禮拜以後～速度與激情9～</string>
-    <string name="generic_loading_label_7">原神，啟動！</string>
+    <string-array name="generic_loading_labels">
+        <item>快了™</item>
+        <item>正在開啟 IE</item>
+        <item>正在下載更多內存</item>
+        <item>小知識：非洲每過 60 秒，就有一分鐘過去</item>
+        <item>快看你背後！</item>
+        <item>正在環遊世界中，請稍後...</item>
+        <item>兩個禮拜以後～速度與激情9～</item>
+        <item>原神，啟動！</item>
+    </string-array>
     <string name="apps_app_details_label">應用程式詳情</string>
     <string name="apps_details_shareduserid_label">具有共享使用者 ID 的應用程式</string>
     <string name="apps_details_siblings_label">兄弟應用程式</string>

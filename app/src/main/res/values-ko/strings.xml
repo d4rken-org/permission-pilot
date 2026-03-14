@@ -94,14 +94,16 @@
     <string name="permissions_protection_type_internal_label">내부</string>
     <string name="permissions_protection_type_unknown_label">알 수 없음</string>
     <string name="permissions_permission_details_label">권한 세부정보</string>
-    <string name="generic_loading_label_0">곧™</string>
-    <string name="generic_loading_label_1">버터 전달 중</string>
-    <string name="generic_loading_label_2">더 많은 RAM 다운로드 중</string>
-    <string name="generic_loading_label_3">여전히 iPhone보다 빠름</string>
-    <string name="generic_loading_label_4">당신 뒤에 있는 저것은 무엇인가요?</string>
-    <string name="generic_loading_label_5">CPU가 커피 브레이크 중</string>
-    <string name="generic_loading_label_6">Pepe Silvia의 데이터 대기 중</string>
-    <string name="generic_loading_label_7">터보 엔캐뷸레이터 초기화 중</string>
+    <string-array name="generic_loading_labels">
+        <item>곧™</item>
+        <item>버터 전달 중</item>
+        <item>더 많은 RAM 다운로드 중</item>
+        <item>여전히 iPhone보다 빠름</item>
+        <item>당신 뒤에 있는 저것은 무엇인가요?</item>
+        <item>CPU가 커피 브레이크 중</item>
+        <item>Pepe Silvia의 데이터 대기 중</item>
+        <item>터보 엔캐뷸레이터 초기화 중</item>
+    </string-array>
     <string name="apps_app_details_label">앱 세부정보</string>
     <string name="apps_details_shareduserid_label">공유 사용자 ID를 가진 앱</string>
     <string name="apps_details_siblings_label">형제자매</string>

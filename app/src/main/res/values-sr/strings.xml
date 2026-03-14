@@ -101,14 +101,16 @@
     <string name="permissions_protection_type_internal_label">Интерно</string>
     <string name="permissions_protection_type_unknown_label">Непознато</string>
     <string name="permissions_permission_details_label">Детаљи дозволе</string>
-    <string name="generic_loading_label_0">Ускоро™</string>
-    <string name="generic_loading_label_1">Додајемо путер</string>
-    <string name="generic_loading_label_2">Преузимамо додатни РАМ</string>
-    <string name="generic_loading_label_3">И даље брже од ајфона</string>
-    <string name="generic_loading_label_4">Шта је то иза тебе?</string>
-    <string name="generic_loading_label_5">Процесор је на паузи за кафу</string>
-    <string name="generic_loading_label_6">Чекамо податке од Пепе Силвије</string>
-    <string name="generic_loading_label_7">Турбо енкабулатор се покреће</string>
+    <string-array name="generic_loading_labels">
+        <item>Ускоро™</item>
+        <item>Додајемо путер</item>
+        <item>Преузимамо додатни РАМ</item>
+        <item>И даље брже од ајфона</item>
+        <item>Шта је то иза тебе?</item>
+        <item>Процесор је на паузи за кафу</item>
+        <item>Чекамо податке од Пепе Силвије</item>
+        <item>Турбо енкабулатор се покреће</item>
+    </string-array>
     <string name="apps_app_details_label">Детаљи апликације</string>
     <string name="apps_details_shareduserid_label">Апликације са дељеним корисничким ID-ом</string>
     <string name="apps_details_siblings_label">Сродне апликације</string>

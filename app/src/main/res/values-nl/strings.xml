@@ -98,14 +98,16 @@ Koop de Pro-versie om je steun te tonen!</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Onbekend</string>
     <string name="permissions_permission_details_label">Machtigingsdetails</string>
-    <string name="generic_loading_label_0">Binnenkort™</string>
-    <string name="generic_loading_label_1">De boter doorgeven</string>
-    <string name="generic_loading_label_2">Meer RAM downloaden</string>
-    <string name="generic_loading_label_3">Nog steeds sneller dan een iPhone</string>
-    <string name="generic_loading_label_4">Wat is dat achter je?</string>
-    <string name="generic_loading_label_5">De CPU is op koffiepauze</string>
-    <string name="generic_loading_label_6">Wachten op gegevens van Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator wordt geïnitialiseerd</string>
+    <string-array name="generic_loading_labels">
+        <item>Binnenkort™</item>
+        <item>De boter doorgeven</item>
+        <item>Meer RAM downloaden</item>
+        <item>Nog steeds sneller dan een iPhone</item>
+        <item>Wat is dat achter je?</item>
+        <item>De CPU is op koffiepauze</item>
+        <item>Wachten op gegevens van Pepe Silvia</item>
+        <item>Turbo encabulator wordt geïnitialiseerd</item>
+    </string-array>
     <string name="apps_app_details_label">App-details</string>
     <string name="apps_details_shareduserid_label">Apps met gedeelde gebruikers-ID</string>
     <string name="apps_details_siblings_label">Broers en zussen</string>

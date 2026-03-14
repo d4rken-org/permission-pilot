@@ -98,14 +98,16 @@ Compreu la versió Pro per mostrar el vostre suport!</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Desconegut</string>
     <string name="permissions_permission_details_label">Detalls del permís</string>
-    <string name="generic_loading_label_0">Aviat™</string>
-    <string name="generic_loading_label_1">Passant la mantega</string>
-    <string name="generic_loading_label_2">Baixant més RAM</string>
-    <string name="generic_loading_label_3">Encara més ràpid que un iPhone</string>
-    <string name="generic_loading_label_4">Què és això que teniu al darrere?</string>
-    <string name="generic_loading_label_5">La CPU està fent un descans</string>
-    <string name="generic_loading_label_6">A l\'espera de les dades de Pepe Silvia</string>
-    <string name="generic_loading_label_7">S\'està iniciant el «Turbo Encabulator»</string>
+    <string-array name="generic_loading_labels">
+        <item>Aviat™</item>
+        <item>Passant la mantega</item>
+        <item>Baixant més RAM</item>
+        <item>Encara més ràpid que un iPhone</item>
+        <item>Què és això que teniu al darrere?</item>
+        <item>La CPU està fent un descans</item>
+        <item>A l\'espera de les dades de Pepe Silvia</item>
+        <item>S\'està iniciant el «Turbo Encabulator»</item>
+    </string-array>
     <string name="apps_app_details_label">Detalls de l\'aplicació</string>
     <string name="apps_details_shareduserid_label">Aplicacions amb ID d\'usuari compartit</string>
     <string name="apps_details_siblings_label">Germans</string>
