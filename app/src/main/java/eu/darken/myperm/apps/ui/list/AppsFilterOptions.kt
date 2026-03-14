@@ -3,6 +3,8 @@ package eu.darken.myperm.apps.ui.list
 import android.os.Parcelable
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.apps.core.AppInfo
@@ -65,7 +67,7 @@ data class AppsFilterOptions(
         NO_INTERNET(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_nointernet_label,
-            matches = { it.internetAccess != "DIRECT" && it.internetAccess != "UNKNOWN" }
+            matches = { it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN }
         ),
         SHARED_ID(
             group = Group.PROPERTIES,
@@ -80,7 +82,7 @@ data class AppsFilterOptions(
         BATTERY_OPTIMIZATION(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_battery_optimization_label,
-            matches = { it.batteryOptimization != "MANAGED_BY_SYSTEM" }
+            matches = { it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM }
         ),
         ACCESSIBILITY(
             group = Group.PROPERTIES,
@@ -90,12 +92,12 @@ data class AppsFilterOptions(
         PRIMARY_PROFILE(
             group = Group.PROFILE,
             labelRes = R.string.apps_filter_profile_active_label,
-            matches = { it.pkgType == PkgType.PRIMARY.name }
+            matches = { it.pkgType == PkgType.PRIMARY }
         ),
         SECONDARY_PROFILE(
             group = Group.PROFILE,
             labelRes = R.string.apps_filter_profile_secondary_label,
-            matches = { it.pkgType == PkgType.SECONDARY_PROFILE.name }
+            matches = { it.pkgType == PkgType.SECONDARY_PROFILE }
         ),
         ;
     }

@@ -1,6 +1,8 @@
 package eu.darken.myperm.apps.ui.list
 
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.common.room.entity.PkgType
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -11,11 +13,11 @@ class AppsFilterOptionsTest : BaseTest() {
     private fun app(
         isSystemApp: Boolean = false,
         allInstallerPkgNames: List<String> = emptyList(),
-        internetAccess: String = "DIRECT",
+        internetAccess: InternetAccess = InternetAccess.DIRECT,
         siblingCount: Int = 0,
         twinCount: Int = 0,
-        pkgType: String = PkgType.PRIMARY.name,
-        batteryOptimization: String = "MANAGED_BY_SYSTEM",
+        pkgType: PkgType = PkgType.PRIMARY,
+        batteryOptimization: BatteryOptimization = BatteryOptimization.MANAGED_BY_SYSTEM,
         hasAccessibilityServices: Boolean = false,
     ) = AppInfo(
         pkgName = "com.example.app",
@@ -65,8 +67,8 @@ class AppsFilterOptionsTest : BaseTest() {
                 AppsFilterOptions.Filter.SECONDARY_PROFILE,
             )
         )
-        options.matches(app(pkgType = PkgType.PRIMARY.name)) shouldBe true
-        options.matches(app(pkgType = PkgType.SECONDARY_PROFILE.name)) shouldBe true
+        options.matches(app(pkgType = PkgType.PRIMARY)) shouldBe true
+        options.matches(app(pkgType = PkgType.SECONDARY_PROFILE)) shouldBe true
     }
 
     @Test
@@ -79,15 +81,15 @@ class AppsFilterOptionsTest : BaseTest() {
         )
         // User app without internet — matches both groups
         options.matches(
-            app(isSystemApp = false, internetAccess = "NONE")
+            app(isSystemApp = false, internetAccess = InternetAccess.NONE)
         ) shouldBe true
         // User app with internet — fails PROPERTIES group
         options.matches(
-            app(isSystemApp = false, internetAccess = "DIRECT")
+            app(isSystemApp = false, internetAccess = InternetAccess.DIRECT)
         ) shouldBe false
         // System app without internet — fails APP_TYPE group
         options.matches(
-            app(isSystemApp = true, internetAccess = "NONE")
+            app(isSystemApp = true, internetAccess = InternetAccess.NONE)
         ) shouldBe false
     }
 
@@ -101,15 +103,15 @@ class AppsFilterOptionsTest : BaseTest() {
         )
         // Primary profile with twins — matches both groups
         options.matches(
-            app(pkgType = PkgType.PRIMARY.name, twinCount = 2)
+            app(pkgType = PkgType.PRIMARY, twinCount = 2)
         ) shouldBe true
         // Primary profile without twins — fails PROPERTIES group
         options.matches(
-            app(pkgType = PkgType.PRIMARY.name, twinCount = 0)
+            app(pkgType = PkgType.PRIMARY, twinCount = 0)
         ) shouldBe false
         // Secondary profile with twins — fails PROFILE group
         options.matches(
-            app(pkgType = PkgType.SECONDARY_PROFILE.name, twinCount = 2)
+            app(pkgType = PkgType.SECONDARY_PROFILE, twinCount = 2)
         ) shouldBe false
     }
 }
