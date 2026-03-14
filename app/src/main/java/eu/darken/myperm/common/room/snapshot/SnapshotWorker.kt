@@ -8,15 +8,11 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
-import androidx.work.ExistingWorkPolicy
 import androidx.work.ForegroundInfo
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import eu.darken.myperm.R
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.debug.logging.asLog
@@ -24,13 +20,13 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
-import eu.darken.myperm.watcher.core.PermissionWatcherWorker
+import eu.darken.myperm.watcher.core.WatcherManager
 
 @HiltWorker
 class SnapshotWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val appRepo: AppRepo,
+    private val watcherManager: WatcherManager,
     private val pendingEventDao: PendingSnapshotEventDao,
     private val snapshotDao: SnapshotDao,
 ) : CoroutineWorker(context, params) {
@@ -64,7 +60,7 @@ class SnapshotWorker @AssistedInject constructor(
         } else {
             log(TAG) { "Processing ${pendingEvents.size} pending events (maxId=$maxId), scanning packages" }
             pendingEventDao.deleteByMaxId(maxId)
-            appRepo.scanDiffAndPrune(TriggerReason.PACKAGE_CHANGE)
+            watcherManager.scanDiffAndPrune(TriggerReason.PACKAGE_CHANGE)
         }
 
         log(TAG) { "doWork() completed" }
@@ -104,16 +100,9 @@ class SnapshotWorker @AssistedInject constructor(
 
     companion object {
         const val WORK_NAME = "snapshot_sync"
-        const val WATCHER_WORK_NAME = "permission_watcher"
         private const val CHANNEL_ID = "channel_snapshot_sync"
         private const val NOTIFICATION_ID = 42_001
         private const val TTL_MS = 60 * 60 * 1000L // 1 hour
         internal val TAG = logTag("Snapshot", "Worker")
-
-        fun enqueueWatcher(workManager: WorkManager) {
-            val request = OneTimeWorkRequestBuilder<PermissionWatcherWorker>().build()
-            workManager.enqueueUniqueWork(WATCHER_WORK_NAME, ExistingWorkPolicy.KEEP, request)
-            log(TAG) { "Enqueued PermissionWatcherWorker" }
-        }
     }
 }

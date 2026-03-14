@@ -6,7 +6,6 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
@@ -18,7 +17,7 @@ import eu.darken.myperm.settings.core.GeneralSettings
 class PermissionPollWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
-    private val appRepo: AppRepo,
+    private val watcherManager: WatcherManager,
     private val generalSettings: GeneralSettings,
 ) : CoroutineWorker(context, params) {
 
@@ -32,7 +31,7 @@ class PermissionPollWorker @AssistedInject constructor(
         }
 
         return try {
-            appRepo.scanDiffAndPrune(TriggerReason.PERMISSION_POLL)
+            watcherManager.scanDiffAndPrune(TriggerReason.PERMISSION_POLL)
             log(TAG) { "doWork() completed" }
             Result.success()
         } catch (e: Exception) {

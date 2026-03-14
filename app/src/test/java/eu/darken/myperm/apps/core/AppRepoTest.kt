@@ -8,7 +8,6 @@ import androidx.work.WorkManager
 import eu.darken.myperm.common.room.PermPilotDatabase
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
-import eu.darken.myperm.common.room.snapshot.SnapshotWorker
 import kotlinx.coroutines.flow.flowOf
 import io.mockk.clearMocks
 import io.mockk.coEvery
@@ -78,7 +77,7 @@ class AppRepoTest : BaseTest() {
 
         verify {
             workManager.enqueueUniqueWork(
-                eq(SnapshotWorker.WATCHER_WORK_NAME),
+                eq("permission_watcher"),
                 eq(ExistingWorkPolicy.KEEP),
                 any<OneTimeWorkRequest>(),
             )
@@ -96,7 +95,7 @@ class AppRepoTest : BaseTest() {
 
         verify {
             workManager.enqueueUniqueWork(
-                eq(SnapshotWorker.WATCHER_WORK_NAME),
+                eq("permission_watcher"),
                 eq(ExistingWorkPolicy.KEEP),
                 any<OneTimeWorkRequest>(),
             )

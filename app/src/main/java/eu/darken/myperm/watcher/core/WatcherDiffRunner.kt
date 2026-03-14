@@ -1,12 +1,16 @@
 package eu.darken.myperm.watcher.core
 
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
+import eu.darken.myperm.common.room.dao.SnapshotDao
+import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
+import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -15,13 +19,70 @@ import javax.inject.Singleton
 
 @Singleton
 class WatcherDiffRunner @Inject constructor(
-    private val appRepo: AppRepo,
+    private val snapshotDao: SnapshotDao,
+    private val snapshotPkgDao: SnapshotPkgDao,
     private val snapshotDiffer: SnapshotDiffer,
     private val changeDao: PermissionChangeDao,
     private val watcherNotifications: WatcherNotifications,
     private val generalSettings: GeneralSettings,
     private val json: Json,
 ) {
+
+    // ── Snapshot queries ─────────────────────────────────────────────
+
+    private data class SnapshotChain(
+        val latestSnapshotId: String,
+        val pairs: List<SnapshotPair>,
+    )
+
+    private data class SnapshotPair(
+        val oldSnapshotId: String,
+        val newSnapshotId: String,
+        val oldPkgs: List<SnapshotPkgEntity>,
+        val newPkgs: List<SnapshotPkgEntity>,
+    )
+
+    private data class SnapshotPermissions(
+        val requested: Map<Pair<String, Int>, List<SnapshotPkgPermEntity>>,
+        val declared: Map<Pair<String, Int>, List<SnapshotPkgDeclaredPermEntity>>,
+    )
+
+    private suspend fun getLatestSnapshotId(): String? {
+        return snapshotDao.getLatestSnapshot()?.snapshotId
+    }
+
+    private suspend fun getSnapshotChainSince(anchorId: String): SnapshotChain? {
+        val anchor = snapshotDao.getSnapshotById(anchorId) ?: return null
+        val newerSnapshots = snapshotDao.getSnapshotsAfter(anchorId)
+        if (newerSnapshots.isEmpty()) return null
+
+        val chain = listOf(anchor) + newerSnapshots
+        val pairs = (0 until chain.size - 1).map { i ->
+            val oldSnapshot = chain[i]
+            val newSnapshot = chain[i + 1]
+            SnapshotPair(
+                oldSnapshotId = oldSnapshot.snapshotId,
+                newSnapshotId = newSnapshot.snapshotId,
+                oldPkgs = snapshotPkgDao.getPkgsForSnapshot(oldSnapshot.snapshotId),
+                newPkgs = snapshotPkgDao.getPkgsForSnapshot(newSnapshot.snapshotId),
+            )
+        }
+
+        return SnapshotChain(
+            latestSnapshotId = newerSnapshots.last().snapshotId,
+            pairs = pairs,
+        )
+    }
+
+    private suspend fun getSnapshotPermissions(snapshotId: String): SnapshotPermissions {
+        val requested = snapshotPkgDao.getPermsForSnapshot(snapshotId)
+            .groupBy { Pair(it.pkgName, it.userHandleId) }
+        val declared = snapshotPkgDao.getDeclaredPermsForSnapshot(snapshotId)
+            .groupBy { Pair(it.pkgName, it.userHandleId) }
+        return SnapshotPermissions(requested, declared)
+    }
+
+    // ── Public API ───────────────────────────────────────────────────
 
     /**
      * Processes all new snapshots since the last diffed snapshot.
@@ -39,7 +100,7 @@ class WatcherDiffRunner @Inject constructor(
         log(TAG) { "processNewSnapshots: scope=$scope" }
 
         val lastDiffedId = generalSettings.lastDiffedSnapshotId.value()
-        val latestSnapshotId = appRepo.getLatestSnapshotId()
+        val latestSnapshotId = getLatestSnapshotId()
 
         if (latestSnapshotId == null) {
             log(TAG) { "No snapshots available, skipping" }
@@ -53,7 +114,7 @@ class WatcherDiffRunner @Inject constructor(
             return 0
         }
 
-        val chain = appRepo.getSnapshotChainSince(lastDiffedId)
+        val chain = getSnapshotChainSince(lastDiffedId)
         if (chain == null) {
             log(TAG, WARN) { "Anchor snapshot $lastDiffedId not found (pruned?), fast-forwarding" }
             generalSettings.lastDiffedSnapshotId.update { latestSnapshotId }
@@ -85,7 +146,7 @@ class WatcherDiffRunner @Inject constructor(
     }
 
     private suspend fun diffSnapshotPair(
-        pair: AppRepo.SnapshotPair,
+        pair: SnapshotPair,
         scope: WatcherScope,
         reportedPackages: MutableSet<Pair<String, Int>>,
     ): Int {
@@ -94,8 +155,8 @@ class WatcherDiffRunner @Inject constructor(
         val oldPkgMap = pair.oldPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
         val newPkgMap = pair.newPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
 
-        val oldPermsAll = appRepo.getSnapshotPermissions(pair.oldSnapshotId)
-        val newPermsAll = appRepo.getSnapshotPermissions(pair.newSnapshotId)
+        val oldPermsAll = getSnapshotPermissions(pair.oldSnapshotId)
+        val newPermsAll = getSnapshotPermissions(pair.newSnapshotId)
 
         val allPkgKeys = oldPkgMap.keys + newPkgMap.keys
 
@@ -165,7 +226,7 @@ class WatcherDiffRunner @Inject constructor(
                 else -> continue
             }
 
-            if (diff.isEmpty && eventType != "INSTALL") continue
+            if (diff.isEmpty && eventType != "INSTALL" && eventType != "REMOVED") continue
 
             log(TAG) { "Permission changes detected for $pkgName: $diff" }
 

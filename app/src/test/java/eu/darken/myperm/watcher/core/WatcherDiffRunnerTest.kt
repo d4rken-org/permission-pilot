@@ -1,8 +1,10 @@
 package eu.darken.myperm.watcher.core
 
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
+import eu.darken.myperm.common.room.dao.SnapshotDao
+import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
+import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
@@ -22,7 +24,8 @@ import testhelpers.datastore.mockDataStoreValue
 
 class WatcherDiffRunnerTest : BaseTest() {
 
-    private val appRepo: AppRepo = mockk()
+    private val snapshotDao: SnapshotDao = mockk()
+    private val snapshotPkgDao: SnapshotPkgDao = mockk()
     private val snapshotDiffer = SnapshotDiffer()
     private val changeDao: PermissionChangeDao = mockk(relaxUnitFun = true)
     private val watcherNotifications: WatcherNotifications = mockk(relaxUnitFun = true)
@@ -45,12 +48,21 @@ class WatcherDiffRunnerTest : BaseTest() {
     }
 
     private fun createRunner() = WatcherDiffRunner(
-        appRepo = appRepo,
+        snapshotDao = snapshotDao,
+        snapshotPkgDao = snapshotPkgDao,
         snapshotDiffer = snapshotDiffer,
         changeDao = changeDao,
         watcherNotifications = watcherNotifications,
         generalSettings = generalSettings,
         json = json,
+    )
+
+    private fun snapshotEntity(snapshotId: String, createdAt: Long = 0L) = SnapshotEntity(
+        snapshotId = snapshotId,
+        createdAt = createdAt,
+        triggerReason = "TEST",
+        pkgCount = 0,
+        durationMs = 0L,
     )
 
     private fun pkg(
@@ -97,18 +109,36 @@ class WatcherDiffRunnerTest : BaseTest() {
             protectionLevel = null,
         )
 
+    private data class PairSetup(
+        val oldSnapshotId: String,
+        val newSnapshotId: String,
+        val oldPkgs: List<SnapshotPkgEntity>,
+        val newPkgs: List<SnapshotPkgEntity>,
+    )
+
     private fun setupChain(
-        pairs: List<AppRepo.SnapshotPair>,
+        pairs: List<PairSetup>,
         latestSnapshotId: String = pairs.last().newSnapshotId,
-        permsMap: Map<String, AppRepo.SnapshotPermissions> = emptyMap(),
+        permsRequested: Map<String, List<SnapshotPkgPermEntity>> = emptyMap(),
+        permsDeclared: Map<String, List<SnapshotPkgDeclaredPermEntity>> = emptyMap(),
     ) {
-        coEvery { appRepo.getLatestSnapshotId() } returns latestSnapshotId
-        coEvery { appRepo.getSnapshotChainSince("snap-old") } returns AppRepo.SnapshotChain(
-            latestSnapshotId = latestSnapshotId,
-            pairs = pairs,
-        )
-        for ((snapshotId, perms) in permsMap) {
-            coEvery { appRepo.getSnapshotPermissions(snapshotId) } returns perms
+        val anchorId = pairs.first().oldSnapshotId
+        coEvery { snapshotDao.getLatestSnapshot() } returns snapshotEntity(latestSnapshotId, 1000L)
+        coEvery { snapshotDao.getSnapshotById(anchorId) } returns snapshotEntity(anchorId, 0L)
+        coEvery { snapshotDao.getSnapshotsAfter(anchorId) } returns pairs.mapIndexed { index, pair ->
+            snapshotEntity(pair.newSnapshotId, (index + 1) * 100L)
+        }
+
+        val pkgsPerSnapshot = mutableMapOf<String, List<SnapshotPkgEntity>>()
+        for (pair in pairs) {
+            pkgsPerSnapshot.getOrPut(pair.oldSnapshotId) { pair.oldPkgs }
+            pkgsPerSnapshot[pair.newSnapshotId] = pair.newPkgs
+        }
+
+        for (snapshotId in pkgsPerSnapshot.keys) {
+            coEvery { snapshotPkgDao.getPkgsForSnapshot(snapshotId) } returns (pkgsPerSnapshot[snapshotId] ?: emptyList())
+            coEvery { snapshotPkgDao.getPermsForSnapshot(snapshotId) } returns (permsRequested[snapshotId] ?: emptyList())
+            coEvery { snapshotPkgDao.getDeclaredPermsForSnapshot(snapshotId) } returns (permsDeclared[snapshotId] ?: emptyList())
         }
     }
 
@@ -122,22 +152,20 @@ class WatcherDiffRunnerTest : BaseTest() {
     ) {
         setupChain(
             pairs = listOf(
-                AppRepo.SnapshotPair(
+                PairSetup(
                     oldSnapshotId = "snap-old",
                     newSnapshotId = "snap-new",
                     oldPkgs = oldPkgs,
                     newPkgs = newPkgs,
                 )
             ),
-            permsMap = mapOf(
-                "snap-old" to AppRepo.SnapshotPermissions(
-                    requested = oldPermsRequested.groupBy { Pair(it.pkgName, it.userHandleId) },
-                    declared = oldPermsDeclared.groupBy { Pair(it.pkgName, it.userHandleId) },
-                ),
-                "snap-new" to AppRepo.SnapshotPermissions(
-                    requested = newPermsRequested.groupBy { Pair(it.pkgName, it.userHandleId) },
-                    declared = newPermsDeclared.groupBy { Pair(it.pkgName, it.userHandleId) },
-                ),
+            permsRequested = mapOf(
+                "snap-old" to oldPermsRequested,
+                "snap-new" to newPermsRequested,
+            ),
+            permsDeclared = mapOf(
+                "snap-old" to oldPermsDeclared,
+                "snap-new" to newPermsDeclared,
             ),
         )
     }
@@ -250,6 +278,26 @@ class WatcherDiffRunnerTest : BaseTest() {
     }
 
     @Test
+    fun `removed package without permissions creates REMOVED report`() = runTest {
+        setupSinglePairChain(
+            oldPkgs = listOf(pkg("snap-old", "com.empty.app")),
+            newPkgs = emptyList(),
+        )
+
+        val count = createRunner().processNewSnapshots()
+        count shouldBe 1
+
+        val slot = slot<PermissionChangeEntity>()
+        coVerify { changeDao.insert(capture(slot)) }
+
+        slot.captured.eventType shouldBe "REMOVED"
+        slot.captured.packageName shouldBe "com.empty.app"
+        val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
+        diff.removedPermissions shouldBe emptyList()
+        diff.removedDeclared shouldBe emptyList()
+    }
+
+    @Test
     fun `system apps are skipped when scope is NON_SYSTEM`() = runTest {
         watcherScope.value(WatcherScope.NON_SYSTEM)
 
@@ -281,13 +329,13 @@ class WatcherDiffRunnerTest : BaseTest() {
     fun `progressive lastDiffedSnapshotId updated after each pair`() = runTest {
         setupChain(
             pairs = listOf(
-                AppRepo.SnapshotPair(
+                PairSetup(
                     oldSnapshotId = "snap-old",
                     newSnapshotId = "snap-mid",
                     oldPkgs = listOf(pkg("snap-old", "com.app")),
                     newPkgs = listOf(pkg("snap-mid", "com.app")),
                 ),
-                AppRepo.SnapshotPair(
+                PairSetup(
                     oldSnapshotId = "snap-mid",
                     newSnapshotId = "snap-new",
                     oldPkgs = listOf(pkg("snap-mid", "com.app")),
@@ -295,11 +343,6 @@ class WatcherDiffRunnerTest : BaseTest() {
                 ),
             ),
             latestSnapshotId = "snap-new",
-            permsMap = mapOf(
-                "snap-old" to AppRepo.SnapshotPermissions(emptyMap(), emptyMap()),
-                "snap-mid" to AppRepo.SnapshotPermissions(emptyMap(), emptyMap()),
-                "snap-new" to AppRepo.SnapshotPermissions(emptyMap(), emptyMap()),
-            ),
         )
 
         createRunner().processNewSnapshots()
@@ -331,13 +374,13 @@ class WatcherDiffRunnerTest : BaseTest() {
     fun `multiple pairs in chain processes all and deduplicates across pairs`() = runTest {
         setupChain(
             pairs = listOf(
-                AppRepo.SnapshotPair(
+                PairSetup(
                     oldSnapshotId = "snap-old",
                     newSnapshotId = "snap-mid",
                     oldPkgs = emptyList(),
                     newPkgs = listOf(pkg("snap-mid", "com.app.a")),
                 ),
-                AppRepo.SnapshotPair(
+                PairSetup(
                     oldSnapshotId = "snap-mid",
                     newSnapshotId = "snap-new",
                     oldPkgs = listOf(pkg("snap-mid", "com.app.a")),
@@ -348,18 +391,9 @@ class WatcherDiffRunnerTest : BaseTest() {
                 ),
             ),
             latestSnapshotId = "snap-new",
-            permsMap = mapOf(
-                "snap-old" to AppRepo.SnapshotPermissions(emptyMap(), emptyMap()),
-                "snap-mid" to AppRepo.SnapshotPermissions(
-                    requested = listOf(perm("snap-mid", "com.app.a", "android.permission.INTERNET"))
-                        .groupBy { Pair(it.pkgName, it.userHandleId) },
-                    declared = emptyMap(),
-                ),
-                "snap-new" to AppRepo.SnapshotPermissions(
-                    requested = listOf(perm("snap-new", "com.app.a", "android.permission.INTERNET"))
-                        .groupBy { Pair(it.pkgName, it.userHandleId) },
-                    declared = emptyMap(),
-                ),
+            permsRequested = mapOf(
+                "snap-mid" to listOf(perm("snap-mid", "com.app.a", "android.permission.INTERNET")),
+                "snap-new" to listOf(perm("snap-new", "com.app.a", "android.permission.INTERNET")),
             ),
         )
 
@@ -374,9 +408,48 @@ class WatcherDiffRunnerTest : BaseTest() {
     }
 
     @Test
+    fun `multi-pair chain with shared snapshot uses correct pkg data`() = runTest {
+        // pair1.newPkgs for snap-mid has versionCode=1, pair2.oldPkgs has versionCode=2
+        // getOrPut should keep pair1's newPkgs (first writer wins for the shared ID)
+        val midPkgV1 = pkg("snap-mid", "com.app").copy(versionCode = 1L)
+        val midPkgV2 = pkg("snap-mid", "com.app").copy(versionCode = 2L)
+        val newPkg = pkg("snap-new", "com.app").copy(versionCode = 2L)
+
+        setupChain(
+            pairs = listOf(
+                PairSetup(
+                    oldSnapshotId = "snap-old",
+                    newSnapshotId = "snap-mid",
+                    oldPkgs = emptyList(),
+                    newPkgs = listOf(midPkgV1),
+                ),
+                PairSetup(
+                    oldSnapshotId = "snap-mid",
+                    newSnapshotId = "snap-new",
+                    // Different from pair1.newPkgs — setupChain should use pair1's value for snap-mid
+                    oldPkgs = listOf(midPkgV2),
+                    newPkgs = listOf(newPkg),
+                ),
+            ),
+            latestSnapshotId = "snap-new",
+        )
+
+        val count = createRunner().processNewSnapshots()
+        // pair1: INSTALL for com.app (new app in snap-mid)
+        // pair2: com.app already reported, skipped
+        count shouldBe 1
+
+        val slot = slot<PermissionChangeEntity>()
+        coVerify(exactly = 1) { changeDao.insert(capture(slot)) }
+        slot.captured.eventType shouldBe "INSTALL"
+        // versionCode should come from pair1's newPkgs (versionCode=1), not pair2's oldPkgs
+        slot.captured.versionCode shouldBe 1L
+    }
+
+    @Test
     fun `first run with no lastDiffedSnapshotId fast-forwards without reports`() = runTest {
         lastDiffedSnapshotId.value(null)
-        coEvery { appRepo.getLatestSnapshotId() } returns "snap-new"
+        coEvery { snapshotDao.getLatestSnapshot() } returns snapshotEntity("snap-new")
 
         val count = createRunner().processNewSnapshots()
         count shouldBe 0

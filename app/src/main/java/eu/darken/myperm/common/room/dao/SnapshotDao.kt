@@ -31,6 +31,9 @@ interface SnapshotDao {
     @Query("SELECT * FROM snapshots WHERE createdAt > (SELECT createdAt FROM snapshots WHERE snapshotId = :afterSnapshotId) ORDER BY createdAt ASC")
     suspend fun getSnapshotsAfter(afterSnapshotId: String): List<SnapshotEntity>
 
+    @Query("SELECT snapshotId FROM snapshots WHERE createdAt < (SELECT createdAt FROM snapshots WHERE snapshotId = :anchorId)")
+    suspend fun getSnapshotIdsBefore(anchorId: String): List<String>
+
     @Query("UPDATE snapshots SET pkgCount = :newCount WHERE snapshotId = :snapshotId")
     suspend fun updatePkgCount(snapshotId: String, newCount: Int)
 
