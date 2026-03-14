@@ -259,6 +259,35 @@ fun PermissionDetailsScreen(
                                     total = state.totalSystemCount,
                                 )
                             }
+                            if (state.otherProfileCount > 0) {
+                                Text(
+                                    text = pluralStringResource(
+                                        R.plurals.permissions_details_count_other_profile_apps,
+                                        state.otherProfileCount,
+                                        state.otherProfileCount,
+                                    ),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                            if (state.uninstalledCount > 0) {
+                                Text(
+                                    text = pluralStringResource(
+                                        R.plurals.permissions_details_count_uninstalled_apps,
+                                        state.uninstalledCount,
+                                        state.uninstalledCount,
+                                    ),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                            if (state.otherProfileCount > 0 || state.uninstalledCount > 0) {
+                                Text(
+                                    text = stringResource(R.string.permissions_details_description_restrictions_caveat_description),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
                         }
                     }
                 }

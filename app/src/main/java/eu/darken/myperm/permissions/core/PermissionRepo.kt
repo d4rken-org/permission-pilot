@@ -144,6 +144,7 @@ class PermissionRepo @Inject constructor(
                     label = app.label,
                     isSystemApp = app.isSystemApp,
                     status = perm.status,
+                    pkgType = app.pkgType,
                 )
                 result.getOrPut(perm.permissionId) { mutableListOf() }.add(ref)
             }
@@ -167,6 +168,7 @@ class PermissionRepo @Inject constructor(
                 label = app.label,
                 isSystemApp = app.isSystemApp,
                 status = UsesPermission.Status.UNKNOWN,
+                pkgType = app.pkgType,
             )
             result.getOrPut(entity.permissionId) { mutableListOf() }.add(ref)
         }

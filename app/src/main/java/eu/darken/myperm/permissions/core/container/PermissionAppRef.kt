@@ -1,6 +1,7 @@
 package eu.darken.myperm.permissions.core.container
 
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.common.room.entity.PkgType
 
 data class PermissionAppRef(
     val pkgName: String,
@@ -8,4 +9,5 @@ data class PermissionAppRef(
     val label: String,
     val isSystemApp: Boolean,
     val status: UsesPermission.Status,
+    val pkgType: PkgType,
 )
