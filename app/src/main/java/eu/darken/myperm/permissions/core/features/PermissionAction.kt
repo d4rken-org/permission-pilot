@@ -133,6 +133,12 @@ sealed class PermissionAction {
                         "com.android.settings.Settings\$AccessibilitySettingsActivity"
                     )
                 }
+                APerm.BIND_DEVICE_ADMIN.id -> Intent().apply {
+                    component = ComponentName(
+                        "com.android.settings",
+                        "com.android.settings.DeviceAdminSettings"
+                    )
+                }
                 APerm.REQUEST_INSTALL_PACKAGES.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
                         pkg?.let { data = "package:${it.packageName}".toUri() }

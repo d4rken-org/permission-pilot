@@ -2,6 +2,8 @@ package eu.darken.myperm.common
 
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.app.AppOpsManager
+import android.app.admin.DevicePolicyManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.PackageInfo
@@ -134,6 +136,17 @@ class IPCFunnel @Inject constructor(
 
         suspend fun tryCreateUserHandle(handle: Int) = ipcFunnel.execute {
             service.tryCreateUserHandle(handle)
+        }
+    }
+
+    val devicePolicyManager by lazy { DevicePolicyManager2(this) }
+
+    class DevicePolicyManager2(private val ipcFunnel: IPCFunnel) {
+        private val service =
+            ContextCompat.getSystemService(ipcFunnel.context, DevicePolicyManager::class.java)!!
+
+        suspend fun getActiveAdmins(): List<ComponentName>? = ipcFunnel.execute {
+            service.activeAdmins?.toList()
         }
     }
 

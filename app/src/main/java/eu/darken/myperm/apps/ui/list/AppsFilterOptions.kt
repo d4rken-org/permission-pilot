@@ -89,6 +89,11 @@ data class AppsFilterOptions(
             labelRes = R.string.apps_filter_accessibility_label,
             matches = { it.hasAccessibilityServices }
         ),
+        DEVICE_ADMIN(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_device_admin_label,
+            matches = { it.hasDeviceAdmin }
+        ),
         PRIMARY_PROFILE(
             group = Group.PROFILE,
             labelRes = R.string.apps_filter_profile_active_label,

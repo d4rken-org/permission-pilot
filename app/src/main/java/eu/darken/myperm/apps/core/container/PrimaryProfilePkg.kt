@@ -11,12 +11,14 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.AccessibilityService
 import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.DeviceAdmin
 import eu.darken.myperm.apps.core.features.Installed
 import eu.darken.myperm.apps.core.features.InstallerInfo
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.apps.core.features.determineAccessibilityServices
 import eu.darken.myperm.apps.core.features.determineBatteryOptimization
+import eu.darken.myperm.apps.core.features.determineDeviceAdmins
 import eu.darken.myperm.apps.core.features.determineSpecialPermissions
 import eu.darken.myperm.apps.core.features.getInstallerInfo
 import eu.darken.myperm.apps.core.features.getSpecialPermissionStatuses
@@ -40,6 +42,7 @@ class PrimaryProfilePkg(
     private val extraPermissions: Collection<UsesPermission>,
     override val batteryOptimization: BatteryOptimization,
     override val accessibilityServices: Collection<AccessibilityService>,
+    override val deviceAdmins: Collection<DeviceAdmin>,
     private val specialPermissionStatuses: Map<Permission.Id, UsesPermission.Status> = emptyMap(),
 ) : BasePkg() {
 
@@ -95,7 +98,13 @@ class PrimaryProfilePkg(
                 flags = if (it.isEnabled) PackageInfo.REQUESTED_PERMISSION_GRANTED else 0
             )
         }
-        base + extraPermissions + acsPermissions
+        val deviceAdminPermissions = deviceAdmins.map {
+            UsesPermission.WithState(
+                id = APerm.BIND_DEVICE_ADMIN.id,
+                flags = if (it.isActive) PackageInfo.REQUESTED_PERMISSION_GRANTED else 0
+            )
+        }
+        base + extraPermissions + acsPermissions + deviceAdminPermissions
     }
 
     override val declaredPermissions: Collection<PermissionInfo> by lazy {
@@ -113,21 +122,28 @@ class PrimaryProfilePkg(
     override fun toString(): String = "PrimaryProfilePkg(packageName=$packageName, userHandle=$userHandle)"
 }
 
-private suspend fun PackageInfo.toNormalPkg(ipcFunnel: IPCFunnel): PrimaryProfilePkg = PrimaryProfilePkg(
+private suspend fun PackageInfo.toNormalPkg(
+    ipcFunnel: IPCFunnel,
+    activeAdminPkgs: Set<String>,
+): PrimaryProfilePkg = PrimaryProfilePkg(
     packageInfo = this,
     installerInfo = getInstallerInfo(ipcFunnel),
     extraPermissions = determineSpecialPermissions(ipcFunnel),
     batteryOptimization = determineBatteryOptimization(ipcFunnel),
     accessibilityServices = determineAccessibilityServices(ipcFunnel),
+    deviceAdmins = determineDeviceAdmins(ipcFunnel, activeAdminPkgs),
     specialPermissionStatuses = getSpecialPermissionStatuses(ipcFunnel),
 )
 
 suspend fun getNormalPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> {
     log(AppRepo.TAG) { "getNormalPkgs()" }
 
+    val activeAdminPkgs = ipcFunnel.devicePolicyManager.getActiveAdmins()
+        ?.map { it.packageName }?.toSet() ?: emptySet()
+
     return coroutineScope {
         ipcFunnel.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
-            .map { async { it.toNormalPkg(ipcFunnel) } }
+            .map { async { it.toNormalPkg(ipcFunnel, activeAdminPkgs) } }
             .awaitAll()
     }
 }
