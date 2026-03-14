@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.features.UsesPermission
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -13,8 +14,8 @@ data class PermissionDiff(
     @Serializable
     data class GrantChange(
         val permissionId: String,
-        val oldStatus: String,
-        val newStatus: String,
+        val oldStatus: UsesPermission.Status,
+        val newStatus: UsesPermission.Status,
     )
 
     val isEmpty: Boolean

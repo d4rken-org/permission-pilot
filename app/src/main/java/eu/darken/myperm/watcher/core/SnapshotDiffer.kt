@@ -29,8 +29,8 @@ class SnapshotDiffer @Inject constructor() {
                 if (prevStatus != curr.status) {
                     PermissionDiff.GrantChange(
                         permissionId = curr.permissionId,
-                        oldStatus = prevStatus.name,
-                        newStatus = curr.status.name,
+                        oldStatus = prevStatus,
+                        newStatus = curr.status,
                     )
                 } else null
             }

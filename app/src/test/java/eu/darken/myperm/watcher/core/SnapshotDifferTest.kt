@@ -157,12 +157,12 @@ class SnapshotDifferTest : BaseTest() {
         diff.grantChanges.size shouldBe 2
 
         val cameraChange = diff.grantChanges.first { it.permissionId == "android.permission.CAMERA" }
-        cameraChange.oldStatus shouldBe "DENIED"
-        cameraChange.newStatus shouldBe "GRANTED"
+        cameraChange.oldStatus shouldBe UsesPermission.Status.DENIED
+        cameraChange.newStatus shouldBe UsesPermission.Status.GRANTED
 
         val internetChange = diff.grantChanges.first { it.permissionId == "android.permission.INTERNET" }
-        internetChange.oldStatus shouldBe "GRANTED"
-        internetChange.newStatus shouldBe "DENIED"
+        internetChange.oldStatus shouldBe UsesPermission.Status.GRANTED
+        internetChange.newStatus shouldBe UsesPermission.Status.DENIED
     }
 
     @Test
@@ -214,8 +214,8 @@ class SnapshotDifferTest : BaseTest() {
         diff.removedPermissions.shouldContainExactlyInAnyOrder("android.permission.INTERNET")
         diff.grantChanges.size shouldBe 1
         diff.grantChanges[0].permissionId shouldBe "android.permission.CAMERA"
-        diff.grantChanges[0].oldStatus shouldBe "DENIED"
-        diff.grantChanges[0].newStatus shouldBe "GRANTED"
+        diff.grantChanges[0].oldStatus shouldBe UsesPermission.Status.DENIED
+        diff.grantChanges[0].newStatus shouldBe UsesPermission.Status.GRANTED
         diff.addedDeclared.shouldContainExactlyInAnyOrder("com.example.NEW_PERM")
         diff.removedDeclared.shouldContainExactlyInAnyOrder("com.example.OLD_PERM")
     }
@@ -234,7 +234,7 @@ class SnapshotDifferTest : BaseTest() {
         )
 
         diff.grantChanges.size shouldBe 1
-        diff.grantChanges[0].oldStatus shouldBe "GRANTED"
-        diff.grantChanges[0].newStatus shouldBe "GRANTED_IN_USE"
+        diff.grantChanges[0].oldStatus shouldBe UsesPermission.Status.GRANTED
+        diff.grantChanges[0].newStatus shouldBe UsesPermission.Status.GRANTED_IN_USE
     }
 }
