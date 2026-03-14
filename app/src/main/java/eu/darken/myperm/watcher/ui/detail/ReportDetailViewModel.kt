@@ -63,7 +63,7 @@ class ReportDetailViewModel @AssistedInject constructor(
         val isSystemApp: Boolean = false,
         val userHandleId: Int = 0,
         val detectedAt: Long = 0,
-        val diff: PermissionDiff = PermissionDiff(),
+        val diff: PermissionDiff? = null,
         val permissionInfoMap: Map<String, EnrichedPermission> = emptyMap(),
         val isLoading: Boolean = true,
     )
@@ -79,7 +79,7 @@ class ReportDetailViewModel @AssistedInject constructor(
                     json.decodeFromString<PermissionDiff>(entity.changesJson)
                 } catch (e: Exception) {
                     log(TAG, WARN) { "Failed to deserialize changesJson for report $reportId: ${e.asLog()}" }
-                    PermissionDiff()
+                    null
                 }
 
                 val snapshotPkg = entity.sourceSnapshotId?.let { sid ->
@@ -116,7 +116,8 @@ class ReportDetailViewModel @AssistedInject constructor(
         }
     }
 
-    private fun resolvePermissions(diff: PermissionDiff): Map<String, EnrichedPermission> {
+    private fun resolvePermissions(diff: PermissionDiff?): Map<String, EnrichedPermission> {
+        if (diff == null) return emptyMap()
         val allIds = buildSet {
             addAll(diff.addedPermissions)
             addAll(diff.removedPermissions)

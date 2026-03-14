@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -145,7 +146,11 @@ fun ReportDetailScreen(
             ) {
                 AppHeaderCard(state)
                 EventDetailsCard(state)
-                PermissionCards(state)
+                if (state.diff != null) {
+                    PermissionCards(state.diff, state.eventType, state.permissionInfoMap)
+                } else {
+                    DiffErrorCard()
+                }
             }
         }
     }
@@ -321,73 +326,104 @@ private fun DetailRow(label: String, value: String) {
 // Section 3: Permissions
 
 @Composable
-private fun PermissionCards(state: ReportDetailViewModel.State) {
-    when (state.eventType) {
+private fun DiffErrorCard() {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.errorContainer,
+        ),
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Icon(
+                Icons.Filled.Warning,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onErrorContainer,
+            )
+            Text(
+                text = stringResource(R.string.watcher_detail_diff_error),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+            )
+        }
+    }
+}
+
+@Composable
+private fun PermissionCards(
+    diff: PermissionDiff,
+    eventType: String,
+    enrichedMap: Map<String, EnrichedPermission>,
+) {
+    when (eventType) {
         "INSTALL" -> {
-            val perms = state.diff.addedPermissions + state.diff.addedDeclared
+            val perms = diff.addedPermissions + diff.addedDeclared
             if (perms.isNotEmpty()) {
                 PermissionCategoryCard(
                     title = stringResource(R.string.watcher_diff_added_permissions),
                     subtitle = stringResource(R.string.watcher_detail_new_perms_subtitle),
                     titleColor = MaterialTheme.colorScheme.primary,
                     permissions = perms,
-                    enrichedMap = state.permissionInfoMap,
+                    enrichedMap = enrichedMap,
                     showGrantType = true,
                 )
             }
         }
         "UPDATE" -> {
-            val added = state.diff.addedPermissions + state.diff.addedDeclared
+            val added = diff.addedPermissions + diff.addedDeclared
             if (added.isNotEmpty()) {
                 PermissionCategoryCard(
                     title = stringResource(R.string.watcher_diff_added_permissions),
                     subtitle = stringResource(R.string.watcher_detail_new_perms_subtitle),
                     titleColor = MaterialTheme.colorScheme.primary,
                     permissions = added,
-                    enrichedMap = state.permissionInfoMap,
+                    enrichedMap = enrichedMap,
                     showGrantType = true,
                 )
             }
-            val removed = state.diff.removedPermissions + state.diff.removedDeclared
+            val removed = diff.removedPermissions + diff.removedDeclared
             if (removed.isNotEmpty()) {
                 PermissionCategoryCard(
                     title = stringResource(R.string.watcher_diff_removed_permissions),
                     subtitle = stringResource(R.string.watcher_detail_removed_perms_subtitle),
                     titleColor = MaterialTheme.colorScheme.error,
                     permissions = removed,
-                    enrichedMap = state.permissionInfoMap,
+                    enrichedMap = enrichedMap,
                     showGrantType = false,
                 )
             }
-            if (state.diff.grantChanges.isNotEmpty()) {
+            if (diff.grantChanges.isNotEmpty()) {
                 GrantChangesCategoryCard(
                     title = stringResource(R.string.watcher_diff_grant_changes),
                     subtitle = stringResource(R.string.watcher_detail_grant_changes_subtitle),
-                    grantChanges = state.diff.grantChanges,
-                    enrichedMap = state.permissionInfoMap,
+                    grantChanges = diff.grantChanges,
+                    enrichedMap = enrichedMap,
                 )
             }
         }
         "REMOVED" -> {
-            val perms = state.diff.addedPermissions + state.diff.addedDeclared
+            val perms = diff.addedPermissions + diff.addedDeclared
             if (perms.isNotEmpty()) {
                 PermissionCategoryCard(
                     title = stringResource(R.string.watcher_detail_last_permissions_header, perms.size),
                     subtitle = stringResource(R.string.watcher_detail_last_known_perms_subtitle),
                     titleColor = MaterialTheme.colorScheme.primary,
                     permissions = perms,
-                    enrichedMap = state.permissionInfoMap,
+                    enrichedMap = enrichedMap,
                     showGrantType = false,
                 )
             }
         }
         "GRANT_CHANGE" -> {
-            if (state.diff.grantChanges.isNotEmpty()) {
+            if (diff.grantChanges.isNotEmpty()) {
                 GrantChangesCategoryCard(
                     title = stringResource(R.string.watcher_diff_grant_changes),
                     subtitle = stringResource(R.string.watcher_detail_grant_changes_subtitle),
-                    grantChanges = state.diff.grantChanges,
-                    enrichedMap = state.permissionInfoMap,
+                    grantChanges = diff.grantChanges,
+                    enrichedMap = enrichedMap,
                 )
             }
         }

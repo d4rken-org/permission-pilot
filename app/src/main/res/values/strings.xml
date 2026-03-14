@@ -561,6 +561,7 @@
     <string name="watcher_detail_grant_type_approval">Requires approval</string>
     <string name="watcher_detail_toggle_description">Toggle description</string>
     <string name="watcher_detail_unknown_permission">Unknown permission</string>
+    <string name="watcher_detail_diff_error">Could not load permission details</string>
 
     <string name="watcher_settings_polling_label">Background check interval</string>
     <plurals name="watcher_settings_polling_interval">
