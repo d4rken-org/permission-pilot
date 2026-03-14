@@ -37,6 +37,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -173,6 +174,19 @@ fun WatcherDashboardScreen(
     var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Scaffold(
+        floatingActionButton = {
+            if (isEnabled) {
+                FloatingActionButton(
+                    onClick = { if (refreshPhase == null) onRefresh() },
+                ) {
+                    if (refreshPhase != null) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                    } else {
+                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                    }
+                }
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -193,13 +207,6 @@ fun WatcherDashboardScreen(
                 },
                 actions = {
                     if (isEnabled) {
-                        IconButton(onClick = onRefresh, enabled = refreshPhase == null) {
-                            if (refreshPhase != null) {
-                                CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                            } else {
-                                Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
-                            }
-                        }
                         IconButton(onClick = {
                             if (isSearchActive) {
                                 searchQuery = ""
@@ -536,10 +543,20 @@ private fun ReportListItem(
                         WatcherEventType.REMOVED -> stringResource(R.string.watcher_event_removed)
                         WatcherEventType.GRANT_CHANGE -> stringResource(R.string.watcher_event_grant_change)
                     }
+                    val countSuffix = when {
+                        item.gainedCount > 0 && item.lostCount > 0 -> "(+${item.gainedCount}, -${item.lostCount})"
+                        item.gainedCount > 0 -> "(+${item.gainedCount})"
+                        item.lostCount > 0 -> "(-${item.lostCount})"
+                        else -> null
+                    }
+                    val displayLabel = if (countSuffix != null) "$eventLabel $countSuffix" else eventLabel
                     Text(
-                        text = eventLabel,
+                        text = displayLabel,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f),
                     )
                     Text(
                         text = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM)
@@ -583,6 +600,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     isSeen = false,
                     hasAddedPermissions = true,
                     hasLostPermissions = false,
+                    gainedCount = 2,
                 ),
                 WatcherReportItem(
                     id = 2,
@@ -595,6 +613,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                     isSeen = true,
                     hasAddedPermissions = false,
                     hasLostPermissions = false,
+                    lostCount = 1,
                 ),
             ),
             hasUnseen = true,
@@ -631,6 +650,8 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
                     isSeen = false,
                     hasAddedPermissions = true,
                     hasLostPermissions = false,
+                    gainedCount = 3,
+                    lostCount = 1,
                 ),
             ),
             hasUnseen = true,

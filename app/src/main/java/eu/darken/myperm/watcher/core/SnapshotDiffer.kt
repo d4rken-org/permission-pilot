@@ -40,12 +40,20 @@ class SnapshotDiffer @Inject constructor() {
         val addedDeclared = (currDeclaredIds - prevDeclaredIds).toList()
         val removedDeclared = (prevDeclaredIds - currDeclaredIds).toList()
 
+        val currentStatusMap = currentPerms.associate { it.permissionId to it.status }
+        val gainedCount = addedPermissions.count { currentStatusMap[it]?.isGranted == true } +
+            grantChanges.count { !it.oldStatus.isGranted && it.newStatus.isGranted }
+        val lostCount = removedPermissions.count { prevStatusMap[it]?.isGranted == true } +
+            grantChanges.count { it.oldStatus.isGranted && !it.newStatus.isGranted }
+
         return PermissionDiff(
             addedPermissions = addedPermissions,
             removedPermissions = removedPermissions,
             grantChanges = grantChanges,
             addedDeclared = addedDeclared,
             removedDeclared = removedDeclared,
+            gainedCount = gainedCount,
+            lostCount = lostCount,
         )
     }
 

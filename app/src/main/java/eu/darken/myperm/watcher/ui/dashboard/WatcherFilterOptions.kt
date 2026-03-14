@@ -32,6 +32,7 @@ data class WatcherFilterOptions(
         GRANT_CHANGE(Group.EVENT_TYPE, R.string.watcher_event_grant_change),
         HAS_ADDED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_added_permissions),
         HAS_LOST_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_lost_permissions),
+        HAS_GAINED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_gained_permissions),
         UNSEEN_ONLY(Group.STATUS, R.string.watcher_filter_unseen_only);
 
         fun matches(item: WatcherReportItem): Boolean = when (this) {
@@ -41,6 +42,7 @@ data class WatcherFilterOptions(
             GRANT_CHANGE -> item.eventType == WatcherEventType.GRANT_CHANGE
             HAS_ADDED_PERMISSIONS -> item.hasAddedPermissions
             HAS_LOST_PERMISSIONS -> item.hasLostPermissions
+            HAS_GAINED_PERMISSIONS -> item.gainedCount > 0
             UNSEEN_ONLY -> !item.isSeen
         }
     }

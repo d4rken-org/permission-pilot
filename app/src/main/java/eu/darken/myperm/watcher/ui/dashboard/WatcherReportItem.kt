@@ -14,4 +14,6 @@ data class WatcherReportItem(
     val isSeen: Boolean,
     val hasAddedPermissions: Boolean,
     val hasLostPermissions: Boolean,
+    val gainedCount: Int = 0,
+    val lostCount: Int = 0,
 )

@@ -164,6 +164,8 @@ class WatcherDashboardViewModel @Inject constructor(
             isSeen = isSeen,
             hasAddedPermissions = diff?.let { it.addedPermissions.isNotEmpty() || it.addedDeclared.isNotEmpty() } ?: false,
             hasLostPermissions = diff?.let { it.removedPermissions.isNotEmpty() || it.removedDeclared.isNotEmpty() } ?: false,
+            gainedCount = diff?.gainedCount ?: 0,
+            lostCount = diff?.lostCount ?: 0,
         )
     }
 
