@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -57,6 +58,7 @@ import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.watcher.core.WatcherManager
 import java.text.DateFormat
 import java.util.Date
 
@@ -129,18 +131,37 @@ fun WatcherDashboardScreen(
     useSettingsFallback: Boolean = false,
 ) {
     val isEnabled = state?.isWatcherEnabled ?: false
-    val isRefreshing = state?.isRefreshing ?: false
+    val refreshPhase = state?.refreshPhase
     val reports = state?.reports ?: emptyList()
     val hasUnseen = reports.any { !it.isSeen }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = stringResource(R.string.watcher_tab_label)) },
+                title = {
+                    Column {
+                        Text(text = stringResource(R.string.watcher_tab_label))
+                        if (refreshPhase != null) {
+                            val subtitleRes = when (refreshPhase) {
+                                WatcherManager.Phase.SCANNING -> R.string.watcher_refresh_scanning
+                                WatcherManager.Phase.CHECKING_CHANGES -> R.string.watcher_refresh_checking
+                            }
+                            Text(
+                                text = stringResource(subtitleRes),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                    }
+                },
                 actions = {
                     if (isEnabled) {
-                        IconButton(onClick = onRefresh, enabled = !isRefreshing) {
-                            Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                        IconButton(onClick = onRefresh, enabled = refreshPhase == null) {
+                            if (refreshPhase != null) {
+                                CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                            } else {
+                                Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                            }
                         }
                     }
                     if (isEnabled && hasUnseen) {

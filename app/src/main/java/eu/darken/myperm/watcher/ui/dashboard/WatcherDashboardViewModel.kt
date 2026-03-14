@@ -1,7 +1,6 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
@@ -14,6 +13,7 @@ import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +29,7 @@ class WatcherDashboardViewModel @Inject constructor(
     private val upgradeRepo: UpgradeRepo,
     private val capability: WatcherNotificationCapability,
     private val watcherWorkScheduler: WatcherWorkScheduler,
-    private val appRepo: AppRepo,
+    private val watcherManager: WatcherManager,
 ) : ViewModel4(dispatcherProvider) {
 
     data class ReportItem(
@@ -49,7 +49,7 @@ class WatcherDashboardViewModel @Inject constructor(
         val reports: List<ReportItem> = emptyList(),
         val showNotificationPermissionCard: Boolean = false,
         val canRequestNotificationPermission: Boolean = false,
-        val isRefreshing: Boolean = false,
+        val refreshPhase: WatcherManager.Phase? = null,
     )
 
     private val notificationsAvailable = MutableStateFlow(capability.areNotificationsEnabled())
@@ -58,23 +58,21 @@ class WatcherDashboardViewModel @Inject constructor(
         notificationsAvailable.value = capability.areNotificationsEnabled()
     }
 
-    private val refreshing = MutableStateFlow(false)
-
     val state = combine(
         generalSettings.isWatcherEnabled.flow,
         upgradeRepo.upgradeInfo.map { it.isPro },
         changeDao.getAll(),
         generalSettings.isWatcherNotificationsEnabled.flow,
         notificationsAvailable,
-        refreshing,
-    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, isRefreshing ->
+        watcherManager.phase,
+    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase ->
         State(
             isWatcherEnabled = isEnabled,
             isPro = isPro,
             reports = entities.map { it.toItem() },
             showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
-            isRefreshing = isRefreshing,
+            refreshPhase = phase,
         )
     }.asStateFlow(State())
 
@@ -99,13 +97,10 @@ class WatcherDashboardViewModel @Inject constructor(
 
     fun refreshNow() = launch {
         log(TAG) { "refreshNow()" }
-        refreshing.value = true
         try {
-            appRepo.scanDiffAndPrune(TriggerReason.MANUAL_REFRESH)
+            watcherManager.scanDiffAndPrune(TriggerReason.MANUAL_REFRESH)
         } catch (e: Exception) {
             log(TAG, WARN) { "Refresh failed: ${e.asLog()}" }
-        } finally {
-            refreshing.value = false
         }
     }
 
