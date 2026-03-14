@@ -89,6 +89,24 @@ data class AppsFilterOptions(
             labelRes = R.string.apps_filter_accessibility_label,
             matches = { it.hasAccessibilityServices }
         ),
+        INSTALL_PACKAGES(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_install_packages_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    it.permissionId == "android.permission.REQUEST_INSTALL_PACKAGES" && it.status.isGranted
+                }
+            }
+        ),
+        OVERLAY(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_overlay_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    it.permissionId == "android.permission.SYSTEM_ALERT_WINDOW" && it.status.isGranted
+                }
+            }
+        ),
         PRIMARY_PROFILE(
             group = Group.PROFILE,
             labelRes = R.string.apps_filter_profile_active_label,

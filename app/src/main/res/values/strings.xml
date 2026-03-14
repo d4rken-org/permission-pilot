@@ -149,6 +149,8 @@
     <string name="apps_filter_profile_secondary_label">Apps in Managed Profile(s)</string>
     <string name="apps_filter_battery_optimization_label">Apps with custom battery options</string>
     <string name="apps_filter_accessibility_label">Apps with accessibility services</string>
+    <string name="apps_filter_install_packages_label">Can install apps</string>
+    <string name="apps_filter_overlay_label">Draw over apps</string>
     <string name="apps_filter_section_app_type">App type</string>
     <string name="apps_filter_section_install_source">Install source</string>
     <string name="apps_filter_section_properties">Properties</string>

@@ -15,9 +15,11 @@ import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.apps.core.AppInfo
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.known.APerm
+import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
@@ -32,6 +34,7 @@ class OverviewViewModel @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val appRepo: AppRepo,
     private val upgradeRepo: UpgradeRepo,
+    private val generalSettings: GeneralSettings,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
     data class DeviceInfo(
@@ -109,8 +112,8 @@ class OverviewViewModel @Inject constructor(
             installerAppsSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
             systemAlertWindowUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
             systemAlertWindowSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
-            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
-            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
+            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN },
+            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN },
             clonesUser = apps.count { !it.isSystemApp && it.twinCount > 0 },
             clonesSystem = apps.count { it.isSystemApp && it.twinCount > 0 },
             sharedIdsUser = apps.count { !it.isSystemApp && it.siblingCount > 0 },
@@ -127,6 +130,11 @@ class OverviewViewModel @Inject constructor(
 
     fun onUpgrade() {
         navTo(Nav.Main.Upgrade)
+    }
+
+    fun onCategoryClicked(filters: Set<AppsFilterOptions.Filter>) = launch {
+        generalSettings.appsFilterOptions.update { AppsFilterOptions(filters) }
+        navTo(Nav.Tab.Apps)
     }
 
     fun goToSettings() {
