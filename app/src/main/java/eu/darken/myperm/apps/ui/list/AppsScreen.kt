@@ -32,11 +32,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -235,49 +239,57 @@ private fun AppListItem(
     item: AppsViewModel.AppItem,
     onClick: () -> Unit,
 ) {
+    val density = LocalDensity.current
+    var textBlockHeight by remember { mutableIntStateOf(0) }
+    val iconSize = with(density) { if (textBlockHeight > 0) textBlockHeight.toDp() else 40.dp }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
             .padding(horizontal = 16.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         AppIcon(
             pkg = item.iconModel,
             isSystemApp = item.isSystemApp,
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier.size(iconSize),
         )
 
         Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = item.pkgName,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Text(
-                text = item.label,
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            val grantedText = if (item.totalCount > 0) {
-                pluralStringResource(R.plurals.apps_permissions_x_of_x_granted, item.grantedCount, item.grantedCount, item.totalCount)
-            } else null
-            val declaresText = if (item.declaredCount > 0) {
-                pluralStringResource(R.plurals.apps_permissions_declares_x, item.declaredCount, item.declaredCount)
-            } else null
-            val subtitle = listOfNotNull(grantedText, declaresText).joinToString(" ")
-            if (subtitle.isNotEmpty()) {
+            Column(modifier = Modifier.onSizeChanged { textBlockHeight = it.height }) {
+                if (item.showPkgName) {
+                    Text(
+                        text = item.pkgName,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
                 Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    text = item.label,
+                    style = MaterialTheme.typography.bodyLarge,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
+                val grantedText = if (item.totalCount > 0) {
+                    pluralStringResource(R.plurals.apps_permissions_x_of_x_granted, item.grantedCount, item.grantedCount, item.totalCount)
+                } else null
+                val declaresText = if (item.declaredCount > 0) {
+                    pluralStringResource(R.plurals.apps_permissions_declares_x, item.declaredCount, item.declaredCount)
+                } else null
+                val subtitle = listOfNotNull(grantedText, declaresText).joinToString(" ")
+                if (subtitle.isNotEmpty()) {
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
             }
             if (item.tagIcons.isNotEmpty()) {
                 Row(

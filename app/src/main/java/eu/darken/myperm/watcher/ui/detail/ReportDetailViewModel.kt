@@ -7,6 +7,9 @@ import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
@@ -74,7 +77,8 @@ class ReportDetailViewModel @AssistedInject constructor(
             if (entity != null) {
                 val diff = try {
                     json.decodeFromString<PermissionDiff>(entity.changesJson)
-                } catch (_: Exception) {
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Failed to deserialize changesJson for report $reportId: ${e.asLog()}" }
                     PermissionDiff()
                 }
 
