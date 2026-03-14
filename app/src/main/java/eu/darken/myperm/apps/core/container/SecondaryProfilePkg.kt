@@ -163,7 +163,7 @@ suspend fun getSecondaryProfilePkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> =
                 installerInfo = pkgInfo.getInstallerInfo(ipcFunnel),
                 launcherAppInfo = appInfo,
                 userHandle = userHandle,
-                extraPermissions = pkgInfo.determineSpecialPermissions(ipcFunnel),
+                extraPermissions = pkgInfo.determineSpecialPermissions(ipcFunnel, uidOverride = appInfo.uid),
                 specialPermissionStatuses = pkgInfo.getSpecialPermissionStatuses(ipcFunnel, uidOverride = appInfo.uid),
             ).also { log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $it" } }
         }
