@@ -98,14 +98,16 @@ Kaufe die Pro-Version, um deine Unterstützung zu zeigen!</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Unbekannt</string>
     <string name="permissions_permission_details_label">Berechtigungsdetails</string>
-    <string name="generic_loading_label_0">Bald™</string>
-    <string name="generic_loading_label_1">Butter weiterreichen</string>
-    <string name="generic_loading_label_2">Mehr RAM herunterladen</string>
-    <string name="generic_loading_label_3">Immer noch schneller als ein iPhone</string>
-    <string name="generic_loading_label_4">Was ist das hinter dir?</string>
-    <string name="generic_loading_label_5">Die CPU macht Kaffeepause</string>
-    <string name="generic_loading_label_6">Warten auf Daten von Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo-Enkabulator wird initialisiert</string>
+    <string-array name="generic_loading_labels">
+        <item>Bald™</item>
+        <item>Butter weiterreichen</item>
+        <item>Mehr RAM herunterladen</item>
+        <item>Immer noch schneller als ein iPhone</item>
+        <item>Was ist das hinter dir?</item>
+        <item>Die CPU macht Kaffeepause</item>
+        <item>Warten auf Daten von Pepe Silvia</item>
+        <item>Turbo-Enkabulator wird initialisiert</item>
+    </string-array>
     <string name="apps_app_details_label">App-Details</string>
     <string name="apps_details_shareduserid_label">Apps mit geteilter Benutzer-ID</string>
     <string name="apps_details_siblings_label">Geschwister</string>

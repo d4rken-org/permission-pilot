@@ -111,14 +111,16 @@
     <string name="permissions_protection_type_internal_label">Internal</string>
     <string name="permissions_protection_type_unknown_label">Unknown</string>
     <string name="permissions_permission_details_label">Permission details</string>
-    <string name="generic_loading_label_0">Soon™</string>
-    <string name="generic_loading_label_1">Passing the butter</string>
-    <string name="generic_loading_label_2">Downloading more RAM</string>
-    <string name="generic_loading_label_3">Still faster than an iPhone</string>
-    <string name="generic_loading_label_4">What\'s that behind you?</string>
-    <string name="generic_loading_label_5">The CPU is on a coffee break</string>
-    <string name="generic_loading_label_6">Awaiting data from Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator is initiating</string>
+    <string-array name="generic_loading_labels">
+        <item>Soon™</item>
+        <item>Passing the butter</item>
+        <item>Downloading more RAM</item>
+        <item>Still faster than an iPhone</item>
+        <item>What\'s that behind you?</item>
+        <item>The CPU is on a coffee break</item>
+        <item>Awaiting data from Pepe Silvia</item>
+        <item>Turbo encabulator is initiating</item>
+    </string-array>
     <string name="apps_app_details_label">App Details</string>
     <string name="apps_details_shareduserid_label">Apps with Shared User ID</string>
     <string name="apps_details_siblings_label">Siblings</string>
@@ -332,6 +334,8 @@
     <string name="permissions_list_empty_message">No permissions to show.</string>
     <string name="permissions_list_empty_search_message">No permissions match your search.</string>
     <string name="permission_picture_in_picture_label">Picture in Picture</string>
+    <string name="permission_legacy_storage_label">Legacy Storage</string>
+    <string name="permission_legacy_storage_description">Allows apps to access external storage without scoped storage restrictions. This was the default behavior before Android 10. Apps with this access can read and write files anywhere on shared storage.</string>
     <string name="settings_page_label">Settings</string>
     <string name="overview_summary_title_label">Summary</string>
     <string name="permissions_details_declaring_apps_label">Declaring apps</string>

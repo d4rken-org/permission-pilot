@@ -94,14 +94,16 @@
     <string name="permissions_protection_type_internal_label">Nội bộ</string>
     <string name="permissions_protection_type_unknown_label">Không xác định</string>
     <string name="permissions_permission_details_label">Chi tiết quyền</string>
-    <string name="generic_loading_label_0">Sắp có™</string>
-    <string name="generic_loading_label_1">Đang chuyển bơ</string>
-    <string name="generic_loading_label_2">Đang tải thêm RAM</string>
-    <string name="generic_loading_label_3">Vẫn nhanh hơn iPhone</string>
-    <string name="generic_loading_label_4">Cái gì đó phía sau bạn?</string>
-    <string name="generic_loading_label_5">CPU đang nghỉ giải lao uống cà phê</string>
-    <string name="generic_loading_label_6">Đang chờ dữ liệu từ Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator đang khởi tạo</string>
+    <string-array name="generic_loading_labels">
+        <item>Sắp có™</item>
+        <item>Đang chuyển bơ</item>
+        <item>Đang tải thêm RAM</item>
+        <item>Vẫn nhanh hơn iPhone</item>
+        <item>Cái gì đó phía sau bạn?</item>
+        <item>CPU đang nghỉ giải lao uống cà phê</item>
+        <item>Đang chờ dữ liệu từ Pepe Silvia</item>
+        <item>Turbo encabulator đang khởi tạo</item>
+    </string-array>
     <string name="apps_app_details_label">Chi tiết ứng dụng</string>
     <string name="apps_details_shareduserid_label">Ứng dụng có ID người dùng chung</string>
     <string name="apps_details_siblings_label">Anh chị em</string>

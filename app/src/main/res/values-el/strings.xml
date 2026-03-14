@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">Εσωτερικό</string>
     <string name="permissions_protection_type_unknown_label">Άγνωστο</string>
     <string name="permissions_permission_details_label">Λεπτομέρειες άδειας</string>
-    <string name="generic_loading_label_0">Σύντομα™</string>
-    <string name="generic_loading_label_1">Περνώντας το βούτυρο</string>
-    <string name="generic_loading_label_2">Λήψη περισσότερης RAM</string>
-    <string name="generic_loading_label_3">Ακόμα πιο γρήγορο από ένα iPhone</string>
-    <string name="generic_loading_label_4">Τι είναι αυτό πίσω σου;</string>
-    <string name="generic_loading_label_5">Ο CPU είναι σε διάλειμμα για καφέ</string>
-    <string name="generic_loading_label_6">Αναμένονται στοιχεία από τον Πέπε Σίλβια</string>
-    <string name="generic_loading_label_7">Το Turbo encabulator εκκινεί</string>
+    <string-array name="generic_loading_labels">
+        <item>Σύντομα™</item>
+        <item>Περνώντας το βούτυρο</item>
+        <item>Λήψη περισσότερης RAM</item>
+        <item>Ακόμα πιο γρήγορο από ένα iPhone</item>
+        <item>Τι είναι αυτό πίσω σου;</item>
+        <item>Ο CPU είναι σε διάλειμμα για καφέ</item>
+        <item>Αναμένονται στοιχεία από τον Πέπε Σίλβια</item>
+        <item>Το Turbo encabulator εκκινεί</item>
+    </string-array>
     <string name="apps_app_details_label">Λεπτομέρειες Εφαρμογής</string>
     <string name="apps_details_shareduserid_label">Εφαρμογές με Κοινόχρηστο Αναγνωριστικό Χρήστη</string>
     <string name="apps_details_siblings_label">Αδέρφια</string>

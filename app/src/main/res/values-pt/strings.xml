@@ -97,14 +97,16 @@
     <string name="permissions_protection_type_internal_label">Interna</string>
     <string name="permissions_protection_type_unknown_label">Desconhecida</string>
     <string name="permissions_permission_details_label">Detalhes da permissão</string>
-    <string name="generic_loading_label_0">Em breve™</string>
-    <string name="generic_loading_label_1">Passando manteiga</string>
-    <string name="generic_loading_label_2">Baixando mais RAM</string>
-    <string name="generic_loading_label_3">De qualquer modo mais rápido que iPhone</string>
-    <string name="generic_loading_label_4">O que é isso atrás de você?</string>
-    <string name="generic_loading_label_5">A CPU está tomando café</string>
-    <string name="generic_loading_label_6">Aguardando dados de Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator está iniciando</string>
+    <string-array name="generic_loading_labels">
+        <item>Em breve™</item>
+        <item>Passando manteiga</item>
+        <item>Baixando mais RAM</item>
+        <item>De qualquer modo mais rápido que iPhone</item>
+        <item>O que é isso atrás de você?</item>
+        <item>A CPU está tomando café</item>
+        <item>Aguardando dados de Pepe Silvia</item>
+        <item>Turbo encabulator está iniciando</item>
+    </string-array>
     <string name="apps_app_details_label">Detalhes do app</string>
     <string name="apps_details_shareduserid_label">Apps com ID compartilhada de usuário</string>
     <string name="apps_details_siblings_label">Os irmãos</string>

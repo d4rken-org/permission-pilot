@@ -104,14 +104,16 @@
     <string name="permissions_protection_type_internal_label">פנימית</string>
     <string name="permissions_protection_type_unknown_label">לא ידועה</string>
     <string name="permissions_permission_details_label">פרטי הרשאה</string>
-    <string name="generic_loading_label_0">בקרוב™</string>
-    <string name="generic_loading_label_1">מעביר את החמאה</string>
-    <string name="generic_loading_label_2">מוריד עוד RAM</string>
-    <string name="generic_loading_label_3">עדיין מהיר יותר מ-iPhone</string>
-    <string name="generic_loading_label_4">מה זה מאחוריך?</string>
-    <string name="generic_loading_label_5">המעבד בהפסקת קפה</string>
-    <string name="generic_loading_label_6">ממתין לנתונים מ-Pepe Silvia</string>
-    <string name="generic_loading_label_7">אנקבולטור הטורבו מתחיל לפעול</string>
+    <string-array name="generic_loading_labels">
+        <item>בקרוב™</item>
+        <item>מעביר את החמאה</item>
+        <item>מוריד עוד RAM</item>
+        <item>עדיין מהיר יותר מ-iPhone</item>
+        <item>מה זה מאחוריך?</item>
+        <item>המעבד בהפסקת קפה</item>
+        <item>ממתין לנתונים מ-Pepe Silvia</item>
+        <item>אנקבולטור הטורבו מתחיל לפעול</item>
+    </string-array>
     <string name="apps_app_details_label">פרטי אפליקציה</string>
     <string name="apps_details_shareduserid_label">אפליקציות עם מזהה משתמש משותף</string>
     <string name="apps_details_siblings_label">אחים</string>

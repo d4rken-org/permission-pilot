@@ -103,14 +103,16 @@
     <string name="permissions_protection_type_internal_label">Внутренний</string>
     <string name="permissions_protection_type_unknown_label">Неизвестный</string>
     <string name="permissions_permission_details_label">Подробности разрешений</string>
-    <string name="generic_loading_label_0">Скоро™</string>
-    <string name="generic_loading_label_1">Сквозь масло</string>
-    <string name="generic_loading_label_2">Больше RAM</string>
-    <string name="generic_loading_label_3">Но быстрее, чем iPhone</string>
-    <string name="generic_loading_label_4">Что там позади?</string>
-    <string name="generic_loading_label_5">CPU на перерыве</string>
-    <string name="generic_loading_label_6">Ждём данных от Pepe Silvia</string>
-    <string name="generic_loading_label_7">Турбо инкабулятор запускается</string>
+    <string-array name="generic_loading_labels">
+        <item>Скоро™</item>
+        <item>Сквозь масло</item>
+        <item>Больше RAM</item>
+        <item>Но быстрее, чем iPhone</item>
+        <item>Что там позади?</item>
+        <item>CPU на перерыве</item>
+        <item>Ждём данных от Pepe Silvia</item>
+        <item>Турбо инкабулятор запускается</item>
+    </string-array>
     <string name="apps_app_details_label">Подробности приложения</string>
     <string name="apps_details_shareduserid_label">Прил. с предоставленным ID пользователя</string>
     <string name="apps_details_siblings_label">Родственные</string>

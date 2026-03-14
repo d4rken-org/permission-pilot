@@ -98,14 +98,16 @@ Guhertoya Pro bikirin da ku piştgiriya xwe nîşan bidin!</string>
     <string name="permissions_protection_type_internal_label">Navxweyî</string>
     <string name="permissions_protection_type_unknown_label">Nenas</string>
     <string name="permissions_permission_details_label">Hûrgiliyên destûrê</string>
-    <string name="generic_loading_label_0">Zû™</string>
-    <string name="generic_loading_label_1">Rûn derbas dike</string>
-    <string name="generic_loading_label_2">RAM zêdetir dadixîne</string>
-    <string name="generic_loading_label_3">Hîn jî ji iPhone-ê bilez e</string>
-    <string name="generic_loading_label_4">Li pişta te çi ye?</string>
-    <string name="generic_loading_label_5">CPU di navbera qehweyê de ye</string>
-    <string name="generic_loading_label_6">Li benda daneyan ji Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator dest pê dike</string>
+    <string-array name="generic_loading_labels">
+        <item>Zû™</item>
+        <item>Rûn derbas dike</item>
+        <item>RAM zêdetir dadixîne</item>
+        <item>Hîn jî ji iPhone-ê bilez e</item>
+        <item>Li pişta te çi ye?</item>
+        <item>CPU di navbera qehweyê de ye</item>
+        <item>Li benda daneyan ji Pepe Silvia</item>
+        <item>Turbo encabulator dest pê dike</item>
+    </string-array>
     <string name="apps_app_details_label">Hûrgiliyên serlêdanê</string>
     <string name="apps_details_shareduserid_label">Serlêdanên bi Nasnameya Bikarhênerê Hevpar</string>
     <string name="apps_details_siblings_label">Xwişk û bira</string>

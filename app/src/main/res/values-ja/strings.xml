@@ -94,14 +94,16 @@
     <string name="permissions_protection_type_internal_label">内部</string>
     <string name="permissions_protection_type_unknown_label">不明</string>
     <string name="permissions_permission_details_label">権限の詳細</string>
-    <string name="generic_loading_label_0">もうすぐ™</string>
-    <string name="generic_loading_label_1">バターを渡している</string>
-    <string name="generic_loading_label_2">より多くのRAMをダウンロード中</string>
-    <string name="generic_loading_label_3">まだiPhoneより速い</string>
-    <string name="generic_loading_label_4">あなたの後ろにあるのは何？</string>
-    <string name="generic_loading_label_5">CPUがコーヒーブレイク中</string>
-    <string name="generic_loading_label_6">Pepe Silviaからのデータを待機中</string>
-    <string name="generic_loading_label_7">ターボエンカビュレーターが初期化中</string>
+    <string-array name="generic_loading_labels">
+        <item>もうすぐ™</item>
+        <item>バターを渡している</item>
+        <item>より多くのRAMをダウンロード中</item>
+        <item>まだiPhoneより速い</item>
+        <item>あなたの後ろにあるのは何？</item>
+        <item>CPUがコーヒーブレイク中</item>
+        <item>Pepe Silviaからのデータを待機中</item>
+        <item>ターボエンカビュレーターが初期化中</item>
+    </string-array>
     <string name="apps_app_details_label">アプリの詳細</string>
     <string name="apps_details_shareduserid_label">共有ユーザーIDを持つアプリ</string>
     <string name="apps_details_siblings_label">兄弟</string>

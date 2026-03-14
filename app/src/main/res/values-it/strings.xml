@@ -98,14 +98,16 @@ Acquista la versione Pro per supportarci!</string>
     <string name="permissions_protection_type_internal_label">Interno</string>
     <string name="permissions_protection_type_unknown_label">Sconosciuto</string>
     <string name="permissions_permission_details_label">Dettagli permesso</string>
-    <string name="generic_loading_label_0">Presto™</string>
-    <string name="generic_loading_label_1">Passando il burro</string>
-    <string name="generic_loading_label_2">Scaricando più RAM</string>
-    <string name="generic_loading_label_3">Ancora più veloce di un iPhone</string>
-    <string name="generic_loading_label_4">Cos\'è quello dietro di te?</string>
-    <string name="generic_loading_label_5">La CPU è in pausa caffè</string>
-    <string name="generic_loading_label_6">In attesa di dati da Pepe Silvia</string>
-    <string name="generic_loading_label_7">Il turbo encabulatore si sta inizializzando</string>
+    <string-array name="generic_loading_labels">
+        <item>Presto™</item>
+        <item>Passando il burro</item>
+        <item>Scaricando più RAM</item>
+        <item>Ancora più veloce di un iPhone</item>
+        <item>Cos\'è quello dietro di te?</item>
+        <item>La CPU è in pausa caffè</item>
+        <item>In attesa di dati da Pepe Silvia</item>
+        <item>Il turbo encabulatore si sta inizializzando</item>
+    </string-array>
     <string name="apps_app_details_label">Dettagli app</string>
     <string name="apps_details_shareduserid_label">App con ID utente condiviso</string>
     <string name="apps_details_siblings_label">Fratelli</string>

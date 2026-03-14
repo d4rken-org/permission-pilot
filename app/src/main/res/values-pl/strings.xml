@@ -103,14 +103,16 @@
     <string name="permissions_protection_type_internal_label">Wewnętrzny</string>
     <string name="permissions_protection_type_unknown_label">Nieznany</string>
     <string name="permissions_permission_details_label">Szczegóły uprawnienia</string>
-    <string name="generic_loading_label_0">Wkrótce™</string>
-    <string name="generic_loading_label_1">Podawanie masła</string>
-    <string name="generic_loading_label_2">Pobieram więcej pamięci RAM</string>
-    <string name="generic_loading_label_3">Wciąż szybciej niż na iPhonie</string>
-    <string name="generic_loading_label_4">Co to jest za tobą?</string>
-    <string name="generic_loading_label_5">Procesor robi sobie przerwę na kawę</string>
-    <string name="generic_loading_label_6">Czekam na dane od Pepe Silvii</string>
-    <string name="generic_loading_label_7">Turbo mechanizm startuje</string>
+    <string-array name="generic_loading_labels">
+        <item>Wkrótce™</item>
+        <item>Podawanie masła</item>
+        <item>Pobieram więcej pamięci RAM</item>
+        <item>Wciąż szybciej niż na iPhonie</item>
+        <item>Co to jest za tobą?</item>
+        <item>Procesor robi sobie przerwę na kawę</item>
+        <item>Czekam na dane od Pepe Silvii</item>
+        <item>Turbo mechanizm startuje</item>
+    </string-array>
     <string name="apps_app_details_label">Szczegóły aplikacji</string>
     <string name="apps_details_shareduserid_label">Aplikacje ze współdzielonym ID użytkownika</string>
     <string name="apps_details_siblings_label">Powiązane</string>

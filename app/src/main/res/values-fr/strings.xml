@@ -97,14 +97,16 @@
     <string name="permissions_protection_type_internal_label">Interne</string>
     <string name="permissions_protection_type_unknown_label">Inconnue</string>
     <string name="permissions_permission_details_label">Détails de l’autorisation</string>
-    <string name="generic_loading_label_0">Bientôt™</string>
-    <string name="generic_loading_label_1">Je passe le beurre</string>
-    <string name="generic_loading_label_2">Téléchargement de plus de mémoire vive</string>
-    <string name="generic_loading_label_3">Toujours plus rapide qu’un iPhone</string>
-    <string name="generic_loading_label_4">Qu’est-ce qui se cache derrière vous ?</string>
-    <string name="generic_loading_label_5">Le processeur prend une pause café</string>
-    <string name="generic_loading_label_6">En attente de données de Pepe Silvia</string>
-    <string name="generic_loading_label_7">Initialisation du turboencabulator</string>
+    <string-array name="generic_loading_labels">
+        <item>Bientôt™</item>
+        <item>Je passe le beurre</item>
+        <item>Téléchargement de plus de mémoire vive</item>
+        <item>Toujours plus rapide qu’un iPhone</item>
+        <item>Qu’est-ce qui se cache derrière vous ?</item>
+        <item>Le processeur prend une pause café</item>
+        <item>En attente de données de Pepe Silvia</item>
+        <item>Initialisation du turboencabulator</item>
+    </string-array>
     <string name="apps_app_details_label">Détails de l’appli</string>
     <string name="apps_details_shareduserid_label">Applis avec ID utilisateur partagé</string>
     <string name="apps_details_siblings_label">Applis sœurs</string>

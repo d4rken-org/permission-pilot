@@ -104,14 +104,16 @@
     <string name="permissions_protection_type_internal_label">Унутраны</string>
     <string name="permissions_protection_type_unknown_label">Невядомы</string>
     <string name="permissions_permission_details_label">Падрабязнасці дазволу</string>
-    <string name="generic_loading_label_0">Хутка™</string>
-    <string name="generic_loading_label_1">Перадача масла</string>
-    <string name="generic_loading_label_2">Спампоўка дадатковай памяці</string>
-    <string name="generic_loading_label_3">Усё роўна хутчэй за iPhone</string>
-    <string name="generic_loading_label_4">Што там ззаду?</string>
-    <string name="generic_loading_label_5">CPU адпачывае</string>
-    <string name="generic_loading_label_6">Чакаем дадзеныя ад Pepe Silvia</string>
-    <string name="generic_loading_label_7">Запускаецца турба-энкабулятар</string>
+    <string-array name="generic_loading_labels">
+        <item>Хутка™</item>
+        <item>Перадача масла</item>
+        <item>Спампоўка дадатковай памяці</item>
+        <item>Усё роўна хутчэй за iPhone</item>
+        <item>Што там ззаду?</item>
+        <item>CPU адпачывае</item>
+        <item>Чакаем дадзеныя ад Pepe Silvia</item>
+        <item>Запускаецца турба-энкабулятар</item>
+    </string-array>
     <string name="apps_app_details_label">Падрабязнасці праграмы</string>
     <string name="apps_details_shareduserid_label">Праграмы з агульным UID</string>
     <string name="apps_details_siblings_label">Блізкія праграмы</string>

@@ -98,14 +98,16 @@ Køb Pro-versionen for at vise din støtte!</string>
     <string name="permissions_protection_type_internal_label">Intern</string>
     <string name="permissions_protection_type_unknown_label">Ukendt</string>
     <string name="permissions_permission_details_label">Tilladelsesdetaljer</string>
-    <string name="generic_loading_label_0">Snart™</string>
-    <string name="generic_loading_label_1">Rækker smørret</string>
-    <string name="generic_loading_label_2">Downloader mere RAM</string>
-    <string name="generic_loading_label_3">Stadig hurtigere end en iPhone</string>
-    <string name="generic_loading_label_4">Hvad er det bag dig?</string>
-    <string name="generic_loading_label_5">CPU\'en holder kaffepause</string>
-    <string name="generic_loading_label_6">Afventer data fra Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turboencabulatoren startes op</string>
+    <string-array name="generic_loading_labels">
+        <item>Snart™</item>
+        <item>Rækker smørret</item>
+        <item>Downloader mere RAM</item>
+        <item>Stadig hurtigere end en iPhone</item>
+        <item>Hvad er det bag dig?</item>
+        <item>CPU\'en holder kaffepause</item>
+        <item>Afventer data fra Pepe Silvia</item>
+        <item>Turboencabulatoren startes op</item>
+    </string-array>
     <string name="apps_app_details_label">App-detaljer</string>
     <string name="apps_details_shareduserid_label">Apps med delt bruger-ID</string>
     <string name="apps_details_siblings_label">Søskende</string>

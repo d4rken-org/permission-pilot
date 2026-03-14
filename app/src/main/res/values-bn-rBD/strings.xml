@@ -98,14 +98,16 @@
     <string name="permissions_protection_type_internal_label">অভ্যন্তরীণ</string>
     <string name="permissions_protection_type_unknown_label">অজানা</string>
     <string name="permissions_permission_details_label">অনুমতির বিবরণ</string>
-    <string name="generic_loading_label_0">শীঘ্রই™</string>
-    <string name="generic_loading_label_1">মাখন পাস করা হচ্ছে</string>
-    <string name="generic_loading_label_2">আরো RAM ডাউনলোড করা হচ্ছে</string>
-    <string name="generic_loading_label_3">এখনও iPhone এর চেয়ে দ্রুত</string>
-    <string name="generic_loading_label_4">আপনার পিছনে ওটা কী?</string>
-    <string name="generic_loading_label_5">CPU কফি বিরতিতে আছে</string>
-    <string name="generic_loading_label_6">পেপে সিলভিয়া থেকে ডেটার অপেক্ষায়</string>
-    <string name="generic_loading_label_7">টার্বো এনক্যাবুলেটর শুরু হচ্ছে</string>
+    <string-array name="generic_loading_labels">
+        <item>শীঘ্রই™</item>
+        <item>মাখন পাস করা হচ্ছে</item>
+        <item>আরো RAM ডাউনলোড করা হচ্ছে</item>
+        <item>এখনও iPhone এর চেয়ে দ্রুত</item>
+        <item>আপনার পিছনে ওটা কী?</item>
+        <item>CPU কফি বিরতিতে আছে</item>
+        <item>পেপে সিলভিয়া থেকে ডেটার অপেক্ষায়</item>
+        <item>টার্বো এনক্যাবুলেটর শুরু হচ্ছে</item>
+    </string-array>
     <string name="apps_app_details_label">অ্যাপের বিবরণ</string>
     <string name="apps_details_shareduserid_label">শেয়ার করা ব্যবহারকারী ID সহ অ্যাপস</string>
     <string name="apps_details_siblings_label">ভাইবোন</string>

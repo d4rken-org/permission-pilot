@@ -94,14 +94,16 @@
     <string name="permissions_protection_type_internal_label">ภายใน</string>
     <string name="permissions_protection_type_unknown_label">ไม่ทราบ</string>
     <string name="permissions_permission_details_label">รายละเอียดสิทธิ์</string>
-    <string name="generic_loading_label_0">เร็วๆ นี้™</string>
-    <string name="generic_loading_label_1">กำลังส่งเนย</string>
-    <string name="generic_loading_label_2">กำลังดาวน์โหลด RAM เพิ่ม</string>
-    <string name="generic_loading_label_3">ยังคงเร็วกว่า iPhone</string>
-    <string name="generic_loading_label_4">อะไรอยู่ข้างหลังคุณ?</string>
-    <string name="generic_loading_label_5">CPU กำลังพักดื่มกาแฟ</string>
-    <string name="generic_loading_label_6">กำลังรอข้อมูลจาก Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo encabulator กำลังเริ่มต้น</string>
+    <string-array name="generic_loading_labels">
+        <item>เร็วๆ นี้™</item>
+        <item>กำลังส่งเนย</item>
+        <item>กำลังดาวน์โหลด RAM เพิ่ม</item>
+        <item>ยังคงเร็วกว่า iPhone</item>
+        <item>อะไรอยู่ข้างหลังคุณ?</item>
+        <item>CPU กำลังพักดื่มกาแฟ</item>
+        <item>กำลังรอข้อมูลจาก Pepe Silvia</item>
+        <item>Turbo encabulator กำลังเริ่มต้น</item>
+    </string-array>
     <string name="apps_app_details_label">รายละเอียดแอป</string>
     <string name="apps_details_shareduserid_label">แอปที่มี User ID ร่วมกัน</string>
     <string name="apps_details_siblings_label">พี่น้อง</string>

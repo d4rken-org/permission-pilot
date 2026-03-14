@@ -94,14 +94,16 @@
     <string name="permissions_protection_type_internal_label">内部</string>
     <string name="permissions_protection_type_unknown_label">未知</string>
     <string name="permissions_permission_details_label">权限详细信息</string>
-    <string name="generic_loading_label_0">等亿下哦™</string>
-    <string name="generic_loading_label_1">去码头整点薯条</string>
-    <string name="generic_loading_label_2">正在下载更多内存</string>
-    <string name="generic_loading_label_3">比 iPhone 快着呢</string>
-    <string name="generic_loading_label_4">你背后是什么？</string>
-    <string name="generic_loading_label_5">CPU 在打盹</string>
-    <string name="generic_loading_label_6">少女祈祷中</string>
-    <string name="generic_loading_label_7">涡轮加速，启动！</string>
+    <string-array name="generic_loading_labels">
+        <item>等亿下哦™</item>
+        <item>去码头整点薯条</item>
+        <item>正在下载更多内存</item>
+        <item>比 iPhone 快着呢</item>
+        <item>你背后是什么？</item>
+        <item>CPU 在打盹</item>
+        <item>少女祈祷中</item>
+        <item>涡轮加速，启动！</item>
+    </string-array>
     <string name="apps_app_details_label">应用详情</string>
     <string name="apps_details_shareduserid_label">具有共享用户 ID 的应用</string>
     <string name="apps_details_siblings_label">兄弟应用</string>

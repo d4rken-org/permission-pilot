@@ -98,14 +98,16 @@ Vásárolja meg a Pro verziót a támogatás kifejezéseként!</string>
     <string name="permissions_protection_type_internal_label">Belso</string>
     <string name="permissions_protection_type_unknown_label">Ismeretlen</string>
     <string name="permissions_permission_details_label">Engedely reszletei</string>
-    <string name="generic_loading_label_0">Hamarosan™</string>
-    <string name="generic_loading_label_1">Vajat passzolunk</string>
-    <string name="generic_loading_label_2">Tobb RAM letoltese</string>
-    <string name="generic_loading_label_3">Meg mindig gyorsabb, mint egy iPhone</string>
-    <string name="generic_loading_label_4">Mi az mogotted?</string>
-    <string name="generic_loading_label_5">A CPU kaveszuneten van</string>
-    <string name="generic_loading_label_6">Adatokra varunk Pepe Silviatol</string>
-    <string name="generic_loading_label_7">A turbo enkabulator elindul</string>
+    <string-array name="generic_loading_labels">
+        <item>Hamarosan™</item>
+        <item>Vajat passzolunk</item>
+        <item>Tobb RAM letoltese</item>
+        <item>Meg mindig gyorsabb, mint egy iPhone</item>
+        <item>Mi az mogotted?</item>
+        <item>A CPU kaveszuneten van</item>
+        <item>Adatokra varunk Pepe Silviatol</item>
+        <item>A turbo enkabulator elindul</item>
+    </string-array>
     <string name="apps_app_details_label">Alkalmazas reszletei</string>
     <string name="apps_details_shareduserid_label">Megosztott felhasznaloi azonositoju alkalmazasok</string>
     <string name="apps_details_siblings_label">Testverek</string>

@@ -104,14 +104,16 @@ Kúpte si verziu Pro a ukážte svoju podporu!</string>
     <string name="permissions_protection_type_internal_label">Interné</string>
     <string name="permissions_protection_type_unknown_label">Neznáme</string>
     <string name="permissions_permission_details_label">Podrobnosti oprávnenia</string>
-    <string name="generic_loading_label_0">Čoskoro(TM)</string>
-    <string name="generic_loading_label_1">Podávam maslo</string>
-    <string name="generic_loading_label_2">Sťahujem ďalšiu RAM</string>
-    <string name="generic_loading_label_3">Stále rýchlejšie ako iPhone</string>
-    <string name="generic_loading_label_4">Čo je to za tebou?</string>
-    <string name="generic_loading_label_5">CPU si dáva kávu</string>
-    <string name="generic_loading_label_6">Čakám na dáta od Pepe Silvia</string>
-    <string name="generic_loading_label_7">Turbo enkabulátor sa inicializuje</string>
+    <string-array name="generic_loading_labels">
+        <item>Čoskoro(TM)</item>
+        <item>Podávam maslo</item>
+        <item>Sťahujem ďalšiu RAM</item>
+        <item>Stále rýchlejšie ako iPhone</item>
+        <item>Čo je to za tebou?</item>
+        <item>CPU si dáva kávu</item>
+        <item>Čakám na dáta od Pepe Silvia</item>
+        <item>Turbo enkabulátor sa inicializuje</item>
+    </string-array>
     <string name="apps_app_details_label">Podrobnosti aplikácie</string>
     <string name="apps_details_shareduserid_label">Aplikácie so Shared User ID</string>
     <string name="apps_details_siblings_label">Súrodenci</string>
