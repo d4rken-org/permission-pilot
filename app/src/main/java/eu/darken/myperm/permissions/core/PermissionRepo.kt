@@ -22,6 +22,7 @@ import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.PermissionAppRef
 import eu.darken.myperm.permissions.core.container.UnknownPermission
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.permissions.core.features.InstallTimeGrant
 import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
@@ -144,6 +145,7 @@ class PermissionRepo @Inject constructor(
                     label = app.label,
                     isSystemApp = app.isSystemApp,
                     status = perm.status,
+                    pkgType = app.pkgType,
                 )
                 result.getOrPut(perm.permissionId) { mutableListOf() }.add(ref)
             }
@@ -167,6 +169,7 @@ class PermissionRepo @Inject constructor(
                 label = app.label,
                 isSystemApp = app.isSystemApp,
                 status = UsesPermission.Status.UNKNOWN,
+                pkgType = app.pkgType,
             )
             result.getOrPut(entity.permissionId) { mutableListOf() }.add(ref)
         }

@@ -210,6 +210,14 @@
         <item quantity="one">System Apps: Granted to %1$d out of %2$d.</item>
         <item quantity="other">System Apps: Granted to %1$d out of %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d app in other user profiles also requests this permission.</item>
+        <item quantity="other">%d apps in other user profiles also request this permission.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d uninstalled app with retained data also requests this permission.</item>
+        <item quantity="other">%d uninstalled apps with retained data also request this permission.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
     <string name="permissions_details_empty_filter_message">No apps match current filters. Tap the filter icon to adjust.</string>
 
