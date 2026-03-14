@@ -71,19 +71,18 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showSortDialog by rememberSaveable { mutableStateOf(false) }
 
-    state?.let {
-        AppsScreen(
-            state = it,
-            isPro = isPro,
-            onSearchChanged = { vm.onSearchInputChanged(it) },
-            onAppClicked = { vm.onAppClicked(it) },
-            onFilter = { showFilterDialog = true },
-            onSort = { showSortDialog = true },
-            onRefresh = { vm.onRefresh() },
-            onSettings = { vm.goToSettings() },
-            onUpgrade = { vm.onUpgrade() },
-        )
-    }
+    val effectiveState = state ?: AppsViewModel.State.Loading
+    AppsScreen(
+        state = effectiveState,
+        isPro = isPro,
+        onSearchChanged = { vm.onSearchInputChanged(it) },
+        onAppClicked = { vm.onAppClicked(it) },
+        onFilter = { showFilterDialog = true },
+        onSort = { showSortDialog = true },
+        onRefresh = { vm.onRefresh() },
+        onSettings = { vm.goToSettings() },
+        onUpgrade = { vm.onUpgrade() },
+    )
 
     val readyState = state as? AppsViewModel.State.Ready
 
