@@ -22,7 +22,6 @@ import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.PermissionAppRef
 import eu.darken.myperm.permissions.core.container.UnknownPermission
-import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.permissions.core.features.InstallTimeGrant
 import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
