@@ -26,6 +26,12 @@ sealed class AExtraPerm constructor(val id: Permission.Id) {
         override val tags = setOf(NotNormalPerm, SpecialAccess)
     }
 
+    object LEGACY_STORAGE : AExtraPerm("android:legacy_storage") {
+        override val labelRes: Int = R.string.permission_legacy_storage_label
+        override val descriptionRes: Int = R.string.permission_legacy_storage_description
+        override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Files)
+        override val tags = setOf(NotNormalPerm, SpecialAccess)
+    }
 
     companion object {
         val values: List<AExtraPerm> by lazy {

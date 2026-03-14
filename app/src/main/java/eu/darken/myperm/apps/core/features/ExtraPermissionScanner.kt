@@ -16,7 +16,10 @@ import eu.darken.myperm.permissions.core.known.APerm
 
 private val TAG = logTag("ExtraPermissionScanner")
 
-suspend fun PackageInfo.determineSpecialPermissions(ipcFunnel: IPCFunnel): Collection<UsesPermission> {
+suspend fun PackageInfo.determineSpecialPermissions(
+    ipcFunnel: IPCFunnel,
+    uidOverride: Int? = null,
+): Collection<UsesPermission> {
     val permissions = mutableSetOf<UsesPermission>()
 
     val withActivities = try {
@@ -27,6 +30,28 @@ suspend fun PackageInfo.determineSpecialPermissions(ipcFunnel: IPCFunnel): Colle
 
     if (withActivities?.activities?.any { it.flags and 0x400000 != 0 } == true) {
         permissions.add(UsesPermission.Unknown(AExtraPerm.PICTURE_IN_PICTURE.id))
+    }
+
+    // Legacy Storage (API 29+): AppOps-based, not a manifest permission
+    if (hasApiLevel(Build.VERSION_CODES.Q)) {
+        val uid = uidOverride ?: applicationInfo?.uid
+        if (uid != null) {
+            try {
+                val result = ipcFunnel.appOpsManager.checkOpNoThrow("android:legacy_storage", uid, packageName)
+                val status = mapAppOpResult(result)
+                if (status.isGranted) {
+                    permissions.add(
+                        UsesPermission.WithState(
+                            id = AExtraPerm.LEGACY_STORAGE.id,
+                            flags = PackageInfo.REQUESTED_PERMISSION_GRANTED,
+                            overrideStatus = status,
+                        )
+                    )
+                }
+            } catch (e: Exception) {
+                log(TAG, WARN) { "Failed to check LEGACY_STORAGE for $packageName: ${e.asLog()}" }
+            }
+        }
     }
 
     return permissions
