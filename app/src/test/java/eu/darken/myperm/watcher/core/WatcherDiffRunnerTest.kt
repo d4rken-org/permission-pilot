@@ -1,11 +1,14 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.settings.core.GeneralSettings
@@ -75,7 +78,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         snapshotId = snapshotId,
         pkgName = pkgName,
         userHandleId = 0,
-        pkgType = "INSTALLED",
+        pkgType = PkgType.PRIMARY,
         versionName = "1.0",
         versionCode = 1L,
         sharedUserId = null,
@@ -85,8 +88,8 @@ class WatcherDiffRunnerTest : BaseTest() {
         isSystemApp = isSystemApp,
         installedAt = null,
         updatedAt = null,
-        internetAccess = "NONE",
-        batteryOptimization = "UNKNOWN",
+        internetAccess = InternetAccess.NONE,
+        batteryOptimization = BatteryOptimization.UNKNOWN,
         installerPkgName = null,
         applicationFlags = 0,
         cachedLabel = cachedLabel,

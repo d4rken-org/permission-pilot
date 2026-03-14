@@ -3,6 +3,8 @@ package eu.darken.myperm.common.room.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
 
 @Entity(
     tableName = "snapshot_pkgs",
@@ -21,7 +23,7 @@ data class SnapshotPkgEntity(
     val snapshotId: String,
     val pkgName: String,
     val userHandleId: Int,
-    val pkgType: String,
+    val pkgType: PkgType,
     val versionName: String?,
     val versionCode: Long,
     val sharedUserId: String?,
@@ -31,8 +33,8 @@ data class SnapshotPkgEntity(
     val isSystemApp: Boolean,
     val installedAt: Long?,
     val updatedAt: Long?,
-    val internetAccess: String,
-    val batteryOptimization: String,
+    val internetAccess: InternetAccess,
+    val batteryOptimization: BatteryOptimization,
     val installerPkgName: String?,
     val applicationFlags: Int,
     val cachedLabel: String?,

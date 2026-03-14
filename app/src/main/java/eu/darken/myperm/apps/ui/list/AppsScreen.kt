@@ -17,8 +17,10 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material.icons.twotone.Stars
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -52,11 +54,8 @@ import eu.darken.myperm.apps.core.Pkg
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.AppIcon
-import eu.darken.myperm.common.compose.LabeledOption
-import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
-import eu.darken.myperm.common.compose.SingleChoiceSortDialog
 import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -68,47 +67,31 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 
     val state by vm.state.collectAsState()
     val isPro by vm.isPro.collectAsState()
-    var showFilterDialog by rememberSaveable { mutableStateOf(false) }
-    var showSortDialog by rememberSaveable { mutableStateOf(false) }
+    var showFilterSortSheet by rememberSaveable { mutableStateOf(false) }
 
     val effectiveState = state ?: AppsViewModel.State.Loading
+    val readyState = state as? AppsViewModel.State.Ready
+    val hasActiveFilters = readyState != null
+            && (readyState.filterOptions != AppsFilterOptions() || readyState.sortOptions != AppsSortOptions())
+
     AppsScreen(
         state = effectiveState,
         isPro = isPro,
+        hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onAppClicked = { vm.onAppClicked(it) },
-        onFilter = { showFilterDialog = true },
-        onSort = { showSortDialog = true },
+        onFilter = { showFilterSortSheet = true },
         onRefresh = { vm.onRefresh() },
         onSettings = { vm.goToSettings() },
         onUpgrade = { vm.onUpgrade() },
     )
 
-    val readyState = state as? AppsViewModel.State.Ready
-
-    if (showFilterDialog && readyState != null) {
-        MultiChoiceFilterDialog(
-            title = stringResource(R.string.general_filter_action),
-            options = AppsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.filterOptions.filters,
-            onConfirm = { selected ->
-                vm.updateFilterOptions { it.copy(filters = selected) }
-                showFilterDialog = false
-            },
-            onDismiss = { showFilterDialog = false },
-        )
-    }
-
-    if (showSortDialog && readyState != null) {
-        SingleChoiceSortDialog(
-            title = stringResource(R.string.general_sort_action),
-            options = AppsSortOptions.Sort.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.sortOptions.mainSort,
-            onSelect = { selected ->
-                vm.updateSortOptions { it.copy(mainSort = selected) }
-                showSortDialog = false
-            },
-            onDismiss = { showSortDialog = false },
+    if (showFilterSortSheet && readyState != null) {
+        AppsFilterSortBottomSheet(
+            currentFilterOptions = readyState.filterOptions,
+            currentSortOptions = readyState.sortOptions,
+            onOptionsChanged = { filter, sort -> vm.updateOptions { _, _ -> filter to sort } },
+            onDismiss = { showFilterSortSheet = false },
         )
     }
 }
@@ -117,10 +100,10 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 fun AppsScreen(
     state: AppsViewModel.State,
     isPro: Boolean = true,
+    hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onAppClicked: (AppsViewModel.AppItem) -> Unit,
     onFilter: () -> Unit,
-    onSort: () -> Unit,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
     onUpgrade: () -> Unit = {},
@@ -157,6 +140,22 @@ fun AppsScreen(
                     IconButton(onClick = { isSearchActive = !isSearchActive }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
                     }
+                    if (state is AppsViewModel.State.Ready) {
+                        IconButton(onClick = onFilter) {
+                            Box {
+                                Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.apps_filter_sort_action))
+                                if (hasActiveFilters) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(8.dp)
+                                            .align(Alignment.TopEnd)
+                                            .offset(x = 2.dp, y = (-2).dp)
+                                            .background(MaterialTheme.colorScheme.primary, CircleShape),
+                                    )
+                                }
+                            }
+                        }
+                    }
                     Box {
                         IconButton(onClick = { showOverflowMenu = true }) {
                             Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.general_more_options_action))
@@ -165,16 +164,6 @@ fun AppsScreen(
                             expanded = showOverflowMenu,
                             onDismissRequest = { showOverflowMenu = false },
                         ) {
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_filter_action)) },
-                                onClick = { showOverflowMenu = false; onFilter() },
-                                leadingIcon = { Icon(Icons.Filled.FilterList, contentDescription = null) },
-                            )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_sort_action)) },
-                                onClick = { showOverflowMenu = false; onSort() },
-                                leadingIcon = { Icon(Icons.Filled.Sort, contentDescription = null) },
-                            )
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.general_refresh_action)) },
                                 onClick = { showOverflowMenu = false; onRefresh() },
@@ -327,7 +316,6 @@ private fun AppsScreenReadyPreview() = PreviewWrapper {
         onSearchChanged = {},
         onAppClicked = {},
         onFilter = {},
-        onSort = {},
         onRefresh = {},
         onSettings = {},
         onUpgrade = {},
@@ -342,7 +330,6 @@ private fun AppsScreenEmptyPreview() = PreviewWrapper {
         onSearchChanged = {},
         onAppClicked = {},
         onFilter = {},
-        onSort = {},
         onRefresh = {},
         onSettings = {},
         onUpgrade = {},
@@ -357,7 +344,6 @@ private fun AppsScreenLoadingPreview() = PreviewWrapper {
         onSearchChanged = {},
         onAppClicked = {},
         onFilter = {},
-        onSort = {},
         onRefresh = {},
         onSettings = {},
         onUpgrade = {},

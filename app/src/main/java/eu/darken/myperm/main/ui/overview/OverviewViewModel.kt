@@ -13,6 +13,7 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
@@ -108,8 +109,8 @@ class OverviewViewModel @Inject constructor(
             installerAppsSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
             systemAlertWindowUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
             systemAlertWindowSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
-            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != "DIRECT" },
-            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != "DIRECT" },
+            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
+            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != InternetAccess.DIRECT },
             clonesUser = apps.count { !it.isSystemApp && it.twinCount > 0 },
             clonesSystem = apps.count { it.isSystemApp && it.twinCount > 0 },
             sharedIdsUser = apps.count { !it.isSystemApp && it.siblingCount > 0 },

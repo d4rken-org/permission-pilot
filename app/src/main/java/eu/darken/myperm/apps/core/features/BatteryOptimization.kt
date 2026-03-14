@@ -1,6 +1,7 @@
 package eu.darken.myperm.apps.core.features
 
 import android.content.pm.PackageInfo
+import androidx.room.TypeConverter
 import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.known.APerm
@@ -9,7 +10,15 @@ enum class BatteryOptimization {
     IGNORED,
     OPTIMIZED,
     MANAGED_BY_SYSTEM,
-    UNKNOWN,
+    UNKNOWN;
+
+    class Converter {
+        @TypeConverter
+        fun fromEnum(value: BatteryOptimization): String = value.name
+
+        @TypeConverter
+        fun toEnum(value: String): BatteryOptimization = valueOf(value)
+    }
 }
 
 suspend fun PackageInfo.determineBatteryOptimization(ipcFunnel: IPCFunnel): BatteryOptimization {

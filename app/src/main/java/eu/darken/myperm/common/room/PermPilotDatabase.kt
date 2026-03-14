@@ -14,9 +14,17 @@ import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.watcher.core.WatcherEventType
 
-@TypeConverters(WatcherEventType.Converter::class)
+@TypeConverters(
+    WatcherEventType.Converter::class,
+    InternetAccess.Converter::class,
+    BatteryOptimization.Converter::class,
+    PkgType.Converter::class,
+)
 @Database(
     entities = [
         SnapshotEntity::class,

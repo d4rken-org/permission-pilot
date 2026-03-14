@@ -76,7 +76,7 @@ class AppsViewModel @Inject constructor(
         val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
-            .filter { app -> filterOptions.filters.all { it.matches(app) } }
+            .filter { app -> filterOptions.matches(app) }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.pkgName.lowercase().contains(prunedTerm)) return@filter true
@@ -133,6 +133,14 @@ class AppsViewModel @Inject constructor(
 
     fun updateSortOptions(action: (AppsSortOptions) -> AppsSortOptions) = launch {
         generalSettings.appsSortOptions.update { action(it) }
+    }
+
+    fun updateOptions(action: (AppsFilterOptions, AppsSortOptions) -> Pair<AppsFilterOptions, AppsSortOptions>) = launch {
+        val currentFilter = generalSettings.appsFilterOptions.value()
+        val currentSort = generalSettings.appsSortOptions.value()
+        val (newFilter, newSort) = action(currentFilter, currentSort)
+        generalSettings.appsFilterOptions.update { newFilter }
+        generalSettings.appsSortOptions.update { newSort }
     }
 
     fun onRefresh() {
