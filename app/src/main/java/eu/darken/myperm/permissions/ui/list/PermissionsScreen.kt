@@ -119,9 +119,9 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
         MultiChoiceFilterDialog(
             title = stringResource(R.string.general_filter_action),
             options = PermsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.filterOptions.keys,
+            selected = readyState.filterOptions.filters,
             onConfirm = { selected ->
-                vm.updateFilterOptions { it.copy(keys = selected) }
+                vm.updateFilterOptions { it.copy(filters = selected) }
                 showFilterDialog = false
             },
             onDismiss = { showFilterDialog = false },
@@ -245,7 +245,7 @@ fun PermissionsScreen(
                             .horizontalScroll(rememberScrollState()),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                        val hasActiveFilter = state.filterOptions.keys != PermsFilterOptions().keys
+                        val hasActiveFilter = state.filterOptions.filters != PermsFilterOptions().filters
                         FilterChip(
                             selected = hasActiveFilter,
                             onClick = onFilterClicked,

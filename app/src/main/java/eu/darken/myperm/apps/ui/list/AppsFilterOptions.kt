@@ -7,13 +7,12 @@ import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.apps.core.AppInfo
 import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
 data class AppsFilterOptions(
-    @SerialName("filters") val keys: Set<Filter> = setOf(Filter.USER_APP)
+    val filters: Set<Filter> = setOf(Filter.USER_APP)
 ) : Parcelable {
 
     @Serializable

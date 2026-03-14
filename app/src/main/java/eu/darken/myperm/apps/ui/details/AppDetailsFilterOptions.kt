@@ -9,13 +9,12 @@ import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
 @Serializable
 data class AppDetailsFilterOptions(
-    @SerialName("filters") val keys: Set<Filter> = setOf(Filter.GRANTED, Filter.DENIED, Filter.CONFIGURABLE)
+    val filters: Set<Filter> = setOf(Filter.GRANTED, Filter.DENIED, Filter.CONFIGURABLE)
 ) : Parcelable {
 
     @Serializable

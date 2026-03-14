@@ -98,7 +98,7 @@ fun AppDetailsScreenHost(
             onGoSettings = { vm.onGoSettings() },
             onOpenApp = { vm.onOpenApp() },
             onFilter = { selected ->
-                vm.updateFilterOptions { it.copy(keys = selected) }
+                vm.updateFilterOptions { it.copy(filters = selected) }
             },
             onInstallerClicked = { vm.onInstallerClicked(it) },
         )

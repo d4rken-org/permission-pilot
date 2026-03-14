@@ -342,7 +342,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
 
             val pref = ds.createValue("apps.filter", AppsFilterOptions(), json)
             pref.value() shouldBe AppsFilterOptions(
-                keys = setOf(AppsFilterOptions.Filter.USER_APP, AppsFilterOptions.Filter.SYSTEM_APP)
+                filters = setOf(AppsFilterOptions.Filter.USER_APP, AppsFilterOptions.Filter.SYSTEM_APP)
             )
         }
 
@@ -366,7 +366,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
 
             val pref = ds.createValue("appdetails.filter", AppDetailsFilterOptions(), json)
             pref.value() shouldBe AppDetailsFilterOptions(
-                keys = setOf(
+                filters = setOf(
                     AppDetailsFilterOptions.Filter.GRANTED,
                     AppDetailsFilterOptions.Filter.DENIED,
                     AppDetailsFilterOptions.Filter.CONFIGURABLE,
@@ -383,7 +383,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
 
             val pref = ds.createValue("perms.filter", PermsFilterOptions(), json)
             pref.value() shouldBe PermsFilterOptions(
-                keys = setOf(
+                filters = setOf(
                     PermsFilterOptions.Filter.MANIFEST,
                     PermsFilterOptions.Filter.SYSTEM,
                     PermsFilterOptions.Filter.NOT_INSTALLTIME,
@@ -411,7 +411,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
 
             val pref = ds.createValue("permdetails.filter", PermissionDetailsFilterOptions(), json)
             pref.value() shouldBe PermissionDetailsFilterOptions(
-                keys = setOf(
+                filters = setOf(
                     PermissionDetailsFilterOptions.Filter.USER_APP,
                     PermissionDetailsFilterOptions.Filter.SYSTEM_APP,
                 )
@@ -469,7 +469,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
             val writer = kotlinxWriter<AppsFilterOptions>(json)
             val reader = kotlinxReader(json, AppsFilterOptions(), fallbackToDefault = true)
 
-            val original = AppsFilterOptions(keys = setOf(AppsFilterOptions.Filter.USER_APP, AppsFilterOptions.Filter.SYSTEM_APP))
+            val original = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.USER_APP, AppsFilterOptions.Filter.SYSTEM_APP))
             val written = writer(original)
             val readBack = reader(written)
             readBack shouldBe original
@@ -480,7 +480,7 @@ class DataStoreValueKotlinxTest : BaseTest() {
             val writer = kotlinxWriter<PermsFilterOptions>(json)
             val reader = kotlinxReader(json, PermsFilterOptions(), fallbackToDefault = true)
 
-            val original = PermsFilterOptions(keys = setOf(PermsFilterOptions.Filter.MANIFEST, PermsFilterOptions.Filter.SYSTEM))
+            val original = PermsFilterOptions(filters = setOf(PermsFilterOptions.Filter.MANIFEST, PermsFilterOptions.Filter.SYSTEM))
             val written = writer(original)
             val readBack = reader(written)
             readBack shouldBe original

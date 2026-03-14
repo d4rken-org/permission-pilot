@@ -93,7 +93,7 @@ class PermissionsViewModel @Inject constructor(
             ?: return@combine State.Loading
 
         val filtered = permissions
-            .filter { perm -> filterOptions.keys.all { it.matches(perm) } }
+            .filter { perm -> filterOptions.filters.all { it.matches(perm) } }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true

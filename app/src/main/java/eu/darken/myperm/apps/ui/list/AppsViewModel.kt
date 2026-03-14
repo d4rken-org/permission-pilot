@@ -76,7 +76,7 @@ class AppsViewModel @Inject constructor(
         val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
-            .filter { app -> filterOptions.keys.all { it.matches(app) } }
+            .filter { app -> filterOptions.filters.all { it.matches(app) } }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.pkgName.lowercase().contains(prunedTerm)) return@filter true

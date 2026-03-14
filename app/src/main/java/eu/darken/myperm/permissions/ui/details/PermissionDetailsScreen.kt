@@ -106,9 +106,9 @@ fun PermissionDetailsScreenHost(
         MultiChoiceFilterDialog(
             title = stringResource(R.string.general_filter_action),
             options = PermissionDetailsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
-            selected = state!!.filterOptions.keys,
+            selected = state!!.filterOptions.filters,
             onConfirm = { selected ->
-                vm.updateFilterOptions { it.copy(keys = selected) }
+                vm.updateFilterOptions { it.copy(filters = selected) }
                 showFilterDialog = false
             },
             onDismiss = { showFilterDialog = false },
