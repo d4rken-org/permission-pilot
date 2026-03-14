@@ -577,9 +577,9 @@
     <string name="watcher_refresh_checking">Checking changes…</string>
 
     <string name="watcher_search_hint">Search reports</string>
-    <string name="watcher_filter_has_added_permissions">Has added permissions</string>
-    <string name="watcher_filter_has_lost_permissions">Has lost permissions</string>
-    <string name="watcher_filter_has_gained_permissions">Has gained permissions</string>
+    <string name="watcher_filter_has_added_permissions">New permissions requested</string>
+    <string name="watcher_filter_has_lost_permissions">Permissions dropped</string>
+    <string name="watcher_filter_has_gained_permissions">New access granted</string>
     <string name="watcher_filter_unseen_only">Unseen only</string>
     <string name="watcher_filter_section_event_type">Event type</string>
     <string name="watcher_filter_section_permission_changes">Permission changes</string>
