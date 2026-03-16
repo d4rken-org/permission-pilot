@@ -26,6 +26,7 @@ import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -81,6 +82,8 @@ class PermissionDetailsViewModel @Inject constructor(
         val totalUserCount: Int = 0,
         val grantedSystemCount: Int = 0,
         val totalSystemCount: Int = 0,
+        val otherProfileCount: Int = 0,
+        val uninstalledCount: Int = 0,
         val declaringApps: List<DeclaringAppItem> = emptyList(),
         val requestingApps: List<RequestingAppItem> = emptyList(),
         val isLoading: Boolean = true,
@@ -153,10 +156,14 @@ class PermissionDetailsViewModel @Inject constructor(
                         is NotNormalPerm -> 5
                     }
                 },
-                grantedUserCount = filteredRefs.count { !it.isSystemApp && it.status.isGranted },
-                totalUserCount = filteredRefs.count { !it.isSystemApp },
-                grantedSystemCount = filteredRefs.count { it.isSystemApp && it.status.isGranted },
-                totalSystemCount = filteredRefs.count { it.isSystemApp },
+                grantedUserCount = filteredRefs.count { it.pkgType == PkgType.PRIMARY && !it.isSystemApp && it.status.isGranted },
+                totalUserCount = filteredRefs.count { it.pkgType == PkgType.PRIMARY && !it.isSystemApp },
+                grantedSystemCount = filteredRefs.count { it.pkgType == PkgType.PRIMARY && it.isSystemApp && it.status.isGranted },
+                totalSystemCount = filteredRefs.count { it.pkgType == PkgType.PRIMARY && it.isSystemApp },
+                otherProfileCount = perm.requestingApps.count {
+                    it.pkgType == PkgType.SECONDARY_PROFILE || it.pkgType == PkgType.SECONDARY_USER
+                },
+                uninstalledCount = perm.requestingApps.count { it.pkgType == PkgType.UNINSTALLED },
                 declaringApps = declaring,
                 requestingApps = requesting,
                 isLoading = false,
