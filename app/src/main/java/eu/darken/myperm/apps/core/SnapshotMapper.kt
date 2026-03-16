@@ -8,6 +8,7 @@ import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
 import eu.darken.myperm.apps.core.container.SecondaryUserPkg
 import eu.darken.myperm.apps.core.container.UninstalledDataPkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
@@ -49,6 +50,7 @@ class SnapshotMapper @Inject constructor(
             twinCount = pkg.twins.size,
             siblingCount = pkg.siblings.size,
             hasAccessibilityServices = pkg.accessibilityServices.isNotEmpty(),
+            hasDeviceAdmin = pkg.requestedPermissions.any { it.id == APerm.BIND_DEVICE_ADMIN.id },
             allInstallerPkgNames = pkg.installerInfo.allInstallers
                 .map { it.id.pkgName }
                 .takeIf { it.isNotEmpty() }
@@ -117,6 +119,7 @@ class SnapshotMapper @Inject constructor(
         twinCount = pkgEntity.twinCount,
         siblingCount = pkgEntity.siblingCount,
         hasAccessibilityServices = pkgEntity.hasAccessibilityServices,
+        hasDeviceAdmin = pkgEntity.hasDeviceAdmin,
         allInstallerPkgNames = pkgEntity.allInstallerPkgNames
             ?.split(",")
             ?.filter { it.isNotBlank() }

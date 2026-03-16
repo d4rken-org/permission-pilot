@@ -34,4 +34,7 @@ interface Installed : Pkg {
 
     val accessibilityServices: Collection<AccessibilityService>
         get() = emptyList()
+
+    val deviceAdmins: Collection<DeviceAdmin>
+        get() = emptyList()
 }

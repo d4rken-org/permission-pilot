@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "182783317e6becba40d9ab00ffdf7a03",
+    "identityHash": "dec887d21ed1534e8bdd41832acf527a",
     "entities": [
       {
         "tableName": "snapshots",
@@ -59,7 +59,7 @@
       },
       {
         "tableName": "snapshot_pkgs",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `pkgName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `pkgType` TEXT NOT NULL, `versionName` TEXT, `versionCode` INTEGER NOT NULL, `sharedUserId` TEXT, `apiTargetLevel` INTEGER, `apiCompileLevel` INTEGER, `apiMinimumLevel` INTEGER, `isSystemApp` INTEGER NOT NULL, `installedAt` INTEGER, `updatedAt` INTEGER, `internetAccess` TEXT NOT NULL, `batteryOptimization` TEXT NOT NULL, `installerPkgName` TEXT, `applicationFlags` INTEGER NOT NULL, `cachedLabel` TEXT, `twinCount` INTEGER NOT NULL, `siblingCount` INTEGER NOT NULL, `hasAccessibilityServices` INTEGER NOT NULL, `allInstallerPkgNames` TEXT, PRIMARY KEY(`snapshotId`, `pkgName`, `userHandleId`), FOREIGN KEY(`snapshotId`) REFERENCES `snapshots`(`snapshotId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `pkgName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `pkgType` TEXT NOT NULL, `versionName` TEXT, `versionCode` INTEGER NOT NULL, `sharedUserId` TEXT, `apiTargetLevel` INTEGER, `apiCompileLevel` INTEGER, `apiMinimumLevel` INTEGER, `isSystemApp` INTEGER NOT NULL, `installedAt` INTEGER, `updatedAt` INTEGER, `internetAccess` TEXT NOT NULL, `batteryOptimization` TEXT NOT NULL, `installerPkgName` TEXT, `applicationFlags` INTEGER NOT NULL, `cachedLabel` TEXT, `twinCount` INTEGER NOT NULL, `siblingCount` INTEGER NOT NULL, `hasAccessibilityServices` INTEGER NOT NULL, `hasDeviceAdmin` INTEGER NOT NULL, `allInstallerPkgNames` TEXT, PRIMARY KEY(`snapshotId`, `pkgName`, `userHandleId`), FOREIGN KEY(`snapshotId`) REFERENCES `snapshots`(`snapshotId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "snapshotId",
@@ -175,6 +175,12 @@
           {
             "fieldPath": "hasAccessibilityServices",
             "columnName": "hasAccessibilityServices",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasDeviceAdmin",
+            "columnName": "hasDeviceAdmin",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -531,7 +537,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '182783317e6becba40d9ab00ffdf7a03')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dec887d21ed1534e8bdd41832acf527a')"
     ]
   }
 }
