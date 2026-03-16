@@ -1,6 +1,7 @@
 package eu.darken.myperm.main.ui.overview
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -49,6 +50,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import androidx.compose.runtime.collectAsState
+import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 
@@ -64,6 +66,7 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
             state = it,
             onRefresh = { vm.onRefresh() },
             onSettings = { vm.goToSettings() },
+            onCategoryClick = { filters -> vm.onCategoryClicked(filters) },
         )
     }
 }
@@ -73,6 +76,7 @@ fun OverviewScreen(
     state: OverviewViewModel.State,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
+    onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit = {},
 ) {
     Scaffold(
         topBar = {
@@ -120,7 +124,7 @@ fun OverviewScreen(
                 val device = state.deviceInfo
                 if (summary != null) {
                     HeroCard(summary, device)
-                    SummaryList(summary)
+                    SummaryList(summary, onCategoryClick)
                 }
             }
         }
@@ -190,24 +194,39 @@ private fun AppRatioBar(userCount: Int, systemCount: Int, total: Int) {
 }
 
 @Composable
-private fun SummaryList(summary: OverviewViewModel.SummaryInfo) {
-    data class Category(val icon: ImageVector, val label: String, val userCount: Int, val systemCount: Int)
+private fun SummaryList(
+    summary: OverviewViewModel.SummaryInfo,
+    onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit,
+) {
+    data class Category(
+        val icon: ImageVector,
+        val label: String,
+        val userCount: Int,
+        val systemCount: Int,
+        val filters: Set<AppsFilterOptions.Filter>,
+    )
 
     val categories = listOf(
-        Category(Icons.Filled.PhoneAndroid, stringResource(R.string.overview_summary_apps_active_profile_label), summary.activeProfileUser, summary.activeProfileSystem),
-        Category(Icons.Filled.People, stringResource(R.string.overview_summary_apps_other_profile_label), summary.otherProfileUser, summary.otherProfileSystem),
-        Category(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary.sideloaded, 0),
-        Category(Icons.Filled.GetApp, stringResource(R.string.overview_summary_apps_installers_label), summary.installerAppsUser, summary.installerAppsSystem),
-        Category(Icons.Filled.Layers, stringResource(R.string.overview_summary_apps_overlayers_label), summary.systemAlertWindowUser, summary.systemAlertWindowSystem),
-        Category(Icons.Filled.WifiOff, stringResource(R.string.overview_summary_apps_offline_label), summary.noInternetUser, summary.noInternetSystem),
-        Category(Icons.Filled.ContentCopy, stringResource(R.string.overview_summary_apps_clones_label), summary.clonesUser, summary.clonesSystem),
-        Category(Icons.Filled.Share, stringResource(R.string.overview_summary_apps_sharedids_label), summary.sharedIdsUser, summary.sharedIdsSystem),
+        Category(Icons.Filled.PhoneAndroid, stringResource(R.string.overview_summary_apps_active_profile_label), summary.activeProfileUser, summary.activeProfileSystem, setOf(AppsFilterOptions.Filter.PRIMARY_PROFILE)),
+        Category(Icons.Filled.People, stringResource(R.string.overview_summary_apps_other_profile_label), summary.otherProfileUser, summary.otherProfileSystem, setOf(AppsFilterOptions.Filter.SECONDARY_PROFILE)),
+        Category(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary.sideloaded, 0, setOf(AppsFilterOptions.Filter.SIDELOADED)),
+        Category(Icons.Filled.GetApp, stringResource(R.string.overview_summary_apps_installers_label), summary.installerAppsUser, summary.installerAppsSystem, setOf(AppsFilterOptions.Filter.INSTALL_PACKAGES)),
+        Category(Icons.Filled.Layers, stringResource(R.string.overview_summary_apps_overlayers_label), summary.systemAlertWindowUser, summary.systemAlertWindowSystem, setOf(AppsFilterOptions.Filter.OVERLAY)),
+        Category(Icons.Filled.WifiOff, stringResource(R.string.overview_summary_apps_offline_label), summary.noInternetUser, summary.noInternetSystem, setOf(AppsFilterOptions.Filter.NO_INTERNET)),
+        Category(Icons.Filled.ContentCopy, stringResource(R.string.overview_summary_apps_clones_label), summary.clonesUser, summary.clonesSystem, setOf(AppsFilterOptions.Filter.MULTI_PROFILE)),
+        Category(Icons.Filled.Share, stringResource(R.string.overview_summary_apps_sharedids_label), summary.sharedIdsUser, summary.sharedIdsSystem, setOf(AppsFilterOptions.Filter.SHARED_ID)),
     )
 
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(vertical = 4.dp)) {
             categories.forEachIndexed { index, category ->
-                CategoryRow(category.icon, category.label, category.userCount, category.systemCount)
+                CategoryRow(
+                    icon = category.icon,
+                    label = category.label,
+                    userCount = category.userCount,
+                    systemCount = category.systemCount,
+                    onClick = { onCategoryClick(category.filters) },
+                )
                 if (index < categories.lastIndex) {
                     HorizontalDivider(modifier = Modifier.padding(start = 48.dp))
                 }
@@ -217,11 +236,12 @@ private fun SummaryList(summary: OverviewViewModel.SummaryInfo) {
 }
 
 @Composable
-private fun CategoryRow(icon: ImageVector, label: String, userCount: Int, systemCount: Int) {
+private fun CategoryRow(icon: ImageVector, label: String, userCount: Int, systemCount: Int, onClick: () -> Unit) {
     val total = userCount + systemCount
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
