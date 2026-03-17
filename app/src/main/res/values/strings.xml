@@ -573,11 +573,10 @@
     <string name="watcher_settings_notifications_only_gained_label">Only notify on permissions gained</string>
     <string name="watcher_settings_notifications_only_gained_desc">Only notify when apps are granted new permissions, e.g. a runtime permission is allowed or an install-time permission like internet is added</string>
     <string name="watcher_settings_retention_label">Keep reports</string>
-    <string name="watcher_settings_retention_7">7 days</string>
-    <string name="watcher_settings_retention_14">14 days</string>
-    <string name="watcher_settings_retention_30">30 days</string>
-    <string name="watcher_settings_retention_60">60 days</string>
-    <string name="watcher_settings_retention_90">90 days</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
     <string name="watcher_settings_clear_reports_label">Clear all reports</string>
     <string name="watcher_settings_clear_reports_confirm_title">Clear all reports?</string>
     <string name="watcher_settings_clear_reports_confirm_message">All permission change reports will be permanently deleted.</string>
@@ -597,8 +596,14 @@
     <string name="watcher_detail_installer_unknown">Unknown</string>
     <string name="watcher_detail_app_removed_desc">App was removed from device</string>
     <string name="watcher_detail_grant_change_desc">Permission grants changed</string>
-    <string name="watcher_detail_permissions_header">Permissions (%d)</string>
-    <string name="watcher_detail_last_permissions_header">Last known permissions (%d)</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Permissions (%d)</item>
+        <item quantity="other">Permissions (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Last known permissions (%d)</item>
+        <item quantity="other">Last known permissions (%d)</item>
+    </plurals>
     <string name="watcher_detail_new_perms_subtitle">These permissions were added with this app version.</string>
     <string name="watcher_detail_removed_perms_subtitle">These permissions were removed in this update.</string>
     <string name="watcher_detail_grant_changes_subtitle">These permissions had their grant status changed.</string>
