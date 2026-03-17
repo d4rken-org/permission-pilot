@@ -34,7 +34,7 @@ import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material.icons.filled.UnfoldLess
 import androidx.compose.material.icons.filled.UnfoldMore
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.CircularProgressIndicator
+import eu.darken.myperm.common.compose.LoadingContent
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
@@ -96,24 +96,24 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showSortDialog by rememberSaveable { mutableStateOf(false) }
 
-    state?.let {
-        PermissionsScreen(
-            state = it,
-            isPro = isPro,
-            onSearchChanged = { vm.onSearchInputChanged(it) },
-            onGroupClicked = { vm.toggleGroup(it) },
-            onPermClicked = { vm.onPermissionClicked(it) },
-            onExpandAll = { vm.expandAll() },
-            onCollapseAll = { vm.collapseAll() },
-            onRefresh = { vm.onRefresh() },
-            onSettings = { vm.goToSettings() },
-            onFilterClicked = { showFilterDialog = true },
-            onSortClicked = { showSortDialog = true },
-            onUpgrade = { vm.onUpgrade() },
-        )
-    }
+    val effectiveState = state ?: PermissionsViewModel.State.Loading
 
-    val readyState = state as? PermissionsViewModel.State.Ready
+    PermissionsScreen(
+        state = effectiveState,
+        isPro = isPro,
+        onSearchChanged = { vm.onSearchInputChanged(it) },
+        onGroupClicked = { vm.toggleGroup(it) },
+        onPermClicked = { vm.onPermissionClicked(it) },
+        onExpandAll = { vm.expandAll() },
+        onCollapseAll = { vm.collapseAll() },
+        onRefresh = { vm.onRefresh() },
+        onSettings = { vm.goToSettings() },
+        onFilterClicked = { showFilterDialog = true },
+        onSortClicked = { showSortDialog = true },
+        onUpgrade = { vm.onUpgrade() },
+    )
+
+    val readyState = effectiveState as? PermissionsViewModel.State.Ready
 
     if (showFilterDialog && readyState != null) {
         MultiChoiceFilterDialog(
@@ -287,12 +287,7 @@ fun PermissionsScreen(
 
             when (state) {
                 is PermissionsViewModel.State.Loading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        CircularProgressIndicator()
-                    }
+                    LoadingContent()
                 }
 
                 is PermissionsViewModel.State.Ready -> {

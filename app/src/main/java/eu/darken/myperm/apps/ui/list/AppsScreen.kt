@@ -21,7 +21,7 @@ import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.CircularProgressIndicator
+import eu.darken.myperm.common.compose.LoadingContent
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
@@ -137,7 +137,13 @@ fun AppsScreen(
                             Icon(Icons.TwoTone.Stars, contentDescription = stringResource(R.string.upgrade_required_subtitle))
                         }
                     }
-                    IconButton(onClick = { isSearchActive = !isSearchActive }) {
+                    IconButton(onClick = {
+                        isSearchActive = !isSearchActive
+                        if (!isSearchActive) {
+                            searchQuery = ""
+                            onSearchChanged(null)
+                        }
+                    }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
                     }
                     if (state is AppsViewModel.State.Ready) {
@@ -198,12 +204,7 @@ fun AppsScreen(
 
             when (state) {
                 is AppsViewModel.State.Loading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        CircularProgressIndicator()
-                    }
+                    LoadingContent()
                 }
 
                 is AppsViewModel.State.Ready -> {
