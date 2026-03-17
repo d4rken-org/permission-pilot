@@ -8,6 +8,7 @@ import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.common.room.PermPilotDatabase
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
@@ -16,19 +17,27 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
-import eu.darken.myperm.common.flow.shareLatest
-import eu.darken.myperm.common.room.snapshot.SnapshotWorker
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.withIndex
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@OptIn(FlowPreview::class)
 @Singleton
 class AppRepo @Inject constructor(
     @AppScope private val appScope: CoroutineScope,

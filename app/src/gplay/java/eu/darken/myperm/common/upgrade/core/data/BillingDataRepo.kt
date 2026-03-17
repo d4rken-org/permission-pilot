@@ -20,7 +20,7 @@ import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailablePermanent
 import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailableTemporary
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -33,7 +33,6 @@ import kotlinx.coroutines.flow.retryWhen
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @Singleton
 class BillingDataRepo @Inject constructor(
     clientConnectionProvider: BillingClientConnectionProvider,
