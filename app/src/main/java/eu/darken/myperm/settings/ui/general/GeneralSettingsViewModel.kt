@@ -43,6 +43,12 @@ class GeneralSettingsViewModel @Inject constructor(
         generalSettings.themeColor.value(color)
     }
 
+    val ipcParallelisation: Flow<Int> = generalSettings.ipcParallelisation.flow
+
+    fun setIpcParallelisation(value: Int) = launch {
+        generalSettings.ipcParallelisation.value(value)
+    }
+
     fun onUpgrade() {
         navTo(Nav.Main.Upgrade)
     }

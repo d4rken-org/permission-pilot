@@ -22,9 +22,17 @@
     <string name="settings_category_other_label">Other</string>
     <string name="settings_category_gethelp_label">Get help</string>
     <string name="settings_category_debug_label">Debug</string>
+    <string name="settings_category_advanced_label">Advanced</string>
 
     <string name="general_settings_label">General</string>
     <string name="general_settings_desc">General tweaks that affect the whole app.</string>
+    <string name="general_settings_scan_speed_label">Scan speed</string>
+    <string name="general_settings_scan_speed_desc">Controls parallel operations when scanning apps. Higher values are faster but may cause crashes on some devices.</string>
+    <string name="general_settings_scan_speed_auto">Auto (recommended)</string>
+    <string name="general_settings_scan_speed_1">1 (safest)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (fastest)</string>
 
     <string name="changelog_label">Changelog</string>
     <string name="settings_acknowledgements_label">Acknowledgements</string>
