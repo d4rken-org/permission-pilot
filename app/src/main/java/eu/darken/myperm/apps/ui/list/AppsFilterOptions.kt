@@ -136,7 +136,55 @@ data class AppsFilterOptions(
         SECONDARY_PROFILE(
             group = Group.PROFILE,
             labelRes = R.string.apps_filter_profile_secondary_label,
-            matches = { it.pkgType == PkgType.SECONDARY_PROFILE }
+            matches = { it.pkgType == PkgType.SECONDARY_PROFILE || it.pkgType == PkgType.SECONDARY_USER }
+        ),
+        @SerialName("CAMERA")
+        CAMERA(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_camera_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    it.permissionId == "android.permission.CAMERA" && it.status.isGranted
+                }
+            }
+        ),
+        @SerialName("LOCATION")
+        LOCATION(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_location_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    (it.permissionId == "android.permission.ACCESS_FINE_LOCATION"
+                            || it.permissionId == "android.permission.ACCESS_COARSE_LOCATION")
+                            && it.status.isGranted
+                }
+            }
+        ),
+        @SerialName("MICROPHONE")
+        MICROPHONE(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_microphone_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    it.permissionId == "android.permission.RECORD_AUDIO" && it.status.isGranted
+                }
+            }
+        ),
+        @SerialName("CONTACTS")
+        CONTACTS(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_contacts_label,
+            matches = { app ->
+                app.requestedPermissions.any {
+                    it.permissionId == "android.permission.READ_CONTACTS" && it.status.isGranted
+                }
+            }
+        ),
+        @SerialName("OLD_API_TARGET")
+        OLD_API_TARGET(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_old_api_target_label,
+            matches = { it.apiTargetLevel != null && it.apiTargetLevel < OLD_API_THRESHOLD }
         ),
         ;
     }
@@ -146,5 +194,9 @@ data class AppsFilterOptions(
         return filters.groupBy { it.group }.all { (_, groupFilters) ->
             groupFilters.any { it.matches(app) }
         }
+    }
+
+    companion object {
+        const val OLD_API_THRESHOLD = 29 // Android 10 (Q)
     }
 }
