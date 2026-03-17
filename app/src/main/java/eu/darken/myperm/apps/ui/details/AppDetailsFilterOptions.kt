@@ -9,6 +9,7 @@ import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
@@ -21,9 +22,9 @@ data class AppDetailsFilterOptions(
     enum class Filter(
         @StringRes val labelRes: Int
     ) {
-        GRANTED(R.string.filter_granted_label),
-        DENIED(R.string.filter_denied_label),
-        CONFIGURABLE(R.string.filter_configurable_label);
+        @SerialName("GRANTED") GRANTED(R.string.filter_granted_label),
+        @SerialName("DENIED") DENIED(R.string.filter_denied_label),
+        @SerialName("CONFIGURABLE") CONFIGURABLE(R.string.filter_configurable_label);
 
         fun matches(cachedPerm: PermissionUse, basePerm: BasePermission): Boolean = when (this) {
             GRANTED -> cachedPerm.status.isGranted

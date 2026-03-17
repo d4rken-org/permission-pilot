@@ -5,7 +5,6 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,31 +14,28 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.automirrored.filled.Sort
-import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material.icons.filled.UnfoldLess
 import androidx.compose.material.icons.filled.UnfoldMore
 import androidx.compose.material3.AlertDialog
 import eu.darken.myperm.common.compose.LoadingContent
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,6 +46,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -67,17 +64,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
-import eu.darken.myperm.common.compose.LabeledOption
-import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SearchTextField
-import eu.darken.myperm.common.compose.SingleChoiceSortDialog
 import eu.darken.myperm.common.compose.icon
-import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.permissions.core.PermissionGroup
@@ -93,16 +86,17 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
-    val isPro by vm.isPro.collectAsState()
-
-    var showFilterDialog by rememberSaveable { mutableStateOf(false) }
-    var showSortDialog by rememberSaveable { mutableStateOf(false) }
+    var showFilterSortSheet by rememberSaveable { mutableStateOf(false) }
+    var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
 
     val effectiveState = state ?: PermissionsViewModel.State.Loading
+    val readyState = effectiveState as? PermissionsViewModel.State.Ready
+    val hasActiveFilters = readyState != null
+            && (readyState.filterOptions != PermsFilterOptions() || readyState.sortOptions != PermsSortOptions())
 
     PermissionsScreen(
         state = effectiveState,
-        isPro = isPro,
+        hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onGroupClicked = { vm.toggleGroup(it) },
         onPermClicked = { vm.onPermissionClicked(it) },
@@ -110,44 +104,28 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
         onCollapseAll = { vm.collapseAll() },
         onRefresh = { vm.onRefresh() },
         onSettings = { vm.goToSettings() },
-        onFilterClicked = { showFilterDialog = true },
-        onSortClicked = { showSortDialog = true },
-        onUpgrade = { vm.onUpgrade() },
+        onFilter = { showFilterSortSheet = true },
     )
 
-    val readyState = effectiveState as? PermissionsViewModel.State.Ready
-
-    if (showFilterDialog && readyState != null) {
-        MultiChoiceFilterDialog(
-            title = stringResource(R.string.general_filter_action),
-            options = PermsFilterOptions.Filter.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.filterOptions.filters,
-            onConfirm = { selected ->
-                vm.updateFilterOptions { it.copy(filters = selected) }
-                showFilterDialog = false
-            },
-            onDismiss = { showFilterDialog = false },
+    if (showFilterSortSheet && readyState != null) {
+        PermsFilterSortBottomSheet(
+            currentFilterOptions = readyState.filterOptions,
+            currentSortOptions = readyState.sortOptions,
+            onOptionsChanged = { filter, sort -> vm.updateOptions { _, _ -> filter to sort } },
+            onDismiss = { showFilterSortSheet = false },
+            onHelpClicked = { showTagHelpDialog = true },
         )
     }
 
-    if (showSortDialog && readyState != null) {
-        SingleChoiceSortDialog(
-            title = stringResource(R.string.general_sort_action),
-            options = PermsSortOptions.Sort.entries.map { LabeledOption(it, it.labelRes) },
-            selected = readyState.sortOptions.mainSort,
-            onSelect = { selected ->
-                vm.updateSortOptions { it.copy(mainSort = selected) }
-                showSortDialog = false
-            },
-            onDismiss = { showSortDialog = false },
-        )
+    if (showTagHelpDialog) {
+        PermissionTagHelpDialog(onDismiss = { showTagHelpDialog = false })
     }
 }
 
 @Composable
 fun PermissionsScreen(
     state: PermissionsViewModel.State,
-    isPro: Boolean = true,
+    hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onGroupClicked: (PermissionGroup.Id) -> Unit,
     onPermClicked: (PermissionsViewModel.PermItem) -> Unit,
@@ -155,18 +133,11 @@ fun PermissionsScreen(
     onCollapseAll: () -> Unit,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
-    onFilterClicked: () -> Unit,
-    onSortClicked: () -> Unit,
-    onUpgrade: () -> Unit = {},
+    onFilter: () -> Unit,
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
-    var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
-
-    if (showTagHelpDialog) {
-        PermissionTagHelpDialog(onDismiss = { showTagHelpDialog = false })
-    }
 
     Scaffold(
         topBar = {
@@ -184,11 +155,6 @@ fun PermissionsScreen(
                     }
                 },
                 actions = {
-                    if (!isPro) {
-                        IconButton(onClick = onUpgrade) {
-                            Icon(Icons.TwoTone.Stars, contentDescription = stringResource(R.string.upgrade_required_subtitle))
-                        }
-                    }
                     IconButton(onClick = {
                         if (isSearchActive) {
                             searchQuery = ""
@@ -198,6 +164,22 @@ fun PermissionsScreen(
                     }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.permissions_search_list_hint))
                     }
+                    if (state is PermissionsViewModel.State.Ready) {
+                        IconButton(onClick = onFilter) {
+                            Box {
+                                Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.permissions_filter_sort_action))
+                                if (hasActiveFilters) {
+                                    Box(
+                                        modifier = Modifier
+                                            .size(8.dp)
+                                            .align(Alignment.TopEnd)
+                                            .offset(x = 2.dp, y = (-2).dp)
+                                            .background(MaterialTheme.colorScheme.primary, CircleShape),
+                                    )
+                                }
+                            }
+                        }
+                    }
                     Box {
                         IconButton(onClick = { showOverflowMenu = true }) {
                             Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.general_more_options_action))
@@ -206,16 +188,23 @@ fun PermissionsScreen(
                             expanded = showOverflowMenu,
                             onDismissRequest = { showOverflowMenu = false },
                         ) {
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_expand_all_action)) },
-                                onClick = { showOverflowMenu = false; onExpandAll() },
-                                leadingIcon = { Icon(Icons.Filled.UnfoldMore, contentDescription = null) },
-                            )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_collapse_all_action)) },
-                                onClick = { showOverflowMenu = false; onCollapseAll() },
-                                leadingIcon = { Icon(Icons.Filled.UnfoldLess, contentDescription = null) },
-                            )
+                            val hasAnyExpanded = (state as? PermissionsViewModel.State.Ready)
+                                ?.listData
+                                ?.any { it is PermissionsViewModel.ListItem.Group && it.item.isExpanded }
+                                ?: false
+                            if (hasAnyExpanded) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.general_collapse_all_action)) },
+                                    onClick = { showOverflowMenu = false; onCollapseAll() },
+                                    leadingIcon = { Icon(Icons.Filled.UnfoldLess, contentDescription = null) },
+                                )
+                            } else {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.general_expand_all_action)) },
+                                    onClick = { showOverflowMenu = false; onExpandAll() },
+                                    leadingIcon = { Icon(Icons.Filled.UnfoldMore, contentDescription = null) },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.general_refresh_action)) },
                                 onClick = { showOverflowMenu = false; onRefresh() },
@@ -233,44 +222,6 @@ fun PermissionsScreen(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            // Filter/Sort chip row + help icon
-            if (state is PermissionsViewModel.State.Ready) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 12.dp, end = 4.dp, top = 4.dp, bottom = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .weight(1f)
-                            .horizontalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        val hasActiveFilter = state.filterOptions.filters != PermsFilterOptions().filters
-                        FilterChip(
-                            selected = hasActiveFilter,
-                            onClick = onFilterClicked,
-                            label = { Text(stringResource(R.string.general_filter_action)) },
-                            leadingIcon = { Icon(Icons.Filled.FilterList, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                        )
-                        FilterChip(
-                            selected = false,
-                            onClick = onSortClicked,
-                            label = { Text("${stringResource(R.string.general_sort_action)}: ${stringResource(state.sortOptions.mainSort.labelRes)}") },
-                            leadingIcon = { Icon(Icons.AutoMirrored.Filled.Sort, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                        )
-                    }
-                    IconButton(onClick = { showTagHelpDialog = true }) {
-                        Icon(
-                            Icons.AutoMirrored.Filled.HelpOutline,
-                            contentDescription = stringResource(R.string.label_help),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
-                }
-            }
-
             // Search bar
             AnimatedVisibility(
                 visible = isSearchActive,
@@ -535,7 +486,7 @@ private fun pickDisplayTag(tags: Collection<PermissionTag>): PermissionTag? = wh
 }
 
 @Composable
-private fun PermissionTagHelpDialog(onDismiss: () -> Unit) {
+internal fun PermissionTagHelpDialog(onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.permissions_details_help_section_tags)) },
@@ -597,63 +548,7 @@ private fun PermissionsScreenReadyPreview() = PreviewWrapper {
         onCollapseAll = {},
         onRefresh = {},
         onSettings = {},
-        onFilterClicked = {},
-        onSortClicked = {},
-        onUpgrade = {},
-    )
-}
-
-@Preview2
-@Composable
-private fun PermissionsScreenEmptyPreview() = PreviewWrapper {
-    PermissionsScreen(
-        state = PermissionsPreviewData.emptyReadyState(),
-        onSearchChanged = {},
-        onGroupClicked = {},
-        onPermClicked = {},
-        onExpandAll = {},
-        onCollapseAll = {},
-        onRefresh = {},
-        onSettings = {},
-        onFilterClicked = {},
-        onSortClicked = {},
-        onUpgrade = {},
-    )
-}
-
-@Preview2
-@Composable
-private fun PermissionsScreenLoadingPreview() = PreviewWrapper {
-    PermissionsScreen(
-        state = PermissionsViewModel.State.Loading,
-        onSearchChanged = {},
-        onGroupClicked = {},
-        onPermClicked = {},
-        onExpandAll = {},
-        onCollapseAll = {},
-        onRefresh = {},
-        onSettings = {},
-        onFilterClicked = {},
-        onSortClicked = {},
-        onUpgrade = {},
-    )
-}
-
-@Preview2
-@Composable
-private fun PermissionsScreenActiveFilterPreview() = PreviewWrapper {
-    PermissionsScreen(
-        state = PermissionsPreviewData.activeFilterState(),
-        onSearchChanged = {},
-        onGroupClicked = {},
-        onPermClicked = {},
-        onExpandAll = {},
-        onCollapseAll = {},
-        onRefresh = {},
-        onSettings = {},
-        onFilterClicked = {},
-        onSortClicked = {},
-        onUpgrade = {},
+        onFilter = {},
     )
 }
 

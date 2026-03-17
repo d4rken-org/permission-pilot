@@ -93,7 +93,7 @@ class PermissionsViewModel @Inject constructor(
             ?: return@combine State.Loading
 
         val filtered = permissions
-            .filter { perm -> filterOptions.filters.all { it.matches(perm) } }
+            .filter { perm -> filterOptions.matches(perm) }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
@@ -199,6 +199,14 @@ class PermissionsViewModel @Inject constructor(
 
     fun updateSortOptions(action: (PermsSortOptions) -> PermsSortOptions) = launch {
         generalSettings.permissionsSortOptions.update { action(it) }
+    }
+
+    fun updateOptions(action: (PermsFilterOptions, PermsSortOptions) -> Pair<PermsFilterOptions, PermsSortOptions>) = launch {
+        val currentFilter = generalSettings.permissionsFilterOptions.value()
+        val currentSort = generalSettings.permissionsSortOptions.value()
+        val (newFilter, newSort) = action(currentFilter, currentSort)
+        generalSettings.permissionsFilterOptions.update { newFilter }
+        generalSettings.permissionsSortOptions.update { newSort }
     }
 
     fun goToSettings() {

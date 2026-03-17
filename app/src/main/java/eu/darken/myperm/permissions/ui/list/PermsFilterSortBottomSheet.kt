@@ -1,4 +1,4 @@
-package eu.darken.myperm.apps.ui.list
+package eu.darken.myperm.permissions.ui.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,24 +33,21 @@ import eu.darken.myperm.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun AppsFilterSortBottomSheet(
-    currentFilterOptions: AppsFilterOptions,
-    currentSortOptions: AppsSortOptions,
-    onOptionsChanged: (AppsFilterOptions, AppsSortOptions) -> Unit,
+fun PermsFilterSortBottomSheet(
+    currentFilterOptions: PermsFilterOptions,
+    currentSortOptions: PermsSortOptions,
+    onOptionsChanged: (PermsFilterOptions, PermsSortOptions) -> Unit,
     onDismiss: () -> Unit,
     onHelpClicked: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState()
     val currentFilters = remember {
-        mutableStateSetOf<AppsFilterOptions.Filter>().apply { addAll(currentFilterOptions.filters) }
+        mutableStateSetOf<PermsFilterOptions.Filter>().apply { addAll(currentFilterOptions.filters) }
     }
     val currentSort = remember { mutableStateOf(currentSortOptions.mainSort) }
 
-    val defaults = AppsFilterOptions() to AppsSortOptions()
+    val defaults = PermsFilterOptions() to PermsSortOptions()
     val hasNonDefaults = currentFilters.toSet() != defaults.first.filters || currentSort.value != defaults.second.mainSort
-
-    val onlySystemApp = AppsFilterOptions.Filter.SYSTEM_APP in currentFilters
-            && AppsFilterOptions.Filter.USER_APP !in currentFilters
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -68,7 +65,7 @@ fun AppsFilterSortBottomSheet(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stringResource(R.string.apps_filter_sort_action),
+                    text = stringResource(R.string.permissions_filter_sort_action),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.weight(1f),
                 )
@@ -94,7 +91,7 @@ fun AppsFilterSortBottomSheet(
             }
 
             Text(
-                text = stringResource(R.string.apps_filter_section_sort_by),
+                text = stringResource(R.string.permissions_filter_section_sort_by),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(top = 4.dp),
@@ -102,14 +99,14 @@ fun AppsFilterSortBottomSheet(
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                AppsSortOptions.Sort.entries.forEach { sort ->
+                PermsSortOptions.Sort.entries.forEach { sort ->
                     FilterChip(
                         selected = sort == currentSort.value,
                         onClick = {
                             currentSort.value = sort
                             onOptionsChanged(
-                                AppsFilterOptions(filters = currentFilters.toSet()),
-                                AppsSortOptions(mainSort = sort),
+                                PermsFilterOptions(filters = currentFilters.toSet()),
+                                PermsSortOptions(mainSort = sort),
                             )
                         },
                         label = { Text(stringResource(sort.labelRes)) },
@@ -117,7 +114,7 @@ fun AppsFilterSortBottomSheet(
                 }
             }
 
-            AppsFilterOptions.Group.entries.forEach { group ->
+            PermsFilterOptions.Group.entries.forEach { group ->
                 Text(
                     text = stringResource(group.labelRes),
                     style = MaterialTheme.typography.labelLarge,
@@ -127,24 +124,21 @@ fun AppsFilterSortBottomSheet(
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    val isInstallSourceGroup = group == AppsFilterOptions.Group.INSTALL_SOURCE
-                    AppsFilterOptions.Filter.entries
+                    PermsFilterOptions.Filter.entries
                         .filter { it.group == group }
                         .forEach { filter ->
                             val isSelected = filter in currentFilters
-                            val isEnabled = !(isInstallSourceGroup && onlySystemApp)
                             FilterChip(
                                 selected = isSelected,
                                 onClick = {
                                     if (isSelected) currentFilters.remove(filter)
                                     else currentFilters.add(filter)
                                     onOptionsChanged(
-                                        AppsFilterOptions(filters = currentFilters.toSet()),
-                                        AppsSortOptions(mainSort = currentSort.value),
+                                        PermsFilterOptions(filters = currentFilters.toSet()),
+                                        PermsSortOptions(mainSort = currentSort.value),
                                     )
                                 },
                                 label = { Text(stringResource(filter.labelRes)) },
-                                enabled = isEnabled,
                             )
                         }
                 }

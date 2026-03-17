@@ -127,8 +127,7 @@ internal fun PermissionsListContent() = PreviewWrapper {
             onCollapseAll = {},
             onRefresh = {},
             onSettings = {},
-            onFilterClicked = {},
-            onSortClicked = {},
+            onFilter = {},
         )
     }
 }

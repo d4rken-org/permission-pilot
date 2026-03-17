@@ -26,14 +26,14 @@ data class WatcherFilterOptions(
         val group: Group,
         @StringRes val labelRes: Int,
     ) {
-        INSTALL(Group.EVENT_TYPE, R.string.watcher_event_install),
-        UPDATE(Group.EVENT_TYPE, R.string.watcher_event_update),
-        REMOVED(Group.EVENT_TYPE, R.string.watcher_event_removed),
-        GRANT_CHANGE(Group.EVENT_TYPE, R.string.watcher_event_grant_change),
-        HAS_ADDED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_added_permissions),
-        HAS_LOST_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_lost_permissions),
-        HAS_GAINED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_gained_permissions),
-        UNSEEN_ONLY(Group.STATUS, R.string.watcher_filter_unseen_only);
+        @SerialName("INSTALL") INSTALL(Group.EVENT_TYPE, R.string.watcher_event_install),
+        @SerialName("UPDATE") UPDATE(Group.EVENT_TYPE, R.string.watcher_event_update),
+        @SerialName("REMOVED") REMOVED(Group.EVENT_TYPE, R.string.watcher_event_removed),
+        @SerialName("GRANT_CHANGE") GRANT_CHANGE(Group.EVENT_TYPE, R.string.watcher_event_grant_change),
+        @SerialName("HAS_ADDED_PERMISSIONS") HAS_ADDED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_added_permissions),
+        @SerialName("HAS_LOST_PERMISSIONS") HAS_LOST_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_lost_permissions),
+        @SerialName("HAS_GAINED_PERMISSIONS") HAS_GAINED_PERMISSIONS(Group.PERMISSION_CHANGES, R.string.watcher_filter_has_gained_permissions),
+        @SerialName("UNSEEN_ONLY") UNSEEN_ONLY(Group.STATUS, R.string.watcher_filter_unseen_only);
 
         fun matches(item: WatcherReportItem): Boolean = when (this) {
             INSTALL -> item.eventType == WatcherEventType.INSTALL
