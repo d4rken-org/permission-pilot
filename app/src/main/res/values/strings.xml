@@ -123,10 +123,16 @@
         <item>Passing the butter</item>
         <item>Downloading more RAM</item>
         <item>Still faster than an iPhone</item>
-        <item>What\'s that behind you?</item>
         <item>The CPU is on a coffee break</item>
         <item>Awaiting data from Pepe Silvia</item>
         <item>Turbo encabulator is initiating</item>
+        <item>Almost there… probably</item>
+        <item>Pretending to look busy</item>
+        <item>Warming up the hamster wheel</item>
+        <item>Convincing apps to cooperate</item>
+        <item>Asking permissions politely</item>
+        <item>Your apps are lawyering up</item>
+        <item>Reading the fine print</item>
     </string-array>
     <string name="apps_app_details_label">App Details</string>
     <string name="apps_details_shareduserid_label">Apps with Shared User ID</string>
