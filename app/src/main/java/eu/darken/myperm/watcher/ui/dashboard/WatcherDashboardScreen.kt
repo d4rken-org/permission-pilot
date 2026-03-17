@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
 import androidx.compose.material.icons.filled.FilterList
@@ -526,11 +527,20 @@ private fun ReportListItem(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.Top,
         ) {
-            AppIcon(
-                pkg = Pkg.Container(Pkg.Id(item.packageName)),
-                isSystemApp = false,
-                modifier = Modifier.size(iconSize),
-            )
+            if (item.eventType == WatcherEventType.REMOVED) {
+                Icon(
+                    imageVector = Icons.Filled.DeleteForever,
+                    contentDescription = null,
+                    modifier = Modifier.size(iconSize),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                AppIcon(
+                    pkg = Pkg.Container(Pkg.Id(item.packageName)),
+                    isSystemApp = false,
+                    modifier = Modifier.size(iconSize),
+                )
+            }
 
             Column(
                 modifier = Modifier
