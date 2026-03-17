@@ -41,10 +41,6 @@ class WatcherSettingsViewModel @Inject constructor(
     val reportCount: Flow<Int> = changeDao.getTotalCount()
 
     fun setWatcherEnabled(enabled: Boolean) = launch {
-        if (!upgradeRepo.upgradeInfo.value.isPro) {
-            navTo(Nav.Main.Upgrade)
-            return@launch
-        }
         log(TAG) { "Setting watcher enabled: $enabled" }
         generalSettings.isWatcherEnabled.value(enabled)
         watcherWorkScheduler.ensureScheduled()

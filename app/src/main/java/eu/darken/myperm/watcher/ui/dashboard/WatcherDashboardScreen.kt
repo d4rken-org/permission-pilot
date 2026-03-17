@@ -57,6 +57,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -132,6 +133,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onFilter = { showFilterSheet = true },
         onGrantNotificationPermission = onGrantNotificationPermission,
         onDisableNotifications = { vm.disableNotifications() },
+        onUpgrade = { vm.goToUpgrade() },
         useSettingsFallback = useSettingsFallback,
     )
 
@@ -158,6 +160,7 @@ fun WatcherDashboardScreen(
     onFilter: () -> Unit,
     onGrantNotificationPermission: () -> Unit = {},
     onDisableNotifications: () -> Unit = {},
+    onUpgrade: () -> Unit = {},
     useSettingsFallback: Boolean = false,
 ) {
     val isEnabled = state?.isWatcherEnabled ?: false
@@ -245,7 +248,6 @@ fun WatcherDashboardScreen(
                     .fillMaxSize()
                     .padding(innerPadding)
                     .padding(16.dp),
-                isPro = state?.isPro ?: false,
                 onToggle = onToggle,
             )
         } else {
@@ -272,7 +274,9 @@ fun WatcherDashboardScreen(
                     modifier = Modifier.fillMaxSize(),
                     reports = reports,
                     totalReportCount = state?.totalReportCount ?: 0,
+                    lockedReportCount = state?.lockedReportCount ?: 0,
                     onReportClicked = onReportClicked,
+                    onUpgrade = onUpgrade,
                     showNotificationPermissionCard = state?.showNotificationPermissionCard ?: false,
                     canRequestNotificationPermission = state?.canRequestNotificationPermission ?: false,
                     useSettingsFallback = useSettingsFallback,
@@ -287,7 +291,6 @@ fun WatcherDashboardScreen(
 @Composable
 private fun DisabledContent(
     modifier: Modifier = Modifier,
-    isPro: Boolean,
     onToggle: () -> Unit,
 ) {
     Column(modifier = modifier) {
@@ -323,24 +326,16 @@ private fun DisabledContent(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
-                if (isPro) {
-                    Text(
-                        text = stringResource(R.string.watcher_dashboard_manage_in_settings),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    )
-                }
+                Text(
+                    text = stringResource(R.string.watcher_dashboard_manage_in_settings),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
                 Button(
                     onClick = onToggle,
                     modifier = Modifier.align(Alignment.End),
                 ) {
-                    Text(
-                        text = if (isPro) {
-                            stringResource(R.string.watcher_enable_action)
-                        } else {
-                            stringResource(R.string.general_upgrade_action)
-                        }
-                    )
+                    Text(text = stringResource(R.string.watcher_enable_action))
                 }
             }
         }
@@ -352,7 +347,9 @@ private fun EnabledContent(
     modifier: Modifier = Modifier,
     reports: List<WatcherReportItem>,
     totalReportCount: Int,
+    lockedReportCount: Int = 0,
     onReportClicked: (WatcherReportItem) -> Unit,
+    onUpgrade: () -> Unit = {},
     showNotificationPermissionCard: Boolean = false,
     canRequestNotificationPermission: Boolean = false,
     useSettingsFallback: Boolean = false,
@@ -396,6 +393,15 @@ private fun EnabledContent(
                     onClick = { onReportClicked(item) },
                 )
                 HorizontalDivider()
+            }
+        }
+        if (lockedReportCount > 0) {
+            item(key = "upgrade_card") {
+                UpgradeCard(
+                    lockedReportCount = lockedReportCount,
+                    onUpgrade = onUpgrade,
+                    modifier = Modifier.padding(16.dp),
+                )
             }
         }
     }
@@ -458,6 +464,44 @@ private fun NotificationPermissionCard(
                         }
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun UpgradeCard(
+    lockedReportCount: Int,
+    onUpgrade: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(
+                text = pluralStringResource(R.plurals.watcher_upgrade_card_title, lockedReportCount, lockedReportCount),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Text(
+                text = stringResource(R.string.watcher_upgrade_card_body),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Button(
+                onClick = onUpgrade,
+                modifier = Modifier.align(Alignment.End),
+            ) {
+                Text(text = stringResource(R.string.general_upgrade_action))
             }
         }
     }

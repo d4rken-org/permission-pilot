@@ -45,6 +45,7 @@ class WatcherDashboardViewModel @Inject constructor(
         val filterOptions: WatcherFilterOptions = WatcherFilterOptions(),
         val hasUnseen: Boolean = false,
         val totalReportCount: Int = 0,
+        val lockedReportCount: Int = 0,
     )
 
     private val notificationsAvailable = MutableStateFlow(capability.areNotificationsEnabled())
@@ -80,31 +81,32 @@ class WatcherDashboardViewModel @Inject constructor(
             .filterValues { items -> items.distinctBy { it.packageName }.size > 1 }
             .keys
 
-        val reports = filteredItems.map { item ->
+        val allReports = filteredItems.map { item ->
             item.copy(showPkgName = item.appLabel in duplicateLabels)
         }
+
+        val reports = if (!isPro && allReports.size > FREE_REPORT_LIMIT) {
+            allReports.take(FREE_REPORT_LIMIT)
+        } else {
+            allReports
+        }
+        val lockedCount = if (!isPro) (allReports.size - reports.size).coerceAtLeast(0) else 0
 
         State(
             isWatcherEnabled = isEnabled,
             isPro = isPro,
             reports = reports,
-            showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable,
+            showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable && isPro,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
             refreshPhase = phase,
             filterOptions = filterOpts,
-            hasUnseen = entities.any { !it.isSeen },
+            hasUnseen = reports.any { !it.isSeen },
             totalReportCount = allItems.size,
+            lockedReportCount = lockedCount,
         )
     }.asStateFlow(State())
 
     fun toggleWatcher() = launch {
-        val isPro = upgradeRepo.upgradeInfo.value.isPro
-        if (!isPro) {
-            log(TAG) { "Not pro, navigating to upgrade" }
-            navTo(Nav.Main.Upgrade)
-            return@launch
-        }
-
         val current = generalSettings.isWatcherEnabled.value()
         log(TAG) { "Toggling watcher: $current -> ${!current}" }
         generalSettings.isWatcherEnabled.value(!current)
@@ -112,8 +114,17 @@ class WatcherDashboardViewModel @Inject constructor(
     }
 
     fun onReportClicked(item: WatcherReportItem) = launch {
+        if (!upgradeRepo.upgradeInfo.value.isPro) {
+            log(TAG) { "Not pro, navigating to upgrade instead of detail" }
+            navTo(Nav.Main.Upgrade)
+            return@launch
+        }
         changeDao.markSeen(item.id)
         navTo(Nav.Watcher.ReportDetail(item.id))
+    }
+
+    fun goToUpgrade() {
+        navTo(Nav.Main.Upgrade)
     }
 
     fun refreshNow() = launch {
@@ -170,6 +181,7 @@ class WatcherDashboardViewModel @Inject constructor(
     }
 
     companion object {
+        private const val FREE_REPORT_LIMIT = 5
         private val TAG = logTag("Watcher", "Dashboard", "VM")
     }
 }
