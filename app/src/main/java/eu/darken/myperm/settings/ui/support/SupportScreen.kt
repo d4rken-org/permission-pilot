@@ -17,7 +17,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.BugReport
-import androidx.compose.material.icons.twotone.ChatBubble
 import androidx.compose.material.icons.twotone.CheckCircle
 import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material.icons.twotone.Email
@@ -53,6 +52,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.DiscordIcon
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.debug.recording.core.DebugSession
@@ -264,7 +264,7 @@ fun SupportScreen(
                 SettingsBaseItem(
                     title = stringResource(R.string.discord_label),
                     subtitle = stringResource(R.string.discord_description),
-                    icon = Icons.TwoTone.ChatBubble,
+                    icon = DiscordIcon,
                     onClick = onDiscord,
                 )
             }
