@@ -11,7 +11,7 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test
 import testhelper.BaseTest
 import testhelper.coroutine.TestDispatcherProvider
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class WatcherDashboardViewModelTest : BaseTest() {
 
     private val testDispatcher = StandardTestDispatcher()

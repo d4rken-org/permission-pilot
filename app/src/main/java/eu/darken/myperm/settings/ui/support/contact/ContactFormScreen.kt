@@ -6,7 +6,7 @@ import android.text.format.Formatter
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
+
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -222,7 +222,6 @@ fun ContactFormScreenHost(vm: ContactFormViewModel = hiltViewModel()) {
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ContactFormScreen(
     state: ContactFormViewModel.State,
@@ -237,7 +236,7 @@ fun ContactFormScreen(
     onStopRecording: () -> Unit,
     onSend: () -> Unit,
 ) {
-    val context = LocalContext.current
+    LocalContext.current
 
     Scaffold(
         topBar = {

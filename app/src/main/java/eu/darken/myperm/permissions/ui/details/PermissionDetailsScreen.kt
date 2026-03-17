@@ -1,11 +1,8 @@
 package eu.darken.myperm.permissions.ui.details
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,6 +33,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,18 +50,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
-import eu.darken.myperm.common.compose.LoadingContent
-import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
+import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.PermissionIcon
+import eu.darken.myperm.common.compose.PermissionTagPill
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
-import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
-import eu.darken.myperm.common.compose.Pill
-import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.permissions.core.ProtectionFlag
 import eu.darken.myperm.permissions.core.ProtectionType
 
@@ -116,7 +113,6 @@ fun PermissionDetailsScreenHost(
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun PermissionDetailsScreen(
     state: PermissionDetailsViewModel.State,
@@ -158,7 +154,9 @@ fun PermissionDetailsScreen(
             LoadingContent(modifier = Modifier.padding(innerPadding))
         } else {
             LazyColumn(
-                modifier = Modifier.fillMaxSize().padding(innerPadding),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
             ) {
                 // Overview card
                 item(key = "overview") {
