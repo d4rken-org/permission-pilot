@@ -26,6 +26,8 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -60,10 +62,12 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val isRefreshing by vm.isRefreshing.collectAsState()
 
     state?.let {
         OverviewScreen(
             state = it,
+            isRefreshing = isRefreshing,
             onRefresh = { vm.onRefresh() },
             onSettings = { vm.goToSettings() },
             onCategoryClick = { filters -> vm.onCategoryClicked(filters) },
@@ -74,11 +78,23 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
 @Composable
 fun OverviewScreen(
     state: OverviewViewModel.State,
+    isRefreshing: Boolean = false,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
     onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit = {},
 ) {
     Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { if (!isRefreshing) onRefresh() },
+            ) {
+                if (isRefreshing) {
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                } else {
+                    Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                }
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -92,9 +108,6 @@ fun OverviewScreen(
                     }
                 },
                 actions = {
-                    IconButton(onClick = onRefresh) {
-                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
-                    }
                     IconButton(onClick = onSettings) {
                         Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.settings_page_label))
                     }

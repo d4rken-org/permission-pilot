@@ -46,6 +46,8 @@ class PermissionsViewModel @Inject constructor(
         .map { it.isPro }
         .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
 
+    val isRefreshing: StateFlow<Boolean> = appRepo.isScanning
+
     private val searchTerm = MutableStateFlow<String?>(null)
     private val filterOptions = generalSettings.permissionsFilterOptions.flow
     private val sortOptions = generalSettings.permissionsSortOptions.flow
@@ -190,6 +192,7 @@ class PermissionsViewModel @Inject constructor(
     }
 
     fun onRefresh() {
+        log(TAG) { "onRefresh()" }
         appRepo.refresh()
     }
 
