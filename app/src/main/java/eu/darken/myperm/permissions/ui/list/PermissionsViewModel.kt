@@ -11,6 +11,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
+import eu.darken.myperm.export.core.ExportSelectionStore
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionGroup
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -39,6 +40,7 @@ class PermissionsViewModel @Inject constructor(
     permissionRepo: PermissionRepo,
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
+    private val exportSelectionStore: ExportSelectionStore,
     upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -52,6 +54,7 @@ class PermissionsViewModel @Inject constructor(
     private val filterOptions = generalSettings.permissionsFilterOptions.flow
     private val sortOptions = generalSettings.permissionsSortOptions.flow
     private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
+    private val selectedPermissions = MutableStateFlow<Set<Permission.Id>>(emptySet())
 
     data class PermItem(
         val id: Permission.Id,
@@ -81,6 +84,8 @@ class PermissionsViewModel @Inject constructor(
             val countGroups: Int = 0,
             val filterOptions: PermsFilterOptions = PermsFilterOptions(),
             val sortOptions: PermsSortOptions = PermsSortOptions(),
+            val selection: Set<Permission.Id> = emptySet(),
+            val groupPerms: Map<PermissionGroup.Id, List<Permission.Id>> = emptyMap(),
         ) : State()
     }
 
@@ -89,8 +94,9 @@ class PermissionsViewModel @Inject constructor(
         expandedGroups,
         searchTerm,
         filterOptions,
-        sortOptions
-    ) { permissionRepoState, expGroups, searchTerm, filterOptions, sortOptions ->
+        combine(sortOptions, selectedPermissions) { s, sel -> s to sel },
+    ) { permissionRepoState, expGroups, searchTerm, filterOptions, sortAndSel ->
+        val (sortOptions, selection) = sortAndSel
         val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
             ?: return@combine State.Loading
 
@@ -122,6 +128,7 @@ class PermissionsViewModel @Inject constructor(
         var permissionCount = 0
         var groupCount = 0
         val listItems = mutableListOf<ListItem>()
+        val groupPermsMap = mutableMapOf<PermissionGroup.Id, List<Permission.Id>>()
 
         APermGrp.values
             .filter { it != APermGrp.Other }
@@ -134,6 +141,7 @@ class PermissionsViewModel @Inject constructor(
                 val isExpanded = expGroups[grp.id] == true
 
                 if (permsInGrp.isNotEmpty()) {
+                    groupPermsMap[grp.id] = permsInGrp.map { it.id }
                     listItems.add(
                         ListItem.Group(
                             GroupItem(group = grp, permCount = permsInGrp.size, isExpanded = isExpanded)
@@ -149,6 +157,7 @@ class PermissionsViewModel @Inject constructor(
         // Other group
         if (permItems.isNotEmpty()) {
             val isExpanded = expGroups[APermGrp.Other.id] == true
+            groupPermsMap[APermGrp.Other.id] = permItems.map { it.id }
             listItems.add(
                 ListItem.Group(
                     GroupItem(group = APermGrp.Other, permCount = permItems.size, isExpanded = isExpanded)
@@ -165,6 +174,8 @@ class PermissionsViewModel @Inject constructor(
             countPermissions = permissionCount,
             filterOptions = filterOptions,
             sortOptions = sortOptions,
+            selection = selection,
+            groupPerms = groupPermsMap,
         )
     }.asStateFlow()
 
@@ -187,8 +198,61 @@ class PermissionsViewModel @Inject constructor(
     }
 
     fun onPermissionClicked(item: PermItem) {
+        if (selectedPermissions.value.isNotEmpty()) {
+            togglePermissionSelection(item.id)
+            return
+        }
         log(TAG) { "Navigating to ${item.id}" }
         navTo(Nav.Details.PermissionDetails(permissionId = item.id.value, permLabel = item.label))
+    }
+
+    fun onPermissionLongPressed(item: PermItem) {
+        log(TAG) { "Long pressed ${item.id}" }
+        togglePermissionSelection(item.id)
+    }
+
+    fun onGroupLongPressed(groupItem: GroupItem) {
+        log(TAG) { "Group long pressed: ${groupItem.group.id}" }
+        val readyState = state.value as? State.Ready ?: return
+        val groupPermIds = readyState.groupPerms[groupItem.group.id] ?: return
+        val current = selectedPermissions.value
+        val allSelected = groupPermIds.all { it in current }
+        selectedPermissions.value = if (allSelected) {
+            current - groupPermIds.toSet()
+        } else {
+            current + groupPermIds.toSet()
+        }
+    }
+
+    private fun togglePermissionSelection(id: Permission.Id) {
+        selectedPermissions.value = selectedPermissions.value.let {
+            if (id in it) it - id else it + id
+        }
+    }
+
+    fun selectAllPermissions() {
+        val readyState = state.value as? State.Ready ?: return
+        val allIds = readyState.listData
+            .filterIsInstance<ListItem.Perm>()
+            .map { it.item.id }
+            .toSet()
+        // Also include permissions from collapsed groups
+        val allGroupPermIds = readyState.groupPerms.values.flatten().toSet()
+        selectedPermissions.value = selectedPermissions.value + allIds + allGroupPermIds
+        log(TAG) { "Selected all: ${selectedPermissions.value.size} permissions" }
+    }
+
+    fun clearPermissionSelection() {
+        selectedPermissions.value = emptySet()
+    }
+
+    fun onExportSelectedPermissions() {
+        val selection = selectedPermissions.value
+        if (selection.isEmpty()) return
+        val ids = selection.map { it.value }
+        val token = exportSelectionStore.save(ids)
+        clearPermissionSelection()
+        navTo(Nav.Export.Config(token = token, mode = "permissions"))
     }
 
     fun onRefresh() {
