@@ -1,5 +1,8 @@
 package eu.darken.myperm.apps.ui.list
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,7 +31,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -56,6 +58,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
+import eu.darken.myperm.common.compose.SearchTextField
 import androidx.compose.runtime.collectAsState
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -138,11 +141,11 @@ fun AppsScreen(
                         }
                     }
                     IconButton(onClick = {
-                        isSearchActive = !isSearchActive
-                        if (!isSearchActive) {
+                        if (isSearchActive) {
                             searchQuery = ""
                             onSearchChanged(null)
                         }
+                        isSearchActive = !isSearchActive
                     }) {
                         Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
                     }
@@ -187,18 +190,18 @@ fun AppsScreen(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            if (isSearchActive) {
-                OutlinedTextField(
-                    value = searchQuery,
-                    onValueChange = {
+            AnimatedVisibility(
+                visible = isSearchActive,
+                enter = expandVertically(),
+                exit = shrinkVertically(),
+            ) {
+                SearchTextField(
+                    query = searchQuery,
+                    onQueryChanged = {
                         searchQuery = it
                         onSearchChanged(it.ifBlank { null })
                     },
-                    placeholder = { Text(stringResource(R.string.apps_search_list_hint)) },
-                    singleLine = true,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 0.dp),
+                    placeholder = stringResource(R.string.apps_search_list_hint),
                 )
             }
 
