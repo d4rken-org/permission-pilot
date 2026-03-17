@@ -7,20 +7,21 @@
 
 ## Core Architecture Patterns
 
-- **MVVM**: ViewModels with LiveData/StateFlow for UI state management
+- **MVVM**: ViewModels with StateFlow for UI state management
 - **Dependency Injection**: Hilt/Dagger for dependency management
 - **Coroutines**: Extensive use of Kotlin coroutines for async operations
 - **Repository Pattern**: Data layer abstraction with sealed State classes
-- **Single Activity**: Navigation Component with multiple fragments
+- **Single Activity**: Navigation3 with Compose screens
 
 ## Base UI Classes (`app/src/main/java/eu/darken/myperm/common/uix/`)
 
-- `ViewModel3`: Full MVVM support with nav events + error events (most feature VMs extend this)
+- `ViewModel4`: Primary base class — implements `NavigationEventSource` + `ErrorEventSource2` via `SingleEventFlow` (all
+  feature VMs extend this)
+- `ViewModel3`: Legacy MVVM base with `SingleLiveEvent` (still exists, not used by new code)
 - `ViewModel2`: Coroutine scope with error handlers
 - `ViewModel1`: Basic logging
-- `Fragment3`: MVVM integration, observes navEvents/errorEvents from ViewModel
-- `Fragment2`: Lifecycle logging
 - `Activity2`: Base activity with logging
+- `Service2`: Base service with logging
 
 ## Repository Pattern
 
@@ -38,16 +39,17 @@ sealed class State {
 
 ## Navigation System
 
-- Single Activity (`MainActivity`) with `NavHostFragment`
-- AndroidX Navigation with Safe Args (KSP-generated)
-- Navigation graphs: `res/navigation/main_navigation.xml`, `res/navigation/bottom_navigation.xml`
-- `NavEventSource` interface: ViewModels expose `navEvents: SingleLiveEvent<NavDirections>`
-- `ErrorEventSource` interface: ViewModels expose `errorEvents: SingleLiveEvent<Throwable>`
+- Single Activity (`MainActivity`) with Navigation3 (Compose-based, no fragments)
+- Custom `NavigationController` + `NavigationEntry` (not AndroidX Navigation fragments)
+- `NavigationEventSource` interface: ViewModels expose `navEvents: SingleEventFlow<NavEvent>`
+- `NavEvent` sealed class: `GoTo(destination, popUpTo, inclusive)` and `Up`
+- `ErrorEventSource2` interface: ViewModels expose `errorEvents: SingleEventFlow<Throwable>`
 
 ## Settings System
 
-- `GeneralSettings` singleton uses SharedPreferences with Moshi JSON serialization
-- Flow-based preference reading via `createFlowPreference()`
+- `GeneralSettings` singleton uses DataStore Preferences with Kotlinx Serialization
+- Flow-based preference reading via `createValue()` with `kotlinxReader`/`kotlinxWriter` helpers
+- SharedPreferences retained only for migration via `SharedPreferencesMigration`
 - Located in `settings/core/GeneralSettings.kt`
 
 ## Data Flow
@@ -57,36 +59,45 @@ The app follows unidirectional data flow:
 1. `AppRepo` queries PackageManager for installed apps
 2. `PermissionRepo` aggregates permission data from apps
 3. ViewModels combine repository flows with filter/sort options
-4. UI observes ViewModel state via LiveData
+4. Compose UI collects ViewModel state via StateFlow
 5. User actions trigger ViewModel methods which update repository or navigate
 
 ## Project Structure
+
+Representative structure (not exhaustive):
 
 ```
 app/src/main/java/eu/darken/myperm/
 ├── main/           # MainActivity, main navigation hub
 ├── permissions/    # Permissions feature
 │   ├── core/       # PermissionRepo, data models
-│   └── ui/         # List and details fragments
+│   └── ui/         # List and details Compose screens
 ├── apps/           # Apps feature
 │   ├── core/       # AppRepo, PackageManager interactions
-│   └── ui/         # List and details fragments
+│   └── ui/         # List and details Compose screens
+├── watcher/        # Permission change monitoring
+│   ├── core/       # WatcherManager, SnapshotDiffer, PermissionDiff
+│   └── ui/         # Dashboard and report detail screens
 ├── settings/       # Settings feature
 │   ├── core/       # GeneralSettings
-│   └── ui/         # Settings fragments
+│   └── ui/         # Settings Compose screens
 └── common/         # Shared utilities
-    ├── uix/        # Base UI classes
+    ├── uix/        # Base UI classes (ViewModel4, Activity2, Service2)
+    ├── compose/    # Shared Compose components
     ├── coroutine/  # DispatcherProvider, AppScope
     ├── dagger/     # Hilt DI modules
-    ├── navigation/ # Nav extensions
-    ├── lists/      # ModularAdapter pattern for RecyclerView
-    └── preferences/# FlowPreference utilities
+    ├── datastore/  # DataStore helpers (createValue, kotlinxReader/Writer)
+    ├── navigation/ # Navigation3 extensions, NavigationEventSource
+    ├── room/       # Room database, DAOs, entities
+    └── serialization/ # Kotlinx Serialization utilities
 ```
 
 ## Key Dependencies
 
+- **Jetpack Compose**: UI framework (Material 3)
 - **Hilt**: Dependency injection framework
-- **AndroidX Navigation**: Fragment navigation with SafeArgs
-- **Moshi**: JSON serialization for settings and data
+- **Navigation3**: Compose-based navigation
+- **Kotlinx Serialization**: JSON serialization for settings and data
+- **DataStore**: Preferences storage
+- **Room**: Database for watcher snapshots
 - **Coil**: Image loading for app icons
-- **Material Design**: UI components

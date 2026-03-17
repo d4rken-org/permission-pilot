@@ -22,20 +22,22 @@ Use `DispatcherProvider` interface for testability instead of hardcoded dispatch
 
 ```kotlin
 @HiltViewModel
-class MyFeatureVM @Inject constructor(
+class MyFeatureViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
     private val myRepo: MyRepo,
-) : ViewModel3(dispatcherProvider = dispatcherProvider)
+) : ViewModel4(dispatcherProvider = dispatcherProvider)
 ```
 
-## Fragment Creation Pattern
+## Screen Creation Pattern
 
 ```kotlin
-@AndroidEntryPoint
-class MyFeatureFragment : Fragment3(R.layout.my_feature_fragment) {
-    override val vm: MyFeatureVM by viewModels()
-    override val ui: MyFeatureFragmentBinding by viewBinding()
+@Composable
+fun MyFeatureScreenHost(vm: MyFeatureViewModel = hiltViewModel()) {
+    ErrorEventHandler(vm)
+    NavigationEventHandler(vm)
+    val state by vm.state.collectAsState()
+    MyFeatureScreen(state = state, ...)
 }
 ```
 
@@ -58,19 +60,18 @@ log(TAG, WARN) { "Unexpected state" }     // WARN
 
 ## UI Patterns
 
-- XML layouts with ViewBinding for UI components
+- Jetpack Compose is the sole UI framework — no XML layouts remain
 - Material 3 theming and design system
-- Single Activity architecture with Fragment-based navigation
-- Compose is used for new screens alongside existing XML/ViewBinding
+- Single Activity architecture with Compose-based navigation
 
 ## Error Handling
 
-- Use the established error handling patterns with `ErrorEventSource`
-- ViewModels expose `errorEvents: SingleLiveEvent<Throwable>`
+- ViewModels implement `ErrorEventSource2`, exposing `errorEvents: SingleEventFlow<Throwable>`
+- Compose screens wire errors via `ErrorEventHandler(vm)` composable
 
 ## Data & State
 
 - Reactive programming with Kotlin Flow and StateFlow
-- SharedPreferences with Moshi JSON serialization for settings
+- DataStore with Kotlinx Serialization for settings
 - Room for database operations
 - Coil for image loading
