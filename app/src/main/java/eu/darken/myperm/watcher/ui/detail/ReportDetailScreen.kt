@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
@@ -154,11 +155,20 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            AppIcon(
-                pkg = Pkg.Container(Pkg.Id(state.packageName)),
-                isSystemApp = state.isSystemApp,
-                modifier = Modifier.size(48.dp),
-            )
+            if (state.eventType == WatcherEventType.REMOVED) {
+                Icon(
+                    imageVector = Icons.Filled.DeleteForever,
+                    contentDescription = null,
+                    modifier = Modifier.size(48.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            } else {
+                AppIcon(
+                    pkg = Pkg.Container(Pkg.Id(state.packageName)),
+                    isSystemApp = state.isSystemApp,
+                    modifier = Modifier.size(48.dp),
+                )
+            }
 
             Spacer(modifier = Modifier.width(16.dp))
 
