@@ -30,7 +30,6 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Group
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -52,7 +51,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -63,6 +61,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
@@ -172,22 +171,7 @@ fun AppDetailsScreen(
         }
     ) { innerPadding ->
         if (state.isLoading) {
-            val loadingLabels = stringArrayResource(R.array.generic_loading_labels)
-            val loadingLabel = remember(loadingLabels) { loadingLabels.random() }
-            Box(
-                modifier = Modifier.fillMaxSize().padding(innerPadding),
-                contentAlignment = Alignment.Center,
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    CircularProgressIndicator()
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = loadingLabel,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
+            LoadingContent(modifier = Modifier.padding(innerPadding))
         } else {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
