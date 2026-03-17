@@ -108,6 +108,7 @@ class GeneralSettings @Inject constructor(
         writer = kotlinxWriter(json),
     )
     val isWatcherNotificationsEnabled = dataStore.createValue("watcher.notifications.enabled", true)
+    val isWatcherNotifyOnlyOnGained = dataStore.createValue("watcher.notifications.only.gained", true)
     val watcherRetentionDays = dataStore.createValue("watcher.retention.days", 30)
 
     val watcherPollingIntervalHours = dataStore.createValue("watcher.polling.interval.hours", 4)
