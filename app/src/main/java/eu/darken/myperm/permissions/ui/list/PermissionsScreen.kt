@@ -34,9 +34,11 @@ import androidx.compose.material.icons.filled.UnfoldLess
 import androidx.compose.material.icons.filled.UnfoldMore
 import androidx.compose.material3.AlertDialog
 import eu.darken.myperm.common.compose.LoadingContent
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -86,6 +88,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val isRefreshing by vm.isRefreshing.collectAsState()
     var showFilterSortSheet by rememberSaveable { mutableStateOf(false) }
     var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
 
@@ -96,6 +99,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
 
     PermissionsScreen(
         state = effectiveState,
+        isRefreshing = isRefreshing,
         hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onGroupClicked = { vm.toggleGroup(it) },
@@ -125,6 +129,7 @@ fun PermissionsScreenHost(vm: PermissionsViewModel = hiltViewModel()) {
 @Composable
 fun PermissionsScreen(
     state: PermissionsViewModel.State,
+    isRefreshing: Boolean = false,
     hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onGroupClicked: (PermissionGroup.Id) -> Unit,
@@ -140,6 +145,17 @@ fun PermissionsScreen(
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { if (!isRefreshing) onRefresh() },
+            ) {
+                if (isRefreshing) {
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                } else {
+                    Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                }
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -205,11 +221,6 @@ fun PermissionsScreen(
                                     leadingIcon = { Icon(Icons.Filled.UnfoldMore, contentDescription = null) },
                                 )
                             }
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_refresh_action)) },
-                                onClick = { showOverflowMenu = false; onRefresh() },
-                                leadingIcon = { Icon(Icons.Filled.Refresh, contentDescription = null) },
-                            )
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.settings_page_label)) },
                                 onClick = { showOverflowMenu = false; onSettings() },

@@ -21,7 +21,10 @@ import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
@@ -86,6 +89,9 @@ class AppRepo @Inject constructor(
 
     // ── Sync / refresh ──────────────────────────────────────────────────
 
+    private val _isScanning = MutableStateFlow(false)
+    val isScanning: StateFlow<Boolean> = _isScanning.asStateFlow()
+
     private val refreshTrigger = MutableSharedFlow<TriggerReason>(extraBufferCapacity = 1)
 
     init {
@@ -100,10 +106,13 @@ class AppRepo @Inject constructor(
                 },
         ).onEach { reason ->
             try {
+                _isScanning.value = true
                 scanAndSave(reason)
                 enqueuePermissionWatcher()
             } catch (e: Exception) {
                 log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
+            } finally {
+                _isScanning.value = false
             }
         }.launchIn(appScope)
     }

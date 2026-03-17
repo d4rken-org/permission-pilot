@@ -10,6 +10,7 @@ import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.BuildWrap
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.apps.core.AppInfo
@@ -21,6 +22,7 @@ import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -79,6 +81,8 @@ class OverviewViewModel @Inject constructor(
         )
     }
 
+    val isRefreshing: StateFlow<Boolean> = appRepo.isScanning
+
     private val myUserHandleId = Process.myUserHandle().hashCode()
     private val storePkgNames = AKnownPkg.APP_STORES.map { it.id.pkgName }.toSet()
 
@@ -124,8 +128,9 @@ class OverviewViewModel @Inject constructor(
     private fun AppInfo.hasGrantedPermission(permissionId: String): Boolean =
         requestedPermissions.any { it.permissionId == permissionId && it.status.isGranted }
 
-    fun onRefresh() = launch {
-        // Trigger repo refresh via AppRepo
+    fun onRefresh() {
+        log(TAG) { "onRefresh()" }
+        appRepo.refresh()
     }
 
     fun onUpgrade() {

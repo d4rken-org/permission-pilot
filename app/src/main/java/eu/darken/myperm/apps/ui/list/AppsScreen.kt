@@ -24,9 +24,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
 import eu.darken.myperm.common.compose.LoadingContent
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -68,6 +70,7 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val isRefreshing by vm.isRefreshing.collectAsState()
     var showFilterSortSheet by rememberSaveable { mutableStateOf(false) }
     var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
 
@@ -78,6 +81,7 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 
     AppsScreen(
         state = effectiveState,
+        isRefreshing = isRefreshing,
         hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onAppClicked = { vm.onAppClicked(it) },
@@ -104,6 +108,7 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 @Composable
 fun AppsScreen(
     state: AppsViewModel.State,
+    isRefreshing: Boolean = false,
     hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onAppClicked: (AppsViewModel.AppItem) -> Unit,
@@ -116,6 +121,17 @@ fun AppsScreen(
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { if (!isRefreshing) onRefresh() },
+            ) {
+                if (isRefreshing) {
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                } else {
+                    Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                }
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -168,11 +184,6 @@ fun AppsScreen(
                             expanded = showOverflowMenu,
                             onDismissRequest = { showOverflowMenu = false },
                         ) {
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.general_refresh_action)) },
-                                onClick = { showOverflowMenu = false; onRefresh() },
-                                leadingIcon = { Icon(Icons.Filled.Refresh, contentDescription = null) },
-                            )
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.settings_page_label)) },
                                 onClick = { showOverflowMenu = false; onSettings() },
