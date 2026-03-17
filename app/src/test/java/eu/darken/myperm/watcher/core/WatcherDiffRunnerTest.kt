@@ -47,8 +47,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         every { generalSettings.lastDiffedSnapshotId } returns lastDiffedSnapshotId
         coEvery { changeDao.insert(any()) } returns 1L
         coEvery { changeDao.existsByPackageAndSnapshot(any(), any(), any()) } returns false
-        coEvery { watcherNotifications.postChangeNotification(any(), any(), any(), any()) } returns Unit
-        coEvery { watcherNotifications.postSummaryNotification(any()) } returns Unit
+        coEvery { watcherNotifications.postChangeNotification(any(), any(), any(), any()) } returns true
     }
 
     private fun createRunner() = WatcherDiffRunner(
