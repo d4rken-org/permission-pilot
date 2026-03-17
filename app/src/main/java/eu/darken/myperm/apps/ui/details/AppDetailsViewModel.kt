@@ -1,23 +1,28 @@
 package eu.darken.myperm.apps.ui.details
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
+import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
+import android.os.Process
+import android.os.UserHandle
+import android.os.UserManager
+import android.widget.Toast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.apps.core.getSettingsIntent
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.PermissionUse
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.tryCreateUserHandle
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
-import eu.darken.myperm.apps.core.AppInfo
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionRepo
@@ -51,10 +56,19 @@ class AppDetailsViewModel @Inject constructor(
     var initialLabel: String? = null
         private set
 
+    private val launcherApps: LauncherApps?
+        get() = context.getSystemService(LauncherApps::class.java)
+
     fun init(route: Nav.Details.AppDetails) {
         pkgName = route.pkgName
         userHandleId = route.userHandle
         initialLabel = route.appLabel
+    }
+
+    private fun getUserHandle(): UserHandle? {
+        if (userHandleId == Process.myUserHandle().hashCode()) return Process.myUserHandle()
+        val userManager = context.getSystemService(UserManager::class.java) ?: return null
+        return userManager.tryCreateUserHandle(userHandleId)
     }
 
     data class PermItem(
@@ -205,7 +219,15 @@ class AppDetailsViewModel @Inject constructor(
                 apiCompileDesc = appInfo.apiCompileLevel?.let { context.getString(R.string.api_build_level_x, formatApiLevel(it)) },
                 installerLabel = appInfo.installerPkgName,
                 installerSourceLabel = context.getString(R.string.apps_details_installer_label),
-                canOpen = context.packageManager.getLaunchIntentForPackage(appInfo.pkgName) != null,
+                canOpen = run {
+                    val userHandle = getUserHandle()
+                    val la = launcherApps
+                    if (la != null && userHandle != null) {
+                        la.getActivityList(appInfo.pkgName, userHandle).isNotEmpty()
+                    } else {
+                        context.packageManager.getLaunchIntentForPackage(appInfo.pkgName) != null
+                    }
+                },
                 installerPkgNames = appInfo.allInstallerPkgNames,
                 installerAppName = installerAppName,
                 permissions = filteredPerms,
@@ -249,19 +271,44 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     fun onGoSettings() {
-        log(TAG) { "onGoSettings for $pkgName" }
-        val pkg = Pkg.Container(Pkg.Id(pkgName))
-        val intent = pkg.getSettingsIntent(context).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        log(TAG) { "onGoSettings for $pkgName (userHandleId=$userHandleId)" }
+        val la = launcherApps
+        val userHandle = getUserHandle()
+        if (la != null && userHandle != null) {
+            try {
+                la.startAppDetailsActivity(ComponentName(pkgName, ""), userHandle, null, null)
+            } catch (e: Exception) {
+                log(TAG) { "startAppDetailsActivity failed: $e" }
+                Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            log(TAG) { "LauncherApps or UserHandle unavailable, falling back to plain intent" }
+            Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
         }
-        context.startActivity(intent)
     }
 
     fun onOpenApp() {
-        log(TAG) { "onOpenApp for $pkgName" }
-        val intent = context.packageManager.getLaunchIntentForPackage(pkgName) ?: return
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent)
+        log(TAG) { "onOpenApp for $pkgName (userHandleId=$userHandleId)" }
+        val la = launcherApps
+        val userHandle = getUserHandle()
+        if (la != null && userHandle != null) {
+            val activities = la.getActivityList(pkgName, userHandle)
+            val component = activities.firstOrNull()?.componentName
+            if (component != null) {
+                try {
+                    la.startMainActivity(component, userHandle, null, null)
+                } catch (e: Exception) {
+                    log(TAG) { "startMainActivity failed: $e" }
+                    Toast.makeText(context, R.string.apps_details_open_app_error, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                log(TAG) { "No launchable activity found for $pkgName" }
+                Toast.makeText(context, R.string.apps_details_open_app_error, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            log(TAG) { "LauncherApps or UserHandle unavailable" }
+            Toast.makeText(context, R.string.apps_details_open_app_error, Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun onInstallerClicked(pkgName: String) {
