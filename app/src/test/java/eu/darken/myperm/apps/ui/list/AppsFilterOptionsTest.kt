@@ -5,10 +5,96 @@ import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.common.room.entity.PkgType
 import io.kotest.matchers.shouldBe
+import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
+import testhelper.json.toComparableJson
 
 class AppsFilterOptionsTest : BaseTest() {
+
+    private val json = Json { encodeDefaults = true }
+
+    // --- Serialization tests ---
+
+    @Test
+    fun `default AppsFilterOptions produces expected JSON`() {
+        val serialized = json.encodeToString(AppsFilterOptions())
+        serialized.toComparableJson() shouldBe """
+            {
+                "filters": [
+                    "USER_APP"
+                ]
+            }
+        """.toComparableJson()
+    }
+
+    @Test
+    fun `all Filter enum values serialize to their SerialName`() {
+        AppsFilterOptions.Filter.entries.forEach { filter ->
+            val opts = AppsFilterOptions(filters = setOf(filter))
+            val serialized = json.encodeToString(opts)
+            serialized.toComparableJson() shouldBe """
+                {
+                    "filters": [
+                        "${filter.name}"
+                    ]
+                }
+            """.toComparableJson()
+        }
+    }
+
+    @Test
+    fun `all Sort enum values serialize to their SerialName`() {
+        AppsSortOptions.Sort.entries.forEach { sort ->
+            val opts = AppsSortOptions(mainSort = sort)
+            val serialized = json.encodeToString(opts)
+            serialized.toComparableJson() shouldBe """
+                {
+                    "mainSort": "${sort.name}",
+                    "reversed": false
+                }
+            """.toComparableJson()
+        }
+    }
+
+    @Test
+    fun `AppsFilterOptions with all filters produces expected JSON`() {
+        val allFilters = AppsFilterOptions(filters = AppsFilterOptions.Filter.entries.toSet())
+        val serialized = json.encodeToString(allFilters)
+        serialized.toComparableJson() shouldBe """
+            {
+                "filters": [
+                    "SYSTEM_APP",
+                    "USER_APP",
+                    "GOOGLE_PLAY",
+                    "OEM_STORE",
+                    "SIDELOADED",
+                    "NO_INTERNET",
+                    "SHARED_ID",
+                    "MULTI_PROFILE",
+                    "BATTERY_OPTIMIZATION",
+                    "ACCESSIBILITY",
+                    "DEVICE_ADMIN",
+                    "INSTALL_PACKAGES",
+                    "OVERLAY",
+                    "PRIMARY_PROFILE",
+                    "SECONDARY_PROFILE"
+                ]
+            }
+        """.toComparableJson()
+    }
+
+    @Test
+    fun `AppsFilterOptions round-trips through JSON`() {
+        val original = AppsFilterOptions(
+            filters = setOf(AppsFilterOptions.Filter.SYSTEM_APP, AppsFilterOptions.Filter.NO_INTERNET)
+        )
+        val serialized = json.encodeToString(original)
+        val deserialized = json.decodeFromString<AppsFilterOptions>(serialized)
+        deserialized shouldBe original
+    }
+
+    // --- Filter logic tests ---
 
     private fun app(
         isSystemApp: Boolean = false,

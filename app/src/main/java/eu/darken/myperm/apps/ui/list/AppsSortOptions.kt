@@ -6,6 +6,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.AppInfo
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.time.Instant
 
@@ -20,6 +21,7 @@ data class AppsSortOptions(
         @StringRes val labelRes: Int
     ) {
 
+        @SerialName("PERMISSIONS_GRANTED")
         PERMISSIONS_GRANTED(
             labelRes = R.string.apps_sort_permissions_granted_label,
         ) {
@@ -27,6 +29,7 @@ data class AppsSortOptions(
                 app.requestedPermissions.count { it.status.isGranted }
             }.reversed()
         },
+        @SerialName("PERMISSIONS_REQUESTED")
         PERMISSIONS_REQUESTED(
             labelRes = R.string.apps_sort_permissions_requested_label,
         ) {
@@ -34,6 +37,7 @@ data class AppsSortOptions(
                 app.requestedPermissions.size
             }.reversed()
         },
+        @SerialName("PERMISSIONS_DECLARED")
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
         ) {
@@ -41,6 +45,7 @@ data class AppsSortOptions(
                 app.declaredPermissionCount
             }.reversed()
         },
+        @SerialName("APP_NAME")
         APP_NAME(
             labelRes = R.string.apps_sort_app_name_label,
         ) {
@@ -48,6 +53,7 @@ data class AppsSortOptions(
                 it.label
             }
         },
+        @SerialName("INSTALLED_AT")
         INSTALLED_AT(
             labelRes = R.string.apps_sort_install_date_label,
         ) {
@@ -55,6 +61,7 @@ data class AppsSortOptions(
                 it.installedAt ?: Instant.MIN
             }.reversed()
         },
+        @SerialName("UPDATED_AT")
         UPDATED_AT(
             labelRes = R.string.apps_sort_update_date_label
         ) {
@@ -62,6 +69,7 @@ data class AppsSortOptions(
                 it.updatedAt ?: Instant.MIN
             }.reversed()
         },
+        @SerialName("INSTALL_SOURCE")
         INSTALL_SOURCE(
             labelRes = R.string.apps_sort_install_source_label
         ) {

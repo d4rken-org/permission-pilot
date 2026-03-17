@@ -10,6 +10,7 @@ import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.isHighlighted
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Parcelize
@@ -23,6 +24,7 @@ data class PermsSortOptions(
     enum class Sort(
         @StringRes val labelRes: Int,
     ) {
+        @SerialName("RELEVANCE")
         RELEVANCE(
             labelRes = R.string.permissions_sort_apps_relevance_label,
         ) {
@@ -40,6 +42,7 @@ data class PermsSortOptions(
                     }
                 }.reversed()
         },
+        @SerialName("APPS_GRANTED")
         APPS_GRANTED(
             labelRes = R.string.permissions_sort_apps_granted_label,
         ) {
@@ -48,6 +51,7 @@ data class PermsSortOptions(
                     perm.grantingApps.size
                 }.reversed()
         },
+        @SerialName("APPS_REQUESTED")
         APPS_REQUESTED(
             labelRes = R.string.permissions_sort_apps_requested_label,
         ) {

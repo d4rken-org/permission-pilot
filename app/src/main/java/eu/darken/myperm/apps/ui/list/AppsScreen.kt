@@ -20,7 +20,6 @@ import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
@@ -69,8 +68,8 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
-    val isPro by vm.isPro.collectAsState()
     var showFilterSortSheet by rememberSaveable { mutableStateOf(false) }
+    var showTagHelpDialog by rememberSaveable { mutableStateOf(false) }
 
     val effectiveState = state ?: AppsViewModel.State.Loading
     val readyState = state as? AppsViewModel.State.Ready
@@ -79,14 +78,12 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
 
     AppsScreen(
         state = effectiveState,
-        isPro = isPro,
         hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onAppClicked = { vm.onAppClicked(it) },
         onFilter = { showFilterSortSheet = true },
         onRefresh = { vm.onRefresh() },
         onSettings = { vm.goToSettings() },
-        onUpgrade = { vm.onUpgrade() },
     )
 
     if (showFilterSortSheet && readyState != null) {
@@ -95,21 +92,24 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
             currentSortOptions = readyState.sortOptions,
             onOptionsChanged = { filter, sort -> vm.updateOptions { _, _ -> filter to sort } },
             onDismiss = { showFilterSortSheet = false },
+            onHelpClicked = { showTagHelpDialog = true },
         )
+    }
+
+    if (showTagHelpDialog) {
+        AppTagHelpDialog(onDismiss = { showTagHelpDialog = false })
     }
 }
 
 @Composable
 fun AppsScreen(
     state: AppsViewModel.State,
-    isPro: Boolean = true,
     hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onAppClicked: (AppsViewModel.AppItem) -> Unit,
     onFilter: () -> Unit,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
-    onUpgrade: () -> Unit = {},
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
@@ -135,11 +135,6 @@ fun AppsScreen(
                     }
                 },
                 actions = {
-                    if (!isPro) {
-                        IconButton(onClick = onUpgrade) {
-                            Icon(Icons.TwoTone.Stars, contentDescription = stringResource(R.string.upgrade_required_subtitle))
-                        }
-                    }
                     IconButton(onClick = {
                         if (isSearchActive) {
                             searchQuery = ""
@@ -322,7 +317,6 @@ private fun AppsScreenReadyPreview() = PreviewWrapper {
         onFilter = {},
         onRefresh = {},
         onSettings = {},
-        onUpgrade = {},
     )
 }
 
@@ -336,7 +330,6 @@ private fun AppsScreenEmptyPreview() = PreviewWrapper {
         onFilter = {},
         onRefresh = {},
         onSettings = {},
-        onUpgrade = {},
     )
 }
 
@@ -350,6 +343,5 @@ private fun AppsScreenLoadingPreview() = PreviewWrapper {
         onFilter = {},
         onRefresh = {},
         onSettings = {},
-        onUpgrade = {},
     )
 }
