@@ -29,7 +29,8 @@ import eu.darken.myperm.common.compose.PreviewWrapper
 
 data class LabeledOption<T>(
     val value: T,
-    @StringRes val labelRes: Int,
+    @StringRes val labelRes: Int = 0,
+    val labelText: String? = null,
 )
 
 @Composable
@@ -67,7 +68,7 @@ fun <T> MultiChoiceFilterDialog(
                             },
                         )
                         Text(
-                            text = stringResource(option.labelRes),
+                            text = option.labelText ?: stringResource(option.labelRes),
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(start = 8.dp),
                         )
@@ -114,7 +115,7 @@ fun <T> SingleChoiceSortDialog(
                             onClick = { onSelect(option.value) },
                         )
                         Text(
-                            text = stringResource(option.labelRes),
+                            text = option.labelText ?: stringResource(option.labelRes),
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(start = 8.dp),
                         )

@@ -182,13 +182,7 @@ fun WatcherSettingsScreen(
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.watcher_settings_retention_label),
-                subtitle = when (retentionDays) {
-                    7 -> stringResource(R.string.watcher_settings_retention_7)
-                    14 -> stringResource(R.string.watcher_settings_retention_14)
-                    60 -> stringResource(R.string.watcher_settings_retention_60)
-                    90 -> stringResource(R.string.watcher_settings_retention_90)
-                    else -> stringResource(R.string.watcher_settings_retention_30)
-                },
+                subtitle = pluralStringResource(R.plurals.watcher_settings_retention_days, retentionDays, retentionDays),
                 icon = Icons.TwoTone.Schedule,
                 onClick = { showRetentionDialog = true },
             )
@@ -225,13 +219,9 @@ fun WatcherSettingsScreen(
     if (showRetentionDialog) {
         SingleChoiceSortDialog(
             title = stringResource(R.string.watcher_settings_retention_label),
-            options = listOf(
-                LabeledOption(7, R.string.watcher_settings_retention_7),
-                LabeledOption(14, R.string.watcher_settings_retention_14),
-                LabeledOption(30, R.string.watcher_settings_retention_30),
-                LabeledOption(60, R.string.watcher_settings_retention_60),
-                LabeledOption(90, R.string.watcher_settings_retention_90),
-            ),
+            options = listOf(7, 14, 30, 60, 90).map {
+                LabeledOption(it, labelText = pluralStringResource(R.plurals.watcher_settings_retention_days, it, it))
+            },
             selected = retentionDays,
             onSelect = {
                 onRetentionDaysSelected(it)
