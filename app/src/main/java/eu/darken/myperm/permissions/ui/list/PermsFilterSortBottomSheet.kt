@@ -2,7 +2,7 @@ package eu.darken.myperm.permissions.ui.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
+
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,16 +12,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
-import androidx.compose.material3.ExperimentalMaterial3Api
+
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
@@ -30,8 +32,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun PermsFilterSortBottomSheet(
     currentFilterOptions: PermsFilterOptions,
@@ -90,33 +93,9 @@ fun PermsFilterSortBottomSheet(
                 }
             }
 
-            Text(
-                text = stringResource(R.string.permissions_filter_section_sort_by),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(top = 4.dp),
-            )
-            FlowRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                PermsSortOptions.Sort.entries.forEach { sort ->
-                    FilterChip(
-                        selected = sort == currentSort.value,
-                        onClick = {
-                            currentSort.value = sort
-                            onOptionsChanged(
-                                PermsFilterOptions(filters = currentFilters.toSet()),
-                                PermsSortOptions(mainSort = sort),
-                            )
-                        },
-                        label = { Text(stringResource(sort.labelRes)) },
-                    )
-                }
-            }
-
-            PermsFilterOptions.Group.entries.forEach { group ->
+            CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 40.dp) {
                 Text(
-                    text = stringResource(group.labelRes),
+                    text = stringResource(R.string.permissions_filter_section_sort_by),
                     style = MaterialTheme.typography.labelLarge,
                     color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(top = 4.dp),
@@ -124,25 +103,77 @@ fun PermsFilterSortBottomSheet(
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    PermsFilterOptions.Filter.entries
-                        .filter { it.group == group }
-                        .forEach { filter ->
-                            val isSelected = filter in currentFilters
-                            FilterChip(
-                                selected = isSelected,
-                                onClick = {
-                                    if (isSelected) currentFilters.remove(filter)
-                                    else currentFilters.add(filter)
-                                    onOptionsChanged(
-                                        PermsFilterOptions(filters = currentFilters.toSet()),
-                                        PermsSortOptions(mainSort = currentSort.value),
-                                    )
-                                },
-                                label = { Text(stringResource(filter.labelRes)) },
-                            )
-                        }
+                    PermsSortOptions.Sort.entries.forEach { sort ->
+                        FilterChip(
+                            selected = sort == currentSort.value,
+                            onClick = {
+                                currentSort.value = sort
+                                onOptionsChanged(
+                                    PermsFilterOptions(filters = currentFilters.toSet()),
+                                    PermsSortOptions(mainSort = sort),
+                                )
+                            },
+                            label = { Text(stringResource(sort.labelRes)) },
+                        )
+                    }
+                }
+
+                PermsFilterOptions.Group.entries.forEach { group ->
+                    Text(
+                        text = stringResource(group.labelRes),
+                        style = MaterialTheme.typography.labelLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(top = 4.dp),
+                    )
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        PermsFilterOptions.Filter.entries
+                            .filter { it.group == group }
+                            .forEach { filter ->
+                                val isSelected = filter in currentFilters
+                                FilterChip(
+                                    selected = isSelected,
+                                    onClick = {
+                                        if (isSelected) currentFilters.remove(filter)
+                                        else currentFilters.add(filter)
+                                        onOptionsChanged(
+                                            PermsFilterOptions(filters = currentFilters.toSet()),
+                                            PermsSortOptions(mainSort = currentSort.value),
+                                        )
+                                    },
+                                    label = { Text(stringResource(filter.labelRes)) },
+                                )
+                            }
+                    }
                 }
             }
         }
     }
+}
+
+@Preview2
+@Composable
+private fun PermsFilterSortBottomSheetPreview() = PreviewWrapper {
+    PermsFilterSortBottomSheet(
+        currentFilterOptions = PermsFilterOptions(),
+        currentSortOptions = PermsSortOptions(),
+        onOptionsChanged = { _, _ -> },
+        onDismiss = {},
+        onHelpClicked = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun PermsFilterSortBottomSheetActivePreview() = PreviewWrapper {
+    PermsFilterSortBottomSheet(
+        currentFilterOptions = PermsFilterOptions(
+            filters = setOf(PermsFilterOptions.Filter.MANIFEST, PermsFilterOptions.Filter.RUNTIME)
+        ),
+        currentSortOptions = PermsSortOptions(mainSort = PermsSortOptions.Sort.APPS_GRANTED),
+        onOptionsChanged = { _, _ -> },
+        onDismiss = {},
+        onHelpClicked = {},
+    )
 }
