@@ -18,13 +18,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.Refresh
@@ -42,9 +40,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -73,6 +68,7 @@ import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LucideRadar
 import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.SearchTextField
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -263,36 +259,13 @@ fun WatcherDashboardScreen(
                     enter = expandVertically(),
                     exit = shrinkVertically(),
                 ) {
-                    OutlinedTextField(
-                        value = searchQuery,
-                        onValueChange = {
+                    SearchTextField(
+                        query = searchQuery,
+                        onQueryChanged = {
                             searchQuery = it
                             onSearchChanged(it.ifBlank { null })
                         },
-                        placeholder = { Text(stringResource(R.string.watcher_search_hint)) },
-                        singleLine = true,
-                        leadingIcon = {
-                            Icon(Icons.Filled.Search, contentDescription = null)
-                        },
-                        trailingIcon = {
-                            if (searchQuery.isNotBlank()) {
-                                IconButton(onClick = {
-                                    searchQuery = ""
-                                    onSearchChanged(null)
-                                }) {
-                                    Icon(Icons.Filled.Close, contentDescription = null)
-                                }
-                            }
-                        },
-                        shape = RoundedCornerShape(50),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-                            focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 4.dp)
-                            .height(52.dp),
+                        placeholder = stringResource(R.string.watcher_search_hint),
                     )
                 }
                 EnabledContent(
