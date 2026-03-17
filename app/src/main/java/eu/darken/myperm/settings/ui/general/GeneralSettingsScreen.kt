@@ -12,6 +12,7 @@ import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.Contrast
 import androidx.compose.material.icons.twotone.DarkMode
 import androidx.compose.material.icons.twotone.Lock
+import androidx.compose.material.icons.twotone.Speed
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -59,6 +60,7 @@ fun GeneralSettingsScreenHost() {
     val themeColor by vm.themeColor.collectAsState(initial = ThemeColor.BLUE)
     val isDynamicColorActive = LocalIsDynamicColorActive.current
     val isPro by vm.isPro.collectAsState()
+    val ipcParallelisation by vm.ipcParallelisation.collectAsState(initial = 0)
 
     GeneralSettingsScreen(
         onBack = { navCtrl?.up() },
@@ -67,14 +69,16 @@ fun GeneralSettingsScreenHost() {
         themeColor = themeColor,
         isDynamicColorActive = isDynamicColorActive,
         isPro = isPro,
+        ipcParallelisation = ipcParallelisation,
         onThemeModeSelected = { vm.setThemeMode(it) },
         onThemeStyleSelected = { vm.setThemeStyle(it) },
         onThemeColorSelected = { vm.setThemeColor(it) },
+        onIpcParallelisationSelected = { vm.setIpcParallelisation(it) },
         onUpgrade = { vm.onUpgrade() },
     )
 }
 
-private enum class ThemeDialog { MODE, STYLE, COLOR }
+private enum class SettingsDialog { THEME_MODE, THEME_STYLE, THEME_COLOR, SCAN_SPEED }
 
 @Composable
 fun GeneralSettingsScreen(
@@ -84,12 +88,14 @@ fun GeneralSettingsScreen(
     themeColor: ThemeColor = ThemeColor.BLUE,
     isDynamicColorActive: Boolean = false,
     isPro: Boolean = true,
+    ipcParallelisation: Int = 0,
     onThemeModeSelected: (ThemeMode) -> Unit = {},
     onThemeStyleSelected: (ThemeStyle) -> Unit = {},
     onThemeColorSelected: (ThemeColor) -> Unit = {},
+    onIpcParallelisationSelected: (Int) -> Unit = {},
     onUpgrade: () -> Unit = {},
 ) {
-    var openDialog by remember { mutableStateOf<ThemeDialog?>(null) }
+    var openDialog by remember { mutableStateOf<SettingsDialog?>(null) }
 
     Scaffold(
         topBar = {
@@ -132,7 +138,7 @@ fun GeneralSettingsScreen(
                 subtitle = stringResource(themeMode.labelRes),
                 icon = Icons.TwoTone.DarkMode,
                 enabled = isPro,
-                onClick = { openDialog = ThemeDialog.MODE },
+                onClick = { openDialog = SettingsDialog.THEME_MODE },
             )
             SettingsDivider()
             SettingsBaseItem(
@@ -140,7 +146,7 @@ fun GeneralSettingsScreen(
                 subtitle = stringResource(themeStyle.labelRes),
                 icon = Icons.TwoTone.Contrast,
                 enabled = isPro,
-                onClick = { openDialog = ThemeDialog.STYLE },
+                onClick = { openDialog = SettingsDialog.THEME_STYLE },
             )
             SettingsDivider()
 
@@ -154,13 +160,45 @@ fun GeneralSettingsScreen(
                 },
                 icon = Icons.TwoTone.ColorLens,
                 enabled = colorEnabled,
-                onClick = { openDialog = ThemeDialog.COLOR },
+                onClick = { openDialog = SettingsDialog.THEME_COLOR },
+            )
+
+            SettingsCategoryHeader(
+                text = stringResource(R.string.settings_category_advanced_label),
+                action = if (!isPro) {{
+                    FilledTonalButton(onClick = onUpgrade) {
+                        Icon(
+                            Icons.TwoTone.Lock,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                        )
+                        Text(
+                            text = stringResource(R.string.upgrade_required_subtitle),
+                            modifier = Modifier.padding(start = 6.dp),
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+                }} else null,
+            )
+
+            SettingsBaseItem(
+                title = stringResource(R.string.general_settings_scan_speed_label),
+                subtitle = when (ipcParallelisation) {
+                    1 -> stringResource(R.string.general_settings_scan_speed_1)
+                    2 -> stringResource(R.string.general_settings_scan_speed_2)
+                    3 -> stringResource(R.string.general_settings_scan_speed_3)
+                    4 -> stringResource(R.string.general_settings_scan_speed_4)
+                    else -> stringResource(R.string.general_settings_scan_speed_auto)
+                },
+                icon = Icons.TwoTone.Speed,
+                enabled = isPro,
+                onClick = { openDialog = SettingsDialog.SCAN_SPEED },
             )
         }
     }
 
     when (openDialog) {
-        ThemeDialog.MODE -> SingleChoiceSortDialog(
+        SettingsDialog.THEME_MODE -> SingleChoiceSortDialog(
             title = stringResource(R.string.ui_theme_mode_label),
             options = ThemeMode.entries.map { LabeledOption(it, it.labelRes) },
             selected = themeMode,
@@ -171,7 +209,7 @@ fun GeneralSettingsScreen(
             onDismiss = { openDialog = null },
         )
 
-        ThemeDialog.STYLE -> SingleChoiceSortDialog(
+        SettingsDialog.THEME_STYLE -> SingleChoiceSortDialog(
             title = stringResource(R.string.ui_theme_style_label),
             options = ThemeStyle.entries.map { LabeledOption(it, it.labelRes) },
             selected = themeStyle,
@@ -182,10 +220,27 @@ fun GeneralSettingsScreen(
             onDismiss = { openDialog = null },
         )
 
-        ThemeDialog.COLOR -> ThemeColorSelectorDialog(
+        SettingsDialog.THEME_COLOR -> ThemeColorSelectorDialog(
             selectedColor = themeColor,
             onColorSelected = {
                 onThemeColorSelected(it)
+                openDialog = null
+            },
+            onDismiss = { openDialog = null },
+        )
+
+        SettingsDialog.SCAN_SPEED -> SingleChoiceSortDialog(
+            title = stringResource(R.string.general_settings_scan_speed_label),
+            options = listOf(
+                LabeledOption(0, R.string.general_settings_scan_speed_auto),
+                LabeledOption(1, R.string.general_settings_scan_speed_1),
+                LabeledOption(2, R.string.general_settings_scan_speed_2),
+                LabeledOption(3, R.string.general_settings_scan_speed_3),
+                LabeledOption(4, R.string.general_settings_scan_speed_4),
+            ),
+            selected = ipcParallelisation,
+            onSelect = {
+                onIpcParallelisationSelected(it)
                 openDialog = null
             },
             onDismiss = { openDialog = null },
