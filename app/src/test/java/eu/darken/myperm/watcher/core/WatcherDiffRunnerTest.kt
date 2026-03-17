@@ -11,6 +11,7 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import io.kotest.matchers.shouldBe
 import io.mockk.coEvery
@@ -34,6 +35,7 @@ class WatcherDiffRunnerTest : BaseTest() {
     private val changeDao: PermissionChangeDao = mockk(relaxUnitFun = true)
     private val watcherNotifications: WatcherNotifications = mockk(relaxUnitFun = true)
     private val generalSettings: GeneralSettings = mockk()
+    private val upgradeRepo: UpgradeRepo = mockk()
     private val json = Json { ignoreUnknownKeys = true }
 
     private val isWatcherEnabled = mockDataStoreValue(true)
@@ -48,6 +50,13 @@ class WatcherDiffRunnerTest : BaseTest() {
         coEvery { changeDao.insert(any()) } returns 1L
         coEvery { changeDao.existsByPackageAndSnapshot(any(), any(), any()) } returns false
         coEvery { watcherNotifications.postChangeNotification(any(), any(), any(), any()) } returns true
+        every { upgradeRepo.upgradeInfo } returns kotlinx.coroutines.flow.MutableStateFlow(
+            object : UpgradeRepo.Info {
+                override val type = UpgradeRepo.Type.FOSS
+                override val isPro = true
+                override val upgradedAt = null
+            }
+        )
     }
 
     private fun createRunner() = WatcherDiffRunner(
@@ -57,6 +66,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         changeDao = changeDao,
         watcherNotifications = watcherNotifications,
         generalSettings = generalSettings,
+        upgradeRepo = upgradeRepo,
         json = json,
     )
 

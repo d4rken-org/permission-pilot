@@ -11,6 +11,7 @@ import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -25,6 +26,7 @@ class WatcherDiffRunner @Inject constructor(
     private val changeDao: PermissionChangeDao,
     private val watcherNotifications: WatcherNotifications,
     private val generalSettings: GeneralSettings,
+    private val upgradeRepo: UpgradeRepo,
     private val json: Json,
 ) {
 
@@ -128,19 +130,20 @@ class WatcherDiffRunner @Inject constructor(
 
         log(TAG) { "Processing ${chain.pairs.size} new snapshot pair(s)" }
 
+        val isPro = upgradeRepo.upgradeInfo.value.isPro
         var totalReports = 0
         var totalNotified = 0
         val reportedPackages = mutableSetOf<Pair<String, Int>>()
 
         for (pair in chain.pairs) {
-            val (reports, notified) = diffSnapshotPair(pair, scope, reportedPackages)
+            val (reports, notified) = diffSnapshotPair(pair, scope, reportedPackages, isPro)
             totalReports += reports
             totalNotified += notified
             // Progressive update: advance after each pair so cancellation only re-processes the current pair
             generalSettings.lastDiffedSnapshotId.update { pair.newSnapshotId }
         }
 
-        if (totalNotified > 1) {
+        if (totalNotified > 1 && isPro) {
             watcherNotifications.postSummaryNotification(totalNotified)
         }
 
@@ -152,6 +155,7 @@ class WatcherDiffRunner @Inject constructor(
         pair: SnapshotPair,
         scope: WatcherScope,
         reportedPackages: MutableSet<Pair<String, Int>>,
+        isPro: Boolean,
     ): Pair<Int, Int> {
         var reportsCreated = 0
         var notifiedCount = 0
@@ -250,12 +254,16 @@ class WatcherDiffRunner @Inject constructor(
                 )
             )
 
-            val notified = watcherNotifications.postChangeNotification(
-                reportId = reportId,
-                appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
-                packageName = pkgName,
-                diff = diff,
-            )
+            val notified = if (isPro) {
+                watcherNotifications.postChangeNotification(
+                    reportId = reportId,
+                    appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
+                    packageName = pkgName,
+                    diff = diff,
+                )
+            } else {
+                false
+            }
 
             reportedPackages.add(key)
             reportsCreated++

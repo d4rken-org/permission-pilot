@@ -131,22 +131,13 @@ fun WatcherSettingsScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
-            if (isPro) {
-                SettingsSwitchItem(
-                    icon = LucideRadar,
-                    title = stringResource(R.string.watcher_enabled_label),
-                    subtitle = stringResource(R.string.watcher_enabled_desc),
-                    checked = isWatcherEnabled,
-                    onCheckedChange = onWatcherEnabledChanged,
-                )
-            } else {
-                SettingsBaseItem(
-                    icon = Icons.TwoTone.Stars,
-                    title = stringResource(R.string.watcher_enabled_label),
-                    subtitle = stringResource(R.string.watcher_enabled_desc),
-                    onClick = onUpgrade,
-                )
-            }
+            SettingsSwitchItem(
+                icon = LucideRadar,
+                title = stringResource(R.string.watcher_enabled_label),
+                subtitle = stringResource(R.string.watcher_enabled_desc),
+                checked = isWatcherEnabled,
+                onCheckedChange = onWatcherEnabledChanged,
+            )
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.watcher_scope_label),
@@ -164,21 +155,30 @@ fun WatcherSettingsScreen(
                 onIntervalChanged = onPollingIntervalChanged,
             )
             SettingsDivider()
-            SettingsSwitchItem(
-                icon = Icons.TwoTone.Notifications,
-                title = stringResource(R.string.watcher_settings_notifications_label),
-                subtitle = stringResource(R.string.watcher_settings_notifications_desc),
-                checked = isNotificationsEnabled,
-                onCheckedChange = onNotificationsEnabledChanged,
-            )
-            SettingsSwitchItem(
-                icon = Icons.TwoTone.Notifications,
-                title = stringResource(R.string.watcher_settings_notifications_only_gained_label),
-                subtitle = stringResource(R.string.watcher_settings_notifications_only_gained_desc),
-                checked = isNotifyOnlyOnGained,
-                onCheckedChange = onNotifyOnlyOnGainedChanged,
-                enabled = isNotificationsEnabled,
-            )
+            if (isPro) {
+                SettingsSwitchItem(
+                    icon = Icons.TwoTone.Notifications,
+                    title = stringResource(R.string.watcher_settings_notifications_label),
+                    subtitle = stringResource(R.string.watcher_settings_notifications_desc),
+                    checked = isNotificationsEnabled,
+                    onCheckedChange = onNotificationsEnabledChanged,
+                )
+                SettingsSwitchItem(
+                    icon = Icons.TwoTone.Notifications,
+                    title = stringResource(R.string.watcher_settings_notifications_only_gained_label),
+                    subtitle = stringResource(R.string.watcher_settings_notifications_only_gained_desc),
+                    checked = isNotifyOnlyOnGained,
+                    onCheckedChange = onNotifyOnlyOnGainedChanged,
+                    enabled = isNotificationsEnabled,
+                )
+            } else {
+                SettingsBaseItem(
+                    icon = Icons.TwoTone.Stars,
+                    title = stringResource(R.string.watcher_settings_notifications_pro_label),
+                    subtitle = stringResource(R.string.watcher_settings_notifications_desc),
+                    onClick = onUpgrade,
+                )
+            }
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.watcher_settings_retention_label),
