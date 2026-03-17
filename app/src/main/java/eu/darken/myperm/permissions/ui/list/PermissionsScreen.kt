@@ -2,7 +2,11 @@ package eu.darken.myperm.permissions.ui.list
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -56,6 +60,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -72,6 +77,7 @@ import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SearchTextField
+import eu.darken.myperm.common.compose.rememberFabVisibility
 import eu.darken.myperm.common.compose.icon
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -143,16 +149,24 @@ fun PermissionsScreen(
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
+    val (fabVisible, scrollConnection) = rememberFabVisibility()
 
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollConnection),
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { if (!isRefreshing) onRefresh() },
+            AnimatedVisibility(
+                visible = fabVisible,
+                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
-                if (isRefreshing) {
-                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                } else {
-                    Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                FloatingActionButton(
+                    onClick = { if (!isRefreshing) onRefresh() },
+                ) {
+                    if (isRefreshing) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                    } else {
+                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                    }
                 }
             }
         },

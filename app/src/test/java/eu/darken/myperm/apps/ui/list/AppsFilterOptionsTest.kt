@@ -1,8 +1,10 @@
 package eu.darken.myperm.apps.ui.list
 
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.room.entity.PkgType
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.json.Json
@@ -78,7 +80,12 @@ class AppsFilterOptionsTest : BaseTest() {
                     "INSTALL_PACKAGES",
                     "OVERLAY",
                     "PRIMARY_PROFILE",
-                    "SECONDARY_PROFILE"
+                    "SECONDARY_PROFILE",
+                    "CAMERA",
+                    "LOCATION",
+                    "MICROPHONE",
+                    "CONTACTS",
+                    "OLD_API_TARGET"
                 ]
             }
         """.toComparableJson()
@@ -105,6 +112,8 @@ class AppsFilterOptionsTest : BaseTest() {
         pkgType: PkgType = PkgType.PRIMARY,
         batteryOptimization: BatteryOptimization = BatteryOptimization.MANAGED_BY_SYSTEM,
         hasAccessibilityServices: Boolean = false,
+        apiTargetLevel: Int? = null,
+        requestedPermissions: List<PermissionUse> = emptyList(),
     ) = AppInfo(
         pkgName = "com.example.app",
         userHandleId = 0,
@@ -113,14 +122,14 @@ class AppsFilterOptionsTest : BaseTest() {
         versionCode = 1,
         isSystemApp = isSystemApp,
         installerPkgName = allInstallerPkgNames.firstOrNull(),
-        apiTargetLevel = null,
+        apiTargetLevel = apiTargetLevel,
         apiCompileLevel = null,
         apiMinimumLevel = null,
         internetAccess = internetAccess,
         batteryOptimization = batteryOptimization,
         installedAt = null,
         updatedAt = null,
-        requestedPermissions = emptyList(),
+        requestedPermissions = requestedPermissions,
         declaredPermissionCount = 0,
         pkgType = pkgType,
         twinCount = twinCount,
@@ -129,6 +138,9 @@ class AppsFilterOptionsTest : BaseTest() {
         hasDeviceAdmin = false,
         allInstallerPkgNames = allInstallerPkgNames,
     )
+
+    private fun grantedPerm(id: String) = PermissionUse(id, UsesPermission.Status.GRANTED)
+    private fun deniedPerm(id: String) = PermissionUse(id, UsesPermission.Status.DENIED)
 
     @Test
     fun `empty filters match all apps`() {
@@ -200,5 +212,70 @@ class AppsFilterOptionsTest : BaseTest() {
         options.matches(
             app(pkgType = PkgType.SECONDARY_PROFILE, twinCount = 2)
         ) shouldBe false
+    }
+
+    @Test
+    fun `SECONDARY_PROFILE matches both SECONDARY_PROFILE and SECONDARY_USER pkg types`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.SECONDARY_PROFILE))
+        options.matches(app(pkgType = PkgType.SECONDARY_PROFILE)) shouldBe true
+        options.matches(app(pkgType = PkgType.SECONDARY_USER)) shouldBe true
+        options.matches(app(pkgType = PkgType.PRIMARY)) shouldBe false
+    }
+
+    @Test
+    fun `CAMERA filter matches apps with granted camera permission`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.CAMERA))
+        options.matches(
+            app(requestedPermissions = listOf(grantedPerm("android.permission.CAMERA")))
+        ) shouldBe true
+        options.matches(
+            app(requestedPermissions = listOf(deniedPerm("android.permission.CAMERA")))
+        ) shouldBe false
+        options.matches(app()) shouldBe false
+    }
+
+    @Test
+    fun `LOCATION filter matches fine or coarse location`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.LOCATION))
+        options.matches(
+            app(requestedPermissions = listOf(grantedPerm("android.permission.ACCESS_FINE_LOCATION")))
+        ) shouldBe true
+        options.matches(
+            app(requestedPermissions = listOf(grantedPerm("android.permission.ACCESS_COARSE_LOCATION")))
+        ) shouldBe true
+        options.matches(
+            app(requestedPermissions = listOf(deniedPerm("android.permission.ACCESS_FINE_LOCATION")))
+        ) shouldBe false
+    }
+
+    @Test
+    fun `MICROPHONE filter matches apps with granted record audio`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.MICROPHONE))
+        options.matches(
+            app(requestedPermissions = listOf(grantedPerm("android.permission.RECORD_AUDIO")))
+        ) shouldBe true
+        options.matches(app()) shouldBe false
+    }
+
+    @Test
+    fun `CONTACTS filter matches apps with granted read contacts`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.CONTACTS))
+        options.matches(
+            app(requestedPermissions = listOf(grantedPerm("android.permission.READ_CONTACTS")))
+        ) shouldBe true
+        options.matches(app()) shouldBe false
+    }
+
+    @Test
+    fun `OLD_API_TARGET filter boundary - null, 28, 29`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.OLD_API_TARGET))
+        // null apiTargetLevel — does not match
+        options.matches(app(apiTargetLevel = null)) shouldBe false
+        // API 28 — matches (below threshold)
+        options.matches(app(apiTargetLevel = 28)) shouldBe true
+        // API 29 — does not match (at threshold)
+        options.matches(app(apiTargetLevel = 29)) shouldBe false
+        // API 30 — does not match (above threshold)
+        options.matches(app(apiTargetLevel = 30)) shouldBe false
     }
 }

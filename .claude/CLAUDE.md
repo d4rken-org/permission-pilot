@@ -23,6 +23,6 @@ Detailed guidelines are in `.claude/rules/`:
 - `commit-guidelines.md` — Commit message format, PR description format, area prefixes
 - `build-commands.md` — Build, test, lint, screenshot, and release commands
 - `architecture.md` — Module structure, patterns, base classes, data flow
-- `code-style.md` — Kotlin conventions, ViewModel/Fragment patterns, logging
+- `code-style.md` — Kotlin conventions, ViewModel/Compose patterns, logging
 - `testing.md` — Test locations, patterns, running tests
 - `localization.md` — String resources, naming conventions
