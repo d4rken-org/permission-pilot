@@ -47,15 +47,20 @@ class WatcherNotifications @Inject constructor(
         appLabel: String?,
         packageName: String,
         diff: PermissionDiff,
-    ) {
+    ): Boolean {
         if (!generalSettings.isWatcherNotificationsEnabled.value()) {
             log(TAG) { "Notifications disabled, skipping for $packageName" }
-            return
+            return false
+        }
+
+        if (generalSettings.isWatcherNotifyOnlyOnGained.value() && diff.gainedCount == 0) {
+            log(TAG) { "Notify-only-on-gained enabled and gainedCount=0, skipping $packageName" }
+            return false
         }
 
         if (!capability.areNotificationsEnabled()) {
             log(TAG) { "Notifications not available, skipping notification for $packageName" }
-            return
+            return false
         }
 
         ensureChannel()
@@ -131,6 +136,7 @@ class WatcherNotifications @Inject constructor(
             .build()
 
         notificationManager.notify(packageName.hashCode(), notification)
+        return true
     }
 
     suspend fun postSummaryNotification(reportCount: Int) {

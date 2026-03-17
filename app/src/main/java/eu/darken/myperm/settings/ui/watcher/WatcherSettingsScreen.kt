@@ -16,6 +16,7 @@ import androidx.compose.material.icons.twotone.FilterList
 import eu.darken.myperm.common.compose.LucideRadar
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Schedule
+import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material.icons.twotone.Timer
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
@@ -58,21 +59,27 @@ fun WatcherSettingsScreenHost() {
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)
 
+    val isPro by vm.isPro.collectAsState()
     val isWatcherEnabled by vm.isWatcherEnabled.collectAsState(initial = false)
     val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
     val isNotificationsEnabled by vm.isNotificationsEnabled.collectAsState(initial = true)
+    val isNotifyOnlyOnGained by vm.isNotifyOnlyOnGained.collectAsState(initial = true)
     val retentionDays by vm.retentionDays.collectAsState(initial = 30)
     val pollingIntervalHours by vm.pollingIntervalHours.collectAsState(initial = 4)
     val reportCount by vm.reportCount.collectAsState(initial = 0)
 
     WatcherSettingsScreen(
         onBack = { navCtrl?.up() },
+        isPro = isPro,
         isWatcherEnabled = isWatcherEnabled,
         onWatcherEnabledChanged = { vm.setWatcherEnabled(it) },
+        onUpgrade = { vm.onUpgrade() },
         watcherScope = watcherScope,
         onWatcherScopeSelected = { vm.setWatcherScope(it) },
         isNotificationsEnabled = isNotificationsEnabled,
         onNotificationsEnabledChanged = { vm.setNotificationsEnabled(it) },
+        isNotifyOnlyOnGained = isNotifyOnlyOnGained,
+        onNotifyOnlyOnGainedChanged = { vm.setNotifyOnlyOnGained(it) },
         retentionDays = retentionDays,
         onRetentionDaysSelected = { vm.setRetentionDays(it) },
         pollingIntervalHours = pollingIntervalHours,
@@ -85,12 +92,16 @@ fun WatcherSettingsScreenHost() {
 @Composable
 fun WatcherSettingsScreen(
     onBack: () -> Unit,
+    isPro: Boolean = true,
     isWatcherEnabled: Boolean = false,
     onWatcherEnabledChanged: (Boolean) -> Unit = {},
+    onUpgrade: () -> Unit = {},
     watcherScope: WatcherScope = WatcherScope.NON_SYSTEM,
     onWatcherScopeSelected: (WatcherScope) -> Unit = {},
     isNotificationsEnabled: Boolean = true,
     onNotificationsEnabledChanged: (Boolean) -> Unit = {},
+    isNotifyOnlyOnGained: Boolean = true,
+    onNotifyOnlyOnGainedChanged: (Boolean) -> Unit = {},
     retentionDays: Int = 30,
     onRetentionDaysSelected: (Int) -> Unit = {},
     pollingIntervalHours: Int = 4,
@@ -120,13 +131,22 @@ fun WatcherSettingsScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
         ) {
-            SettingsSwitchItem(
-                icon = LucideRadar,
-                title = stringResource(R.string.watcher_enabled_label),
-                subtitle = stringResource(R.string.watcher_enabled_desc),
-                checked = isWatcherEnabled,
-                onCheckedChange = onWatcherEnabledChanged,
-            )
+            if (isPro) {
+                SettingsSwitchItem(
+                    icon = LucideRadar,
+                    title = stringResource(R.string.watcher_enabled_label),
+                    subtitle = stringResource(R.string.watcher_enabled_desc),
+                    checked = isWatcherEnabled,
+                    onCheckedChange = onWatcherEnabledChanged,
+                )
+            } else {
+                SettingsBaseItem(
+                    icon = Icons.TwoTone.Stars,
+                    title = stringResource(R.string.watcher_enabled_label),
+                    subtitle = stringResource(R.string.watcher_enabled_desc),
+                    onClick = onUpgrade,
+                )
+            }
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.watcher_scope_label),
@@ -150,6 +170,14 @@ fun WatcherSettingsScreen(
                 subtitle = stringResource(R.string.watcher_settings_notifications_desc),
                 checked = isNotificationsEnabled,
                 onCheckedChange = onNotificationsEnabledChanged,
+            )
+            SettingsSwitchItem(
+                icon = Icons.TwoTone.Notifications,
+                title = stringResource(R.string.watcher_settings_notifications_only_gained_label),
+                subtitle = stringResource(R.string.watcher_settings_notifications_only_gained_desc),
+                checked = isNotifyOnlyOnGained,
+                onCheckedChange = onNotifyOnlyOnGainedChanged,
+                enabled = isNotificationsEnabled,
             )
             SettingsDivider()
             SettingsBaseItem(

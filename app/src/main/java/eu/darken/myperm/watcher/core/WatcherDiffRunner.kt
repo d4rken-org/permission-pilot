@@ -129,19 +129,22 @@ class WatcherDiffRunner @Inject constructor(
         log(TAG) { "Processing ${chain.pairs.size} new snapshot pair(s)" }
 
         var totalReports = 0
+        var totalNotified = 0
         val reportedPackages = mutableSetOf<Pair<String, Int>>()
 
         for (pair in chain.pairs) {
-            totalReports += diffSnapshotPair(pair, scope, reportedPackages)
+            val (reports, notified) = diffSnapshotPair(pair, scope, reportedPackages)
+            totalReports += reports
+            totalNotified += notified
             // Progressive update: advance after each pair so cancellation only re-processes the current pair
             generalSettings.lastDiffedSnapshotId.update { pair.newSnapshotId }
         }
 
-        if (totalReports > 1) {
-            watcherNotifications.postSummaryNotification(totalReports)
+        if (totalNotified > 1) {
+            watcherNotifications.postSummaryNotification(totalNotified)
         }
 
-        log(TAG) { "Processed ${chain.pairs.size} pair(s), created $totalReports report(s)" }
+        log(TAG) { "Processed ${chain.pairs.size} pair(s), created $totalReports report(s), notified $totalNotified" }
         return totalReports
     }
 
@@ -149,8 +152,9 @@ class WatcherDiffRunner @Inject constructor(
         pair: SnapshotPair,
         scope: WatcherScope,
         reportedPackages: MutableSet<Pair<String, Int>>,
-    ): Int {
+    ): Pair<Int, Int> {
         var reportsCreated = 0
+        var notifiedCount = 0
 
         val oldPkgMap = pair.oldPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
         val newPkgMap = pair.newPkgs.associateBy { Pair(it.pkgName, it.userHandleId) }
@@ -246,7 +250,7 @@ class WatcherDiffRunner @Inject constructor(
                 )
             )
 
-            watcherNotifications.postChangeNotification(
+            val notified = watcherNotifications.postChangeNotification(
                 reportId = reportId,
                 appLabel = newPkg?.cachedLabel ?: oldPkg?.cachedLabel,
                 packageName = pkgName,
@@ -255,9 +259,10 @@ class WatcherDiffRunner @Inject constructor(
 
             reportedPackages.add(key)
             reportsCreated++
+            if (notified) notifiedCount++
         }
 
-        return reportsCreated
+        return Pair(reportsCreated, notifiedCount)
     }
 
     companion object {

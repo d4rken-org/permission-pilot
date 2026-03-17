@@ -350,11 +350,13 @@ private fun DisabledContent(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                 )
-                Text(
-                    text = stringResource(R.string.watcher_dashboard_manage_in_settings),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                )
+                if (isPro) {
+                    Text(
+                        text = stringResource(R.string.watcher_dashboard_manage_in_settings),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    )
+                }
                 Button(
                     onClick = onToggle,
                     modifier = Modifier.align(Alignment.End),
