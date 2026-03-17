@@ -8,7 +8,11 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,6 +59,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -71,6 +76,7 @@ import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LucideRadar
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.SearchTextField
+import eu.darken.myperm.common.compose.rememberFabVisibility
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -172,17 +178,25 @@ fun WatcherDashboardScreen(
 
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
+    val (fabVisible, scrollConnection) = rememberFabVisibility()
 
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollConnection),
         floatingActionButton = {
             if (isEnabled) {
-                FloatingActionButton(
-                    onClick = { if (refreshPhase == null) onRefresh() },
+                AnimatedVisibility(
+                    visible = fabVisible,
+                    enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                    exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
                 ) {
-                    if (refreshPhase != null) {
-                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                    } else {
-                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                    FloatingActionButton(
+                        onClick = { if (refreshPhase == null) onRefresh() },
+                    ) {
+                        if (refreshPhase != null) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        } else {
+                            Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                        }
                     }
                 }
             }

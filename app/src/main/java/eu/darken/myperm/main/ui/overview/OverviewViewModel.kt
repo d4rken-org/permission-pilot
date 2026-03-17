@@ -2,10 +2,14 @@ package eu.darken.myperm.main.ui.overview
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.os.Process
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.BuildWrap
@@ -13,10 +17,7 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
-import eu.darken.myperm.apps.core.AppInfo
-import eu.darken.myperm.apps.core.features.InternetAccess
-import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.ui.list.AppsFilterOptions
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.known.APerm
@@ -45,23 +46,35 @@ class OverviewViewModel @Inject constructor(
         val patchLevel: String,
     )
 
+    enum class SummarySection {
+        PROFILE, INSTALL_SOURCE, PRIVACY, SECURITY, SYSTEM
+    }
+
+    enum class SummaryCategory(val section: SummarySection) {
+        ACTIVE_PROFILE(SummarySection.PROFILE),
+        OTHER_PROFILES(SummarySection.PROFILE),
+        CLONES(SummarySection.PROFILE),
+        GOOGLE_PLAY(SummarySection.INSTALL_SOURCE),
+        OEM_STORE(SummarySection.INSTALL_SOURCE),
+        SIDELOADED(SummarySection.INSTALL_SOURCE),
+        CAMERA(SummarySection.PRIVACY),
+        LOCATION(SummarySection.PRIVACY),
+        MICROPHONE(SummarySection.PRIVACY),
+        CONTACTS(SummarySection.PRIVACY),
+        INSTALLERS(SummarySection.SECURITY),
+        OVERLAYERS(SummarySection.SECURITY),
+        NO_INTERNET(SummarySection.SYSTEM),
+        SHARED_IDS(SummarySection.SYSTEM),
+        BATTERY_OPT(SummarySection.SYSTEM),
+        OLD_API(SummarySection.SYSTEM),
+    }
+
     data class SummaryInfo(
-        val activeProfileUser: Int = 0,
-        val activeProfileSystem: Int = 0,
-        val otherProfileUser: Int = 0,
-        val otherProfileSystem: Int = 0,
-        val sideloaded: Int = 0,
-        val installerAppsUser: Int = 0,
-        val installerAppsSystem: Int = 0,
-        val systemAlertWindowUser: Int = 0,
-        val systemAlertWindowSystem: Int = 0,
-        val noInternetUser: Int = 0,
-        val noInternetSystem: Int = 0,
-        val clonesUser: Int = 0,
-        val clonesSystem: Int = 0,
-        val sharedIdsUser: Int = 0,
-        val sharedIdsSystem: Int = 0,
-    )
+        val counts: Map<SummaryCategory, PkgCount>,
+    ) {
+        operator fun get(category: SummaryCategory): PkgCount =
+            counts.getOrElse(category) { PkgCount(0, 0) }
+    }
 
     data class State(
         val deviceInfo: DeviceInfo? = null,
@@ -83,8 +96,9 @@ class OverviewViewModel @Inject constructor(
 
     val isRefreshing: StateFlow<Boolean> = appRepo.isScanning
 
-    private val myUserHandleId = Process.myUserHandle().hashCode()
     private val storePkgNames = AKnownPkg.APP_STORES.map { it.id.pkgName }.toSet()
+    private val oemPkgNames = AKnownPkg.OEM_STORES.map { it.id.pkgName }.toSet()
+    private val googlePlayPkgName = AKnownPkg.GooglePlay.id.pkgName
 
     val state = combine(
         deviceData.onStart { emit(DeviceInfo("", "", "")) },
@@ -105,24 +119,58 @@ class OverviewViewModel @Inject constructor(
     private fun buildSummary(apps: List<AppInfo>): SummaryInfo {
         val installPackagesId = APerm.REQUEST_INSTALL_PACKAGES.id.value
         val systemAlertWindowId = APerm.SYSTEM_ALERT_WINDOW.id.value
+        val cameraId = APerm.CAMERA.id.value
+        val fineLocationId = APerm.ACCESS_FINE_LOCATION.id.value
+        val coarseLocationId = APerm.ACCESS_COARSE_LOCATION.id.value
+        val recordAudioId = APerm.RECORD_AUDIO.id.value
+        val readContactsId = APerm.READ_CONTACTS.id.value
 
-        return SummaryInfo(
-            activeProfileUser = apps.count { it.userHandleId == myUserHandleId && !it.isSystemApp },
-            activeProfileSystem = apps.count { it.userHandleId == myUserHandleId && it.isSystemApp },
-            otherProfileUser = apps.count { it.userHandleId != myUserHandleId && !it.isSystemApp },
-            otherProfileSystem = apps.count { it.userHandleId != myUserHandleId && it.isSystemApp },
-            sideloaded = apps.count { !it.isSystemApp && it.allInstallerPkgNames.none { pkg -> pkg in storePkgNames } },
-            installerAppsUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
-            installerAppsSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(installPackagesId) },
-            systemAlertWindowUser = apps.count { !it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
-            systemAlertWindowSystem = apps.count { it.isSystemApp && it.hasGrantedPermission(systemAlertWindowId) },
-            noInternetUser = apps.count { !it.isSystemApp && it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN },
-            noInternetSystem = apps.count { it.isSystemApp && it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN },
-            clonesUser = apps.count { !it.isSystemApp && it.twinCount > 0 },
-            clonesSystem = apps.count { it.isSystemApp && it.twinCount > 0 },
-            sharedIdsUser = apps.count { !it.isSystemApp && it.siblingCount > 0 },
-            sharedIdsSystem = apps.count { it.isSystemApp && it.siblingCount > 0 },
+        fun countPkg(predicate: (AppInfo) -> Boolean): PkgCount {
+            var user = 0
+            var system = 0
+            for (app in apps) {
+                if (!predicate(app)) continue
+                if (app.isSystemApp) system++ else user++
+            }
+            return PkgCount(user, system)
+        }
+
+        val counts = mapOf(
+            SummaryCategory.ACTIVE_PROFILE to countPkg { it.pkgType == PkgType.PRIMARY },
+            SummaryCategory.OTHER_PROFILES to countPkg {
+                it.pkgType == PkgType.SECONDARY_PROFILE || it.pkgType == PkgType.SECONDARY_USER
+            },
+            SummaryCategory.CLONES to countPkg { it.twinCount > 0 },
+            SummaryCategory.GOOGLE_PLAY to countPkg {
+                !it.isSystemApp && it.allInstallerPkgNames.any { pkg -> pkg == googlePlayPkgName }
+            },
+            SummaryCategory.OEM_STORE to countPkg {
+                !it.isSystemApp && it.allInstallerPkgNames.any { pkg -> pkg in oemPkgNames }
+            },
+            SummaryCategory.SIDELOADED to countPkg {
+                !it.isSystemApp && it.allInstallerPkgNames.none { pkg -> pkg in storePkgNames }
+            },
+            SummaryCategory.CAMERA to countPkg { it.hasGrantedPermission(cameraId) },
+            SummaryCategory.LOCATION to countPkg {
+                it.hasGrantedPermission(fineLocationId) || it.hasGrantedPermission(coarseLocationId)
+            },
+            SummaryCategory.MICROPHONE to countPkg { it.hasGrantedPermission(recordAudioId) },
+            SummaryCategory.CONTACTS to countPkg { it.hasGrantedPermission(readContactsId) },
+            SummaryCategory.INSTALLERS to countPkg { it.hasGrantedPermission(installPackagesId) },
+            SummaryCategory.OVERLAYERS to countPkg { it.hasGrantedPermission(systemAlertWindowId) },
+            SummaryCategory.NO_INTERNET to countPkg {
+                it.internetAccess != InternetAccess.DIRECT && it.internetAccess != InternetAccess.UNKNOWN
+            },
+            SummaryCategory.SHARED_IDS to countPkg { it.siblingCount > 0 },
+            SummaryCategory.BATTERY_OPT to countPkg {
+                it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM
+            },
+            SummaryCategory.OLD_API to countPkg {
+                it.apiTargetLevel != null && it.apiTargetLevel < AppsFilterOptions.OLD_API_THRESHOLD
+            },
         )
+
+        return SummaryInfo(counts)
     }
 
     private fun AppInfo.hasGrantedPermission(permissionId: String): Boolean =

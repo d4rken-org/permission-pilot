@@ -3,7 +3,6 @@ package eu.darken.myperm.main.ui.overview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,17 +14,30 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BatteryAlert
+import androidx.compose.material.icons.filled.CameraAlt
+import androidx.compose.material.icons.filled.Contacts
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.GetApp
 import androidx.compose.material.icons.filled.InstallMobile
 import androidx.compose.material.icons.filled.Layers
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.PhoneAndroid
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Shop
+import androidx.compose.material.icons.filled.Storefront
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.Card
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -37,10 +49,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -48,13 +62,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.common.compose.LoadingContent
+import eu.darken.myperm.common.compose.rememberFabVisibility
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
-import androidx.compose.runtime.collectAsState
-import eu.darken.myperm.apps.ui.list.AppsFilterOptions
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.main.ui.overview.OverviewViewModel.SummaryCategory
 
 @Composable
 fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
@@ -83,15 +98,24 @@ fun OverviewScreen(
     onSettings: () -> Unit,
     onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit = {},
 ) {
+    val (fabVisible, scrollConnection) = rememberFabVisibility()
+
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollConnection),
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = { if (!isRefreshing) onRefresh() },
+            AnimatedVisibility(
+                visible = fabVisible,
+                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
-                if (isRefreshing) {
-                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                } else {
-                    Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                FloatingActionButton(
+                    onClick = { if (!isRefreshing) onRefresh() },
+                ) {
+                    if (isRefreshing) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                    } else {
+                        Icon(Icons.Filled.Refresh, contentDescription = stringResource(R.string.general_refresh_action))
+                    }
                 }
             }
         },
@@ -139,7 +163,8 @@ fun OverviewScreen(
 
 @Composable
 private fun HeroCard(summary: OverviewViewModel.SummaryInfo, device: OverviewViewModel.DeviceInfo?) {
-    val total = summary.activeProfileUser + summary.activeProfileSystem
+    val activeProfile = summary[SummaryCategory.ACTIVE_PROFILE]
+    val total = activeProfile.user + activeProfile.system
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -155,7 +180,7 @@ private fun HeroCard(summary: OverviewViewModel.SummaryInfo, device: OverviewVie
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            AppRatioBar(summary.activeProfileUser, summary.activeProfileSystem, total)
+            AppRatioBar(activeProfile.user, activeProfile.system, total)
             if (device != null) {
                 Text(
                     text = "${device.deviceName} \u00B7 ${device.androidVersion} \u00B7 ${device.patchLevel}",
@@ -199,42 +224,84 @@ private fun AppRatioBar(userCount: Int, systemCount: Int, total: Int) {
     }
 }
 
+private data class CategoryDisplay(
+    val icon: ImageVector,
+    val label: String,
+    val count: PkgCount,
+    val filters: Set<AppsFilterOptions.Filter>,
+)
+
+private data class SectionDisplay(
+    val label: String,
+    val categories: List<CategoryDisplay>,
+)
+
 @Composable
 private fun SummaryList(
     summary: OverviewViewModel.SummaryInfo,
     onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit,
 ) {
-    data class Category(
-        val icon: ImageVector,
-        val label: String,
-        val userCount: Int,
-        val systemCount: Int,
-        val filters: Set<AppsFilterOptions.Filter>,
-    )
-
-    val categories = listOf(
-        Category(Icons.Filled.PhoneAndroid, stringResource(R.string.overview_summary_apps_active_profile_label), summary.activeProfileUser, summary.activeProfileSystem, setOf(AppsFilterOptions.Filter.PRIMARY_PROFILE)),
-        Category(Icons.Filled.People, stringResource(R.string.overview_summary_apps_other_profile_label), summary.otherProfileUser, summary.otherProfileSystem, setOf(AppsFilterOptions.Filter.SECONDARY_PROFILE)),
-        Category(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary.sideloaded, 0, setOf(AppsFilterOptions.Filter.SIDELOADED)),
-        Category(Icons.Filled.GetApp, stringResource(R.string.overview_summary_apps_installers_label), summary.installerAppsUser, summary.installerAppsSystem, setOf(AppsFilterOptions.Filter.INSTALL_PACKAGES)),
-        Category(Icons.Filled.Layers, stringResource(R.string.overview_summary_apps_overlayers_label), summary.systemAlertWindowUser, summary.systemAlertWindowSystem, setOf(AppsFilterOptions.Filter.OVERLAY)),
-        Category(Icons.Filled.WifiOff, stringResource(R.string.overview_summary_apps_offline_label), summary.noInternetUser, summary.noInternetSystem, setOf(AppsFilterOptions.Filter.NO_INTERNET)),
-        Category(Icons.Filled.ContentCopy, stringResource(R.string.overview_summary_apps_clones_label), summary.clonesUser, summary.clonesSystem, setOf(AppsFilterOptions.Filter.MULTI_PROFILE)),
-        Category(Icons.Filled.Share, stringResource(R.string.overview_summary_apps_sharedids_label), summary.sharedIdsUser, summary.sharedIdsSystem, setOf(AppsFilterOptions.Filter.SHARED_ID)),
+    val sections = listOf(
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_profile_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.PhoneAndroid, stringResource(R.string.overview_summary_apps_active_profile_label), summary[SummaryCategory.ACTIVE_PROFILE], setOf(AppsFilterOptions.Filter.PRIMARY_PROFILE)),
+                CategoryDisplay(Icons.Filled.People, stringResource(R.string.overview_summary_apps_other_profile_label), summary[SummaryCategory.OTHER_PROFILES], setOf(AppsFilterOptions.Filter.SECONDARY_PROFILE)),
+                CategoryDisplay(Icons.Filled.ContentCopy, stringResource(R.string.overview_summary_apps_clones_label), summary[SummaryCategory.CLONES], setOf(AppsFilterOptions.Filter.MULTI_PROFILE)),
+            ),
+        ),
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_install_source_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.Shop, stringResource(R.string.overview_summary_apps_gplay_label), summary[SummaryCategory.GOOGLE_PLAY], setOf(AppsFilterOptions.Filter.GOOGLE_PLAY)),
+                CategoryDisplay(Icons.Filled.Storefront, stringResource(R.string.overview_summary_apps_oemstore_label), summary[SummaryCategory.OEM_STORE], setOf(AppsFilterOptions.Filter.OEM_STORE)),
+                CategoryDisplay(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary[SummaryCategory.SIDELOADED], setOf(AppsFilterOptions.Filter.SIDELOADED)),
+            ),
+        ),
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_privacy_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.CameraAlt, stringResource(R.string.overview_summary_apps_camera_label), summary[SummaryCategory.CAMERA], setOf(AppsFilterOptions.Filter.CAMERA)),
+                CategoryDisplay(Icons.Filled.LocationOn, stringResource(R.string.overview_summary_apps_location_label), summary[SummaryCategory.LOCATION], setOf(AppsFilterOptions.Filter.LOCATION)),
+                CategoryDisplay(Icons.Filled.Mic, stringResource(R.string.overview_summary_apps_microphone_label), summary[SummaryCategory.MICROPHONE], setOf(AppsFilterOptions.Filter.MICROPHONE)),
+                CategoryDisplay(Icons.Filled.Contacts, stringResource(R.string.overview_summary_apps_contacts_label), summary[SummaryCategory.CONTACTS], setOf(AppsFilterOptions.Filter.CONTACTS)),
+            ),
+        ),
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_security_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.GetApp, stringResource(R.string.overview_summary_apps_installers_label), summary[SummaryCategory.INSTALLERS], setOf(AppsFilterOptions.Filter.INSTALL_PACKAGES)),
+                CategoryDisplay(Icons.Filled.Layers, stringResource(R.string.overview_summary_apps_overlayers_label), summary[SummaryCategory.OVERLAYERS], setOf(AppsFilterOptions.Filter.OVERLAY)),
+            ),
+        ),
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_system_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.WifiOff, stringResource(R.string.overview_summary_apps_offline_label), summary[SummaryCategory.NO_INTERNET], setOf(AppsFilterOptions.Filter.NO_INTERNET)),
+                CategoryDisplay(Icons.Filled.Share, stringResource(R.string.overview_summary_apps_sharedids_label), summary[SummaryCategory.SHARED_IDS], setOf(AppsFilterOptions.Filter.SHARED_ID)),
+                CategoryDisplay(Icons.Filled.BatteryAlert, stringResource(R.string.overview_summary_apps_battery_label), summary[SummaryCategory.BATTERY_OPT], setOf(AppsFilterOptions.Filter.BATTERY_OPTIMIZATION)),
+                CategoryDisplay(Icons.Filled.Warning, stringResource(R.string.overview_summary_apps_oldapi_label), summary[SummaryCategory.OLD_API], setOf(AppsFilterOptions.Filter.OLD_API_TARGET)),
+            ),
+        ),
     )
 
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(vertical = 4.dp)) {
-            categories.forEachIndexed { index, category ->
-                CategoryRow(
-                    icon = category.icon,
-                    label = category.label,
-                    userCount = category.userCount,
-                    systemCount = category.systemCount,
-                    onClick = { onCategoryClick(category.filters) },
-                )
-                if (index < categories.lastIndex) {
-                    HorizontalDivider(modifier = Modifier.padding(start = 48.dp))
+            sections.forEachIndexed { sectionIndex, section ->
+                if (sectionIndex > 0) {
+                    HorizontalDivider()
+                }
+                SectionHeader(section.label)
+                section.categories.forEachIndexed { catIndex, category ->
+                    CategoryRow(
+                        icon = category.icon,
+                        label = category.label,
+                        count = category.count,
+                        onClick = { onCategoryClick(category.filters) },
+                    )
+                    if (catIndex < section.categories.lastIndex) {
+                        HorizontalDivider(modifier = Modifier.padding(start = 48.dp))
+                    }
                 }
             }
         }
@@ -242,8 +309,18 @@ private fun SummaryList(
 }
 
 @Composable
-private fun CategoryRow(icon: ImageVector, label: String, userCount: Int, systemCount: Int, onClick: () -> Unit) {
-    val total = userCount + systemCount
+private fun SectionHeader(label: String) {
+    Text(
+        text = label,
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 8.dp, bottom = 4.dp),
+    )
+}
+
+@Composable
+private fun CategoryRow(icon: ImageVector, label: String, count: PkgCount, onClick: () -> Unit) {
+    val total = count.user + count.system
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -265,9 +342,9 @@ private fun CategoryRow(icon: ImageVector, label: String, userCount: Int, system
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
-            if (systemCount > 0) {
-                val userText = pluralStringResource(R.plurals.generic_x_apps_user_label, userCount, userCount)
-                val systemText = pluralStringResource(R.plurals.generic_x_apps_system_label, systemCount, systemCount)
+            if (count.system > 0) {
+                val userText = pluralStringResource(R.plurals.generic_x_apps_user_label, count.user, count.user)
+                val systemText = pluralStringResource(R.plurals.generic_x_apps_system_label, count.system, count.system)
                 Text(
                     text = "$userText \u00B7 $systemText",
                     style = MaterialTheme.typography.bodySmall,
