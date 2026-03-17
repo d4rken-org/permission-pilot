@@ -661,4 +661,49 @@
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>
     <string name="snapshot_sync_notification_title">Syncing app data…</string>
+
+    <!-- Selection -->
+    <string name="general_select_all_action">Select all</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d selected</item>
+        <item quantity="other">%d selected</item>
+    </plurals>
+
+    <!-- Export -->
+    <string name="export_app_info_action">Export app info</string>
+    <string name="export_permission_info_action">Export permission info</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Export %d app</item>
+        <item quantity="other">Export %d apps</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Export %d permission</item>
+        <item quantity="other">Export %d permissions</item>
+    </plurals>
+    <string name="export_app_info_title">App Info Export</string>
+    <string name="export_permission_info_title">Permission Info Export</string>
+    <string name="export_format_label">Format</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_content_label">Content</string>
+    <string name="export_app_include_meta_label">Include install info</string>
+    <string name="export_app_include_permissions_label">Include permissions</string>
+    <string name="export_app_include_perm_type_label">Include permission type</string>
+    <string name="export_app_include_perm_full_label">Include full permission details</string>
+    <string name="export_perm_include_apps_label">Include requesting apps</string>
+    <string name="export_perm_granted_only_label">Granted apps only</string>
+    <string name="export_perm_include_summary_label">Include summary counts</string>
+    <string name="export_preview_label">Preview</string>
+    <string name="export_preview_label_of">Preview (%1$d of %2$d)</string>
+    <string name="export_action_label">Export</string>
+    <string name="export_progress_label">Exporting…</string>
+    <string name="export_success_message">Export complete</string>
+    <string name="export_error_message">Export failed</string>
+    <string name="export_share_action">Share</string>
+    <string name="export_open_action">Open</string>
+    <string name="export_done_action">Done</string>
+    <string name="export_retry_action">Retry</string>
+    <string name="export_free_limit_message">Free version is limited to %d items and Markdown format. Upgrade for unlimited exports and all formats.</string>
+    <string name="export_upgrade_action">Upgrade</string>
 </resources>

@@ -7,7 +7,9 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,14 +21,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.SelectAll
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Checkbox
 import eu.darken.myperm.common.compose.LoadingContent
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -91,9 +97,13 @@ fun AppsScreenHost(vm: AppsViewModel = hiltViewModel()) {
         hasActiveFilters = hasActiveFilters,
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onAppClicked = { vm.onAppClicked(it) },
+        onAppLongPressed = { vm.onAppLongPressed(it) },
         onFilter = { showFilterSortSheet = true },
         onRefresh = { vm.onRefresh() },
         onSettings = { vm.goToSettings() },
+        onSelectAll = { vm.selectAll() },
+        onClearSelection = { vm.clearSelection() },
+        onExportSelected = { vm.onExportSelected() },
     )
 
     if (showFilterSortSheet && readyState != null) {
@@ -118,20 +128,29 @@ fun AppsScreen(
     hasActiveFilters: Boolean = false,
     onSearchChanged: (String?) -> Unit,
     onAppClicked: (AppsViewModel.AppItem) -> Unit,
+    onAppLongPressed: (AppsViewModel.AppItem) -> Unit = {},
     onFilter: () -> Unit,
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
+    onSelectAll: () -> Unit = {},
+    onClearSelection: () -> Unit = {},
+    onExportSelected: () -> Unit = {},
 ) {
     var searchQuery by rememberSaveable { mutableStateOf("") }
     var isSearchActive by rememberSaveable { mutableStateOf(false) }
     var showOverflowMenu by rememberSaveable { mutableStateOf(false) }
     val (fabVisible, scrollConnection) = rememberFabVisibility()
 
+    val selection = (state as? AppsViewModel.State.Ready)?.selection ?: emptySet()
+    val isSelecting = selection.isNotEmpty()
+
+    BackHandler(enabled = isSelecting) { onClearSelection() }
+
     Scaffold(
         modifier = Modifier.nestedScroll(scrollConnection),
         floatingActionButton = {
             AnimatedVisibility(
-                visible = fabVisible,
+                visible = fabVisible && !isSelecting,
                 enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
                 exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
@@ -147,71 +166,94 @@ fun AppsScreen(
             }
         },
         topBar = {
-            TopAppBar(
-                title = {
-                    Column {
-                        Text(text = stringResource(R.string.apps_page_label))
+            if (isSelecting) {
+                TopAppBar(
+                    navigationIcon = {
+                        IconButton(onClick = onClearSelection) {
+                            Icon(Icons.Filled.Close, contentDescription = stringResource(R.string.general_close_action))
+                        }
+                    },
+                    title = {
+                        Text(
+                            text = pluralStringResource(R.plurals.general_x_selected_label, selection.size, selection.size),
+                        )
+                    },
+                    actions = {
+                        IconButton(onClick = onSelectAll) {
+                            Icon(Icons.Filled.SelectAll, contentDescription = stringResource(R.string.general_select_all_action))
+                        }
+                        IconButton(onClick = onExportSelected) {
+                            Icon(Icons.Filled.Description, contentDescription = stringResource(R.string.export_app_info_action))
+                        }
+                    },
+                )
+            } else {
+                TopAppBar(
+                    title = {
+                        Column {
+                            Text(text = stringResource(R.string.apps_page_label))
+                            if (state is AppsViewModel.State.Ready) {
+                                Text(
+                                    text = pluralStringResource(
+                                        R.plurals.generic_x_items_label,
+                                        (state as AppsViewModel.State.Ready).itemCount,
+                                        (state as AppsViewModel.State.Ready).itemCount,
+                                    ),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = {
+                            if (isSearchActive) {
+                                searchQuery = ""
+                                onSearchChanged(null)
+                            }
+                            isSearchActive = !isSearchActive
+                        }) {
+                            Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
+                        }
                         if (state is AppsViewModel.State.Ready) {
-                            Text(
-                                text = pluralStringResource(
-                                    R.plurals.generic_x_items_label,
-                                    (state as AppsViewModel.State.Ready).itemCount,
-                                    (state as AppsViewModel.State.Ready).itemCount,
-                                ),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                },
-                actions = {
-                    IconButton(onClick = {
-                        if (isSearchActive) {
-                            searchQuery = ""
-                            onSearchChanged(null)
-                        }
-                        isSearchActive = !isSearchActive
-                    }) {
-                        Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.apps_search_list_hint))
-                    }
-                    if (state is AppsViewModel.State.Ready) {
-                        IconButton(onClick = onFilter) {
-                            Box {
-                                Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.apps_filter_sort_action))
-                                if (hasActiveFilters) {
-                                    Box(
-                                        modifier = Modifier
-                                            .size(8.dp)
-                                            .align(Alignment.TopEnd)
-                                            .offset(x = 2.dp, y = (-2).dp)
-                                            .background(MaterialTheme.colorScheme.primary, CircleShape),
-                                    )
+                            IconButton(onClick = onFilter) {
+                                Box {
+                                    Icon(Icons.Filled.FilterList, contentDescription = stringResource(R.string.apps_filter_sort_action))
+                                    if (hasActiveFilters) {
+                                        Box(
+                                            modifier = Modifier
+                                                .size(8.dp)
+                                                .align(Alignment.TopEnd)
+                                                .offset(x = 2.dp, y = (-2).dp)
+                                                .background(MaterialTheme.colorScheme.primary, CircleShape),
+                                        )
+                                    }
                                 }
                             }
                         }
-                    }
-                    Box {
-                        IconButton(onClick = { showOverflowMenu = true }) {
-                            Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.general_more_options_action))
+                        Box {
+                            IconButton(onClick = { showOverflowMenu = true }) {
+                                Icon(Icons.Filled.MoreVert, contentDescription = stringResource(R.string.general_more_options_action))
+                            }
+                            DropdownMenu(
+                                expanded = showOverflowMenu,
+                                onDismissRequest = { showOverflowMenu = false },
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.settings_page_label)) },
+                                    onClick = { showOverflowMenu = false; onSettings() },
+                                    leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = null) },
+                                )
+                            }
                         }
-                        DropdownMenu(
-                            expanded = showOverflowMenu,
-                            onDismissRequest = { showOverflowMenu = false },
-                        ) {
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.settings_page_label)) },
-                                onClick = { showOverflowMenu = false; onSettings() },
-                                leadingIcon = { Icon(Icons.Filled.Settings, contentDescription = null) },
-                            )
-                        }
-                    }
-                }
-            )
-        }
+                    },
+                )
+            }
+        },
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
             AnimatedVisibility(
-                visible = isSearchActive,
+                visible = isSearchActive && !isSelecting,
                 enter = expandVertically(),
                 exit = shrinkVertically(),
             ) {
@@ -233,9 +275,13 @@ fun AppsScreen(
                 is AppsViewModel.State.Ready -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         items(state.items, key = { "${it.pkgName}:${it.userHandleId}" }) { item ->
+                            val isItemSelected = AppsViewModel.SelectionKey(item.pkgName, item.userHandleId) in selection
                             AppListItem(
                                 item = item,
+                                isSelecting = isSelecting,
+                                isSelected = isItemSelected,
                                 onClick = { onAppClicked(item) },
+                                onLongClick = { onAppLongPressed(item) },
                             )
                             HorizontalDivider()
                         }
@@ -249,7 +295,10 @@ fun AppsScreen(
 @Composable
 private fun AppListItem(
     item: AppsViewModel.AppItem,
+    isSelecting: Boolean = false,
+    isSelected: Boolean = false,
     onClick: () -> Unit,
+    onLongClick: () -> Unit = {},
 ) {
     val density = LocalDensity.current
     var textBlockHeight by remember { mutableIntStateOf(0) }
@@ -258,16 +307,24 @@ private fun AppListItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
+            .combinedClickable(onClick = onClick, onLongClick = onLongClick)
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        AppIcon(
-            pkg = item.iconModel,
-            isSystemApp = item.isSystemApp,
-            modifier = Modifier.size(iconSize),
-        )
+        if (isSelecting) {
+            Checkbox(
+                checked = isSelected,
+                onCheckedChange = null,
+                modifier = Modifier.size(iconSize),
+            )
+        } else {
+            AppIcon(
+                pkg = item.iconModel,
+                isSystemApp = item.isSystemApp,
+                modifier = Modifier.size(iconSize),
+            )
+        }
 
         Column(modifier = Modifier.weight(1f)) {
             Column(modifier = Modifier.onSizeChanged { textBlockHeight = it.height }) {
@@ -339,6 +396,7 @@ private fun AppsScreenReadyPreview() = PreviewWrapper {
         state = AppsPreviewData.readyState(),
         onSearchChanged = {},
         onAppClicked = {},
+        onAppLongPressed = {},
         onFilter = {},
         onRefresh = {},
         onSettings = {},
@@ -352,6 +410,7 @@ private fun AppsScreenEmptyPreview() = PreviewWrapper {
         state = AppsPreviewData.emptyReadyState(),
         onSearchChanged = {},
         onAppClicked = {},
+        onAppLongPressed = {},
         onFilter = {},
         onRefresh = {},
         onSettings = {},
@@ -365,6 +424,7 @@ private fun AppsScreenLoadingPreview() = PreviewWrapper {
         state = AppsViewModel.State.Loading,
         onSearchChanged = {},
         onAppClicked = {},
+        onAppLongPressed = {},
         onFilter = {},
         onRefresh = {},
         onSettings = {},

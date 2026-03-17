@@ -45,6 +45,14 @@ object Nav {
         data class ReportDetail(val reportId: Long) : Watcher
     }
 
+    sealed interface Export : NavigationDestination {
+        @Serializable
+        data class Config(
+            val token: String,
+            val mode: String, // "apps" or "permissions"
+        ) : Export
+    }
+
     sealed interface Settings : NavigationDestination {
         @Serializable
         data object Index : Settings

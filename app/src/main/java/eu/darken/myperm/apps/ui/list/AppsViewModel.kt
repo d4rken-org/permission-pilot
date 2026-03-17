@@ -14,6 +14,7 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.export.core.ExportSelectionStore
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +32,7 @@ class AppsViewModel @Inject constructor(
     dispatcherProvider: DispatcherProvider,
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
+    private val exportSelectionStore: ExportSelectionStore,
     upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -43,6 +45,10 @@ class AppsViewModel @Inject constructor(
     private val searchTerm = MutableStateFlow<String?>(null)
     private val filterOptions = generalSettings.appsFilterOptions.flow
     private val sortOptions = generalSettings.appsSortOptions.flow
+
+    data class SelectionKey(val pkgName: String, val userHandleId: Int)
+
+    private val selectedItems = MutableStateFlow<Set<SelectionKey>>(emptySet())
 
     data class AppItem(
         val pkgName: String,
@@ -66,6 +72,7 @@ class AppsViewModel @Inject constructor(
             val itemCount: Int = 0,
             val filterOptions: AppsFilterOptions = AppsFilterOptions(),
             val sortOptions: AppsSortOptions = AppsSortOptions(),
+            val selection: Set<SelectionKey> = emptySet(),
         ) : State()
     }
 
@@ -73,8 +80,9 @@ class AppsViewModel @Inject constructor(
         appRepo.appData,
         searchTerm,
         filterOptions,
-        sortOptions
-    ) { appDataState, searchTerm, filterOptions, sortOptions ->
+        sortOptions,
+        selectedItems,
+    ) { appDataState, searchTerm, filterOptions, sortOptions, selection ->
         val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
@@ -110,7 +118,13 @@ class AppsViewModel @Inject constructor(
                 installerPkgName = app.installerPkgName,
             )
         }
-        State.Ready(items = listItems, itemCount = listItems.size, filterOptions = filterOptions, sortOptions = sortOptions)
+        State.Ready(
+            items = listItems,
+            itemCount = listItems.size,
+            filterOptions = filterOptions,
+            sortOptions = sortOptions,
+            selection = selection,
+        )
     }.asStateFlow()
 
     fun onSearchInputChanged(term: String?) {
@@ -119,6 +133,11 @@ class AppsViewModel @Inject constructor(
     }
 
     fun onAppClicked(item: AppItem) {
+        val key = SelectionKey(item.pkgName, item.userHandleId)
+        if (selectedItems.value.isNotEmpty()) {
+            toggleSelection(key)
+            return
+        }
         log(TAG) { "Navigating to ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
@@ -127,6 +146,37 @@ class AppsViewModel @Inject constructor(
                 appLabel = item.label,
             )
         )
+    }
+
+    fun onAppLongPressed(item: AppItem) {
+        log(TAG) { "Long pressed ${item.pkgName}" }
+        toggleSelection(SelectionKey(item.pkgName, item.userHandleId))
+    }
+
+    private fun toggleSelection(key: SelectionKey) {
+        selectedItems.value = selectedItems.value.let {
+            if (key in it) it - key else it + key
+        }
+    }
+
+    fun selectAll() {
+        val readyState = state.value as? State.Ready ?: return
+        val allKeys = readyState.items.map { SelectionKey(it.pkgName, it.userHandleId) }.toSet()
+        selectedItems.value = selectedItems.value + allKeys
+        log(TAG) { "Selected all: ${selectedItems.value.size} items" }
+    }
+
+    fun clearSelection() {
+        selectedItems.value = emptySet()
+    }
+
+    fun onExportSelected() {
+        val selection = selectedItems.value
+        if (selection.isEmpty()) return
+        val ids = selection.map { "${it.pkgName}:${it.userHandleId}" }
+        val token = exportSelectionStore.save(ids)
+        clearSelection()
+        navTo(Nav.Export.Config(token = token, mode = "apps"))
     }
 
     fun updateFilterOptions(action: (AppsFilterOptions) -> AppsFilterOptions) = launch {
