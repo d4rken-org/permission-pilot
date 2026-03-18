@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.permissions.core.features.Highlighted
 import eu.darken.myperm.permissions.core.features.InstallTimeGrant
 import eu.darken.myperm.permissions.core.features.ManifestDoc
@@ -84,4 +85,41 @@ fun PermissionTagPill(tag: PermissionTag, compact: Boolean = false) {
         )
     }
     Pill(text = text, containerColor = containerColor, contentColor = contentColor, compact = compact)
+}
+
+@Composable
+fun GrantStatusPill(status: UsesPermission.Status, compact: Boolean = false) {
+    val (text, containerColor, contentColor) = when (status) {
+        UsesPermission.Status.GRANTED -> Triple(
+            stringResource(R.string.filter_granted_label),
+            MaterialTheme.colorScheme.primaryContainer,
+            MaterialTheme.colorScheme.onPrimaryContainer,
+        )
+        UsesPermission.Status.GRANTED_IN_USE -> Triple(
+            stringResource(R.string.permissions_status_granted_in_use_label),
+            MaterialTheme.colorScheme.secondaryContainer,
+            MaterialTheme.colorScheme.onSecondaryContainer,
+        )
+        UsesPermission.Status.DENIED -> Triple(
+            stringResource(R.string.filter_denied_label),
+            MaterialTheme.colorScheme.errorContainer,
+            MaterialTheme.colorScheme.onErrorContainer,
+        )
+        UsesPermission.Status.UNKNOWN -> Triple(
+            stringResource(R.string.permissions_status_unknown_label),
+            MaterialTheme.colorScheme.surfaceVariant,
+            MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+    Pill(text = text, containerColor = containerColor, contentColor = contentColor, compact = compact)
+}
+
+@Composable
+fun SystemPill(compact: Boolean = false) {
+    Pill(
+        text = stringResource(R.string.permissions_details_system_badge_label),
+        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+        compact = compact,
+    )
 }

@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,12 +17,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Cancel
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.FilterList
@@ -65,6 +67,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LoadingContent
+import eu.darken.myperm.common.compose.GrantStatusPill
 import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.LabeledOption
@@ -411,7 +414,7 @@ fun AppDetailsScreen(
                         onClick = { onPermClicked(perm) },
                     )
                     HorizontalDivider(
-                        modifier = Modifier.padding(start = 48.dp),
+                        modifier = Modifier.padding(start = PermRowHPadding + PermRowIconSize + PermRowIconGap),
                         thickness = 0.5.dp,
                         color = MaterialTheme.colorScheme.outlineVariant,
                     )
@@ -750,33 +753,11 @@ private fun SectionHeader(title: String, count: Int? = null, onHelpClicked: (() 
 }
 
 
-@Composable
-private fun StatusIcon(status: UsesPermission.Status) {
-    when (status) {
-        UsesPermission.Status.GRANTED,
-        UsesPermission.Status.GRANTED_IN_USE -> Icon(
-            imageVector = Icons.Filled.CheckCircle,
-            contentDescription = stringResource(R.string.filter_granted_label),
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(20.dp),
-        )
+private val PermRowIconSize = 24.dp
+private val PermRowHPadding = 12.dp
+private val PermRowIconGap = 8.dp
 
-        UsesPermission.Status.DENIED -> Icon(
-            imageVector = Icons.Filled.Cancel,
-            contentDescription = stringResource(R.string.filter_denied_label),
-            tint = MaterialTheme.colorScheme.error,
-            modifier = Modifier.size(20.dp),
-        )
-
-        UsesPermission.Status.UNKNOWN -> Icon(
-            imageVector = Icons.AutoMirrored.Filled.HelpOutline,
-            contentDescription = status.name,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.size(20.dp),
-        )
-    }
-}
-
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun PermissionRow(
     item: AppDetailsViewModel.PermItem,
@@ -786,21 +767,16 @@ private fun PermissionRow(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .padding(horizontal = PermRowHPadding, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(PermRowIconGap),
     ) {
-        // Status icon first for quick visual scanning
-        StatusIcon(status = item.status)
-
-        // Permission icon
         PermissionIcon(
             permissionId = item.permId,
-            modifier = Modifier.size(20.dp),
-            fallbackModel = null,
+            modifier = Modifier.size(PermRowIconSize),
+            status = item.status,
         )
 
-        // Label, ID, type tags
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = item.permLabel ?: item.permId.value.split(".").lastOrNull() ?: item.permId.value,
@@ -815,10 +791,9 @@ private fun PermissionRow(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
-            // Type tags row
-            Row(
+            FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 if (item.isRuntime) {
                     Pill(
@@ -842,6 +817,7 @@ private fun PermissionRow(
                         compact = true,
                     )
                 }
+                GrantStatusPill(status = item.status, compact = true)
                 if (item.isDeclaredByApp) {
                     val declaredDesc = stringResource(R.string.permissions_app_type_declaring_description)
                     Icon(
@@ -864,7 +840,10 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.apps_details_perm_help_title)) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.Top,
@@ -922,6 +901,47 @@ private fun PermissionHelpDialog(onDismiss: () -> Unit) {
                     )
                     Text(
                         text = stringResource(R.string.apps_details_perm_help_declared),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                HorizontalDivider()
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    GrantStatusPill(status = UsesPermission.Status.GRANTED, compact = true)
+                    Text(
+                        text = stringResource(R.string.permissions_details_help_status_granted),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    GrantStatusPill(status = UsesPermission.Status.GRANTED_IN_USE, compact = true)
+                    Text(
+                        text = stringResource(R.string.permissions_details_help_status_in_use),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    GrantStatusPill(status = UsesPermission.Status.DENIED, compact = true)
+                    Text(
+                        text = stringResource(R.string.permissions_details_help_status_denied),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.Top,
+                ) {
+                    GrantStatusPill(status = UsesPermission.Status.UNKNOWN, compact = true)
+                    Text(
+                        text = stringResource(R.string.permissions_details_help_status_unknown),
                         style = MaterialTheme.typography.bodySmall,
                     )
                 }

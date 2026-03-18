@@ -50,6 +50,7 @@ internal object AppDetailsPreviewData {
             permItem("android.permission.INTERNET", "Internet", UsesPermission.Status.GRANTED),
             permItem("android.permission.READ_CONTACTS", "Read contacts", UsesPermission.Status.GRANTED, isRuntime = true),
             permItem("android.permission.SYSTEM_ALERT_WINDOW", "Draw over other apps", UsesPermission.Status.DENIED, isSpecialAccess = true),
+            permItem("android.permission.ACCESS_BACKGROUND_LOCATION", "Background location", UsesPermission.Status.GRANTED_IN_USE, isRuntime = true),
             permItem("com.google.chrome.DYNAMIC_RECEIVER", null, UsesPermission.Status.UNKNOWN, isDeclaredByApp = true),
         ),
         twins = listOf(
