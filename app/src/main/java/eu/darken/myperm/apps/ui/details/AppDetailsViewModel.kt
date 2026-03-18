@@ -320,7 +320,7 @@ class AppDetailsViewModel @Inject constructor(
                     navTo(Nav.Main.Upgrade)
                     return
                 }
-                navTo(Nav.Details.AppManifest(pkgName = pkgName))
+                navTo(Nav.Details.AppManifest(pkgName = pkgName, appLabel = initialLabel))
             }
         }
     }

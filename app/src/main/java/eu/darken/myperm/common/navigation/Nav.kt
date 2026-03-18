@@ -42,6 +42,7 @@ object Nav {
         @Serializable
         data class AppManifest(
             val pkgName: String,
+            val appLabel: String? = null,
         ) : Details
     }
 

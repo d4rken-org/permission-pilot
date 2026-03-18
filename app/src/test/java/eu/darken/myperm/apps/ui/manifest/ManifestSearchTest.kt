@@ -18,7 +18,7 @@ class ManifestSearchTest : BaseTest() {
 
         matches.size shouldBe 1
         matches[0].start shouldBe xml.indexOf("INTERNET")
-        matches[0].end shouldBe xml.indexOf("INTERNET") + "INTERNET".length
+        matches[0].endExclusive shouldBe xml.indexOf("INTERNET") + "INTERNET".length
     }
 
     @Test
@@ -74,7 +74,7 @@ class ManifestSearchTest : BaseTest() {
         val matches = ManifestViewerViewModel.findMatches(xml, "permission")
 
         matches.size shouldBe 2
-        xml.substring(matches[0].start, matches[0].end) shouldBe "permission"
-        xml.substring(matches[1].start, matches[1].end) shouldBe "permission"
+        xml.substring(matches[0].start, matches[0].endExclusive) shouldBe "permission"
+        xml.substring(matches[1].start, matches[1].endExclusive) shouldBe "permission"
     }
 }
