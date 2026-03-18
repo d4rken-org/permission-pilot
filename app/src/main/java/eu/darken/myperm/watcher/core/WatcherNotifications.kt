@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -135,6 +136,7 @@ class WatcherNotifications @Inject constructor(
             .addAction(0, context.getString(R.string.watcher_notification_action_mark_seen), markSeenPendingIntent)
             .build()
 
+        @SuppressLint("MissingPermission") // Checked via capability.areNotificationsEnabled()
         notificationManager.notify(packageName.hashCode(), notification)
         return true
     }
@@ -173,6 +175,7 @@ class WatcherNotifications @Inject constructor(
             .setStyle(NotificationCompat.InboxStyle())
             .build()
 
+        @SuppressLint("MissingPermission") // Checked via capability.areNotificationsEnabled()
         notificationManager.notify(SUMMARY_NOTIFICATION_ID, notification)
     }
 

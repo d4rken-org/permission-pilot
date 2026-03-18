@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="foss_upgrade_donate_label">Donate</string>
-    <string name="foss_upgrade_alreadydonated_label">I already donated</string>
-    <string name="foss_upgrade_no_money_label">I spend all my money on takeout</string>
-
     <string name="upgrade_foss_preamble">Permission Pilot is free and open-source. Your support helps keep it that way.</string>
     <string name="upgrade_foss_sponsor_action">Become a Sponsor</string>
     <string name="upgrade_foss_sponsor_subtitle">Opens GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">Please take a moment to check out the sponsor page!</string>
-    <string name="upgrade_title_suffix">FOSS</string>
+    <string name="upgrade_title_suffix" translatable="false">FOSS</string>
 </resources>

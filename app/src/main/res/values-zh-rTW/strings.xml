@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot 專業版</string>
-    <string name="label_settings">設定</string>
     <string name="label_help">幫助</string>
     <string name="general_error_label">錯誤</string>
     <string name="general_share_action">分享</string>
     <string name="general_done_action">完成</string>
-    <string name="general_copy_action">複製</string>
-    <string name="general_check_action">檢查</string>
-    <string name="general_show_action">顯示</string>
     <string name="general_open_action">打開</string>
     <string name="general_continue_action">繼續</string>
-    <string name="general_accept_action">接受</string>
-    <string name="upgrade_myperm_label">升級 Permission Pilot</string>
-    <string name="upgrade_myperm_description">您喜歡這款應用程式沒有廣告且不收集您的資料嗎？
-購買 Pro 版本以表達您的支持！</string>
     <string name="upgrade_buy_pro_action">購買 Pro 版本</string>
     <string name="general_no_action">否</string>
     <string name="upgrade_donate_action">斗內</string>

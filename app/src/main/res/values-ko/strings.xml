@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">설정</string>
     <string name="label_help">도움말</string>
     <string name="general_error_label">오류</string>
     <string name="general_share_action">공유</string>
     <string name="general_done_action">완료</string>
-    <string name="general_copy_action">복사</string>
-    <string name="general_check_action">확인</string>
-    <string name="general_show_action">표시</string>
     <string name="general_open_action">열기</string>
     <string name="general_continue_action">계속</string>
-    <string name="general_accept_action">동의</string>
-    <string name="upgrade_myperm_label">Permission Pilot 업그레이드</string>
-    <string name="upgrade_myperm_description">이 앱에 광고가 없고 데이터를 수집하지 않는 것이 마음에 드시나요?\nPro 버전을 구매하여 지원을 표현해 주세요!</string>
     <string name="upgrade_buy_pro_action">Pro 버전 구매</string>
     <string name="general_no_action">아니요</string>
     <string name="upgrade_donate_action">기부</string>

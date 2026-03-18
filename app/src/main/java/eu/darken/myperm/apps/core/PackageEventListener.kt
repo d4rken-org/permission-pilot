@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
@@ -56,7 +57,7 @@ class PackageEventListener @Inject constructor(
             addDataScheme("package")
         }
 
-        context.registerReceiver(receiver, intentFilter)
+        ContextCompat.registerReceiver(context, receiver, intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED)
 
         awaitClose {
             log { "unregisterReceiver($receiver)" }

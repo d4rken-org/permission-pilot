@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">Настройки</string>
     <string name="label_help">Помощ</string>
     <string name="general_error_label">Грешка</string>
     <string name="general_share_action">Споделяне</string>
     <string name="general_done_action">Готово</string>
-    <string name="general_copy_action">Копиране</string>
-    <string name="general_check_action">Проверка</string>
-    <string name="general_show_action">Показване</string>
     <string name="general_open_action">Отваряне</string>
     <string name="general_continue_action">Продължаване</string>
-    <string name="general_accept_action">Приемане</string>
-    <string name="upgrade_myperm_label">Надстройка на Permission Pilot</string>
-    <string name="upgrade_myperm_description">Харесва ли ви, че това приложение няма реклами и не събира вашите данни?
-Купете версията Pro, за да покажете своята подкрепа!</string>
     <string name="upgrade_buy_pro_action">Купи версия Pro</string>
     <string name="general_no_action">Не</string>
     <string name="upgrade_donate_action">Дарение</string>

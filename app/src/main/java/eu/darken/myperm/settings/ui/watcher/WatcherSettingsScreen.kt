@@ -30,6 +30,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -261,7 +262,7 @@ private fun PollingIntervalItem(
     onIntervalChanged: (Int) -> Unit,
 ) {
     val alpha = if (enabled) 1f else 0.38f
-    var sliderValue by remember(intervalHours) { mutableStateOf(intervalHours.toFloat()) }
+    var sliderValue by remember(intervalHours) { mutableFloatStateOf(intervalHours.toFloat()) }
 
     Row(
         modifier = Modifier

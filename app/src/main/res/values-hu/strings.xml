@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">Beallitasok</string>
     <string name="label_help">Segitseg</string>
     <string name="general_error_label">Hiba</string>
     <string name="general_share_action">Megosztas</string>
     <string name="general_done_action">Kesz</string>
-    <string name="general_copy_action">Masolas</string>
-    <string name="general_check_action">Ellenorzes</string>
-    <string name="general_show_action">Megjelentes</string>
     <string name="general_open_action">Megnyitas</string>
     <string name="general_continue_action">Folytatas</string>
-    <string name="general_accept_action">Elfogadas</string>
-    <string name="upgrade_myperm_label">Permission Pilot frissitese</string>
-    <string name="upgrade_myperm_description">Tetszik, hogy ez az alkalmazás nem tartalmaz hirdetéseket és nem gyűjti az adatait?
-Vásárolja meg a Pro verziót a támogatás kifejezéseként!</string>
     <string name="upgrade_buy_pro_action">Pro verzió megvásárlása</string>
     <string name="general_no_action">Nem</string>
     <string name="upgrade_donate_action">Adomanyozas</string>

@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PermissionInfo
 import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
+import android.annotation.SuppressLint
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
@@ -31,9 +32,11 @@ interface ReadableApk : Pkg {
     val apiTargetLevel: Int?
         get() = applicationInfo?.targetSdkVersion
 
+    @get:SuppressLint("NewApi") // Guarded by hasApiLevel()
     val apiCompileLevel: Int?
         get() = if (hasApiLevel(Build.VERSION_CODES.S)) applicationInfo?.compileSdkVersion else null
 
+    @get:SuppressLint("NewApi") // Guarded by hasApiLevel()
     val apiMinimumLevel: Int?
         get() = if (hasApiLevel(Build.VERSION_CODES.N)) applicationInfo?.minSdkVersion else null
 
