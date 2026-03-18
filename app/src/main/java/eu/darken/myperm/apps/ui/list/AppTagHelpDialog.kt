@@ -3,19 +3,16 @@ package eu.darken.myperm.apps.ui.list
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import eu.darken.myperm.R
-import eu.darken.myperm.common.compose.icon
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.permissions.core.known.APermGrp
 
 @Composable
@@ -37,15 +34,15 @@ fun AppTagHelpDialog(onDismiss: () -> Unit) {
                             horizontalArrangement = Arrangement.spacedBy(12.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Icon(
-                                imageVector = grp.icon,
-                                contentDescription = null,
-                                modifier = Modifier.size(20.dp),
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            Pill(
+                                text = stringResource(grp.labelRes),
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                                compact = true,
                             )
                             Text(
-                                text = stringResource(grp.labelRes),
-                                style = MaterialTheme.typography.bodyMedium,
+                                text = stringResource(grp.descriptionRes),
+                                style = MaterialTheme.typography.bodySmall,
                             )
                         }
                     }

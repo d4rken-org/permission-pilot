@@ -151,7 +151,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android System</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Updated %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Sideloaded</string>
+    <string name="apps_list_installer_preinstalled_label">Pre-installed</string>
     <string name="general_refresh_action">Refresh</string>
     <string name="general_expand_all_action">Expand all</string>
     <string name="general_collapse_all_action">Collapse all</string>
@@ -185,8 +190,8 @@
     <string name="apps_filter_section_profile">Profile</string>
     <string name="apps_filter_section_sort_by">Sort by</string>
     <string name="apps_filter_sort_action">Filter &amp; Sort</string>
-    <string name="apps_help_tag_icons_title">Permission icons</string>
-    <string name="apps_help_tag_icons_description">Icons show which permission categories an app requests</string>
+    <string name="apps_help_tag_icons_title">Permission chips</string>
+    <string name="apps_help_tag_icons_description">Chips show which sensitive permission categories an app has been granted</string>
     <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
     <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
     <plurals name="apps_details_description_secondary_description">
