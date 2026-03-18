@@ -150,7 +150,7 @@ fun ExportScreen(
             )
         },
         floatingActionButton = {
-            if (state.exportResult == null) {
+            if (state.exportResult == null && state.effectiveItemCount > 0) {
                 FloatingActionButton(
                     onClick = onExport,
                     modifier = Modifier.padding(bottom = navBarBottomPadding),
@@ -172,8 +172,7 @@ fun ExportScreen(
                 is ExportViewModel.ExportResult.InProgress -> ExportProgressContent()
 
                 is ExportViewModel.ExportResult.Success -> ExportSuccessContent(
-                    uri = result.uri,
-                    onBack = onBack,
+                    result = result,
                 )
 
                 is ExportViewModel.ExportResult.Error -> ExportErrorContent(
@@ -426,8 +425,7 @@ private fun ExportProgressContent() {
 
 @Composable
 private fun ExportSuccessContent(
-    uri: android.net.Uri,
-    onBack: () -> Unit,
+    result: ExportViewModel.ExportResult.Success,
 ) {
     val context = LocalContext.current
 
@@ -436,18 +434,43 @@ private fun ExportSuccessContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(32.dp))
         Text(
             text = stringResource(R.string.export_success_message),
             style = MaterialTheme.typography.headlineSmall,
         )
+
+        // Summary card
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                SummaryRow(
+                    label = stringResource(R.string.export_summary_filename),
+                    value = result.fileName,
+                )
+                if (result.fileSize >= 0) {
+                    SummaryRow(
+                        label = stringResource(R.string.export_summary_size),
+                        value = formatFileSize(result.fileSize),
+                    )
+                }
+                SummaryRow(
+                    label = stringResource(R.string.export_summary_duration),
+                    value = formatDuration(result.duration),
+                )
+            }
+        }
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             OutlinedButton(
                 onClick = {
                     val shareIntent = Intent(Intent.ACTION_SEND).apply {
                         type = "*/*"
-                        putExtra(Intent.EXTRA_STREAM, uri)
+                        putExtra(Intent.EXTRA_STREAM, result.uri)
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     }
                     context.startActivity(Intent.createChooser(shareIntent, null))
@@ -461,7 +484,7 @@ private fun ExportSuccessContent(
             OutlinedButton(
                 onClick = {
                     val viewIntent = Intent(Intent.ACTION_VIEW).apply {
-                        setDataAndType(uri, "*/*")
+                        setDataAndType(result.uri, "*/*")
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     }
                     runCatching { context.startActivity(viewIntent) }
@@ -472,8 +495,36 @@ private fun ExportSuccessContent(
                 Text(stringResource(R.string.export_open_action))
             }
         }
-
     }
+}
+
+@Composable
+private fun SummaryRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
+}
+
+private fun formatFileSize(bytes: Long): String = when {
+    bytes < 1024 -> "$bytes B"
+    bytes < 1024 * 1024 -> "%.1f KB".format(bytes / 1024.0)
+    else -> "%.1f MB".format(bytes / (1024.0 * 1024.0))
+}
+
+private fun formatDuration(duration: kotlin.time.Duration): String = when {
+    duration.inWholeSeconds < 1 -> "${duration.inWholeMilliseconds} ms"
+    else -> "%.1f s".format(duration.inWholeMilliseconds / 1000.0)
 }
 
 @Composable
