@@ -106,7 +106,9 @@ fun AppsFilterSortBottomSheet(
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
-                    AppsSortOptions.Sort.entries.forEach { sort ->
+                    AppsSortOptions.Sort.entries
+                        .filter { it.showInSheet || it == currentSort.value }
+                        .forEach { sort ->
                         FilterChip(
                             selected = sort == currentSort.value,
                             onClick = {
@@ -121,7 +123,11 @@ fun AppsFilterSortBottomSheet(
                     }
                 }
 
-                AppsFilterOptions.Group.entries.forEach { group ->
+                AppsFilterOptions.Group.entries
+                    .filter { group ->
+                        AppsFilterOptions.Filter.entries.any { it.group == group && (it.showInSheet || it in currentFilters) }
+                    }
+                    .forEach { group ->
                     Text(
                         text = stringResource(group.labelRes),
                         style = MaterialTheme.typography.labelLarge,
@@ -133,7 +139,7 @@ fun AppsFilterSortBottomSheet(
                     ) {
                         val isInstallSourceGroup = group == AppsFilterOptions.Group.INSTALL_SOURCE
                         AppsFilterOptions.Filter.entries
-                            .filter { it.group == group }
+                            .filter { it.group == group && (it.showInSheet || it in currentFilters) }
                             .forEach { filter ->
                                 val isSelected = filter in currentFilters
                                 val isEnabled = !(isInstallSourceGroup && onlySystemApp)

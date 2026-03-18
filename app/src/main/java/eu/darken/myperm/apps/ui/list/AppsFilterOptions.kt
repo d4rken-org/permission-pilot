@@ -29,6 +29,7 @@ data class AppsFilterOptions(
     enum class Filter(
         val group: Group,
         @StringRes val labelRes: Int,
+        val showInSheet: Boolean = true,
         val matches: (AppInfo) -> Boolean
     ) {
         @SerialName("SYSTEM_APP")
@@ -80,6 +81,7 @@ data class AppsFilterOptions(
         SHARED_ID(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_sharedid_label,
+            showInSheet = false,
             matches = { it.siblingCount > 0 }
         ),
         @SerialName("MULTI_PROFILE")
@@ -142,6 +144,7 @@ data class AppsFilterOptions(
         CAMERA(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_camera_label,
+            showInSheet = false,
             matches = { app ->
                 app.requestedPermissions.any {
                     it.permissionId == "android.permission.CAMERA" && it.status.isGranted
@@ -152,6 +155,7 @@ data class AppsFilterOptions(
         LOCATION(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_location_label,
+            showInSheet = false,
             matches = { app ->
                 app.requestedPermissions.any {
                     (it.permissionId == "android.permission.ACCESS_FINE_LOCATION"
@@ -164,6 +168,7 @@ data class AppsFilterOptions(
         MICROPHONE(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_microphone_label,
+            showInSheet = false,
             matches = { app ->
                 app.requestedPermissions.any {
                     it.permissionId == "android.permission.RECORD_AUDIO" && it.status.isGranted
@@ -174,6 +179,7 @@ data class AppsFilterOptions(
         CONTACTS(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_contacts_label,
+            showInSheet = false,
             matches = { app ->
                 app.requestedPermissions.any {
                     it.permissionId == "android.permission.READ_CONTACTS" && it.status.isGranted
@@ -190,6 +196,7 @@ data class AppsFilterOptions(
         MANIFEST_FLAGS(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_manifest_flags_label,
+            showInSheet = false,
             matches = { app ->
                 app.hasManifestFlags == true
                         || app.requestedPermissions.any {
