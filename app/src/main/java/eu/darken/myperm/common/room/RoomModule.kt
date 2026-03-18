@@ -24,7 +24,7 @@ class RoomModule {
         context,
         PermPilotDatabase::class.java,
         "permpilot.db",
-    ).fallbackToDestructiveMigration().build()
+    ).build()
 
     @Provides
     fun snapshotDao(db: PermPilotDatabase): SnapshotDao = db.snapshotDao()

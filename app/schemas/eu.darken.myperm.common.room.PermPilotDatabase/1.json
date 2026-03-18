@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dec887d21ed1534e8bdd41832acf527a",
+	"identityHash": "501de1cdcc0fd4dec53a17f0a2350cd5",
     "entities": [
       {
         "tableName": "snapshots",
@@ -533,11 +533,71 @@
             "createSql": "CREATE INDEX IF NOT EXISTS `index_pending_snapshot_events_packageName_userHandleId` ON `${TABLE_NAME}` (`packageName`, `userHandleId`)"
           }
         ]
+	  },
+	  {
+		"tableName": "manifest_hints",
+		"createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pkgName` TEXT NOT NULL, `versionCode` INTEGER NOT NULL, `lastUpdateTime` INTEGER NOT NULL, `hasActionMainQuery` INTEGER NOT NULL, `packageQueryCount` INTEGER NOT NULL, `intentQueryCount` INTEGER NOT NULL, `providerQueryCount` INTEGER NOT NULL, `scannedAt` INTEGER NOT NULL, PRIMARY KEY(`pkgName`))",
+		"fields": [
+		  {
+			"fieldPath": "pkgName",
+			"columnName": "pkgName",
+			"affinity": "TEXT",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "versionCode",
+			"columnName": "versionCode",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "lastUpdateTime",
+			"columnName": "lastUpdateTime",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "hasActionMainQuery",
+			"columnName": "hasActionMainQuery",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "packageQueryCount",
+			"columnName": "packageQueryCount",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "intentQueryCount",
+			"columnName": "intentQueryCount",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "providerQueryCount",
+			"columnName": "providerQueryCount",
+			"affinity": "INTEGER",
+			"notNull": true
+		  },
+		  {
+			"fieldPath": "scannedAt",
+			"columnName": "scannedAt",
+			"affinity": "INTEGER",
+			"notNull": true
+		  }
+		],
+		"primaryKey": {
+		  "autoGenerate": false,
+		  "columnNames": [
+			"pkgName"
+		  ]
+		}
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dec887d21ed1534e8bdd41832acf527a')"
+	  "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '501de1cdcc0fd4dec53a17f0a2350cd5')"
     ]
   }
 }

@@ -4,21 +4,21 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.withTransaction
+import eu.darken.myperm.apps.core.features.BatteryOptimization
+import eu.darken.myperm.apps.core.features.InternetAccess
+import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
 import eu.darken.myperm.common.room.dao.ManifestHintDao
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
-import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
 import eu.darken.myperm.common.room.entity.PendingSnapshotEventEntity
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
+import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
-import eu.darken.myperm.apps.core.features.BatteryOptimization
-import eu.darken.myperm.apps.core.features.InternetAccess
-import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.watcher.core.WatcherEventType
 
 @TypeConverters(
@@ -37,7 +37,7 @@ import eu.darken.myperm.watcher.core.WatcherEventType
         PendingSnapshotEventEntity::class,
         ManifestHintEntity::class,
     ],
-    version = 2,
+    version = 1,
     exportSchema = true,
 )
 abstract class PermPilotDatabase : RoomDatabase() {
