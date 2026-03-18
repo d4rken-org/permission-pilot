@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import eu.darken.myperm.common.room.dao.ManifestHintDao
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
@@ -36,5 +37,8 @@ class RoomModule {
 
     @Provides
     fun pendingSnapshotEventDao(db: PermPilotDatabase): PendingSnapshotEventDao = db.pendingSnapshotEventDao()
+
+    @Provides
+    fun manifestHintDao(db: PermPilotDatabase): ManifestHintDao = db.manifestHintDao()
 
 }

@@ -8,6 +8,8 @@ import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
 import eu.darken.myperm.apps.core.container.SecondaryUserPkg
 import eu.darken.myperm.apps.core.container.UninstalledDataPkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
+import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
@@ -89,6 +91,7 @@ class SnapshotMapper @Inject constructor(
         pkgEntity: SnapshotPkgEntity,
         permEntities: List<SnapshotPkgPermEntity>,
         declaredPermCount: Int,
+        manifestHint: ManifestHintEntity? = null,
     ): AppInfo = AppInfo(
         pkgName = pkgEntity.pkgName,
         userHandleId = pkgEntity.userHandleId,
@@ -125,6 +128,7 @@ class SnapshotMapper @Inject constructor(
             ?.filter { it.isNotBlank() }
             ?: emptyList(),
         sharedUserId = pkgEntity.sharedUserId,
+        hasManifestFlags = manifestHint?.let { ManifestHintScanner.hasFlaggedIssues(it) },
     )
 
     data class PkgEntities(

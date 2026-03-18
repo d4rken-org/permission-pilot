@@ -19,6 +19,7 @@ import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material.icons.twotone.FileDownload
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Palette
+import androidx.compose.material.icons.twotone.Code
 import androidx.compose.material.icons.twotone.Tune
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -102,6 +103,7 @@ fun UpgradeScreen(
         Benefit(Icons.TwoTone.Tune, R.string.upgrade_benefit_filtering),
         Benefit(Icons.TwoTone.FileDownload, R.string.upgrade_benefit_export),
         Benefit(Icons.TwoTone.Notifications, R.string.upgrade_benefit_monitoring),
+        Benefit(Icons.TwoTone.Code, R.string.upgrade_benefit_manifest_viewer),
         Benefit(Icons.TwoTone.Favorite, R.string.upgrade_benefit_support),
     )
 

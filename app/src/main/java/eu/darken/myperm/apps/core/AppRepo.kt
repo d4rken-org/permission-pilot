@@ -3,6 +3,7 @@ package eu.darken.myperm.apps.core
 import androidx.work.WorkManager
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
+import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
@@ -51,6 +52,7 @@ class AppRepo @Inject constructor(
     private val snapshotPkgDao: SnapshotPkgDao,
     private val snapshotMapper: SnapshotMapper,
     private val workManager: WorkManager,
+    private val manifestHintRepo: ManifestHintRepo,
 ) {
 
     // ── UI state ────────────────────────────────────────────────────────
@@ -67,7 +69,8 @@ class AppRepo @Inject constructor(
                 snapshotPkgDao.observePkgsForSnapshot(snapshotId),
                 snapshotPkgDao.observePermsForSnapshot(snapshotId),
                 snapshotPkgDao.observeDeclaredPermCountsForSnapshot(snapshotId),
-            ) { pkgs, perms, declaredCounts ->
+                manifestHintRepo.hints,
+            ) { pkgs, perms, declaredCounts, hints ->
                 if (pkgs.isEmpty()) return@combine AppDataState.NoSnapshot
                 val permsByPkg = perms.groupBy { Pair(it.pkgName, it.userHandleId) }
                 val declaredCountByPkg = declaredCounts.associateBy(
@@ -80,6 +83,7 @@ class AppRepo @Inject constructor(
                         pkgEntity = pkgEntity,
                         permEntities = permsByPkg[key] ?: emptyList(),
                         declaredPermCount = declaredCountByPkg[key] ?: 0,
+                        manifestHint = hints[pkgEntity.pkgName],
                     )
                 }
                 AppDataState.Ready(apps)
@@ -109,6 +113,7 @@ class AppRepo @Inject constructor(
                 _isScanning.value = true
                 scanAndSave(reason)
                 enqueuePermissionWatcher()
+                manifestHintRepo.enqueueHintScan()
             } catch (e: Exception) {
                 log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
             } finally {

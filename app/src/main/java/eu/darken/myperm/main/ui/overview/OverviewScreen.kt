@@ -30,6 +30,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Shop
 import androidx.compose.material.icons.filled.Storefront
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.WifiOff
 import androidx.compose.material3.Card
@@ -272,6 +273,12 @@ private fun SummaryList(
             categories = listOf(
                 CategoryDisplay(Icons.Filled.GetApp, stringResource(R.string.overview_summary_apps_installers_label), summary[SummaryCategory.INSTALLERS], setOf(AppsFilterOptions.Filter.INSTALL_PACKAGES)),
                 CategoryDisplay(Icons.Filled.Layers, stringResource(R.string.overview_summary_apps_overlayers_label), summary[SummaryCategory.OVERLAYERS], setOf(AppsFilterOptions.Filter.OVERLAY)),
+            ),
+        ),
+        SectionDisplay(
+            label = stringResource(R.string.overview_section_manifest_label),
+            categories = listOf(
+                CategoryDisplay(Icons.Filled.VisibilityOff, stringResource(R.string.overview_summary_apps_manifest_flags_label), summary[SummaryCategory.MANIFEST_FLAGS], setOf(AppsFilterOptions.Filter.MANIFEST_FLAGS)),
             ),
         ),
         SectionDisplay(

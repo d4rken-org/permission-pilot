@@ -22,7 +22,9 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.NewReleases
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
@@ -30,6 +32,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Group
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -92,8 +95,11 @@ fun AppDetailsScreenHost(
         label = route.appLabel ?: route.pkgName,
         isLoading = true,
     )
+    val manifestCardState by vm.manifestCardState.collectAsState()
+
     AppDetailsScreen(
         state = effectiveState,
+        manifestCardState = manifestCardState,
         onBack = { vm.navUp() },
         onPermClicked = { vm.onPermissionClicked(it) },
         onTwinClicked = { vm.onTwinClicked(it) },
@@ -104,12 +110,14 @@ fun AppDetailsScreenHost(
             vm.updateFilterOptions { it.copy(filters = selected) }
         },
         onInstallerClicked = { vm.onInstallerClicked(it) },
+        onManifestClicked = { vm.onManifestClicked() },
     )
 }
 
 @Composable
 fun AppDetailsScreen(
     state: AppDetailsViewModel.State,
+    manifestCardState: AppDetailsViewModel.ManifestCardState = AppDetailsViewModel.ManifestCardState.Queued(),
     onBack: () -> Unit,
     onPermClicked: (AppDetailsViewModel.PermItem) -> Unit,
     onTwinClicked: (AppDetailsViewModel.TwinItem) -> Unit,
@@ -118,6 +126,7 @@ fun AppDetailsScreen(
     onOpenApp: () -> Unit,
     onFilter: (Set<AppDetailsFilterOptions.Filter>) -> Unit,
     onInstallerClicked: (String) -> Unit,
+    onManifestClicked: () -> Unit = {},
 ) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showPermHelpDialog by rememberSaveable { mutableStateOf(false) }
@@ -267,6 +276,14 @@ fun AppDetailsScreen(
                     }
                 }
 
+                // Manifest card
+                item {
+                    ManifestCard(
+                        state = manifestCardState,
+                        onClick = onManifestClicked,
+                    )
+                }
+
                 // Twins
                 if (state.twins.isNotEmpty()) {
                     item {
@@ -398,6 +415,153 @@ fun AppDetailsScreen(
                         thickness = 0.5.dp,
                         color = MaterialTheme.colorScheme.outlineVariant,
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ManifestCard(
+    state: AppDetailsViewModel.ManifestCardState,
+    onClick: () -> Unit,
+) {
+    val isClickable = state is AppDetailsViewModel.ManifestCardState.Loaded && state.canViewManifest
+            || state is AppDetailsViewModel.ManifestCardState.Queued
+            || state is AppDetailsViewModel.ManifestCardState.Analyzing
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 4.dp)
+            .then(if (isClickable) Modifier.clickable(onClick = onClick) else Modifier),
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            // Title row: icon + title + trailing indicators
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Description,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Text(
+                    text = stringResource(R.string.apps_details_manifest_label),
+                    style = MaterialTheme.typography.titleSmall,
+                    modifier = Modifier.weight(1f),
+                )
+                if (state is AppDetailsViewModel.ManifestCardState.Loaded && state.hasWarning) {
+                    Icon(
+                        imageVector = Icons.Filled.Warning,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.tertiary,
+                        modifier = Modifier.size(18.dp),
+                    )
+                }
+                when (state) {
+                    is AppDetailsViewModel.ManifestCardState.Analyzing -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(16.dp),
+                            strokeWidth = 2.dp,
+                        )
+                    }
+                    is AppDetailsViewModel.ManifestCardState.Loaded -> if (state.canViewManifest) {
+                        Icon(
+                            Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                            contentDescription = null,
+                            modifier = Modifier.size(16.dp),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    else -> {}
+                }
+            }
+
+            // Content below title — full width
+            when (state) {
+                is AppDetailsViewModel.ManifestCardState.Queued -> {
+                    val remaining = state.progress?.let { it.total - it.scanned } ?: 0
+                    val progressText = if (state.progress != null && remaining > 0) {
+                        pluralStringResource(R.plurals.apps_details_manifest_loading_progress, remaining, remaining)
+                    } else {
+                        stringResource(R.string.apps_details_manifest_queued)
+                    }
+                    Text(
+                        text = progressText,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                is AppDetailsViewModel.ManifestCardState.Analyzing -> {
+                    Text(
+                        text = stringResource(R.string.apps_details_manifest_loading),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                is AppDetailsViewModel.ManifestCardState.Loaded -> {
+                    // Facts first: query counts
+                    if (state.totalQueryCount > 0) {
+                        val parts = buildList {
+                            if (state.packageQueryCount > 0) {
+                                add(
+                                    pluralStringResource(
+                                        R.plurals.apps_details_manifest_packages,
+                                        state.packageQueryCount,
+                                        state.packageQueryCount,
+                                    )
+                                )
+                            }
+                            if (state.intentQueryCount > 0) {
+                                add(
+                                    pluralStringResource(
+                                        R.plurals.apps_details_manifest_intents,
+                                        state.intentQueryCount,
+                                        state.intentQueryCount,
+                                    )
+                                )
+                            }
+                            if (state.providerQueryCount > 0) {
+                                add(
+                                    pluralStringResource(
+                                        R.plurals.apps_details_manifest_providers,
+                                        state.providerQueryCount,
+                                        state.providerQueryCount,
+                                    )
+                                )
+                            }
+                        }
+                        Text(
+                            text = parts.joinToString(" \u00B7 "),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    // Hints below: bullet-pointed findings
+                    if (state.hasActionMainQuery) {
+                        Text(
+                            text = "\u2022 ${stringResource(R.string.apps_details_manifest_hint_action_main)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.tertiary,
+                        )
+                    }
+                    if (state.hasExcessiveQueries) {
+                        Text(
+                            text = "\u2022 ${stringResource(R.string.apps_details_manifest_hint_excessive)}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.tertiary,
+                        )
+                    }
+                    if (!state.hasWarning && state.totalQueryCount == 0) {
+                        Text(
+                            text = stringResource(R.string.apps_details_manifest_queries_none),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
         }
@@ -783,6 +947,7 @@ private fun AppDetailsScreenPreview() = PreviewWrapper {
         onOpenApp = {},
         onFilter = {},
         onInstallerClicked = {},
+        onManifestClicked = {},
     )
 }
 
@@ -799,6 +964,7 @@ private fun AppDetailsScreenLoadingPreview() = PreviewWrapper {
         onOpenApp = {},
         onFilter = {},
         onInstallerClicked = {},
+        onManifestClicked = {},
     )
 }
 
@@ -807,6 +973,7 @@ private fun AppDetailsScreenLoadingPreview() = PreviewWrapper {
 private fun AppDetailsScreenSystemAppPreview() = PreviewWrapper {
     AppDetailsScreen(
         state = AppDetailsPreviewData.systemAppState(),
+        manifestCardState = AppDetailsPreviewData.manifestLoadedState(),
         onBack = {},
         onPermClicked = {},
         onTwinClicked = {},
@@ -815,6 +982,7 @@ private fun AppDetailsScreenSystemAppPreview() = PreviewWrapper {
         onOpenApp = {},
         onFilter = {},
         onInstallerClicked = {},
+        onManifestClicked = {},
     )
 }
 
@@ -831,6 +999,7 @@ private fun AppDetailsScreenEmptyFilterPreview() = PreviewWrapper {
         onOpenApp = {},
         onFilter = {},
         onInstallerClicked = {},
+        onManifestClicked = {},
     )
 }
 

@@ -178,6 +178,7 @@
     <string name="apps_filter_microphone_label">Microphone access</string>
     <string name="apps_filter_contacts_label">Contacts access</string>
     <string name="apps_filter_old_api_target_label">Targets old Android</string>
+    <string name="apps_filter_manifest_flags_label">Can discover apps</string>
     <string name="apps_filter_section_app_type">App type</string>
     <string name="apps_filter_section_install_source">Install source</string>
     <string name="apps_filter_section_properties">Properties</string>
@@ -205,6 +206,43 @@
     <string name="apps_details_perm_help_special">Special — Requires toggling a switch in system settings.</string>
     <string name="apps_details_perm_help_install">Install — Granted automatically when the app is installed. No user action needed.</string>
     <string name="apps_details_perm_help_declared">The ⚠ icon means this permission is created by the app itself, rather than being a standard Android permission.</string>
+
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">App Manifest</string>
+    <string name="apps_details_manifest_queued">Queued for analysis\u2026</string>
+    <string name="apps_details_manifest_loading">Analyzing manifest\u2026</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifest left to analyze\u2026</item>
+        <item quantity="other">%d manifests left to analyze\u2026</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Nothing unusual detected</string>
+    <string name="apps_details_manifest_unavailable">Manifest not accessible</string>
+    <string name="apps_details_manifest_error">Could not read manifest</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d package query</item>
+        <item quantity="other">%d package queries</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d intent query</item>
+        <item quantity="other">%d intent queries</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d provider query</item>
+        <item quantity="other">%d provider queries</item>
+    </plurals>
+
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Can discover all installed apps</string>
+    <string name="apps_details_manifest_hint_excessive">Checks for many specific apps</string>
+
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Manifest Viewer</string>
+    <string name="apps_manifest_viewer_search_hint">Search in manifest</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d match</item>
+        <item quantity="other">%d matches</item>
+    </plurals>
+
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>
     <string name="api_build_level_x">Compile version: %s</string>
@@ -408,6 +446,8 @@
     <string name="overview_section_install_source_label">Install Source</string>
     <string name="overview_section_privacy_label">Privacy</string>
     <string name="overview_section_security_label">Security</string>
+    <string name="overview_section_manifest_label">Manifest</string>
+    <string name="overview_summary_apps_manifest_flags_label">Can discover apps</string>
     <string name="overview_section_system_label">System</string>
     <string name="permission_bind_accessibility_service_label">Offer accessibility service</string>
     <string name="permission_bind_accessibility_service_description">Allows the app to offer an accessibility service that can be enabled in the system settings.</string>
@@ -536,6 +576,7 @@
     <string name="upgrade_benefit_export">Batch data export</string>
     <string name="upgrade_benefit_monitoring">Permission monitoring</string>
     <string name="upgrade_benefit_support">Support the developer</string>
+    <string name="upgrade_benefit_manifest_viewer">Browse raw app manifests</string>
 
     <string name="general_upgrade_action">Upgrade</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>

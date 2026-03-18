@@ -28,6 +28,7 @@ internal object OverviewPreviewData {
                 SummaryCategory.SHARED_IDS to PkgCount(0, 39),
                 SummaryCategory.BATTERY_OPT to PkgCount(3, 12),
                 SummaryCategory.OLD_API to PkgCount(1, 8),
+                SummaryCategory.MANIFEST_FLAGS to PkgCount(3, 1),
             ),
         ),
         versionDesc = "v1.2.3 (42) ~ abc1234/foss/debug",

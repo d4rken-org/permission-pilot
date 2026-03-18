@@ -4,10 +4,12 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.withTransaction
+import eu.darken.myperm.common.room.dao.ManifestHintDao
 import eu.darken.myperm.common.room.dao.PendingSnapshotEventDao
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
+import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
 import eu.darken.myperm.common.room.entity.PendingSnapshotEventEntity
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.room.entity.SnapshotEntity
@@ -33,8 +35,9 @@ import eu.darken.myperm.watcher.core.WatcherEventType
         SnapshotPkgDeclaredPermEntity::class,
         PermissionChangeEntity::class,
         PendingSnapshotEventEntity::class,
+        ManifestHintEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class PermPilotDatabase : RoomDatabase() {
@@ -42,6 +45,7 @@ abstract class PermPilotDatabase : RoomDatabase() {
     abstract fun snapshotPkgDao(): SnapshotPkgDao
     abstract fun permissionChangeDao(): PermissionChangeDao
     abstract fun pendingSnapshotEventDao(): PendingSnapshotEventDao
+    abstract fun manifestHintDao(): ManifestHintDao
 
     open suspend fun <R> inTransaction(block: suspend () -> R): R = withTransaction(block)
 }

@@ -1,0 +1,603 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "501de1cdcc0fd4dec53a17f0a2350cd5",
+    "entities": [
+      {
+        "tableName": "snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `createdAt` INTEGER NOT NULL, `triggerReason` TEXT NOT NULL, `pkgCount` INTEGER NOT NULL, `durationMs` INTEGER NOT NULL, PRIMARY KEY(`snapshotId`))",
+        "fields": [
+          {
+            "fieldPath": "snapshotId",
+            "columnName": "snapshotId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "triggerReason",
+            "columnName": "triggerReason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pkgCount",
+            "columnName": "pkgCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "durationMs",
+            "columnName": "durationMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "snapshotId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_snapshots_createdAt",
+            "unique": false,
+            "columnNames": [
+              "createdAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_snapshots_createdAt` ON `${TABLE_NAME}` (`createdAt`)"
+          }
+        ]
+      },
+      {
+        "tableName": "snapshot_pkgs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `pkgName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `pkgType` TEXT NOT NULL, `versionName` TEXT, `versionCode` INTEGER NOT NULL, `sharedUserId` TEXT, `apiTargetLevel` INTEGER, `apiCompileLevel` INTEGER, `apiMinimumLevel` INTEGER, `isSystemApp` INTEGER NOT NULL, `installedAt` INTEGER, `updatedAt` INTEGER, `internetAccess` TEXT NOT NULL, `batteryOptimization` TEXT NOT NULL, `installerPkgName` TEXT, `applicationFlags` INTEGER NOT NULL, `cachedLabel` TEXT, `twinCount` INTEGER NOT NULL, `siblingCount` INTEGER NOT NULL, `hasAccessibilityServices` INTEGER NOT NULL, `hasDeviceAdmin` INTEGER NOT NULL, `allInstallerPkgNames` TEXT, PRIMARY KEY(`snapshotId`, `pkgName`, `userHandleId`), FOREIGN KEY(`snapshotId`) REFERENCES `snapshots`(`snapshotId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "snapshotId",
+            "columnName": "snapshotId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pkgName",
+            "columnName": "pkgName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userHandleId",
+            "columnName": "userHandleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pkgType",
+            "columnName": "pkgType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionName",
+            "columnName": "versionName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "versionCode",
+            "columnName": "versionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sharedUserId",
+            "columnName": "sharedUserId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "apiTargetLevel",
+            "columnName": "apiTargetLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "apiCompileLevel",
+            "columnName": "apiCompileLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "apiMinimumLevel",
+            "columnName": "apiMinimumLevel",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "isSystemApp",
+            "columnName": "isSystemApp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installedAt",
+            "columnName": "installedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "internetAccess",
+            "columnName": "internetAccess",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "batteryOptimization",
+            "columnName": "batteryOptimization",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installerPkgName",
+            "columnName": "installerPkgName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "applicationFlags",
+            "columnName": "applicationFlags",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cachedLabel",
+            "columnName": "cachedLabel",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "twinCount",
+            "columnName": "twinCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "siblingCount",
+            "columnName": "siblingCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasAccessibilityServices",
+            "columnName": "hasAccessibilityServices",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasDeviceAdmin",
+            "columnName": "hasDeviceAdmin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "allInstallerPkgNames",
+            "columnName": "allInstallerPkgNames",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "snapshotId",
+            "pkgName",
+            "userHandleId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_snapshot_pkgs_snapshotId",
+            "unique": false,
+            "columnNames": [
+              "snapshotId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_snapshot_pkgs_snapshotId` ON `${TABLE_NAME}` (`snapshotId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "snapshots",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "snapshotId"
+            ],
+            "referencedColumns": [
+              "snapshotId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "snapshot_pkg_perms",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `pkgName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `permissionId` TEXT NOT NULL, `status` TEXT NOT NULL, PRIMARY KEY(`snapshotId`, `pkgName`, `userHandleId`, `permissionId`), FOREIGN KEY(`snapshotId`, `pkgName`, `userHandleId`) REFERENCES `snapshot_pkgs`(`snapshotId`, `pkgName`, `userHandleId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "snapshotId",
+            "columnName": "snapshotId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pkgName",
+            "columnName": "pkgName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userHandleId",
+            "columnName": "userHandleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "permissionId",
+            "columnName": "permissionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "snapshotId",
+            "pkgName",
+            "userHandleId",
+            "permissionId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_snapshot_pkg_perms_snapshotId_pkgName_userHandleId",
+            "unique": false,
+            "columnNames": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_snapshot_pkg_perms_snapshotId_pkgName_userHandleId` ON `${TABLE_NAME}` (`snapshotId`, `pkgName`, `userHandleId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "snapshot_pkgs",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ],
+            "referencedColumns": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "snapshot_pkg_declared_perms",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`snapshotId` TEXT NOT NULL, `pkgName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `permissionId` TEXT NOT NULL, `protectionLevel` INTEGER, PRIMARY KEY(`snapshotId`, `pkgName`, `userHandleId`, `permissionId`), FOREIGN KEY(`snapshotId`, `pkgName`, `userHandleId`) REFERENCES `snapshot_pkgs`(`snapshotId`, `pkgName`, `userHandleId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "snapshotId",
+            "columnName": "snapshotId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pkgName",
+            "columnName": "pkgName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userHandleId",
+            "columnName": "userHandleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "permissionId",
+            "columnName": "permissionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "protectionLevel",
+            "columnName": "protectionLevel",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "snapshotId",
+            "pkgName",
+            "userHandleId",
+            "permissionId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_snapshot_pkg_declared_perms_snapshotId_pkgName_userHandleId",
+            "unique": false,
+            "columnNames": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_snapshot_pkg_declared_perms_snapshotId_pkgName_userHandleId` ON `${TABLE_NAME}` (`snapshotId`, `pkgName`, `userHandleId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "snapshot_pkgs",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ],
+            "referencedColumns": [
+              "snapshotId",
+              "pkgName",
+              "userHandleId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "permission_change_reports",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `packageName` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `appLabel` TEXT, `versionCode` INTEGER NOT NULL, `versionName` TEXT, `eventType` TEXT NOT NULL, `changesJson` TEXT NOT NULL, `previousVersionCode` INTEGER, `previousVersionName` TEXT, `detectedAt` INTEGER NOT NULL, `isSeen` INTEGER NOT NULL, `sourceSnapshotId` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userHandleId",
+            "columnName": "userHandleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appLabel",
+            "columnName": "appLabel",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "versionCode",
+            "columnName": "versionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionName",
+            "columnName": "versionName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "eventType",
+            "columnName": "eventType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changesJson",
+            "columnName": "changesJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousVersionCode",
+            "columnName": "previousVersionCode",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "previousVersionName",
+            "columnName": "previousVersionName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "detectedAt",
+            "columnName": "detectedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSeen",
+            "columnName": "isSeen",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceSnapshotId",
+            "columnName": "sourceSnapshotId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_permission_change_reports_isSeen_detectedAt",
+            "unique": false,
+            "columnNames": [
+              "isSeen",
+              "detectedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_permission_change_reports_isSeen_detectedAt` ON `${TABLE_NAME}` (`isSeen`, `detectedAt`)"
+          },
+          {
+            "name": "index_permission_change_reports_packageName_userHandleId_sourceSnapshotId",
+            "unique": true,
+            "columnNames": [
+              "packageName",
+              "userHandleId",
+              "sourceSnapshotId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_permission_change_reports_packageName_userHandleId_sourceSnapshotId` ON `${TABLE_NAME}` (`packageName`, `userHandleId`, `sourceSnapshotId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "pending_snapshot_events",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `packageName` TEXT NOT NULL, `eventType` TEXT NOT NULL, `userHandleId` INTEGER NOT NULL, `createdAt` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageName",
+            "columnName": "packageName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventType",
+            "columnName": "eventType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userHandleId",
+            "columnName": "userHandleId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pending_snapshot_events_packageName_userHandleId",
+            "unique": false,
+            "columnNames": [
+              "packageName",
+              "userHandleId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pending_snapshot_events_packageName_userHandleId` ON `${TABLE_NAME}` (`packageName`, `userHandleId`)"
+          }
+        ]
+      },
+      {
+        "tableName": "manifest_hints",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pkgName` TEXT NOT NULL, `versionCode` INTEGER NOT NULL, `lastUpdateTime` INTEGER NOT NULL, `hasActionMainQuery` INTEGER NOT NULL, `packageQueryCount` INTEGER NOT NULL, `intentQueryCount` INTEGER NOT NULL, `providerQueryCount` INTEGER NOT NULL, `scannedAt` INTEGER NOT NULL, PRIMARY KEY(`pkgName`))",
+        "fields": [
+          {
+            "fieldPath": "pkgName",
+            "columnName": "pkgName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionCode",
+            "columnName": "versionCode",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastUpdateTime",
+            "columnName": "lastUpdateTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasActionMainQuery",
+            "columnName": "hasActionMainQuery",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageQueryCount",
+            "columnName": "packageQueryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intentQueryCount",
+            "columnName": "intentQueryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "providerQueryCount",
+            "columnName": "providerQueryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scannedAt",
+            "columnName": "scannedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "pkgName"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '501de1cdcc0fd4dec53a17f0a2350cd5')"
+    ]
+  }
+}
