@@ -3,24 +3,30 @@ package eu.darken.myperm.export.ui
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Description
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.Share
@@ -28,6 +34,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -46,6 +53,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
@@ -56,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -165,8 +174,8 @@ fun ExportScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             when (val result = state.exportResult) {
                 is ExportViewModel.ExportResult.InProgress -> ExportProgressContent()
@@ -198,70 +207,104 @@ private fun ExportConfigContent(
     onPermConfigChanged: ((PermissionExportConfig) -> PermissionExportConfig) -> Unit,
     onUpgrade: () -> Unit,
 ) {
-    // Format selector
-    Text(
-        text = stringResource(R.string.export_format_label),
-        style = MaterialTheme.typography.titleSmall,
-    )
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.horizontalScroll(rememberScrollState()),
+    // Settings card: format + content toggles grouped
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+        ),
     ) {
-        ExportFormat.entries.forEach { format ->
-            val isSelected = when {
-                state.appConfig != null -> state.appConfig.format == format
-                state.permConfig != null -> state.permConfig.format == format
-                else -> false
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            // Format section
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Text(
+                    text = stringResource(R.string.export_format_label),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                val selectedFormat = state.appConfig?.format ?: state.permConfig?.format
+                if (selectedFormat != null) {
+                    Pill(
+                        text = ".${selectedFormat.extension}",
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    )
+                }
             }
-            val isLocked = !state.isPro && format != ExportFormat.MARKDOWN
-            FilterChip(
-                selected = isSelected,
-                onClick = {
-                    if (isLocked) {
-                        onUpgrade()
-                    } else {
-                        state.appConfig?.let { onAppConfigChanged { it.copy(format = format) } }
-                        state.permConfig?.let { onPermConfigChanged { it.copy(format = format) } }
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.horizontalScroll(rememberScrollState()),
+            ) {
+                ExportFormat.entries.forEach { format ->
+                    val isSelected = when {
+                        state.appConfig != null -> state.appConfig.format == format
+                        state.permConfig != null -> state.permConfig.format == format
+                        else -> false
                     }
-                },
-                label = { Text(stringResource(format.labelRes)) },
-                trailingIcon = if (isLocked) {
-                    { Icon(Icons.Filled.Lock, contentDescription = null, modifier = Modifier.size(16.dp)) }
-                } else null,
+                    val isLocked = !state.isPro && format != ExportFormat.MARKDOWN
+                    FilterChip(
+                        selected = isSelected,
+                        onClick = {
+                            if (isLocked) {
+                                onUpgrade()
+                            } else {
+                                state.appConfig?.let { onAppConfigChanged { it.copy(format = format) } }
+                                state.permConfig?.let { onPermConfigChanged { it.copy(format = format) } }
+                            }
+                        },
+                        label = { Text(stringResource(format.labelRes)) },
+                        trailingIcon = if (isLocked) {
+                            { Icon(Icons.Filled.Lock, contentDescription = null, modifier = Modifier.size(16.dp)) }
+                        } else null,
+                    )
+                }
+            }
+
+            HorizontalDivider(
+                modifier = Modifier.padding(vertical = 4.dp),
+                color = MaterialTheme.colorScheme.outlineVariant,
             )
+
+            // Content toggles
+            state.appConfig?.let { cfg -> AppExportToggles(cfg, onAppConfigChanged) }
+            state.permConfig?.let { cfg -> PermExportToggles(cfg, onPermConfigChanged) }
         }
     }
-
-    HorizontalDivider()
-
-    // Content toggles
-    Text(
-        text = stringResource(R.string.export_content_label),
-        style = MaterialTheme.typography.titleSmall,
-    )
-
-    state.appConfig?.let { cfg -> AppExportToggles(cfg, onAppConfigChanged) }
-    state.permConfig?.let { cfg -> PermExportToggles(cfg, onPermConfigChanged) }
-
-    HorizontalDivider()
 
     // Freemium banner
     if (state.isFreeLimited) {
         Card(
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
             ),
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(
-                    text = stringResource(R.string.export_free_limit_message, FREE_EXPORT_LIMIT),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                    )
+                    Text(
+                        text = stringResource(R.string.export_free_limit_message, FREE_EXPORT_LIMIT),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    )
+                }
                 TextButton(
                     onClick = onUpgrade,
                     modifier = Modifier.align(Alignment.End),
@@ -273,38 +316,59 @@ private fun ExportConfigContent(
     }
 
     // Preview
-    Text(
-        text = if (state.effectiveItemCount > 1) {
-            stringResource(R.string.export_preview_label_of, 1, state.effectiveItemCount)
-        } else {
-            stringResource(R.string.export_preview_label)
-        },
-        style = MaterialTheme.typography.titleSmall,
-    )
     Card {
-        if (state.isPreviewLoading) {
-            Box(
+        Column {
+            // Header row
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(24.dp),
-                contentAlignment = Alignment.Center,
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                Text(
+                    text = stringResource(R.string.export_preview_label),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                if (state.effectiveItemCount > 1) {
+                    Text(
+                        text = "1 / ${state.effectiveItemCount}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
-        } else if (state.preview != null) {
-            Text(
-                text = state.preview,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(12.dp)
-                    .horizontalScroll(rememberScrollState()),
-                fontFamily = FontFamily.Monospace,
-                fontSize = 11.sp,
-                lineHeight = 16.sp,
-            )
+            if (state.isPreviewLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                }
+            } else if (state.preview != null) {
+                Text(
+                    text = state.preview,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 200.dp)
+                        .verticalScroll(rememberScrollState())
+                        .horizontalScroll(rememberScrollState())
+                        .padding(12.dp),
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 11.sp,
+                    lineHeight = 15.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 
+    // Bottom spacer for FAB clearance
+    Spacer(modifier = Modifier.height(56.dp))
 }
 
 @Composable
@@ -318,11 +382,13 @@ private fun AppExportToggles(
 
     SwitchRow(
         label = stringResource(R.string.export_app_include_meta_label),
+        description = stringResource(R.string.export_app_include_meta_description),
         checked = config.includeMetaInfo,
         onCheckedChange = { onChanged { it.copy(includeMetaInfo = !it.includeMetaInfo) } },
     )
     SwitchRow(
         label = stringResource(R.string.export_app_include_permissions_label),
+        description = stringResource(R.string.export_app_include_permissions_description),
         checked = includePerms,
         onCheckedChange = {
             onChanged {
@@ -337,6 +403,7 @@ private fun AppExportToggles(
         SwitchRow(
             label = stringResource(R.string.export_app_include_perm_type_label),
             checked = includeType,
+            indent = true,
             onCheckedChange = {
                 onChanged {
                     it.copy(
@@ -351,6 +418,7 @@ private fun AppExportToggles(
         SwitchRow(
             label = stringResource(R.string.export_app_include_perm_full_label),
             checked = includeFull,
+            indent = true,
             onCheckedChange = {
                 onChanged {
                     it.copy(
@@ -370,6 +438,7 @@ private fun PermExportToggles(
 ) {
     SwitchRow(
         label = stringResource(R.string.export_perm_include_apps_label),
+        description = stringResource(R.string.export_perm_include_apps_description),
         checked = config.includeRequestingApps,
         onCheckedChange = { onChanged { it.copy(includeRequestingApps = !it.includeRequestingApps) } },
     )
@@ -377,6 +446,7 @@ private fun PermExportToggles(
         SwitchRow(
             label = stringResource(R.string.export_perm_granted_only_label),
             checked = config.grantedOnly,
+            indent = true,
             onCheckedChange = { onChanged { it.copy(grantedOnly = !it.grantedOnly) } },
         )
     }
@@ -392,17 +462,29 @@ private fun SwitchRow(
     label: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
+    description: String? = null,
+    indent: Boolean = false,
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = if (indent) 24.dp else 0.dp, top = 2.dp, bottom = 2.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.weight(1f),
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            if (description != null) {
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
         Switch(checked = checked, onCheckedChange = onCheckedChange)
     }
 }
@@ -412,9 +494,9 @@ private fun ExportProgressContent() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         CircularProgressIndicator()
         Text(
             text = stringResource(R.string.export_progress_label),
@@ -434,13 +516,18 @@ private fun ExportSuccessContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+        Icon(
+            imageVector = Icons.Filled.CheckCircle,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp),
+            tint = MaterialTheme.colorScheme.primary,
+        )
         Text(
             text = stringResource(R.string.export_success_message),
             style = MaterialTheme.typography.headlineSmall,
         )
 
-        // Summary card
         Card(
             modifier = Modifier.fillMaxWidth(),
         ) {
@@ -466,7 +553,7 @@ private fun ExportSuccessContent(
         }
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(
+            FilledTonalButton(
                 onClick = {
                     val shareIntent = Intent(Intent.ACTION_SEND).apply {
                         type = "*/*"
@@ -537,16 +624,29 @@ private fun ExportErrorContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
+        Icon(
+            imageVector = Icons.Filled.Error,
+            contentDescription = null,
+            modifier = Modifier.size(48.dp),
+            tint = MaterialTheme.colorScheme.error,
+        )
         Text(
             text = stringResource(R.string.export_error_message),
             style = MaterialTheme.typography.headlineSmall,
         )
-        Text(
-            text = error.localizedMessage ?: error.toString(),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.error,
-        )
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer,
+            ),
+        ) {
+            Text(
+                text = error.localizedMessage ?: error.toString(),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onErrorContainer,
+                modifier = Modifier.padding(16.dp),
+            )
+        }
         Button(onClick = onRetry) {
             Text(stringResource(R.string.export_retry_action))
         }
