@@ -3,6 +3,7 @@ package eu.darken.myperm.export.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.AppInfo
@@ -36,10 +37,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.time.Duration
+import kotlin.time.TimeSource
 
 @SuppressLint("StaticFieldLeak")
 @HiltViewModel
 class ExportViewModel @Inject constructor(
+    private val handle: SavedStateHandle,
     private val dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
     private val appRepo: AppRepo,
@@ -54,8 +58,7 @@ class ExportViewModel @Inject constructor(
         .map { it.isPro }
         .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
 
-    private var mode: ExportMode = ExportMode.Apps(emptyList())
-    private var selectedIds: List<String> = emptyList()
+    private var mode: ExportMode = restoreMode() ?: ExportMode.Apps(emptyList())
 
     sealed class ExportMode {
         data class Apps(val ids: List<Pair<String, Int>>) : ExportMode()
@@ -70,7 +73,13 @@ class ExportViewModel @Inject constructor(
 
     sealed class ExportResult {
         data object InProgress : ExportResult()
-        data class Success(val uri: Uri) : ExportResult()
+        data class Success(
+            val uri: Uri,
+            val fileName: String,
+            val fileSize: Long,
+            val duration: Duration,
+        ) : ExportResult()
+
         data class Error(val throwable: Throwable) : ExportResult()
     }
 
@@ -185,20 +194,43 @@ class ExportViewModel @Inject constructor(
     }
 
     fun init(route: Nav.Export.Config) {
-        selectedIds = exportSelectionStore.consume(route.token) ?: emptyList()
+        // If already restored from SavedStateHandle, skip re-init
+        if (handle.contains(KEY_MODE)) {
+            log(TAG) { "Already initialized from SavedStateHandle, skipping" }
+            return
+        }
+
+        val ids = exportSelectionStore.consume(route.token) ?: emptyList()
         mode = when (route.mode) {
-            "apps" -> ExportMode.Apps(selectedIds.map { id ->
+            "apps" -> ExportMode.Apps(ids.map { id ->
                 val parts = id.split(":")
                 parts[0] to parts[1].toInt()
             })
 
-            "permissions" -> ExportMode.Permissions(selectedIds)
+            "permissions" -> ExportMode.Permissions(ids)
             else -> {
                 log(TAG, WARN) { "Unknown export mode: ${route.mode}" }
                 ExportMode.Apps(emptyList())
             }
         }
-        log(TAG) { "Initialized with mode=$mode, ${selectedIds.size} items" }
+        // Persist for process death restoration
+        handle[KEY_MODE] = route.mode
+        handle[KEY_IDS] = ArrayList(ids)
+        log(TAG) { "Initialized with mode=$mode, ${ids.size} items" }
+    }
+
+    private fun restoreMode(): ExportMode? {
+        val modeStr = handle.get<String>(KEY_MODE) ?: return null
+        val ids = handle.get<ArrayList<String>>(KEY_IDS) ?: return null
+        log(TAG) { "Restoring from SavedStateHandle: mode=$modeStr, ${ids.size} items" }
+        return when (modeStr) {
+            "apps" -> ExportMode.Apps(ids.map { id ->
+                val parts = id.split(":")
+                parts[0] to parts[1].toInt()
+            })
+            "permissions" -> ExportMode.Permissions(ids)
+            else -> null
+        }
     }
 
     fun updateAppConfig(transform: (AppExportConfig) -> AppExportConfig) {
@@ -222,6 +254,7 @@ class ExportViewModel @Inject constructor(
         if (uri == null) return@launch // User cancelled
 
         exportResult.value = ExportResult.InProgress
+        val startMark = TimeSource.Monotonic.markNow()
 
         val allApps = (appRepo.appData.first() as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
         val allPerms = permissionRepo.permissions.first()
@@ -247,7 +280,15 @@ class ExportViewModel @Inject constructor(
 
         result.onSuccess { content ->
             exportWriter.write(uri, content).onSuccess {
-                exportResult.value = ExportResult.Success(uri)
+                val elapsed = startMark.elapsedNow()
+                val fileName = getFileName(uri) ?: "export"
+                val fileSize = getFileSize(uri)
+                exportResult.value = ExportResult.Success(
+                    uri = uri,
+                    fileName = fileName,
+                    fileSize = fileSize,
+                    duration = elapsed,
+                )
             }.onFailure { e ->
                 log(TAG, WARN) { "Write failed: $e" }
                 exportResult.value = ExportResult.Error(e)
@@ -256,6 +297,20 @@ class ExportViewModel @Inject constructor(
             log(TAG, WARN) { "Export failed: $e" }
             exportResult.value = ExportResult.Error(e)
         }
+    }
+
+    private fun getFileName(uri: Uri): String? {
+        return context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            val nameIndex = cursor.getColumnIndex(android.provider.OpenableColumns.DISPLAY_NAME)
+            if (cursor.moveToFirst() && nameIndex >= 0) cursor.getString(nameIndex) else null
+        }
+    }
+
+    private fun getFileSize(uri: Uri): Long {
+        return context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            val sizeIndex = cursor.getColumnIndex(android.provider.OpenableColumns.SIZE)
+            if (cursor.moveToFirst() && sizeIndex >= 0) cursor.getLong(sizeIndex) else -1L
+        } ?: -1L
     }
 
     fun resetExportResult() {
@@ -292,6 +347,8 @@ class ExportViewModel @Inject constructor(
 
     companion object {
         private const val FREE_EXPORT_LIMIT = 5
+        private const val KEY_MODE = "export_mode"
+        private const val KEY_IDS = "export_ids"
         private val TAG = logTag("Export", "VM")
     }
 }

@@ -704,6 +704,9 @@
     <string name="export_open_action">Open</string>
     <string name="export_done_action">Done</string>
     <string name="export_retry_action">Retry</string>
+    <string name="export_summary_filename">File</string>
+    <string name="export_summary_size">Size</string>
+    <string name="export_summary_duration">Duration</string>
     <string name="export_free_limit_message">Free version is limited to %d items and Markdown format. Upgrade for unlimited exports and all formats.</string>
     <string name="export_upgrade_action">Upgrade</string>
 </resources>
