@@ -56,7 +56,7 @@ class OverviewViewModel @Inject constructor(
         CLONES(SummarySection.PROFILE),
         GOOGLE_PLAY(SummarySection.INSTALL_SOURCE),
         OEM_STORE(SummarySection.INSTALL_SOURCE),
-        SIDELOADED(SummarySection.INSTALL_SOURCE),
+        MANUALLY_INSTALLED(SummarySection.INSTALL_SOURCE),
         CAMERA(SummarySection.PRIVACY),
         LOCATION(SummarySection.PRIVACY),
         MICROPHONE(SummarySection.PRIVACY),
@@ -149,7 +149,7 @@ class OverviewViewModel @Inject constructor(
             SummaryCategory.OEM_STORE to countPkg {
                 !it.isSystemApp && it.allInstallerPkgNames.any { pkg -> pkg in oemPkgNames }
             },
-            SummaryCategory.SIDELOADED to countPkg {
+            SummaryCategory.MANUALLY_INSTALLED to countPkg {
                 !it.isSystemApp && it.allInstallerPkgNames.none { pkg -> pkg in storePkgNames }
             },
             SummaryCategory.CAMERA to countPkg { it.hasGrantedPermission(cameraId) },

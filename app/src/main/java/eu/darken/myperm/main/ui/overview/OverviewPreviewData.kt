@@ -17,7 +17,7 @@ internal object OverviewPreviewData {
                 SummaryCategory.CLONES to PkgCount(0, 0),
                 SummaryCategory.GOOGLE_PLAY to PkgCount(6, 0),
                 SummaryCategory.OEM_STORE to PkgCount(1, 0),
-                SummaryCategory.SIDELOADED to PkgCount(5, 0),
+                SummaryCategory.MANUALLY_INSTALLED to PkgCount(5, 0),
                 SummaryCategory.CAMERA to PkgCount(4, 2),
                 SummaryCategory.LOCATION to PkgCount(7, 5),
                 SummaryCategory.MICROPHONE to PkgCount(3, 1),

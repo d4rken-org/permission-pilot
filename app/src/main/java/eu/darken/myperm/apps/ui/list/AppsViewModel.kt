@@ -112,7 +112,7 @@ class AppsViewModel @Inject constructor(
         val dateFormatter = DateTimeFormatter.ofPattern("MMM yyyy", Locale.getDefault())
 
         val listItems = filtered.map { app ->
-            // Install source: known store → PM label → sideloaded/pre-installed
+            // Install source: known store → PM label → manually installed/pre-installed
             val knownStoreLabel = app.installerPkgName?.let { pkgName ->
                 AKnownPkg.values.firstOrNull { it.id.pkgName == pkgName }?.labelRes
                     ?.let { context.getString(it) }

@@ -62,7 +62,7 @@ data class AppsFilterOptions(
             }
         ),
         @SerialName("SIDELOADED")
-        SIDELOADED(
+        MANUALLY_INSTALLED(
             group = Group.INSTALL_SOURCE,
             labelRes = R.string.apps_filter_sideloaded_label,
             matches = { app ->
