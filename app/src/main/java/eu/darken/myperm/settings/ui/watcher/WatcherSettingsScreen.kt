@@ -16,7 +16,7 @@ import androidx.compose.material.icons.twotone.FilterList
 import eu.darken.myperm.common.compose.LucideRadar
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Schedule
-import androidx.compose.material.icons.twotone.Stars
+import androidx.compose.material3.Switch
 import androidx.compose.material.icons.twotone.Timer
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
@@ -49,6 +49,7 @@ import eu.darken.myperm.common.navigation.NavigationEventHandler
 import eu.darken.myperm.common.settings.SettingsBaseItem
 import eu.darken.myperm.common.settings.SettingsDivider
 import eu.darken.myperm.common.settings.SettingsSwitchItem
+import eu.darken.myperm.common.settings.SettingsUpgradeIcon
 import eu.darken.myperm.watcher.core.WatcherScope
 
 @Composable
@@ -146,7 +147,8 @@ fun WatcherSettingsScreen(
                     WatcherScope.NON_SYSTEM -> stringResource(R.string.watcher_scope_non_system)
                 },
                 icon = Icons.TwoTone.FilterList,
-                onClick = { showScopeDialog = true },
+                onClick = if (isPro) {{ showScopeDialog = true }} else onUpgrade,
+                trailingContent = if (!isPro) {{ SettingsUpgradeIcon() }} else null,
             )
             SettingsDivider()
             PollingIntervalItem(
@@ -155,14 +157,20 @@ fun WatcherSettingsScreen(
                 onIntervalChanged = onPollingIntervalChanged,
             )
             SettingsDivider()
+            SettingsBaseItem(
+                icon = Icons.TwoTone.Notifications,
+                title = stringResource(R.string.watcher_settings_notifications_label),
+                subtitle = stringResource(R.string.watcher_settings_notifications_desc),
+                onClick = if (isPro) {{ onNotificationsEnabledChanged(!isNotificationsEnabled) }} else onUpgrade,
+                trailingContent = if (isPro) {{
+                    Switch(
+                        checked = isNotificationsEnabled,
+                        onCheckedChange = onNotificationsEnabledChanged,
+                        modifier = Modifier.padding(start = 16.dp),
+                    )
+                }} else {{ SettingsUpgradeIcon() }},
+            )
             if (isPro) {
-                SettingsSwitchItem(
-                    icon = Icons.TwoTone.Notifications,
-                    title = stringResource(R.string.watcher_settings_notifications_label),
-                    subtitle = stringResource(R.string.watcher_settings_notifications_desc),
-                    checked = isNotificationsEnabled,
-                    onCheckedChange = onNotificationsEnabledChanged,
-                )
                 SettingsSwitchItem(
                     icon = Icons.TwoTone.Notifications,
                     title = stringResource(R.string.watcher_settings_notifications_only_gained_label),
@@ -170,13 +178,6 @@ fun WatcherSettingsScreen(
                     checked = isNotifyOnlyOnGained,
                     onCheckedChange = onNotifyOnlyOnGainedChanged,
                     enabled = isNotificationsEnabled,
-                )
-            } else {
-                SettingsBaseItem(
-                    icon = Icons.TwoTone.Stars,
-                    title = stringResource(R.string.watcher_settings_notifications_pro_label),
-                    subtitle = stringResource(R.string.watcher_settings_notifications_desc),
-                    onClick = onUpgrade,
                 )
             }
             SettingsDivider()
