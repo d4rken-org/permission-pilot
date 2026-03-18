@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -44,7 +43,6 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -169,7 +167,7 @@ private fun HeroCard(summary: OverviewViewModel.SummaryInfo, device: OverviewVie
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(
             modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
                 text = total.toString(),
@@ -181,7 +179,6 @@ private fun HeroCard(summary: OverviewViewModel.SummaryInfo, device: OverviewVie
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            AppRatioBar(activeProfile.user, activeProfile.system, total)
             if (device != null) {
                 Text(
                     text = "${device.deviceName} \u00B7 ${device.androidVersion} \u00B7 ${device.patchLevel}",
@@ -191,36 +188,6 @@ private fun HeroCard(summary: OverviewViewModel.SummaryInfo, device: OverviewVie
                     overflow = TextOverflow.Ellipsis,
                 )
             }
-        }
-    }
-}
-
-@Composable
-private fun AppRatioBar(userCount: Int, systemCount: Int, total: Int) {
-    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        LinearProgressIndicator(
-            progress = { if (total > 0) userCount.toFloat() / total else 0f },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(6.dp)
-                .clip(RoundedCornerShape(3.dp)),
-            color = MaterialTheme.colorScheme.primary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(
-                text = pluralStringResource(R.plurals.generic_x_apps_user_label, userCount, userCount),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-            Text(
-                text = pluralStringResource(R.plurals.generic_x_apps_system_label, systemCount, systemCount),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
         }
     }
 }
