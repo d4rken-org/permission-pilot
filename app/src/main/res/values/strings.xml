@@ -686,12 +686,14 @@
     <string name="export_format_markdown_label">Markdown</string>
     <string name="export_format_csv_label">CSV</string>
     <string name="export_format_json_label">JSON</string>
-    <string name="export_content_label">Content</string>
     <string name="export_app_include_meta_label">Include install info</string>
+    <string name="export_app_include_meta_description">Version, install date, SDK levels</string>
     <string name="export_app_include_permissions_label">Include permissions</string>
+    <string name="export_app_include_permissions_description">Permission names and granted status</string>
     <string name="export_app_include_perm_type_label">Include permission type</string>
     <string name="export_app_include_perm_full_label">Include full permission details</string>
     <string name="export_perm_include_apps_label">Include requesting apps</string>
+    <string name="export_perm_include_apps_description">List apps that request each permission</string>
     <string name="export_perm_granted_only_label">Granted apps only</string>
     <string name="export_perm_include_summary_label">Include summary counts</string>
     <string name="export_preview_label">Preview</string>
