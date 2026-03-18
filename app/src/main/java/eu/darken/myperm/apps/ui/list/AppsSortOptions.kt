@@ -18,7 +18,8 @@ data class AppsSortOptions(
 ) : Parcelable {
     @Serializable
     enum class Sort(
-        @StringRes val labelRes: Int
+        @StringRes val labelRes: Int,
+        val showInSheet: Boolean = true,
     ) {
 
         @SerialName("PERMISSIONS_GRANTED")
@@ -40,6 +41,7 @@ data class AppsSortOptions(
         @SerialName("PERMISSIONS_DECLARED")
         PERMISSIONS_DECLARED(
             labelRes = R.string.apps_sort_permissions_declared_label,
+            showInSheet = false,
         ) {
             override fun getComparator(): Comparator<AppInfo> = Comparator.comparing<AppInfo, Int> { app ->
                 app.declaredPermissionCount
