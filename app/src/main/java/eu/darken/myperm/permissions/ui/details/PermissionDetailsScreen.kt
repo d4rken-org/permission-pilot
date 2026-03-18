@@ -53,9 +53,11 @@ import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
+import eu.darken.myperm.common.compose.GrantStatusPill
 import eu.darken.myperm.common.compose.PermissionIcon
 import eu.darken.myperm.common.compose.PermissionTagPill
 import eu.darken.myperm.common.compose.Pill
+import eu.darken.myperm.common.compose.SystemPill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
@@ -320,7 +322,7 @@ fun PermissionDetailsScreen(
                                         modifier = Modifier.weight(1f, fill = false),
                                     )
                                     if (app.isSystemApp) {
-                                        SystemBadge()
+                                        SystemPill()
                                     }
                                 }
                                 Text(
@@ -390,9 +392,9 @@ fun PermissionDetailsScreen(
                                         modifier = Modifier.weight(1f, fill = false),
                                     )
                                     if (app.isSystemApp) {
-                                        SystemBadge()
+                                        SystemPill()
                                     }
-                                    GrantStatusBadge(app.status)
+                                    GrantStatusPill(app.status)
                                 }
                                 Text(
                                     text = app.pkgName,
@@ -457,42 +459,6 @@ private fun ProtectionFlagPill(flag: ProtectionFlag) {
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
     )
-}
-
-@Composable
-private fun SystemBadge() {
-    Pill(
-        text = stringResource(R.string.permissions_details_system_badge_label),
-        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
-    )
-}
-
-@Composable
-private fun GrantStatusBadge(status: UsesPermission.Status) {
-    val (text, containerColor, contentColor) = when (status) {
-        UsesPermission.Status.GRANTED -> Triple(
-            stringResource(R.string.filter_granted_label),
-            MaterialTheme.colorScheme.primaryContainer,
-            MaterialTheme.colorScheme.onPrimaryContainer,
-        )
-        UsesPermission.Status.GRANTED_IN_USE -> Triple(
-            stringResource(R.string.permissions_status_granted_in_use_label),
-            MaterialTheme.colorScheme.secondaryContainer,
-            MaterialTheme.colorScheme.onSecondaryContainer,
-        )
-        UsesPermission.Status.DENIED -> Triple(
-            stringResource(R.string.filter_denied_label),
-            MaterialTheme.colorScheme.errorContainer,
-            MaterialTheme.colorScheme.onErrorContainer,
-        )
-        UsesPermission.Status.UNKNOWN -> Triple(
-            stringResource(R.string.permissions_status_unknown_label),
-            MaterialTheme.colorScheme.surfaceVariant,
-            MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-    }
-    Pill(text = text, containerColor = containerColor, contentColor = contentColor)
 }
 
 @Composable
