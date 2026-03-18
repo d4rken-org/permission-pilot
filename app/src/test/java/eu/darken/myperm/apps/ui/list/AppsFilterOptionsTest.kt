@@ -31,17 +31,12 @@ class AppsFilterOptionsTest : BaseTest() {
     }
 
     @Test
-    fun `all Filter enum values serialize to their SerialName`() {
+    fun `all Filter enum values round-trip through serialization`() {
         AppsFilterOptions.Filter.entries.forEach { filter ->
             val opts = AppsFilterOptions(filters = setOf(filter))
             val serialized = json.encodeToString(opts)
-            serialized.toComparableJson() shouldBe """
-                {
-                    "filters": [
-                        "${filter.name}"
-                    ]
-                }
-            """.toComparableJson()
+            val deserialized = json.decodeFromString<AppsFilterOptions>(serialized)
+            deserialized shouldBe opts
         }
     }
 

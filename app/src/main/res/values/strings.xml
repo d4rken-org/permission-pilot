@@ -67,7 +67,7 @@
     <string name="apps_filter_userapps_label">User Apps</string>
     <string name="apps_filter_systemapps_label">System Apps</string>
     <string name="apps_filter_nointernet_label">Apps without internet access</string>
-    <string name="apps_filter_sideloaded_label">Sideloaded Apps</string>
+    <string name="apps_filter_sideloaded_label">Manually installed</string>
     <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM Store</string>
 
@@ -155,7 +155,7 @@
     <string name="apps_known_android_system_label">Android System</string>
     <string name="apps_list_subtitle_format">%1$s · %2$s</string>
     <string name="apps_list_updated_label">Updated %1$s</string>
-    <string name="apps_list_installer_sideloaded_label">Sideloaded</string>
+    <string name="apps_list_installer_sideloaded_label">Manually installed</string>
     <string name="apps_list_installer_preinstalled_label">Pre-installed</string>
     <string name="general_refresh_action">Refresh</string>
     <string name="general_expand_all_action">Expand all</string>
@@ -370,7 +370,7 @@
     <string name="permission_read_sync_settings_label">Read Sync Settings</string>
     <string name="permission_read_sync_settings_description">Allows apps to read sync settings for an account.</string>
     <string name="permission_install_unknown_apps_label">Install unknown apps (Unknown Sources)</string>
-    <string name="permission_install_unknown_apps_description">Allows apps to install (sideload) other apps on your device. This may put your device and data at risk.</string>
+    <string name="permission_install_unknown_apps_description">Allows apps to manually install other apps on your device. This may put your device and data at risk.</string>
     <string name="permission_all_files_access_label">All Files access</string>
     <string name="permission_all_files_access_description">Allows apps to read, modify and delete all files on your device as well as any connected storage devices. Apps with this permission may also access files that aren\'t related to the app, WITHOUT notifying you.</string>
     <string name="permission_appear_on_top_label">Appear on Top</string>
@@ -443,7 +443,7 @@
     <string name="overview_device_android_patch_label">Patch level</string>
     <string name="overview_summary_apps_active_profile_label">Apps in Active Profile</string>
     <string name="overview_summary_apps_other_profile_label">Apps in Managed User Profile(s), excluding Clones</string>
-    <string name="overview_summary_apps_sideloaded_label">Apps sideloaded from external sources</string>
+    <string name="overview_summary_apps_sideloaded_label">Apps manually installed from external sources</string>
     <string name="overview_summary_apps_installers_label">Apps with \'Install from Unknown Sources\' enabled</string>
     <string name="overview_summary_apps_overlayers_label">Apps that can \'Appear on Top\'</string>
     <string name="overview_summary_apps_offline_label">Apps that have \'No Internet\' permissions</string>

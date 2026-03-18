@@ -223,7 +223,7 @@ private fun SummaryList(
             categories = listOf(
                 CategoryDisplay(Icons.Filled.Shop, stringResource(R.string.overview_summary_apps_gplay_label), summary[SummaryCategory.GOOGLE_PLAY], setOf(AppsFilterOptions.Filter.GOOGLE_PLAY)),
                 CategoryDisplay(Icons.Filled.Storefront, stringResource(R.string.overview_summary_apps_oemstore_label), summary[SummaryCategory.OEM_STORE], setOf(AppsFilterOptions.Filter.OEM_STORE)),
-                CategoryDisplay(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary[SummaryCategory.SIDELOADED], setOf(AppsFilterOptions.Filter.SIDELOADED)),
+                CategoryDisplay(Icons.Filled.InstallMobile, stringResource(R.string.overview_summary_apps_sideloaded_label), summary[SummaryCategory.MANUALLY_INSTALLED], setOf(AppsFilterOptions.Filter.MANUALLY_INSTALLED)),
             ),
         ),
         SectionDisplay(
