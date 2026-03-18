@@ -18,7 +18,6 @@ package eu.darken.myperm.common.livedata
  */
 
 import androidx.annotation.MainThread
-import androidx.annotation.Nullable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -61,7 +60,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     }
 
     @MainThread
-    override fun setValue(@Nullable t: T?) {
+    override fun setValue(t: T?) {
         pending.set(true)
         super.setValue(t)
     }

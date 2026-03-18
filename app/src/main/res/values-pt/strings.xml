@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">Configurações</string>
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Erro</string>
     <string name="general_share_action">Compartilhe</string>
     <string name="general_done_action">Feito</string>
-    <string name="general_copy_action">Copiar</string>
-    <string name="general_check_action">Verificar</string>
-    <string name="general_show_action">Mostrar</string>
     <string name="general_open_action">Abrir</string>
     <string name="general_continue_action">Continuar</string>
-    <string name="general_accept_action">Aceitar</string>
-    <string name="upgrade_myperm_label">Atualizar Permission Pilot</string>
-    <string name="upgrade_myperm_description">Gosta que esta aplicação não tenha anúncios e não recolha os seus dados?\nCompre a versão Pro para mostrar o seu apoio!</string>
     <string name="upgrade_buy_pro_action">Comprar versão Pro</string>
     <string name="general_no_action">Agora não</string>
     <string name="upgrade_donate_action">Doação</string>

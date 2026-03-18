@@ -49,11 +49,9 @@ sealed class PermissionAction {
     data class SpecialAccess(override val permission: Permission, override val pkg: Pkg?) : PermissionAction() {
         override fun execute(activity: Activity) {
             val intent = when (permission.id) {
-                APerm.SYSTEM_ALERT_WINDOW.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
-                        pkg?.let { data = "package:${it.packageName}".toUri() }
-                    }
-                } else null
+                APerm.SYSTEM_ALERT_WINDOW.id -> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+                    pkg?.let { data = "package:${it.packageName}".toUri() }
+                }
                 APerm.PACKAGE_USAGE_STATS.id -> Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS).apply {
                     pkg?.let { data = "package:${it.packageName}".toUri() }
                 }
@@ -62,11 +60,9 @@ sealed class PermissionAction {
                         pkg?.let { data = "package:${it.packageName}".toUri() }
                     }
                 } else null
-                APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-                        pkg?.let { data = "package:${it.packageName}".toUri() }
-                    }
-                } else null
+                APerm.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS.id -> Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                    pkg?.let { data = "package:${it.packageName}".toUri() }
+                }
                 APerm.MANAGE_EXTERNAL_STORAGE.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     if (pkg != null) {
                         Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
@@ -76,11 +72,9 @@ sealed class PermissionAction {
                         Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
                     }
                 } else null
-                APerm.WRITE_SETTINGS.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
-                        pkg?.let { data = "package:${it.packageName}".toUri() }
-                    }
-                } else null
+                APerm.WRITE_SETTINGS.id -> Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+                    pkg?.let { data = "package:${it.packageName}".toUri() }
+                }
                 APerm.MANAGE_MEDIA.id -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     Intent(Settings.ACTION_REQUEST_MANAGE_MEDIA).apply {
                         pkg?.let { data = "package:${it.packageName}".toUri() }

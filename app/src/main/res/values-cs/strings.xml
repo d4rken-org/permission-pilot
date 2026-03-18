@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">Nastavení</string>
     <string name="label_help">Nápověda</string>
     <string name="general_error_label">Chyba</string>
     <string name="general_share_action">Sdílet</string>
     <string name="general_done_action">Hotovo</string>
-    <string name="general_copy_action">Kopírovat</string>
-    <string name="general_check_action">Zkontrolovat</string>
-    <string name="general_show_action">Zobrazit</string>
     <string name="general_open_action">Otevřít</string>
     <string name="general_continue_action">Pokračovat</string>
-    <string name="general_accept_action">Přijmout</string>
-    <string name="upgrade_myperm_label">Upgradovat Permission Pilot</string>
-    <string name="upgrade_myperm_description">Líbí se vám, že tato aplikace neobsahuje reklamy a neshromažďuje vaše data?\nPodpořte nás zakoupením verze Pro!</string>
     <string name="upgrade_buy_pro_action">Zakoupit verzi Pro</string>
     <string name="general_no_action">Ne</string>
     <string name="upgrade_donate_action">Přispět</string>

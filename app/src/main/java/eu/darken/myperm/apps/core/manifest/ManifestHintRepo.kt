@@ -74,9 +74,9 @@ class ManifestHintRepo @Inject constructor(
             val priorityPkg = priorityQueue.poll()
             val nextApp = if (priorityPkg != null) {
                 val idx = pending.indexOfFirst { it.pkgName == priorityPkg }
-                if (idx >= 0) pending.removeAt(idx) else pending.removeFirst()
+                if (idx >= 0) pending.removeAt(idx) else pending.removeAt(0)
             } else {
-                pending.removeFirst()
+                pending.removeAt(0)
             }
 
             val lastUpdateTime = nextApp.updatedAt?.toEpochMilli() ?: 0L

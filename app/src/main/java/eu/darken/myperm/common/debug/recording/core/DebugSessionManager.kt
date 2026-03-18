@@ -405,7 +405,6 @@ class DebugSessionManager @Inject constructor(
 
         private val TIMESTAMP_REGEX = Regex("(\\d{8}T\\d{6}Z)")
 
-        @VisibleForTesting
         internal fun deriveBaseName(file: File): String {
             return if (file.extension == "zip") file.nameWithoutExtension else file.name
         }
@@ -420,7 +419,6 @@ class DebugSessionManager @Inject constructor(
             return baseName
         }
 
-        @VisibleForTesting
         internal fun parseSessionId(sessionId: String): Pair<String?, String> {
             val colonIdx = sessionId.indexOf(':')
             return if (colonIdx >= 0) {

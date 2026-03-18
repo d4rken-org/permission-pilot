@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">ፍቃድ ፓይሎት</string>
-    <string name="app_name_pro">ፍቃድ ፓይሎት ፕሮ</string>
-    <string name="label_settings">ቅንብሮች</string>
     <string name="label_help">እርዳታ</string>
     <string name="general_error_label">ስህተት</string>
     <string name="general_share_action">ያጋሩ</string>
     <string name="general_done_action">ተጠናቋል</string>
-    <string name="general_copy_action">ቅዳ</string>
-    <string name="general_check_action">ያረጋግጡ</string>
-    <string name="general_show_action">ያሳዩ</string>
     <string name="general_open_action">ይክፈቱ</string>
     <string name="general_continue_action">ቀጥል</string>
-    <string name="general_accept_action">ተቀበል</string>
-    <string name="upgrade_myperm_label">ፍቃድ ፓይሎትን አዋል</string>
-    <string name="upgrade_myperm_description">ይህ መተግበሪያ ማስታወቂያ የሌለው እና ውሂብዎን የማይሰበስብ መሆኑ ያስደስትዎታልን?
-ድጋፍዎን ለማሳየት የፕሮ ስሪቱን ይግዙ!</string>
     <string name="upgrade_buy_pro_action">የፕሮ ስሪቱን ይግዙ</string>
     <string name="general_no_action">አይ</string>
     <string name="upgrade_donate_action">ይስጡ</string>

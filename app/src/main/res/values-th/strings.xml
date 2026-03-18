@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <string name="app_name_pro">Permission Pilot Pro</string>
-    <string name="label_settings">การตั้งค่า</string>
     <string name="label_help">ช่วยเหลือ</string>
     <string name="general_error_label">ข้อผิดพลาด</string>
     <string name="general_share_action">แชร์</string>
     <string name="general_done_action">เสร็จสิ้น</string>
-    <string name="general_copy_action">คัดลอก</string>
-    <string name="general_check_action">ตรวจสอบ</string>
-    <string name="general_show_action">แสดง</string>
     <string name="general_open_action">เปิด</string>
     <string name="general_continue_action">ดำเนินการต่อ</string>
-    <string name="general_accept_action">ยอมรับ</string>
-    <string name="upgrade_myperm_label">อัปเกรด Permission Pilot</string>
-    <string name="upgrade_myperm_description">คุณชอบที่แอปนี้ไม่มีโฆษณาและไม่เก็บข้อมูลของคุณหรือไม่?\nซื้อเวอร์ชัน Pro เพื่อแสดงการสนับสนุนของคุณ!</string>
     <string name="upgrade_buy_pro_action">ซื้อเวอร์ชัน Pro</string>
     <string name="general_no_action">ไม่</string>
     <string name="upgrade_donate_action">บริจาค</string>
