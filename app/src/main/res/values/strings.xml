@@ -712,7 +712,6 @@
         <item quantity="other">%d more reports</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgrade to view all reports, details, and get notifications</string>
-    <string name="watcher_settings_notifications_pro_label">Notifications (Pro)</string>
 
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>
