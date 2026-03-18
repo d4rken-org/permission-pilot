@@ -1,6 +1,6 @@
 package eu.darken.myperm.apps.ui.list
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 
 internal object AppsPreviewData {
@@ -10,11 +10,10 @@ internal object AppsPreviewData {
         label: String,
         isSystemApp: Boolean = false,
         showPkgName: Boolean = false,
-        grantedCount: Int = 0,
-        totalCount: Int = 0,
-        declaredCount: Int = 0,
-        tagIcons: List<ImageVector> = emptyList(),
-        installerPkgName: String? = null,
+        installerIconPkg: String? = null,
+        installerLabel: String = "Play Store",
+        updatedAtFormatted: String? = "Updated Mar 2026",
+        permChips: List<AppsViewModel.PermChip> = emptyList(),
     ) = AppsViewModel.AppItem(
         pkgName = pkgName,
         userHandleId = 0,
@@ -22,25 +21,69 @@ internal object AppsPreviewData {
         label = label,
         isSystemApp = isSystemApp,
         showPkgName = showPkgName,
-        permissionCount = totalCount,
-        grantedCount = grantedCount,
-        totalCount = totalCount,
-        declaredCount = declaredCount,
-        tagIcons = tagIcons,
-        installerPkgName = installerPkgName,
+        installerIconPkg = installerIconPkg,
+        installerLabel = installerLabel,
+        updatedAtFormatted = updatedAtFormatted,
+        permChips = permChips,
     )
+
+    private val cameraChip = AppsViewModel.PermChip(R.string.permission_group_camera_label)
+    private val locationChip = AppsViewModel.PermChip(R.string.permission_group_location_label)
+    private val audioChip = AppsViewModel.PermChip(R.string.permission_group_audio_label)
+    private val contactsChip = AppsViewModel.PermChip(R.string.permission_group_contacts_label)
+    private val callsChip = AppsViewModel.PermChip(R.string.permission_group_calls_label)
+    private val filesChip = AppsViewModel.PermChip(R.string.permission_group_files_label)
+    private val messagingChip = AppsViewModel.PermChip(R.string.permission_group_messaging_label)
 
     fun readyState() = AppsViewModel.State.Ready(
         items = listOf(
-            appItem("com.google.chrome", "Chrome", grantedCount = 8, totalCount = 12, installerPkgName = "com.android.vending"),
-            appItem("org.mozilla.firefox", "Firefox", grantedCount = 22, totalCount = 32, installerPkgName = "com.android.vending", declaredCount = 2),
-            appItem("com.duckduckgo.mobile.android", "DuckDuckGo", grantedCount = 15, totalCount = 22, installerPkgName = "com.android.vending", declaredCount = 1),
-            appItem("com.google.android.apps.maps", "Google Maps", grantedCount = 18, totalCount = 24, installerPkgName = "com.android.vending"),
-            appItem("com.spotify.music", "Spotify", grantedCount = 6, totalCount = 11, installerPkgName = "com.android.vending"),
-            appItem("org.thoughtcrime.securesms", "Signal", grantedCount = 14, totalCount = 19, installerPkgName = "com.android.vending", declaredCount = 1),
-            appItem("com.whatsapp", "WhatsApp", grantedCount = 20, totalCount = 26, installerPkgName = "com.android.vending", declaredCount = 3),
-            appItem("com.android.systemui", "System UI", isSystemApp = true, grantedCount = 42, totalCount = 42, declaredCount = 3),
-            appItem("com.google.android.gms", "Google Play Services", isSystemApp = true, grantedCount = 67, totalCount = 67, declaredCount = 12),
+            appItem(
+                "com.google.chrome", "Chrome",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip, audioChip),
+            ),
+            appItem(
+                "org.mozilla.firefox", "Firefox",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip, audioChip, filesChip),
+            ),
+            appItem(
+                "com.duckduckgo.mobile.android", "DuckDuckGo",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip),
+            ),
+            appItem(
+                "com.google.android.apps.maps", "Google Maps",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip, audioChip, contactsChip),
+            ),
+            appItem(
+                "com.spotify.music", "Spotify",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(audioChip),
+            ),
+            appItem(
+                "org.thoughtcrime.securesms", "Signal",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip, audioChip, contactsChip, callsChip, messagingChip),
+            ),
+            appItem(
+                "com.whatsapp", "WhatsApp",
+                installerIconPkg = "com.android.vending",
+                permChips = listOf(cameraChip, locationChip, audioChip, contactsChip, callsChip, messagingChip, filesChip),
+            ),
+            appItem(
+                "com.android.systemui", "System UI",
+                isSystemApp = true,
+                installerLabel = "Pre-installed",
+                updatedAtFormatted = null,
+            ),
+            appItem(
+                "com.google.android.gms", "Google Play Services",
+                isSystemApp = true,
+                installerLabel = "Pre-installed",
+                permChips = listOf(cameraChip, locationChip, audioChip, contactsChip, callsChip, filesChip),
+            ),
         ),
         itemCount = 9,
     )

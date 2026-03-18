@@ -1,13 +1,17 @@
 package eu.darken.myperm.apps.ui.list
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Process
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
-import eu.darken.myperm.common.compose.toIcon
+import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -16,6 +20,10 @@ import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.export.core.ExportSelectionStore
 import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.features.Highlighted
+import eu.darken.myperm.permissions.core.known.APerm
+import eu.darken.myperm.permissions.core.known.APermGrp
+import eu.darken.myperm.permissions.core.known.toKnownGroup
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -23,6 +31,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import javax.inject.Inject
 
 @SuppressLint("StaticFieldLeak")
@@ -30,6 +41,7 @@ import javax.inject.Inject
 class AppsViewModel @Inject constructor(
     @Suppress("unused") handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
+    @ApplicationContext private val context: Context,
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val exportSelectionStore: ExportSelectionStore,
@@ -50,6 +62,8 @@ class AppsViewModel @Inject constructor(
 
     private val selectedItems = MutableStateFlow<Set<SelectionKey>>(emptySet())
 
+    data class PermChip(@StringRes val labelRes: Int)
+
     data class AppItem(
         val pkgName: String,
         val userHandleId: Int,
@@ -57,12 +71,10 @@ class AppsViewModel @Inject constructor(
         val label: String,
         val isSystemApp: Boolean,
         val showPkgName: Boolean,
-        val permissionCount: Int,
-        val grantedCount: Int,
-        val totalCount: Int,
-        val declaredCount: Int,
-        val tagIcons: List<ImageVector>,
-        val installerPkgName: String?,
+        val installerIconPkg: String?,
+        val installerLabel: String,
+        val updatedAtFormatted: String?,
+        val permChips: List<PermChip>,
     )
 
     sealed class State {
@@ -97,11 +109,49 @@ class AppsViewModel @Inject constructor(
 
         val duplicateLabels = filtered.groupingBy { it.label }.eachCount().filterValues { it > 1 }.keys
 
+        val dateFormatter = DateTimeFormatter.ofPattern("MMM yyyy", Locale.getDefault())
+
         val listItems = filtered.map { app ->
-            val tagIcons = app.requestedPermissions
-                .mapNotNull { Permission.Id(it.permissionId).toIcon() }
-                .distinct()
-                .take(5)
+            // Install source: known store → PM label → sideloaded/pre-installed
+            val knownStoreLabel = app.installerPkgName?.let { pkgName ->
+                AKnownPkg.values.firstOrNull { it.id.pkgName == pkgName }?.labelRes
+                    ?.let { context.getString(it) }
+            }
+            val installerLabel = knownStoreLabel ?: run {
+                app.allInstallerPkgNames.firstNotNullOfOrNull { installerPkg ->
+                    try {
+                        val ai = context.packageManager.getApplicationInfo(installerPkg, 0)
+                        context.packageManager.getApplicationLabel(ai)?.toString()
+                    } catch (_: PackageManager.NameNotFoundException) {
+                        null
+                    }
+                }
+            } ?: context.getString(
+                if (app.isSystemApp) R.string.apps_list_installer_preinstalled_label
+                else R.string.apps_list_installer_sideloaded_label
+            )
+
+            // Updated date
+            val updatedAtFormatted = app.updatedAt?.let { instant ->
+                val formatted = dateFormatter.format(instant.atZone(ZoneId.systemDefault()))
+                context.getString(R.string.apps_list_updated_label, formatted)
+            }
+
+            // Permission chips: granted Highlighted permissions, deduped by group
+            val permChips = app.requestedPermissions
+                .filter { it.status.isGranted }
+                .mapNotNull { use ->
+                    val known = aPermById[Permission.Id(use.permissionId)] ?: return@mapNotNull null
+                    if (Highlighted !in known.tags) return@mapNotNull null
+                    val labelRes = known.groupIds
+                        .filter { it != APermGrp.Other.id }
+                        .firstNotNullOfOrNull { it.toKnownGroup()?.labelRes }
+                        ?: known.labelRes
+                        ?: return@mapNotNull null
+                    PermChip(labelRes = labelRes)
+                }
+                .distinctBy { it.labelRes }
+                .sortedBy { chip -> CHIP_PRIORITY.indexOf(chip.labelRes).takeIf { it >= 0 } ?: Int.MAX_VALUE }
 
             AppItem(
                 pkgName = app.pkgName,
@@ -110,12 +160,10 @@ class AppsViewModel @Inject constructor(
                 label = app.label,
                 isSystemApp = app.isSystemApp,
                 showPkgName = app.label in duplicateLabels,
-                permissionCount = app.requestedPermissions.size,
-                grantedCount = app.requestedPermissions.count { it.status.isGranted },
-                totalCount = app.requestedPermissions.size,
-                declaredCount = app.declaredPermissionCount,
-                tagIcons = tagIcons,
-                installerPkgName = app.installerPkgName,
+                installerIconPkg = if (knownStoreLabel != null) app.installerPkgName else null,
+                installerLabel = installerLabel,
+                updatedAtFormatted = updatedAtFormatted,
+                permChips = permChips,
             )
         }
         State.Ready(
@@ -210,5 +258,20 @@ class AppsViewModel @Inject constructor(
 
     companion object {
         private val TAG = logTag("Apps", "VM")
+        private val aPermById by lazy { APerm.values.associateBy { it.id } }
+
+        private val CHIP_PRIORITY = listOf(
+            R.string.permission_group_camera_label,
+            R.string.permission_group_location_label,
+            R.string.permission_group_audio_label,
+            R.string.permission_group_contacts_label,
+            R.string.permission_group_calendar_label,
+            R.string.permission_group_calls_label,
+            R.string.permission_group_messaging_label,
+            R.string.permission_group_files_label,
+            R.string.permission_group_sensors_label,
+            R.string.permission_group_apps_label,
+            R.string.permission_group_connectivity_label,
+        )
     }
 }

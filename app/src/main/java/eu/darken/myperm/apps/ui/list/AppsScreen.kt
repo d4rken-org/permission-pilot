@@ -13,6 +13,7 @@ import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,6 +69,7 @@ import eu.darken.myperm.apps.core.Pkg
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SearchTextField
@@ -343,43 +345,40 @@ private fun AppListItem(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                val grantedText = if (item.totalCount > 0) {
-                    pluralStringResource(R.plurals.apps_permissions_x_of_x_granted, item.grantedCount, item.grantedCount, item.totalCount)
-                } else null
-                val declaresText = if (item.declaredCount > 0) {
-                    pluralStringResource(R.plurals.apps_permissions_declares_x, item.declaredCount, item.declaredCount)
-                } else null
-                val subtitle = listOfNotNull(grantedText, declaresText).joinToString(" ")
-                if (subtitle.isNotEmpty()) {
-                    Text(
-                        text = subtitle,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                val subtitle = if (item.updatedAtFormatted != null) {
+                    stringResource(R.string.apps_list_subtitle_format, item.installerLabel, item.updatedAtFormatted)
+                } else {
+                    item.installerLabel
                 }
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
-            if (item.tagIcons.isNotEmpty()) {
-                Row(
+            if (item.permChips.isNotEmpty()) {
+                FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
                     modifier = Modifier.padding(top = 2.dp),
                 ) {
-                    item.tagIcons.forEach { icon ->
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                            modifier = Modifier.size(16.dp),
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    item.permChips.forEach { chip ->
+                        Pill(
+                            text = stringResource(chip.labelRes),
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            compact = true,
                         )
                     }
                 }
             }
         }
 
-        if (item.installerPkgName != null) {
+        if (item.installerIconPkg != null) {
             AsyncImage(
-                model = Pkg.Container(Pkg.Id(item.installerPkgName)),
+                model = Pkg.Container(Pkg.Id(item.installerIconPkg)),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
                 error = rememberVectorPainter(Icons.TwoTone.Android),

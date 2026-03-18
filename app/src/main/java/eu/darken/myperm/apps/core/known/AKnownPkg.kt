@@ -44,6 +44,10 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
         override val labelRes: Int = R.string.apps_known_installer_xiaomi_label
     }
 
+    object FDroid : AKnownPkg("org.fdroid.fdroid"), AppStore {
+        override val labelRes: Int = R.string.apps_known_installer_fdroid_label
+    }
+
     companion object {
         // Without lazy there is an NPE: https://youtrack.jetbrains.com/issue/KT-25957
         val values: List<AKnownPkg> by lazy {
@@ -54,7 +58,7 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
         }
 
         val APP_STORES by lazy { values.filterIsInstance<AppStore>() }
-        val OEM_STORES by lazy { APP_STORES - GooglePlay }
+        val OEM_STORES by lazy { APP_STORES - GooglePlay - FDroid }
     }
 }
 
