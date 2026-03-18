@@ -242,6 +242,16 @@
         <item quantity="one">%d match</item>
         <item quantity="other">%d matches</item>
     </plurals>
+    <string name="apps_manifest_search_counter">%1$d of %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Uses Permission</string>
+    <string name="apps_manifest_section_permission">Permission</string>
+    <string name="apps_manifest_section_queries">Queries</string>
+    <string name="apps_manifest_section_activities">Activities</string>
+    <string name="apps_manifest_section_services">Services</string>
+    <string name="apps_manifest_section_receivers">Receivers</string>
+    <string name="apps_manifest_section_providers">Providers</string>
+    <string name="apps_manifest_section_meta_data">Meta Data</string>
+    <string name="apps_manifest_section_other">Other</string>
 
     <string name="api_target_level_x">Target version: %s</string>
     <string name="api_minimum_level_x">Minimum version: %s</string>

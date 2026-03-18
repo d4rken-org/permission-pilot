@@ -480,6 +480,7 @@ private fun ManifestCard(
                 }
             }
 
+            Spacer(modifier = Modifier.height(4.dp))
             // Content below title — full width
             when (state) {
                 is AppDetailsViewModel.ManifestCardState.Queued -> {
