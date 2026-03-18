@@ -30,6 +30,7 @@ data class AppInfo(
     val hasDeviceAdmin: Boolean,
     val allInstallerPkgNames: List<String>,
     val sharedUserId: String? = null,
+    val hasManifestFlags: Boolean? = null,
 )
 
 data class PermissionUse(

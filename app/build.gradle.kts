@@ -228,6 +228,8 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    implementation("com.github.d4rken:apk-parser:v1.0.0")
+
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:${Versions.Compose.bom}")
     implementation(composeBom)

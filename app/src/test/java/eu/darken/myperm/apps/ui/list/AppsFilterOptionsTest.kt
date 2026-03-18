@@ -85,7 +85,8 @@ class AppsFilterOptionsTest : BaseTest() {
                     "LOCATION",
                     "MICROPHONE",
                     "CONTACTS",
-                    "OLD_API_TARGET"
+                    "OLD_API_TARGET",
+                    "MANIFEST_FLAGS"
                 ]
             }
         """.toComparableJson()

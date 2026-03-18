@@ -186,6 +186,17 @@ data class AppsFilterOptions(
             labelRes = R.string.apps_filter_old_api_target_label,
             matches = { it.apiTargetLevel != null && it.apiTargetLevel < OLD_API_THRESHOLD }
         ),
+        @SerialName("MANIFEST_FLAGS")
+        MANIFEST_FLAGS(
+            group = Group.PROPERTIES,
+            labelRes = R.string.apps_filter_manifest_flags_label,
+            matches = { app ->
+                app.hasManifestFlags == true
+                        || app.requestedPermissions.any {
+                    it.permissionId == "android.permission.QUERY_ALL_PACKAGES" && it.status.isGranted
+                }
+            }
+        ),
         ;
     }
 

@@ -38,6 +38,11 @@ object Nav {
             val permissionId: String,
             val permLabel: String? = null,
         ) : Details
+
+        @Serializable
+        data class AppManifest(
+            val pkgName: String,
+        ) : Details
     }
 
     sealed interface Watcher : NavigationDestination {

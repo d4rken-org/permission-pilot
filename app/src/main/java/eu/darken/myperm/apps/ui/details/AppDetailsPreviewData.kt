@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.ui.details
 
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
 import eu.darken.myperm.permissions.core.Permission
 import java.time.Instant
 
@@ -91,5 +92,35 @@ internal object AppDetailsPreviewData {
         totalPermCount = 12,
         permissions = emptyList(),
         isLoading = false,
+    )
+
+    fun manifestQueuedState() = AppDetailsViewModel.ManifestCardState.Queued(
+        progress = ManifestHintRepo.ScanProgress(total = 120, scanned = 45),
+    )
+
+    fun manifestAnalyzingState() = AppDetailsViewModel.ManifestCardState.Analyzing(
+        progress = ManifestHintRepo.ScanProgress(total = 120, scanned = 78),
+    )
+
+    fun manifestLoadedState() = AppDetailsViewModel.ManifestCardState.Loaded(
+        hasActionMainQuery = false,
+        hasExcessiveQueries = false,
+        packageQueryCount = 2,
+        intentQueryCount = 1,
+        providerQueryCount = 1,
+        totalQueryCount = 4,
+        hasWarning = false,
+        canViewManifest = true,
+    )
+
+    fun manifestWarningState() = AppDetailsViewModel.ManifestCardState.Loaded(
+        hasActionMainQuery = true,
+        hasExcessiveQueries = true,
+        packageQueryCount = 12,
+        intentQueryCount = 1,
+        providerQueryCount = 0,
+        totalQueryCount = 13,
+        hasWarning = true,
+        canViewManifest = true,
     )
 }

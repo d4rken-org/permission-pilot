@@ -47,7 +47,7 @@ class OverviewViewModel @Inject constructor(
     )
 
     enum class SummarySection {
-        PROFILE, INSTALL_SOURCE, PRIVACY, SECURITY, SYSTEM
+        PROFILE, INSTALL_SOURCE, PRIVACY, SECURITY, MANIFEST, SYSTEM
     }
 
     enum class SummaryCategory(val section: SummarySection) {
@@ -63,6 +63,7 @@ class OverviewViewModel @Inject constructor(
         CONTACTS(SummarySection.PRIVACY),
         INSTALLERS(SummarySection.SECURITY),
         OVERLAYERS(SummarySection.SECURITY),
+        MANIFEST_FLAGS(SummarySection.MANIFEST),
         NO_INTERNET(SummarySection.SYSTEM),
         SHARED_IDS(SummarySection.SYSTEM),
         BATTERY_OPT(SummarySection.SYSTEM),
@@ -124,6 +125,7 @@ class OverviewViewModel @Inject constructor(
         val coarseLocationId = APerm.ACCESS_COARSE_LOCATION.id.value
         val recordAudioId = APerm.RECORD_AUDIO.id.value
         val readContactsId = APerm.READ_CONTACTS.id.value
+        val queryAllPackagesId = APerm.QUERY_ALL_PACKAGES.id.value
 
         fun countPkg(predicate: (AppInfo) -> Boolean): PkgCount {
             var user = 0
@@ -167,6 +169,9 @@ class OverviewViewModel @Inject constructor(
             },
             SummaryCategory.OLD_API to countPkg {
                 it.apiTargetLevel != null && it.apiTargetLevel < AppsFilterOptions.OLD_API_THRESHOLD
+            },
+            SummaryCategory.MANIFEST_FLAGS to countPkg {
+                it.hasManifestFlags == true || it.hasGrantedPermission(queryAllPackagesId)
             },
         )
 

@@ -17,6 +17,8 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
+import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.tryCreateUserHandle
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.coroutine.DispatcherProvider
@@ -24,6 +26,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
+import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.BasePermission
@@ -34,8 +37,12 @@ import eu.darken.myperm.permissions.core.features.RuntimeGrant
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.permissions
 import eu.darken.myperm.settings.core.GeneralSettings
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import java.time.Instant
 import javax.inject.Inject
 
@@ -47,6 +54,8 @@ class AppDetailsViewModel @Inject constructor(
     private val appRepo: AppRepo,
     private val permissionRepo: PermissionRepo,
     private val generalSettings: GeneralSettings,
+    private val manifestHintRepo: ManifestHintRepo,
+    private val upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
     var pkgName: String = ""
@@ -237,6 +246,83 @@ class AppDetailsViewModel @Inject constructor(
                 isLoading = false,
             )
         }.asStateFlow()
+    }
+
+    sealed class ManifestCardState {
+        data class Queued(
+            val progress: ManifestHintRepo.ScanProgress? = null,
+        ) : ManifestCardState()
+
+        data class Analyzing(
+            val progress: ManifestHintRepo.ScanProgress? = null,
+        ) : ManifestCardState()
+
+        data class Loaded(
+            val hasActionMainQuery: Boolean,
+            val hasExcessiveQueries: Boolean,
+            val packageQueryCount: Int,
+            val intentQueryCount: Int,
+            val providerQueryCount: Int,
+            val totalQueryCount: Int,
+            val hasWarning: Boolean,
+            val canViewManifest: Boolean,
+        ) : ManifestCardState()
+    }
+
+    private val _isPrioritized = MutableStateFlow(false)
+
+    val manifestCardState: StateFlow<ManifestCardState> by lazy {
+        combine(
+            manifestHintRepo.hints,
+            manifestHintRepo.scanProgress,
+            manifestHintRepo.currentlyScanning,
+            _isPrioritized,
+        ) { hints, progress, currentlyScanning, isPrioritized ->
+            val hint = hints[pkgName]
+            if (hint != null) {
+                val hasExcessive = ManifestHintScanner.hasExcessiveQueries(hint)
+                return@combine ManifestCardState.Loaded(
+                    hasActionMainQuery = hint.hasActionMainQuery,
+                    hasExcessiveQueries = hasExcessive,
+                    packageQueryCount = hint.packageQueryCount,
+                    intentQueryCount = hint.intentQueryCount,
+                    providerQueryCount = hint.providerQueryCount,
+                    totalQueryCount = hint.totalQueryCount,
+                    hasWarning = hint.hasActionMainQuery || hasExcessive,
+                    canViewManifest = true,
+                )
+            }
+
+            if (currentlyScanning == pkgName || isPrioritized) {
+                ManifestCardState.Analyzing(progress)
+            } else {
+                ManifestCardState.Queued(progress)
+            }
+        }
+            .stateIn(vmScope, SharingStarted.WhileSubscribed(5000), ManifestCardState.Queued())
+    }
+
+    fun onManifestClicked() {
+        when (manifestCardState.value) {
+            is ManifestCardState.Queued -> {
+                log(TAG) { "Manifest queued, prioritizing $pkgName" }
+                manifestHintRepo.prioritize(pkgName)
+                _isPrioritized.value = true
+            }
+            is ManifestCardState.Analyzing -> {
+                log(TAG) { "Manifest already analyzing for $pkgName" }
+            }
+            is ManifestCardState.Loaded -> {
+                val current = manifestCardState.value as? ManifestCardState.Loaded ?: return
+                if (!current.canViewManifest) return
+                if (!upgradeRepo.upgradeInfo.value.isPro) {
+                    log(TAG) { "Not pro, navigating to upgrade instead of manifest viewer" }
+                    navTo(Nav.Main.Upgrade)
+                    return
+                }
+                navTo(Nav.Details.AppManifest(pkgName = pkgName))
+            }
+        }
     }
 
     fun onPermissionClicked(item: PermItem) {

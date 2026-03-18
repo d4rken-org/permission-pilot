@@ -5,6 +5,7 @@ import android.os.UserHandle
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
 import eu.darken.myperm.common.room.PermPilotDatabase
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
@@ -34,6 +35,7 @@ class AppRepoTest : BaseTest() {
     private val snapshotPkgDao: SnapshotPkgDao = mockk()
     private val snapshotMapper: SnapshotMapper = mockk()
     private val workManager: WorkManager = mockk(relaxed = true)
+    private val manifestHintRepo: ManifestHintRepo = mockk(relaxed = true)
 
     private val packageEvents = MutableSharedFlow<PackageEventListener.Event>()
 
@@ -68,6 +70,7 @@ class AppRepoTest : BaseTest() {
         snapshotPkgDao = snapshotPkgDao,
         snapshotMapper = snapshotMapper,
         workManager = workManager,
+        manifestHintRepo = manifestHintRepo,
     )
 
     @Test
