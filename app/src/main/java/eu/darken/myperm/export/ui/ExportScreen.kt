@@ -65,6 +65,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.Pill
+import eu.darken.myperm.common.compose.Preview2
+import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
@@ -654,3 +656,96 @@ private fun ExportErrorContent(
 }
 
 private const val FREE_EXPORT_LIMIT = 5
+
+@Preview2
+@Composable
+private fun ExportScreenConfigPreview() = PreviewWrapper {
+    ExportScreen(
+        state = ExportViewModel.State(
+            mode = ExportViewModel.ExportMode.Apps(listOf("com.example" to 0)),
+            isPro = false,
+            itemCount = 5,
+            effectiveItemCount = 5,
+            isFreeLimited = true,
+            preview = "# App Info Export\nGenerated: 2026-03-18\n\n## Chrome (com.android.chrome)\n| Field | Value |\n|---|---|\n| Version | 130.0 (1234) |\n| Target SDK | 34 |",
+            isPreviewLoading = false,
+            appConfig = AppExportConfig(),
+        ),
+        onBack = {},
+        onAppConfigChanged = {},
+        onPermConfigChanged = {},
+        onExport = {},
+        onUpgrade = {},
+        onResetResult = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun ExportScreenSuccessPreview() = PreviewWrapper {
+    ExportScreen(
+        state = ExportViewModel.State(
+            mode = ExportViewModel.ExportMode.Apps(listOf("com.example" to 0)),
+            isPro = true,
+            itemCount = 3,
+            effectiveItemCount = 3,
+            isFreeLimited = false,
+            exportResult = ExportViewModel.ExportResult.Success(
+                uri = android.net.Uri.parse("content://example/export.md"),
+                fileName = "permission-pilot-export.md",
+                fileSize = 4096,
+                duration = kotlin.time.Duration.parse("1.2s"),
+            ),
+        ),
+        onBack = {},
+        onAppConfigChanged = {},
+        onPermConfigChanged = {},
+        onExport = {},
+        onUpgrade = {},
+        onResetResult = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun ExportScreenErrorPreview() = PreviewWrapper {
+    ExportScreen(
+        state = ExportViewModel.State(
+            mode = ExportViewModel.ExportMode.Apps(listOf("com.example" to 0)),
+            isPro = true,
+            itemCount = 3,
+            effectiveItemCount = 3,
+            isFreeLimited = false,
+            exportResult = ExportViewModel.ExportResult.Error(
+                throwable = java.io.IOException("Could not open output stream"),
+            ),
+        ),
+        onBack = {},
+        onAppConfigChanged = {},
+        onPermConfigChanged = {},
+        onExport = {},
+        onUpgrade = {},
+        onResetResult = {},
+    )
+}
+
+@Preview2
+@Composable
+private fun ExportScreenProgressPreview() = PreviewWrapper {
+    ExportScreen(
+        state = ExportViewModel.State(
+            mode = ExportViewModel.ExportMode.Apps(listOf("com.example" to 0)),
+            isPro = true,
+            itemCount = 3,
+            effectiveItemCount = 3,
+            isFreeLimited = false,
+            exportResult = ExportViewModel.ExportResult.InProgress,
+        ),
+        onBack = {},
+        onAppConfigChanged = {},
+        onPermConfigChanged = {},
+        onExport = {},
+        onUpgrade = {},
+        onResetResult = {},
+    )
+}
