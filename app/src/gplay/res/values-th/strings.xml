@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">บริการ Google Play ไม่พร้อมใช้งาน</string>
     <string name="upgrades_no_purchases_found_check_account">ไม่พบรายการซื้อ คุณใช้บัญชีที่ถูกต้องหรือไม่?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot ไม่มีโฆษณาและเคารพความเป็นส่วนตัวของคุณ การอัปเกรดช่วยสนับสนุนการพัฒนาอย่างต่อเนื่อง</string>
+    <string name="upgrade_screen_subscription_trial_action">เริ่มทดลองใช้องค์ฟรี</string>
+    <string name="upgrade_screen_subscription_action">สมัครสมาชิก</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/เดือน ยกเลิกได้เมื่อใดก็ได้</string>
+    <string name="upgrade_screen_iap_action">ซื้อ Pro</string>
+    <string name="upgrade_screen_iap_action_hint">ซื้อครั้งเดียวในราคา %s</string>
+    <string name="upgrade_screen_restore_purchase_action">กู้คืนการซื้อ</string>
+    <string name="upgrade_screen_restore_purchase_message">ไม่พบการซื้อ ตรวจสอบว่าคุณล็อกเข้าด้วยบัญชี Google ที่ถูกต้อง</string>
+    <string name="upgrade_screen_options_description">สมาชิกภาพจะต่ออายุโดยอัตโนมัติ คุณยกเลิกได้เมื่อใดก็ได้</string>
+    <string name="upgrade_title_suffix">โปร</string>
 </resources>

@@ -7,17 +7,21 @@
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Отваряне</string>
     <string name="general_continue_action">Продължаване</string>
-    <string name="upgrade_buy_pro_action">Купи версия Pro</string>
     <string name="general_no_action">Не</string>
-    <string name="upgrade_donate_action">Дарение</string>
-    <string name="debug_debuglog_size_label">Размер</string>
-    <string name="debug_debuglog_size_compressed_label">Компресиран размер</string>
-    <string name="debug_notification_channel_label">Уведомления за отстраняване на грешки</string>
-    <string name="debug_debuglog_file_label">Записан лог файл</string>
-    <string name="debug_debuglog_record_action">Записване на лог за отстраняване на грешки</string>
+    <string name="debug_debuglog_record_action">Запис</string>
     <string name="settings_category_other_label">Други</string>
+    <string name="settings_category_gethelp_label">Получи помощ</string>
+    <string name="settings_category_debug_label">Отстраняване на грешки</string>
+    <string name="settings_category_advanced_label">Разширени</string>
     <string name="general_settings_label">Общи</string>
     <string name="general_settings_desc">Общи настройки, които засягат цялото приложение.</string>
+    <string name="general_settings_scan_speed_label">Скорост на сканиране</string>
+    <string name="general_settings_scan_speed_desc">Управлява паралелните операции при сканиране на приложения. По-високите стойности са по-бързи, но могат да причинят сривове на някои устройства.</string>
+    <string name="general_settings_scan_speed_auto">Автоматично (препоръчително)</string>
+    <string name="general_settings_scan_speed_1">1 (най-безопасно)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (най-бързо)</string>
     <string name="changelog_label">Списък на промените</string>
     <string name="settings_acknowledgements_label">Благодарности</string>
     <string name="general_thank_you_label">Благодаря ви</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Място за общуване и задаване на въпроси.</string>
     <string name="issue_tracker_label">Проследяване на проблеми</string>
     <string name="issue_tracker_description">Публичен проследител на проблеми за докладване на грешки и заявки за функции.</string>
+    <string name="faq_label">ЧЗВ</string>
+    <string name="faq_description">Често задавани въпроси и чести решения.</string>
+    <string name="acks_maxpatchs_desc">Благодаря за страхотните икони.</string>
+    <string name="acks_crowdin_desc">За подпомагане на превода на отворенизворни проекти.</string>
     <string name="permissions_page_label">Разрешения</string>
     <string name="apps_page_label">Приложения</string>
     <string name="app_type_system_label">Системно приложение</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Отказ</string>
     <string name="apps_filter_userapps_label">Потребителски приложения</string>
     <string name="apps_filter_systemapps_label">Системни приложения</string>
-    <string name="apps_filter_nointernet_label">Приложения без интернет достъп</string>
-    <string name="apps_filter_sideloaded_label">Странично инсталирани приложения</string>
+    <string name="apps_filter_nointernet_label">Без интернет</string>
+    <string name="apps_filter_sideloaded_label">Инсталирано ръчно</string>
     <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM магазин</string>
     <string name="apps_sort_permissions_granted_label">Предоставени разрешения</string>
@@ -67,6 +75,8 @@
     </plurals>
     <string name="apps_details_installer_label">Източник на инсталация</string>
     <string name="apps_details_installer_unknown_label">Информацията не е налична</string>
+    <string name="apps_details_open_settings_error">Не успя отварянето на настройките на приложението за този профил</string>
+    <string name="apps_details_open_app_error">Не успя отварянето на това приложение</string>
     <string name="permissions_filter_manifest_label">AOSP разрешения</string>
     <string name="permissions_filter_system_label">Декларирани от системно приложение</string>
     <string name="permissions_filter_user_label">Декларирани от потребителско приложение</string>
@@ -74,11 +84,15 @@
     <string name="permissions_filter_special_label">Специална употреба</string>
     <string name="permissions_filter_installtime_label">Предоставени автоматично</string>
     <string name="permissions_filter_installtime_hide_label">Не са предоставени автоматично</string>
+    <string name="permissions_filter_sort_action">Филтриране и сортиране</string>
+    <string name="permissions_filter_section_source">Източник</string>
+    <string name="permissions_filter_section_type">Тип</string>
+    <string name="permissions_filter_section_sort_by">Сортиране по</string>
     <string name="filter_granted_label">Предоставени</string>
     <string name="filter_denied_label">Отказани</string>
     <string name="filter_configurable_label">Конфигурируеми</string>
-    <string name="permissions_sort_apps_granted_label"># приложения с предоставени</string>
-    <string name="permissions_sort_apps_requested_label"># приложения със заявени</string>
+    <string name="permissions_sort_apps_granted_label">Брой приложения с разрешение</string>
+    <string name="permissions_sort_apps_requested_label">Брой приложения, заявили разрешение</string>
     <string name="permissions_search_list_hint">Търсене на разрешения</string>
     <string name="apps_search_list_hint">Търсене на приложения</string>
     <string name="permissions_details_protection_label">Ниво на защита</string>
@@ -91,13 +105,19 @@
     <string name="permissions_permission_details_label">Детайли за разрешението</string>
     <string-array name="generic_loading_labels">
         <item>Скоро™</item>
-        <item>Подаване на маслото</item>
-        <item>Изтегляне на повече RAM</item>
+        <item>Предава маслото</item>
+        <item>Изтегля още RAM</item>
         <item>Все още по-бързо от iPhone</item>
-        <item>Какво е това зад теб?</item>
-        <item>Процесорът е на кафе почивка</item>
-        <item>Очакване на данни от Пепе Силвия</item>
+        <item>Процесорът е на кафе пауза</item>
+        <item>Изчаква данни от Пепе Силвия</item>
         <item>Турбо енкабулаторът се инициализира</item>
+        <item>Скоро завършваме… вероятно</item>
+        <item>Правя вид , че съм зает </item>
+        <item>Загрявам колелото с хмстера</item>
+        <item>Убеждавам приложенията да сътрудничат</item>
+        <item>Искам разрешения вежливо</item>
+        <item>Приложенията ви се съпротивяват</item>
+        <item>Чета дребното писме</item>
     </string-array>
     <string name="apps_app_details_label">Детайли за приложението</string>
     <string name="apps_details_shareduserid_label">Приложения със споделен потребителски идентификатор</string>
@@ -108,7 +128,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android система</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Обновено %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Инсталирано ръчно</string>
+    <string name="apps_list_installer_preinstalled_label">Предварително инсталирано</string>
     <string name="general_refresh_action">Обновяване</string>
     <string name="general_expand_all_action">Разгъване на всички</string>
     <string name="general_collapse_all_action">Свиване на всички</string>
@@ -117,16 +142,33 @@
     <string name="apps_details_twins_descriptions">Инсталирани в други потребителски профили.</string>
     <string name="install_date_label">Дата на инсталиране</string>
     <string name="apps_filter_sharedid_label">Споделен потребителски идентификатор</string>
-    <string name="apps_filter_multipleprofiles_label">Приложения с клонове</string>
+    <string name="apps_filter_multipleprofiles_label">Има клонинги</string>
     <string name="support_debuglog_label">Лог за отстраняване на грешки</string>
     <string name="support_debuglog_desc">Записване на всичко, което прави приложението, в текстов файл, който можете да споделите.</string>
     <string name="updated_at_x">Последна актуализация: %s</string>
     <string name="installed_at_x">Първо инсталирано: %s</string>
     <string name="apps_sort_install_source_label">Източник на инсталация</string>
     <string name="permissions_action_none_msg">Няма налично действие за това разрешение</string>
-    <string name="apps_filter_profile_secondary_label">Приложения в управлявани профили</string>
-    <string name="apps_filter_battery_optimization_label">Приложения с персонализирани настройки за батерията</string>
-    <string name="apps_filter_accessibility_label">Приложения с услуги за достъпност</string>
+    <string name="apps_filter_profile_secondary_label">Управляван(и) профил(и)</string>
+    <string name="apps_filter_battery_optimization_label">Персонализирана батерия</string>
+    <string name="apps_filter_accessibility_label">Достъпност</string>
+    <string name="apps_filter_device_admin_label">Администратор на устройството</string>
+    <string name="apps_filter_install_packages_label">Може да инсталира приложения</string>
+    <string name="apps_filter_overlay_label">Изрисува върху приложения</string>
+    <string name="apps_filter_camera_label">Достъп до камера</string>
+    <string name="apps_filter_location_label">Достъп до местоположение</string>
+    <string name="apps_filter_microphone_label">Достъп до микрофон</string>
+    <string name="apps_filter_contacts_label">Достъп до контакти</string>
+    <string name="apps_filter_old_api_target_label">Цели остарял Android</string>
+    <string name="apps_filter_manifest_flags_label">Може да открива приложения</string>
+    <string name="apps_filter_section_app_type">Тип приложение</string>
+    <string name="apps_filter_section_install_source">Източник на инсталация</string>
+    <string name="apps_filter_section_properties">Свойства</string>
+    <string name="apps_filter_section_profile">Профил</string>
+    <string name="apps_filter_section_sort_by">Сортиране по</string>
+    <string name="apps_filter_sort_action">Филтриране и сортиране</string>
+    <string name="apps_help_tag_icons_title">Чипове за разрешения</string>
+    <string name="apps_help_tag_icons_description">Чиповете показват кои чувствителни категории разрешения са дадени на приложение</string>
     <string name="apps_details_description_restrictions_caveat_description">Това приложение е инсталирано в друг потребителски профил. Предоставените разрешения могат да бъдат определени само за приложения, инсталирани в текущо активния профил, поради ограничения на Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Това приложение е деинсталирано, но данните му са запазени. Състоянието на разрешенията не може да бъде определено за деинсталирани приложения.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -138,13 +180,64 @@
         <item quantity="other">%1$d от %2$d разрешения предоставени.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Няма разрешения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
+    <string name="apps_details_perm_tag_runtime">Изпълнимо време</string>
+    <string name="apps_details_perm_tag_special">Специално</string>
+    <string name="apps_details_perm_tag_install">Инсталационно</string>
+    <string name="apps_details_perm_help_title">Индикатори за разрешения</string>
+    <string name="apps_details_perm_help_runtime">Изпълнимо време — Приложението трябва да ви попита преди използване на това разрешение. Можете да го разрешите или откажете.</string>
+    <string name="apps_details_perm_help_special">Специално — Изисква включване на препинател в системните настройки.</string>
+    <string name="apps_details_perm_help_install">Инсталационно — Разрешава се автоматично при инсталиране на приложението. Не се изисква действие от потребителя.</string>
+    <string name="apps_details_perm_help_declared">Иконата ⚠ означава, че това разрешение е създадено от самото приложение, а не е стандартно Android разрешение.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">Манифест на приложението</string>
+    <string name="apps_details_manifest_queued">В очакване за анализ…</string>
+    <string name="apps_details_manifest_loading">Анализиране на манифест…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d оставащ манифест за анализ…</item>
+        <item quantity="other">%d оставащи манифеста за анализ…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Нищо необичайно не е открито</string>
+    <string name="apps_details_manifest_unavailable">Манифестът не е достъпен</string>
+    <string name="apps_details_manifest_error">Не успя четене на манифеста</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d пакетна заявка</item>
+        <item quantity="other">%d пакетни заявки</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d intent заявка</item>
+        <item quantity="other">%d intent заявки</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d заявка за доставчик</item>
+        <item quantity="other">%d заявки за доставчик</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Може да открие всички инсталирани приложения</string>
+    <string name="apps_details_manifest_hint_excessive">Проверява за много конкретни приложения</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Преглед на манифеста</string>
+    <string name="apps_manifest_viewer_search_hint">Търсене в манифеста</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d съвпадение</item>
+        <item quantity="other">%d съвпадения</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d от %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Използва разрешение</string>
+    <string name="apps_manifest_section_permission">Разрешение</string>
+    <string name="apps_manifest_section_queries">Заявки</string>
+    <string name="apps_manifest_section_activities">Активности</string>
+    <string name="apps_manifest_section_services">Услуги</string>
+    <string name="apps_manifest_section_receivers">Приемници</string>
+    <string name="apps_manifest_section_providers">Доставчици</string>
+    <string name="apps_manifest_section_meta_data">Мета данни</string>
+    <string name="apps_manifest_section_other">Други</string>
     <string name="api_target_level_x">Целева версия: %s</string>
     <string name="api_minimum_level_x">Минимална версия: %s</string>
     <string name="api_build_level_x">Версия на компилиране: %s</string>
     <string name="permission_reboot_label">Рестартиране на устройството</string>
     <string name="permission_reboot_description">Позволява на приложението да рестартира устройството. Достъпно само за системни приложения.</string>
     <string name="permissions_sort_apps_relevance_label">Релевантност</string>
-    <string name="apps_filter_profile_active_label">Приложения в активен профил</string>
+    <string name="apps_filter_profile_active_label">Активен профил</string>
     <string name="overview_page_label">Преглед</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s елемент</item>
@@ -174,8 +267,55 @@
         <item quantity="one">Системни приложения: Предоставено на %1$d от %2$d.</item>
         <item quantity="other">Системни приложения: Предоставено на %1$d от %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d приложение в други потребителски профили също заявява това разрешение.</item>
+        <item quantity="other">%d приложения в други потребителски профили също заявяват това разрешение.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d деинсталирано приложение със запазени данни също заявява това разрешение.</item>
+        <item quantity="other">%d деинсталирани приложения със запазени данни също заявяват това разрешение.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, инсталирани в други потребителски профили, са изключени от изчислението по-горе поради ограничения на Android.</string>
     <string name="permissions_details_empty_filter_message">Няма приложения, отговарящи на текущите филтри. Натиснете иконата за филтър, за да настроите.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Изпълнимо време</string>
+    <string name="permissions_tag_install_time_label">При инсталация</string>
+    <string name="permissions_tag_special_access_label">Специален достъп</string>
+    <string name="permissions_tag_documented_label">Документирано</string>
+    <string name="permissions_tag_notable_label">Забележително</string>
+    <string name="permissions_tag_non_standard_label">Нестандартно</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">В употреба</string>
+    <string name="permissions_status_unknown_label">Неизвестен</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">Система</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d още</item>
+        <item quantity="other">+%d още</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Индикатори за разрешения</string>
+    <string name="permissions_details_help_section_protection">Тип защита</string>
+    <string name="permissions_details_help_dangerous">Опасно — Изисква явно потвърждение от потребителя през изпълнимо време. Може да осъществява достъп до поверителни данни или функции на устройството.</string>
+    <string name="permissions_details_help_normal">Нормално — Разрешава се автоматично при инсталация. Представлява минимален риск за други приложения или системата.</string>
+    <string name="permissions_details_help_signature">Подпис — Разрешава се само на приложения, подписани със същия сертификат като приложението, обявило разрешението.</string>
+    <string name="permissions_details_help_internal">Вътрешно — Запазено за вътрешните елементи на Android. Недостъпно за трети лица.</string>
+    <string name="permissions_details_help_section_tags">Етикети на разрешения</string>
+    <string name="permissions_details_help_tag_runtime">Изпълнимо време — Приложението трябва да ви попита преди използване на това разрешение.</string>
+    <string name="permissions_details_help_tag_install_time">При инсталация — Разрешава се автоматично при инсталиране на приложението.</string>
+    <string name="permissions_details_help_tag_special_access">Специален достъп — Изисква включване на препинател в системните настройки.</string>
+    <string name="permissions_details_help_tag_documented">Документирано — Изброено в официалната документация на Android манифест.</string>
+    <string name="permissions_details_help_tag_notable">Забележително — Особено забележително поради влиянието му върху поверителността или сигурността.</string>
+    <string name="permissions_details_help_tag_non_standard">Нестандартно — Не е част от стандартния Android набор. Обявено от трето лице или OEM.</string>
+    <string name="permissions_details_status_help_title">Индикатори за статус</string>
+    <string name="permissions_details_help_section_status">Статус на разрешение</string>
+    <string name="permissions_details_help_status_granted">Разрешено — На приложението е дадено това разрешение.</string>
+    <string name="permissions_details_help_status_in_use">В употреба — Разрешено и моментално активно използвано от приложението.</string>
+    <string name="permissions_details_help_status_denied">Отказано — Приложението е изискало това разрешение, но не му е дадено.</string>
+    <string name="permissions_details_help_status_unknown">Неизвестно — Статусът не може да бъде установен, напр. за приложения в други потребителски профили.</string>
+    <string name="permissions_details_help_section_badges">Баджове</string>
+    <string name="permissions_details_help_system_badge">Системно — Приложението е прединсталирано системно приложение.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Позволява на приложенията да комуникират с Near Field Communication (NFC) етикети, карти и четци.</string>
     <string name="permission_manage_media_label">Управление на медия</string>
@@ -187,7 +327,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth реклама</string>
     <string name="permission_bluetooth_advertise_description">Позволява на приложенията да рекламират до близки Bluetooth устройства.</string>
     <string name="permission_get_accounts_label">Получаване на акаунти</string>
-    <string name="permission_get_accounts_description">Позволява на приложенията да получават списъка с акаунти, известни на телефона. Това може да включва всякакви акаунти, създадени от приложения, които сте инсталирали.</string>
+    <string name="permission_get_accounts_description">Позволява на приложенията да гетс списъка на акаунти, известни на устройството. Това може да включва всички акаунти, създадени от инсталираните от вас приложения.</string>
     <string name="permission_access_background_location_label">Достъп до местоположение във фонов режим</string>
     <string name="permission_access_background_location_description">Позволява на приложенията да достъпват местоположение по всяко време, дори когато не се използват.</string>
     <string name="permission_access_media_location_label">Достъп до местоположение на медия</string>
@@ -201,7 +341,7 @@
     <string name="permission_read_sync_settings_label">Четене на настройки за синхронизация</string>
     <string name="permission_read_sync_settings_description">Позволява на приложенията да четат настройки за синхронизация за акаунт.</string>
     <string name="permission_install_unknown_apps_label">Инсталиране на неизвестни приложения (неизвестни източници)</string>
-    <string name="permission_install_unknown_apps_description">Позволява на приложенията да инсталират (странично зареждат) други приложения на вашето устройство. Това може да постави вашето устройство и данни в риск.</string>
+    <string name="permission_install_unknown_apps_description">Позволява на приложенията ръчно да инсталират други приложения на вашето устройство. Това може да изложи устройството и данните ви на риск.</string>
     <string name="permission_all_files_access_label">Достъп до всички файлове</string>
     <string name="permission_all_files_access_description">Позволява на приложенията да четат, модифицират и изтриват всички файлове на вашето устройство, както и всички свързани устройства за съхранение. Приложения с това разрешение могат също да достъпват файлове, които не са свързани с приложението, БЕЗ да ви уведомяват.</string>
     <string name="permission_appear_on_top_label">Появяване отгоре</string>
@@ -260,23 +400,322 @@
     <string name="permission_group_camera_description">Разрешения, свързани с камера.</string>
     <string name="permission_group_audio_label">Микрофон</string>
     <string name="permission_group_audio_description">Разрешения, свързани с микрофон.</string>
+    <string name="permissions_list_empty_message">Няма разрешения за показване.</string>
+    <string name="permissions_list_empty_search_message">Няма разрешения, съответстващи на търсенето ви.</string>
     <string name="permission_picture_in_picture_label">Картина в картина</string>
+    <string name="permission_legacy_storage_label">Унаследено хранилище</string>
+    <string name="permission_legacy_storage_description">Позволява на приложенията да осъществяват достъп до външно хранилище без ограничения на разделено хранилище. Това е поведението по подразбиране преди Android 10. Приложенията с този достъп могат да четат и записват файлове навсякъде в споделеното хранилище.</string>
+    <string name="settings_page_label">Настройки</string>
+    <string name="overview_summary_title_label">Резюме</string>
+    <string name="permissions_details_declaring_apps_label">Обявяващи приложения</string>
+    <string name="permissions_details_requesting_apps_label">Изискващи приложения</string>
     <string name="overview_device_android_version_label">Android версия</string>
     <string name="overview_device_name_label">Устройство</string>
     <string name="overview_device_android_patch_label">Ниво на пача</string>
     <string name="overview_summary_apps_active_profile_label">Приложения в активен профил</string>
     <string name="overview_summary_apps_other_profile_label">Приложения в управлявани потребителски профили, изключвайки клонове</string>
-    <string name="overview_summary_apps_sideloaded_label">Приложения, странично заредени от външни източници</string>
-    <string name="overview_summary_apps_installers_label">Приложения с разрешено \"Инсталиране от неизвестни източници\"</string>
+    <string name="overview_summary_apps_sideloaded_label">Приложения, инсталирани ръчно от външни източници</string>
+    <string name="overview_summary_apps_installers_label">Приложения с разрешено \"Инсталиране от неизвестни izvori\"</string>
     <string name="overview_summary_apps_overlayers_label">Приложения, които могат да се \"Появяват отгоре\"</string>
     <string name="overview_summary_apps_offline_label">Приложения, които имат разрешения \"Без интернет\"</string>
     <string name="overview_summary_apps_clones_label">Приложения с клонове в други профили</string>
     <string name="overview_summary_apps_sharedids_label">Приложения със SharedUserID</string>
+    <string name="overview_summary_apps_camera_label">Приложения с достъп до камера</string>
+    <string name="overview_summary_apps_location_label">Приложения с достъп до местоположение</string>
+    <string name="overview_summary_apps_microphone_label">Приложения с достъп до микрофон</string>
+    <string name="overview_summary_apps_contacts_label">Приложения с достъп до контакти</string>
+    <string name="overview_summary_apps_gplay_label">Приложения от Google Play</string>
+    <string name="overview_summary_apps_oemstore_label">Приложения от OEM магазини</string>
+    <string name="overview_summary_apps_battery_label">Приложения без ограничения на батерията</string>
+    <string name="overview_summary_apps_oldapi_label">Приложения, насочени за под Android 10</string>
+    <string name="overview_section_profile_label">Профил</string>
+    <string name="overview_section_install_source_label">Източник на инсталация</string>
+    <string name="overview_section_privacy_label">Поверителност</string>
+    <string name="overview_section_security_label">Сигурност</string>
+    <string name="overview_section_manifest_label">Манифест</string>
+    <string name="overview_summary_apps_manifest_flags_label">Може да открива приложения</string>
+    <string name="overview_section_system_label">Система</string>
     <string name="permission_bind_accessibility_service_label">Предлагане на услуга за достъпност</string>
     <string name="permission_bind_accessibility_service_description">Позволява на приложението да предлага услуга за достъпност, която може да бъде активирана в системните настройки.</string>
     <string name="debug_debuglog_sensitive_information_message">Този файл съдържа чувствителна информация (например вашите инсталирани приложения). Споделяйте го само с доверени страни.</string>
     <string name="settings_debuglog_explanation">Тази функция записва всичко, което прави приложението, в споделим файл. Генерираният файл съдържа чувствителна информация (например вашите инсталирани приложения). Споделяйте го само с доверени страни (например разработчика на приложението, ако заедно отстранявате проблем).</string>
+    <string name="support_debuglog_recording">Записване…</string>
+    <string name="support_debuglog_stop_label">Спрети дневника за отстраняване на грешки</string>
+    <string name="support_contact_label">Свържете се с разработчика</string>
+    <string name="support_contact_desc">Попълнете формуляр, за да изпратите имейл до разработчика.</string>
+    <string name="support_debuglog_clear_action">Изчистване на запазените дневници</string>
+    <string name="debug_debuglog_short_recording_title">Записът е твърде къс</string>
+    <string name="debug_debuglog_short_recording_message">Дневникът за отстраняване на грешки трябва да улови проблема докато се появи. Стартирайте записването, възпроизведете проблема, след което спретете записването.</string>
+    <string name="debug_debuglog_short_recording_continue">Продължаване на записването</string>
+    <string name="debug_debuglog_short_recording_stop">Спри все равно</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d дневник за отстраняване на грешки (%2$s)</item>
+        <item quantity="other">%1$d дневници за отстраняване на грешки (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Изчистване на дневници за отстраняване на грешки?</string>
+    <string name="support_debuglog_clear_message">Това ще изтрие всички запазени файлове с дневници.</string>
+    <string name="support_debuglog_sessions_title">Дневници за отстраняване на грешки</string>
+    <string name="support_debuglog_session_delete_title">Изтриване на дневника за отстраняване на грешки?</string>
+    <string name="support_debuglog_session_delete_message">Този дневник ще бъде окончателно изтрит.</string>
+    <string name="support_debuglog_sessions_empty">Няма дневници за отстраняване на грешки</string>
+    <string name="support_debuglog_session_invalid">Невалидна сесия</string>
+    <string name="support_debuglog_session_recording">Записване…</string>
+    <string name="support_debuglog_session_compressing">Компресиране…</string>
+    <string name="support_debuglog_failed_empty_log">Празен файл с дневник</string>
+    <string name="support_debuglog_failed_missing_log">Липсващ файл с дневник</string>
+    <string name="support_debuglog_failed_corrupt_zip">Повреден ZIP файл</string>
+    <string name="support_debuglog_failed_zip_failed">Компресията не успя</string>
+    <string name="support_debuglog_sent_title">Дневникът изпратен ли?</string>
+    <string name="support_debuglog_sent_message">Ако сте изпратили дневника, може да го изтриете, за да освободите място.</string>
+    <string name="support_contact_sent_title">Съобщението изпратено ли?</string>
+    <string name="support_contact_sent_message">Ако сте изпратили имейла, тази сесия може да бъде почистена.</string>
+    <string name="general_close_action">Затваряне</string>
+    <string name="debug_debuglog_screen_delete_action">Изтриване</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Свържете се с поддръжка</string>
+    <string name="contact_category_label">Категория</string>
+    <string name="contact_category_question_label">Въпрос</string>
+    <string name="contact_category_feature_label">Искане за направение</string>
+    <string name="contact_category_bug_label">Сигнализиране на грешка</string>
+    <string name="contact_description_label">Описание</string>
+    <string name="contact_description_hint_question">Опишете въпроса си подробно. Моля, бъдете конкретни (минимум 20 думи).</string>
+    <string name="contact_description_hint_feature">Опишете направението, което бихте искали да видите. Моля, бъдете конкретни (минимум 20 думи).</string>
+    <string name="contact_description_hint_bug">Опишете какво се е случило и как да възпроизведете проблема. Моля, бъдете конкретни (минимум 20 думи).</string>
+    <string name="contact_expected_behavior_label">Очаквано поведение</string>
+    <string name="contact_expected_behavior_hint">Опишете очакваното поведение (минимум 10 думи).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d дума</item>
+        <item quantity="other">%1$d / %2$d думи</item>
+    </plurals>
+    <string name="contact_send_action">Отвори пощатенско приложение</string>
+    <string name="contact_debuglog_picker_label">Дебъг лог</string>
+    <string name="contact_debuglog_picker_hint">Прикачете съществуващ дневник или запишете нов.</string>
+    <string name="contact_debuglog_empty">Няма намерени дневници. Първо запишете един.</string>
+    <string name="contact_debuglog_record_action">Записване на дебъг лог</string>
+    <string name="contact_debuglog_stop_action">Спиране на записването</string>
+    <string name="contact_debuglog_delete_title">Изтриване на дневника?</string>
+    <string name="contact_debuglog_delete_message">Този дневник ще бъде окончателно изтрит.</string>
+    <string name="contact_debuglog_zip_error">Не успя компресията на дневника</string>
+    <string name="contact_no_email_app">Няма намерено пощатенско приложение на устройството.</string>
+    <string name="contact_welcome_message">Чета всяко съобщение лично и полагам всички усилия, за да отговоря. Тъй като поемам разработката, отстраняването на грешки и поддръжката сам, може да вземе малко повече време. Благодаря за търпението.</string>
+    <string name="contact_footer_message">Съобщението ви ще бъде изпратено по имейл. Информацията за устройството е приложена автоматично. Можете да прикачите снимки или видео към имейла. Моля, пишете на английски, ако е възможно.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Запази</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Дневник за отстраняване на грешки</string>
+    <string name="debug_debuglog_screen_subtitle">Експортиране на информация за отстраняване на грешки</string>
+    <string name="debug_debuglog_screen_sensitive_title">Чувствителна информация</string>
+    <string name="debug_debuglog_screen_session_path_label">Път на сесията</string>
+    <string name="debug_debuglog_screen_log_files_label">Файлове с дневници</string>
+    <string name="debug_debuglog_screen_discard_action">Отхвърляне</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d файл готов (%2$s)</item>
+        <item quantity="other">%1$d файла готови (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dм %2$dс</string>
+    <string name="debug_debuglog_screen_duration_s">%1$dс</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Въпрос</string>
+    <string name="contact_email_tag_feature">Функция</string>
+    <string name="contact_email_tag_bug">Грешка</string>
+    <string name="contact_email_section_expected_behavior">--- Очаквано поведение ---</string>
+    <string name="contact_email_section_device_info">--- Информация за устройството ---</string>
     <string name="onboarding_body1">Това приложение ви помага да навигирате в инсталираните приложения и да откриете разрешения.</string>
     <string name="onboarding_body2">Permission Pilot събира информация за инсталирани приложения, за да позволи изброяването на вашите приложения и кръстосано препращане на техните разрешения при използване на това приложение.</string>
     <string name="onboarding_body3">Permission Pilot няма реклами и обработва данните само локално.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Режим на тема</string>
+    <string name="ui_theme_mode_system_label">Система</string>
+    <string name="ui_theme_mode_dark_label">Тъмна</string>
+    <string name="ui_theme_mode_light_label">Светла</string>
+    <string name="ui_theme_style_label">Стил на тема</string>
+    <string name="ui_theme_style_default_label">По подразбиране</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Среден контраст</string>
+    <string name="ui_theme_style_highcontrast_label">Висок контраст</string>
+    <string name="ui_theme_color_label">Цвят на темата</string>
+    <string name="ui_theme_color_blue_label">Синьо</string>
+    <string name="ui_theme_color_green_label">Зелено</string>
+    <string name="ui_theme_color_amber_label">Килъмбен</string>
+    <string name="ui_theme_color_disabled_subtitle">Използва цветовете на тапета</string>
+    <string name="upgrade_required_subtitle">Надградете, за да отключите</string>
+    <string name="settings_category_appearance_label">Изглед</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Персонализация на темата</string>
+    <string name="upgrade_benefit_filtering">Разширено филтриране</string>
+    <string name="upgrade_benefit_export">Групов експорт на данни</string>
+    <string name="upgrade_benefit_monitoring">Наблюдение на разрешения</string>
+    <string name="upgrade_benefit_support">Подкрепете разработчика</string>
+    <string name="upgrade_benefit_manifest_viewer">Преглед на сурови манифести на приложения</string>
+    <string name="general_upgrade_action">Надграждане</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Наблюдател</string>
+    <string name="watcher_dashboard_feature_title">Наблюдател на разрешения</string>
+    <string name="watcher_dashboard_feature_description">Получавайте уведомления, когато актуализация на приложение добавя нови разрешения или променя съществуващите. Наблюдателът проверява приложенията след всяка актуализация и създава доклад, ако има промяна.</string>
+    <string name="watcher_dashboard_manage_in_settings">Може да бъде деактивирано и настроено в Настройки</string>
+    <string name="watcher_enable_action">Включи</string>
+    <string name="watcher_channel_name">Наблюдател на разрешения</string>
+    <string name="watcher_channel_description">Уведомления за промени в разрешенията на инсталирани приложения</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s получи %2$d ново разрешение</item>
+        <item quantity="other">%1$s получи %2$d нови разрешения</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d разрешение променено</item>
+        <item quantity="other">%1$s: %2$d разрешения променени</item>
+    </plurals>
+    <string name="watcher_settings_label">Наблюдател на разрешения</string>
+    <string name="watcher_settings_desc">Наблюдавайте приложения за промени в разрешенията</string>
+    <string name="watcher_enabled_label">Включване на наблюдателя</string>
+    <string name="watcher_enabled_desc">Откривайте промените в разрешенията при инсталиране или актуализация на приложения</string>
+    <string name="watcher_scope_label">Обхват на наблюдението</string>
+    <string name="watcher_scope_all">Всички приложения</string>
+    <string name="watcher_scope_non_system">Само несистемни приложения</string>
+    <string name="watcher_reports_label">Доклади за промени в разрешенията</string>
+    <string name="watcher_reports_empty">Все още няма открити промени в разрешенията</string>
+    <string name="watcher_report_detail_label">Доклад за промените</string>
+    <string name="watcher_diff_added_permissions">Нови разрешения</string>
+    <string name="watcher_diff_removed_permissions">Премахнати разрешения</string>
+    <string name="watcher_diff_grant_changes">Промени в разрешаването</string>
+    <string name="watcher_diff_added_declared">Наново обявени разрешения</string>
+    <string name="watcher_diff_removed_declared">Премахнати обявени разрешения</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Инсталирано</string>
+    <string name="watcher_event_update">Актуализирано</string>
+    <string name="watcher_event_removed">Премахнато</string>
+    <string name="watcher_event_grant_change">Разрешението е променено</string>
+    <string name="watcher_mark_all_seen">Означаване на всички като прегледани</string>
+    <string name="watcher_notification_action_mark_seen">Означаване като прегледано</string>
+    <string name="watcher_notification_action_delete">Изтриване</string>
+    <string name="watcher_notification_body_added">Добавено: %s</string>
+    <string name="watcher_notification_body_removed">Премахнато: %s</string>
+    <string name="watcher_notification_body_grant_changed">Промяна на разрешение: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d приложение промени разрешения</item>
+        <item quantity="other">%d приложения промениха разрешения</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Показване на известия</string>
+    <string name="watcher_settings_notifications_desc">Показване на уведомление при откриване на промени в разрешенията</string>
+    <string name="watcher_settings_notifications_only_gained_label">Уведомявай само за получени разрешения</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Уведомявай само когато на приложенията се дават нови разрешения, напр. разрешение през изпълнимо време е разрешено или разрешение при инсталация като интернет е добавено</string>
+    <string name="watcher_settings_retention_label">Съхраняване на докладите</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d ден</item>
+        <item quantity="other">%d дни</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Изчистване на всички доклади</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Изчистване на всички доклади?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Всички доклади за промени в разрешенията ще бъдат окончателно изтрити.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d доклад</item>
+        <item quantity="other">%d доклада</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Уведомленията не са налични</string>
+    <string name="watcher_notification_permission_description">Промените в разрешенията се следят, но уведомленията не могат да бъдат показвани. Включете уведомленията, за да получавате сигнали за промени в разрешенията.</string>
+    <string name="watcher_notification_permission_grant">Даване на разрешение</string>
+    <string name="watcher_notification_permission_open_settings">Отвори настройките</string>
+    <string name="watcher_notification_permission_disable">Изключване на уведомленията</string>
+    <string name="watcher_detail_version_label">Версия</string>
+    <string name="watcher_detail_version_code_label">Код</string>
+    <string name="watcher_detail_installer_label">Източник на инсталация</string>
+    <string name="watcher_detail_installer_unknown">Неизвестен</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Разрешение (%d)</item>
+        <item quantity="other">Разрешения (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Последно известно разрешение (%d)</item>
+        <item quantity="other">Последно известни разрешения (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Тези разрешения са добавени с тази версия на приложението.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Тези разрешения са премахнати в тази актуализация.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Тези разрешения са променили статуса си на разрешаване.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Това са разрешенията, които приложението е имало преди премахването му.</string>
+    <string name="watcher_detail_grant_type_automatic">Разрешава се автоматично</string>
+    <string name="watcher_detail_grant_type_approval">Изисква одобрение</string>
+    <string name="watcher_detail_toggle_description">Препинане на описанието</string>
+    <string name="watcher_detail_unknown_permission">Неизвестно разрешение</string>
+    <string name="watcher_detail_diff_error">Не успя зареждането на подробностите на разрешението</string>
+    <string name="watcher_settings_polling_label">Интервал на фонова проверка</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Всеки %d час</item>
+        <item quantity="other">Всеки %d часа</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Сканиране на приложения…</string>
+    <string name="watcher_refresh_checking">Проверка на промени…</string>
+    <string name="watcher_search_hint">Търсене в докладите</string>
+    <string name="watcher_filter_has_added_permissions">Изискани нови разрешения</string>
+    <string name="watcher_filter_has_lost_permissions">Премахнати разрешения</string>
+    <string name="watcher_filter_has_gained_permissions">Нов предоставен достъп</string>
+    <string name="watcher_filter_unseen_only">Само непрегледани</string>
+    <string name="watcher_filter_section_event_type">Тип събитие</string>
+    <string name="watcher_filter_section_permission_changes">Промени в разрешенията</string>
+    <string name="watcher_filter_section_status">Статус</string>
+    <string name="watcher_filter_reset">Нулиране</string>
+    <string name="watcher_reports_no_matches">Няма доклади, съответстващи на търсенето или филтрите ви</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">Още %d доклад</item>
+        <item quantity="other">Още %d доклада</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Надградете, за да виждате всички доклади, подробности и да получавате уведомления</string>
+    <string name="snapshot_sync_channel_name">Синхронизация на снимки</string>
+    <string name="snapshot_sync_channel_description">Фонова синхронизация на данните на приложенията</string>
+    <string name="snapshot_sync_notification_title">Синхронизиране на данните на приложения…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Избиране на всички</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d избран</item>
+        <item quantity="other">%d избрани</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Експортиране на информация за приложение</string>
+    <string name="export_permission_info_action">Експортиране на информация за разрешение</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Експортиране на %d приложение</item>
+        <item quantity="other">Експортиране на %d приложения</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Експортиране на %d разрешение</item>
+        <item quantity="other">Експортиране на %d разрешения</item>
+    </plurals>
+    <string name="export_app_info_title">Експортиране на информация за приложение</string>
+    <string name="export_permission_info_title">Експортиране на информация за разрешение</string>
+    <string name="export_format_label">Формат</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Включване на информация за инсталацията</string>
+    <string name="export_app_include_meta_description">Версия, дата на инсталация, SDK нива</string>
+    <string name="export_app_include_permissions_label">Включване на разрешения</string>
+    <string name="export_app_include_permissions_description">Имена на разрешения и статус на предоставяне</string>
+    <string name="export_app_include_perm_type_label">Включване на тип разрешение</string>
+    <string name="export_app_include_perm_full_label">Включване на пълни детайли за разрешението</string>
+    <string name="export_perm_include_apps_label">Включване на заявяващи приложения</string>
+    <string name="export_perm_include_apps_description">Списък на приложения, заявяващи всяко разрешение</string>
+    <string name="export_perm_granted_only_label">Само предоставени приложения</string>
+    <string name="export_perm_include_summary_label">Включване на обобщени броячи</string>
+    <string name="export_preview_label">Преглед</string>
+    <string name="export_preview_label_of">Преглед (%1$d от %2$d)</string>
+    <string name="export_action_label">Експортиране</string>
+    <string name="export_progress_label">Експортиране…</string>
+    <string name="export_success_message">Експортирането завърши</string>
+    <string name="export_error_message">Експортирането е неуспешно</string>
+    <string name="export_share_action">Споделяне</string>
+    <string name="export_open_action">Отворен</string>
+    <string name="export_done_action">Завършено</string>
+    <string name="export_retry_action">Повторен опит</string>
+    <string name="export_summary_filename">Файл</string>
+    <string name="export_summary_size">Размер</string>
+    <string name="export_summary_duration">Продължителност</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Безплатната версия е ограничена до %d елемент и формат Markdown. Надградете за неограничен брой експортирания и всички формати.</item>
+        <item quantity="other">Безплатната версия е ограничена до %d елемента и формат Markdown. Надградете за неограничен брой експортирания и всички формати.</item>
+    </plurals>
+    <string name="export_upgrade_action">Надграждане</string>
 </resources>

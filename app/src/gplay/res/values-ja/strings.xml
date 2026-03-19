@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play サービスを利用できません。</string>
     <string name="upgrades_no_purchases_found_check_account">購入履歴が見つかりません。正しいアカウントを使用していますか？</string>
+    <string name="upgrade_screen_preamble">Permission Pilotは広告なしでプライバシーを尊重しています。アップグレードは継続的な開発をサポートします。</string>
+    <string name="upgrade_screen_subscription_trial_action">試用を開始する</string>
+    <string name="upgrade_screen_subscription_action">登録</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/月、いつでもキャンセル可能</string>
+    <string name="upgrade_screen_iap_action">Proを購入</string>
+    <string name="upgrade_screen_iap_action_hint">%sの一回購入</string>
+    <string name="upgrade_screen_restore_purchase_action">購入を復元</string>
+    <string name="upgrade_screen_restore_purchase_message">購入履歴が見つかりません。正しいGoogleアカウントでサインインしているか確認してください。</string>
+    <string name="upgrade_screen_options_description">サブスクリプションは自動更新されます。いつでもキャンセルできます。</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

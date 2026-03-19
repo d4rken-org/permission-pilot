@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Услугите на Google Play не са налични.</string>
     <string name="upgrades_no_purchases_found_check_account">Не са намерени покупки. Използвате ли правилния акаунт?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot е без реклами и защитава поверителността ви. Надградата подкрепя понататашното развитие.</string>
+    <string name="upgrade_screen_subscription_trial_action">Стартирайте безплатен пробен период</string>
+    <string name="upgrade_screen_subscription_action">Абонирайте се</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/месец, отказ по всяко време</string>
+    <string name="upgrade_screen_iap_action">Купете Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Еднократно плащане от %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Възстановете покупката</string>
+    <string name="upgrade_screen_restore_purchase_message">Няма намерени покупки. Уверете се, че сте влезли с правилния Google акаунт.</string>
+    <string name="upgrade_screen_options_description">Абонаментите се поднавят автоматично. Можете да откажете по всяко време.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

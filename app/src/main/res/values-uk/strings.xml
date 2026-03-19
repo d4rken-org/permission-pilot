@@ -7,17 +7,21 @@
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Відкрити</string>
     <string name="general_continue_action">Продовжити</string>
-    <string name="upgrade_buy_pro_action">Придбати Pro-версію</string>
     <string name="general_no_action">Ні</string>
-    <string name="upgrade_donate_action">Пожертвувати</string>
-    <string name="debug_debuglog_size_label">Розмір</string>
-    <string name="debug_debuglog_size_compressed_label">Стиснений розмір</string>
-    <string name="debug_notification_channel_label">Сповіщення налагодження</string>
-    <string name="debug_debuglog_file_label">Записаний файл журналу</string>
-    <string name="debug_debuglog_record_action">Записати журнал налагодження</string>
+    <string name="debug_debuglog_record_action">Запис</string>
     <string name="settings_category_other_label">Інше</string>
+    <string name="settings_category_gethelp_label">Отримати допомогу</string>
+    <string name="settings_category_debug_label">Налагодження</string>
+    <string name="settings_category_advanced_label">Додатково</string>
     <string name="general_settings_label">Загальні</string>
     <string name="general_settings_desc">Загальні налаштування, що впливають на всю програму.</string>
+    <string name="general_settings_scan_speed_label">Швидкість сканування</string>
+    <string name="general_settings_scan_speed_desc">Керує паралельними операціями під час сканування програм. Вищі значення пришвидшують роботу, але можуть призводити до збоїв на деяких пристроях.</string>
+    <string name="general_settings_scan_speed_auto">Авто (рекомендовано)</string>
+    <string name="general_settings_scan_speed_1">1 (найбезпечніший)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (найшвидший)</string>
     <string name="changelog_label">Журнал змін</string>
     <string name="settings_acknowledgements_label">Подяки</string>
     <string name="general_thank_you_label">Дякуємо</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Місце для спілкування та запитань.</string>
     <string name="issue_tracker_label">Відстеження проблем</string>
     <string name="issue_tracker_description">Публічний трекер проблем для звітів про помилки та запитів функцій.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">Часто задавані питання та поширені рішення.</string>
+    <string name="acks_maxpatchs_desc">Дякую за чудові іконки.</string>
+    <string name="acks_crowdin_desc">За підтримку перекладу проектів з відкритим кодом.</string>
     <string name="permissions_page_label">Дозволи</string>
     <string name="apps_page_label">Програми</string>
     <string name="app_type_system_label">Системна програма</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Скасувати</string>
     <string name="apps_filter_userapps_label">Користувацькі програми</string>
     <string name="apps_filter_systemapps_label">Системні програми</string>
-    <string name="apps_filter_nointernet_label">Програми без доступу до інтернету</string>
-    <string name="apps_filter_sideloaded_label">Сторонні програми</string>
+    <string name="apps_filter_nointernet_label">Немає інтернету</string>
+    <string name="apps_filter_sideloaded_label">Встановлено вручну</string>
     <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">Магазин OEM</string>
     <string name="apps_sort_permissions_granted_label">Надані дозволи</string>
@@ -73,6 +81,8 @@
     </plurals>
     <string name="apps_details_installer_label">Джерело встановлення</string>
     <string name="apps_details_installer_unknown_label">Інформація недоступна</string>
+    <string name="apps_details_open_settings_error">Не вдалося відкрити налаштування програми для цього профілю</string>
+    <string name="apps_details_open_app_error">Не вдалося відкрити цю програму</string>
     <string name="permissions_filter_manifest_label">AOSP дозволи</string>
     <string name="permissions_filter_system_label">Оголошено системною програмою</string>
     <string name="permissions_filter_user_label">Оголошено користувацькою програмою</string>
@@ -80,11 +90,15 @@
     <string name="permissions_filter_special_label">Спеціальне використання</string>
     <string name="permissions_filter_installtime_label">Надано автоматично</string>
     <string name="permissions_filter_installtime_hide_label">Не надано автоматично</string>
+    <string name="permissions_filter_sort_action">Фільтр та сортування</string>
+    <string name="permissions_filter_section_source">Джерело</string>
+    <string name="permissions_filter_section_type">Тип</string>
+    <string name="permissions_filter_section_sort_by">Сортувати за</string>
     <string name="filter_granted_label">Надані</string>
     <string name="filter_denied_label">Відхилені</string>
     <string name="filter_configurable_label">Налаштовувані</string>
-    <string name="permissions_sort_apps_granted_label"># програм надано</string>
-    <string name="permissions_sort_apps_requested_label"># програм запитано</string>
+    <string name="permissions_sort_apps_granted_label">Кількість програм, яким дозволено</string>
+    <string name="permissions_sort_apps_requested_label">Кількість програм, що запитують</string>
     <string name="permissions_search_list_hint">Пошук дозволів</string>
     <string name="apps_search_list_hint">Пошук програм</string>
     <string name="permissions_details_protection_label">Рівень захисту</string>
@@ -96,14 +110,20 @@
     <string name="permissions_protection_type_unknown_label">Невідомий</string>
     <string name="permissions_permission_details_label">Деталі дозволу</string>
     <string-array name="generic_loading_labels">
-        <item>Незабаром™</item>
-        <item>Передаємо масло</item>
-        <item>Завантажуємо більше ОЗП</item>
-        <item>Все ще швидше за iPhone</item>
-        <item>Що це за вами?</item>
-        <item>Процесор на кавовій перерві</item>
+        <item>Скоро™</item>
+        <item>Кладемо вершкове масло</item>
+        <item>Завантаження додаткової оперативної пам’яті</item>
+        <item>Все ще швидше, ніж iPhone</item>
+        <item>ЦП на перерві на каву</item>
         <item>Очікуємо дані від Пепе Сільвії</item>
-        <item>Турбо-енкабулятор ініціалізується</item>
+        <item>Запускається турбоінкабалятор</item>
+        <item>Майже готово… мабуть</item>
+        <item>Вдаємо вид зайнятості</item>
+        <item>Розгоняємо колосо</item>
+        <item>Переконуємо програми співпрацювати</item>
+        <item>Чемно запитуємо дозволи</item>
+        <item>Ваші програми звернулися до адвокатів</item>
+        <item>Читаємо дрібний друк</item>
     </string-array>
     <string name="apps_app_details_label">Деталі програми</string>
     <string name="apps_details_shareduserid_label">Програми зі спільним ID користувача</string>
@@ -114,7 +134,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Система Android</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Оновлено %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Встановлено вручну</string>
+    <string name="apps_list_installer_preinstalled_label">Попередньо встановлено</string>
     <string name="general_refresh_action">Оновити</string>
     <string name="general_expand_all_action">Розгорнути все</string>
     <string name="general_collapse_all_action">Згорнути все</string>
@@ -123,16 +148,33 @@
     <string name="apps_details_twins_descriptions">Встановлено в інших профілях користувачів.</string>
     <string name="install_date_label">Дата встановлення</string>
     <string name="apps_filter_sharedid_label">Спільний ID користувача</string>
-    <string name="apps_filter_multipleprofiles_label">Програми з клонами</string>
+    <string name="apps_filter_multipleprofiles_label">Має клони</string>
     <string name="support_debuglog_label">Журнал налагодження</string>
     <string name="support_debuglog_desc">Записує все, що робить програма, у текстовий файл, яким ви можете поділитися.</string>
     <string name="updated_at_x">Останнє оновлення: %s</string>
     <string name="installed_at_x">Вперше встановлено: %s</string>
     <string name="apps_sort_install_source_label">Джерело встановлення</string>
     <string name="permissions_action_none_msg">Немає доступних дій для цього дозволу</string>
-    <string name="apps_filter_profile_secondary_label">Програми в керованих профілях</string>
-    <string name="apps_filter_battery_optimization_label">Програми з налаштованими опціями батареї</string>
-    <string name="apps_filter_accessibility_label">Програми з службами доступності</string>
+    <string name="apps_filter_profile_secondary_label">Керований профіль(і)</string>
+    <string name="apps_filter_battery_optimization_label">Власна батарея</string>
+    <string name="apps_filter_accessibility_label">Спеціальні можливості</string>
+    <string name="apps_filter_device_admin_label">Адміністратор пристрою</string>
+    <string name="apps_filter_install_packages_label">Може встановлювати програми</string>
+    <string name="apps_filter_overlay_label">Малювати поверх інших програм</string>
+    <string name="apps_filter_camera_label">Доступ до камери</string>
+    <string name="apps_filter_location_label">Доступ до місцезнаходження</string>
+    <string name="apps_filter_microphone_label">Доступ до мікрофона</string>
+    <string name="apps_filter_contacts_label">Доступ до контактів</string>
+    <string name="apps_filter_old_api_target_label">Орієнтовано на старий Android</string>
+    <string name="apps_filter_manifest_flags_label">Може виявляти застосунки</string>
+    <string name="apps_filter_section_app_type">Тип програми</string>
+    <string name="apps_filter_section_install_source">Джерело встановлення</string>
+    <string name="apps_filter_section_properties">Властивості</string>
+    <string name="apps_filter_section_profile">Профіль</string>
+    <string name="apps_filter_section_sort_by">Сортувати за</string>
+    <string name="apps_filter_sort_action">Фільтр та сортування</string>
+    <string name="apps_help_tag_icons_title">Мітки дозволів</string>
+    <string name="apps_help_tag_icons_description">Мітки показують, до яких чутливих категорій дозволів надано доступ застосунку</string>
     <string name="apps_details_description_restrictions_caveat_description">Ця програма встановлена в іншому профілі користувача. Надані дозволи можна визначити лише для програм, встановлених у наразі активному профілі, через обмеження Android.</string>
     <string name="apps_details_description_uninstalled_caveat">Цю програму було видалено, але її дані збережено. Стан дозволів неможливо визначити для видалених програм.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -148,13 +190,74 @@
         <item quantity="other">%1$d з %2$d дозволів надано.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Немає дозволів, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
+    <string name="apps_details_perm_tag_runtime">Час виконання</string>
+    <string name="apps_details_perm_tag_special">Спеціальні</string>
+    <string name="apps_details_perm_tag_install">Встановлення</string>
+    <string name="apps_details_perm_help_title">Індикатори дозволів</string>
+    <string name="apps_details_perm_help_runtime">Час виконання — Програма повинна запитати ваш дозвіл перед використанням цього дозволу. Ви можете надати або відмовити.</string>
+    <string name="apps_details_perm_help_special">Спеціальні — Потребує перемикання перемикача в налаштуваннях системи.</string>
+    <string name="apps_details_perm_help_install">Встановлення — Надається автоматично під час встановлення програми. Дії користувача не потрібні.</string>
+    <string name="apps_details_perm_help_declared">Іконка ⚠ означає, що цей дозвіл створено самою програмою, а не є стандартним дозволом Android.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">Маніфест застосунку</string>
+    <string name="apps_details_manifest_queued">У черзі на аналіз…</string>
+    <string name="apps_details_manifest_loading">Аналіз маніфесту…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d маніфест залишився для аналізу…</item>
+        <item quantity="few">%d маніфести залишилися для аналізу…</item>
+        <item quantity="many">%d маніфестів залишилося для аналізу…</item>
+        <item quantity="other">%d маніфестів залишилося для аналізу…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Нічого незвичайного не виявлено</string>
+    <string name="apps_details_manifest_unavailable">Маніфест недоступний</string>
+    <string name="apps_details_manifest_error">Не вдалося прочитати маніфест</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d запит пакунка</item>
+        <item quantity="few">%d запити пакунка</item>
+        <item quantity="many">%d запитів пакунка</item>
+        <item quantity="other">%d запитів пакунка</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d запит намірів</item>
+        <item quantity="few">%d запити намірів</item>
+        <item quantity="many">%d запитів намірів</item>
+        <item quantity="other">%d запитів намірів</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d запит постачальника</item>
+        <item quantity="few">%d запити постачальника</item>
+        <item quantity="many">%d запитів постачальника</item>
+        <item quantity="other">%d запитів постачальника</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Може виявляти всі встановлені застосунки</string>
+    <string name="apps_details_manifest_hint_excessive">Перевіряє наявність багатьох конкретних застосунків</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Переглядач маніфесту</string>
+    <string name="apps_manifest_viewer_search_hint">Пошук у маніфесті</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d збіг</item>
+        <item quantity="few">%d збіги</item>
+        <item quantity="many">%d збігів</item>
+        <item quantity="other">%d збігів</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d з %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Використовує дозвіл</string>
+    <string name="apps_manifest_section_permission">Дозвіл</string>
+    <string name="apps_manifest_section_queries">Запити</string>
+    <string name="apps_manifest_section_activities">Активності</string>
+    <string name="apps_manifest_section_services">Служби</string>
+    <string name="apps_manifest_section_receivers">Приймачі</string>
+    <string name="apps_manifest_section_providers">Постачальники</string>
+    <string name="apps_manifest_section_meta_data">Метадані</string>
+    <string name="apps_manifest_section_other">Інше</string>
     <string name="api_target_level_x">Цільова версія: %s</string>
     <string name="api_minimum_level_x">Мінімальна версія: %s</string>
     <string name="api_build_level_x">Версія збірки: %s</string>
     <string name="permission_reboot_label">Перезавантажити пристрій</string>
     <string name="permission_reboot_description">Дозволяє програмі перезавантажити пристрій. Доступно лише для системних програм.</string>
     <string name="permissions_sort_apps_relevance_label">Релевантність</string>
-    <string name="apps_filter_profile_active_label">Програми в активному профілі</string>
+    <string name="apps_filter_profile_active_label">Активний профіль</string>
     <string name="overview_page_label">Огляд</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s елемент</item>
@@ -198,8 +301,61 @@
         <item quantity="many">Системні застосунки: надано %1$d з %2$d.</item>
         <item quantity="other">Системні застосунки: надано %1$d з %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d програма в інших профілях користувача також запитує цей дозвіл.</item>
+        <item quantity="few">%d програми в інших профілях користувача також запитують цей дозвіл.</item>
+        <item quantity="many">%d програм в інших профілях користувача також запитують цей дозвіл.</item>
+        <item quantity="other">%d програми в інших профілях користувача також запитують цей дозвіл.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d видалена програма зі збереженими даними також запитує цей дозвіл.</item>
+        <item quantity="few">%d видалені програми зі збереженими даними також запитують цей дозвіл.</item>
+        <item quantity="many">%d видалених програм зі збереженими даними також запитують цей дозвіл.</item>
+        <item quantity="other">%d видалених програм зі збереженими даними також запитують цей дозвіл.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Програми, встановлені в інших профілях користувачів, виключені з розрахунку вище через обмеження Android.</string>
     <string name="permissions_details_empty_filter_message">Немає програм, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Час виконання</string>
+    <string name="permissions_tag_install_time_label">Під час встановлення</string>
+    <string name="permissions_tag_special_access_label">Спеціальний доступ</string>
+    <string name="permissions_tag_documented_label">Документований</string>
+    <string name="permissions_tag_notable_label">Помітний</string>
+    <string name="permissions_tag_non_standard_label">Нестандартний</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">Використовується</string>
+    <string name="permissions_status_unknown_label">Невідомо</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">Система</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d ще</item>
+        <item quantity="few">+%d ще</item>
+        <item quantity="many">+%d ще</item>
+        <item quantity="other">+%d ще</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Індикатори дозволів</string>
+    <string name="permissions_details_help_section_protection">Тип захисту</string>
+    <string name="permissions_details_help_dangerous">Небезпечний — Потребує явного схвалення користувача у часі виконання. Може отримати доступ до конфіденційних даних або функцій пристрою.</string>
+    <string name="permissions_details_help_normal">Звичайний — Надається автоматично під час встановлення. Мінімальний ризик для інших програм чи системи.</string>
+    <string name="permissions_details_help_signature">Підпис — Надається лише програмам, підписаним тим самим сертифікатом, що і програма, яка оголосила цей дозвіл.</string>
+    <string name="permissions_details_help_internal">Внутрішній — Зарезервовано для внутрішніх компонентів Android. Недоступно для сторонніх програм.</string>
+    <string name="permissions_details_help_section_tags">Теги дозволів</string>
+    <string name="permissions_details_help_tag_runtime">Час виконання — Програма повинна запитати ваш дозвіл перед використанням цього дозволу.</string>
+    <string name="permissions_details_help_tag_install_time">Під час встановлення — Надається автоматично під час встановлення програми.</string>
+    <string name="permissions_details_help_tag_special_access">Спеціальний доступ — Потребує перемикання перемикача в налаштуваннях системи.</string>
+    <string name="permissions_details_help_tag_documented">Документований — Зазначено в офіційній документації маніфесту Android.</string>
+    <string name="permissions_details_help_tag_notable">Помітний — Особливо значущий з огляду на приватність або безпеку.</string>
+    <string name="permissions_details_help_tag_non_standard">Нестандартний — Не є частиною стандартного набору дозволів Android. Оголошено сторонньою програмою або виробником пристрою.</string>
+    <string name="permissions_details_status_help_title">Індикатори статусу</string>
+    <string name="permissions_details_help_section_status">Статус надання</string>
+    <string name="permissions_details_help_status_granted">Надано — Програмі надано цей дозвіл.</string>
+    <string name="permissions_details_help_status_in_use">Використовується — Надано і активно використовується програмою.</string>
+    <string name="permissions_details_help_status_denied">Відмовлено — Програма запитала цей дозвіл, але його не було надано.</string>
+    <string name="permissions_details_help_status_unknown">Невідомо — Стан надання не можна визначити, наприклад, для програм в інших профілях користувача.</string>
+    <string name="permissions_details_help_section_badges">Значки</string>
+    <string name="permissions_details_help_system_badge">Системна — Ця програма є попередньо встановленою системною програмою.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Дозволяє програмам спілкуватися з тегами, картками та зчитувачами Near Field Communication (NFC).</string>
     <string name="permission_manage_media_label">Керувати медіа</string>
@@ -211,7 +367,7 @@
     <string name="permission_bluetooth_advertise_label">Реклама Bluetooth</string>
     <string name="permission_bluetooth_advertise_description">Дозволяє програмам рекламуватися поблизу пристроїв Bluetooth.</string>
     <string name="permission_get_accounts_label">Отримати облікові записи</string>
-    <string name="permission_get_accounts_description">Дозволяє програмам отримувати список облікових записів, відомих телефону. Це може включати будь-які облікові записи, створені програмами, які ви встановили.</string>
+    <string name="permission_get_accounts_description">Дозволяє програмам отримати список облікових записів, відомих пристрою. Це може включати будь-які облікові записи, створені встановленими вами програмами.</string>
     <string name="permission_access_background_location_label">Доступ до місцезнаходження у фоні</string>
     <string name="permission_access_background_location_description">Дозволяє програмам отримувати доступ до місцезнаходження будь-коли, навіть коли вони не використовуються.</string>
     <string name="permission_access_media_location_label">Доступ до місцезнаходження медіа</string>
@@ -225,7 +381,7 @@
     <string name="permission_read_sync_settings_label">Читати налаштування синхронізації</string>
     <string name="permission_read_sync_settings_description">Дозволяє програмам читати налаштування синхронізації для облікового запису.</string>
     <string name="permission_install_unknown_apps_label">Встановлювати невідомі програми (Невідомі джерела)</string>
-    <string name="permission_install_unknown_apps_description">Дозволяє програмам встановлювати інші програми на ваш пристрій. Це може поставити ваш пристрій і дані під загрозу.</string>
+    <string name="permission_install_unknown_apps_description">Дозволяє застосункам вручну встановлювати інші застосунки на вашому пристрої. Це може наражати ваш пристрій і дані на ризик.</string>
     <string name="permission_all_files_access_label">Доступ до всіх файлів</string>
     <string name="permission_all_files_access_description">Дозволяє програмам читати, змінювати та видаляти всі файли на вашому пристрої, а також будь-які підключені пристрої зберігання. Програми з цим дозволом також можуть отримувати доступ до файлів, не пов\'язаних з програмою, БЕЗ сповіщення вас.</string>
     <string name="permission_appear_on_top_label">З\'являтися зверху</string>
@@ -284,23 +440,354 @@
     <string name="permission_group_camera_description">Дозволи, пов\'язані з камерою.</string>
     <string name="permission_group_audio_label">Мікрофон</string>
     <string name="permission_group_audio_description">Дозволи, пов\'язані з мікрофоном.</string>
+    <string name="permissions_list_empty_message">Немає дозволів для відображення.</string>
+    <string name="permissions_list_empty_search_message">Жоден дозвіл не відповідає вашому пошуку.</string>
     <string name="permission_picture_in_picture_label">Зображення в зображенні</string>
+    <string name="permission_legacy_storage_label">Застаріле сховище</string>
+    <string name="permission_legacy_storage_description">Дозволяє програмам отримувати доступ до зовнішнього сховища без обмежень сховища з областю видимості. Це була поведінка за замовчуванням до Android 10. Програми з таким доступом можуть читати і записувати файли будь-де на спільному сховищі.</string>
+    <string name="settings_page_label">Налаштування</string>
+    <string name="overview_summary_title_label">Зведення</string>
+    <string name="permissions_details_declaring_apps_label">Програми, що оголошують</string>
+    <string name="permissions_details_requesting_apps_label">Програми, що запитують</string>
     <string name="overview_device_android_version_label">Версія Android</string>
     <string name="overview_device_name_label">Пристрій</string>
     <string name="overview_device_android_patch_label">Рівень патча</string>
     <string name="overview_summary_apps_active_profile_label">Програми в активному профілі</string>
     <string name="overview_summary_apps_other_profile_label">Програми в керованих профілях користувачів, виключаючи клони</string>
-    <string name="overview_summary_apps_sideloaded_label">Програми, встановлені з зовнішніх джерел</string>
+    <string name="overview_summary_apps_sideloaded_label">Застосунки, встановлені вручну із зовнішніх джерел</string>
     <string name="overview_summary_apps_installers_label">Програми з увімкненим \'Встановлення з невідомих джерел\'</string>
     <string name="overview_summary_apps_overlayers_label">Програми, які можуть \'З\'являтися зверху\'</string>
     <string name="overview_summary_apps_offline_label">Програми, які мають дозволи \'Без інтернету\'</string>
     <string name="overview_summary_apps_clones_label">Програми з клонами в інших профілях</string>
     <string name="overview_summary_apps_sharedids_label">Програми з SharedUserID</string>
+    <string name="overview_summary_apps_camera_label">Програми з доступом до камери</string>
+    <string name="overview_summary_apps_location_label">Програми з доступом до місцезнаходження</string>
+    <string name="overview_summary_apps_microphone_label">Програми з доступом до мікрофона</string>
+    <string name="overview_summary_apps_contacts_label">Програми з доступом до контактів</string>
+    <string name="overview_summary_apps_gplay_label">Програми з Google Play</string>
+    <string name="overview_summary_apps_oemstore_label">Програми з магазинів OEM</string>
+    <string name="overview_summary_apps_battery_label">Програми без обмежень енергії</string>
+    <string name="overview_summary_apps_oldapi_label">Програми з цільовою Android нижче 10</string>
+    <string name="overview_section_profile_label">Профіль</string>
+    <string name="overview_section_install_source_label">Джерело встановлення</string>
+    <string name="overview_section_privacy_label">Конфіденційність</string>
+    <string name="overview_section_security_label">Безпека</string>
+    <string name="overview_section_manifest_label">Маніфест</string>
+    <string name="overview_summary_apps_manifest_flags_label">Може виявляти застосунки</string>
+    <string name="overview_section_system_label">Система</string>
     <string name="permission_bind_accessibility_service_label">Пропонувати службу доступності</string>
     <string name="permission_bind_accessibility_service_description">Дозволяє програмі пропонувати службу доступності, яку можна увімкнути в системних налаштуваннях.</string>
     <string name="debug_debuglog_sensitive_information_message">Цей файл містить конфіденційну інформацію (наприклад, ваші встановлені програми). Діліться ним лише з довіреними сторонами.</string>
     <string name="settings_debuglog_explanation">Ця функція записує все, що робить програма, у файл, яким можна поділитися. Створений файл містить конфіденційну інформацію (наприклад, ваші встановлені програми). Діліться ним лише з довіреними сторонами (наприклад, розробником програми, якщо ви разом вирішуєте проблему).</string>
+    <string name="support_debuglog_recording">Записується…</string>
+    <string name="support_debuglog_stop_label">Зупинити log налагодження</string>
+    <string name="support_contact_label">Зв\'язатися з розробником</string>
+    <string name="support_contact_desc">Заповніть форму, щоб надіслати розробнику електронного листа.</string>
+    <string name="support_debuglog_clear_action">Очистити збережені логи налагодження</string>
+    <string name="debug_debuglog_short_recording_title">Запис занадто короткий</string>
+    <string name="debug_debuglog_short_recording_message">Журнал налагодження повинен зфіксувати проблему в момент її виникнення. Розпочніть запис, відтворіть проблему, а потім зупиніть запис.</string>
+    <string name="debug_debuglog_short_recording_continue">Продовжити запис</string>
+    <string name="debug_debuglog_short_recording_stop">Все одно зупинити</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d журнал налагодження (%2$s)</item>
+        <item quantity="few">%1$d журнали налагодження (%2$s)</item>
+        <item quantity="many">%1$d журналів налагодження (%2$s)</item>
+        <item quantity="other">%1$d журналів налагодження (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Очистити журнали налагодження?</string>
+    <string name="support_debuglog_clear_message">Це видалить усі збережені файли журналів налагодження.</string>
+    <string name="support_debuglog_sessions_title">Журнали налагодження</string>
+    <string name="support_debuglog_session_delete_title">Видалити журнал налагодження?</string>
+    <string name="support_debuglog_session_delete_message">Цей журнал налагодження буде назавжди видалено.</string>
+    <string name="support_debuglog_sessions_empty">Немає журналів налагодження</string>
+    <string name="support_debuglog_session_invalid">Недійсний сеанс</string>
+    <string name="support_debuglog_session_recording">Записується…</string>
+    <string name="support_debuglog_session_compressing">Стиснення…</string>
+    <string name="support_debuglog_failed_empty_log">Порожній файл журналу</string>
+    <string name="support_debuglog_failed_missing_log">Файл журналу відсутній</string>
+    <string name="support_debuglog_failed_corrupt_zip">Пошкоджений ZIP-файл</string>
+    <string name="support_debuglog_failed_zip_failed">Помилка стиснення</string>
+    <string name="support_debuglog_sent_title">Журнал надіслано?</string>
+    <string name="support_debuglog_sent_message">Якщо ви надіслали журнал налагодження, його можна видалити, щоб звільнити місце.</string>
+    <string name="support_contact_sent_title">Повідомлення надіслано?</string>
+    <string name="support_contact_sent_message">Якщо ви надіслали електронний лист, цей сеанс можна очистити.</string>
+    <string name="general_close_action">Закрити</string>
+    <string name="debug_debuglog_screen_delete_action">Видалити</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Зв’язатися з підтримкою</string>
+    <string name="contact_category_label">Категорія</string>
+    <string name="contact_category_question_label">Питання</string>
+    <string name="contact_category_feature_label">Запит на функцію</string>
+    <string name="contact_category_bug_label">Повідомлення про помилку</string>
+    <string name="contact_description_label">Опис</string>
+    <string name="contact_description_hint_question">Детально опишіть своє запитання. Будь ласка, будьте конкретні (мінімум 20 слів).</string>
+    <string name="contact_description_hint_feature">Опишіть функцію, яку ви хотіли б бачити. Будь ласка, опишіть її якомога детальніше (мінімум 20 слів).</string>
+    <string name="contact_description_hint_bug">Опишіть, що сталося і як відтворити проблему. Будь ласка, опишіть детально (мінімум 20 слів).</string>
+    <string name="contact_expected_behavior_label">Очікувана поведінка</string>
+    <string name="contact_expected_behavior_hint">Опишіть, чого ви очікували (мінімум 10 слів).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d слово</item>
+        <item quantity="few">%1$d / %2$d слова</item>
+        <item quantity="many">%1$d / %2$d слів</item>
+        <item quantity="other">%1$d / %2$d слів</item>
+    </plurals>
+    <string name="contact_send_action">Відкрити додаток електронної пошти</string>
+    <string name="contact_debuglog_picker_label">Журнал налагодження</string>
+    <string name="contact_debuglog_picker_hint">Додайте існуючий журнал налагодження або запишіть новий.</string>
+    <string name="contact_debuglog_empty">Журнали налагодження не знайдено. Спочатку запишіть один.</string>
+    <string name="contact_debuglog_record_action">Записати журнал налагодження</string>
+    <string name="contact_debuglog_stop_action">Зупинити запис</string>
+    <string name="contact_debuglog_delete_title">Видалити журнал налагодження?</string>
+    <string name="contact_debuglog_delete_message">Цей журнал налагодження буде назавжди видалено.</string>
+    <string name="contact_debuglog_zip_error">Не вдалося стиснути журнал налагодження</string>
+    <string name="contact_no_email_app">На цьому пристрої не знайдено жодного додатка електронної пошти.</string>
+    <string name="contact_welcome_message">Я особисто читаю кожне повідомлення і намагаюсь відповісти. Оскільки я самостійно займаюсь розробкою, виправленням помилок і підтримкою, це може зайняти деякий час. Дякую за розуміння.</string>
+    <string name="contact_footer_message">Ваше повідомлення буде надіслано електронною поштою. Інформація про пристрій і налаштування додається автоматично. До електронного листа можна додати знімки або відео. Будь ласка, пишіть англійською мовою, якщо можливо.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Зберегти</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Журнал налагодження</string>
+    <string name="debug_debuglog_screen_subtitle">Експортувати інформацію налагодження для усунення неполадок</string>
+    <string name="debug_debuglog_screen_sensitive_title">Конфіденційна інформація</string>
+    <string name="debug_debuglog_screen_session_path_label">Шлях сесії</string>
+    <string name="debug_debuglog_screen_log_files_label">Файли журналів</string>
+    <string name="debug_debuglog_screen_discard_action">Відмінити</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">Файл %1$d готовий (%2$s)</item>
+        <item quantity="few">Файли %1$d готові (%2$s)</item>
+        <item quantity="many">Файли %1$d готові (%2$s)</item>
+        <item quantity="other">Файли %1$d готові (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dхв %2$dс</string>
+    <string name="debug_debuglog_screen_duration_s">%1$dс</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Питання</string>
+    <string name="contact_email_tag_feature">Функція</string>
+    <string name="contact_email_tag_bug">Помилка</string>
+    <string name="contact_email_section_expected_behavior">--- Очікувана поведінка ---</string>
+    <string name="contact_email_section_device_info">--- Інформація про пристрій ---</string>
     <string name="onboarding_body1">Ця програма допомагає вам навігувати встановленими програмами та виявляти дозволи.</string>
     <string name="onboarding_body2">Permission Pilot збирає інформацію про встановлені програми, щоб дозволити перелічувати ваші програми та перехресно посилатися на їх дозволи під час використання цієї програми.</string>
     <string name="onboarding_body3">Permission Pilot не має реклами і обробляє дані лише локально.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Тема додатку</string>
+    <string name="ui_theme_mode_system_label">Системна</string>
+    <string name="ui_theme_mode_dark_label">Темна</string>
+    <string name="ui_theme_mode_light_label">Світла</string>
+    <string name="ui_theme_style_label">Стиль теми</string>
+    <string name="ui_theme_style_default_label">За умовчанням</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Середній контраст</string>
+    <string name="ui_theme_style_highcontrast_label">Високий контраст</string>
+    <string name="ui_theme_color_label">Колір теми</string>
+    <string name="ui_theme_color_blue_label">Синій</string>
+    <string name="ui_theme_color_green_label">Зелений</string>
+    <string name="ui_theme_color_amber_label">Бурштиновий</string>
+    <string name="ui_theme_color_disabled_subtitle">Використовує кольори шпалери</string>
+    <string name="upgrade_required_subtitle">Оновіть для розблокування</string>
+    <string name="settings_category_appearance_label">Зовнішній вигляд</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Налаштування теми</string>
+    <string name="upgrade_benefit_filtering">Розширена фільтрація</string>
+    <string name="upgrade_benefit_export">Пакетний експорт даних</string>
+    <string name="upgrade_benefit_monitoring">Моніторинг дозволів</string>
+    <string name="upgrade_benefit_support">Підтримати розробника</string>
+    <string name="upgrade_benefit_manifest_viewer">Переглядати необроблені маніфести застосунків</string>
+    <string name="general_upgrade_action">Оновити</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Спостерігач</string>
+    <string name="watcher_dashboard_feature_title">Спостерігач дозволів</string>
+    <string name="watcher_dashboard_feature_description">Отримуйте сповіщення, коли оновлення програми додає нові дозволи або змінює існуючі. Спостерігач дозволів перевіряє ваші програми після кожного оновлення і створює звіт, якщо щось змінилось.</string>
+    <string name="watcher_dashboard_manage_in_settings">Можна відключити та налаштувати в Налаштуваннях</string>
+    <string name="watcher_enable_action">Увімкнути</string>
+    <string name="watcher_channel_name">Спостерігач дозволів</string>
+    <string name="watcher_channel_description">Сповіщення про зміни дозволів в встановлених програмах</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s отримала %2$d новий дозвіл</item>
+        <item quantity="few">%1$s отримала %2$d нових дозволи</item>
+        <item quantity="many">%1$s отримала %2$d нових дозволів</item>
+        <item quantity="other">%1$s отримала %2$d нових дозволів</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: змінено %2$d дозвіл</item>
+        <item quantity="few">%1$s: змінено %2$d дозволи</item>
+        <item quantity="many">%1$s: змінено %2$d дозволів</item>
+        <item quantity="other">%1$s: змінено %2$d дозволів</item>
+    </plurals>
+    <string name="watcher_settings_label">Спостерігач дозволів</string>
+    <string name="watcher_settings_desc">Стежте за змінами дозволів у програмах</string>
+    <string name="watcher_enabled_label">Увімкнути спостерігач</string>
+    <string name="watcher_enabled_desc">Виявляти зміни дозволів під час встановлення або оновлення програм</string>
+    <string name="watcher_scope_label">Область спостереження</string>
+    <string name="watcher_scope_all">Усі програми</string>
+    <string name="watcher_scope_non_system">Тільки несистемні програми</string>
+    <string name="watcher_reports_label">Звіти про зміни дозволів</string>
+    <string name="watcher_reports_empty">Змін дозволів ще не виявлено</string>
+    <string name="watcher_report_detail_label">Звіт про зміни</string>
+    <string name="watcher_diff_added_permissions">Нові дозволи</string>
+    <string name="watcher_diff_removed_permissions">Видалені дозволи</string>
+    <string name="watcher_diff_grant_changes">Зміни надання</string>
+    <string name="watcher_diff_added_declared">Нові оголошені дозволи</string>
+    <string name="watcher_diff_removed_declared">Видалені оголошені дозволи</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Встановлено</string>
+    <string name="watcher_event_update">Оновлено</string>
+    <string name="watcher_event_removed">Видалено</string>
+    <string name="watcher_event_grant_change">Дозвіл змінено</string>
+    <string name="watcher_mark_all_seen">Позначити все як переглянуте</string>
+    <string name="watcher_notification_action_mark_seen">Позначити як переглянуте</string>
+    <string name="watcher_notification_action_delete">Видалити</string>
+    <string name="watcher_notification_body_added">Додано: %s</string>
+    <string name="watcher_notification_body_removed">Видалено: %s</string>
+    <string name="watcher_notification_body_grant_changed">Надання змінено: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d програма змінила дозволи</item>
+        <item quantity="few">%d програми змінили дозволи</item>
+        <item quantity="many">%d програм змінили дозволи</item>
+        <item quantity="other">%d програм змінили дозволи</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Показувати сповіщення</string>
+    <string name="watcher_settings_notifications_desc">Показувати сповіщення, коли виявлено зміни дозволів</string>
+    <string name="watcher_settings_notifications_only_gained_label">Повідомляти лише про здобуті дозволи</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Повідомляти лише, коли програмам надаються нові дозволи, наприклад, дозвіл в часі виконання дозволено або додано дозвіл на етапі встановлення, наприклад інтернет</string>
+    <string name="watcher_settings_retention_label">Зберігати звіти</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дні</item>
+        <item quantity="many">%d дні</item>
+        <item quantity="other">%d днів</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Очистити всі звіти</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Очистити всі звіти?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Усі звіти про зміни дозволів будуть назавжди видалені.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d звіт</item>
+        <item quantity="few">%d звіти</item>
+        <item quantity="many">%d звітів</item>
+        <item quantity="other">%d звітів</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Сповіщення недоступні</string>
+    <string name="watcher_notification_permission_description">Зміни дозволів відстежуються, але сповіщення не можуть бути показані. Увімкніть сповіщення, щоб отримувати повідомлення про зміни дозволів.</string>
+    <string name="watcher_notification_permission_grant">Надати дозвіл</string>
+    <string name="watcher_notification_permission_open_settings">Відкрити налаштування</string>
+    <string name="watcher_notification_permission_disable">Вимкнути сповіщення</string>
+    <string name="watcher_detail_version_label">Версія</string>
+    <string name="watcher_detail_version_code_label">Код</string>
+    <string name="watcher_detail_installer_label">Джерело встановлення</string>
+    <string name="watcher_detail_installer_unknown">Невідомо</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Дозволи (%d)</item>
+        <item quantity="few">Дозволи (%d)</item>
+        <item quantity="many">Дозволи (%d)</item>
+        <item quantity="other">Дозволи (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Останні відомі дозволи (%d)</item>
+        <item quantity="few">Останні відомі дозволи (%d)</item>
+        <item quantity="many">Останні відомі дозволи (%d)</item>
+        <item quantity="other">Останні відомі дозволи (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Ці дозволи було додано з цією версією програми.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Ці дозволи було видалено в цьому оновленні.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Статус надання цих дозволів було змінено.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Це дозволи, які мала програма до видалення.</string>
+    <string name="watcher_detail_grant_type_automatic">Надано автоматично</string>
+    <string name="watcher_detail_grant_type_approval">Потребує схвалення</string>
+    <string name="watcher_detail_toggle_description">Перемкнути опис</string>
+    <string name="watcher_detail_unknown_permission">Невідомий дозвіл</string>
+    <string name="watcher_detail_diff_error">Не вдалося завантажити деталі дозволу</string>
+    <string name="watcher_settings_polling_label">Інтервал фонової перевірки</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Кожну %d годину</item>
+        <item quantity="few">Кожні %d години</item>
+        <item quantity="many">Кожні %d годин</item>
+        <item quantity="other">Кожні %d годин</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Сканування програм…</string>
+    <string name="watcher_refresh_checking">Перевірка змін…</string>
+    <string name="watcher_search_hint">Пошук звітів</string>
+    <string name="watcher_filter_has_added_permissions">Запитуються нові дозволи</string>
+    <string name="watcher_filter_has_lost_permissions">Дозволи видалено</string>
+    <string name="watcher_filter_has_gained_permissions">Надано новий доступ</string>
+    <string name="watcher_filter_unseen_only">Тільки непереглянуті</string>
+    <string name="watcher_filter_section_event_type">Тип події</string>
+    <string name="watcher_filter_section_permission_changes">Зміни дозволів</string>
+    <string name="watcher_filter_section_status">Стан</string>
+    <string name="watcher_filter_reset">Скинути</string>
+    <string name="watcher_reports_no_matches">Жоден звіт не відповідає вашому пошуку або фільтрам</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">ще %d звіт</item>
+        <item quantity="few">ще %d звіти</item>
+        <item quantity="many">ще %d звітів</item>
+        <item quantity="other">ще %d звітів</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Оновіть, щоб переглянути всі звіти, деталі та отримувати сповіщення</string>
+    <string name="snapshot_sync_channel_name">Синхронізація знімків</string>
+    <string name="snapshot_sync_channel_description">Фонова синхронізація даних програми</string>
+    <string name="snapshot_sync_notification_title">Синхронізація даних програми…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Вибрати все</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d вибрано</item>
+        <item quantity="few">%d вибрано</item>
+        <item quantity="many">%d вибрано</item>
+        <item quantity="other">%d вибрано</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Експортувати інформацію про додаток</string>
+    <string name="export_permission_info_action">Експортувати інформацію про дозвіл</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Експортувати %d додаток</item>
+        <item quantity="few">Експортувати %d додатки</item>
+        <item quantity="many">Експортувати %d додатків</item>
+        <item quantity="other">Експортувати %d додатків</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Експортувати %d дозвіл</item>
+        <item quantity="few">Експортувати %d дозволи</item>
+        <item quantity="many">Експортувати %d дозволів</item>
+        <item quantity="other">Експортувати %d дозволів</item>
+    </plurals>
+    <string name="export_app_info_title">Експорт інформації про додаток</string>
+    <string name="export_permission_info_title">Експорт інформації про дозвіл</string>
+    <string name="export_format_label">Формат</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Включити інформацію про встановлення</string>
+    <string name="export_app_include_meta_description">Версія, дата встановлення, рівні SDK</string>
+    <string name="export_app_include_permissions_label">Включити дозволи</string>
+    <string name="export_app_include_permissions_description">Назви дозволів та статус надання</string>
+    <string name="export_app_include_perm_type_label">Включити тип дозволу</string>
+    <string name="export_app_include_perm_full_label">Включити повні деталі дозволу</string>
+    <string name="export_perm_include_apps_label">Включити додатки, які запитують дозвіл</string>
+    <string name="export_perm_include_apps_description">Перелік додатків, які запитують кожний дозвіл</string>
+    <string name="export_perm_granted_only_label">Тільки додатки з наданим дозволом</string>
+    <string name="export_perm_include_summary_label">Включити зведену статистику</string>
+    <string name="export_preview_label">Попередній перегляд</string>
+    <string name="export_preview_label_of">Попередній перегляд (%1$d з %2$d)</string>
+    <string name="export_action_label">Експорт</string>
+    <string name="export_progress_label">Експортується…</string>
+    <string name="export_success_message">Експорт завершено</string>
+    <string name="export_error_message">Помилка експорту</string>
+    <string name="export_share_action">Поділитися</string>
+    <string name="export_open_action">Відкрито</string>
+    <string name="export_done_action">Готово</string>
+    <string name="export_retry_action">Повторити</string>
+    <string name="export_summary_filename">Файл</string>
+    <string name="export_summary_size">Розмір</string>
+    <string name="export_summary_duration">Тривалість</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Безкоштовна версія обмежена %d елементом та форматом Markdown. Оновіть для необмеженого експорту та всіх форматів.</item>
+        <item quantity="few">Безкоштовна версія обмежена %d елементами та форматом Markdown. Оновіть для необмеженого експорту та всіх форматів.</item>
+        <item quantity="many">Безкоштовна версія обмежена %d елементами та форматом Markdown. Оновіть для необмеженого експорту та всіх форматів.</item>
+        <item quantity="other">Безкоштовна версія обмежена %d елементами та форматом Markdown. Оновіть для необмеженого експорту та всіх форматів.</item>
+    </plurals>
+    <string name="export_upgrade_action">Оновити</string>
 </resources>

@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play አገልግሎቶች አይገኙም።</string>
     <string name="upgrades_no_purchases_found_check_account">ምንም ግዢዎች አልተገኙም። ትክክለኛውን መለያ እየተጠቀሙ ነው?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot አዶዘቕ ዘርዘር እና ስሴያወን ይካባተኻላለ። ደርጉን ወደፈርም ብጅት ይደግፋለ።</string>
+    <string name="upgrade_screen_subscription_trial_action">የ፣የ ንብስት ይጀምሩ</string>
+    <string name="upgrade_screen_subscription_action">ይመዝገቡ</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/ወር ፣ በመዘኘም መቀሰል ይቻላለ</string>
+    <string name="upgrade_screen_iap_action">Pro የጭንት</string>
+    <string name="upgrade_screen_iap_action_hint">%s የአክ ሥዳን</string>
+    <string name="upgrade_screen_restore_purchase_action">ግዢን ወደነበረበት መልስ</string>
+    <string name="upgrade_screen_restore_purchase_message">ምንም የሥዳ አልተገኙም። በဍርው የ Google መገለጫዘርዘር ፣ ለዒል ዘስትወ።</string>
+    <string name="upgrade_screen_options_description">ኰይዘቶች በርስ ይተያያኳሉ። በአንደም መቀሰል ይቻላሉ።</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

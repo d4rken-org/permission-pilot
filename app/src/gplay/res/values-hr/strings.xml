@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Usluge Google Playa nisu dostupne.</string>
     <string name="upgrades_no_purchases_found_check_account">Nisu pronađene kupnje. Koristite li pravi račun?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot je bez oglasa i poštuje vašu privatnost. Nadogradnjom podržavate daljnji razvoj.</string>
+    <string name="upgrade_screen_subscription_trial_action">Započnite besplatnu probu</string>
+    <string name="upgrade_screen_subscription_action">Pretplatite se</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/mjesečno, otkažite u bilo koje vrijeme</string>
+    <string name="upgrade_screen_iap_action">Kupi Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Jednokratna kupnja od %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Obnovi kupnju</string>
+    <string name="upgrade_screen_restore_purchase_message">Nisu pronađene kupnje. Provjerite jeste li prijavljeni ispravnim Google računom.</string>
+    <string name="upgrade_screen_options_description">Pretplate se automatski obnavljaju. Možete otkazati u bilo koje vrijeme.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

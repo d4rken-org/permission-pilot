@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot on ilmainen ja avoimen lähdekoodin sovellus. Tukesi auttaa pitämään sen sellaisena.</string>
+    <string name="upgrade_foss_sponsor_action">Tule sponsoriksi</string>
+    <string name="upgrade_foss_sponsor_subtitle">Avaa GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">Käy katsomassa sponsorointisivua!</string>
 </resources>

@@ -7,17 +7,21 @@
     <string name="general_done_action">हो गया</string>
     <string name="general_open_action">खोलें</string>
     <string name="general_continue_action">जारी रखें</string>
-    <string name="upgrade_buy_pro_action">Pro संस्करण खरीदें</string>
     <string name="general_no_action">नहीं</string>
-    <string name="upgrade_donate_action">दान करें</string>
-    <string name="debug_debuglog_size_label">आकार</string>
-    <string name="debug_debuglog_size_compressed_label">संपीड़ित आकार</string>
-    <string name="debug_notification_channel_label">डीबग सूचनाएं</string>
-    <string name="debug_debuglog_file_label">रिकॉर्ड की गई लॉग फ़ाइल</string>
-    <string name="debug_debuglog_record_action">डीबग लॉग रिकॉर्ड करें</string>
+    <string name="debug_debuglog_record_action">रिकॉर्ड</string>
     <string name="settings_category_other_label">अन्य</string>
+    <string name="settings_category_gethelp_label">सहायता प्राप्त करें</string>
+    <string name="settings_category_debug_label">डीबग</string>
+    <string name="settings_category_advanced_label">उन्नत</string>
     <string name="general_settings_label">सामान्य</string>
     <string name="general_settings_desc">सामान्य सेटिंग्स जो पूरे ऐप को प्रभावित करती हैं।</string>
+    <string name="general_settings_scan_speed_label">स्कैन गति</string>
+    <string name="general_settings_scan_speed_desc">ऐप्स स्कैन करते समय समानांतर संचालन को नियंत्रित करता है। उच्च मान तेज़ होते हैं, लेकिन कुछ डिवाइस पर क्रैश हो सकते हैं।</string>
+    <string name="general_settings_scan_speed_auto">स्वतः (अनुशंसित)</string>
+    <string name="general_settings_scan_speed_1">1 (सबसे सुरक्षित)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (सबसे तेज़)</string>
     <string name="changelog_label">बदलाव लॉग</string>
     <string name="settings_acknowledgements_label">आभार</string>
     <string name="general_thank_you_label">धन्यवाद</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">घूमने और सवाल पूछने की जगह।</string>
     <string name="issue_tracker_label">समस्या ट्रैकर</string>
     <string name="issue_tracker_description">बग रिपोर्ट और फीचर अनुरोधों के लिए एक सार्वजनिक समस्या ट्रैकर।</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">अक्सर पूछे जाने वाले प्रश्न और सामान्य समाधान।</string>
+    <string name="acks_maxpatchs_desc">सुंदर आइकॉन के लिए धन्यवाद।</string>
+    <string name="acks_crowdin_desc">ओपन-सोर्स प्रोजेक्ट्स के अनुवाद का समर्थन करने के लिए।</string>
     <string name="permissions_page_label">अनुमतियां</string>
     <string name="apps_page_label">ऐप्स</string>
     <string name="app_type_system_label">सिस्टम ऐप</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">रद्द करें</string>
     <string name="apps_filter_userapps_label">उपयोगकर्ता ऐप्स</string>
     <string name="apps_filter_systemapps_label">सिस्टम ऐप्स</string>
-    <string name="apps_filter_nointernet_label">बिना इंटरनेट एक्सेस वाले ऐप्स</string>
-    <string name="apps_filter_sideloaded_label">साइडलोड किए गए ऐप्स</string>
+    <string name="apps_filter_nointernet_label">इंटरनेट नहीं</string>
+    <string name="apps_filter_sideloaded_label">मैन्युअल रूप से इंस्टॉल किया गया</string>
     <string name="apps_filter_gplay_label">Google Play Store</string>
     <string name="apps_filter_oemstore_label">OEM स्टोर</string>
     <string name="apps_sort_permissions_granted_label">दी गई अनुमतियां</string>
@@ -67,6 +75,8 @@
     </plurals>
     <string name="apps_details_installer_label">इंस्टॉल स्रोत</string>
     <string name="apps_details_installer_unknown_label">जानकारी उपलब्ध नहीं</string>
+    <string name="apps_details_open_settings_error">इस प्रोफ़ाइल के लिए ऐप सेटिंग्स खोली नहीं जा सकी</string>
+    <string name="apps_details_open_app_error">यह ऐप खोली नहीं जा सकी</string>
     <string name="permissions_filter_manifest_label">AOSP अनुमतियां</string>
     <string name="permissions_filter_system_label">सिस्टम ऐप द्वारा घोषित</string>
     <string name="permissions_filter_user_label">उपयोगकर्ता ऐप द्वारा घोषित</string>
@@ -74,11 +84,15 @@
     <string name="permissions_filter_special_label">विशेष उपयोग</string>
     <string name="permissions_filter_installtime_label">स्वचालित रूप से दी गई</string>
     <string name="permissions_filter_installtime_hide_label">स्वचालित रूप से नहीं दी गई</string>
+    <string name="permissions_filter_sort_action">फ़िल्टर और क्रमबद्ध करें</string>
+    <string name="permissions_filter_section_source">स्रोत</string>
+    <string name="permissions_filter_section_type">प्रकार</string>
+    <string name="permissions_filter_section_sort_by">इसके अनुसार क्रमबद्ध करें</string>
     <string name="filter_granted_label">दी गई</string>
     <string name="filter_denied_label">अस्वीकृत</string>
     <string name="filter_configurable_label">कॉन्फ़िगर करने योग्य</string>
-    <string name="permissions_sort_apps_granted_label"># ऐप्स को दी गई</string>
-    <string name="permissions_sort_apps_requested_label"># ऐप्स ने अनुरोध किया</string>
+    <string name="permissions_sort_apps_granted_label">अनुमति प्राप्त ऐप्स की संख्या</string>
+    <string name="permissions_sort_apps_requested_label">अनुरोधित ऐप्स की संख्या</string>
     <string name="permissions_search_list_hint">अनुमतियां खोजें</string>
     <string name="apps_search_list_hint">ऐप्स खोजें</string>
     <string name="permissions_details_protection_label">सुरक्षा स्तर</string>
@@ -91,13 +105,19 @@
     <string name="permissions_permission_details_label">अनुमति विवरण</string>
     <string-array name="generic_loading_labels">
         <item>जल्द ही™</item>
-        <item>मक्खन पास कर रहे हैं</item>
-        <item>और RAM डाउनलोड कर रहे हैं</item>
-        <item>फिर भी iPhone से तेज़</item>
-        <item>आपके पीछे वो क्या है?</item>
-        <item>CPU चाय की छुट्टी पर है</item>
-        <item>Pepe Silvia से डेटा का इंतज़ार</item>
-        <item>टर्बो एनकैबुलेटर शुरू हो रहा है</item>
+        <item>मक्खन की तरह कार्य कर रहा है</item>
+        <item>अधिक रैम डाउनलोड कर रहा है</item>
+        <item>अभी भी एक iPhone से तेज है</item>
+        <item>सीपीयू कॉफी ब्रेक पर है</item>
+        <item>पेपे सिल्विया से आंकड़ों की प्रतीक्षा मैं</item>
+        <item>टर्बो एनकैब्युलेटर शुरू हो रहा है</item>
+        <item>लगभग हो गया… शायद</item>
+        <item>व्यस्त दिखने का नाटक कर रहा है</item>
+        <item>हैम्स्टर व्हील गर्म कर रहा है</item>
+        <item>ऐप्स को सहयोग करने के लिए मना रहा है</item>
+        <item>विनम्रता से अनुमतियां मांग रहा है</item>
+        <item>आपके ऐप्स वकील बुला रहे हैं</item>
+        <item>लाइनों को ध्यान से पढ़ रहा है</item>
     </string-array>
     <string name="apps_app_details_label">ऐप विवरण</string>
     <string name="apps_details_shareduserid_label">साझा उपयोगकर्ता ID वाले ऐप्स</string>
@@ -108,7 +128,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android सिस्टम</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">अपडेट किया गया %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">मैन्युअल रूप से इंस्टॉल किया गया</string>
+    <string name="apps_list_installer_preinstalled_label">पूर्व-स्थापित</string>
     <string name="general_refresh_action">रीफ़्रेश करें</string>
     <string name="general_expand_all_action">सभी विस्तृत करें</string>
     <string name="general_collapse_all_action">सभी संक्षिप्त करें</string>
@@ -117,16 +142,33 @@
     <string name="apps_details_twins_descriptions">अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किया गया।</string>
     <string name="install_date_label">इंस्टॉल तिथि</string>
     <string name="apps_filter_sharedid_label">साझा उपयोगकर्ता ID</string>
-    <string name="apps_filter_multipleprofiles_label">क्लोन वाले ऐप्स</string>
+    <string name="apps_filter_multipleprofiles_label">क्लोन हैं</string>
     <string name="support_debuglog_label">डीबग लॉग</string>
     <string name="support_debuglog_desc">ऐप जो कुछ भी करता है उसे एक टेक्स्ट फ़ाइल में रिकॉर्ड करें जिसे आप साझा कर सकते हैं।</string>
     <string name="updated_at_x">अंतिम अपडेट: %s</string>
     <string name="installed_at_x">पहली बार इंस्टॉल: %s</string>
     <string name="apps_sort_install_source_label">इंस्टॉल स्रोत</string>
     <string name="permissions_action_none_msg">इस अनुमति के लिए कोई कार्रवाई उपलब्ध नहीं</string>
-    <string name="apps_filter_profile_secondary_label">प्रबंधित प्रोफ़ाइल में ऐप्स</string>
-    <string name="apps_filter_battery_optimization_label">कस्टम बैटरी विकल्प वाले ऐप्स</string>
-    <string name="apps_filter_accessibility_label">एक्सेसिबिलिटी सेवाओं वाले ऐप्स</string>
+    <string name="apps_filter_profile_secondary_label">प्रबंधित प्रोफ़ाइल(s)</string>
+    <string name="apps_filter_battery_optimization_label">कस्टम बैटरी</string>
+    <string name="apps_filter_accessibility_label">एक्सेसिबिलिटी</string>
+    <string name="apps_filter_device_admin_label">डिवाइस अडमिन</string>
+    <string name="apps_filter_install_packages_label">ऐप्स इंस्टॉल कर सकता है</string>
+    <string name="apps_filter_overlay_label">ऐप्स के ओवर ड्रॉ करें</string>
+    <string name="apps_filter_camera_label">कैमरा एक्सेस</string>
+    <string name="apps_filter_location_label">स्थान एक्सेस</string>
+    <string name="apps_filter_microphone_label">माइक्रोफ़ोन एक्सेस</string>
+    <string name="apps_filter_contacts_label">संपर्क एक्सेस</string>
+    <string name="apps_filter_old_api_target_label">पुराने Android को लक्ष्य करता है</string>
+    <string name="apps_filter_manifest_flags_label">ऐप्स खोज सकता है</string>
+    <string name="apps_filter_section_app_type">ऐप प्रकार</string>
+    <string name="apps_filter_section_install_source">इंस्टॉल स्रोत</string>
+    <string name="apps_filter_section_properties">गुण</string>
+    <string name="apps_filter_section_profile">प्रोफ़ाइल</string>
+    <string name="apps_filter_section_sort_by">इसके अनुसार क्रमबद्ध करें</string>
+    <string name="apps_filter_sort_action">फ़िल्टर और क्रमबद्ध करें</string>
+    <string name="apps_help_tag_icons_title">अनुमति चिप्स</string>
+    <string name="apps_help_tag_icons_description">चिप्स दिखाते हैं कि किसी ऐप को कौन सी संवेदनशील अनुमति श्रेणियाँ दी गई हैं</string>
     <string name="apps_details_description_restrictions_caveat_description">यह ऐप किसी अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किया गया है। Android प्रतिबंधों के कारण, दी गई अनुमतियां केवल वर्तमान सक्रिय प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स के लिए निर्धारित की जा सकती हैं।</string>
     <string name="apps_details_description_uninstalled_caveat">यह ऐप अनइंस्टॉल कर दिया गया है लेकिन इसका डेटा रखा गया है। अनइंस्टॉल किए गए ऐप्स के लिए अनुमति स्थिति निर्धारित नहीं की जा सकती।</string>
     <plurals name="apps_details_description_secondary_description">
@@ -138,13 +180,64 @@
         <item quantity="other">%2$d में से %1$d अनुमतियाँ दी गई।</item>
     </plurals>
     <string name="apps_details_empty_filter_message">वर्तमान फ़िल्टर से कोई अनुमति मेल नहीं खाती। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
+    <string name="apps_details_perm_tag_runtime">रनटाइम</string>
+    <string name="apps_details_perm_tag_special">विशेष</string>
+    <string name="apps_details_perm_tag_install">इंस्टॉल</string>
+    <string name="apps_details_perm_help_title">अनुमति संकेतक</string>
+    <string name="apps_details_perm_help_runtime">रनटाइम — इस अनुमति का उपयोग करने से पहले ऐप को आपसे पूछना होगा। आप इसे अनुमति दे सकते हैं या अस्वीकार कर सकते हैं।</string>
+    <string name="apps_details_perm_help_special">विशेष — सिस्टम सेटिंग्स में स्विच टॉगल करने की आवश्यकता है।</string>
+    <string name="apps_details_perm_help_install">इंस्टॉल — ऐप इंस्टॉल होने पर स्वचालित रूप से दी जाती है। उपयोगकर्ता की कोई कार्रवाई आवश्यक नहीं।</string>
+    <string name="apps_details_perm_help_declared">⚠ आइकॉन का अर्थ है कि यह अनुमति स्वयं ऐप द्वारा बनाई गई है, न कि यह कोई मानक Android अनुमति है।</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">ऐप मेनिफेस्ट</string>
+    <string name="apps_details_manifest_queued">विश्लेषण के लिए कतार में…</string>
+    <string name="apps_details_manifest_loading">मेनिफेस्ट का विश्लेषण हो रहा है…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d मेनिफेस्ट विश्लेषण के लिए बाकी…</item>
+        <item quantity="other">%d मेनिफेस्ट विश्लेषण के लिए बाकी…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">कुछ असामान्य नहीं मिला</string>
+    <string name="apps_details_manifest_unavailable">मेनिफेस्ट उपलब्ध नहीं</string>
+    <string name="apps_details_manifest_error">मेनिफेस्ट नहीं पढ़ा जा सका</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d पैकेज क्वेरी</item>
+        <item quantity="other">%d पैकेज क्वेरीज़</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d इंटेंट क्वेरी</item>
+        <item quantity="other">%d इंटेंट क्वेरीज़</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d प्रोवाइडर क्वेरी</item>
+        <item quantity="other">%d प्रोवाइडर क्वेरीज़</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">सभी इंस्टॉल किए गए ऐप्स खोज सकता है</string>
+    <string name="apps_details_manifest_hint_excessive">कई विशिष्ट ऐप्स की जाँच करता है</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">मेनिफेस्ट व्यूअर</string>
+    <string name="apps_manifest_viewer_search_hint">मेनिफेस्ट में खोजें</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d मिलान</item>
+        <item quantity="other">%d मिलान</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d में से %2$d</string>
+    <string name="apps_manifest_section_uses_permission">उपयोग की अनुमति</string>
+    <string name="apps_manifest_section_permission">अनुमति</string>
+    <string name="apps_manifest_section_queries">क्वेरीज़</string>
+    <string name="apps_manifest_section_activities">गतिविधियाँ</string>
+    <string name="apps_manifest_section_services">सेवाएँ</string>
+    <string name="apps_manifest_section_receivers">रिसीवर</string>
+    <string name="apps_manifest_section_providers">प्रोवाइडर</string>
+    <string name="apps_manifest_section_meta_data">मेटा डेटा</string>
+    <string name="apps_manifest_section_other">अन्य</string>
     <string name="api_target_level_x">लक्ष्य संस्करण: %s</string>
     <string name="api_minimum_level_x">न्यूनतम संस्करण: %s</string>
     <string name="api_build_level_x">कंपाइल संस्करण: %s</string>
     <string name="permission_reboot_label">डिवाइस रीबूट करें</string>
     <string name="permission_reboot_description">ऐप को डिवाइस रीबूट करने की अनुमति देता है। केवल सिस्टम ऐप्स के लिए उपलब्ध।</string>
     <string name="permissions_sort_apps_relevance_label">प्रासंगिकता</string>
-    <string name="apps_filter_profile_active_label">सक्रिय प्रोफ़ाइल में ऐप्स</string>
+    <string name="apps_filter_profile_active_label">सक्रिय प्रोफ़ाइल</string>
     <string name="overview_page_label">अवलोकन</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s आइटम</item>
@@ -174,8 +267,55 @@
         <item quantity="one">सिस्टम ऐप्स: %2$d में से %1$d को दी गई।</item>
         <item quantity="other">सिस्टम ऐप्स: %2$d में से %1$d को दी गई।</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">अन्य उपयोगकर्ता प्रोफ़ाइलों में %d ऐप भी इस अनुमति का अनुरोध करता है।</item>
+        <item quantity="other">अन्य उपयोगकर्ता प्रोफ़ाइलों में %d ऐप्स भी इस अनुमति का अनुरोध करते हैं।</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">डेटा रखने वाला %d अनइंस्टॉल ऐप भी इस अनुमति का अनुरोध करता है।</item>
+        <item quantity="other">डेटा रखने वाले %d अनइंस्टॉल ऐप्स भी इस अनुमति का अनुरोध करते हैं।</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android प्रतिबंधों के कारण अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स को उपरोक्त गणना से बाहर रखा गया है।</string>
     <string name="permissions_details_empty_filter_message">वर्तमान फ़िल्टर से कोई ऐप मेल नहीं खाता। समायोजित करने के लिए फ़िल्टर आइकन पर टैप करें।</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">रनटाइम</string>
+    <string name="permissions_tag_install_time_label">इंस्टॉल समय</string>
+    <string name="permissions_tag_special_access_label">विशेष एक्सेस</string>
+    <string name="permissions_tag_documented_label">दस्तावेज़ीकृत</string>
+    <string name="permissions_tag_notable_label">उल्लेखनीय</string>
+    <string name="permissions_tag_non_standard_label">गैर-मानक</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">उपयोग में</string>
+    <string name="permissions_status_unknown_label">अज्ञात</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">सिस्टम</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d और</item>
+        <item quantity="other">+%d और</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">अनुमति संकेतक</string>
+    <string name="permissions_details_help_section_protection">सुरक्षा प्रकार</string>
+    <string name="permissions_details_help_dangerous">खतरनाक — रनटाइम पर उपयोगकर्ता की स्पष्ट स्वीकृति आवश्यक है। संवेदनशील डेटा या डिवाइस फ़ीचर एक्सेस कर सकती है।</string>
+    <string name="permissions_details_help_normal">सामान्य — इंस्टॉल समय स्वचालित रूप से दी जाती है। अन्य ऐप्स या सिस्टम के लिए न्यूनतम जोखिम होती है।</string>
+    <string name="permissions_details_help_signature">सिग्नेचर — केवल उन ऐप्स को दी जाती है जो उसी प्रमाणपत्र से हस्ताक्षरित हैं जिस ऐप ने अनुमति घोषित की है।</string>
+    <string name="permissions_details_help_internal">आंतरिक — Android सिस्टम इंटरनल के लिए आरक्षित। तृतीय-पक्ष ऐप्स के लिए उपलब्ध नहीं।</string>
+    <string name="permissions_details_help_section_tags">अनुमति टैग</string>
+    <string name="permissions_details_help_tag_runtime">रनटाइम — इस अनुमति का उपयोग करने से पहले ऐप को आपसे पूछना होगा।</string>
+    <string name="permissions_details_help_tag_install_time">इंस्टॉल समय — ऐप इंस्टॉल होने पर स्वचालित रूप से दी जाती है।</string>
+    <string name="permissions_details_help_tag_special_access">विशेष एक्सेस — सिस्टम सेटिंग्स में स्विच टॉगल करने की आवश्यकता है।</string>
+    <string name="permissions_details_help_tag_documented">दस्तावेज़ीकृत — आधिकारिक Android मैनिफेस्ट दस्तावेज़ीकरण में सूचीबद्ध।</string>
+    <string name="permissions_details_help_tag_notable">उल्लेखनीय — गोपनीयता या सुरक्षा पर इसके प्रभाव के कारण विशेष रूप से ध्यान देने योग्य।</string>
+    <string name="permissions_details_help_tag_non_standard">गैर-मानक — मानक Android अनुमति सेट का हिस्सा नहीं। तृतीय-पक्ष ऐप या OEM द्वारा घोषित।</string>
+    <string name="permissions_details_status_help_title">स्थिति संकेतक</string>
+    <string name="permissions_details_help_section_status">अनुमति स्थिति</string>
+    <string name="permissions_details_help_status_granted">दी गई — ऐप को यह अनुमति दी गई है।</string>
+    <string name="permissions_details_help_status_in_use">उपयोग में — दी गई है और वर्तमान में सक्रिय रूप से ऐप द्वारा उपयोग की जा रही है।</string>
+    <string name="permissions_details_help_status_denied">अस्वीकार — ऐप ने यह अनुमति मांगी थी लेकिन इसे दी नहीं गई।</string>
+    <string name="permissions_details_help_status_unknown">अज्ञात — अनुमति स्थिति निर्धारित नहीं की जा सकती, जैसे अन्य उपयोगकर्ता प्रोफ़ाइलों के ऐप्स के लिए।</string>
+    <string name="permissions_details_help_section_badges">बैज</string>
+    <string name="permissions_details_help_system_badge">सिस्टम — यह ऐप पूर्व-इंस्टॉल सिस्टम ऐप है।</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">ऐप्स को Near Field Communication (NFC) टैग, कार्ड और रीडर से संचार करने की अनुमति देता है।</string>
     <string name="permission_manage_media_label">मीडिया प्रबंधित करें</string>
@@ -187,7 +327,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth विज्ञापन</string>
     <string name="permission_bluetooth_advertise_description">ऐप्स को पास के Bluetooth डिवाइसों को विज्ञापन करने की अनुमति देता है।</string>
     <string name="permission_get_accounts_label">खाते प्राप्त करें</string>
-    <string name="permission_get_accounts_description">ऐप्स को फ़ोन द्वारा ज्ञात खातों की सूची प्राप्त करने की अनुमति देता है। इसमें आपके द्वारा इंस्टॉल किए गए ऐप्स द्वारा बनाए गए कोई भी खाते शामिल हो सकते हैं।</string>
+    <string name="permission_get_accounts_description">डिवाइस द्वारा ज्ञात खातों की सूची प्राप्त करने की अनुमति देता है। इसमें आपके इंस्टॉल किए एप्लिकेशन द्वारा बनाए गए खाते भी शामिल हो सकते हैं।</string>
     <string name="permission_access_background_location_label">बैकग्राउंड लोकेशन एक्सेस</string>
     <string name="permission_access_background_location_description">ऐप्स को किसी भी समय लोकेशन एक्सेस करने की अनुमति देता है, यहां तक कि जब वे उपयोग में नहीं हैं।</string>
     <string name="permission_access_media_location_label">मीडिया लोकेशन एक्सेस</string>
@@ -201,7 +341,7 @@
     <string name="permission_read_sync_settings_label">सिंक सेटिंग्स पढ़ें</string>
     <string name="permission_read_sync_settings_description">ऐप्स को किसी खाते की सिंक सेटिंग्स पढ़ने की अनुमति देता है।</string>
     <string name="permission_install_unknown_apps_label">अज्ञात ऐप्स इंस्टॉल करें (अज्ञात स्रोत)</string>
-    <string name="permission_install_unknown_apps_description">ऐप्स को आपके डिवाइस पर अन्य ऐप्स इंस्टॉल (साइडलोड) करने की अनुमति देता है। इससे आपका डिवाइस और डेटा जोखिम में पड़ सकता है।</string>
+    <string name="permission_install_unknown_apps_description">ऐप्स को आपके डिवाइस पर अन्य ऐप्स मैन्युअल रूप से इंस्टॉल करने की अनुमति देता है। इससे आपके डिवाइस और डेटा को खतरा हो सकता है।</string>
     <string name="permission_all_files_access_label">सभी फ़ाइलों तक पहुंच</string>
     <string name="permission_all_files_access_description">ऐप्स को आपके डिवाइस और किसी भी कनेक्टेड स्टोरेज डिवाइस पर सभी फ़ाइलें पढ़ने, संशोधित करने और हटाने की अनुमति देता है। इस अनुमति वाले ऐप्स आपको सूचित किए बिना ऐप से असंबंधित फ़ाइलों तक भी पहुंच सकते हैं।</string>
     <string name="permission_appear_on_top_label">ऊपर दिखाई दें</string>
@@ -260,23 +400,322 @@
     <string name="permission_group_camera_description">कैमरा संबंधित अनुमतियां।</string>
     <string name="permission_group_audio_label">माइक्रोफ़ोन</string>
     <string name="permission_group_audio_description">माइक्रोफ़ोन संबंधित अनुमतियां।</string>
+    <string name="permissions_list_empty_message">कोई अनुमति दिखाने के लिए नहीं।</string>
+    <string name="permissions_list_empty_search_message">आपकी खोज से कोई अनुमति मेल नहीं खाती।</string>
     <string name="permission_picture_in_picture_label">पिक्चर इन पिक्चर</string>
+    <string name="permission_legacy_storage_label">लेगेसी स्टोरेज</string>
+    <string name="permission_legacy_storage_description">स्कोपड स्टोरेज प्रतिबंधों के बिना एक्सटर्नल स्टोरेज एक्सेस करने की अनुमति देता है। यह Android 10 से पहले डिफ़ॉल्ट व्यवहार था। इस एक्सेस वाले ऐप्स शेयर्ड स्टोरेज पर कहीं भी फ़ाइलें पढ़ और लिख सकते हैं।</string>
+    <string name="settings_page_label">सेटिंग्स</string>
+    <string name="overview_summary_title_label">सारांश</string>
+    <string name="permissions_details_declaring_apps_label">घोषणा करने वाले ऐप्स</string>
+    <string name="permissions_details_requesting_apps_label">अनुरोध करने वाले ऐप्स</string>
     <string name="overview_device_android_version_label">Android संस्करण</string>
     <string name="overview_device_name_label">डिवाइस</string>
     <string name="overview_device_android_patch_label">पैच स्तर</string>
     <string name="overview_summary_apps_active_profile_label">सक्रिय प्रोफ़ाइल में ऐप्स</string>
     <string name="overview_summary_apps_other_profile_label">प्रबंधित उपयोगकर्ता प्रोफ़ाइल में ऐप्स, क्लोन को छोड़कर</string>
-    <string name="overview_summary_apps_sideloaded_label">बाहरी स्रोतों से साइडलोड किए गए ऐप्स</string>
+    <string name="overview_summary_apps_sideloaded_label">बाहरी स्रोतों से मैन्युअल रूप से इंस्टॉल किए गए ऐप्स</string>
     <string name="overview_summary_apps_installers_label">\'अज्ञात स्रोतों से इंस्टॉल\' सक्षम वाले ऐप्स</string>
     <string name="overview_summary_apps_overlayers_label">\'ऊपर दिखाई दें\' सकने वाले ऐप्स</string>
     <string name="overview_summary_apps_offline_label">\'कोई इंटरनेट नहीं\' अनुमति वाले ऐप्स</string>
     <string name="overview_summary_apps_clones_label">अन्य प्रोफ़ाइल में क्लोन वाले ऐप्स</string>
     <string name="overview_summary_apps_sharedids_label">SharedUserID वाले ऐप्स</string>
+    <string name="overview_summary_apps_camera_label">कैमरा एक्सेस वाले ऐप्स</string>
+    <string name="overview_summary_apps_location_label">स्थान एक्सेस वाले ऐप्स</string>
+    <string name="overview_summary_apps_microphone_label">माइक्रोफ़ोन एक्सेस वाले ऐप्स</string>
+    <string name="overview_summary_apps_contacts_label">संपर्क एक्सेस वाले ऐप्स</string>
+    <string name="overview_summary_apps_gplay_label">Google Play से ऐप्स</string>
+    <string name="overview_summary_apps_oemstore_label">OEM स्टोर से ऐप्स</string>
+    <string name="overview_summary_apps_battery_label">बैटरी अप्रतिबंधित ऐप्स</string>
+    <string name="overview_summary_apps_oldapi_label">Android 10 से नीचे लक्ष्य करने वाले ऐप्स</string>
+    <string name="overview_section_profile_label">प्रोफ़ाइल</string>
+    <string name="overview_section_install_source_label">इंस्टॉल स्रोत</string>
+    <string name="overview_section_privacy_label">निजता</string>
+    <string name="overview_section_security_label">सुरक्षा</string>
+    <string name="overview_section_manifest_label">मेनिफेस्ट</string>
+    <string name="overview_summary_apps_manifest_flags_label">ऐप्स खोज सकता है</string>
+    <string name="overview_section_system_label">सिस्टम</string>
     <string name="permission_bind_accessibility_service_label">एक्सेसिबिलिटी सेवा प्रदान करें</string>
     <string name="permission_bind_accessibility_service_description">ऐप को एक एक्सेसिबिलिटी सेवा प्रदान करने की अनुमति देता है जो सिस्टम सेटिंग्स में सक्षम की जा सकती है।</string>
     <string name="debug_debuglog_sensitive_information_message">इस फ़ाइल में संवेदनशील जानकारी है (जैसे आपके इंस्टॉल किए गए ऐप्स)। इसे केवल विश्वसनीय पक्षों के साथ साझा करें।</string>
     <string name="settings_debuglog_explanation">यह सुविधा ऐप जो कुछ भी करता है उसे एक साझा करने योग्य फ़ाइल में रिकॉर्ड करती है। उत्पन्न फ़ाइल में संवेदनशील जानकारी होती है (जैसे आपके इंस्टॉल किए गए ऐप्स)। इसे केवल विश्वसनीय पक्षों के साथ साझा करें (जैसे ऐप डेवलपर यदि आप एक साथ किसी समस्या का निवारण कर रहे हैं)।</string>
+    <string name="support_debuglog_recording">रिकॉर्डिंग…</string>
+    <string name="support_debuglog_stop_label">डीबग लॉग रोकें</string>
+    <string name="support_contact_label">डेवलपर से संपर्क करें</string>
+    <string name="support_contact_desc">डेवलपर को ईमेल भेजने के लिए एक फोर्म भरें।</string>
+    <string name="support_debuglog_clear_action">संग्रहीत डीबग लॉग साफ़ करें</string>
+    <string name="debug_debuglog_short_recording_title">रिकॉर्डिंग बहुत छोटी</string>
+    <string name="debug_debuglog_short_recording_message">डीबग लॉग को समस्या होने के दौरान उसे कैपचर करना ज़रूरी है। रिकॉर्डिंग शुरू करें, अपनी समस्या दोहराएं, फिर रिकॉर्डिंग बंद करें।</string>
+    <string name="debug_debuglog_short_recording_continue">रिकॉर्डिंग जारी रखें</string>
+    <string name="debug_debuglog_short_recording_stop">फिर भी रोकें</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d डीबग लॉग (%2$s)</item>
+        <item quantity="other">%1$d डीबग लॉग (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">डीबग लॉग साफ़ करें?</string>
+    <string name="support_debuglog_clear_message">इससे संग्रहीत सभी डीबग लॉग फ़ाइलें हट जाएंगी।</string>
+    <string name="support_debuglog_sessions_title">डीबग लॉग</string>
+    <string name="support_debuglog_session_delete_title">डीबग लॉग हटाएं?</string>
+    <string name="support_debuglog_session_delete_message">यह डीबग लॉग स्थायी रूप से हट जाएगी।</string>
+    <string name="support_debuglog_sessions_empty">कोई डीबग लॉग नहीं</string>
+    <string name="support_debuglog_session_invalid">अमान्य सेशन</string>
+    <string name="support_debuglog_session_recording">रिकॉर्डिंग…</string>
+    <string name="support_debuglog_session_compressing">संपीड़ित हो रहा है…</string>
+    <string name="support_debuglog_failed_empty_log">खाली लॉग फ़ाइल</string>
+    <string name="support_debuglog_failed_missing_log">लॉग फ़ाइल गायब</string>
+    <string name="support_debuglog_failed_corrupt_zip">दूषित ZIP फ़ाइल</string>
+    <string name="support_debuglog_failed_zip_failed">संपीड़न विफल</string>
+    <string name="support_debuglog_sent_title">लॉग भेजा?</string>
+    <string name="support_debuglog_sent_message">अगर आपने डीबग लॉग भेजा, तो जगह खाली करने के लिए इसे हटाया जा सकता है।</string>
+    <string name="support_contact_sent_title">संदेश भेजा?</string>
+    <string name="support_contact_sent_message">अगर आपने ईमेल भेजा, तो इस सेशन को साफ़ किया जा सकता है।</string>
+    <string name="general_close_action">बंद करें</string>
+    <string name="debug_debuglog_screen_delete_action">मिटाएं</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">सहायता से संपर्क करें</string>
+    <string name="contact_category_label">श्रेणी</string>
+    <string name="contact_category_question_label">प्रश्न</string>
+    <string name="contact_category_feature_label">फ़ीचर अनुरोध</string>
+    <string name="contact_category_bug_label">बग रिपोर्ट</string>
+    <string name="contact_description_label">विवरण</string>
+    <string name="contact_description_hint_question">अपना प्रश्न विस्तार से बताएं। कृपया स्पष्ट रहें (न्यूनतम 20 शब्द)।</string>
+    <string name="contact_description_hint_feature">वह फ़ीचर बताएं जो आप देखना चाहते हैं। कृपया स्पष्ट रहें (न्यूनतम 20 शब्द)।</string>
+    <string name="contact_description_hint_bug">क्या हुआ और समस्या दोहराने का तरीका बताएं। कृपया स्पष्ट रहें (न्यूनतम 20 शब्द)।</string>
+    <string name="contact_expected_behavior_label">अपेक्षित व्यवहार</string>
+    <string name="contact_expected_behavior_hint">बताएं कि आप क्या होने की उम्मीद करते थे (न्यूनतम 10 शब्द)।</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d शब्द</item>
+        <item quantity="other">%1$d / %2$d शब्द</item>
+    </plurals>
+    <string name="contact_send_action">ईमेल ऐप खोलें</string>
+    <string name="contact_debuglog_picker_label">डीबग लॉग</string>
+    <string name="contact_debuglog_picker_hint">कोई मौजूदा डीबग लॉग जोड़ें, या नया रिकॉर्ड करें।</string>
+    <string name="contact_debuglog_empty">कोई डीबग लॉग नहीं मिली। पहले एक रिकॉर्ड करें।</string>
+    <string name="contact_debuglog_record_action">डिबग लॉग रिकॉर्ड करें</string>
+    <string name="contact_debuglog_stop_action">रिकॉर्डिंग रोकें</string>
+    <string name="contact_debuglog_delete_title">डीबग लॉग हटाएं?</string>
+    <string name="contact_debuglog_delete_message">यह डीबग लॉग स्थायी रूप से हट जाएगी।</string>
+    <string name="contact_debuglog_zip_error">डीबग लॉग संपीड़ित करने में विफल</string>
+    <string name="contact_no_email_app">इस डिवाइस पर कोई ईमेल ऐप नहीं मिली।</string>
+    <string name="contact_welcome_message">मैं हर संदेश खुद पढ़ता हूं और जवाब देने की पूरी कोशिश करता हूं। चूंकि मैं डेवलपमेंट, बग फ़िक्स और सहायता अकेले संभालता हूं, इसमें कुछ समय लग सकता है। आपके धैर्य के लिए धन्यवाद।</string>
+    <string name="contact_footer_message">आपका संदेश ईमेल द्वारा भेजा जाएगा। डिवाइस और सेटअप जानकारी स्वचालित रूप से जोड़ी जाती है। आप ईमेल में स्क्रीनशॉट या वीडियो जोड़ सकते हैं। कृपया संभव हो तो अंग्रेज़ी में लिखें।</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">रखें</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">डीबग लॉग</string>
+    <string name="debug_debuglog_screen_subtitle">समस्या निवारण के लिए डीबग जानकारी एक्सपोर्ट करें</string>
+    <string name="debug_debuglog_screen_sensitive_title">संवेदनशील जानकारी</string>
+    <string name="debug_debuglog_screen_session_path_label">सेशन पाथ</string>
+    <string name="debug_debuglog_screen_log_files_label">लॉग फ़ाइलें</string>
+    <string name="debug_debuglog_screen_discard_action">खारिज करे</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d फ़ाइल तैयार (%2$s)</item>
+        <item quantity="other">%1$d फ़ाइलें तैयार (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dम %2$dस</string>
+    <string name="debug_debuglog_screen_duration_s">%1$dस</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">प्रश्न</string>
+    <string name="contact_email_tag_feature">फ़ीचर</string>
+    <string name="contact_email_tag_bug">बग</string>
+    <string name="contact_email_section_expected_behavior">--- अपेक्षित व्यवहार ---</string>
+    <string name="contact_email_section_device_info">--- डिवाइस जानकारी ---</string>
     <string name="onboarding_body1">यह ऐप आपको इंस्टॉल किए गए ऐप्स को नेविगेट करने और अनुमतियों की खोज करने में मदद करता है।</string>
     <string name="onboarding_body2">Permission Pilot इंस्टॉल किए गए ऐप्स की जानकारी एकत्र करता है ताकि इस एप्लिकेशन का उपयोग करते समय आपके ऐप्स की सूची और उनकी अनुमतियों को क्रॉस-रेफ़रेंस करना संभव हो।</string>
     <string name="onboarding_body3">Permission Pilot में कोई विज्ञापन नहीं है और यह केवल स्थानीय रूप से डेटा प्रोसेस करता है।</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">थीम मोड</string>
+    <string name="ui_theme_mode_system_label">सिस्टम</string>
+    <string name="ui_theme_mode_dark_label">डार्क</string>
+    <string name="ui_theme_mode_light_label">सफ़ेद</string>
+    <string name="ui_theme_style_label">थीम शैली</string>
+    <string name="ui_theme_style_default_label">डिफ़ॉल्ट</string>
+    <string name="ui_theme_style_materialyou_label">मटीरियल यू</string>
+    <string name="ui_theme_style_mediumcontrast_label">मध्यम कंट्रास्ट</string>
+    <string name="ui_theme_style_highcontrast_label">उच्च कंट्रास्ट</string>
+    <string name="ui_theme_color_label">थीम रंग</string>
+    <string name="ui_theme_color_blue_label">नीला</string>
+    <string name="ui_theme_color_green_label">हरा</string>
+    <string name="ui_theme_color_amber_label">एम्बर</string>
+    <string name="ui_theme_color_disabled_subtitle">वॉलपेपर रंगों का उपयोग करता है</string>
+    <string name="upgrade_required_subtitle">अनलॉक करने के लिए अपग्रेड करें</string>
+    <string name="settings_category_appearance_label">दिखावट</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">थीम अनुकूलन</string>
+    <string name="upgrade_benefit_filtering">उन्नत फ़िल्टरिंग</string>
+    <string name="upgrade_benefit_export">बैच डेटा एक्सपोर्ट</string>
+    <string name="upgrade_benefit_monitoring">अनुमति निगरानी</string>
+    <string name="upgrade_benefit_support">डेवलपर का समर्थन करें</string>
+    <string name="upgrade_benefit_manifest_viewer">कच्चे ऐप मेनिफेस्ट ब्राउज़ करें</string>
+    <string name="general_upgrade_action">उन्नत करें</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">वॉचर</string>
+    <string name="watcher_dashboard_feature_title">अनुमति वॉचर</string>
+    <string name="watcher_dashboard_feature_description">जब कोई ऐप अपडेट नई अनुमतियां जोड़ता है या मौजूदा अनुमतियां बदलता है तो सूचना पाएं। अनुमति वॉचर प्रत्येक अपडेट के बाद आपके ऐप्स जांचता है और कुछ बदलने पर रिपोर्ट बनाता है।</string>
+    <string name="watcher_dashboard_manage_in_settings">सेटिंग्स में अक्षम और कॉन्फ़िगर किया जा सकता है</string>
+    <string name="watcher_enable_action">सक्षम करें</string>
+    <string name="watcher_channel_name">अनुमति वॉचर</string>
+    <string name="watcher_channel_description">इंस्टॉल किए ऐप्स में अनुमति बदलाव की सूचनाएं</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s ने %2$d नई अनुमति प्राप्त की</item>
+        <item quantity="other">%1$s ने %2$d नई अनुमतियां प्राप्त कीं</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d अनुमति बदली</item>
+        <item quantity="other">%1$s: %2$d अनुमतियां बदलीं</item>
+    </plurals>
+    <string name="watcher_settings_label">अनुमति वॉचर</string>
+    <string name="watcher_settings_desc">अनुमति बदलाव के लिए ऐप्स की निगरानी करें</string>
+    <string name="watcher_enabled_label">वॉचर सक्षम करें</string>
+    <string name="watcher_enabled_desc">ऐप्स इंस्टॉल या अपडेट होने पर अनुमति बदलाव का पता लगाएं</string>
+    <string name="watcher_scope_label">वॉच दायरा</string>
+    <string name="watcher_scope_all">सभी ऐप्स</string>
+    <string name="watcher_scope_non_system">केवल गैर-सिस्टम ऐप्स</string>
+    <string name="watcher_reports_label">अनुमति बदलाव रिपोर्ट</string>
+    <string name="watcher_reports_empty">अभी तक कोई अनुमति बदलाव नहीं देखा गया</string>
+    <string name="watcher_report_detail_label">बदलाव रिपोर्ट</string>
+    <string name="watcher_diff_added_permissions">नई अनुमतियां</string>
+    <string name="watcher_diff_removed_permissions">हटाई गई अनुमतियां</string>
+    <string name="watcher_diff_grant_changes">अनुमति देने के बदलाव</string>
+    <string name="watcher_diff_added_declared">नई घोषित अनुमतियां</string>
+    <string name="watcher_diff_removed_declared">हटाई गई घोषित अनुमतियां</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">इंस्टॉल किया</string>
+    <string name="watcher_event_update">अपडेट किया</string>
+    <string name="watcher_event_removed">हटाया</string>
+    <string name="watcher_event_grant_change">अनुमति बदली</string>
+    <string name="watcher_mark_all_seen">सभी देखा हुआ के रूप में चिह्नित करें</string>
+    <string name="watcher_notification_action_mark_seen">देखा हुआ चिह्नित करें</string>
+    <string name="watcher_notification_action_delete">मिटाएं</string>
+    <string name="watcher_notification_body_added">जोड़ा गया: %s</string>
+    <string name="watcher_notification_body_removed">हटाया गया: %s</string>
+    <string name="watcher_notification_body_grant_changed">अनुमति बदली: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d ऐप ने अनुमतियां बदलीं</item>
+        <item quantity="other">%d ऐप्स ने अनुमतियां बदलीं</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">नोटिफिकेशन्स सूचनाएँ दिखाएँ</string>
+    <string name="watcher_settings_notifications_desc">अनुमति बदलाव से बाद सूचना दिखाएं</string>
+    <string name="watcher_settings_notifications_only_gained_label">केवल प्राप्त अनुमतियों पर सूचना दें</string>
+    <string name="watcher_settings_notifications_only_gained_desc">केवल तब सूचना दें जब ऐप्स नई अनुमतियां प्राप्त करते हैं, जैसे रनटाइम अनुमति अनुमत है या इंटरनेट जैसी इंस्टॉल अनुमति जोड़ी गई है</string>
+    <string name="watcher_settings_retention_label">रिपोर्ट रखें</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d दिन</item>
+        <item quantity="other">%d दिन</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">सभी रिपोर्ट साफ़ करें</string>
+    <string name="watcher_settings_clear_reports_confirm_title">सभी रिपोर्ट साफ़ करें?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">सभी अनुमति बदलाव रिपोर्ट स्थायी रूप से हट जाएंगी।</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d रिपोर्ट</item>
+        <item quantity="other">%d रिपोर्ट</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">सूचनाएं उपलब्ध नहीं</string>
+    <string name="watcher_notification_permission_description">अनुमति बदलाव ट्रैक हो रहे हैं, लेकिन सूचनाएं नहीं दिखाई जा सकतीं। अनुमति बदलावों के बारे में अलर्ट पाने के लिए सूचनाएं सक्षम करें।</string>
+    <string name="watcher_notification_permission_grant">अनुदान अनुमति</string>
+    <string name="watcher_notification_permission_open_settings">सेटिंग्स खोलें</string>
+    <string name="watcher_notification_permission_disable">सूचनाएं अक्षम करें</string>
+    <string name="watcher_detail_version_label">संस्करण</string>
+    <string name="watcher_detail_version_code_label">कोड</string>
+    <string name="watcher_detail_installer_label">इंस्टॉल स्रोत</string>
+    <string name="watcher_detail_installer_unknown">अज्ञात</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">अनुमतियां (%d)</item>
+        <item quantity="other">अनुमतियां (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">अंतिम ज्ञात अनुमतियां (%d)</item>
+        <item quantity="other">अंतिम ज्ञात अनुमतियां (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">ये अनुमतियां इस ऐप संस्करण के साथ जोड़ी गईं।</string>
+    <string name="watcher_detail_removed_perms_subtitle">ये अनुमतियां इस अपडेट में हटाई गईं।</string>
+    <string name="watcher_detail_grant_changes_subtitle">इन अनुमतियों का अनुमति देने की स्थिति बदली।</string>
+    <string name="watcher_detail_last_known_perms_subtitle">हटाने से पहले ऐप के पास यह अनुमतियां थीं।</string>
+    <string name="watcher_detail_grant_type_automatic">स्वचालित रूप से दी गई</string>
+    <string name="watcher_detail_grant_type_approval">अनुमोदन आवश्यक</string>
+    <string name="watcher_detail_toggle_description">विवरण टॉगल करें</string>
+    <string name="watcher_detail_unknown_permission">अज्ञात अनुमति</string>
+    <string name="watcher_detail_diff_error">अनुमति विवरण लोड नहीं हो सके</string>
+    <string name="watcher_settings_polling_label">बैकग्राउंड जांच अंतराल</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">हर %d घंटे</item>
+        <item quantity="other">हर %d घंटे</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">ऐप्स स्कैन कर रहा है…</string>
+    <string name="watcher_refresh_checking">बदलाव जांच रहा है…</string>
+    <string name="watcher_search_hint">रिपोर्ट खोजें</string>
+    <string name="watcher_filter_has_added_permissions">नई अनुमतियां अनुरोधित</string>
+    <string name="watcher_filter_has_lost_permissions">अनुमतियां हटाईं</string>
+    <string name="watcher_filter_has_gained_permissions">नया एक्सेस दिया गया</string>
+    <string name="watcher_filter_unseen_only">केवल नहीं देखा</string>
+    <string name="watcher_filter_section_event_type">घटना प्रकार</string>
+    <string name="watcher_filter_section_permission_changes">अनुमति बदलाव</string>
+    <string name="watcher_filter_section_status">स्थिति</string>
+    <string name="watcher_filter_reset">रीसेट</string>
+    <string name="watcher_reports_no_matches">आपकी खोज या फ़िल्टर से कोई रिपोर्ट मेल नहीं खाती</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">%d और रिपोर्ट</item>
+        <item quantity="other">%d और रिपोर्ट</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">सभी रिपोर्ट, विवरण देखने और सूचनाएं पाने के लिए अपग्रेड करें</string>
+    <string name="snapshot_sync_channel_name">स्नैपशॉट सिंक</string>
+    <string name="snapshot_sync_channel_description">बैकग्राउंड ऐप डेटा सिंक्रनाइज़ेशन</string>
+    <string name="snapshot_sync_notification_title">ऐप डेटा सिंक हो रहा है…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">सभी चुनें</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d चुना गया</item>
+        <item quantity="other">%d चुने गए</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">ऐप जानकारी निर्यात करें</string>
+    <string name="export_permission_info_action">अनुमति जानकारी निर्यात करें</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">%d ऐप निर्यात करें</item>
+        <item quantity="other">%d ऐप्स निर्यात करें</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">%d अनुमति निर्यात करें</item>
+        <item quantity="other">%d अनुमतियां निर्यात करें</item>
+    </plurals>
+    <string name="export_app_info_title">ऐप जानकारी निर्यात</string>
+    <string name="export_permission_info_title">अनुमति जानकारी निर्यात</string>
+    <string name="export_format_label">प्रारूप</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">इंस्टॉल जानकारी शामिल करें</string>
+    <string name="export_app_include_meta_description">संस्करण, इंस्टॉल दिनांक, SDK स्तर</string>
+    <string name="export_app_include_permissions_label">अनुमतियां शामिल करें</string>
+    <string name="export_app_include_permissions_description">अनुमति नाम और अनुदान स्थिति</string>
+    <string name="export_app_include_perm_type_label">अनुमति प्रकार शामिल करें</string>
+    <string name="export_app_include_perm_full_label">पूर्ण अनुमति विवरण शामिल करें</string>
+    <string name="export_perm_include_apps_label">अनुरोध करने वाले ऐप्स शामिल करें</string>
+    <string name="export_perm_include_apps_description">प्रत्येक अनुमति के लिए ऐप्स की सूची बनाएं</string>
+    <string name="export_perm_granted_only_label">केवल अनुदान प्राप्त ऐप्स</string>
+    <string name="export_perm_include_summary_label">सारांश गणना शामिल करें</string>
+    <string name="export_preview_label">पूर्वावलोकन</string>
+    <string name="export_preview_label_of">पूर्वावलोकन (%1$d / %2$d)</string>
+    <string name="export_action_label">निर्यात करें</string>
+    <string name="export_progress_label">निर्यात किया जा रहा है…</string>
+    <string name="export_success_message">निर्यात पूर्ण</string>
+    <string name="export_error_message">निर्यात विफल</string>
+    <string name="export_share_action">शेयर करें</string>
+    <string name="export_open_action">खुला हुआ</string>
+    <string name="export_done_action">पूर्ण</string>
+    <string name="export_retry_action">पुनः प्रयास करें</string>
+    <string name="export_summary_filename">फाइल</string>
+    <string name="export_summary_size">आकार</string>
+    <string name="export_summary_duration">अवधि</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">निःशुल्क संस्करण %d आइटम और Markdown फ़ॉर्मेट तक सीमित है। असीमित निर्यात और सभी फ़ॉर्मेट के लिए अपग्रेड करें।</item>
+        <item quantity="other">निःशुल्क संस्करण %d आइटम और Markdown फ़ॉर्मेट तक सीमित है। असीमित निर्यात और सभी फ़ॉर्मेट के लिए अपग्रेड करें।</item>
+    </plurals>
+    <string name="export_upgrade_action">उन्नत करें</string>
 </resources>

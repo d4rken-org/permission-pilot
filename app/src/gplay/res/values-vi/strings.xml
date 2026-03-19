@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Dịch vụ Google Play không khả dụng.</string>
     <string name="upgrades_no_purchases_found_check_account">Không tìm thấy giao dịch mua nào. Bạn có đang sử dụng đúng tài khoản không?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot không có quảng cáo và tôn trọng quyền riêng tư của bạn. Việc nâng cấp ủng hộ quá trình phát triển liên tục.</string>
+    <string name="upgrade_screen_subscription_trial_action">Bắt đầu dùng thử miễn phí</string>
+    <string name="upgrade_screen_subscription_action">Đăng ký</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/tháng, hủy bất kỳ lúc nào</string>
+    <string name="upgrade_screen_iap_action">Mua Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Mua một lần với giá %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Khôi phục thanh toán</string>
+    <string name="upgrade_screen_restore_purchase_message">Không tìm thấy giao dịch mua nào. Hãy kiểm tra xem bạn đã đăng nhập bằng tài khoản Google đúng chưa.</string>
+    <string name="upgrade_screen_options_description">Đăng ký sẽ tự động gia hạn. Bạn có thể hủy bất kỳ lúc nào.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

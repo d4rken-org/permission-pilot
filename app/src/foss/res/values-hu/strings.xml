@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">A Permission Pilot ingyenes és nyílt forráskódú. Támogatásoddal segíted, hogy az maradjon.</string>
+    <string name="upgrade_foss_sponsor_action">Legyen szponzor</string>
+    <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors megnyitása</string>
+    <string name="upgrade_foss_sponsor_returned_early">Kérlek, szánj egy pillanatot a szponzor oldal megtekintésére!</string>
 </resources>

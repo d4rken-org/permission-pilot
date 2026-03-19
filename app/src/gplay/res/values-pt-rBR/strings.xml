@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Os serviços do Google Play não estão disponíveis.</string>
     <string name="upgrades_no_purchases_found_check_account">Nenhuma compra encontrada. Você está usando a conta correta?</string>
+    <string name="upgrade_screen_preamble">O Permission Pilot é livre de anúncios e respeita sua privacidade. Fazer um upgrade apoia o desenvolvimento contínuo.</string>
+    <string name="upgrade_screen_subscription_trial_action">Iniciar teste gratuito</string>
+    <string name="upgrade_screen_subscription_action">Se inscrever</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/mês, cancele quando quiser</string>
+    <string name="upgrade_screen_iap_action">Comprar Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Compra única de %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Restaurar a compra</string>
+    <string name="upgrade_screen_restore_purchase_message">Nenhuma compra encontrada. Verifique se você está conectado com a conta Google correta.</string>
+    <string name="upgrade_screen_options_description">As assinaturas são renovadas automaticamente. Você pode cancelar a qualquer momento.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

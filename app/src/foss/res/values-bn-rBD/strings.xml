@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot বিনামূল্যে ব্যবহারযোগ্য ও ওপেন-সোর্স। আপনার সমর্থন এটি তাই থাকতে সাহায্য করে।</string>
+    <string name="upgrade_foss_sponsor_action">স্পনসর হন</string>
+    <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors খুলবে</string>
+    <string name="upgrade_foss_sponsor_returned_early">দয়া করে স্পনসর পেজটি দেখুন!</string>
 </resources>

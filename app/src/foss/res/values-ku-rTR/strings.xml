@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot بەپوول و سەرچاوەکراوەیە. پشتگیریکردنت کومەک دەکات وابمانیتەوە.</string>
+    <string name="upgrade_foss_sponsor_action">بوونهەڵبەستكەری بھە</string>
+    <string name="upgrade_foss_sponsor_subtitle">کرانەوەی GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">تکایە کاتێک لەبەر دووری بخوێنەوە بۆ پەڕەی سپۆنسەرەکان!</string>
 </resources>

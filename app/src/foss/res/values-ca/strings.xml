@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">El Permission Pilot és gratuït i de codi obert. El vostre suport ajuda a mantenir-ho així.</string>
+    <string name="upgrade_foss_sponsor_action">Convertiu-vos en patrocinador</string>
+    <string name="upgrade_foss_sponsor_subtitle">Obre els patrocinadors del GitHub</string>
+    <string name="upgrade_foss_sponsor_returned_early">Dediqueu un moment a consultar la pàgina del patrocinador!</string>
 </resources>

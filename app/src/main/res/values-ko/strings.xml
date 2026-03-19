@@ -7,17 +7,21 @@
     <string name="general_done_action">완료</string>
     <string name="general_open_action">열기</string>
     <string name="general_continue_action">계속</string>
-    <string name="upgrade_buy_pro_action">Pro 버전 구매</string>
     <string name="general_no_action">아니요</string>
-    <string name="upgrade_donate_action">기부</string>
-    <string name="debug_debuglog_size_label">크기</string>
-    <string name="debug_debuglog_size_compressed_label">압축된 크기</string>
-    <string name="debug_notification_channel_label">디버그 알림</string>
-    <string name="debug_debuglog_file_label">기록된 로그 파일</string>
-    <string name="debug_debuglog_record_action">디버그 로그 기록</string>
+    <string name="debug_debuglog_record_action">기록</string>
     <string name="settings_category_other_label">기타</string>
+    <string name="settings_category_gethelp_label">도움 받기</string>
+    <string name="settings_category_debug_label">디버그</string>
+    <string name="settings_category_advanced_label">고급</string>
     <string name="general_settings_label">일반</string>
     <string name="general_settings_desc">전체 앱에 영향을 주는 일반 설정입니다.</string>
+    <string name="general_settings_scan_speed_label">스캔 속도</string>
+    <string name="general_settings_scan_speed_desc">앱을 스캔할 때 병렬 작업을 제어합니다. 값이 높을수록 빠르지만 일부 기기에서 충돌이 발생할 수 있습니다.</string>
+    <string name="general_settings_scan_speed_auto">자동 (권장)</string>
+    <string name="general_settings_scan_speed_1">1 (가장 안전)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (가장 빠름)</string>
     <string name="changelog_label">변경 로그</string>
     <string name="settings_acknowledgements_label">감사의 글</string>
     <string name="general_thank_you_label">감사합니다</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">대화하고 질문할 수 있는 장소입니다.</string>
     <string name="issue_tracker_label">이슈 트래커</string>
     <string name="issue_tracker_description">버그 리포트와 기능 요청을 위한 공개 이슈 트래커입니다.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">자주 묻는 질문과 일반적인 해결책입니다.</string>
+    <string name="acks_maxpatchs_desc">멋진 아이콘에 감사드립니다.</string>
+    <string name="acks_crowdin_desc">오픈소스 프로젝트 번역 지원에 감사드립니다.</string>
     <string name="permissions_page_label">권한</string>
     <string name="apps_page_label">앱</string>
     <string name="app_type_system_label">시스템 앱</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">취소</string>
     <string name="apps_filter_userapps_label">사용자 앱</string>
     <string name="apps_filter_systemapps_label">시스템 앱</string>
-    <string name="apps_filter_nointernet_label">인터넷 액세스가 없는 앱</string>
-    <string name="apps_filter_sideloaded_label">사이드로드된 앱</string>
+    <string name="apps_filter_nointernet_label">인터넷 없음</string>
+    <string name="apps_filter_sideloaded_label">수동으로 설치됨</string>
     <string name="apps_filter_gplay_label">Google Play 스토어</string>
     <string name="apps_filter_oemstore_label">OEM 스토어</string>
     <string name="apps_sort_permissions_granted_label">허용된 권한</string>
@@ -64,6 +72,8 @@
     </plurals>
     <string name="apps_details_installer_label">설치 소스</string>
     <string name="apps_details_installer_unknown_label">정보를 사용할 수 없음</string>
+    <string name="apps_details_open_settings_error">이 프로필의 앱 설정을 열 수 없습니다</string>
+    <string name="apps_details_open_app_error">이 앱을 열 수 없습니다</string>
     <string name="permissions_filter_manifest_label">AOSP 권한</string>
     <string name="permissions_filter_system_label">시스템 앱에 의해 선언됨</string>
     <string name="permissions_filter_user_label">사용자 앱에 의해 선언됨</string>
@@ -71,11 +81,15 @@
     <string name="permissions_filter_special_label">특별 사용</string>
     <string name="permissions_filter_installtime_label">자동으로 허용됨</string>
     <string name="permissions_filter_installtime_hide_label">자동으로 허용되지 않음</string>
+    <string name="permissions_filter_sort_action">필터 및 정렬</string>
+    <string name="permissions_filter_section_source">소스</string>
+    <string name="permissions_filter_section_type">종류</string>
+    <string name="permissions_filter_section_sort_by">정렬 기준</string>
     <string name="filter_granted_label">허용됨</string>
     <string name="filter_denied_label">거부됨</string>
     <string name="filter_configurable_label">구성 가능</string>
-    <string name="permissions_sort_apps_granted_label"># 허용된 앱</string>
-    <string name="permissions_sort_apps_requested_label"># 요청한 앱</string>
+    <string name="permissions_sort_apps_granted_label">허용된 앱 수</string>
+    <string name="permissions_sort_apps_requested_label">요청한 앱 수</string>
     <string name="permissions_search_list_hint">권한 검색</string>
     <string name="apps_search_list_hint">앱 검색</string>
     <string name="permissions_details_protection_label">보호 수준</string>
@@ -87,14 +101,20 @@
     <string name="permissions_protection_type_unknown_label">알 수 없음</string>
     <string name="permissions_permission_details_label">권한 세부정보</string>
     <string-array name="generic_loading_labels">
-        <item>곧™</item>
-        <item>버터 전달 중</item>
-        <item>더 많은 RAM 다운로드 중</item>
-        <item>여전히 iPhone보다 빠름</item>
-        <item>당신 뒤에 있는 저것은 무엇인가요?</item>
-        <item>CPU가 커피 브레이크 중</item>
-        <item>Pepe Silvia의 데이터 대기 중</item>
-        <item>터보 엔캐뷸레이터 초기화 중</item>
+        <item>곧...™</item>
+        <item>버터를 옮기는 중</item>
+        <item>램을 더 다운로드 받는 중</item>
+        <item>그래도 아이폰보단 빠릅니다</item>
+        <item>CPU가 파업을 선언했어요</item>
+        <item>데이터가 왜 안 올까요?</item>
+        <item>(개발자가 쓴 재밌는 영어 장난)</item>
+        <item>거의 다 됨… 아마도</item>
+        <item>바쁜 척하는 중</item>
+        <item>햄스터 휠 예열 중</item>
+        <item>앱에게 협조 요청 중</item>
+        <item>정중히 권한 요청 중</item>
+        <item>앱들이 법률가를 부르는 중</item>
+        <item>약관 읽는 중</item>
     </string-array>
     <string name="apps_app_details_label">앱 세부정보</string>
     <string name="apps_details_shareduserid_label">공유 사용자 ID를 가진 앱</string>
@@ -105,7 +125,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android 시스템</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">%1$s에 업데이트됨</string>
+    <string name="apps_list_installer_sideloaded_label">수동으로 설치됨</string>
+    <string name="apps_list_installer_preinstalled_label">사전 설치됨</string>
     <string name="general_refresh_action">새로고침</string>
     <string name="general_expand_all_action">모두 펼치기</string>
     <string name="general_collapse_all_action">모두 접기</string>
@@ -114,16 +139,33 @@
     <string name="apps_details_twins_descriptions">다른 사용자 프로필에 설치됨.</string>
     <string name="install_date_label">설치 날짜</string>
     <string name="apps_filter_sharedid_label">공유 사용자 ID</string>
-    <string name="apps_filter_multipleprofiles_label">복제본이 있는 앱</string>
+    <string name="apps_filter_multipleprofiles_label">복제본 있음</string>
     <string name="support_debuglog_label">디버그 로그</string>
     <string name="support_debuglog_desc">앱이 수행하는 모든 작업을 공유할 수 있는 텍스트 파일로 기록합니다.</string>
     <string name="updated_at_x">마지막 업데이트: %s</string>
     <string name="installed_at_x">처음 설치됨: %s</string>
     <string name="apps_sort_install_source_label">설치 소스</string>
     <string name="permissions_action_none_msg">이 권한에 대해 사용할 수 있는 작업이 없습니다</string>
-    <string name="apps_filter_profile_secondary_label">관리 프로필의 앱</string>
-    <string name="apps_filter_battery_optimization_label">사용자 정의 배터리 옵션이 있는 앱</string>
-    <string name="apps_filter_accessibility_label">접근성 서비스가 있는 앱</string>
+    <string name="apps_filter_profile_secondary_label">관리된 프로필</string>
+    <string name="apps_filter_battery_optimization_label">사용자 정의 배터리</string>
+    <string name="apps_filter_accessibility_label">접근성</string>
+    <string name="apps_filter_device_admin_label">기기 관리자</string>
+    <string name="apps_filter_install_packages_label">앱 설치 가능</string>
+    <string name="apps_filter_overlay_label">앱 위에 그리기</string>
+    <string name="apps_filter_camera_label">카메라 접근</string>
+    <string name="apps_filter_location_label">위치 접근</string>
+    <string name="apps_filter_microphone_label">마이크 접근</string>
+    <string name="apps_filter_contacts_label">연락체 접근</string>
+    <string name="apps_filter_old_api_target_label">이전 Android 대상</string>
+    <string name="apps_filter_manifest_flags_label">앱 검색 가능</string>
+    <string name="apps_filter_section_app_type">앱 유형</string>
+    <string name="apps_filter_section_install_source">설치 소스</string>
+    <string name="apps_filter_section_properties">속성</string>
+    <string name="apps_filter_section_profile">프로필</string>
+    <string name="apps_filter_section_sort_by">정렬 기준</string>
+    <string name="apps_filter_sort_action">필터 및 정렬</string>
+    <string name="apps_help_tag_icons_title">권한 칩</string>
+    <string name="apps_help_tag_icons_description">칩은 앱에 부여된 민감한 권한 카테고리를 표시합니다</string>
     <string name="apps_details_description_restrictions_caveat_description">이 앱은 다른 사용자 프로필에 설치되어 있습니다. Android 제한으로 인해 현재 활성 프로필에 설치된 앱에 대해서만 허용된 권한을 확인할 수 있습니다.</string>
     <string name="apps_details_description_uninstalled_caveat">이 앱은 삭제되었지만 데이터는 유지되었습니다. 삭제된 앱의 권한 상태는 확인할 수 없습니다.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -133,13 +175,59 @@
         <item quantity="other">%2$d개 중 %1$d개의 권한 허용됨.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">현재 필터와 일치하는 권한이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
+    <string name="apps_details_perm_tag_runtime">런타임</string>
+    <string name="apps_details_perm_tag_special">특수</string>
+    <string name="apps_details_perm_tag_install">설치</string>
+    <string name="apps_details_perm_help_title">권한 표시기</string>
+    <string name="apps_details_perm_help_runtime">런타임 — 앱이 이 권한을 사용하기 전에 허락을 요청해야 합니다. 허용하거나 거부할 수 있습니다.</string>
+    <string name="apps_details_perm_help_special">특수 — 시스템 설정에서 스위치를 켜야 합니다.</string>
+    <string name="apps_details_perm_help_install">설치 — 앱이 설치될 때 자동으로 부여됩니다. 사용자 조작이 필요하지 않습니다.</string>
+    <string name="apps_details_perm_help_declared">⚠ 아이콘은 이 권한이 표준 Android 권한이 아닌 앱 자체에서 생성되었음을 의미합니다.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">앱 매니페스트</string>
+    <string name="apps_details_manifest_queued">분석 대기 중…</string>
+    <string name="apps_details_manifest_loading">매니페스트 분석 중…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="other">%d개의 매니페스트 분석 남음…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">비정상적인 항목이 감지되지 않았습니다</string>
+    <string name="apps_details_manifest_unavailable">매니페스트에 접근할 수 없습니다</string>
+    <string name="apps_details_manifest_error">매니페스트를 읽을 수 없습니다</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="other">%d개의 패키지 쿼리</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="other">%d개의 인텐트 쿼리</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="other">%d개의 프로바이더 쿼리</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">설치된 모든 앱을 검색할 수 있습니다</string>
+    <string name="apps_details_manifest_hint_excessive">많은 특정 앱을 확인합니다</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">매니페스트 뷰어</string>
+    <string name="apps_manifest_viewer_search_hint">매니페스트에서 검색</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="other">%d개 일치</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%2$d 중 %1$d</string>
+    <string name="apps_manifest_section_uses_permission">권한 사용</string>
+    <string name="apps_manifest_section_permission">권한</string>
+    <string name="apps_manifest_section_queries">쿼리</string>
+    <string name="apps_manifest_section_activities">액티비티</string>
+    <string name="apps_manifest_section_services">서비스</string>
+    <string name="apps_manifest_section_receivers">리시버</string>
+    <string name="apps_manifest_section_providers">프로바이더</string>
+    <string name="apps_manifest_section_meta_data">메타 데이터</string>
+    <string name="apps_manifest_section_other">기타</string>
     <string name="api_target_level_x">대상 버전: %s</string>
     <string name="api_minimum_level_x">최소 버전: %s</string>
     <string name="api_build_level_x">컴파일 버전: %s</string>
     <string name="permission_reboot_label">기기 재부팅</string>
     <string name="permission_reboot_description">앱이 기기를 재부팅할 수 있도록 허용합니다. 시스템 앱에서만 사용할 수 있습니다.</string>
     <string name="permissions_sort_apps_relevance_label">관련성</string>
-    <string name="apps_filter_profile_active_label">활성 프로필의 앱</string>
+    <string name="apps_filter_profile_active_label">활성 프로필</string>
     <string name="overview_page_label">개요</string>
     <plurals name="generic_x_items_label">
         <item quantity="other">%s개 항목</item>
@@ -162,8 +250,52 @@
     <plurals name="permissions_details_count_system_apps">
         <item quantity="other">시스템 앱: %2$d개 중 %1$d개에 허용됨.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="other">다른 사용자 프로필의 앱 %d개도 이 권한을 요청합니다.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="other">데이터가 남아 있는 제거된 앱 %d개도 이 권한을 요청합니다.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">다른 사용자 프로필에 설치된 앱은 Android 제한으로 인해 위 계산에서 제외되었습니다.</string>
     <string name="permissions_details_empty_filter_message">현재 필터와 일치하는 앱이 없습니다. 조정하려면 필터 아이콘을 탭하세요.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">런타임</string>
+    <string name="permissions_tag_install_time_label">설치 시</string>
+    <string name="permissions_tag_special_access_label">특수 접근</string>
+    <string name="permissions_tag_documented_label">문서화됨</string>
+    <string name="permissions_tag_notable_label">주목할 만한</string>
+    <string name="permissions_tag_non_standard_label">비표준</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">사용 중</string>
+    <string name="permissions_status_unknown_label">알 수 없음</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">기기 테마 사용</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="other">+%d개 더</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">권한 표시기</string>
+    <string name="permissions_details_help_section_protection">보호 유형</string>
+    <string name="permissions_details_help_dangerous">위험 — 런타임에서 명시적인 사용자 승인이 필요합니다. 민감한 데이터나 기기 기능에 접근할 수 있습니다.</string>
+    <string name="permissions_details_help_normal">일반 — 설치 시 자동으로 부여됩니다. 다른 앱이나 시스템에 미치는 위험이 없습니다.</string>
+    <string name="permissions_details_help_signature">서명 — 권한을 선언한 앱과 동일한 인증서로 서명된 앱에만 부여됩니다.</string>
+    <string name="permissions_details_help_internal">내부 — Android 시스템 내부용으로 예약되어 있습니다. 제3자 앱에서 사용할 수 없습니다.</string>
+    <string name="permissions_details_help_section_tags">권한 태그</string>
+    <string name="permissions_details_help_tag_runtime">런타임 — 앱이 이 권한을 사용하기 전에 허락을 요청해야 합니다.</string>
+    <string name="permissions_details_help_tag_install_time">설치 시 — 앱이 설치될 때 자동으로 부여됩니다.</string>
+    <string name="permissions_details_help_tag_special_access">특수 접근 — 시스템 설정에서 스위치를 켜야 합니다.</string>
+    <string name="permissions_details_help_tag_documented">문서화됨 — 공식 Android 매니페스트 문서에 나열되어 있습니다.</string>
+    <string name="permissions_details_help_tag_notable">주목할 만한 — 개인 정보 또는 보안에 대한 영향으로 특히 주목해야 합니다.</string>
+    <string name="permissions_details_help_tag_non_standard">비표준 — 표준 Android 권한 세트에 포함되지 않습니다. 제3자 앱 또는 OEM이 선언한 권한입니다.</string>
+    <string name="permissions_details_status_help_title">상태 표시기</string>
+    <string name="permissions_details_help_section_status">부여 상태</string>
+    <string name="permissions_details_help_status_granted">허용됨 — 앱에 이 권한이 부여되었습니다.</string>
+    <string name="permissions_details_help_status_in_use">사용 중 — 부여되었으며 현재 앱에서 적극적으로 사용 중입니다.</string>
+    <string name="permissions_details_help_status_denied">거부됨 — 앱이 이 권한을 요청했지만 부여되지 않았습니다.</string>
+    <string name="permissions_details_help_status_unknown">알 수 없음 — 부여 상태를 확인할 수 없습니다. 예: 다른 사용자 프로필의 앱.</string>
+    <string name="permissions_details_help_section_badges">배지</string>
+    <string name="permissions_details_help_system_badge">시스템 — 미리 설치된 시스템 앱입니다.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">앱이 근거리 무선 통신(NFC) 태그, 카드 및 리더와 통신할 수 있도록 허용합니다.</string>
     <string name="permission_manage_media_label">미디어 관리</string>
@@ -175,7 +307,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth 광고</string>
     <string name="permission_bluetooth_advertise_description">앱이 근처 Bluetooth 기기에 광고할 수 있도록 허용합니다.</string>
     <string name="permission_get_accounts_label">계정 가져오기</string>
-    <string name="permission_get_accounts_description">앱이 휴대폰에 알려진 계정 목록을 가져올 수 있도록 허용합니다. 여기에는 설치한 애플리케이션에서 만든 모든 계정이 포함될 수 있습니다.</string>
+    <string name="permission_get_accounts_description">앱이 기기에 등록된 계정 목록을 확인할 수 있도록 허용합니다. 여기에는 설치한 앱이 생성한 계정도 포함될 수 있습니다.</string>
     <string name="permission_access_background_location_label">백그라운드 위치 액세스</string>
     <string name="permission_access_background_location_description">앱이 사용 중이지 않을 때에도 언제든지 위치에 액세스할 수 있도록 허용합니다.</string>
     <string name="permission_access_media_location_label">미디어 위치 액세스</string>
@@ -189,7 +321,7 @@
     <string name="permission_read_sync_settings_label">동기화 설정 읽기</string>
     <string name="permission_read_sync_settings_description">앱이 계정의 동기화 설정을 읽을 수 있도록 허용합니다.</string>
     <string name="permission_install_unknown_apps_label">알 수 없는 앱 설치 (알 수 없는 소스)</string>
-    <string name="permission_install_unknown_apps_description">앱이 기기에 다른 앱을 설치(사이드로드)할 수 있도록 허용합니다. 이는 기기와 데이터를 위험에 빠뜨릴 수 있습니다.</string>
+    <string name="permission_install_unknown_apps_description">앱이 기기에 다른 앱을 수동으로 설치할 수 있도록 허용합니다. 기기와 데이터가 위험에 처할 수 있습니다.</string>
     <string name="permission_all_files_access_label">모든 파일 액세스</string>
     <string name="permission_all_files_access_description">앱이 기기의 모든 파일과 연결된 모든 저장 장치를 읽고, 수정하고, 삭제할 수 있도록 허용합니다. 이 권한을 가진 앱은 사용자에게 알리지 않고 앱과 관련이 없는 파일에도 액세스할 수 있습니다.</string>
     <string name="permission_appear_on_top_label">맨 위에 표시</string>
@@ -248,23 +380,306 @@
     <string name="permission_group_camera_description">카메라 관련 권한.</string>
     <string name="permission_group_audio_label">마이크</string>
     <string name="permission_group_audio_description">마이크 관련 권한.</string>
+    <string name="permissions_list_empty_message">표시할 권한이 없습니다.</string>
+    <string name="permissions_list_empty_search_message">검색에 일치하는 권한이 없습니다.</string>
     <string name="permission_picture_in_picture_label">화면 속 화면</string>
+    <string name="permission_legacy_storage_label">레거시 저장소</string>
+    <string name="permission_legacy_storage_description">앱이 범위별 저장소 제한 없이 외부 저장소에 접근할 수 있도록 허용합니다. Android 10 이전의 기본 동작이었습니다. 이 접근 권한이 있는 앱은 공유 저장소 어디서나 파일을 읽고 쓸 수 있습니다.</string>
+    <string name="settings_page_label">설정</string>
+    <string name="overview_summary_title_label">요약</string>
+    <string name="permissions_details_declaring_apps_label">선언 앱</string>
+    <string name="permissions_details_requesting_apps_label">요청 앱</string>
     <string name="overview_device_android_version_label">Android 버전</string>
     <string name="overview_device_name_label">기기</string>
     <string name="overview_device_android_patch_label">패치 수준</string>
     <string name="overview_summary_apps_active_profile_label">활성 프로필의 앱</string>
     <string name="overview_summary_apps_other_profile_label">관리 사용자 프로필의 앱(복제본 제외)</string>
-    <string name="overview_summary_apps_sideloaded_label">외부 소스에서 사이드로드된 앱</string>
+    <string name="overview_summary_apps_sideloaded_label">외부 소스에서 수동으로 설치된 앱</string>
     <string name="overview_summary_apps_installers_label">\'알 수 없는 소스에서 설치\' 기능이 활성화된 앱</string>
     <string name="overview_summary_apps_overlayers_label">\'맨 위에 표시\'할 수 있는 앱</string>
     <string name="overview_summary_apps_offline_label">\'인터넷 없음\' 권한이 있는 앱</string>
     <string name="overview_summary_apps_clones_label">다른 프로필에 복제본이 있는 앱</string>
     <string name="overview_summary_apps_sharedids_label">SharedUserID가 있는 앱</string>
+    <string name="overview_summary_apps_camera_label">카메라 접근 앱</string>
+    <string name="overview_summary_apps_location_label">위치 접근 앱</string>
+    <string name="overview_summary_apps_microphone_label">마이크 접근 앱</string>
+    <string name="overview_summary_apps_contacts_label">연락체 접근 앱</string>
+    <string name="overview_summary_apps_gplay_label">Google Play 앱</string>
+    <string name="overview_summary_apps_oemstore_label">OEM 스토어 앱</string>
+    <string name="overview_summary_apps_battery_label">배터리 무제한 앱</string>
+    <string name="overview_summary_apps_oldapi_label">Android 10 미만을 대상으로 하는 앱</string>
+    <string name="overview_section_profile_label">프로필</string>
+    <string name="overview_section_install_source_label">설치 소스</string>
+    <string name="overview_section_privacy_label">개인 정보</string>
+    <string name="overview_section_security_label">보안</string>
+    <string name="overview_section_manifest_label">매니페스트</string>
+    <string name="overview_summary_apps_manifest_flags_label">앱 검색 가능</string>
+    <string name="overview_section_system_label">기기 테마 사용</string>
     <string name="permission_bind_accessibility_service_label">접근성 서비스 제공</string>
     <string name="permission_bind_accessibility_service_description">앱이 시스템 설정에서 활성화할 수 있는 접근성 서비스를 제공할 수 있도록 허용합니다.</string>
     <string name="debug_debuglog_sensitive_information_message">이 파일에는 민감한 정보(예: 설치된 애플리케이션)가 포함되어 있습니다. 신뢰할 수 있는 당사자와만 공유하세요.</string>
     <string name="settings_debuglog_explanation">이 기능은 앱이 수행하는 모든 작업을 공유 가능한 파일로 기록합니다. 생성된 파일에는 민감한 정보(예: 설치된 애플리케이션)가 포함되어 있습니다. 신뢰할 수 있는 당사자와만 공유하세요(예: 함께 문제를 해결하고 있는 앱 개발자).</string>
+    <string name="support_debuglog_recording">록화 중…</string>
+    <string name="support_debuglog_stop_label">디버그 로그 중지</string>
+    <string name="support_contact_label">개발자에게 연락하기</string>
+    <string name="support_contact_desc">폼을 작성하여 개발자에게 이메일을 보냅니다.</string>
+    <string name="support_debuglog_clear_action">저장된 디버그 로그 지우기</string>
+    <string name="debug_debuglog_short_recording_title">록화 시간이 너무 짧습니다</string>
+    <string name="debug_debuglog_short_recording_message">디버그 로그는 문제가 발생할 때 기록되어야 합니다. 록화를 시작하고 문제를 재현한 다음 록화를 중지하세요.</string>
+    <string name="debug_debuglog_short_recording_continue">록화 계속</string>
+    <string name="debug_debuglog_short_recording_stop">어쨌든 중지</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="other">디버그 로그 %1$d개 (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">디버그 로그를 지울까요?</string>
+    <string name="support_debuglog_clear_message">저장된 모든 디버그 로그 파일이 삭제됩니다.</string>
+    <string name="support_debuglog_sessions_title">디버그 로그</string>
+    <string name="support_debuglog_session_delete_title">디버그 로그를 삭제할까요?</string>
+    <string name="support_debuglog_session_delete_message">이 디버그 로그는 영구적으로 삭제됩니다.</string>
+    <string name="support_debuglog_sessions_empty">디버그 로그 없음</string>
+    <string name="support_debuglog_session_invalid">잘못된 세션</string>
+    <string name="support_debuglog_session_recording">녹화 중…</string>
+    <string name="support_debuglog_session_compressing">압축 중…</string>
+    <string name="support_debuglog_failed_empty_log">빈 로그 파일</string>
+    <string name="support_debuglog_failed_missing_log">로그 파일 없음</string>
+    <string name="support_debuglog_failed_corrupt_zip">손상된 ZIP 파일</string>
+    <string name="support_debuglog_failed_zip_failed">압축 실패</string>
+    <string name="support_debuglog_sent_title">로그를 보냈나요?</string>
+    <string name="support_debuglog_sent_message">디버그 로그를 보냈다면 공간 확보를 위해 삭제할 수 있습니다.</string>
+    <string name="support_contact_sent_title">메시지를 보냈나요?</string>
+    <string name="support_contact_sent_message">이메일을 보냈다면 이 세션을 정리할 수 있습니다.</string>
+    <string name="general_close_action">닫기</string>
+    <string name="debug_debuglog_screen_delete_action">삭제</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">지원 연락하기</string>
+    <string name="contact_category_label">카테고리</string>
+    <string name="contact_category_question_label">질문</string>
+    <string name="contact_category_feature_label">기능 요청</string>
+    <string name="contact_category_bug_label">버그 신고</string>
+    <string name="contact_description_label">설명</string>
+    <string name="contact_description_hint_question">질문을 자세히 설명해 주세요. 구체적으로 작성해 주세요 (최소 20단어).</string>
+    <string name="contact_description_hint_feature">원하는 기능을 자세히 설명해 주세요. 구체적으로 작성해 주세요 (최소 20단어).</string>
+    <string name="contact_description_hint_bug">뭐가 일어났고 문제를 재현하는 방법을 설명해 주세요. 구체적으로 작성해 주세요 (최소 20단어).</string>
+    <string name="contact_expected_behavior_label">기대 동작</string>
+    <string name="contact_expected_behavior_hint">예상하는 동작을 설명해 주세요 (최소 10단어).</string>
+    <plurals name="contact_word_count">
+        <item quantity="other">%1$d / %2$d 단어</item>
+    </plurals>
+    <string name="contact_send_action">이메일 앱 열기</string>
+    <string name="contact_debuglog_picker_label">디버그 로그</string>
+    <string name="contact_debuglog_picker_hint">기존 디버그 로그를 청부하거나 새로 녹화하세요.</string>
+    <string name="contact_debuglog_empty">디버그 로그를 찾을 수 없습니다. 먼저 로그를 녹화하세요.</string>
+    <string name="contact_debuglog_record_action">디버그 로그 녹화하기</string>
+    <string name="contact_debuglog_stop_action">기록 정지</string>
+    <string name="contact_debuglog_delete_title">디버그 로그를 삭제할까요?</string>
+    <string name="contact_debuglog_delete_message">이 디버그 로그는 영구적으로 삭제됩니다.</string>
+    <string name="contact_debuglog_zip_error">디버그 로그 압축 실패</string>
+    <string name="contact_no_email_app">이 기기에서 이메일 앱을 찾을 수 없습니다.</string>
+    <string name="contact_welcome_message">모든 메시지를 직접 읽고 최대한 답장하려 노력합니다. 개발, 버그 수정, 지원을 혼자 제처하기 때문에 시간이 조금 걸릴 수 있습니다. 기다려 주셔서 감사합니다.</string>
+    <string name="contact_footer_message">메시지는 이메일로 전송됩니다. 기기 및 설정 정보가 자동으로 청부됩니다. 이메일에 스크린샷이나 동영상을 첨부할 수 있습니다. 가능하면 영어로 작성해 주세요.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">유지</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">디버그 로그</string>
+    <string name="debug_debuglog_screen_subtitle">문제 해결을 위한 디버그 정보 내보내기</string>
+    <string name="debug_debuglog_screen_sensitive_title">민감한 정보</string>
+    <string name="debug_debuglog_screen_session_path_label">세션 경로</string>
+    <string name="debug_debuglog_screen_log_files_label">로그 파일</string>
+    <string name="debug_debuglog_screen_discard_action">취소</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="other">파일 %1$d개 준비 완료 (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$d분 %2$d초</string>
+    <string name="debug_debuglog_screen_duration_s">%1$d초</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">질문</string>
+    <string name="contact_email_tag_feature">기능</string>
+    <string name="contact_email_tag_bug">버그</string>
+    <string name="contact_email_section_expected_behavior">--- 기대 동작 ---</string>
+    <string name="contact_email_section_device_info">--- 기기 정보 ---</string>
     <string name="onboarding_body1">이 앱은 설치된 애플리케이션을 탐색하고 권한을 발견하는 데 도움이 됩니다.</string>
     <string name="onboarding_body2">Permission Pilot은 이 애플리케이션을 사용할 때 앱을 나열하고 해당 권한을 상호 참조할 수 있도록 설치된 애플리케이션 정보를 수집합니다.</string>
     <string name="onboarding_body3">Permission Pilot에는 광고가 없으며 데이터를 로컬에서만 처리합니다.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">테마 모드</string>
+    <string name="ui_theme_mode_system_label">기기 테마 사용</string>
+    <string name="ui_theme_mode_dark_label">어두운 테마</string>
+    <string name="ui_theme_mode_light_label">밝은 테마</string>
+    <string name="ui_theme_style_label">테마 스타일</string>
+    <string name="ui_theme_style_default_label">기본</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">중간 대비</string>
+    <string name="ui_theme_style_highcontrast_label">높은 대비</string>
+    <string name="ui_theme_color_label">테마 색상</string>
+    <string name="ui_theme_color_blue_label">파란색</string>
+    <string name="ui_theme_color_green_label">녹색</string>
+    <string name="ui_theme_color_amber_label">호시색</string>
+    <string name="ui_theme_color_disabled_subtitle">배경화면 색상 사용</string>
+    <string name="upgrade_required_subtitle">업그레이드하여 잠금 해제</string>
+    <string name="settings_category_appearance_label">모양</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">테마 사용자 지정</string>
+    <string name="upgrade_benefit_filtering">고급 필터링</string>
+    <string name="upgrade_benefit_export">일괄 데이터 내보내기</string>
+    <string name="upgrade_benefit_monitoring">권한 모니터링</string>
+    <string name="upgrade_benefit_support">개발자 지원하기</string>
+    <string name="upgrade_benefit_manifest_viewer">원시 앱 매니페스트 탐색</string>
+    <string name="general_upgrade_action">업그레이드</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">감시자</string>
+    <string name="watcher_dashboard_feature_title">권한 감시자</string>
+    <string name="watcher_dashboard_feature_description">앱 업데이트로 새 권한이 추가되거나 기존 권한이 변경될 때 알림을 받습니다. 권한 감시자는 각 업데이트 후 앱을 확인하고 변경이 있으면 보고서를 작성합니다.</string>
+    <string name="watcher_dashboard_manage_in_settings">설정에서 비활성화 및 구성 가능</string>
+    <string name="watcher_enable_action">활성화</string>
+    <string name="watcher_channel_name">권한 감시자</string>
+    <string name="watcher_channel_description">설치된 앱의 권한 변경 알림</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="other">%1$s에 새 권한 %2$d개가 추가되었습니다</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="other">%1$s: 권한 %2$d개 변경됨</item>
+    </plurals>
+    <string name="watcher_settings_label">권한 감시자</string>
+    <string name="watcher_settings_desc">권한 변경에 대해 앱 모니터링</string>
+    <string name="watcher_enabled_label">감시자 활성화</string>
+    <string name="watcher_enabled_desc">앱이 설치되거나 업데이트될 때 권한 변경 감지</string>
+    <string name="watcher_scope_label">감시 범위</string>
+    <string name="watcher_scope_all">모든 앱</string>
+    <string name="watcher_scope_non_system">비시스템 앱만</string>
+    <string name="watcher_reports_label">권한 변경 보고서</string>
+    <string name="watcher_reports_empty">권한 변경이 아직 감지되지 않았습니다</string>
+    <string name="watcher_report_detail_label">변경 보고서</string>
+    <string name="watcher_diff_added_permissions">새 권한</string>
+    <string name="watcher_diff_removed_permissions">제거된 권한</string>
+    <string name="watcher_diff_grant_changes">부여 변경</string>
+    <string name="watcher_diff_added_declared">새로 선언된 권한</string>
+    <string name="watcher_diff_removed_declared">제거된 선언 권한</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">설치됨</string>
+    <string name="watcher_event_update">업데이트됨</string>
+    <string name="watcher_event_removed">제거됨</string>
+    <string name="watcher_event_grant_change">권한 변경됨</string>
+    <string name="watcher_mark_all_seen">모두 봤음으로 표시</string>
+    <string name="watcher_notification_action_mark_seen">봤음으로 표시</string>
+    <string name="watcher_notification_action_delete">삭제</string>
+    <string name="watcher_notification_body_added">추가됨: %s</string>
+    <string name="watcher_notification_body_removed">제거됨: %s</string>
+    <string name="watcher_notification_body_grant_changed">부여 변경됨: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="other">앱 %d개가 권한을 변경했습니다</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">알림 표시</string>
+    <string name="watcher_settings_notifications_desc">권한 변경이 감지되면 알림 표시</string>
+    <string name="watcher_settings_notifications_only_gained_label">권한을 획득할 때만 알림</string>
+    <string name="watcher_settings_notifications_only_gained_desc">앱에 새 권한이 부여될 때만 알림합니다. 예: 런타임 권한이 허용되거나 인터넷 같은 설치 시 권한이 추가될 때</string>
+    <string name="watcher_settings_retention_label">보고서 유지</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="other">%d일</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">모든 보고서 지우기</string>
+    <string name="watcher_settings_clear_reports_confirm_title">모든 보고서를 지울까요?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">모든 권한 변경 보고서가 영구적으로 삭제됩니다.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="other">보고서 %d개</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">알림 사용 불가</string>
+    <string name="watcher_notification_permission_description">권한 변경이 추적 중이지만 알림을 표시할 수 없습니다. 권한 변경 알림을 받으려면 알림을 활성화하세요.</string>
+    <string name="watcher_notification_permission_grant">권한 허용</string>
+    <string name="watcher_notification_permission_open_settings">설정 열기</string>
+    <string name="watcher_notification_permission_disable">알림 비활성화</string>
+    <string name="watcher_detail_version_label">버전</string>
+    <string name="watcher_detail_version_code_label">코드</string>
+    <string name="watcher_detail_installer_label">설치 소스</string>
+    <string name="watcher_detail_installer_unknown">알 수 없음</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="other">권한 (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="other">마지막으로 알려진 권한 (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">이 권한은 해당 앱 버전과 함께 추가되었습니다.</string>
+    <string name="watcher_detail_removed_perms_subtitle">이 권한은 이번 업데이트에서 제거되었습니다.</string>
+    <string name="watcher_detail_grant_changes_subtitle">이 권한에 대한 부여 상태가 변경되었습니다.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">지워지기 전 앱이 가지고 있던 권한입니다.</string>
+    <string name="watcher_detail_grant_type_automatic">자동으로 부여됨</string>
+    <string name="watcher_detail_grant_type_approval">승인 필요</string>
+    <string name="watcher_detail_toggle_description">설명 토글</string>
+    <string name="watcher_detail_unknown_permission">알 수 없는 권한</string>
+    <string name="watcher_detail_diff_error">권한 세부정보를 불러올 수 없습니다</string>
+    <string name="watcher_settings_polling_label">백그라운드 확인 간격</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="other">%d시간마다</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">앱 스캔 중…</string>
+    <string name="watcher_refresh_checking">변경 사항 확인 중…</string>
+    <string name="watcher_search_hint">보고서 검색</string>
+    <string name="watcher_filter_has_added_permissions">새 권한 요청됨</string>
+    <string name="watcher_filter_has_lost_permissions">권한 제거됨</string>
+    <string name="watcher_filter_has_gained_permissions">새 접근 권한 부여됨</string>
+    <string name="watcher_filter_unseen_only">보지 않은 것만</string>
+    <string name="watcher_filter_section_event_type">이벤트 유형</string>
+    <string name="watcher_filter_section_permission_changes">권한 변경</string>
+    <string name="watcher_filter_section_status">상태</string>
+    <string name="watcher_filter_reset">초기화</string>
+    <string name="watcher_reports_no_matches">검색 또는 필터와 일치하는 보고서가 없습니다</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="other">보고서 %d개 더</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">모든 보고서, 세부 정보 보기 및 알림 받기 위해 업그레이드하세요</string>
+    <string name="snapshot_sync_channel_name">스냅샷 동기화</string>
+    <string name="snapshot_sync_channel_description">백그라운드 앱 데이터 동기화</string>
+    <string name="snapshot_sync_notification_title">앱 데이터 동기화 중…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">모두 선택</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="other">%d개 선택됨</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">앱 정보 내보내기</string>
+    <string name="export_permission_info_action">권한 정보 내보내기</string>
+    <plurals name="export_title_apps">
+        <item quantity="other">앱 %d개 내보내기</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="other">권한 %d개 내보내기</item>
+    </plurals>
+    <string name="export_app_info_title">앱 정보 내보내기</string>
+    <string name="export_permission_info_title">권한 정보 내보내기</string>
+    <string name="export_format_label">형식</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">설치 정보 포함</string>
+    <string name="export_app_include_meta_description">버전, 설치 날짜, SDK 수준</string>
+    <string name="export_app_include_permissions_label">권한 포함</string>
+    <string name="export_app_include_permissions_description">권한 이름 및 허용 상태</string>
+    <string name="export_app_include_perm_type_label">권한 유형 포함</string>
+    <string name="export_app_include_perm_full_label">전체 권한 세부 정보 포함</string>
+    <string name="export_perm_include_apps_label">요청 앱 포함</string>
+    <string name="export_perm_include_apps_description">각 권한을 요청하는 앱 목록</string>
+    <string name="export_perm_granted_only_label">허용된 앱만</string>
+    <string name="export_perm_include_summary_label">요약 수 포함</string>
+    <string name="export_preview_label">미리보기</string>
+    <string name="export_preview_label_of">미리보기 (%1$d / %2$d)</string>
+    <string name="export_action_label">내보내기</string>
+    <string name="export_progress_label">내보내는 중…</string>
+    <string name="export_success_message">내보내기 완료</string>
+    <string name="export_error_message">내보내기 실패</string>
+    <string name="export_share_action">공유</string>
+    <string name="export_open_action">열림</string>
+    <string name="export_done_action">완료</string>
+    <string name="export_retry_action">다시 시도</string>
+    <string name="export_summary_filename">파일</string>
+    <string name="export_summary_size">크기</string>
+    <string name="export_summary_duration">기간</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="other">무료 버전은 %d개 항목과 Markdown 형식으로 제한됩니다. 무제한 내보내기 및 모든 형식을 위해 업그레이드하세요.</item>
+    </plurals>
+    <string name="export_upgrade_action">업그레이드</string>
 </resources>

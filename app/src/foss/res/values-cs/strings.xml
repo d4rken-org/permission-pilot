@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Pilot oprávnění je zdarma a open-source. Vaše podpora pomáhá udržet ho tímto způsobem.</string>
+    <string name="upgrade_foss_sponsor_action">Stát se sponzorem</string>
+    <string name="upgrade_foss_sponsor_subtitle">Otevře GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">Prosím, věnujte chvíli prohlédnutí stránky sponzorů!</string>
 </resources>

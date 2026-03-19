@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">目前無法取用 Google Play 服務</string>
     <string name="upgrades_no_purchases_found_check_account">找不到購買紀錄，請確認使用的帳號是否正確。</string>
+    <string name="upgrade_screen_preamble">Permission Pilot 無廣告且尊重您的隱私。升級可支持持續開發。</string>
+    <string name="upgrade_screen_subscription_trial_action">開始免費試用</string>
+    <string name="upgrade_screen_subscription_action">訂閱</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/月，可隨時取消</string>
+    <string name="upgrade_screen_iap_action">購買 Pro</string>
+    <string name="upgrade_screen_iap_action_hint">一次性購買 %s</string>
+    <string name="upgrade_screen_restore_purchase_action">還原購買</string>
+    <string name="upgrade_screen_restore_purchase_message">找不到購買記錄。請確認您已使用正確的 Google 帳號登入。</string>
+    <string name="upgrade_screen_options_description">訂閱自動續費。您可隨時取消。</string>
+    <string name="upgrade_title_suffix">專業版</string>
 </resources>

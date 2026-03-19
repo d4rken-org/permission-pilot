@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Služby Google Play nie sú dostupné.</string>
     <string name="upgrades_no_purchases_found_check_account">Nenašli sa žiadne nákupy. Používate správny účet?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot je bez reklam a rešpektuje vaše súkromie. Upgrade podporuje ďalejší vyvoj.</string>
+    <string name="upgrade_screen_subscription_trial_action">Vyskúšajte zadarmo</string>
+    <string name="upgrade_screen_subscription_action">Predplatiť</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/mesiac, zrušite kedykoľvek</string>
+    <string name="upgrade_screen_iap_action">Kupí Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Jednorazový nákup za %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Obnoviť nákup</string>
+    <string name="upgrade_screen_restore_purchase_message">Žiadne nákupy neboli nájdené. Skontrolujte, či ste prihlásení so správnym účtom Google.</string>
+    <string name="upgrade_screen_options_description">Predplatné sa obnovia automaticky. Môžete ich kedykoľvek zrušiť.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

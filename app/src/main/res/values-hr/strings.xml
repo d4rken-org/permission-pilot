@@ -7,17 +7,21 @@
     <string name="general_done_action">Gotovo</string>
     <string name="general_open_action">Otvori</string>
     <string name="general_continue_action">Nastavi</string>
-    <string name="upgrade_buy_pro_action">Kupi Pro version</string>
     <string name="general_no_action">Ne</string>
-    <string name="upgrade_donate_action">Doniraj</string>
-    <string name="debug_debuglog_size_label">Veličina</string>
-    <string name="debug_debuglog_size_compressed_label">Komprimirana veličina</string>
-    <string name="debug_notification_channel_label">Obavijesti o otklanjanju pogrešaka</string>
-    <string name="debug_debuglog_file_label">Snimljena datoteka zapisnika</string>
-    <string name="debug_debuglog_record_action">Snimi zapisnik za otklanjanje pogrešaka</string>
+    <string name="debug_debuglog_record_action">Snimi</string>
     <string name="settings_category_other_label">Ostalo</string>
+    <string name="settings_category_gethelp_label">Dobij pomoć</string>
+    <string name="settings_category_debug_label">Debug</string>
+    <string name="settings_category_advanced_label">Napredno</string>
     <string name="general_settings_label">Općenito</string>
     <string name="general_settings_desc">Opće postavke koje utječu na cijelu aplikaciju.</string>
+    <string name="general_settings_scan_speed_label">Brzina skeniranja</string>
+    <string name="general_settings_scan_speed_desc">Kontrolira paralelne operacije pri skeniranju aplikacija. Više vrijednosti su brže, ali mogu uzrokovati padove na nekim uređajima.</string>
+    <string name="general_settings_scan_speed_auto">Automatski (preporučeno)</string>
+    <string name="general_settings_scan_speed_1">1 (najsigurnije)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (najbrže)</string>
     <string name="changelog_label">Dnevnik promjena</string>
     <string name="settings_acknowledgements_label">Priznanja</string>
     <string name="general_thank_you_label">Hvala vam</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Mjesto za druženje i postavljanje pitanja.</string>
     <string name="issue_tracker_label">Praćenje problema</string>
     <string name="issue_tracker_description">Javni sustav praćenja problema koji služi za slanje izvješća o greškama i zahtjeva značajki.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">Često postavljana pitanja i uobičajena rješenja.</string>
+    <string name="acks_maxpatchs_desc">Hvala na predivnim ikonama.</string>
+    <string name="acks_crowdin_desc">Za podršku prijevoda projekata otvorenog koda.</string>
     <string name="permissions_page_label">Dopuštenja</string>
     <string name="apps_page_label">Aplikacije</string>
     <string name="app_type_system_label">Aplikacija sustava</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Odustani</string>
     <string name="apps_filter_userapps_label">Korisničke aplikacije</string>
     <string name="apps_filter_systemapps_label">Sistemske aplikacije</string>
-    <string name="apps_filter_nointernet_label">Aplikacije bez pristupa internetu</string>
-    <string name="apps_filter_sideloaded_label">Aplikacije instalirane iz vanjskih izvora</string>
+    <string name="apps_filter_nointernet_label">Bez interneta</string>
+    <string name="apps_filter_sideloaded_label">Ručno instalirano</string>
     <string name="apps_filter_gplay_label">Trgovina Google Play</string>
     <string name="apps_filter_oemstore_label">OEM trgovina</string>
     <string name="apps_sort_permissions_granted_label">Odobrena dopuštenja</string>
@@ -70,6 +78,8 @@
     </plurals>
     <string name="apps_details_installer_label">Izvor instalacije</string>
     <string name="apps_details_installer_unknown_label">Informacije nisu dostupne</string>
+    <string name="apps_details_open_settings_error">Nije moguće otvoriti postavke aplikacije za ovaj profil</string>
+    <string name="apps_details_open_app_error">Nije moguće otvoriti ovu aplikaciju</string>
     <string name="permissions_filter_manifest_label">AOSP dozvole</string>
     <string name="permissions_filter_system_label">Deklarirane sistemskom aplikacijom</string>
     <string name="permissions_filter_user_label">Deklarirane korisničkom aplikacijom</string>
@@ -77,11 +87,15 @@
     <string name="permissions_filter_special_label">Posebna upotreba</string>
     <string name="permissions_filter_installtime_label">Odobrene automatski</string>
     <string name="permissions_filter_installtime_hide_label">Nisu odobrene automatski</string>
+    <string name="permissions_filter_sort_action">Filtriranje i sortiranje</string>
+    <string name="permissions_filter_section_source">Izvor</string>
+    <string name="permissions_filter_section_type">Vrsta</string>
+    <string name="permissions_filter_section_sort_by">Sortiraj po</string>
     <string name="filter_granted_label">Odobreno</string>
     <string name="filter_denied_label">Odbijeno</string>
     <string name="filter_configurable_label">Podesivo</string>
-    <string name="permissions_sort_apps_granted_label"># aplikacija odobrenih</string>
-    <string name="permissions_sort_apps_requested_label"># aplikacija traženih</string>
+    <string name="permissions_sort_apps_granted_label">Broj odobrenih aplikacija</string>
+    <string name="permissions_sort_apps_requested_label">Broj traženih aplikacija</string>
     <string name="permissions_search_list_hint">Pretraži dozvole</string>
     <string name="apps_search_list_hint">Pretraži aplikacije</string>
     <string name="permissions_details_protection_label">Razina zaštite</string>
@@ -96,11 +110,17 @@
         <item>Uskoro™</item>
         <item>Dodavanje maslaca</item>
         <item>Preuzimanje više RAM-a</item>
-        <item>Još uvijek brže od iPhone-a</item>
-        <item>Što je to iza vas?</item>
+        <item>Još uvijek brži od iPhonea</item>
         <item>CPU je na pauzi za kavu</item>
-        <item>Čekanje podataka od Pepe Silvije</item>
-        <item>Turbo enkabulator se pokretnje</item>
+        <item>Čekaju se podaci od Pepea Silvije</item>
+        <item>Turbo enkabulator se pokreće</item>
+        <item>Skoro gotovo… vjerojatno</item>
+        <item>Pravimo se zauzeti</item>
+        <item>Zagrijavamo hrstački kotatač</item>
+        <item>Uvjeravamo aplikacije da surađuju</item>
+        <item>Ljubazno tražimo dozvole</item>
+        <item>Vaše aplikacije traže odvjetnike</item>
+        <item>Čitamo sitni tisak</item>
     </string-array>
     <string name="apps_app_details_label">Pojedinosti aplikacije</string>
     <string name="apps_details_shareduserid_label">Aplikacije s dijeljenim korisničkim ID-om</string>
@@ -111,7 +131,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android sustav</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Ažurirano %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Ručno instalirano</string>
+    <string name="apps_list_installer_preinstalled_label">Unaprijed instalirano</string>
     <string name="general_refresh_action">Osvježi</string>
     <string name="general_expand_all_action">Proširi sve</string>
     <string name="general_collapse_all_action">Sažmi sve</string>
@@ -120,16 +145,33 @@
     <string name="apps_details_twins_descriptions">Instalirane u drugim korisničkim profilima.</string>
     <string name="install_date_label">Datum instalacije</string>
     <string name="apps_filter_sharedid_label">Dijeljeni korisnički ID</string>
-    <string name="apps_filter_multipleprofiles_label">Aplikacije s klonovima</string>
+    <string name="apps_filter_multipleprofiles_label">Ima klonove</string>
     <string name="support_debuglog_label">Dnevnik za otklanjanje grešaka</string>
     <string name="support_debuglog_desc">Snimi sve što aplikacija radi u tekstualnu datoteku koju možete podijeliti.</string>
     <string name="updated_at_x">Zadnje ažuriranje: %s</string>
     <string name="installed_at_x">Prvo instalirane: %s</string>
     <string name="apps_sort_install_source_label">Izvor instalacije</string>
     <string name="permissions_action_none_msg">Nema dostupnih radnji za ovu dozvolu</string>
-    <string name="apps_filter_profile_secondary_label">Aplikacije u upravljanim profilima</string>
-    <string name="apps_filter_battery_optimization_label">Aplikacije s prilagođenim opcijama baterije</string>
-    <string name="apps_filter_accessibility_label">Aplikacije s uslugama pristupačnosti</string>
+    <string name="apps_filter_profile_secondary_label">Upravljani profil(i)</string>
+    <string name="apps_filter_battery_optimization_label">Prilagođena baterija</string>
+    <string name="apps_filter_accessibility_label">Pristupačnost</string>
+    <string name="apps_filter_device_admin_label">Administrator uređaja</string>
+    <string name="apps_filter_install_packages_label">Može instalirati aplikacije</string>
+    <string name="apps_filter_overlay_label">Crtanje preko aplikacija</string>
+    <string name="apps_filter_camera_label">Pristup kameri</string>
+    <string name="apps_filter_location_label">Pristup lokaciji</string>
+    <string name="apps_filter_microphone_label">Pristup mikrofonu</string>
+    <string name="apps_filter_contacts_label">Pristup kontaktima</string>
+    <string name="apps_filter_old_api_target_label">Cilja stari Android</string>
+    <string name="apps_filter_manifest_flags_label">Može otkrivati aplikacije</string>
+    <string name="apps_filter_section_app_type">Vrsta aplikacije</string>
+    <string name="apps_filter_section_install_source">Izvor instalacije</string>
+    <string name="apps_filter_section_properties">Svojstva</string>
+    <string name="apps_filter_section_profile">Profil</string>
+    <string name="apps_filter_section_sort_by">Sortiraj po</string>
+    <string name="apps_filter_sort_action">Filtriranje i sortiranje</string>
+    <string name="apps_help_tag_icons_title">Oznake dopuštenja</string>
+    <string name="apps_help_tag_icons_description">Oznake prikazuju koje osjetljive kategorije dopuštenja su dodijeljene aplikaciji</string>
     <string name="apps_details_description_restrictions_caveat_description">Ova aplikacija je instalirana u drugom korisničkom profilu. Odobrene dozvole mogu se odrediti samo za aplikacije instalirane u trenutno aktivnom profilu, zbog ograničenja Androida.</string>
     <string name="apps_details_description_uninstalled_caveat">Ova aplikacija je deinstalirana, ali njezini podaci su zadržani. Stanje dozvola nije moguće odrediti za deinstalirane aplikacije.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -143,13 +185,69 @@
         <item quantity="other">%1$d od %2$d dopuštenja odobreno.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Nijedna dozvola ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
+    <string name="apps_details_perm_tag_runtime">Izvršavano</string>
+    <string name="apps_details_perm_tag_special">Posebno</string>
+    <string name="apps_details_perm_tag_install">Instalacija</string>
+    <string name="apps_details_perm_help_title">Pokazatelji dozvola</string>
+    <string name="apps_details_perm_help_runtime">Izvršavano — Aplikacija mora tražiti vašu dozvolu prije korištenja. Možete je odobriti ili odbiti.</string>
+    <string name="apps_details_perm_help_special">Posebno — Zahtijeva uključivanje prekidača u postavkama sustava.</string>
+    <string name="apps_details_perm_help_install">Instalacija — Odobreno automatski kada se aplikacija instalira. Nije potrebna radnja korisnika.</string>
+    <string name="apps_details_perm_help_declared">Ikona ⚠ znači da je ovu dozvolu stvorila sama aplikacija, a nije standardna Android dozvola.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">Manifest aplikacije</string>
+    <string name="apps_details_manifest_queued">U redu za analizu…</string>
+    <string name="apps_details_manifest_loading">Analiziranje manifesta…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifest ostao za analizu…</item>
+        <item quantity="few">%d manifesta ostala za analizu…</item>
+        <item quantity="other">%d manifesta ostalo za analizu…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Nije otkričeno ništa neobično</string>
+    <string name="apps_details_manifest_unavailable">Manifest nije dostupan</string>
+    <string name="apps_details_manifest_error">Nije moguće pročitati manifest</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d upit paketa</item>
+        <item quantity="few">%d upita paketa</item>
+        <item quantity="other">%d upita paketa</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d upit namjere</item>
+        <item quantity="few">%d upita namjere</item>
+        <item quantity="other">%d upita namjere</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d upit pružatelja</item>
+        <item quantity="few">%d upita pružatelja</item>
+        <item quantity="other">%d upita pružatelja</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Može otkriti sve instalirane aplikacije</string>
+    <string name="apps_details_manifest_hint_excessive">Provjerava mnoge određene aplikacije</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Preglednik manifesta</string>
+    <string name="apps_manifest_viewer_search_hint">Pretraži u manifestu</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d podudaranje</item>
+        <item quantity="few">%d podudaranja</item>
+        <item quantity="other">%d podudaranja</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d od %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Korištenje dopuštenja</string>
+    <string name="apps_manifest_section_permission">Dopuštenje</string>
+    <string name="apps_manifest_section_queries">Upiti</string>
+    <string name="apps_manifest_section_activities">Aktivnosti</string>
+    <string name="apps_manifest_section_services">Usluge</string>
+    <string name="apps_manifest_section_receivers">Primači</string>
+    <string name="apps_manifest_section_providers">Davatelji</string>
+    <string name="apps_manifest_section_meta_data">Meta podaci</string>
+    <string name="apps_manifest_section_other">Ostalo</string>
     <string name="api_target_level_x">Ciljna verzija: %s</string>
     <string name="api_minimum_level_x">Minimalna verzija: %s</string>
     <string name="api_build_level_x">Verzija kompajliranja: %s</string>
     <string name="permission_reboot_label">Ponovno pokreni uređaj</string>
     <string name="permission_reboot_description">Omogućuje aplikaciji ponovno pokretanje uređaja. Dostupno samo za sistemske aplikacije.</string>
     <string name="permissions_sort_apps_relevance_label">Relevantnost</string>
-    <string name="apps_filter_profile_active_label">Aplikacije u aktivnom profilu</string>
+    <string name="apps_filter_profile_active_label">Aktivni profil</string>
     <string name="overview_page_label">Pregled</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s stavka</item>
@@ -186,8 +284,58 @@
         <item quantity="few">Sistemske aplikacije: Odobreno %1$d od %2$d.</item>
         <item quantity="other">Sistemske aplikacije: Odobreno %1$d od %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d aplikacija u drugim korisničkim profilima također traži ovu dozvolu.</item>
+        <item quantity="few">%d aplikacije u drugim korisničkim profilima također traže ovu dozvolu.</item>
+        <item quantity="other">%d aplikacija u drugim korisničkim profilima također traži ovu dozvolu.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d deinstalirana aplikacija s pohranjenim podacima također traži ovu dozvolu.</item>
+        <item quantity="few">%d deinstalirane aplikacije s pohranjenim podacima također traže ovu dozvolu.</item>
+        <item quantity="other">%d deinstaliranih aplikacija s pohranjenim podacima također traži ovu dozvolu.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacije instalirane u drugim korisničkim profilima su isključene iz gornjeg izračuna zbog ograničenja Androida.</string>
     <string name="permissions_details_empty_filter_message">Nijedna aplikacija ne odgovara trenutnim filtrima. Dodirnite ikonu filtra za prilagodbu.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Izvršavano</string>
+    <string name="permissions_tag_install_time_label">Pri instalaciji</string>
+    <string name="permissions_tag_special_access_label">Poseban pristup</string>
+    <string name="permissions_tag_documented_label">Dokumentirano</string>
+    <string name="permissions_tag_notable_label">Značajno</string>
+    <string name="permissions_tag_non_standard_label">Nestandardno</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">U korištenju</string>
+    <string name="permissions_status_unknown_label">Nepoznato</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">Sustav</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d više</item>
+        <item quantity="few">+%d više</item>
+        <item quantity="other">+%d više</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Pokazatelji dozvola</string>
+    <string name="permissions_details_help_section_protection">Vrsta zaštite</string>
+    <string name="permissions_details_help_dangerous">Opasno — Zahtijeva izričito odobrenje korisnika tijekom izvršavanja. Može pristupiti osjetljivim podacima ili značajkama uređaja.</string>
+    <string name="permissions_details_help_normal">Normalno — Odobreno automatski pri instalaciji. Minimalan rizik za druge aplikacije ili sustav.</string>
+    <string name="permissions_details_help_signature">Potpis — Odobreno samo aplikacijama potpisanim istim certifikatom kao aplikacija koja je deklarirala dozvolu.</string>
+    <string name="permissions_details_help_internal">Interno — Rezervirano za interne Android sustave. Nije dostupno aplikacijama trećih strana.</string>
+    <string name="permissions_details_help_section_tags">Oznake dozvola</string>
+    <string name="permissions_details_help_tag_runtime">Izvršavano — Aplikacija mora tražiti vašu dozvolu prije korištenja.</string>
+    <string name="permissions_details_help_tag_install_time">Pri instalaciji — Odobreno automatski kada se aplikacija instalira.</string>
+    <string name="permissions_details_help_tag_special_access">Poseban pristup — Zahtijeva uključivanje prekidača u postavkama sustava.</string>
+    <string name="permissions_details_help_tag_documented">Dokumentirano — Navedeno u službenoj Android manifest dokumentaciji.</string>
+    <string name="permissions_details_help_tag_notable">Značajno — Posebno vrijedno pažnje zbog utjecaja na privatnost ili sigurnost.</string>
+    <string name="permissions_details_help_tag_non_standard">Nestandardno — Nije dio standardnog Android skupa dozvola. Deklarirala ga je aplikacija treće strane ili OEM.</string>
+    <string name="permissions_details_status_help_title">Pokazatelji statusa</string>
+    <string name="permissions_details_help_section_status">Status odobrenja</string>
+    <string name="permissions_details_help_status_granted">Odobreno — Aplikacija je dobila ovu dozvolu.</string>
+    <string name="permissions_details_help_status_in_use">U korištenju — Odobreno i trenutno aktivno koristi ga aplikacija.</string>
+    <string name="permissions_details_help_status_denied">Odbijeno — Aplikacija je tražila ovu dozvolu, ali nije odobrena.</string>
+    <string name="permissions_details_help_status_unknown">Nepoznato — Status dodjele nije moguće odrediti, npr. za aplikacije u drugim korisničkim profilima.</string>
+    <string name="permissions_details_help_section_badges">Značke</string>
+    <string name="permissions_details_help_system_badge">Sustav — Aplikacija je unaprijed instalirana sistemska aplikacija.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Omogućuje aplikacijama komunikaciju s Near Field Communication (NFC) oznakama, karticama i čitačima.</string>
     <string name="permission_manage_media_label">Upravljanje medijima</string>
@@ -199,7 +347,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth oglašavanje</string>
     <string name="permission_bluetooth_advertise_description">Omogućuje aplikacijama oglašavanje na obližnjim Bluetooth uređajima.</string>
     <string name="permission_get_accounts_label">Preuzmi račune</string>
-    <string name="permission_get_accounts_description">Omogućuje aplikacijama preuzimanje popisa računa poznatih telefonu. To može uključivati sve račune stvorene aplikacijama koje ste instalirali.</string>
+    <string name="permission_get_accounts_description">Dopušta aplikacijama da dobiju popis računa poznatih uređaju. To može uključivati sve račune stvorene aplikacijama koje ste instalirali.</string>
     <string name="permission_access_background_location_label">Pristup lokaciji u pozadini</string>
     <string name="permission_access_background_location_description">Omogućuje aplikacijama pristup lokaciji u bilo koje vrijeme, čak i kada se ne koriste.</string>
     <string name="permission_access_media_location_label">Pristup lokaciji medija</string>
@@ -213,7 +361,7 @@
     <string name="permission_read_sync_settings_label">Čitanje postavki sinkronizacije</string>
     <string name="permission_read_sync_settings_description">Omogućuje aplikacijama čitanje postavki sinkronizacije za račun.</string>
     <string name="permission_install_unknown_apps_label">Instaliraj nepoznate aplikacije (Nepoznati izvori)</string>
-    <string name="permission_install_unknown_apps_description">Omogućuje aplikacijama instaliranje (sideload) drugih aplikacija na vaš uređaj. To može ugroziti vaš uređaj i podatke.</string>
+    <string name="permission_install_unknown_apps_description">Omogućuje aplikacijama ručno instaliranje drugih aplikacija na vašem uređaju. Ovo može ugroziti vaš uređaj i podatke.</string>
     <string name="permission_all_files_access_label">Pristup svim datotekama</string>
     <string name="permission_all_files_access_description">Omogućuje aplikacijama čitanje, mijenjanje i brisanje svih datoteka na vašem uređaju kao i svih povezanih uređaja za pohranu. Aplikacije s ovom dozvolom također mogu pristupiti datotekama koje nisu povezane s aplikacijom, BEZ obavještavanja.</string>
     <string name="permission_appear_on_top_label">Prikaži se na vrhu</string>
@@ -272,23 +420,338 @@
     <string name="permission_group_camera_description">Dozvole povezane s kamerom.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
     <string name="permission_group_audio_description">Dozvole povezane s mikrofonom.</string>
+    <string name="permissions_list_empty_message">Nema dozvola za prikaz.</string>
+    <string name="permissions_list_empty_search_message">Nijedna dozvola ne odgovara vašoj pretrazi.</string>
     <string name="permission_picture_in_picture_label">Slika u slici</string>
+    <string name="permission_legacy_storage_label">Naslijeđena pohrana</string>
+    <string name="permission_legacy_storage_description">Dopušta aplikacijama pristup vanjskoj pohrani bez ograničenja pohrane s opsegom. Ovo je bilo zadano ponašanje prije Androida 10. Aplikacije s ovim pristupom mogu čitati i pisati datoteke bilo gdje na zajedničkoj pohrani.</string>
+    <string name="settings_page_label">Postavke</string>
+    <string name="overview_summary_title_label">Sažetak</string>
+    <string name="permissions_details_declaring_apps_label">Aplikacije koje deklariraju</string>
+    <string name="permissions_details_requesting_apps_label">Aplikacije koje traže</string>
     <string name="overview_device_android_version_label">Android verzija</string>
     <string name="overview_device_name_label">Uređaj</string>
     <string name="overview_device_android_patch_label">Razina zakrpe</string>
     <string name="overview_summary_apps_active_profile_label">Aplikacije u aktivnom profilu</string>
     <string name="overview_summary_apps_other_profile_label">Aplikacije u upravljanim korisničkim profilima, isključujući klonove</string>
-    <string name="overview_summary_apps_sideloaded_label">Aplikacije učitane iz vanjskih izvora</string>
+    <string name="overview_summary_apps_sideloaded_label">Aplikacije ručno instalirane iz vanjskih izvora</string>
     <string name="overview_summary_apps_installers_label">Aplikacije s omogućenim \'Instaliraj iz nepoznatih izvora\'</string>
     <string name="overview_summary_apps_overlayers_label">Aplikacije koje se mogu \'Prikazati na vrhu\'</string>
     <string name="overview_summary_apps_offline_label">Aplikacije koje imaju dozvole \'Bez interneta\'</string>
     <string name="overview_summary_apps_clones_label">Aplikacije s klonovima u drugim profilima</string>
     <string name="overview_summary_apps_sharedids_label">Aplikacije s SharedUserID</string>
+    <string name="overview_summary_apps_camera_label">Aplikacije s pristupom kameri</string>
+    <string name="overview_summary_apps_location_label">Aplikacije s pristupom lokaciji</string>
+    <string name="overview_summary_apps_microphone_label">Aplikacije s pristupom mikrofonu</string>
+    <string name="overview_summary_apps_contacts_label">Aplikacije s pristupom kontaktima</string>
+    <string name="overview_summary_apps_gplay_label">Aplikacije iz Google Playa</string>
+    <string name="overview_summary_apps_oemstore_label">Aplikacije iz OEM trgovina</string>
+    <string name="overview_summary_apps_battery_label">Aplikacije bez ograničenja baterije</string>
+    <string name="overview_summary_apps_oldapi_label">Aplikacije ciljaju ispod Androida 10</string>
+    <string name="overview_section_profile_label">Profil</string>
+    <string name="overview_section_install_source_label">Izvor instalacije</string>
+    <string name="overview_section_privacy_label">Privatnost</string>
+    <string name="overview_section_security_label">Sigurnost</string>
+    <string name="overview_section_manifest_label">Manifest</string>
+    <string name="overview_summary_apps_manifest_flags_label">Može otkrivati aplikacije</string>
+    <string name="overview_section_system_label">Sustav</string>
     <string name="permission_bind_accessibility_service_label">Ponudi uslugu pristupačnosti</string>
     <string name="permission_bind_accessibility_service_description">Omogućuje aplikaciji ponuditi uslugu pristupačnosti koja se može omogućiti u sistemskim postavkama.</string>
     <string name="debug_debuglog_sensitive_information_message">Ova datoteka sadrži osjetljive informacije (npr. vaše instalirane aplikacije). Dijelite je samo s pouzdanim stranama.</string>
     <string name="settings_debuglog_explanation">Ova značajka snima sve što aplikacija radi u datoteku koju možete podijeliti. Generirana datoteka sadrži osjetljive informacije (npr. vaše instalirane aplikacije). Dijelite je samo s pouzdanim stranama (npr. razvojni programer aplikacije ako zajedno rješavate problem).</string>
+    <string name="support_debuglog_recording">Snimanje…</string>
+    <string name="support_debuglog_stop_label">Zaustavi debug zapisnik</string>
+    <string name="support_contact_label">Kontaktiraj programera</string>
+    <string name="support_contact_desc">Ispunite obrazac za slanje e-maila programeru.</string>
+    <string name="support_debuglog_clear_action">Očisti pohranjene debug zapisnike</string>
+    <string name="debug_debuglog_short_recording_title">Snimanje prekratko</string>
+    <string name="debug_debuglog_short_recording_message">Debug zapisnik mora snimiti problem dok se događa. Pokrenite snimanje, reproducirajte problem, a zatim zaustavite snimanje.</string>
+    <string name="debug_debuglog_short_recording_continue">Nastavi snimanje</string>
+    <string name="debug_debuglog_short_recording_stop">Svejedno zaustavi</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d debug zapisnik (%2$s)</item>
+        <item quantity="few">%1$d debug zapisnika (%2$s)</item>
+        <item quantity="other">%1$d debug zapisnika (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Očistiti debug zapisnike?</string>
+    <string name="support_debuglog_clear_message">Ovo će izbrisati sve pohranjene debug zapisnike.</string>
+    <string name="support_debuglog_sessions_title">Debug zapisnici</string>
+    <string name="support_debuglog_session_delete_title">Izbrisati debug zapisnik?</string>
+    <string name="support_debuglog_session_delete_message">Ovaj debug zapisnik će biti trajno izbrisan.</string>
+    <string name="support_debuglog_sessions_empty">Nema debug zapisnika</string>
+    <string name="support_debuglog_session_invalid">Nevaljana sesija</string>
+    <string name="support_debuglog_session_recording">Snimanje…</string>
+    <string name="support_debuglog_session_compressing">Komprimiranje…</string>
+    <string name="support_debuglog_failed_empty_log">Prazna datoteka zapisnika</string>
+    <string name="support_debuglog_failed_missing_log">Nedostaje datoteka zapisnika</string>
+    <string name="support_debuglog_failed_corrupt_zip">Oštećena ZIP datoteka</string>
+    <string name="support_debuglog_failed_zip_failed">Komprimiranje nije uspjelo</string>
+    <string name="support_debuglog_sent_title">Zapisnik poslan?</string>
+    <string name="support_debuglog_sent_message">Ako ste poslali debug zapisnik, možete ga izbrisati kako biste oslobodili prostor.</string>
+    <string name="support_contact_sent_title">Poruka poslana?</string>
+    <string name="support_contact_sent_message">Ako ste poslali e-mail, ova sesija može se očistiti.</string>
+    <string name="general_close_action">Zatvori</string>
+    <string name="debug_debuglog_screen_delete_action">Izbriši</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Kontaktiraj podršku</string>
+    <string name="contact_category_label">Kategorija</string>
+    <string name="contact_category_question_label">Pitanje</string>
+    <string name="contact_category_feature_label">Zahtjev za značajku</string>
+    <string name="contact_category_bug_label">Prijava greške</string>
+    <string name="contact_description_label">Opis</string>
+    <string name="contact_description_hint_question">Detaljno opišite svoje pitanje. Budite precizni (najmanje 20 riječi).</string>
+    <string name="contact_description_hint_feature">Opišite značajku koju želite vidjeti. Budite precizni (najmanje 20 riječi).</string>
+    <string name="contact_description_hint_bug">Opišite što se dogodilo i kako reproducirati problem. Budite precizni (najmanje 20 riječi).</string>
+    <string name="contact_expected_behavior_label">Očekivano ponašanje</string>
+    <string name="contact_expected_behavior_hint">Opišite što ste očekivali (najmanje 10 riječi).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d riječ</item>
+        <item quantity="few">%1$d / %2$d riječi</item>
+        <item quantity="other">%1$d / %2$d riječi</item>
+    </plurals>
+    <string name="contact_send_action">Otvori aplikaciju e-maila</string>
+    <string name="contact_debuglog_picker_label">Zapisnik za otklanjanje pogrešaka</string>
+    <string name="contact_debuglog_picker_hint">Priložite postojeći debug zapisnik ili snimite novi.</string>
+    <string name="contact_debuglog_empty">Nisu pronađeni debug zapisnici. Prvo snimite jedan.</string>
+    <string name="contact_debuglog_record_action">Snimi zapisnik za otklanjanje pogrešaka</string>
+    <string name="contact_debuglog_stop_action">Zaustavi snimanje</string>
+    <string name="contact_debuglog_delete_title">Izbrisati debug zapisnik?</string>
+    <string name="contact_debuglog_delete_message">Ovaj debug zapisnik će biti trajno izbrisan.</string>
+    <string name="contact_debuglog_zip_error">Komprimiranje debug zapisnika nije uspjelo</string>
+    <string name="contact_no_email_app">Na ovom uređaju nije pronađena aplikacija za e-mail.</string>
+    <string name="contact_welcome_message">Sam čitam svaku poruku i trudim se odgovoriti. Budući da sam sam zadužen za razvoj, popravke grešaka i podršku, može malo potrajati. Hvala na strpljenju.</string>
+    <string name="contact_footer_message">Vaša poruka će biti poslana putem e-maila. Informacije o uređaju i postavkama su automatski priložene. Možete priložiti snimke zaslona ili video uz e-mail. Molimo pišite na engleskom ako je moguće.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Zadrži</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Zapisnik za otklanjanje pogrešaka</string>
+    <string name="debug_debuglog_screen_subtitle">Izvezi informacije za otklanjanje problema</string>
+    <string name="debug_debuglog_screen_sensitive_title">Osjetljive informacije</string>
+    <string name="debug_debuglog_screen_session_path_label">Putanja sesije</string>
+    <string name="debug_debuglog_screen_log_files_label">Datoteke zapisnika</string>
+    <string name="debug_debuglog_screen_discard_action">Odbaci</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d datoteka spremna (%2$s)</item>
+        <item quantity="few">%1$d datoteke spremne (%2$s)</item>
+        <item quantity="other">%1$d datoteka spremno (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$d min %2$d s</string>
+    <string name="debug_debuglog_screen_duration_s">%1$d s</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Pitanje</string>
+    <string name="contact_email_tag_feature">Značajka</string>
+    <string name="contact_email_tag_bug">Greška</string>
+    <string name="contact_email_section_expected_behavior">--- Očekivano ponašanje ---</string>
+    <string name="contact_email_section_device_info">--- Informacije o uređaju ---</string>
     <string name="onboarding_body1">Ova aplikacija vam pomaže navigirati instaliranim aplikacijama i otkrivati dozvole.</string>
     <string name="onboarding_body2">Permission Pilot prikuplja podatke o instaliranim aplikacijama kako bi omogućio popisivanje vaših aplikacija i unakrsno upućivanje na njihova dopuštenja prilikom korištenja ove aplikacije.</string>
     <string name="onboarding_body3">Permission Pilot nema oglasa i obrađuje podatke samo lokalno.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Način teme</string>
+    <string name="ui_theme_mode_system_label">Sustav</string>
+    <string name="ui_theme_mode_dark_label">Tamna</string>
+    <string name="ui_theme_mode_light_label">Svijetla</string>
+    <string name="ui_theme_style_label">Stil teme</string>
+    <string name="ui_theme_style_default_label">Zadano</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Srednji kontrast</string>
+    <string name="ui_theme_style_highcontrast_label">Visoki kontrast</string>
+    <string name="ui_theme_color_label">Boja teme</string>
+    <string name="ui_theme_color_blue_label">Plava</string>
+    <string name="ui_theme_color_green_label">Zelena</string>
+    <string name="ui_theme_color_amber_label">Jantarna</string>
+    <string name="ui_theme_color_disabled_subtitle">Koristi boje pozadine</string>
+    <string name="upgrade_required_subtitle">Nadogradite za otključavanje</string>
+    <string name="settings_category_appearance_label">Izgled</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Prilagodba teme</string>
+    <string name="upgrade_benefit_filtering">Napredno filtriranje</string>
+    <string name="upgrade_benefit_export">Grupežni izvoz podataka</string>
+    <string name="upgrade_benefit_monitoring">Praćenje dozvola</string>
+    <string name="upgrade_benefit_support">Podržite programera</string>
+    <string name="upgrade_benefit_manifest_viewer">Pregledaj neobrañene manifeste aplikacija</string>
+    <string name="general_upgrade_action">Nadogradnja</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Pratič</string>
+    <string name="watcher_dashboard_feature_title">Pratič dozvola</string>
+    <string name="watcher_dashboard_feature_description">Dobijte obavijest kada ažuriranje aplikacije doda nove dozvole ili promijeni postojeće. Pratič dozvola provjerava vaše aplikacije nakon svakog ažuriranja i stvara izvješće ako se nešto promijenilo.</string>
+    <string name="watcher_dashboard_manage_in_settings">Može se onemogućiti i konfigurirati u Postavkama</string>
+    <string name="watcher_enable_action">Omogući</string>
+    <string name="watcher_channel_name">Pratič dozvola</string>
+    <string name="watcher_channel_description">Obavijesti o promjenama dozvola u instaliranim aplikacijama</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s dobio %2$d novu dozvolu</item>
+        <item quantity="few">%1$s dobio %2$d nove dozvole</item>
+        <item quantity="other">%1$s dobio %2$d novih dozvola</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d promijenjena dozvola</item>
+        <item quantity="few">%1$s: %2$d promijenjene dozvole</item>
+        <item quantity="other">%1$s: %2$d promijenjenih dozvola</item>
+    </plurals>
+    <string name="watcher_settings_label">Pratič dozvola</string>
+    <string name="watcher_settings_desc">Prati aplikacije za promjene dozvola</string>
+    <string name="watcher_enabled_label">Omogući pratiča</string>
+    <string name="watcher_enabled_desc">Otkrij promjene dozvola kada se aplikacije instaliraju ili ažuriraju</string>
+    <string name="watcher_scope_label">Opseg praćenja</string>
+    <string name="watcher_scope_all">Sve aplikacije</string>
+    <string name="watcher_scope_non_system">Samo aplikacije koje nisu sustav</string>
+    <string name="watcher_reports_label">Izvješća o promjenama dozvola</string>
+    <string name="watcher_reports_empty">Još nisu otkrivene promjene dozvola</string>
+    <string name="watcher_report_detail_label">Izvještaj o promjenama</string>
+    <string name="watcher_diff_added_permissions">Nove dozvole</string>
+    <string name="watcher_diff_removed_permissions">Uklonjene dozvole</string>
+    <string name="watcher_diff_grant_changes">Promjene odobrenja</string>
+    <string name="watcher_diff_added_declared">Novo deklarirane dozvole</string>
+    <string name="watcher_diff_removed_declared">Uklonjene deklarirane dozvole</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Instalirano</string>
+    <string name="watcher_event_update">Ažurirano</string>
+    <string name="watcher_event_removed">Uklonjeno</string>
+    <string name="watcher_event_grant_change">Dozvola promijenjena</string>
+    <string name="watcher_mark_all_seen">Označi sve kao viđeno</string>
+    <string name="watcher_notification_action_mark_seen">Označi kao viđeno</string>
+    <string name="watcher_notification_action_delete">Izbriši</string>
+    <string name="watcher_notification_body_added">Dodano: %s</string>
+    <string name="watcher_notification_body_removed">Uklonjeno: %s</string>
+    <string name="watcher_notification_body_grant_changed">Odobrenje promijenjeno: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d aplikacija promijenila dozvole</item>
+        <item quantity="few">%d aplikacije promijenile dozvole</item>
+        <item quantity="other">%d aplikacija promijenilo dozvole</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Prikaži obavijesti</string>
+    <string name="watcher_settings_notifications_desc">Prikaži obavijest kada se otkriju promjene dozvola</string>
+    <string name="watcher_settings_notifications_only_gained_label">Obavijesti samo o stečenim dozvolama</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Obavijesti samo kada aplikacije dobiju nove dozvole, npr. kada se dopusti izvršna dozvola ili doda instalacijska dozvola poput interneta</string>
+    <string name="watcher_settings_retention_label">Zadrži izvješća</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Očisti sva izvješća</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Očistiti sva izvješća?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Sva izvješća o promjenama dozvola bit će trajno izbrisana.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d izvješće</item>
+        <item quantity="few">%d izvješća</item>
+        <item quantity="other">%d izvješća</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Obavijesti nedostupne</string>
+    <string name="watcher_notification_permission_description">Prate se promjene dozvola, ali se obavijesti ne mogu prikazati. Omogućite obavijesti kako biste primali upozorenja o promjenama dozvola.</string>
+    <string name="watcher_notification_permission_grant">Daj dopuštenje</string>
+    <string name="watcher_notification_permission_open_settings">Otvori postavke</string>
+    <string name="watcher_notification_permission_disable">Onemogući obavijesti</string>
+    <string name="watcher_detail_version_label">Verzija</string>
+    <string name="watcher_detail_version_code_label">Kôd</string>
+    <string name="watcher_detail_installer_label">Izvor instalacije</string>
+    <string name="watcher_detail_installer_unknown">Nepoznato</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Dozvola (%d)</item>
+        <item quantity="few">Dozvole (%d)</item>
+        <item quantity="other">Dozvole (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Zadnja poznata dozvola (%d)</item>
+        <item quantity="few">Zadnje poznate dozvole (%d)</item>
+        <item quantity="other">Zadnje poznate dozvole (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Ove dozvole su dodane s ovom verzijom aplikacije.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Ove dozvole su uklonjene u ovom ažuriranju.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Ovim dozvolama je promijenjen status odobrenja.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Ovo su bile dozvole koje je aplikacija imala prije uklanjanja.</string>
+    <string name="watcher_detail_grant_type_automatic">Odobreno automatski</string>
+    <string name="watcher_detail_grant_type_approval">Zahtijeva odobrenje</string>
+    <string name="watcher_detail_toggle_description">Uklopi opis</string>
+    <string name="watcher_detail_unknown_permission">Nepoznata dozvola</string>
+    <string name="watcher_detail_diff_error">Učitavanje pojedinosti dozvole nije uspjelo</string>
+    <string name="watcher_settings_polling_label">Interval pozadinskih provjera</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Svakih %d sat</item>
+        <item quantity="few">Svakih %d sata</item>
+        <item quantity="other">Svakih %d sati</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Skeniranje aplikacija…</string>
+    <string name="watcher_refresh_checking">Provjera promjena…</string>
+    <string name="watcher_search_hint">Pretraži izvješća</string>
+    <string name="watcher_filter_has_added_permissions">Nove tražene dozvole</string>
+    <string name="watcher_filter_has_lost_permissions">Dozvole ispuštene</string>
+    <string name="watcher_filter_has_gained_permissions">Novi odobren pristup</string>
+    <string name="watcher_filter_unseen_only">Samo neviđeno</string>
+    <string name="watcher_filter_section_event_type">Vrsta događaja</string>
+    <string name="watcher_filter_section_permission_changes">Promjene dozvola</string>
+    <string name="watcher_filter_section_status">Stanje</string>
+    <string name="watcher_filter_reset">Ponovno postavi</string>
+    <string name="watcher_reports_no_matches">Nijedno izvješće ne odgovara vašoj pretrazi ili filtrima</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">%d više izvješće</item>
+        <item quantity="few">%d više izvješća</item>
+        <item quantity="other">%d više izvješća</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Nadogradite za pregled svih izvješća, pojedinosti i primanje obavijesti</string>
+    <string name="snapshot_sync_channel_name">Sinkronizacija snižmaka</string>
+    <string name="snapshot_sync_channel_description">Pozadinska sinkronizacija podataka aplikacija</string>
+    <string name="snapshot_sync_notification_title">Sinkronizacija podataka aplikacija…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Odaberi sve</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d odabran</item>
+        <item quantity="few">%d odabrana</item>
+        <item quantity="other">%d odabranih</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Izvezi podatke o aplikaciji</string>
+    <string name="export_permission_info_action">Izvezi podatke o dozvoli</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Izvezi %d aplikaciju</item>
+        <item quantity="few">Izvezi %d aplikacije</item>
+        <item quantity="other">Izvezi %d aplikacija</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Izvezi %d dozvolu</item>
+        <item quantity="few">Izvezi %d dozvole</item>
+        <item quantity="other">Izvezi %d dozvola</item>
+    </plurals>
+    <string name="export_app_info_title">Izvoz podataka o aplikaciji</string>
+    <string name="export_permission_info_title">Izvoz podataka o dozvolama</string>
+    <string name="export_format_label">Format</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Uključi podatke o instalaciji</string>
+    <string name="export_app_include_meta_description">Verzija, datum instalacije, razine SDK-a</string>
+    <string name="export_app_include_permissions_label">Uključi dozvole</string>
+    <string name="export_app_include_permissions_description">Nazivi dozvola i status odobrenja</string>
+    <string name="export_app_include_perm_type_label">Uključi vrstu dozvole</string>
+    <string name="export_app_include_perm_full_label">Uključi potpune detalje dozvole</string>
+    <string name="export_perm_include_apps_label">Uključi aplikacije koje traže</string>
+    <string name="export_perm_include_apps_description">Popis aplikacija koje traže svaku dozvolu</string>
+    <string name="export_perm_granted_only_label">Samo odobrene aplikacije</string>
+    <string name="export_perm_include_summary_label">Uključi zbirne brojeve</string>
+    <string name="export_preview_label">Pregled</string>
+    <string name="export_preview_label_of">Pregled (%1$d od %2$d)</string>
+    <string name="export_action_label">Izvezi</string>
+    <string name="export_progress_label">Izvoz…</string>
+    <string name="export_success_message">Izvoz dovršen</string>
+    <string name="export_error_message">Izvoz nije uspio</string>
+    <string name="export_share_action">Dijeli</string>
+    <string name="export_open_action">Otvoreno</string>
+    <string name="export_done_action">Gotovo</string>
+    <string name="export_retry_action">Pokušaj ponovo</string>
+    <string name="export_summary_filename">Datoteka</string>
+    <string name="export_summary_size">Veličina</string>
+    <string name="export_summary_duration">Trajanje</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Besplatna verzija ograničena je na %d stavku i Markdown format. Nadogradite za neograničeni izvoz i sve formate.</item>
+        <item quantity="few">Besplatna verzija ograničena je na %d stavke i Markdown format. Nadogradite za neograničeni izvoz i sve formate.</item>
+        <item quantity="other">Besplatna verzija ograničena je na %d stavki i Markdown format. Nadogradite za neograničeni izvoz i sve formate.</item>
+    </plurals>
+    <string name="export_upgrade_action">Nadogradnja</string>
 </resources>

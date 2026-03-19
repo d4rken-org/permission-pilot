@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Usługi Google Play są niedostępne.</string>
     <string name="upgrades_no_purchases_found_check_account">Nie znaleziono zakupów. Czy używasz właściwego konta?</string>
+    <string name="upgrade_screen_preamble">Pilot Uprawnień jest wolny od reklam i szanuje twoją prywatność. Aktualizacja wspiera dalszy rozwój.</string>
+    <string name="upgrade_screen_subscription_trial_action">Rozpocznij wersję próbną</string>
+    <string name="upgrade_screen_subscription_action">Subskrybuj</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/miesiąc, anuluj w dowolnym momencie</string>
+    <string name="upgrade_screen_iap_action">Kup Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Jednorazowy zakup za %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Przywróć zakup</string>
+    <string name="upgrade_screen_restore_purchase_message">Nie znaleziono zakupów. Upewnij się, że jesteś zalogowany na właściwym koncie Google.</string>
+    <string name="upgrade_screen_options_description">Subskrypcje odnawiają się automatycznie. Możesz anulować w dowolnym momencie.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

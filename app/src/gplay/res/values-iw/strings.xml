@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">שירותי Google Play אינם זמינים.</string>
     <string name="upgrades_no_purchases_found_check_account">לא נמצאו רכישות. האם את/ה משתמש/ת בחשבון הנכון?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot היא בללי פרסומות ומכבדת את פרטיותך. שדרוג תומך בפיתוח המשך.</string>
+    <string name="upgrade_screen_subscription_trial_action">התחל ניסיון חינם</string>
+    <string name="upgrade_screen_subscription_action">הירשם כמנוי</string>
+    <string name="upgrade_screen_subscription_action_hint">%s לחודש, ביטול בכל עת</string>
+    <string name="upgrade_screen_iap_action">קנה פרו</string>
+    <string name="upgrade_screen_iap_action_hint">רכישה חד פעמית של %s</string>
+    <string name="upgrade_screen_restore_purchase_action">שחזור רכישה</string>
+    <string name="upgrade_screen_restore_purchase_message">לא נמצאו רכישות. ודא שאתה מחובר באמצעות חשבון גוגל הנכון.</string>
+    <string name="upgrade_screen_options_description">מנויים מתחדשים אוטומטית. ניתן לבטל בכל עת.</string>
+    <string name="upgrade_title_suffix">פרו</string>
 </resources>
