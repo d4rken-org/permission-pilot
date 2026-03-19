@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Permission Pilot</string>
+    <string name="app_name">Pilot Uprawnień</string>
     <string name="label_help">Pomoc</string>
     <string name="general_error_label">Błąd</string>
     <string name="general_share_action">Udostępnij</string>
     <string name="general_done_action">Gotowe</string>
     <string name="general_open_action">Otwórz</string>
     <string name="general_continue_action">Kontynuuj</string>
-    <string name="upgrade_buy_pro_action">Kup wersję Pro</string>
     <string name="general_no_action">Nie</string>
-    <string name="upgrade_donate_action">Wesprzyj</string>
-    <string name="debug_debuglog_size_label">Rozmiar</string>
-    <string name="debug_debuglog_size_compressed_label">Rozmiar skompresowany</string>
-    <string name="debug_notification_channel_label">Powiadomienia debugowania</string>
-    <string name="debug_debuglog_file_label">Zapisany plik dziennika</string>
-    <string name="debug_debuglog_record_action">Rejestruj dziennik debugowania</string>
+    <string name="debug_debuglog_record_action">Nagranie</string>
     <string name="settings_category_other_label">Inne</string>
+    <string name="settings_category_gethelp_label">Uzyskaj pomoc</string>
+    <string name="settings_category_debug_label">Debuguj</string>
+    <string name="settings_category_advanced_label">Zaawansowane</string>
     <string name="general_settings_label">Ogólne</string>
     <string name="general_settings_desc">Ogólne ustawienia wpływające na całą aplikację.</string>
+    <string name="general_settings_scan_speed_label">Szybkość skanowania</string>
+    <string name="general_settings_scan_speed_desc">Steruje równoległymi operacjami podczas skanowania aplikacji. Wyższe wartości są szybsze, ale mogą powodować awarie na niektórych urządzeniach.</string>
+    <string name="general_settings_scan_speed_auto">Automatycznie (zalecane)</string>
+    <string name="general_settings_scan_speed_1">1 (najbezpieczniejsze)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (najszybsze)</string>
     <string name="changelog_label">Lista zmian</string>
     <string name="settings_acknowledgements_label">Podziękowania</string>
     <string name="general_thank_you_label">Dziękuję ci</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Miejsce do rozmów i zadawania pytań.</string>
     <string name="issue_tracker_label">Lista problemów</string>
     <string name="issue_tracker_description">Publiczna lista problemów, dla raportów błędów oraz próśb o nowe funkcjonalności.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">Najczęściej zadawane pytania i częste rozwiązania.</string>
+    <string name="acks_maxpatchs_desc">Dziękuję za piękne ikony.</string>
+    <string name="acks_crowdin_desc">W celu wsparcia tłumaczeń projektów otwarto-źródłowych.</string>
     <string name="permissions_page_label">Uprawnienia</string>
     <string name="apps_page_label">Aplikacje</string>
     <string name="app_type_system_label">Aplikacja systemowa</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Anuluj</string>
     <string name="apps_filter_userapps_label">Aplikacje użytkownika</string>
     <string name="apps_filter_systemapps_label">Aplikacje systemowe</string>
-    <string name="apps_filter_nointernet_label">Aplikacje bez dostępu do internetu</string>
-    <string name="apps_filter_sideloaded_label">Aplikacje zainstalowane ręcznie</string>
+    <string name="apps_filter_nointernet_label">Brak internetu</string>
+    <string name="apps_filter_sideloaded_label">Zainstalowano ręcznie</string>
     <string name="apps_filter_gplay_label">Sklep Google Play</string>
     <string name="apps_filter_oemstore_label">Sklep OEM</string>
     <string name="apps_sort_permissions_granted_label">Przyznane uprawnienia</string>
@@ -73,6 +81,8 @@
     </plurals>
     <string name="apps_details_installer_label">Źródło instalacji</string>
     <string name="apps_details_installer_unknown_label">Informacje niedostępne</string>
+    <string name="apps_details_open_settings_error">Nie można otworzyć ustawień aplikacji dla tego profilu</string>
+    <string name="apps_details_open_app_error">Nie można otworzyć tej aplikacji</string>
     <string name="permissions_filter_manifest_label">Uprawnienia AOSP</string>
     <string name="permissions_filter_system_label">Zadeklarowane przez aplikację systemową</string>
     <string name="permissions_filter_user_label">Zadeklarowane przez aplikację użytkownika</string>
@@ -80,11 +90,15 @@
     <string name="permissions_filter_special_label">Specjalne użycie</string>
     <string name="permissions_filter_installtime_label">Przyznane automatycznie</string>
     <string name="permissions_filter_installtime_hide_label">Nie przyznane automatycznie</string>
+    <string name="permissions_filter_sort_action">Filtruj i sortuj</string>
+    <string name="permissions_filter_section_source">Źródło</string>
+    <string name="permissions_filter_section_type">Typ</string>
+    <string name="permissions_filter_section_sort_by">Sortuj według</string>
     <string name="filter_granted_label">Przyznano</string>
     <string name="filter_denied_label">Odmówiono</string>
     <string name="filter_configurable_label">Konfigurowalny</string>
-    <string name="permissions_sort_apps_granted_label"># aplikacji przyznanych</string>
-    <string name="permissions_sort_apps_requested_label"># aplikacji żądających</string>
+    <string name="permissions_sort_apps_granted_label">Liczba przyznanych aplikacji</string>
+    <string name="permissions_sort_apps_requested_label">Liczba żądanych aplikacji</string>
     <string name="permissions_search_list_hint">Szukaj uprawnień</string>
     <string name="apps_search_list_hint">Szukaj aplikacji</string>
     <string name="permissions_details_protection_label">Poziom ochrony</string>
@@ -97,16 +111,22 @@
     <string name="permissions_permission_details_label">Szczegóły uprawnienia</string>
     <string-array name="generic_loading_labels">
         <item>Wkrótce™</item>
-        <item>Podawanie masła</item>
+        <item>Podaję masło</item>
         <item>Pobieram więcej pamięci RAM</item>
         <item>Wciąż szybciej niż na iPhonie</item>
-        <item>Co to jest za tobą?</item>
         <item>Procesor robi sobie przerwę na kawę</item>
         <item>Czekam na dane od Pepe Silvii</item>
         <item>Turbo mechanizm startuje</item>
+        <item>Prawie gotowe… chyba</item>
+        <item>Udaję, że jestem zajęty</item>
+        <item>Rozgrzewam koło dla chomika</item>
+        <item>Przekonuję aplikację do współpracy</item>
+        <item>Grzecznie proszę o pozwolenie</item>
+        <item>Twoje aplikacje zatrudniają prawników</item>
+        <item>Czytam drobny druk</item>
     </string-array>
     <string name="apps_app_details_label">Szczegóły aplikacji</string>
-    <string name="apps_details_shareduserid_label">Aplikacje ze współdzielonym ID użytkownika</string>
+    <string name="apps_details_shareduserid_label">Aplikacje ze Współdzielonym ID Użytkownika</string>
     <string name="apps_details_siblings_label">Powiązane</string>
     <string name="apps_known_installer_gplay_label">Sklep Google Play</string>
     <string name="apps_known_installer_vivo_label">Sklep Vivo</string>
@@ -114,25 +134,47 @@
     <string name="apps_known_installer_huawei_label">Sklep Huawei</string>
     <string name="apps_known_installer_samsung_label">Sklep Samsung Galaxy</string>
     <string name="apps_known_installer_xiaomi_label">Sklep Xiaomi</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">System Android</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Zaktualizowano %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Zainstalowano ręcznie</string>
+    <string name="apps_list_installer_preinstalled_label">Preinstalowana</string>
     <string name="general_refresh_action">Odśwież</string>
     <string name="general_expand_all_action">Rozwiń wszystko</string>
     <string name="general_collapse_all_action">Zwiń wszystko</string>
     <string name="general_more_options_action">Więcej opcji</string>
-    <string name="apps_details_twins_label">Klony</string>
+    <string name="apps_details_twins_label">Sklonowane</string>
     <string name="apps_details_twins_descriptions">Zainstalowane w innych profilach użytkownika.</string>
     <string name="install_date_label">Data instalacji</string>
-    <string name="apps_filter_sharedid_label">Współdzielone ID użytkownika</string>
-    <string name="apps_filter_multipleprofiles_label">Aplikacje z klonami</string>
+    <string name="apps_filter_sharedid_label">Współdzielone ID Użytkownika</string>
+    <string name="apps_filter_multipleprofiles_label">Ma klony</string>
     <string name="support_debuglog_label">Dziennik debugowania</string>
     <string name="support_debuglog_desc">Rejestruj wszystko, co robi aplikacja do pliku tekstowego, który możesz udostępnić.</string>
     <string name="updated_at_x">Ostatnia aktualizacja: %s</string>
     <string name="installed_at_x">Pierwszy raz zainstalowane: %s</string>
     <string name="apps_sort_install_source_label">Źródło instalacji</string>
     <string name="permissions_action_none_msg">Brak dostępnych działań dla tego uprawnienia</string>
-    <string name="apps_filter_profile_secondary_label">Aplikacje w zarządzanych profilach</string>
-    <string name="apps_filter_battery_optimization_label">Aplikacje z niestandardowymi opcjami baterii</string>
-    <string name="apps_filter_accessibility_label">Aplikacje z usługami dostępności</string>
+    <string name="apps_filter_profile_secondary_label">Zarządzane profile</string>
+    <string name="apps_filter_battery_optimization_label">Niestandardowa bateria</string>
+    <string name="apps_filter_accessibility_label">Dostępność</string>
+    <string name="apps_filter_device_admin_label">Administrator urządzenia</string>
+    <string name="apps_filter_install_packages_label">Może instalować aplikacje</string>
+    <string name="apps_filter_overlay_label">Wyświetlaj ponad aplikacjami</string>
+    <string name="apps_filter_camera_label">Dostęp do aparatu</string>
+    <string name="apps_filter_location_label">Dostęp do lokalizacji</string>
+    <string name="apps_filter_microphone_label">Dostęp do mikrofonu</string>
+    <string name="apps_filter_contacts_label">Dostęp do kontaktów</string>
+    <string name="apps_filter_old_api_target_label">Kierowane na stary Android</string>
+    <string name="apps_filter_manifest_flags_label">Może wykrywać aplikacje</string>
+    <string name="apps_filter_section_app_type">Typ aplikacji</string>
+    <string name="apps_filter_section_install_source">Źródło instalacji</string>
+    <string name="apps_filter_section_properties">Właściwości</string>
+    <string name="apps_filter_section_profile">Profil</string>
+    <string name="apps_filter_section_sort_by">Sortuj według</string>
+    <string name="apps_filter_sort_action">Filtruj i sortuj</string>
+    <string name="apps_help_tag_icons_title">Etykiety uprawnień</string>
+    <string name="apps_help_tag_icons_description">Etykiety pokazują, jakie kategorie poufnych uprawnień zostały przyznane aplikacji</string>
     <string name="apps_details_description_restrictions_caveat_description">Ta aplikacja jest zainstalowana w innym profilu użytkownika. Przyznane uprawnienia można określić tylko dla aplikacji zainstalowanych w obecnie aktywnym profilu, ze względu na ograniczenia Androida.</string>
     <string name="apps_details_description_uninstalled_caveat">Ta aplikacja została odinstalowana, ale jej dane zostały zachowane. Nie można określić stanu uprawnień dla odinstalowanych aplikacji.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -148,13 +190,74 @@
         <item quantity="other">%1$d z %2$d uprawnień przyznano.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Żadne uprawnienia nie pasują do obecnych filtrów. Dotknij ikonę filtra, aby dostosować.</string>
+    <string name="apps_details_perm_tag_runtime">Czas działania</string>
+    <string name="apps_details_perm_tag_special">Specjalne</string>
+    <string name="apps_details_perm_tag_install">Instalacja</string>
+    <string name="apps_details_perm_help_title">Wskaźniki uprawnień</string>
+    <string name="apps_details_perm_help_runtime">Czas działania — aplikacja musi Cię o to zapytać przed użyciem tego uprawnienia. Możesz je przyznać lub odmówić.</string>
+    <string name="apps_details_perm_help_special">Specjalne — wymaga przełączenia przełącznika w ustawieniach systemowych.</string>
+    <string name="apps_details_perm_help_install">Zainstaluj — przyznawane automatycznie po zainstalowaniu aplikacji. Nie wymaga żadnej akcji ze strony użytkownika.</string>
+    <string name="apps_details_perm_help_declared">Ikona ⚠ oznacza, że to uprawnienie zostało utworzone przez samą aplikację, a nie jest standardowym uprawnieniem Androida.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">Manifest aplikacji</string>
+    <string name="apps_details_manifest_queued">W kolejce do analizy\u2026</string>
+    <string name="apps_details_manifest_loading">Analizowanie manifestu\u2026</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">Pozostał %d manifest do analizy\u2026</item>
+        <item quantity="few">Pozostały %d manifesty do analizy\u2026</item>
+        <item quantity="many">Pozostało %d manifestów do analizy\u2026</item>
+        <item quantity="other">Pozostało %d manifestów do analizy\u2026</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Nie wykryto niczego niezwykłego</string>
+    <string name="apps_details_manifest_unavailable">Manifest niedostępny</string>
+    <string name="apps_details_manifest_error">Nie można odczytać manifestu</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d zapytanie o pakiet</item>
+        <item quantity="few">%d zapytania o pakiet</item>
+        <item quantity="many">%d zapytań o pakiet</item>
+        <item quantity="other">%d zapytań o pakiet</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d zapytanie intentu</item>
+        <item quantity="few">%d zapytania intentu</item>
+        <item quantity="many">%d zapytań intentu</item>
+        <item quantity="other">%d zapytań intentu</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d zapytanie o dostawcę</item>
+        <item quantity="few">%d zapytania o dostawcę</item>
+        <item quantity="many">%d zapytań o dostawcę</item>
+        <item quantity="other">%d zapytań o dostawcę</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Może wykryć wszystkie zainstalowane aplikacje</string>
+    <string name="apps_details_manifest_hint_excessive">Sprawdza wiele konkretnych aplikacji</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Przeglądarka manifestu</string>
+    <string name="apps_manifest_viewer_search_hint">Szukaj w manifeście</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d dopasowanie</item>
+        <item quantity="few">%d dopasowania</item>
+        <item quantity="many">%d dopasowań</item>
+        <item quantity="other">%d dopasowań</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d z %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Używa uprawnienia</string>
+    <string name="apps_manifest_section_permission">Uprawnienie</string>
+    <string name="apps_manifest_section_queries">Zapytania</string>
+    <string name="apps_manifest_section_activities">Aktywności</string>
+    <string name="apps_manifest_section_services">Usługi</string>
+    <string name="apps_manifest_section_receivers">Odbiorniki</string>
+    <string name="apps_manifest_section_providers">Dostawcy</string>
+    <string name="apps_manifest_section_meta_data">Metadane</string>
+    <string name="apps_manifest_section_other">Inne</string>
     <string name="api_target_level_x">Wersja docelowa: %s</string>
     <string name="api_minimum_level_x">Wersja minimalna: %s</string>
     <string name="api_build_level_x">Wersja kompilacji: %s</string>
     <string name="permission_reboot_label">Restart urządzenia</string>
     <string name="permission_reboot_description">Pozwala aplikacji na restart urządzenia. Dostępne tylko dla aplikacji systemowych.</string>
     <string name="permissions_sort_apps_relevance_label">Trafność</string>
-    <string name="apps_filter_profile_active_label">Aplikacje w aktywnym profilu</string>
+    <string name="apps_filter_profile_active_label">Aktywny profil</string>
     <string name="overview_page_label">Przegląd</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s element</item>
@@ -198,8 +301,61 @@
         <item quantity="many">Aplikacji systemowych: Przyznano %1$d z %2$d.</item>
         <item quantity="other">Aplikacji systemowych: Przyznano %1$d z %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d aplikacja w innych profilach użytkowników również żąda tego uprawnienia.</item>
+        <item quantity="few">%d aplikacje w innych profilach użytkowników również żądają tego uprawnienia.</item>
+        <item quantity="many">%d aplikacji w innych profilach użytkowników również żąda tego uprawnienia.</item>
+        <item quantity="other">%d aplikacji w innych profilach użytkowników również żąda tego uprawnienia.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d odinstalowana aplikacja z zachowanymi danymi również żąda tego uprawnienia.</item>
+        <item quantity="few">%d odinstalowane aplikacje z zachowanymi danymi również żądają tego uprawnienia.</item>
+        <item quantity="many">%d odinstalowanych aplikacji z zachowanymi danymi również żąda tego uprawnienia.</item>
+        <item quantity="other">%d odinstalowanych aplikacji z zachowanymi danymi również żąda tego uprawnienia.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacje zainstalowane w innych profilach użytkownika są wykluczone z powyższego obliczenia ze względu na ograniczenia Androida.</string>
     <string name="permissions_details_empty_filter_message">Żadne aplikacje nie pasują do obecnych filtrów. Stuknij ikonę filtra, aby dostosować.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Czas działania</string>
+    <string name="permissions_tag_install_time_label">Czas instalacji</string>
+    <string name="permissions_tag_special_access_label">Dostęp specjalny</string>
+    <string name="permissions_tag_documented_label">Udokumentowane</string>
+    <string name="permissions_tag_notable_label">Godne uwagi</string>
+    <string name="permissions_tag_non_standard_label">Niestandardowe</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">W użyciu</string>
+    <string name="permissions_status_unknown_label">Nieznane</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">Systemowa</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d więcej</item>
+        <item quantity="few">+%d więcej</item>
+        <item quantity="many">+%d więcej</item>
+        <item quantity="other">+%d więcej</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Wskaźniki uprawnień</string>
+    <string name="permissions_details_help_section_protection">Typ ochrony</string>
+    <string name="permissions_details_help_dangerous">Niebezpieczne — wymaga wyraźnej zgody użytkownika w czasie wykonywania. Umożliwia dostęp do poufnych danych lub funkcji urządzenia.</string>
+    <string name="permissions_details_help_normal">Normalne — przyznawane automatycznie podczas instalacji. Stanowi minimalne ryzyko dla innych aplikacji lub systemu.</string>
+    <string name="permissions_details_help_signature">Podpis — przyznawany tylko aplikacjom podpisanym tym samym certyfikatem, co aplikacja, która zadeklarowała uprawnienie.</string>
+    <string name="permissions_details_help_internal">Wewnętrzne — zarezerwowane dla wewnętrznych funkcji systemu Android. Niedostępne dla aplikacji innych firm.</string>
+    <string name="permissions_details_help_section_tags">Tagi uprawnień</string>
+    <string name="permissions_details_help_tag_runtime">Czas działania — aplikacja musi Cię zapytać przed użyciem tego uprawnienia.</string>
+    <string name="permissions_details_help_tag_install_time">W czasie instalacji — przyznawane automatycznie po zainstalowaniu aplikacji.</string>
+    <string name="permissions_details_help_tag_special_access">Dostęp specjalny — wymaga przełączenia przełącznika w ustawieniach systemowych.</string>
+    <string name="permissions_details_help_tag_documented">Udokumentowane — wymienione w oficjalnej dokumentacji manifestu Androida.</string>
+    <string name="permissions_details_help_tag_notable">Godne uwagi — szczególnie warte uwagi ze względu na wpływ na prywatność lub bezpieczeństwo.</string>
+    <string name="permissions_details_help_tag_non_standard">Niestandardowe — nie jest częścią standardowego zestawu uprawnień Androida. Zadeklarowane przez aplikację trzecią lub producenta.</string>
+    <string name="permissions_details_status_help_title">Wskaźniki statusu</string>
+    <string name="permissions_details_help_section_status">Status przyznania</string>
+    <string name="permissions_details_help_status_granted">Przyznane — aplikacja otrzymała to uprawnienie.</string>
+    <string name="permissions_details_help_status_in_use">W użyciu — przyznane i obecnie aktywnie używane przez aplikację.</string>
+    <string name="permissions_details_help_status_denied">Odmowa — aplikacja zażądała tego uprawnienia, ale nie zostało ono przyznane.</string>
+    <string name="permissions_details_help_status_unknown">Nieznane — nie można określić stanu przyznania, np. w przypadku aplikacji w innych profilach użytkowników.</string>
+    <string name="permissions_details_help_section_badges">Odznaki</string>
+    <string name="permissions_details_help_system_badge">Systemowa — aplikacja jest preinstalowaną aplikacją systemową.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Umożliwia aplikacjom komunikację z tagami, kartami i czytnikami NFC (Near Field Communication).</string>
     <string name="permission_manage_media_label">Zarządzanie multimediami</string>
@@ -211,7 +367,7 @@
     <string name="permission_bluetooth_advertise_label">Nadawanie sygnału Bluetooth</string>
     <string name="permission_bluetooth_advertise_description">Pozwala aplikacjom nadawać sygnał do pobliskich urządzeń Bluetooth.</string>
     <string name="permission_get_accounts_label">Pobierz listę kont</string>
-    <string name="permission_get_accounts_description">Pozwala aplikacjom uzyskać listę kont znanych telefonowi. Może to obejmować wszystkie konta utworzone przez aplikacje, które zainstalowałeś.</string>
+    <string name="permission_get_accounts_description">Umożliwia aplikacjom uzyskanie listy kont znanych urządzeniu. Może to obejmować konta utworzone przez zainstalowane aplikacje.</string>
     <string name="permission_access_background_location_label">Dostęp do lokalizacji w tle</string>
     <string name="permission_access_background_location_description">Pozwala aplikacjom uzyskać dostęp do lokalizacji w dowolnym momencie, nawet gdy nie są używane.</string>
     <string name="permission_access_media_location_label">Dostęp do lokalizacji multimediów</string>
@@ -225,7 +381,7 @@
     <string name="permission_read_sync_settings_label">Odczytaj ustawienia synchronizacji</string>
     <string name="permission_read_sync_settings_description">Pozwala aplikacjom odczytywać ustawienia synchronizacji dla konta.</string>
     <string name="permission_install_unknown_apps_label">Instaluj nieznane aplikacje (nieznane źródła)</string>
-    <string name="permission_install_unknown_apps_description">Pozwala aplikacjom instalować (ręcznie wgrywać) inne aplikacje na twoim urządzeniu. Może to narazić twoje urządzenie i dane na ryzyko.</string>
+    <string name="permission_install_unknown_apps_description">Pozwala aplikacjom ręcznie instalować inne aplikacje na twoim urządzeniu. Może to narazić twoje urządzenie i dane na ryzyko.</string>
     <string name="permission_all_files_access_label">Dostęp do wszystkich plików</string>
     <string name="permission_all_files_access_description">Pozwala aplikacjom odczytywać, modyfikować i usuwać wszystkie pliki na twoim urządzeniu oraz wszystkich podłączonych urządzeniach pamięci masowej. Aplikacje z tym uprawnieniem mogą również uzyskać dostęp do plików niezwiązanych z aplikacją, bez powiadamiania cię.</string>
     <string name="permission_appear_on_top_label">Wyświetlanie nad innymi</string>
@@ -284,23 +440,354 @@
     <string name="permission_group_camera_description">Uprawnienia związane z kamerą.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
     <string name="permission_group_audio_description">Uprawnienia związane z mikrofonem.</string>
+    <string name="permissions_list_empty_message">Brak uprawnień do wyświetlenia.</string>
+    <string name="permissions_list_empty_search_message">Brak uprawnień pasujących do wyszukiwania.</string>
     <string name="permission_picture_in_picture_label">Obraz w obrazie</string>
+    <string name="permission_legacy_storage_label">Starsza pamięć</string>
+    <string name="permission_legacy_storage_description">Umożliwia aplikacjom dostęp do zewnętrznej pamięci masowej bez ograniczeń określonego zakresu. Było to domyślne zachowanie przed Androidem 10. Aplikacje z tym dostępem mogą odczytywać i zapisywać pliki gdziekolwiek w pamięci współdzielonej.</string>
+    <string name="settings_page_label">Ustawienia</string>
+    <string name="overview_summary_title_label">Podsumowanie</string>
+    <string name="permissions_details_declaring_apps_label">Deklaracje aplikacji</string>
+    <string name="permissions_details_requesting_apps_label">Żądania aplikacji</string>
     <string name="overview_device_android_version_label">Wersja Android</string>
     <string name="overview_device_name_label">Urządzenie</string>
     <string name="overview_device_android_patch_label">Poziom łatki</string>
     <string name="overview_summary_apps_active_profile_label">Aplikacje w aktywnym profilu</string>
     <string name="overview_summary_apps_other_profile_label">Aplikacje w zarządzanych profilach użytkownika, z wyłączeniem klonów</string>
-    <string name="overview_summary_apps_sideloaded_label">Aplikacje zainstalowane z zewnętrznych źródeł</string>
+    <string name="overview_summary_apps_sideloaded_label">Aplikacje zainstalowane ręcznie ze źródeł zewnętrznych</string>
     <string name="overview_summary_apps_installers_label">Aplikacje z włączonym \'Instalowaniem z nieznanych źródeł\'</string>
     <string name="overview_summary_apps_overlayers_label">Aplikacje, które mogą \'Pojawiać się nad innymi\'</string>
     <string name="overview_summary_apps_offline_label">Aplikacje, które mają uprawnienia \'Brak internetu\'</string>
     <string name="overview_summary_apps_clones_label">Aplikacje z klonami w innych profilach</string>
-    <string name="overview_summary_apps_sharedids_label">Aplikacje z SharedUserID</string>
+    <string name="overview_summary_apps_sharedids_label">Aplikacje ze Współdzielonym ID Użytkownika</string>
+    <string name="overview_summary_apps_camera_label">Aplikacje z dostępem do aparatu</string>
+    <string name="overview_summary_apps_location_label">Aplikacje z dostępem do lokalizacji</string>
+    <string name="overview_summary_apps_microphone_label">Aplikacje z dostępem do mikrofonu</string>
+    <string name="overview_summary_apps_contacts_label">Aplikacje z dostępem do kontaktów</string>
+    <string name="overview_summary_apps_gplay_label">Aplikacje z Google Play</string>
+    <string name="overview_summary_apps_oemstore_label">Aplikacje ze sklepów OEM</string>
+    <string name="overview_summary_apps_battery_label">Aplikacje bez ograniczeń baterii</string>
+    <string name="overview_summary_apps_oldapi_label">Aplikacje kierowane na wersje poniżej Androida 10</string>
+    <string name="overview_section_profile_label">Profil</string>
+    <string name="overview_section_install_source_label">Źródło instalacji</string>
+    <string name="overview_section_privacy_label">Prywatność</string>
+    <string name="overview_section_security_label">Bezpieczeństwo</string>
+    <string name="overview_section_manifest_label">Manifest</string>
+    <string name="overview_summary_apps_manifest_flags_label">Może wykrywać aplikacje</string>
+    <string name="overview_section_system_label">System</string>
     <string name="permission_bind_accessibility_service_label">Oferuj usługę dostępności</string>
     <string name="permission_bind_accessibility_service_description">Pozwala aplikacji oferować usługę dostępności, która może być włączona w ustawieniach systemowych.</string>
     <string name="debug_debuglog_sensitive_information_message">Ten plik zawiera wrażliwe informacje (np. twoje zainstalowane aplikacje). Udostępniaj go tylko zaufanym stronom.</string>
     <string name="settings_debuglog_explanation">Ta funkcja nagrywa wszystko co robi aplikacja do pliku, który można udostępnić. Wygenerowany plik zawiera wrażliwe informacje (np. twoje zainstalowane aplikacje). Udostępniaj go tylko zaufanym stronom (np. deweloperowi aplikacji, jeśli razem rozwiązujecie problem).</string>
+    <string name="support_debuglog_recording">Nagrywanie…</string>
+    <string name="support_debuglog_stop_label">Zatrzymaj dziennik debugowania</string>
+    <string name="support_contact_label">Kontakt z programistą</string>
+    <string name="support_contact_desc">Wypełnij formularz, aby wysłać wiadomość e-mail do programisty.</string>
+    <string name="support_debuglog_clear_action">Wyczyść zapisane dzienniki debugowania</string>
+    <string name="debug_debuglog_short_recording_title">Nagranie zbyt krótkie</string>
+    <string name="debug_debuglog_short_recording_message">Dziennik debugowania musi przechwycić problem w momencie jego wystąpienia. Rozpocznij nagrywanie, odtwarzaj problem, a następnie zatrzymaj nagrywanie.</string>
+    <string name="debug_debuglog_short_recording_continue">Kontynuuj nagrywanie</string>
+    <string name="debug_debuglog_short_recording_stop">Zatrzymaj mimo to</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d dziennik debugowania (%2$s)</item>
+        <item quantity="few">%1$d dzienniki debugowania (%2$s)</item>
+        <item quantity="many">%1$d dzienników debugowania (%2$s)</item>
+        <item quantity="other">%1$d dzienników debugowania (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Wyczyścić dzienniki debugowania?</string>
+    <string name="support_debuglog_clear_message">Spowoduje to usunięcie wszystkich zapisanych plików dzienników debugowania.</string>
+    <string name="support_debuglog_sessions_title">Dzienniki debugowania</string>
+    <string name="support_debuglog_session_delete_title">Usunąć dziennik debugowania?</string>
+    <string name="support_debuglog_session_delete_message">Ten dziennik debugowania zostanie trwale usunięty.</string>
+    <string name="support_debuglog_sessions_empty">Brak dzienników debugowania</string>
+    <string name="support_debuglog_session_invalid">Nieprawidłowa sesja</string>
+    <string name="support_debuglog_session_recording">Nagrywanie…</string>
+    <string name="support_debuglog_session_compressing">Kompresowanie…</string>
+    <string name="support_debuglog_failed_empty_log">Pusty plik dziennika</string>
+    <string name="support_debuglog_failed_missing_log">Brakujący plik dziennika</string>
+    <string name="support_debuglog_failed_corrupt_zip">Uszkodzony plik ZIP</string>
+    <string name="support_debuglog_failed_zip_failed">Kompresja nie powiodła się</string>
+    <string name="support_debuglog_sent_title">Dziennik wysłany?</string>
+    <string name="support_debuglog_sent_message">Jeśli wysłanoś dziennik debugowania, można go usunąć, aby zwolnić miejsce.</string>
+    <string name="support_contact_sent_title">Wiadomość wysłana?</string>
+    <string name="support_contact_sent_message">Jeśli wysłano e-mail, ta sesja może zostać wyczyszczona.</string>
+    <string name="general_close_action">Zamknij</string>
+    <string name="debug_debuglog_screen_delete_action">Usuń</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Skontaktuj się z pomocą techniczną</string>
+    <string name="contact_category_label">Kategoria</string>
+    <string name="contact_category_question_label">Pytanie</string>
+    <string name="contact_category_feature_label">Prośba o funkcję</string>
+    <string name="contact_category_bug_label">Raport błędu</string>
+    <string name="contact_description_label">Opis</string>
+    <string name="contact_description_hint_question">Opisz swoje pytanie szczegółowo. Bądź konkretny (minimum 20 słów).</string>
+    <string name="contact_description_hint_feature">Opisz funkcję, którą chciałbyś zobaczyć. Bądź konkretny (minimum 20 słów).</string>
+    <string name="contact_description_hint_bug">Opisz, co się wydarzyło i jak odtworzyć problem. Bądź konkretny (minimum 20 słów).</string>
+    <string name="contact_expected_behavior_label">Oczekiwane zachowanie</string>
+    <string name="contact_expected_behavior_hint">Opisz, czego się spodziewałeś, że się wydarzy (minimum 10 słów).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d słowo</item>
+        <item quantity="few">%1$d / %2$d słowa</item>
+        <item quantity="many">%1$d / %2$d słów</item>
+        <item quantity="other">%1$d / %2$d słów</item>
+    </plurals>
+    <string name="contact_send_action">Otwórz aplikację e-mail</string>
+    <string name="contact_debuglog_picker_label">Dziennik debugowania</string>
+    <string name="contact_debuglog_picker_hint">Dołącz istniejący dziennik debugowania lub nagraj nowy.</string>
+    <string name="contact_debuglog_empty">Nie znaleziono dzienników debugowania. Najpierw nagraj jeden.</string>
+    <string name="contact_debuglog_record_action">Nagraj dziennik debugowania</string>
+    <string name="contact_debuglog_stop_action">Zatrzymaj nagrywanie</string>
+    <string name="contact_debuglog_delete_title">Usunąć dziennik debugowania?</string>
+    <string name="contact_debuglog_delete_message">Ten dziennik debugowania zostanie trwale usunięty.</string>
+    <string name="contact_debuglog_zip_error">Nie udało się skompresować dziennika debugowania</string>
+    <string name="contact_no_email_app">Nie znaleziono aplikacji do obsługi e-maili na tym urządzeniu.</string>
+    <string name="contact_welcome_message">Osobiście czytam każdą wiadomość i staram się odpowiadać. Ponieważ sam zajmuję się rozwojem, naprawianiem błędów i wsparciem, może to chwilę potrwać. Dziękuję za cierpliwość.</string>
+    <string name="contact_footer_message">Twoja wiadomość zostanie wysłana e-mailem. Informacje o urządzeniu i konfiguracji są dołączane automatycznie. Możesz dołączyć zrzuty ekranu lub film do e-maila. Proszę pisać po angielsku, jeśli to możliwe.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Zachowaj</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Dziennik debugowania</string>
+    <string name="debug_debuglog_screen_subtitle">Eksportuj informacje diagnostyczne do rozwiązywania problemów</string>
+    <string name="debug_debuglog_screen_sensitive_title">Dane wrażliwe</string>
+    <string name="debug_debuglog_screen_session_path_label">Ścieżka sesji</string>
+    <string name="debug_debuglog_screen_log_files_label">Pliki dziennika</string>
+    <string name="debug_debuglog_screen_discard_action">Odrzuć</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d plik gotowy (%2$s)</item>
+        <item quantity="few">%1$d pliki gotowe (%2$s)</item>
+        <item quantity="many">%1$d plików gotowych (%2$s)</item>
+        <item quantity="other">%1$d plików gotowych (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
+    <string name="debug_debuglog_screen_duration_s">%1$ds</string>
+    <string name="support_debuglog_share_subject">Dziennik debugowania Pilota Uprawnień - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Pytanie</string>
+    <string name="contact_email_tag_feature">Funkcja</string>
+    <string name="contact_email_tag_bug">Błąd</string>
+    <string name="contact_email_section_expected_behavior">--- Oczekiwane zachowanie ---</string>
+    <string name="contact_email_section_device_info">--- Informacje o urządzeniu ---</string>
     <string name="onboarding_body1">Ta aplikacja pomaga ci nawigować po zainstalowanych aplikacjach i odkrywać uprawnienia.</string>
-    <string name="onboarding_body2">Permission Pilot zbiera informacje o zainstalowanych aplikacjach, aby umożliwić wyświetlanie twoich aplikacji i krzyżowe odwoływanie się do ich uprawnień podczas korzystania z tej aplikacji.</string>
-    <string name="onboarding_body3">Permission Pilot nie ma reklam i przetwarza dane tylko lokalnie.</string>
+    <string name="onboarding_body2">Pilot Uprawnień zbiera informacje o zainstalowanych aplikacjach, aby umożliwić wyświetlanie twoich aplikacji i krzyżowe odwoływanie się do ich uprawnień podczas korzystania z tej aplikacji.</string>
+    <string name="onboarding_body3">Pilot Uprawnień nie ma reklam i przetwarza dane tylko lokalnie.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Tryb motywu</string>
+    <string name="ui_theme_mode_system_label">Systemowe</string>
+    <string name="ui_theme_mode_dark_label">Ciemny</string>
+    <string name="ui_theme_mode_light_label">Jasny</string>
+    <string name="ui_theme_style_label">Styl motywu</string>
+    <string name="ui_theme_style_default_label">Domyślny</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Średni kontrast</string>
+    <string name="ui_theme_style_highcontrast_label">Wysoki kontrast</string>
+    <string name="ui_theme_color_label">Kolor motywu</string>
+    <string name="ui_theme_color_blue_label">Niebieski</string>
+    <string name="ui_theme_color_green_label">Zielony</string>
+    <string name="ui_theme_color_amber_label">Bursztynowy</string>
+    <string name="ui_theme_color_disabled_subtitle">Używaj kolorów tapety</string>
+    <string name="upgrade_required_subtitle">Uaktualnij, aby odblokować</string>
+    <string name="settings_category_appearance_label">Wygląd</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Personalizacja motywu</string>
+    <string name="upgrade_benefit_filtering">Zaawansowane filtrowanie</string>
+    <string name="upgrade_benefit_export">Zbiorczy eksport danych</string>
+    <string name="upgrade_benefit_monitoring">Monitorowanie uprawnień</string>
+    <string name="upgrade_benefit_support">Wesprzyj programistę</string>
+    <string name="upgrade_benefit_manifest_viewer">Przeglądaj nieprzetworzone manifesty aplikacji</string>
+    <string name="general_upgrade_action">Uaktualnij</string>
+    <string name="upgrade_title_prefix">Pilot Uprawnień</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Obserwator</string>
+    <string name="watcher_dashboard_feature_title">Obserwator uprawnień</string>
+    <string name="watcher_dashboard_feature_description">Otrzymuj powiadomienia, gdy aktualizacja aplikacji doda nowe uprawnienia lub zmieni istniejące. Obserwator uprawnień sprawdza twoje aplikacje po każdej aktualizacji i tworzy raport, jeśli coś się zmieni.</string>
+    <string name="watcher_dashboard_manage_in_settings">Można wyłączyć i skonfigurować w Ustawieniach</string>
+    <string name="watcher_enable_action">Włącz</string>
+    <string name="watcher_channel_name">Obserwator uprawnień</string>
+    <string name="watcher_channel_description">Powiadomienia o zmianach uprawnień zainstalowanych aplikacji</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s zyskał %2$d nowe uprawnienie</item>
+        <item quantity="few">%1$s zyskał %2$d nowe uprawnienia</item>
+        <item quantity="many">%1$s zyskał %2$d nowych uprawnień</item>
+        <item quantity="other">%1$s zyskał %2$d nowych uprawnień</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: zmieniono %2$d uprawnienie</item>
+        <item quantity="few">%1$s: zmieniono %2$d uprawnienia</item>
+        <item quantity="many">%1$s: zmieniono %2$d uprawnień</item>
+        <item quantity="other">%1$s: zmieniono %2$d uprawnień</item>
+    </plurals>
+    <string name="watcher_settings_label">Obserwator uprawnień</string>
+    <string name="watcher_settings_desc">Monitoruj aplikacje pod kątem zmian uprawnień</string>
+    <string name="watcher_enabled_label">Włącz obserwatora</string>
+    <string name="watcher_enabled_desc">Wykrywaj zmiany uprawnień przy instalacji lub aktualizacji aplikacji</string>
+    <string name="watcher_scope_label">Zakres obserwacji</string>
+    <string name="watcher_scope_all">Wszystkie aplikacje</string>
+    <string name="watcher_scope_non_system">Tylko aplikacje nie systemowe</string>
+    <string name="watcher_reports_label">Raporty zmian uprawnień</string>
+    <string name="watcher_reports_empty">Nie wykryto jeszcze zmian uprawnień</string>
+    <string name="watcher_report_detail_label">Raport zmian</string>
+    <string name="watcher_diff_added_permissions">Nowe uprawnienia</string>
+    <string name="watcher_diff_removed_permissions">Usunięte uprawnienia</string>
+    <string name="watcher_diff_grant_changes">Zmiany przyznania</string>
+    <string name="watcher_diff_added_declared">Nowe zadeklarowane uprawnienia</string>
+    <string name="watcher_diff_removed_declared">Usunięte zadeklarowane uprawnienia</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Zainstalowano</string>
+    <string name="watcher_event_update">Zaktualizowano</string>
+    <string name="watcher_event_removed">Usunięto</string>
+    <string name="watcher_event_grant_change">Uprawnienie zmienione</string>
+    <string name="watcher_mark_all_seen">Oznacz wszystkie jako obejrzane</string>
+    <string name="watcher_notification_action_mark_seen">Oznacz jako obejrzane</string>
+    <string name="watcher_notification_action_delete">Usuń</string>
+    <string name="watcher_notification_body_added">Dodano: %s</string>
+    <string name="watcher_notification_body_removed">Usunięto: %s</string>
+    <string name="watcher_notification_body_grant_changed">Przyznanie zmienione: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d aplikacja zmieniła uprawnienia</item>
+        <item quantity="few">%d aplikacje zmieniły uprawnienia</item>
+        <item quantity="many">%d aplikacji zmieniło uprawnienia</item>
+        <item quantity="other">%d aplikacji zmieniło uprawnienia</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Pokaż powiadomienia</string>
+    <string name="watcher_settings_notifications_desc">Wyświetlaj powiadomienie, gdy zostaną wykryte zmiany uprawnień</string>
+    <string name="watcher_settings_notifications_only_gained_label">Powiadamiaj tylko o uzyskanych uprawnieniach</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Powiadamiaj tylko wtedy, gdy aplikacje uzyskają nowe uprawnienia, np. uprawnienie uruchomienia jest przyznane lub dodano uprawnienie instalacyjne, jak dostęp do Internetu</string>
+    <string name="watcher_settings_retention_label">Przechowuj raporty</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d dzień</item>
+        <item quantity="few">%d dni</item>
+        <item quantity="many">%d dni</item>
+        <item quantity="other">%d dni</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Wyczyść wszystkie raporty</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Wyczyścić wszystkie raporty?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Wszystkie raporty zmian uprawnień zostaną trwale usunięte.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d raport</item>
+        <item quantity="few">%d raporty</item>
+        <item quantity="many">%d raportów</item>
+        <item quantity="other">%d raportów</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Powiadomienia niedostępne</string>
+    <string name="watcher_notification_permission_description">Zmiany uprawnień są śledzone, ale powiadomienia nie mogą być wyświetlane. Włącz powiadomienia, aby otrzymywać alerty o zmianach uprawnień.</string>
+    <string name="watcher_notification_permission_grant">Przyznaj uprawnienie</string>
+    <string name="watcher_notification_permission_open_settings">Otwórz ustawienia</string>
+    <string name="watcher_notification_permission_disable">Wyłącz powiadomienia</string>
+    <string name="watcher_detail_version_label">Wersja</string>
+    <string name="watcher_detail_version_code_label">Kod</string>
+    <string name="watcher_detail_installer_label">Źródło instalacji</string>
+    <string name="watcher_detail_installer_unknown">Nieznane</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Uprawnienie (%d)</item>
+        <item quantity="few">Uprawnienia (%d)</item>
+        <item quantity="many">Uprawnień (%d)</item>
+        <item quantity="other">Uprawnień (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Ostatnio znane uprawnienie (%d)</item>
+        <item quantity="few">Ostatnio znane uprawnienia (%d)</item>
+        <item quantity="many">Ostatnio znane uprawnienia (%d)</item>
+        <item quantity="other">Ostatnie znane uprawnienia (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Te uprawnienia zostały dodane w tej wersji aplikacji.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Te uprawnienia zostały usunięte w tej aktualizacji.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Stan przyznania tych uprawnień uległ zmianie.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Takie były uprawnienia aplikacji przed jej usunięciem.</string>
+    <string name="watcher_detail_grant_type_automatic">Przyznane automatycznie</string>
+    <string name="watcher_detail_grant_type_approval">Wymaga zatwierdzenia</string>
+    <string name="watcher_detail_toggle_description">Przełącz opis</string>
+    <string name="watcher_detail_unknown_permission">Nieznane uprawnienie</string>
+    <string name="watcher_detail_diff_error">Nie udało się załadować szczegółów uprawnienia</string>
+    <string name="watcher_settings_polling_label">Częstotliwość sprawdzania w tle</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Co %d godzinę</item>
+        <item quantity="few">Co %d godziny</item>
+        <item quantity="many">Co %d godzin</item>
+        <item quantity="other">Co %d godzin</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Skanowanie aplikacji…</string>
+    <string name="watcher_refresh_checking">Sprawdzanie zmian…</string>
+    <string name="watcher_search_hint">Szukaj w raportach</string>
+    <string name="watcher_filter_has_added_permissions">Nowe wymagane uprawnienia</string>
+    <string name="watcher_filter_has_lost_permissions">Porzucone uprawnienia</string>
+    <string name="watcher_filter_has_gained_permissions">Nowy przyznany dostęp</string>
+    <string name="watcher_filter_unseen_only">Tylko nie obejrzane</string>
+    <string name="watcher_filter_section_event_type">Typ zdarzenia</string>
+    <string name="watcher_filter_section_permission_changes">Zmiany uprawnień</string>
+    <string name="watcher_filter_section_status">Stan</string>
+    <string name="watcher_filter_reset">Resetuj</string>
+    <string name="watcher_reports_no_matches">Brak raportów pasujących do wyszukiwania lub filtrów</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">%d raport więcej</item>
+        <item quantity="few">%d raporty więcej</item>
+        <item quantity="many">%d raportów więcej</item>
+        <item quantity="other">%d raportów więcej</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Uaktualnij, aby przeglądać wszystkie raporty, szczegóły i otrzymywać powiadomienia</string>
+    <string name="snapshot_sync_channel_name">Synchronizacja migawek</string>
+    <string name="snapshot_sync_channel_description">Synchronizacja danych aplikacji w tle</string>
+    <string name="snapshot_sync_notification_title">Synchronizowanie danych aplikacji…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Zaznacz wszystko</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d wybrany</item>
+        <item quantity="few">%d wybrane</item>
+        <item quantity="many">%d wybranych</item>
+        <item quantity="other">%d wybranych</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Eksportuj informacje o aplikacji</string>
+    <string name="export_permission_info_action">Eksportuj informacje o uprawnieniu</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Eksportuj %d aplikację</item>
+        <item quantity="few">Eksportuj %d aplikacje</item>
+        <item quantity="many">Eksportuj %d aplikacji</item>
+        <item quantity="other">Eksportuj %d aplikacji</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Eksportuj %d uprawnienie</item>
+        <item quantity="few">Eksportuj %d uprawnienia</item>
+        <item quantity="many">Eksportuj %d uprawnień</item>
+        <item quantity="other">Eksportuj %d uprawnień</item>
+    </plurals>
+    <string name="export_app_info_title">Eksport informacji o aplikacji</string>
+    <string name="export_permission_info_title">Eksport informacji o uprawnieniu</string>
+    <string name="export_format_label">Format</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Uwzględnij informacje o instalacji</string>
+    <string name="export_app_include_meta_description">Wersja, data instalacji, poziomy SDK</string>
+    <string name="export_app_include_permissions_label">Uwzględnij uprawnienia</string>
+    <string name="export_app_include_permissions_description">Nazwy uprawnień i status przyznania</string>
+    <string name="export_app_include_perm_type_label">Uwzględnij typ uprawnienia</string>
+    <string name="export_app_include_perm_full_label">Uwzględnij pełne szczegóły uprawnienia</string>
+    <string name="export_perm_include_apps_label">Uwzględnij aplikacje żądające uprawnienia</string>
+    <string name="export_perm_include_apps_description">Wyświetl listę aplikacji żądających każdego uprawnienia</string>
+    <string name="export_perm_granted_only_label">Tylko aplikacje z przyznanym uprawnieniem</string>
+    <string name="export_perm_include_summary_label">Uwzględnij podsumowanie liczników</string>
+    <string name="export_preview_label">Podgląd</string>
+    <string name="export_preview_label_of">Podgląd (%1$d z %2$d)</string>
+    <string name="export_action_label">Eksportuj</string>
+    <string name="export_progress_label">Eksportowanie…</string>
+    <string name="export_success_message">Eksport zakończony</string>
+    <string name="export_error_message">Eksport nieudany</string>
+    <string name="export_share_action">Udostępnij</string>
+    <string name="export_open_action">Otwórz</string>
+    <string name="export_done_action">Zrobione</string>
+    <string name="export_retry_action">Ponów</string>
+    <string name="export_summary_filename">Plik</string>
+    <string name="export_summary_size">Rozmiar</string>
+    <string name="export_summary_duration">Czas trwania</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Darmowa wersja jest ograniczona do %d elementu i formatu Markdown. Uaktualnij, aby uzyskać nieograniczone eksporty i wszystkie formaty.</item>
+        <item quantity="few">Darmowa wersja jest ograniczona do %d elementów i formatu Markdown. Uaktualnij, aby uzyskać nieograniczone eksporty i wszystkie formaty.</item>
+        <item quantity="many">Darmowa wersja jest ograniczona do %d elementów i formatu Markdown. Uaktualnij, aby uzyskać nieograniczone eksporty i wszystkie formaty.</item>
+        <item quantity="other">Darmowa wersja jest ograniczona do %d elementu i formatu Markdown. Uaktualnij, aby uzyskać nieograniczone eksporty i wszystkie formaty.</item>
+    </plurals>
+    <string name="export_upgrade_action">Uaktualnij</string>
 </resources>

@@ -7,17 +7,21 @@
     <string name="general_done_action">完了</string>
     <string name="general_open_action">開く</string>
     <string name="general_continue_action">続行</string>
-    <string name="upgrade_buy_pro_action">Pro バージョンを購入する</string>
     <string name="general_no_action">いいえ</string>
-    <string name="upgrade_donate_action">寄付</string>
-    <string name="debug_debuglog_size_label">サイズ</string>
-    <string name="debug_debuglog_size_compressed_label">圧縮サイズ</string>
-    <string name="debug_notification_channel_label">デバッグ通知</string>
-    <string name="debug_debuglog_file_label">記録されたログファイル</string>
-    <string name="debug_debuglog_record_action">デバッグログを記録</string>
+    <string name="debug_debuglog_record_action">録音</string>
     <string name="settings_category_other_label">その他</string>
+    <string name="settings_category_gethelp_label">ヘルプを見る</string>
+    <string name="settings_category_debug_label">デバッグ</string>
+    <string name="settings_category_advanced_label">高度な設定</string>
     <string name="general_settings_label">一般</string>
     <string name="general_settings_desc">アプリ全体に影響する一般的な設定。</string>
+    <string name="general_settings_scan_speed_label">スキャン速度</string>
+    <string name="general_settings_scan_speed_desc">アプリのスキャン時の並列処理数を制御します。値が大きいほど高速ですが、一部のデバイスでクラッシュが発生する場合があります。</string>
+    <string name="general_settings_scan_speed_auto">自動（推奨）</string>
+    <string name="general_settings_scan_speed_1">1（最も安全）</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4（最速）</string>
     <string name="changelog_label">変更履歴</string>
     <string name="settings_acknowledgements_label">謝辞</string>
     <string name="general_thank_you_label">ありがとうございます</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">質問をしたり交流したりする場所。</string>
     <string name="issue_tracker_label">問題追跡</string>
     <string name="issue_tracker_description">バグレポートと機能要求のための公開問題追跡システム。</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">よくある質問と一般的な解決策。</string>
+    <string name="acks_maxpatchs_desc">素敵なアイコンに感謝します。</string>
+    <string name="acks_crowdin_desc">オープンソースプロジェクトの翻訳サポートに感謝します。</string>
     <string name="permissions_page_label">権限</string>
     <string name="apps_page_label">アプリ</string>
     <string name="app_type_system_label">システムアプリ</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">キャンセル</string>
     <string name="apps_filter_userapps_label">ユーザーアプリ</string>
     <string name="apps_filter_systemapps_label">システムアプリ</string>
-    <string name="apps_filter_nointernet_label">インターネットアクセスなしのアプリ</string>
-    <string name="apps_filter_sideloaded_label">サイドロードアプリ</string>
+    <string name="apps_filter_nointernet_label">インターネットなし</string>
+    <string name="apps_filter_sideloaded_label">手動インストール</string>
     <string name="apps_filter_gplay_label">Google Play ストア</string>
     <string name="apps_filter_oemstore_label">OEMストア</string>
     <string name="apps_sort_permissions_granted_label">付与された権限</string>
@@ -64,6 +72,8 @@
     </plurals>
     <string name="apps_details_installer_label">インストール元</string>
     <string name="apps_details_installer_unknown_label">情報が利用できません</string>
+    <string name="apps_details_open_settings_error">このプロファイルのアプリ設定を開けませんでした</string>
+    <string name="apps_details_open_app_error">このアプリを開けませんでした</string>
     <string name="permissions_filter_manifest_label">AOSP権限</string>
     <string name="permissions_filter_system_label">システムアプリによって宣言</string>
     <string name="permissions_filter_user_label">ユーザーアプリによって宣言</string>
@@ -71,11 +81,15 @@
     <string name="permissions_filter_special_label">特別な使用</string>
     <string name="permissions_filter_installtime_label">自動的に付与</string>
     <string name="permissions_filter_installtime_hide_label">自動的に付与されない</string>
+    <string name="permissions_filter_sort_action">フィルターと並び替え</string>
+    <string name="permissions_filter_section_source">ソース</string>
+    <string name="permissions_filter_section_type">種類</string>
+    <string name="permissions_filter_section_sort_by">並び替え</string>
     <string name="filter_granted_label">付与</string>
     <string name="filter_denied_label">拒否</string>
     <string name="filter_configurable_label">設定可能</string>
-    <string name="permissions_sort_apps_granted_label"># 付与されたアプリ</string>
-    <string name="permissions_sort_apps_requested_label"># 要求されたアプリ</string>
+    <string name="permissions_sort_apps_granted_label">許可したアプリ数</string>
+    <string name="permissions_sort_apps_requested_label">リクエストしたアプリ数</string>
     <string name="permissions_search_list_hint">権限を検索</string>
     <string name="apps_search_list_hint">アプリを検索</string>
     <string name="permissions_details_protection_label">保護レベル</string>
@@ -87,14 +101,20 @@
     <string name="permissions_protection_type_unknown_label">不明</string>
     <string name="permissions_permission_details_label">権限の詳細</string>
     <string-array name="generic_loading_labels">
-        <item>もうすぐ™</item>
-        <item>バターを渡している</item>
-        <item>より多くのRAMをダウンロード中</item>
-        <item>まだiPhoneより速い</item>
-        <item>あなたの後ろにあるのは何？</item>
-        <item>CPUがコーヒーブレイク中</item>
-        <item>Pepe Silviaからのデータを待機中</item>
-        <item>ターボエンカビュレーターが初期化中</item>
+        <item>Soon™</item>
+        <item>バターを渡す</item>
+        <item>更なるRAMをダウンロードしています。</item>
+        <item>Iphoneよりさらに早い</item>
+        <item>CPUはコーヒー休憩中です</item>
+        <item>Pepe Silviaからのデータを待っています</item>
+        <item>ターボエンキャブレターが起動中です</item>
+        <item>もうすぐ…たぶん</item>
+        <item>忙しそうに見せかけ中</item>
+        <item>ハムスターホイールを温めています</item>
+        <item>アプリに協力を推し進め中</item>
+        <item>丁寧に権限をリクエスト中</item>
+        <item>アプリが弁護士を呼んでいます</item>
+        <item>細かい文字を読み中</item>
     </string-array>
     <string name="apps_app_details_label">アプリの詳細</string>
     <string name="apps_details_shareduserid_label">共有ユーザーIDを持つアプリ</string>
@@ -105,7 +125,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Androidシステム</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">%1$s に更新</string>
+    <string name="apps_list_installer_sideloaded_label">手動インストール</string>
+    <string name="apps_list_installer_preinstalled_label">プリインストール</string>
     <string name="general_refresh_action">更新</string>
     <string name="general_expand_all_action">すべて展開</string>
     <string name="general_collapse_all_action">すべて折りたたむ</string>
@@ -114,16 +139,33 @@
     <string name="apps_details_twins_descriptions">他のユーザープロファイルにインストール済み。</string>
     <string name="install_date_label">インストール日</string>
     <string name="apps_filter_sharedid_label">共有ユーザーID</string>
-    <string name="apps_filter_multipleprofiles_label">クローンを持つアプリ</string>
+    <string name="apps_filter_multipleprofiles_label">クローンあり</string>
     <string name="support_debuglog_label">デバッグログ</string>
     <string name="support_debuglog_desc">アプリが行うすべてを共有可能なテキストファイルに記録します。</string>
     <string name="updated_at_x">最終更新：%s</string>
     <string name="installed_at_x">初回インストール：%s</string>
     <string name="apps_sort_install_source_label">インストール元</string>
     <string name="permissions_action_none_msg">この権限に対する操作はありません</string>
-    <string name="apps_filter_profile_secondary_label">管理プロファイル内のアプリ</string>
-    <string name="apps_filter_battery_optimization_label">カスタムバッテリーオプションを持つアプリ</string>
-    <string name="apps_filter_accessibility_label">アクセシビリティサービスを持つアプリ</string>
+    <string name="apps_filter_profile_secondary_label">管理プロファイル</string>
+    <string name="apps_filter_battery_optimization_label">カスタムバッテリー</string>
+    <string name="apps_filter_accessibility_label">アクセシビリティ</string>
+    <string name="apps_filter_device_admin_label">デバイス管理者</string>
+    <string name="apps_filter_install_packages_label">アプリのインストールができます</string>
+    <string name="apps_filter_overlay_label">他のアプリの上に表示</string>
+    <string name="apps_filter_camera_label">カメラのアクセス</string>
+    <string name="apps_filter_location_label">位置情報のアクセス</string>
+    <string name="apps_filter_microphone_label">マイクのアクセス</string>
+    <string name="apps_filter_contacts_label">連絡先のアクセス</string>
+    <string name="apps_filter_old_api_target_label">古いAndroidをターゲット</string>
+    <string name="apps_filter_manifest_flags_label">アプリを検出できる</string>
+    <string name="apps_filter_section_app_type">アプリの種類</string>
+    <string name="apps_filter_section_install_source">インストール元</string>
+    <string name="apps_filter_section_properties">プロパティ</string>
+    <string name="apps_filter_section_profile">プロファイル</string>
+    <string name="apps_filter_section_sort_by">並び替え</string>
+    <string name="apps_filter_sort_action">フィルターと並び替え</string>
+    <string name="apps_help_tag_icons_title">パーミッションチップ</string>
+    <string name="apps_help_tag_icons_description">チップはアプリが付与された機密のパーミッションカテゴリを示します</string>
     <string name="apps_details_description_restrictions_caveat_description">このアプリは別のユーザープロファイルにインストールされています。Androidの制限により、現在アクティブなプロファイルにインストールされたアプリについてのみ、付与された権限を判定できます。</string>
     <string name="apps_details_description_uninstalled_caveat">このアプリはアンインストールされましたが、データは保持されています。アンインストールされたアプリの権限状態は確認できません。</string>
     <plurals name="apps_details_description_secondary_description">
@@ -133,13 +175,59 @@
         <item quantity="other">%2$d 件中 %1$d 件の権限が許可されています。</item>
     </plurals>
     <string name="apps_details_empty_filter_message">現在のフィルターに一致する権限がありません。調整するにはフィルターアイコンをタップしてください。</string>
+    <string name="apps_details_perm_tag_runtime">ランタイム</string>
+    <string name="apps_details_perm_tag_special">特別</string>
+    <string name="apps_details_perm_tag_install">インストール</string>
+    <string name="apps_details_perm_help_title">権限インジケーター</string>
+    <string name="apps_details_perm_help_runtime">ランタイム — この権限を使用する前にアプリはあなたに尋ねる必要があります。許可または拒否できます。</string>
+    <string name="apps_details_perm_help_special">特別 — システム設定のスイッチをオンにする必要があります。</string>
+    <string name="apps_details_perm_help_install">インストール — アプリのインストール時に自動的に付与されます。ユーザーの操作は不要です。</string>
+    <string name="apps_details_perm_help_declared">⚠アイコンは、この権限が標準のAndroid権限ではなく、アプリ自身によって作成されたことを意味します。</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">アプリマニフェスト</string>
+    <string name="apps_details_manifest_queued">分析キューに追加中…</string>
+    <string name="apps_details_manifest_loading">マニフェストを分析中…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="other">%d 件のマニフェストを分析中…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">異常は検出されませんでした</string>
+    <string name="apps_details_manifest_unavailable">マニフェストにアクセスできません</string>
+    <string name="apps_details_manifest_error">マニフェストを読み取れませんでした</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="other">%d 件のパッケージクエリ</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="other">%d 件のインテントクエリ</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="other">%d 件のプロバイダクエリ</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">インストール済みのすべてのアプリを検出できる</string>
+    <string name="apps_details_manifest_hint_excessive">多くの特定のアプリを確認する</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">マニフェストビューア</string>
+    <string name="apps_manifest_viewer_search_hint">マニフェストを検索</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="other">%d 件一致</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%2$d 件中 %1$d 件</string>
+    <string name="apps_manifest_section_uses_permission">権限の使用</string>
+    <string name="apps_manifest_section_permission">パーミッション</string>
+    <string name="apps_manifest_section_queries">クエリ</string>
+    <string name="apps_manifest_section_activities">アクティビティ</string>
+    <string name="apps_manifest_section_services">サービス</string>
+    <string name="apps_manifest_section_receivers">レシーバー</string>
+    <string name="apps_manifest_section_providers">プロバイダ</string>
+    <string name="apps_manifest_section_meta_data">メタデータ</string>
+    <string name="apps_manifest_section_other">その他</string>
     <string name="api_target_level_x">ターゲットバージョン：%s</string>
     <string name="api_minimum_level_x">最小バージョン：%s</string>
     <string name="api_build_level_x">コンパイルバージョン：%s</string>
     <string name="permission_reboot_label">デバイスの再起動</string>
     <string name="permission_reboot_description">アプリがデバイスを再起動することを許可します。システムアプリでのみ利用可能。</string>
     <string name="permissions_sort_apps_relevance_label">関連性</string>
-    <string name="apps_filter_profile_active_label">アクティブプロファイル内のアプリ</string>
+    <string name="apps_filter_profile_active_label">アクティブプロファイル</string>
     <string name="overview_page_label">概要</string>
     <plurals name="generic_x_items_label">
         <item quantity="other">%s項目</item>
@@ -162,8 +250,52 @@
     <plurals name="permissions_details_count_system_apps">
         <item quantity="other">システムアプリ：%2$d 件中 %1$d 件に許可されています。</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="other">他のユーザープロファイルの%d個のアプリもこの権限をリクエストしています。</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="other">データを保持したアンインストール済みの%d個のアプリもこの権限をリクエストしています。</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">他のユーザープロファイルにインストールされたアプリは、Androidの制限により上記の計算から除外されています。</string>
     <string name="permissions_details_empty_filter_message">現在のフィルターに一致するアプリがありません。調整するにはフィルターアイコンをタップしてください。</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">ランタイム</string>
+    <string name="permissions_tag_install_time_label">インストール時</string>
+    <string name="permissions_tag_special_access_label">特別アクセス</string>
+    <string name="permissions_tag_documented_label">ドキュメント済み</string>
+    <string name="permissions_tag_notable_label">注目</string>
+    <string name="permissions_tag_non_standard_label">非標準</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">使用中</string>
+    <string name="permissions_status_unknown_label">不明</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">システム</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="other">+%d 件</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">権限インジケーター</string>
+    <string name="permissions_details_help_section_protection">保護タイプ</string>
+    <string name="permissions_details_help_dangerous">危険 — ランタイム時に明示的なユーザー承認が必要です。機密データまたはデバイス機能にアクセスできます。</string>
+    <string name="permissions_details_help_normal">通常 — インストール時に自動的に付与されます。他のアプリやシステムへのリスクは最小限です。</string>
+    <string name="permissions_details_help_signature">シグネチャー — 権限を宣言したアプリと同じ証明書で署名されたアプリにのみ付与されます。</string>
+    <string name="permissions_details_help_internal">内部 — Androidシステム内部に予約されています。サードパーティアプリは利用できません。</string>
+    <string name="permissions_details_help_section_tags">権限タグ</string>
+    <string name="permissions_details_help_tag_runtime">ランタイム — この権限を使用する前にアプリはあなたに尋ねる必要があります。</string>
+    <string name="permissions_details_help_tag_install_time">インストール時 — アプリのインストール時に自動的に付与されます。</string>
+    <string name="permissions_details_help_tag_special_access">特別アクセス — システム設定のスイッチをオンにする必要があります。</string>
+    <string name="permissions_details_help_tag_documented">ドキュメント済み — 公式のAndroidマニフェストドキュメントに記載されています。</string>
+    <string name="permissions_details_help_tag_notable">注目 — プライバシーまたはセキュリティへの影響が特に注目すべき権限です。</string>
+    <string name="permissions_details_help_tag_non_standard">非標準 — 標準のAndroid権限セットの一部ではありません。サードパーティアプリまたはOEMによって宣言されています。</string>
+    <string name="permissions_details_status_help_title">ステータスインジケーター</string>
+    <string name="permissions_details_help_section_status">付与ステータス</string>
+    <string name="permissions_details_help_status_granted">付与済み — アプリにこの権限が付与されています。</string>
+    <string name="permissions_details_help_status_in_use">使用中 — 付与され、現在アプリが積極的に利用しています。</string>
+    <string name="permissions_details_help_status_denied">拒否 — アプリはこの権限をリクエストしましたが、付与されませんでした。</string>
+    <string name="permissions_details_help_status_unknown">不明 — 付与状態を判別できません。例えば他のユーザープロファイルのアプリなど。</string>
+    <string name="permissions_details_help_section_badges">バッジ</string>
+    <string name="permissions_details_help_system_badge">システム — このアプリはプリインストール済みのシステムアプリです。</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">アプリが近距離無線通信（NFC）タグ、カード、リーダーと通信することを許可します。</string>
     <string name="permission_manage_media_label">メディア管理</string>
@@ -175,7 +307,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth広告</string>
     <string name="permission_bluetooth_advertise_description">アプリが近くのBluetoothデバイスに広告することを許可します。</string>
     <string name="permission_get_accounts_label">アカウントの取得</string>
-    <string name="permission_get_accounts_description">アプリが電話で知られているアカウントのリストを取得することを許可します。これには、インストールしたアプリケーションによって作成されたアカウントが含まれる場合があります。</string>
+    <string name="permission_get_accounts_description">アプリがデバイスに登録されているアカウントのリストを取得できるようになります。インストール済みのアプリが作成したアカウントも含まれる場合があります。</string>
     <string name="permission_access_background_location_label">バックグラウンド位置アクセス</string>
     <string name="permission_access_background_location_description">アプリが使用されていない時でも、いつでも位置にアクセスすることを許可します。</string>
     <string name="permission_access_media_location_label">メディア位置アクセス</string>
@@ -189,7 +321,7 @@
     <string name="permission_read_sync_settings_label">同期設定の読み取り</string>
     <string name="permission_read_sync_settings_description">アプリがアカウントの同期設定を読み取ることを許可します。</string>
     <string name="permission_install_unknown_apps_label">不明なアプリのインストール（不明な提供元）</string>
-    <string name="permission_install_unknown_apps_description">アプリがデバイスに他のアプリをインストール（サイドロード）することを許可します。これによりデバイスとデータが危険にさらされる可能性があります。</string>
+    <string name="permission_install_unknown_apps_description">アプリがデバイスに他のアプリを手動でインストールすることを許可します。これによりデバイスとデータが危険にさらされる可能性があります。</string>
     <string name="permission_all_files_access_label">すべてのファイルへのアクセス</string>
     <string name="permission_all_files_access_description">アプリがデバイス上のすべてのファイルと接続されたストレージデバイスを読み取り、変更、削除することを許可します。この権限を持つアプリは、通知なしにアプリに関連しないファイルにもアクセスできます。</string>
     <string name="permission_appear_on_top_label">他のアプリの上に表示</string>
@@ -248,23 +380,306 @@
     <string name="permission_group_camera_description">カメラ関連の権限。</string>
     <string name="permission_group_audio_label">マイク</string>
     <string name="permission_group_audio_description">マイク関連の権限。</string>
+    <string name="permissions_list_empty_message">表示する権限がありません。</string>
+    <string name="permissions_list_empty_search_message">検索に一致する権限がありません。</string>
     <string name="permission_picture_in_picture_label">ピクチャーインピクチャー</string>
+    <string name="permission_legacy_storage_label">レガシーストレージ</string>
+    <string name="permission_legacy_storage_description">アプリがスコープ制限なしに外部ストレージにアクセスできるようになります。これはAndroid 10以前のデフォルトの動作でした。このアクセスを持つアプリは共有ストレージ上のどこでもファイルの読み書きができます。</string>
+    <string name="settings_page_label">設定</string>
+    <string name="overview_summary_title_label">概要</string>
+    <string name="permissions_details_declaring_apps_label">宣言アプリ</string>
+    <string name="permissions_details_requesting_apps_label">リクエストアプリ</string>
     <string name="overview_device_android_version_label">Androidバージョン</string>
     <string name="overview_device_name_label">デバイス</string>
     <string name="overview_device_android_patch_label">パッチレベル</string>
     <string name="overview_summary_apps_active_profile_label">アクティブプロファイル内のアプリ</string>
     <string name="overview_summary_apps_other_profile_label">管理ユーザープロファイル内のアプリ（クローンを除く）</string>
-    <string name="overview_summary_apps_sideloaded_label">外部ソースからサイドロードされたアプリ</string>
+    <string name="overview_summary_apps_sideloaded_label">外部ソースから手動インストールされたアプリ</string>
     <string name="overview_summary_apps_installers_label">\"提供元不明のアプリのインストール\"が有効なアプリ</string>
     <string name="overview_summary_apps_overlayers_label">\"他のアプリの上に表示\"できるアプリ</string>
     <string name="overview_summary_apps_offline_label">\"インターネットなし\"権限を持つアプリ</string>
     <string name="overview_summary_apps_clones_label">他のプロファイルにクローンを持つアプリ</string>
     <string name="overview_summary_apps_sharedids_label">SharedUserIDを持つアプリ</string>
+    <string name="overview_summary_apps_camera_label">カメラアクセスのあるアプリ</string>
+    <string name="overview_summary_apps_location_label">位置情報アクセスのあるアプリ</string>
+    <string name="overview_summary_apps_microphone_label">マイクアクセスのあるアプリ</string>
+    <string name="overview_summary_apps_contacts_label">連絡先アクセスのあるアプリ</string>
+    <string name="overview_summary_apps_gplay_label">Google Playからのアプリ</string>
+    <string name="overview_summary_apps_oemstore_label">OEMストアからのアプリ</string>
+    <string name="overview_summary_apps_battery_label">バッテリー制限なしアプリ</string>
+    <string name="overview_summary_apps_oldapi_label">Android 10未満をターゲットのアプリ</string>
+    <string name="overview_section_profile_label">プロファイル</string>
+    <string name="overview_section_install_source_label">インストール元</string>
+    <string name="overview_section_privacy_label">プライバシー</string>
+    <string name="overview_section_security_label">セキュリティ</string>
+    <string name="overview_section_manifest_label">マニフェスト</string>
+    <string name="overview_summary_apps_manifest_flags_label">アプリを検出できる</string>
+    <string name="overview_section_system_label">システム</string>
     <string name="permission_bind_accessibility_service_label">アクセシビリティサービスの提供</string>
     <string name="permission_bind_accessibility_service_description">アプリがシステム設定で有効にできるアクセシビリティサービスを提供することを許可します。</string>
     <string name="debug_debuglog_sensitive_information_message">このファイルには機密情報（インストールされたアプリケーションなど）が含まれています。信頼できる関係者とのみ共有してください。</string>
     <string name="settings_debuglog_explanation">この機能は、アプリが行うすべてを共有可能なファイルに記録します。生成されたファイルには機密情報（インストールされたアプリケーションなど）が含まれています。信頼できる関係者とのみ共有してください（例：問題を一緒にトラブルシューティングしている場合のアプリ開発者）。</string>
+    <string name="support_debuglog_recording">録音中…</string>
+    <string name="support_debuglog_stop_label">デバッグログを停止</string>
+    <string name="support_contact_label">開発者に連絡</string>
+    <string name="support_contact_desc">フォームを記入して開発者にメールを送信します。</string>
+    <string name="support_debuglog_clear_action">保存済みデバッグログをクリア</string>
+    <string name="debug_debuglog_short_recording_title">録音時間が短すぎます</string>
+    <string name="debug_debuglog_short_recording_message">デバッグログは問題発生時にキャプチャする必要があります。録音を開始し、問題を再現し、録音を停止してください。</string>
+    <string name="debug_debuglog_short_recording_continue">録音を続ける</string>
+    <string name="debug_debuglog_short_recording_stop">とにかく停止</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="other">%1$d個のデバッグログ (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">デバッグログをクリアしますか？</string>
+    <string name="support_debuglog_clear_message">保存されたすべてのデバッグログファイルが削除されます。</string>
+    <string name="support_debuglog_sessions_title">デバッグログ</string>
+    <string name="support_debuglog_session_delete_title">デバッグログを削除しますか？</string>
+    <string name="support_debuglog_session_delete_message">このデバッグログは永久に削除されます。</string>
+    <string name="support_debuglog_sessions_empty">デバッグログなし</string>
+    <string name="support_debuglog_session_invalid">無効なセッション</string>
+    <string name="support_debuglog_session_recording">録音中…</string>
+    <string name="support_debuglog_session_compressing">圧縮中…</string>
+    <string name="support_debuglog_failed_empty_log">空のログファイル</string>
+    <string name="support_debuglog_failed_missing_log">ログファイルが見つかりません</string>
+    <string name="support_debuglog_failed_corrupt_zip">破損したZIPファイル</string>
+    <string name="support_debuglog_failed_zip_failed">圧縮に失敗しました</string>
+    <string name="support_debuglog_sent_title">ログを送信しましたか？</string>
+    <string name="support_debuglog_sent_message">デバッグログを送信した場合、導入のために削除できます。</string>
+    <string name="support_contact_sent_title">メッセージを送信しましたか？</string>
+    <string name="support_contact_sent_message">メールを送信した場合、このセッションはクリーンアップできます。</string>
+    <string name="general_close_action">閉じる</string>
+    <string name="debug_debuglog_screen_delete_action">削除</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">サポートに連絡</string>
+    <string name="contact_category_label">カテゴリー</string>
+    <string name="contact_category_question_label">質問</string>
+    <string name="contact_category_feature_label">機能リクエスト</string>
+    <string name="contact_category_bug_label">バグ報告</string>
+    <string name="contact_description_label">説明</string>
+    <string name="contact_description_hint_question">質問を詳しく説明してください。具体的にお願いします（20語以上）。</string>
+    <string name="contact_description_hint_feature">希望する機能を具体的に説明してください（20語以上）。</string>
+    <string name="contact_description_hint_bug">何が起きたか、問題の再現方法を具体的に説明してください（20語以上）。</string>
+    <string name="contact_expected_behavior_label">期待する動作</string>
+    <string name="contact_expected_behavior_hint">期待した動作を説明してください（10語以上）。</string>
+    <plurals name="contact_word_count">
+        <item quantity="other">%1$d / %2$d 語</item>
+    </plurals>
+    <string name="contact_send_action">メールアプリを開く</string>
+    <string name="contact_debuglog_picker_label">デバッグログ</string>
+    <string name="contact_debuglog_picker_hint">既存のデバッグログを添付するか、新しく録音します。</string>
+    <string name="contact_debuglog_empty">デバッグログが見つかりません。まず録音してください。</string>
+    <string name="contact_debuglog_record_action">デバッグログの記録</string>
+    <string name="contact_debuglog_stop_action">記録を停止</string>
+    <string name="contact_debuglog_delete_title">デバッグログを削除しますか？</string>
+    <string name="contact_debuglog_delete_message">このデバッグログは永久に削除されます。</string>
+    <string name="contact_debuglog_zip_error">デバッグログの圧縮に失敗しました</string>
+    <string name="contact_no_email_app">このデバイスにメールアプリが見つかりません。</string>
+    <string name="contact_welcome_message">すべてのメッセージを自分で読んで、できる限り返信するようにしています。開発、バグ修正、サポートを一人で源っているので、少し時間がかかる場合があります。お待たせしてすみません。</string>
+    <string name="contact_footer_message">メッセージはメールで送信されます。デバイスとセットアップ情報は自動的に添付されます。スクリーンショットや動画をメールに添付できます。可能であれば英語で記入してください。</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">保持</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">デバッグログ</string>
+    <string name="debug_debuglog_screen_subtitle">トラブルシューティング用のデバッグ情報をエクスポート</string>
+    <string name="debug_debuglog_screen_sensitive_title">機密情報</string>
+    <string name="debug_debuglog_screen_session_path_label">セッションパス</string>
+    <string name="debug_debuglog_screen_log_files_label">ログファイル</string>
+    <string name="debug_debuglog_screen_discard_action">破棄</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="other">%1$d つのファイルが準備完了 (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$d分%2$d秒</string>
+    <string name="debug_debuglog_screen_duration_s">%1$d秒</string>
+    <string name="support_debuglog_share_subject">Permission Pilot デバッグログ - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">質問</string>
+    <string name="contact_email_tag_feature">機能</string>
+    <string name="contact_email_tag_bug">バグ</string>
+    <string name="contact_email_section_expected_behavior">--- 期待する動作 ---</string>
+    <string name="contact_email_section_device_info">--- デバイス情報 ---</string>
     <string name="onboarding_body1">このアプリは、インストールされたアプリケーションをナビゲートし、権限を発見するのに役立ちます。</string>
     <string name="onboarding_body2">Permission Pilotは、このアプリケーションを使用する際にアプリをリストし、その権限をクロスリファレンスすることを可能にするために、インストールされたアプリケーション情報を収集します。</string>
     <string name="onboarding_body3">Permission Pilotには広告がなく、データはローカルでのみ処理されます。</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">テーマモード</string>
+    <string name="ui_theme_mode_system_label">システム</string>
+    <string name="ui_theme_mode_dark_label">ダーク</string>
+    <string name="ui_theme_mode_light_label">ライト</string>
+    <string name="ui_theme_style_label">テーマスタイル</string>
+    <string name="ui_theme_style_default_label">デフォルト</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">中コントラスト</string>
+    <string name="ui_theme_style_highcontrast_label">高コントラスト</string>
+    <string name="ui_theme_color_label">テーマカラー</string>
+    <string name="ui_theme_color_blue_label">ブルー</string>
+    <string name="ui_theme_color_green_label">グリーン</string>
+    <string name="ui_theme_color_amber_label">アンバー</string>
+    <string name="ui_theme_color_disabled_subtitle">壁紙の色を使用</string>
+    <string name="upgrade_required_subtitle">アンロックにアップグレード</string>
+    <string name="settings_category_appearance_label">外観</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">テーマのカスタマイズ</string>
+    <string name="upgrade_benefit_filtering">高度なフィルターリング</string>
+    <string name="upgrade_benefit_export">バッチデータエクスポート</string>
+    <string name="upgrade_benefit_monitoring">権限監視</string>
+    <string name="upgrade_benefit_support">開発者をサポート</string>
+    <string name="upgrade_benefit_manifest_viewer">アプリの生のマニフェストを閲覧</string>
+    <string name="general_upgrade_action">アップグレード</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">ウォッチャー</string>
+    <string name="watcher_dashboard_feature_title">権限ウォッチャー</string>
+    <string name="watcher_dashboard_feature_description">アプリのアップデートで新しい権限が追加されたり権限が変更されたりしたときに通知を受け取ります。権限ウォッチャーは各アップデート後にアプリを確認し、変更があればレポートを作成します。</string>
+    <string name="watcher_dashboard_manage_in_settings">設定で無効化および設定可能</string>
+    <string name="watcher_enable_action">有効化</string>
+    <string name="watcher_channel_name">権限ウォッチャー</string>
+    <string name="watcher_channel_description">インストール済みアプリの権限変更に関する通知</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="other">%1$sが%2$d個の新しい権限を取得しました</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="other">%1$s: %2$d個の権限が変更されました</item>
+    </plurals>
+    <string name="watcher_settings_label">権限ウォッチャー</string>
+    <string name="watcher_settings_desc">アプリの権限変更を監視</string>
+    <string name="watcher_enabled_label">ウォッチャーを有効化</string>
+    <string name="watcher_enabled_desc">アプリのインストールまたはアップデート時の権限変更を検出</string>
+    <string name="watcher_scope_label">監視範囲</string>
+    <string name="watcher_scope_all">すべてのアプリ</string>
+    <string name="watcher_scope_non_system">非システムアプリのみ</string>
+    <string name="watcher_reports_label">権限変更レポート</string>
+    <string name="watcher_reports_empty">まだ権限変更は検出されていません</string>
+    <string name="watcher_report_detail_label">変更レポート</string>
+    <string name="watcher_diff_added_permissions">新しい権限</string>
+    <string name="watcher_diff_removed_permissions">削除された権限</string>
+    <string name="watcher_diff_grant_changes">付与変更</string>
+    <string name="watcher_diff_added_declared">新しく宣言された権限</string>
+    <string name="watcher_diff_removed_declared">削除された宣言権限</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">インストール済み</string>
+    <string name="watcher_event_update">更新済み</string>
+    <string name="watcher_event_removed">削除済み</string>
+    <string name="watcher_event_grant_change">権限変更</string>
+    <string name="watcher_mark_all_seen">すべてを確認済みにする</string>
+    <string name="watcher_notification_action_mark_seen">確認済みにする</string>
+    <string name="watcher_notification_action_delete">削除</string>
+    <string name="watcher_notification_body_added">追加: %s</string>
+    <string name="watcher_notification_body_removed">削除: %s</string>
+    <string name="watcher_notification_body_grant_changed">付与変更: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="other">%d個のアプリが権限を変更しました</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">通知を表示</string>
+    <string name="watcher_settings_notifications_desc">権限変更が検出されたときに通知を表示</string>
+    <string name="watcher_settings_notifications_only_gained_label">権限を取得したときのみ通知</string>
+    <string name="watcher_settings_notifications_only_gained_desc">アプリが新しい権限を付与されたときのみ通知します。例：ランタイム権限が許可された場合やインターネットなどのインストール時権限が追加された場合</string>
+    <string name="watcher_settings_retention_label">レポートを保持</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="other">%d日</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">すべてのレポートをクリア</string>
+    <string name="watcher_settings_clear_reports_confirm_title">すべてのレポートをクリアしますか？</string>
+    <string name="watcher_settings_clear_reports_confirm_message">すべての権限変更レポートが永久に削除されます。</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="other">%d件のレポート</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">通知が利用できません</string>
+    <string name="watcher_notification_permission_description">権限変更は追跞されていますが、通知を表示できません。権限変更のアラートを受け取るには通知を有効にしてください。</string>
+    <string name="watcher_notification_permission_grant">権限を付与</string>
+    <string name="watcher_notification_permission_open_settings">設定を開く</string>
+    <string name="watcher_notification_permission_disable">通知を無効化</string>
+    <string name="watcher_detail_version_label">バージョン</string>
+    <string name="watcher_detail_version_code_label">コード</string>
+    <string name="watcher_detail_installer_label">インストール元</string>
+    <string name="watcher_detail_installer_unknown">不明</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="other">権限 (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="other">最後に確認された権限 (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">これらの権限はこのアプリバージョンで追加されました。</string>
+    <string name="watcher_detail_removed_perms_subtitle">これらの権限はこのアップデートで削除されました。</string>
+    <string name="watcher_detail_grant_changes_subtitle">これらの権限の付与ステータスが変更されました。</string>
+    <string name="watcher_detail_last_known_perms_subtitle">これらはアプリが削除される前に持っていた権限です。</string>
+    <string name="watcher_detail_grant_type_automatic">自動的に付与</string>
+    <string name="watcher_detail_grant_type_approval">承認が必要</string>
+    <string name="watcher_detail_toggle_description">説明を切り替え</string>
+    <string name="watcher_detail_unknown_permission">不明な権限</string>
+    <string name="watcher_detail_diff_error">権限の詳細を読み込めませんでした</string>
+    <string name="watcher_settings_polling_label">バックグラウンド確認間隔</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="other">%d時間ごと</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">アプリをスキャン中…</string>
+    <string name="watcher_refresh_checking">変更を確認中…</string>
+    <string name="watcher_search_hint">レポートを検索</string>
+    <string name="watcher_filter_has_added_permissions">新しい権限がリクエストされました</string>
+    <string name="watcher_filter_has_lost_permissions">権限が削除されました</string>
+    <string name="watcher_filter_has_gained_permissions">新しいアクセスが付与されました</string>
+    <string name="watcher_filter_unseen_only">未確認のみ</string>
+    <string name="watcher_filter_section_event_type">イベントの種類</string>
+    <string name="watcher_filter_section_permission_changes">権限変更</string>
+    <string name="watcher_filter_section_status">状態</string>
+    <string name="watcher_filter_reset">リセット</string>
+    <string name="watcher_reports_no_matches">検索またはフィルターに一致するレポートがありません</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="other">さらに%d件のレポート</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">すべてのレポート、詳細、通知を受け取るにはアップグレード</string>
+    <string name="snapshot_sync_channel_name">スナップショット同期</string>
+    <string name="snapshot_sync_channel_description">バックグラウンドアプリデータ同期</string>
+    <string name="snapshot_sync_notification_title">アプリデータを同期中…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">すべて選択</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="other">%d個選択中</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">アプリ情報をエクスポート</string>
+    <string name="export_permission_info_action">権限情報をエクスポート</string>
+    <plurals name="export_title_apps">
+        <item quantity="other">%dアプリをエクスポート</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="other">%d権限をエクスポート</item>
+    </plurals>
+    <string name="export_app_info_title">アプリ情報エクスポート</string>
+    <string name="export_permission_info_title">権限情報エクスポート</string>
+    <string name="export_format_label">フォーマット</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">インストール情報を含める</string>
+    <string name="export_app_include_meta_description">バージョン、インストール日、SDKレベル</string>
+    <string name="export_app_include_permissions_label">権限を含める</string>
+    <string name="export_app_include_permissions_description">権限名と許可状態</string>
+    <string name="export_app_include_perm_type_label">権限タイプを含める</string>
+    <string name="export_app_include_perm_full_label">完全な権限詳細を含める</string>
+    <string name="export_perm_include_apps_label">リクエストしているアプリを含める</string>
+    <string name="export_perm_include_apps_description">各権限をリクエストしているアプリを一覧表示</string>
+    <string name="export_perm_granted_only_label">許可済みアプリのみ</string>
+    <string name="export_perm_include_summary_label">集計数を含める</string>
+    <string name="export_preview_label">プレビュー</string>
+    <string name="export_preview_label_of">プレビュー（%1$d / %2$d）</string>
+    <string name="export_action_label">エクスポート</string>
+    <string name="export_progress_label">エクスポート中…</string>
+    <string name="export_success_message">エクスポート完了</string>
+    <string name="export_error_message">エクスポート失敗</string>
+    <string name="export_share_action">共有</string>
+    <string name="export_open_action">開いています</string>
+    <string name="export_done_action">完了</string>
+    <string name="export_retry_action">再試行</string>
+    <string name="export_summary_filename">ファイル</string>
+    <string name="export_summary_size">サイズ</string>
+    <string name="export_summary_duration">所要時間</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="other">無料版は %d 件とMarkdown形式に制限されています。無制限のエクスポートとすべての形式にアップグレードしてください。</item>
+    </plurals>
+    <string name="export_upgrade_action">アップグレード</string>
 </resources>

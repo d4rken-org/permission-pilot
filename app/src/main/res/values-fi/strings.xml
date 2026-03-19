@@ -7,17 +7,21 @@
     <string name="general_done_action">Valmis</string>
     <string name="general_open_action">Avaa</string>
     <string name="general_continue_action">Jatka</string>
-    <string name="upgrade_buy_pro_action">Osta Pro-versio</string>
     <string name="general_no_action">Ei</string>
-    <string name="upgrade_donate_action">Lahjoita</string>
-    <string name="debug_debuglog_size_label">Koko</string>
-    <string name="debug_debuglog_size_compressed_label">Pakattu koko</string>
-    <string name="debug_notification_channel_label">Virheenkorjausilmoitukset</string>
-    <string name="debug_debuglog_file_label">Tallennettu lokitiedosto</string>
-    <string name="debug_debuglog_record_action">Tallenna virheenkorjausloki</string>
+    <string name="debug_debuglog_record_action">Tallenna</string>
     <string name="settings_category_other_label">Muut</string>
+    <string name="settings_category_gethelp_label">Hae apua</string>
+    <string name="settings_category_debug_label">Virheenkorjaus</string>
+    <string name="settings_category_advanced_label">Lisäasetukset</string>
     <string name="general_settings_label">Yleiset</string>
     <string name="general_settings_desc">Yleiset säädöt, jotka vaikuttavat koko sovellukseen.</string>
+    <string name="general_settings_scan_speed_label">Skannausnopeus</string>
+    <string name="general_settings_scan_speed_desc">Hallitsee rinnakkaisia toimintoja sovellusten skannauksen aikana. Korkeammat arvot ovat nopeampia, mutta voivat aiheuttaa kaatumisia joillain laitteilla.</string>
+    <string name="general_settings_scan_speed_auto">Automaattinen (suositeltu)</string>
+    <string name="general_settings_scan_speed_1">1 (turvallisin)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (nopein)</string>
     <string name="changelog_label">Muutosloki</string>
     <string name="settings_acknowledgements_label">Kiitokset</string>
     <string name="general_thank_you_label">Kiitos</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Paikka hengailla ja kysyä kysymyksiä.</string>
     <string name="issue_tracker_label">Ongelmanseuranta</string>
     <string name="issue_tracker_description">Julkinen ongelmanseuranta virheraporteille ja ominaisuuspyynnöille.</string>
+    <string name="faq_label">UKK</string>
+    <string name="faq_description">Usein kysytyt kysymykset ja yleiset ratkaisut.</string>
+    <string name="acks_maxpatchs_desc">Kiitos kauniista kuvakkeista.</string>
+    <string name="acks_crowdin_desc">Avoimen lähdekoodin projektien käännösten tukemisesta.</string>
     <string name="permissions_page_label">Käyttöoikeudet</string>
     <string name="apps_page_label">Sovellukset</string>
     <string name="app_type_system_label">Järjestelmäsovellus</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Peruuta</string>
     <string name="apps_filter_userapps_label">Käyttäjäsovellukset</string>
     <string name="apps_filter_systemapps_label">Järjestelmäsovellukset</string>
-    <string name="apps_filter_nointernet_label">Sovellukset ilman internetyhteyttä</string>
-    <string name="apps_filter_sideloaded_label">Sivuladatut sovellukset</string>
+    <string name="apps_filter_nointernet_label">Ei internetiä</string>
+    <string name="apps_filter_sideloaded_label">Manuaalisesti asennettu</string>
     <string name="apps_filter_gplay_label">Google Play -kauppa</string>
     <string name="apps_filter_oemstore_label">OEM-kauppa</string>
     <string name="apps_sort_permissions_granted_label">Myönnetyt käyttöoikeudet</string>
@@ -67,6 +75,8 @@
     </plurals>
     <string name="apps_details_installer_label">Asennuslähde</string>
     <string name="apps_details_installer_unknown_label">Tieto ei saatavilla</string>
+    <string name="apps_details_open_settings_error">Sovelluksen asetuksia ei voitu avata tälle profiilille</string>
+    <string name="apps_details_open_app_error">Tätä sovellusta ei voitu avata</string>
     <string name="permissions_filter_manifest_label">AOSP-käyttöoikeudet</string>
     <string name="permissions_filter_system_label">Järjestelmäsovelluksen määrittelemä</string>
     <string name="permissions_filter_user_label">Käyttäjäsovelluksen määrittelemä</string>
@@ -74,11 +84,15 @@
     <string name="permissions_filter_special_label">Erikoiskäyttö</string>
     <string name="permissions_filter_installtime_label">Myönnetty automaattisesti</string>
     <string name="permissions_filter_installtime_hide_label">Ei myönnetty automaattisesti</string>
+    <string name="permissions_filter_sort_action">Suodata &amp; lajittele</string>
+    <string name="permissions_filter_section_source">Lähde</string>
+    <string name="permissions_filter_section_type">Tyyppi</string>
+    <string name="permissions_filter_section_sort_by">Lajittele</string>
     <string name="filter_granted_label">Myönnetty</string>
     <string name="filter_denied_label">Evätty</string>
     <string name="filter_configurable_label">Määritettävissä</string>
-    <string name="permissions_sort_apps_granted_label"># sovellusta myönnetty</string>
-    <string name="permissions_sort_apps_requested_label"># sovellusta pyydetty</string>
+    <string name="permissions_sort_apps_granted_label">Myönnettyjen sovellusten määrä</string>
+    <string name="permissions_sort_apps_requested_label">Pyyttävien sovellusten määrä</string>
     <string name="permissions_search_list_hint">Hae käyttöoikeuksia</string>
     <string name="apps_search_list_hint">Hae sovelluksia</string>
     <string name="permissions_details_protection_label">Suojaustaso</string>
@@ -90,14 +104,20 @@
     <string name="permissions_protection_type_unknown_label">Tuntematon</string>
     <string name="permissions_permission_details_label">Käyttöoikeuden tiedot</string>
     <string-array name="generic_loading_labels">
-        <item>Kohta valmista™</item>
-        <item>Syötetään kissalle dataa</item>
+        <item>Pian™</item>
+        <item>Syöttää voita</item>
         <item>Ladataan lisää RAM-muistia</item>
-        <item>Silti nopeampi kuin iPhone</item>
-        <item>Mitä tuolla takanasi on?</item>
-        <item>Prosessori on kahvitauolla</item>
-        <item>Odotetaan dataa Pertti Pasaselta</item>
-        <item>Turbokapasitaattori käynnistyy</item>
+        <item>Vielä nopeampi kuin iPhone</item>
+        <item>Suoritin on kahvitauolla</item>
+        <item>Odotetaan tietoja Pepe Silvialta</item>
+        <item>Turbo encabulator käynnistyy</item>
+        <item>Melkein valmista… luultavasti</item>
+        <item>Teeskentelen olevani kiireinen</item>
+        <item>Lämmitellään hamsterin pyörää</item>
+        <item>Vakuutellaan sovelluksia yhteistyöhön</item>
+        <item>Pyydetään lupia kohteliaasti</item>
+        <item>Sovelluksesi ottavat lakimiehen</item>
+        <item>Luetaan pienellä kirjoitettu teksti</item>
     </string-array>
     <string name="apps_app_details_label">Sovelluksen tiedot</string>
     <string name="apps_details_shareduserid_label">Sovellukset jaetulla käyttäjätunnuksella</string>
@@ -108,7 +128,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android-järjestelmä</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Päivitetty %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Manuaalisesti asennettu</string>
+    <string name="apps_list_installer_preinstalled_label">Esiasennettu</string>
     <string name="general_refresh_action">Päivitä</string>
     <string name="general_expand_all_action">Laajenna kaikki</string>
     <string name="general_collapse_all_action">Pienennä kaikki</string>
@@ -117,16 +142,33 @@
     <string name="apps_details_twins_descriptions">Asennettu muihin käyttäjäprofiileihin.</string>
     <string name="install_date_label">Asennuspäivä</string>
     <string name="apps_filter_sharedid_label">Jaettu käyttäjätunnus</string>
-    <string name="apps_filter_multipleprofiles_label">Sovellukset klooneilla</string>
+    <string name="apps_filter_multipleprofiles_label">On klooneja</string>
     <string name="support_debuglog_label">Virheenkorjausloki</string>
     <string name="support_debuglog_desc">Tallenna kaikki sovelluksen toiminta tekstitiedostoon, jonka voit jakaa.</string>
     <string name="updated_at_x">Viimeksi päivitetty: %s</string>
     <string name="installed_at_x">Ensimmäinen asennus: %s</string>
     <string name="apps_sort_install_source_label">Asennuslähde</string>
     <string name="permissions_action_none_msg">Tälle käyttöoikeudelle ei ole toimintoa saatavilla</string>
-    <string name="apps_filter_profile_secondary_label">Sovellukset hallituissa profiileissa</string>
-    <string name="apps_filter_battery_optimization_label">Sovellukset mukautetuilla akkuasetuksilla</string>
-    <string name="apps_filter_accessibility_label">Sovellukset saavutettavuuspalveluilla</string>
+    <string name="apps_filter_profile_secondary_label">Hallittu profiili (profiilit)</string>
+    <string name="apps_filter_battery_optimization_label">Mukautettu akku</string>
+    <string name="apps_filter_accessibility_label">Esteettömyys</string>
+    <string name="apps_filter_device_admin_label">Laitteen järjestelmänvalvoja</string>
+    <string name="apps_filter_install_packages_label">Voi asentaa sovelluksia</string>
+    <string name="apps_filter_overlay_label">Piirtää sovellusten päälle</string>
+    <string name="apps_filter_camera_label">Kameran käyttö</string>
+    <string name="apps_filter_location_label">Sijaintitiedot</string>
+    <string name="apps_filter_microphone_label">Mikrofonin käyttö</string>
+    <string name="apps_filter_contacts_label">Yhteystietojen käyttö</string>
+    <string name="apps_filter_old_api_target_label">Kohdistuu vanhaan Androidiin</string>
+    <string name="apps_filter_manifest_flags_label">Voi löytää sovelluksia</string>
+    <string name="apps_filter_section_app_type">Sovelluksen tyyppi</string>
+    <string name="apps_filter_section_install_source">Asennuslähde</string>
+    <string name="apps_filter_section_properties">Ominaisuudet</string>
+    <string name="apps_filter_section_profile">Profiili</string>
+    <string name="apps_filter_section_sort_by">Lajittele</string>
+    <string name="apps_filter_sort_action">Suodata &amp; lajittele</string>
+    <string name="apps_help_tag_icons_title">Oikeusmerkit</string>
+    <string name="apps_help_tag_icons_description">Merkit näyttävät, mihin arkaluonteisiin oikeuskategorioihin sovellukselle on myönnetty oikeudet</string>
     <string name="apps_details_description_restrictions_caveat_description">Tämä sovellus on asennettu toiseen käyttäjäprofiiliin. Myönnetyt käyttöoikeudet voidaan määrittää vain aktiiviseen profiiliin asennetuille sovelluksille Androidin rajoitusten vuoksi.</string>
     <string name="apps_details_description_uninstalled_caveat">Tämä sovellus on poistettu, mutta sen tiedot on säilytetty. Käyttöoikeuksien tilaa ei voida määrittää poistetuille sovelluksille.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -138,13 +180,64 @@
         <item quantity="other">%1$d / %2$d käyttöoikeuksista myönnetty.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Yksikään käyttöoikeus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <string name="apps_details_perm_tag_runtime">Ajonaikainen</string>
+    <string name="apps_details_perm_tag_special">Erityinen</string>
+    <string name="apps_details_perm_tag_install">Asennusaikainen</string>
+    <string name="apps_details_perm_help_title">Lupaindikaattorit</string>
+    <string name="apps_details_perm_help_runtime">Ajonaikainen — Sovelluksen on pyyttävä sinulta lupa ennen sen käyttöä. Voit myöntää tai kieltää sen.</string>
+    <string name="apps_details_perm_help_special">Erityinen — Vaatii kytkimen vaihtamista järjestelmäasetuksissa.</string>
+    <string name="apps_details_perm_help_install">Asennusaikainen — Myönnetään automaattisesti, kun sovellus asennetaan. Ei vaadi käyttäjän toimia.</string>
+    <string name="apps_details_perm_help_declared">⚠-kuvake tarkoittaa, että tämä lupa on sovelluksen itse luoma, eikä se ole standardi Android-lupa.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">Sovellusmanifesti</string>
+    <string name="apps_details_manifest_queued">Jonossa analyysia varten…</string>
+    <string name="apps_details_manifest_loading">Analysoidaan manifesti…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifesti analysoitavana…</item>
+        <item quantity="other">%d manifesti analysoitavana…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Mitään epätavallista ei havaittu</string>
+    <string name="apps_details_manifest_unavailable">Manifesti ei ole käytettävissä</string>
+    <string name="apps_details_manifest_error">Manifestia ei voitu lukea</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d pakettikyselyjä</item>
+        <item quantity="other">%d pakettikyselyt</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d intentiokyselyjä</item>
+        <item quantity="other">%d intentiokyselyt</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d tarjoajakyselyjä</item>
+        <item quantity="other">%d tarjoajakyselyt</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Voi havaita kaikki asennetut sovellukset</string>
+    <string name="apps_details_manifest_hint_excessive">Tarkistaa monia tiettyjä sovelluksia</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Manifestin katseluohjelma</string>
+    <string name="apps_manifest_viewer_search_hint">Hae manifestista</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d osuma</item>
+        <item quantity="other">%d osumaa</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d / %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Käyttöoikeus</string>
+    <string name="apps_manifest_section_permission">Oikeus</string>
+    <string name="apps_manifest_section_queries">Kyselyt</string>
+    <string name="apps_manifest_section_activities">Aktiviteetit</string>
+    <string name="apps_manifest_section_services">Palvelut</string>
+    <string name="apps_manifest_section_receivers">Vastaanottajat</string>
+    <string name="apps_manifest_section_providers">Tarjoajat</string>
+    <string name="apps_manifest_section_meta_data">Metatiedot</string>
+    <string name="apps_manifest_section_other">Muut</string>
     <string name="api_target_level_x">Kohdeversio: %s</string>
     <string name="api_minimum_level_x">Minimiversio: %s</string>
     <string name="api_build_level_x">Käännösversio: %s</string>
     <string name="permission_reboot_label">Käynnistä laite uudelleen</string>
     <string name="permission_reboot_description">Sallii sovelluksen käynnistää laitteen uudelleen. Saatavilla vain järjestelmäsovelluksille.</string>
     <string name="permissions_sort_apps_relevance_label">Merkityksellisyys</string>
-    <string name="apps_filter_profile_active_label">Sovellukset aktiivisessa profiilissa</string>
+    <string name="apps_filter_profile_active_label">Aktiivinen profiili</string>
     <string name="overview_page_label">Yleiskatsaus</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s kohde</item>
@@ -174,8 +267,55 @@
         <item quantity="one">Järjestelmäsovellukset: Myönnetty %1$d / %2$d:lle.</item>
         <item quantity="other">Järjestelmäsovellukset: Myönnetty %1$d / %2$d:lle.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d sovellus muissa käyttäjäprofiileissa pyyttää myös tätä lupaa.</item>
+        <item quantity="other">%d sovellusta muissa käyttäjäprofiileissa pyyttää myös tätä lupaa.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d poistettu sovellus säilynein tiedoin pyyttää myös tätä lupaa.</item>
+        <item quantity="other">%d poistettua sovellusta säilynein tiedoin pyyttää myös tätä lupaa.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Muihin käyttäjäprofiileihin asennetut sovellukset on jätetty pois yllä olevasta laskelmasta Androidin rajoitusten vuoksi.</string>
     <string name="permissions_details_empty_filter_message">Yksikään sovellus ei vastaa nykyisiä suodattimia. Napauta suodatinkuvaketta säätääksesi.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Ajonaikainen</string>
+    <string name="permissions_tag_install_time_label">Asennusaikainen</string>
+    <string name="permissions_tag_special_access_label">Erityinen käyttöoikeus</string>
+    <string name="permissions_tag_documented_label">Dokumentoitu</string>
+    <string name="permissions_tag_notable_label">Merkittävä</string>
+    <string name="permissions_tag_non_standard_label">Ei-standardi</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">Käytössä</string>
+    <string name="permissions_status_unknown_label">Tuntematon</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">Järjestelmä</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d lisää</item>
+        <item quantity="other">+%d lisää</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Lupaindikaattorit</string>
+    <string name="permissions_details_help_section_protection">Suojatyyppi</string>
+    <string name="permissions_details_help_dangerous">Vaarallinen — Vaatii käyttäjän nimenomaisen hyväksynnän ajon aikana. Voi käyttää arkaluonteisia tietoja tai laitteen toimintoja.</string>
+    <string name="permissions_details_help_normal">Normaali — Myönnetään automaattisesti asennuksen yhteydessä. Aiheuttaa minimaalisen riskin muille sovelluksille tai järjestelmälle.</string>
+    <string name="permissions_details_help_signature">Allekirjoitus — Myönnetään vain sovelluksille, jotka on allekirjoitettu samalla sertifikaatilla kuin luvan julistaneen sovelluksen.</string>
+    <string name="permissions_details_help_internal">Sisäinen — Varattu Android-järjestelmän sisäiseen käyttöön. Ei saatavilla kolmannen osapuolen sovelluksille.</string>
+    <string name="permissions_details_help_section_tags">Lupatunnisteet</string>
+    <string name="permissions_details_help_tag_runtime">Ajonaikainen — Sovelluksen on pyydettävä sinulta lupa ennen sen käyttöä.</string>
+    <string name="permissions_details_help_tag_install_time">Asennusaikainen — Myönnetään automaattisesti, kun sovellus asennetaan.</string>
+    <string name="permissions_details_help_tag_special_access">Erityinen käyttöoikeus — Vaatii kytkimen vaihtamista järjestelmäasetuksissa.</string>
+    <string name="permissions_details_help_tag_documented">Dokumentoitu — Mainittu virallisessa Android-manifestidokumentaatiossa.</string>
+    <string name="permissions_details_help_tag_notable">Merkittävä — Erityisen huomionarvoinen yksityisyyteen tai turvallisuuteen kohdistuvan vaikutuksensa vuoksi.</string>
+    <string name="permissions_details_help_tag_non_standard">Ei-standardi — Ei kuulu standardiin Android-lupajoukkoon. Kolmannen osapuolen sovelluksen tai laitevalmistajan julistama.</string>
+    <string name="permissions_details_status_help_title">Tilaindikaattorit</string>
+    <string name="permissions_details_help_section_status">Myöntämistila</string>
+    <string name="permissions_details_help_status_granted">Myönnetty — Sovellukselle on annettu tämä lupa.</string>
+    <string name="permissions_details_help_status_in_use">Käytössä — Myönnetty ja sovelluksen aktiivisesti käyttämä.</string>
+    <string name="permissions_details_help_status_denied">Evätty — Sovellus pyysi tätä lupaa, mutta sitä ei myönnetty.</string>
+    <string name="permissions_details_help_status_unknown">Tuntematon — Myöntämistilaa ei voida määrittää, esim. muiden käyttäjäprofiilien sovelluksille.</string>
+    <string name="permissions_details_help_section_badges">Merkit</string>
+    <string name="permissions_details_help_system_badge">Järjestelmä — Sovellus on esiasennettu järjestelmäsovellus.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Sallii sovellusten kommunikoida NFC (Near Field Communication) -tunnisteiden, korttien ja lukijoiden kanssa.</string>
     <string name="permission_manage_media_label">Median hallinta</string>
@@ -187,7 +327,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth-mainostus</string>
     <string name="permission_bluetooth_advertise_description">Sallii sovellusten mainostaa läheisille Bluetooth-laitteille.</string>
     <string name="permission_get_accounts_label">Etsi tilit</string>
-    <string name="permission_get_accounts_description">Sallii sovellusten hakea puhelimen tuntemat tilit. Tämä voi sisältää tilit, jotka asentamasi sovellukset ovat luoneet.</string>
+    <string name="permission_get_accounts_description">Sallii sovellusten hakea laitteen tuntemia tilejä. Tähän voi sisältyä tilejä, jotka asennetut sovellukset ovat luoneet.</string>
     <string name="permission_access_background_location_label">Taustasijaintioikeus</string>
     <string name="permission_access_background_location_description">Sallii sovellusten käyttää sijaintia milloin tahansa, vaikka ne eivät olisi käytössä.</string>
     <string name="permission_access_media_location_label">Mediasisällön sijaintioikeus</string>
@@ -201,7 +341,7 @@
     <string name="permission_read_sync_settings_label">Lue synkronointiasetuksia</string>
     <string name="permission_read_sync_settings_description">Sallii sovellusten lukea tilin synkronointiasetuksia.</string>
     <string name="permission_install_unknown_apps_label">Asenna tuntemattomia sovelluksia (Tuntemattomat lähteet)</string>
-    <string name="permission_install_unknown_apps_description">Sallii sovellusten asentaa (sivuladata) muita sovelluksia laitteeseesi. Tämä voi vaarantaa laitteesi ja tietosi.</string>
+    <string name="permission_install_unknown_apps_description">Antaa sovelluksille mahdollisuuden asentaa manuaalisesti muita sovelluksia laitteellesi. Tämä saattaa asettaa laitteesi ja tietosi vaaraan.</string>
     <string name="permission_all_files_access_label">Kaikkien tiedostojen käyttöoikeus</string>
     <string name="permission_all_files_access_description">Sallii sovellusten lukea, muokata ja poistaa kaikki tiedostot laitteeltasi sekä kaikista liitetyistä tallennuslaitteista. Tämän käyttöoikeuden omaavat sovellukset voivat käyttää tiedostoja ilman ilmoitusta.</string>
     <string name="permission_appear_on_top_label">Näy päällimmäisenä</string>
@@ -260,23 +400,322 @@
     <string name="permission_group_camera_description">Kameraan liittyvät käyttöoikeudet.</string>
     <string name="permission_group_audio_label">Mikrofoni</string>
     <string name="permission_group_audio_description">Mikrofoniin liittyvät käyttöoikeudet.</string>
+    <string name="permissions_list_empty_message">Ei näytettäviä lupia.</string>
+    <string name="permissions_list_empty_search_message">Mikkään lupa ei vastaa hakuasi.</string>
     <string name="permission_picture_in_picture_label">Kuva kuvassa</string>
+    <string name="permission_legacy_storage_label">Vanhan tyypin tallennustila</string>
+    <string name="permission_legacy_storage_description">Sallii sovellusten käyttää ulkoista tallennustilaa ilman kohdistettuja tallennusrajoituksia. Tämä oli oletuskäyttäytyminen ennen Android 10:tä. Sovellukset, joilla on tämä käyttöoikeus, voivat lukea ja kirjoittaa tiedostoja missä tahansa jaetulla tallennustilalla.</string>
+    <string name="settings_page_label">Asetukset</string>
+    <string name="overview_summary_title_label">Yhteenveto</string>
+    <string name="permissions_details_declaring_apps_label">Luvan julistavat sovellukset</string>
+    <string name="permissions_details_requesting_apps_label">Lupaa pyytävät sovellukset</string>
     <string name="overview_device_android_version_label">Android-versio</string>
     <string name="overview_device_name_label">Laite</string>
     <string name="overview_device_android_patch_label">Korjaustaso</string>
     <string name="overview_summary_apps_active_profile_label">Sovellukset aktiivisessa profiilissa</string>
     <string name="overview_summary_apps_other_profile_label">Sovellukset hallituissa käyttäjäprofiileissa, kloonit pois lukien</string>
-    <string name="overview_summary_apps_sideloaded_label">Ulkoisista lähteistä sivulladatut sovellukset</string>
+    <string name="overview_summary_apps_sideloaded_label">Manuaalisesti asennetut sovellukset ulkoisista lähteistä</string>
     <string name="overview_summary_apps_installers_label">Sovellukset, joilla \'Asenna tuntemattomista lähteistä\' käytössä</string>
     <string name="overview_summary_apps_overlayers_label">Sovellukset, jotka voivat \'Näkyä päällimmäisenä\'</string>
     <string name="overview_summary_apps_offline_label">Sovellukset, joilla \'Ei internetiä\' -käyttöoikeudet</string>
     <string name="overview_summary_apps_clones_label">Sovellukset, joilla klooneja muissa profiileissa</string>
     <string name="overview_summary_apps_sharedids_label">Sovellukset SharedUserID:lla</string>
+    <string name="overview_summary_apps_camera_label">Sovellukset, joilla on kameran käyttöoikeus</string>
+    <string name="overview_summary_apps_location_label">Sovellukset, joilla on sijaintitietojen käyttöoikeus</string>
+    <string name="overview_summary_apps_microphone_label">Sovellukset, joilla on mikrofonin käyttöoikeus</string>
+    <string name="overview_summary_apps_contacts_label">Sovellukset, joilla on yhteystietojen käyttöoikeus</string>
+    <string name="overview_summary_apps_gplay_label">Google Playsta ladatut sovellukset</string>
+    <string name="overview_summary_apps_oemstore_label">OEM-kaupoista ladatut sovellukset</string>
+    <string name="overview_summary_apps_battery_label">Akun rajoittamattomat sovellukset</string>
+    <string name="overview_summary_apps_oldapi_label">Sovellukset, jotka kohdistuvat Android 10:tä vanhempaan</string>
+    <string name="overview_section_profile_label">Profiili</string>
+    <string name="overview_section_install_source_label">Asennuslähde</string>
+    <string name="overview_section_privacy_label">Yksityisyys</string>
+    <string name="overview_section_security_label">Turvallisuus</string>
+    <string name="overview_section_manifest_label">Manifesti</string>
+    <string name="overview_summary_apps_manifest_flags_label">Voi löytää sovelluksia</string>
+    <string name="overview_section_system_label">Järjestelmä</string>
     <string name="permission_bind_accessibility_service_label">Tarjoa saavutettavuuspalvelu</string>
     <string name="permission_bind_accessibility_service_description">Sallii sovelluksen tarjota saavutettavuuspalvelun, joka voidaan ottaa käyttöön järjestelmäasetuksissa.</string>
     <string name="debug_debuglog_sensitive_information_message">Tämä tiedosto sisältää arkaluonteisia tietoja (esim. asennetut sovelluksesi). Jaa se vain luotettavien tahojen kanssa.</string>
     <string name="settings_debuglog_explanation">Tämä ominaisuus tallentaa kaiken mitä sovellus tekee jaettavaan tiedostoon. Luotu tiedosto sisältää arkaluonteisia tietoja (esim. asennetut sovelluksesi). Jaa se vain luotettavien tahojen kanssa (esim. sovelluksen kehittäjän kanssa, jos vianetsintä tapahtuu yhdessä).</string>
+    <string name="support_debuglog_recording">Tallennetaan…</string>
+    <string name="support_debuglog_stop_label">Pysäytä vianetsintäloki</string>
+    <string name="support_contact_label">Ota yhteyttä kehittäjään</string>
+    <string name="support_contact_desc">Täytä lomake lähettääksesi kehittäjälle sähköpostin.</string>
+    <string name="support_debuglog_clear_action">Tyhjennä tallennetut virheenkorjauslokit</string>
+    <string name="debug_debuglog_short_recording_title">Tallennus liian lyhyt</string>
+    <string name="debug_debuglog_short_recording_message">Virheenkorjauslokin on tallennettava ongelma sen tapahtuessa. Aloita tallennus, toista ongelma ja lopeta tallennus.</string>
+    <string name="debug_debuglog_short_recording_continue">Jatka tallennusta</string>
+    <string name="debug_debuglog_short_recording_stop">Lopeta joka tapauksessa</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d virheenkorjausloki (%2$s)</item>
+        <item quantity="other">%1$d virheenkorjauslokia (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Tyhjennettäänkö virheenkorjauslokit?</string>
+    <string name="support_debuglog_clear_message">Tämä poistaa kaikki tallennetut virheenkorjauslokitiedostot.</string>
+    <string name="support_debuglog_sessions_title">Virheenkorjauslokit</string>
+    <string name="support_debuglog_session_delete_title">Poistetaanko virheenkorjausloki?</string>
+    <string name="support_debuglog_session_delete_message">Tämä virheenkorjausloki poistetaan pysyvästi.</string>
+    <string name="support_debuglog_sessions_empty">Ei virheenkorjauslokeja</string>
+    <string name="support_debuglog_session_invalid">Virheellinen istunto</string>
+    <string name="support_debuglog_session_recording">Tallennetaan…</string>
+    <string name="support_debuglog_session_compressing">Pakataan…</string>
+    <string name="support_debuglog_failed_empty_log">Tyhjä lokitiedosto</string>
+    <string name="support_debuglog_failed_missing_log">Puuttuva lokitiedosto</string>
+    <string name="support_debuglog_failed_corrupt_zip">Vioittunut ZIP-tiedosto</string>
+    <string name="support_debuglog_failed_zip_failed">Pakkaaminen epäonnistui</string>
+    <string name="support_debuglog_sent_title">Loki lähetetty?</string>
+    <string name="support_debuglog_sent_message">Jos lähetit virheenkorjauslokin, se voidaan poistaa vapauttamaan tilaa.</string>
+    <string name="support_contact_sent_title">Viesti lähetetty?</string>
+    <string name="support_contact_sent_message">Jos lähetit sähköpostin, tämä istunto voidaan siivota.</string>
+    <string name="general_close_action">Sulje</string>
+    <string name="debug_debuglog_screen_delete_action">Poista</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Ota yhteyttä tukeen</string>
+    <string name="contact_category_label">Luokka</string>
+    <string name="contact_category_question_label">Kysymys</string>
+    <string name="contact_category_feature_label">Ominaisuuspyyntö</string>
+    <string name="contact_category_bug_label">Vikailmoitus</string>
+    <string name="contact_description_label">Kuvaus</string>
+    <string name="contact_description_hint_question">Kuvaile kysymyksesi yksityiskohtaisesti. Ole täsmällinen (vähintään 20 sanaa).</string>
+    <string name="contact_description_hint_feature">Kuvaile ominaisuus, jonka haluaisit nähdä. Ole täsmällinen (vähintään 20 sanaa).</string>
+    <string name="contact_description_hint_bug">Kuvaile, mitä tapahtui ja miten ongelma toistuu. Ole täsmällinen (vähintään 20 sanaa).</string>
+    <string name="contact_expected_behavior_label">Odotettu käyttäytyminen</string>
+    <string name="contact_expected_behavior_hint">Kuvaile, mitä odotit tapahtuvan (vähintään 10 sanaa).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d sana</item>
+        <item quantity="other">%1$d / %2$d sanaa</item>
+    </plurals>
+    <string name="contact_send_action">Avaa sähköpostiohjelma</string>
+    <string name="contact_debuglog_picker_label">Virheenkorjausloki</string>
+    <string name="contact_debuglog_picker_hint">Liitä olemassa oleva virheenkorjausloki tai tallenna uusi.</string>
+    <string name="contact_debuglog_empty">Virheenkorjauslokeja ei löydy. Tallenna ensin yksi.</string>
+    <string name="contact_debuglog_record_action">Tallenna virheenkorjausloki</string>
+    <string name="contact_debuglog_stop_action">Lopeta tallennus</string>
+    <string name="contact_debuglog_delete_title">Poistetaanko virheenkorjausloki?</string>
+    <string name="contact_debuglog_delete_message">Tämä virheenkorjausloki poistetaan pysyvästi.</string>
+    <string name="contact_debuglog_zip_error">Virheenkorjauslokin pakkaaminen epäonnistui</string>
+    <string name="contact_no_email_app">Tällä laitteella ei löydy sähköpostiohjelmaa.</string>
+    <string name="contact_welcome_message">Luen jokaisen viestin itse ja teen parhaani vastatakseni. Koska hoidan kehityksen, virheiden korjauksen ja tuen yksin, se voi viedä hieman aikaa. Kiitos kärsivällisyydestäsi.</string>
+    <string name="contact_footer_message">Viestisi lähetetään sähköpostitse. Laite- ja asetustiedot liitetään automaattisesti. Voit liittää kuvakaappauksia tai videon sähköpostiin. Kirjoita englanniksi mahdollisuuksien mukaan.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Säilyttää</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Virheenkorjausloki</string>
+    <string name="debug_debuglog_screen_subtitle">Vie virheenkorjaustiedot vianetsintää varten</string>
+    <string name="debug_debuglog_screen_sensitive_title">Arkaluonteinen tieto</string>
+    <string name="debug_debuglog_screen_session_path_label">Istunnon Polku</string>
+    <string name="debug_debuglog_screen_log_files_label">Loki Tiedostot</string>
+    <string name="debug_debuglog_screen_discard_action">Hylkää</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d tiedosto valmiina (%2$s)</item>
+        <item quantity="other">%1$d tiedostoa valmiina (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
+    <string name="debug_debuglog_screen_duration_s">%1$ds</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Kysymys</string>
+    <string name="contact_email_tag_feature">Ominaisuus</string>
+    <string name="contact_email_tag_bug">Vika</string>
+    <string name="contact_email_section_expected_behavior">--- Odotettu käyttäytyminen ---</string>
+    <string name="contact_email_section_device_info">--- Laitetiedot ---</string>
     <string name="onboarding_body1">Tämä sovellus auttaa navigoimaan asennetuissa sovelluksissa ja löytämään käyttöoikeuksia.</string>
     <string name="onboarding_body2">Permission Pilot kerää asennettujen sovellusten tietoja mahdollistaakseen sovellustesi listaamisen ja niiden käyttöoikeuksien ristiinviittaamisen tätä sovellusta käytettäessä.</string>
     <string name="onboarding_body3">Permission Pilot ei sisällä mainoksia ja käsittelee tietoja vain paikallisesti.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Teematila</string>
+    <string name="ui_theme_mode_system_label">Järjestelmä</string>
+    <string name="ui_theme_mode_dark_label">Tumma</string>
+    <string name="ui_theme_mode_light_label">Vaalea</string>
+    <string name="ui_theme_style_label">Teematyyli</string>
+    <string name="ui_theme_style_default_label">Oletus</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Keskikontrasti</string>
+    <string name="ui_theme_style_highcontrast_label">Korkea kontrasti</string>
+    <string name="ui_theme_color_label">Teemaväri</string>
+    <string name="ui_theme_color_blue_label">Sininen</string>
+    <string name="ui_theme_color_green_label">Vihreä</string>
+    <string name="ui_theme_color_amber_label">Meripihka</string>
+    <string name="ui_theme_color_disabled_subtitle">Käyttää taustakuvan värejä</string>
+    <string name="upgrade_required_subtitle">Päivitä avataksesi</string>
+    <string name="settings_category_appearance_label">Ulkoasu</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Teeman mukautus</string>
+    <string name="upgrade_benefit_filtering">Kehittynyt suodatus</string>
+    <string name="upgrade_benefit_export">Erädatavienti</string>
+    <string name="upgrade_benefit_monitoring">Lupaseuranta</string>
+    <string name="upgrade_benefit_support">Tue kehittäjää</string>
+    <string name="upgrade_benefit_manifest_viewer">Selaa sovelluksen raakamanifesteja</string>
+    <string name="general_upgrade_action">Päivitä</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Tarkkailija</string>
+    <string name="watcher_dashboard_feature_title">Luvantarkkailija</string>
+    <string name="watcher_dashboard_feature_description">Saa ilmoitus, kun sovelluksen päivitys lisää uusia lupia tai muuttaa olemassa olevia. Luvantarkkailija tarkistaa sovelluksesi jokaisen päivityksen jälkeen ja luo raportin, jos jokin muuttui.</string>
+    <string name="watcher_dashboard_manage_in_settings">Voidaan poistaa käytöstä ja määrittää Asetuksissa</string>
+    <string name="watcher_enable_action">Ota käyttöön</string>
+    <string name="watcher_channel_name">Luvantarkkailija</string>
+    <string name="watcher_channel_description">Ilmoitukset asennettujen sovellusten lupien muutoksista</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s sai %2$d uuden luvan</item>
+        <item quantity="other">%1$s sai %2$d uutta lupaa</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d lupa muuttui</item>
+        <item quantity="other">%1$s: %2$d lupaa muuttui</item>
+    </plurals>
+    <string name="watcher_settings_label">Luvantarkkailija</string>
+    <string name="watcher_settings_desc">Seuraa sovellusten lupamuutoksia</string>
+    <string name="watcher_enabled_label">Ota tarkkailija käyttöön</string>
+    <string name="watcher_enabled_desc">Havaitse lupamuutokset, kun sovelluksia asennetaan tai päivitetään</string>
+    <string name="watcher_scope_label">Tarkkailualue</string>
+    <string name="watcher_scope_all">Kaikki sovellukset</string>
+    <string name="watcher_scope_non_system">Vain ei-järjestelmäsovellukset</string>
+    <string name="watcher_reports_label">Lupamuutosraportit</string>
+    <string name="watcher_reports_empty">Lupamuutoksia ei ole vielä havaittu</string>
+    <string name="watcher_report_detail_label">Muutosraportti</string>
+    <string name="watcher_diff_added_permissions">Uudet luvat</string>
+    <string name="watcher_diff_removed_permissions">Poistetut luvat</string>
+    <string name="watcher_diff_grant_changes">Myöntämismuutokset</string>
+    <string name="watcher_diff_added_declared">Uudet julistetut luvat</string>
+    <string name="watcher_diff_removed_declared">Poistetut julistetut luvat</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Asennettu</string>
+    <string name="watcher_event_update">Päivitetty</string>
+    <string name="watcher_event_removed">Poistettu</string>
+    <string name="watcher_event_grant_change">Lupa muuttui</string>
+    <string name="watcher_mark_all_seen">Merkitse kaikki nähdyiksi</string>
+    <string name="watcher_notification_action_mark_seen">Merkitse nähdyksi</string>
+    <string name="watcher_notification_action_delete">Poista</string>
+    <string name="watcher_notification_body_added">Lisätty: %s</string>
+    <string name="watcher_notification_body_removed">Poistettu: %s</string>
+    <string name="watcher_notification_body_grant_changed">Myöntäminen muuttui: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d sovellus muutti lupiaan</item>
+        <item quantity="other">%d sovellusta muutti lupiaan</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Näytä ilmoitukset</string>
+    <string name="watcher_settings_notifications_desc">Näytä ilmoitus, kun lupamuutoksia havaitaan</string>
+    <string name="watcher_settings_notifications_only_gained_label">Ilmoita vain myönnetyistä luvista</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Ilmoita vain, kun sovelluksille myönnetään uusia lupia, esim. ajonaikainen lupa hyväksy tään tai asennusaikainen lupa kuten internet lisätään</string>
+    <string name="watcher_settings_retention_label">Säilyttää raportit</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d päivä</item>
+        <item quantity="other">%d päivää</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Tyhjennä kaikki raportit</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Tyhjennettäänkö kaikki raportit?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Kaikki lupamuutosraportit poistetaan pysyvästi.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d raportti</item>
+        <item quantity="other">%d raporttia</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Ilmoitukset eivät ole saatavilla</string>
+    <string name="watcher_notification_permission_description">Lupamuutoksia seurataan, mutta ilmoituksia ei voida näyttää. Ota ilmoitukset käyttöön saadaksesi hälytyksiä lupamuutoksista.</string>
+    <string name="watcher_notification_permission_grant">Myönnä lupa</string>
+    <string name="watcher_notification_permission_open_settings">Avaa asetukset</string>
+    <string name="watcher_notification_permission_disable">Poista ilmoitukset käytöstä</string>
+    <string name="watcher_detail_version_label">Versio</string>
+    <string name="watcher_detail_version_code_label">Koodi</string>
+    <string name="watcher_detail_installer_label">Asennuslähde</string>
+    <string name="watcher_detail_installer_unknown">Tuntematon</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Luvat (%d)</item>
+        <item quantity="other">Luvat (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Viimeiset tunnetut luvat (%d)</item>
+        <item quantity="other">Viimeiset tunnetut luvat (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Nämä luvat lisättiin tämän sovellusversion yhteydessä.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Nämä luvat poistettiin tässä päivityksessä.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Näiden lupien myöntämistila muuttui.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Nämä olivat sovelluksen luvat ennen poistamista.</string>
+    <string name="watcher_detail_grant_type_automatic">Myönnetty automaattisesti</string>
+    <string name="watcher_detail_grant_type_approval">Vaatii hyväksynnän</string>
+    <string name="watcher_detail_toggle_description">Vaihda kuvaus</string>
+    <string name="watcher_detail_unknown_permission">Tuntematon lupa</string>
+    <string name="watcher_detail_diff_error">Luvan tietoja ei voitu ladata</string>
+    <string name="watcher_settings_polling_label">Taustatarkistuksen väli</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Joka %d tunti</item>
+        <item quantity="other">Joka %d tunti</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Skannataan sovelluksia…</string>
+    <string name="watcher_refresh_checking">Tarkistetaan muutoksia…</string>
+    <string name="watcher_search_hint">Hae raportteja</string>
+    <string name="watcher_filter_has_added_permissions">Uudet pyydetyt luvat</string>
+    <string name="watcher_filter_has_lost_permissions">Poistetut luvat</string>
+    <string name="watcher_filter_has_gained_permissions">Uusi käyttöoikeus myönnetty</string>
+    <string name="watcher_filter_unseen_only">Vain näkemättömät</string>
+    <string name="watcher_filter_section_event_type">Tapahtumatyyppi</string>
+    <string name="watcher_filter_section_permission_changes">Lupamuutokset</string>
+    <string name="watcher_filter_section_status">Tila</string>
+    <string name="watcher_filter_reset">Nollaa</string>
+    <string name="watcher_reports_no_matches">Mikään raportti ei vastaa hakuasi tai suodatuksiasi</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">%d lisäraportti</item>
+        <item quantity="other">%d lisäraporttia</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Päivitä nähdäksesi kaikki raportit, tiedot ja saadaksesi ilmoituksia</string>
+    <string name="snapshot_sync_channel_name">Tilannekuvasynkronointi</string>
+    <string name="snapshot_sync_channel_description">Sovellustietojen taustasynkronointi</string>
+    <string name="snapshot_sync_notification_title">Synkronoidaan sovellustietoja…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Valitse kaikki</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d valittu</item>
+        <item quantity="other">%d valittu</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Vie sovelluksen tiedot</string>
+    <string name="export_permission_info_action">Vie lupatiedot</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Vie %d sovellus</item>
+        <item quantity="other">Vie %d sovellusta</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Vie %d lupa</item>
+        <item quantity="other">Vie %d lupaa</item>
+    </plurals>
+    <string name="export_app_info_title">Sovellustietojen vienti</string>
+    <string name="export_permission_info_title">Lupatietojen vienti</string>
+    <string name="export_format_label">Muoto</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Sisällytä asennustiedot</string>
+    <string name="export_app_include_meta_description">Versio, asennuspäivämäärä, SDK-tasot</string>
+    <string name="export_app_include_permissions_label">Sisällytä käyttöoikeudet</string>
+    <string name="export_app_include_permissions_description">Käyttöoikeuksien nimet ja myönnetty tila</string>
+    <string name="export_app_include_perm_type_label">Sisällytä käyttöoikeuden tyyppi</string>
+    <string name="export_app_include_perm_full_label">Sisällytä täydelliset käyttöoikeustiedot</string>
+    <string name="export_perm_include_apps_label">Sisällytä pyytävät sovellukset</string>
+    <string name="export_perm_include_apps_description">Luettele sovellukset, jotka pyytävät kutakin käyttöoikeutta</string>
+    <string name="export_perm_granted_only_label">Vain myönnetyt sovellukset</string>
+    <string name="export_perm_include_summary_label">Sisällytä yhteenvetolaskurit</string>
+    <string name="export_preview_label">Esikatselu</string>
+    <string name="export_preview_label_of">Esikatselu (%1$d / %2$d)</string>
+    <string name="export_action_label">Vie</string>
+    <string name="export_progress_label">Viedään…</string>
+    <string name="export_success_message">Vienti valmis</string>
+    <string name="export_error_message">Vienti epäonnistui</string>
+    <string name="export_share_action">Jaa</string>
+    <string name="export_open_action">Auki</string>
+    <string name="export_done_action">Valmis</string>
+    <string name="export_retry_action">Yritä uudelleen</string>
+    <string name="export_summary_filename">Tiedosto</string>
+    <string name="export_summary_size">Koko</string>
+    <string name="export_summary_duration">Kesto</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Ilmainen versio on rajoitettu %d kohteeseen ja Markdown-muotoon. Päivitä rajoittamattomiin vienteihin ja kaikkiin muotoihin.</item>
+        <item quantity="other">Ilmainen versio on rajoitettu %d kohteeseen ja Markdown-muotoon. Päivitä rajoittamattomiin vienteihin ja kaikkiin muotoihin.</item>
+    </plurals>
+    <string name="export_upgrade_action">Päivitä</string>
 </resources>

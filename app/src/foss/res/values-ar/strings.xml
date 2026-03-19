@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot مجاني ومفتوح المصدر. دعمك يساعد في الحفاظ على ذلك.</string>
+    <string name="upgrade_foss_sponsor_action">كن راعياً</string>
+    <string name="upgrade_foss_sponsor_subtitle">يفتح GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">يُرجى تخصيص لحظة للاطلاع على صفحة الراعيين!</string>
 </resources>

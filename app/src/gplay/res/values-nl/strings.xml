@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-services zijn niet beschikbaar.</string>
     <string name="upgrades_no_purchases_found_check_account">Geen aankopen gevonden. Gebruik je het juiste account?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot is advertentievrij en respecteert je privacy. Upgraden ondersteunt verdere ontwikkeling.</string>
+    <string name="upgrade_screen_subscription_trial_action">Start gratis proefperiode</string>
+    <string name="upgrade_screen_subscription_action">Abonneren</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/maand, op elk moment opzegbaar</string>
+    <string name="upgrade_screen_iap_action">Pro kopen</string>
+    <string name="upgrade_screen_iap_action_hint">Eenmalige aankoop van %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Herstel aankoop</string>
+    <string name="upgrade_screen_restore_purchase_message">Geen aankopen gevonden. Controleer of je bent aangemeld met het juiste Google-account.</string>
+    <string name="upgrade_screen_options_description">Abonnementen verlengen automatisch. Je kunt op elk moment opzeggen.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

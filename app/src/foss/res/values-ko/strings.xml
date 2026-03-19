@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot은 무료 오픈소스입니다. 여러분의 지원으로 이를 유지할 수 있습니다.</string>
+    <string name="upgrade_foss_sponsor_action">스폰서 되기</string>
+    <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors 열기</string>
+    <string name="upgrade_foss_sponsor_returned_early">스폰서 페이지를 일찍 확인해 주세요!</string>
 </resources>

@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Serviciile Google Play nu sunt disponibile.</string>
     <string name="upgrades_no_purchases_found_check_account">Nu s-au găsit achiziții. Folosești contul corect?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot este fără reclame şi îți respectă confidențialitatea. Actualizarea sprijină dezvoltarea continuă.</string>
+    <string name="upgrade_screen_subscription_trial_action">Începe încercarea gratuită</string>
+    <string name="upgrade_screen_subscription_action">Abonează-te</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/lună, anulare oricând</string>
+    <string name="upgrade_screen_iap_action">Cumpără Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Achiziție unică de %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Restabiliți achiziția</string>
+    <string name="upgrade_screen_restore_purchase_message">Nicio achiziție găsită. Verifică că eşti autentificat cu contul Google corect.</string>
+    <string name="upgrade_screen_options_description">Abonamentele se reînnoiesc automat. Poți anula oricând.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

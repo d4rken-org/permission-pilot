@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot је бесплатан и отвореног кода. Ваша подршка помаже да остане такав.</string>
+    <string name="upgrade_foss_sponsor_action">Постаните спонзор</string>
+    <string name="upgrade_foss_sponsor_subtitle">Отвара GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">Посветите тренутак да погледате страницу спонзора!</string>
 </resources>

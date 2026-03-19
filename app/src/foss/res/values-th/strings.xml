@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot เป็นซอฟต์แวร์ฟรีและโอเพนซอร์ส การสนับสนุนของคุณช่วยรักษาให้เป็นเช่นนั้น</string>
+    <string name="upgrade_foss_sponsor_action">เป็นผู้สนับสนุน</string>
+    <string name="upgrade_foss_sponsor_subtitle">เปิด GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">โปรดใช้เวลาสักครู่เช็คหน้าผู้สนับสนุน!</string>
 </resources>

@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilotは無料でオープンソースです。ご支援がそのような状態を維持する助けになります。</string>
+    <string name="upgrade_foss_sponsor_action">スポンサーになる</string>
+    <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsorsを開く</string>
+    <string name="upgrade_foss_sponsor_returned_early">スポンサーページをご覧ください！</string>
 </resources>

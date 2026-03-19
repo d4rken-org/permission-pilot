@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot የባዘቹ ዘርዘር ወደ አቍት መነቦ ነው። ድግፍን እንዲህ ይደግፋለ።</string>
+    <string name="upgrade_foss_sponsor_action">የግል አስነሯ</string>
+    <string name="upgrade_foss_sponsor_subtitle">የ GitHub Sponsors ይዘርቹ</string>
+    <string name="upgrade_foss_sponsor_returned_early">የግል ቃኩልን አክበ ለመከፈት የጓል ደቁወቢ።</string>
 </resources>

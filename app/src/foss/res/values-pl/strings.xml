@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Pilot Uprawnień jest darmowy i otwarto źródłowy. Twoje wsparcie pomoże nam go utrzymać.</string>
+    <string name="upgrade_foss_sponsor_action">Zostań sponsorem</string>
+    <string name="upgrade_foss_sponsor_subtitle">Otwieranie strony sponsorów GitHub</string>
+    <string name="upgrade_foss_sponsor_returned_early">Poświęć chwilę na odwiedzenie strony sponsorów!</string>
 </resources>

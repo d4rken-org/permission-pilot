@@ -7,17 +7,21 @@
     <string name="general_done_action">Færdig</string>
     <string name="general_open_action">Åbn</string>
     <string name="general_continue_action">Fortsæt</string>
-    <string name="upgrade_buy_pro_action">Køb Pro-version</string>
     <string name="general_no_action">Nej</string>
-    <string name="upgrade_donate_action">Donér</string>
-    <string name="debug_debuglog_size_label">Størrelse</string>
-    <string name="debug_debuglog_size_compressed_label">Komprimeret størrelse</string>
-    <string name="debug_notification_channel_label">Debug-notifikationer</string>
-    <string name="debug_debuglog_file_label">Optaget logfil</string>
-    <string name="debug_debuglog_record_action">Optag debug-log</string>
+    <string name="debug_debuglog_record_action">Optag</string>
     <string name="settings_category_other_label">Andet</string>
+    <string name="settings_category_gethelp_label">Få hjælp</string>
+    <string name="settings_category_debug_label">Fejlfinding</string>
+    <string name="settings_category_advanced_label">Avanceret</string>
     <string name="general_settings_label">Generelt</string>
     <string name="general_settings_desc">Generelle tilpasninger, der påvirker hele appen.</string>
+    <string name="general_settings_scan_speed_label">Scanhastighed</string>
+    <string name="general_settings_scan_speed_desc">Styrer parallelle handlinger ved scanning af apps. Højere værdier er hurtigere, men kan forårsage nedbrud på nogle enheder.</string>
+    <string name="general_settings_scan_speed_auto">Auto (anbefalet)</string>
+    <string name="general_settings_scan_speed_1">1 (sikreste)</string>
+    <string name="general_settings_scan_speed_2">2</string>
+    <string name="general_settings_scan_speed_3">3</string>
+    <string name="general_settings_scan_speed_4">4 (hurtigste)</string>
     <string name="changelog_label">Ændringslog</string>
     <string name="settings_acknowledgements_label">Anerkendelser</string>
     <string name="general_thank_you_label">Tak</string>
@@ -30,6 +34,10 @@
     <string name="discord_description">Et sted at hænge ud og stille spørgsmål.</string>
     <string name="issue_tracker_label">Problemsporing</string>
     <string name="issue_tracker_description">En offentlig problemsporing for fejlrapporter og funktionsanmodninger.</string>
+    <string name="faq_label">FAQ</string>
+    <string name="faq_description">Ofte stillede spørgsmål og almindelige løsninger.</string>
+    <string name="acks_maxpatchs_desc">Tak for de dejlige ikoner.</string>
+    <string name="acks_crowdin_desc">For at støtte oversættelse af open source-projekter.</string>
     <string name="permissions_page_label">Tilladelser</string>
     <string name="apps_page_label">Apps</string>
     <string name="app_type_system_label">System-app</string>
@@ -42,8 +50,8 @@
     <string name="general_cancel_action">Annullér</string>
     <string name="apps_filter_userapps_label">Bruger-apps</string>
     <string name="apps_filter_systemapps_label">System-apps</string>
-    <string name="apps_filter_nointernet_label">Apps uden internetadgang</string>
-    <string name="apps_filter_sideloaded_label">Sideloadede apps</string>
+    <string name="apps_filter_nointernet_label">Intet internet</string>
+    <string name="apps_filter_sideloaded_label">Manuelt installeret</string>
     <string name="apps_filter_gplay_label">Google Play Butik</string>
     <string name="apps_filter_oemstore_label">OEM-butik</string>
     <string name="apps_sort_permissions_granted_label">Tildelte tilladelser</string>
@@ -67,6 +75,8 @@
     </plurals>
     <string name="apps_details_installer_label">Installationskilde</string>
     <string name="apps_details_installer_unknown_label">Information ikke tilgængelig</string>
+    <string name="apps_details_open_settings_error">Kunne ikke åbne app-indstillinger for denne profil</string>
+    <string name="apps_details_open_app_error">Kunne ikke åbne denne app</string>
     <string name="permissions_filter_manifest_label">AOSP-tilladelser</string>
     <string name="permissions_filter_system_label">Erklæret af system-app</string>
     <string name="permissions_filter_user_label">Erklæret af bruger-app</string>
@@ -74,11 +84,15 @@
     <string name="permissions_filter_special_label">Særlig brug</string>
     <string name="permissions_filter_installtime_label">Automatisk tildelt</string>
     <string name="permissions_filter_installtime_hide_label">Ikke automatisk tildelt</string>
+    <string name="permissions_filter_sort_action">Filtrer &amp; Sorter</string>
+    <string name="permissions_filter_section_source">Kilde</string>
+    <string name="permissions_filter_section_type">Type</string>
+    <string name="permissions_filter_section_sort_by">Sorter efter</string>
     <string name="filter_granted_label">Tildelt</string>
     <string name="filter_denied_label">Afvist</string>
     <string name="filter_configurable_label">Konfigurerbar</string>
-    <string name="permissions_sort_apps_granted_label">Antal apps tildelt</string>
-    <string name="permissions_sort_apps_requested_label">Antal apps anmodet</string>
+    <string name="permissions_sort_apps_granted_label">Antal tildelte apps</string>
+    <string name="permissions_sort_apps_requested_label">Antal anmodede apps</string>
     <string name="permissions_search_list_hint">Søg tilladelser</string>
     <string name="apps_search_list_hint">Søg apps</string>
     <string name="permissions_details_protection_label">Beskyttelsesniveau</string>
@@ -91,13 +105,19 @@
     <string name="permissions_permission_details_label">Tilladelsesdetaljer</string>
     <string-array name="generic_loading_labels">
         <item>Snart™</item>
-        <item>Rækker smørret</item>
-        <item>Downloader mere RAM</item>
+        <item>Rækker smøren</item>
+        <item>Henter mere RAM</item>
         <item>Stadig hurtigere end en iPhone</item>
-        <item>Hvad er det bag dig?</item>
         <item>CPU\'en holder kaffepause</item>
         <item>Afventer data fra Pepe Silvia</item>
-        <item>Turboencabulatoren startes op</item>
+        <item>Turbo-kabulator starter</item>
+        <item>Næsten der… sandsynligvis</item>
+        <item>Lader travl ud</item>
+        <item>Varmer hamsterhjulet op</item>
+        <item>Overbeviser apps om at samarbejde</item>
+        <item>Beder om tilladelser høfligt</item>
+        <item>Dine apps ringer til deres advokat</item>
+        <item>Læser det med småt</item>
     </string-array>
     <string name="apps_app_details_label">App-detaljer</string>
     <string name="apps_details_shareduserid_label">Apps med delt bruger-ID</string>
@@ -108,7 +128,12 @@
     <string name="apps_known_installer_huawei_label">Huawei AppGallery</string>
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
+    <string name="apps_known_installer_fdroid_label">F-Droid</string>
     <string name="apps_known_android_system_label">Android-system</string>
+    <string name="apps_list_subtitle_format">%1$s · %2$s</string>
+    <string name="apps_list_updated_label">Opdateret %1$s</string>
+    <string name="apps_list_installer_sideloaded_label">Manuelt installeret</string>
+    <string name="apps_list_installer_preinstalled_label">Forudinstalleret</string>
     <string name="general_refresh_action">Opdatér</string>
     <string name="general_expand_all_action">Udvid alle</string>
     <string name="general_collapse_all_action">Skjul alle</string>
@@ -117,16 +142,33 @@
     <string name="apps_details_twins_descriptions">Installeret i andre brugerprofiler.</string>
     <string name="install_date_label">Installationsdato</string>
     <string name="apps_filter_sharedid_label">Delt bruger-ID</string>
-    <string name="apps_filter_multipleprofiles_label">Apps med kloner</string>
+    <string name="apps_filter_multipleprofiles_label">Har kloner</string>
     <string name="support_debuglog_label">Debug-log</string>
     <string name="support_debuglog_desc">Optag alt, hvad appen laver, i en tekstfil, som du kan dele.</string>
     <string name="updated_at_x">Sidst opdateret: %s</string>
     <string name="installed_at_x">Først installeret: %s</string>
     <string name="apps_sort_install_source_label">Installationskilde</string>
     <string name="permissions_action_none_msg">Ingen handling tilgængelig for denne tilladelse</string>
-    <string name="apps_filter_profile_secondary_label">Apps i administrerede profiler</string>
-    <string name="apps_filter_battery_optimization_label">Apps med tilpassede batteriindstillinger</string>
-    <string name="apps_filter_accessibility_label">Apps med tilgængelighedstjenester</string>
+    <string name="apps_filter_profile_secondary_label">Administreret profil(er)</string>
+    <string name="apps_filter_battery_optimization_label">Brugerdefineret batteri</string>
+    <string name="apps_filter_accessibility_label">Tilgængelighed</string>
+    <string name="apps_filter_device_admin_label">Enhedsadministrator</string>
+    <string name="apps_filter_install_packages_label">Kan installere apps</string>
+    <string name="apps_filter_overlay_label">Vis over apps</string>
+    <string name="apps_filter_camera_label">Kameraadgang</string>
+    <string name="apps_filter_location_label">Placeringsadgang</string>
+    <string name="apps_filter_microphone_label">Mikrofonadgang</string>
+    <string name="apps_filter_contacts_label">Kontaktadgang</string>
+    <string name="apps_filter_old_api_target_label">Målretter gammel Android</string>
+    <string name="apps_filter_manifest_flags_label">Kan opdage apps</string>
+    <string name="apps_filter_section_app_type">App-type</string>
+    <string name="apps_filter_section_install_source">Installationskilde</string>
+    <string name="apps_filter_section_properties">Egenskaber</string>
+    <string name="apps_filter_section_profile">Profil</string>
+    <string name="apps_filter_section_sort_by">Sorter efter</string>
+    <string name="apps_filter_sort_action">Filtrer &amp; Sorter</string>
+    <string name="apps_help_tag_icons_title">Tilladelseschips</string>
+    <string name="apps_help_tag_icons_description">Chips viser hvilke følsomme tilladelseskategorier en app er blevet tildelt</string>
     <string name="apps_details_description_restrictions_caveat_description">Denne app er installeret i en anden brugerprofil. Tildelte tilladelser kan kun bestemmes for apps installeret i den aktuelt aktive profil på grund af Android-begrænsninger.</string>
     <string name="apps_details_description_uninstalled_caveat">Denne app er blevet afinstalleret, men dens data er blevet bevaret. Tilladelsestilstande kan ikke bestemmes for afinstallerede apps.</string>
     <plurals name="apps_details_description_secondary_description">
@@ -138,13 +180,64 @@
         <item quantity="other">%1$d af %2$d tilladelser tildelt.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">Ingen tilladelser matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
+    <string name="apps_details_perm_tag_runtime">Kjøretid</string>
+    <string name="apps_details_perm_tag_special">Speciel</string>
+    <string name="apps_details_perm_tag_install">Installation</string>
+    <string name="apps_details_perm_help_title">Tilladesesindikatorer</string>
+    <string name="apps_details_perm_help_runtime">Køretid — Appen skal bede dig om lov før den bruger denne tilladelse. Du kan tildele eller afvise den.</string>
+    <string name="apps_details_perm_help_special">Speciel — Kræver aktivering af en kontakt i systemindstillinger.</string>
+    <string name="apps_details_perm_help_install">Installation — Tildeles automatisk når appen installeres. Ingen brugerhandling nødvendig.</string>
+    <string name="apps_details_perm_help_declared">⚠-ikonet betyder, at denne tilladelse er oprettet af appen selv, snarere end at være en standard Android-tilladelse.</string>
+    <!-- Manifest card -->
+    <string name="apps_details_manifest_label">App-manifest</string>
+    <string name="apps_details_manifest_queued">I kø til analyse…</string>
+    <string name="apps_details_manifest_loading">Analyserer manifest…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifest tilbage at analysere…</item>
+        <item quantity="other">%d manifester tilbage at analysere…</item>
+    </plurals>
+    <string name="apps_details_manifest_queries_none">Intet usædvanligt opdaget</string>
+    <string name="apps_details_manifest_unavailable">Manifest ikke tilgængeligt</string>
+    <string name="apps_details_manifest_error">Kunne ikke læse manifest</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d pakkeforespørgsel</item>
+        <item quantity="other">%d pakkeforespørgsler</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d hensigtsforespørgsel</item>
+        <item quantity="other">%d hensigtsforespørgsler</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d udbyderforespørgsel</item>
+        <item quantity="other">%d udbyderforespørgsler</item>
+    </plurals>
+    <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_action_main">Kan opdage alle installerede apps</string>
+    <string name="apps_details_manifest_hint_excessive">Tjekker for mange specifikke apps</string>
+    <!-- Manifest viewer -->
+    <string name="apps_manifest_viewer_label">Manifest-visning</string>
+    <string name="apps_manifest_viewer_search_hint">Søg i manifest</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d match</item>
+        <item quantity="other">%d matches</item>
+    </plurals>
+    <string name="apps_manifest_search_counter">%1$d af %2$d</string>
+    <string name="apps_manifest_section_uses_permission">Bruger tilladelse</string>
+    <string name="apps_manifest_section_permission">Tilladelse</string>
+    <string name="apps_manifest_section_queries">Forespørgsler</string>
+    <string name="apps_manifest_section_activities">Aktiviteter</string>
+    <string name="apps_manifest_section_services">Tjenester</string>
+    <string name="apps_manifest_section_receivers">Modtagere</string>
+    <string name="apps_manifest_section_providers">Udbydere</string>
+    <string name="apps_manifest_section_meta_data">Metadata</string>
+    <string name="apps_manifest_section_other">Andet</string>
     <string name="api_target_level_x">Målversion: %s</string>
     <string name="api_minimum_level_x">Minimumversion: %s</string>
     <string name="api_build_level_x">Kompileringsversion: %s</string>
     <string name="permission_reboot_label">Genstart enhed</string>
     <string name="permission_reboot_description">Tillader appen at genstarte enheden. Kun tilgængelig for system-apps.</string>
     <string name="permissions_sort_apps_relevance_label">Relevans</string>
-    <string name="apps_filter_profile_active_label">Apps i aktiv profil</string>
+    <string name="apps_filter_profile_active_label">Aktiv profil</string>
     <string name="overview_page_label">Oversigt</string>
     <plurals name="generic_x_items_label">
         <item quantity="one">%s element</item>
@@ -174,8 +267,55 @@
         <item quantity="one">Systemapps: Tildelt til %1$d ud af %2$d.</item>
         <item quantity="other">Systemapps: Tildelt til %1$d ud af %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d app i andre brugerprofiler anmoder også om denne tilladelse.</item>
+        <item quantity="other">%d apps i andre brugerprofiler anmoder også om denne tilladelse.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d afinstalleret app med bevaret data anmoder også om denne tilladelse.</item>
+        <item quantity="other">%d afinstallerede apps med bevaret data anmoder også om denne tilladelse.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installeret i andre brugerprofiler er udelukket fra beregningen ovenfor på grund af Android-begrænsninger.</string>
     <string name="permissions_details_empty_filter_message">Ingen apps matcher de aktuelle filtre. Tryk på filterikonet for at justere.</string>
+    <!-- Permission tag chip labels -->
+    <string name="permissions_tag_runtime_label">Køretid</string>
+    <string name="permissions_tag_install_time_label">Installationstid</string>
+    <string name="permissions_tag_special_access_label">Speciel adgang</string>
+    <string name="permissions_tag_documented_label">Dokumenteret</string>
+    <string name="permissions_tag_notable_label">Bemærket</string>
+    <string name="permissions_tag_non_standard_label">Ikke-standard</string>
+    <!-- Grant status labels -->
+    <string name="permissions_status_granted_in_use_label">I brug</string>
+    <string name="permissions_status_unknown_label">Ukendt</string>
+    <!-- System badge -->
+    <string name="permissions_details_system_badge_label">System</string>
+    <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d mere</item>
+        <item quantity="other">+%d mere</item>
+    </plurals>
+    <!-- Permission details help dialog -->
+    <string name="permissions_details_help_title">Tilladesesindikatorer</string>
+    <string name="permissions_details_help_section_protection">Beskyttelsestype</string>
+    <string name="permissions_details_help_dangerous">Farlig — Kræver eksplicit brugergodkendelse ved køretid. Kan tilgå følsomme data eller enhedsfunktioner.</string>
+    <string name="permissions_details_help_normal">Normal — Tildeles automatisk ved installation. Udgjør minimal risiko for andre apps eller systemet.</string>
+    <string name="permissions_details_help_signature">Signatur — Tildeles kun apps signeret med det samme certifikat som den app, der har erklæret tilladelsen.</string>
+    <string name="permissions_details_help_internal">Intern — Reserveret til Android-systemets interne brug. Ikke tilgængelig for tredjeparts-apps.</string>
+    <string name="permissions_details_help_section_tags">Tilladelsestags</string>
+    <string name="permissions_details_help_tag_runtime">Køretid — Appen skal bede dig om lov før den bruger denne tilladelse.</string>
+    <string name="permissions_details_help_tag_install_time">Installationstid — Tildeles automatisk når appen installeres.</string>
+    <string name="permissions_details_help_tag_special_access">Speciel adgang — Kræver aktivering af en kontakt i systemindstillinger.</string>
+    <string name="permissions_details_help_tag_documented">Dokumenteret — Opført i den officielle Android manifest-dokumentation.</string>
+    <string name="permissions_details_help_tag_notable">Bemærket — Specielt bemærket på grund af dens påvirkning på privatliv eller sikkerhed.</string>
+    <string name="permissions_details_help_tag_non_standard">Ikke-standard — Ikke en del af Androids standardtilladelsessæt. Erklæret af en tredjeparts-app eller OEM.</string>
+    <string name="permissions_details_status_help_title">Statusindikatorer</string>
+    <string name="permissions_details_help_section_status">Tilladelsestatus</string>
+    <string name="permissions_details_help_status_granted">Tildelt — Appen har fået denne tilladelse.</string>
+    <string name="permissions_details_help_status_in_use">I brug — Tildelt og aktuelt i aktiv brug af appen.</string>
+    <string name="permissions_details_help_status_denied">Nægtet — Appen anmodede om denne tilladelse, men den blev ikke tildelt.</string>
+    <string name="permissions_details_help_status_unknown">Ukendt — Tildelingstilstanden kan ikke bestemmes, f.eks. for apps i andre brugerprofiler.</string>
+    <string name="permissions_details_help_section_badges">Mærker</string>
+    <string name="permissions_details_help_system_badge">System — Appen er en førinstalleret systemapp.</string>
     <string name="permission_nfc_label">NFC</string>
     <string name="permission_nfc_description">Tillader apps at kommunikere med Near Field Communication (NFC) tags, kort og læsere.</string>
     <string name="permission_manage_media_label">Administrer medier</string>
@@ -187,7 +327,7 @@
     <string name="permission_bluetooth_advertise_label">Bluetooth-annoncering</string>
     <string name="permission_bluetooth_advertise_description">Tillader apps at annoncere til nærliggende Bluetooth-enheder.</string>
     <string name="permission_get_accounts_label">Find konti</string>
-    <string name="permission_get_accounts_description">Tillader apps at få listen over konti kendt af telefonen. Dette kan inkludere konti oprettet af applikationer, du har installeret.</string>
+    <string name="permission_get_accounts_description">Giver apps adgang til listen over konti, som enheden kender. Dette kan inkludere enhver konto oprettet af applikationer, du har installeret.</string>
     <string name="permission_access_background_location_label">Adgang til baggrundslokation</string>
     <string name="permission_access_background_location_description">Tillader apps at få adgang til lokation når som helst, selv når de ikke er i brug.</string>
     <string name="permission_access_media_location_label">Adgang til medielokation</string>
@@ -201,7 +341,7 @@
     <string name="permission_read_sync_settings_label">Læs synkroniseringsindstillinger</string>
     <string name="permission_read_sync_settings_description">Tillader apps at læse synkroniseringsindstillinger for en konto.</string>
     <string name="permission_install_unknown_apps_label">Installér ukendte apps (Ukendte kilder)</string>
-    <string name="permission_install_unknown_apps_description">Tillader apps at installere (sideloade) andre apps på din enhed. Dette kan sætte din enhed og data i fare.</string>
+    <string name="permission_install_unknown_apps_description">Giver apps mulighed for manuelt at installere andre apps på din enhed. Dette kan sætte din enhed og dine data i fare.</string>
     <string name="permission_all_files_access_label">Alle filers adgang</string>
     <string name="permission_all_files_access_description">Tillader apps at læse, ændre og slette alle filer på din enhed samt alle tilsluttede lagerenheder. Apps med denne tilladelse kan også få adgang til filer, der ikke er relateret til appen, UDEN at give dig besked.</string>
     <string name="permission_appear_on_top_label">Vis øverst</string>
@@ -260,23 +400,322 @@
     <string name="permission_group_camera_description">Kamerarelaterede tilladelser.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
     <string name="permission_group_audio_description">Mikrofonrelaterede tilladelser.</string>
+    <string name="permissions_list_empty_message">Ingen tilladelser at vise.</string>
+    <string name="permissions_list_empty_search_message">Ingen tilladelser matcher din søgning.</string>
     <string name="permission_picture_in_picture_label">Billede i billede</string>
+    <string name="permission_legacy_storage_label">Legacylager</string>
+    <string name="permission_legacy_storage_description">Giver apps adgang til eksternt lager uden begrænsninger for scoped storage. Dette var standardadfærden før Android 10. Apps med denne adgang kan læse og skrive filer overalt på delt lager.</string>
+    <string name="settings_page_label">Indstillinger</string>
+    <string name="overview_summary_title_label">Oversigt</string>
+    <string name="permissions_details_declaring_apps_label">Erklærende apps</string>
+    <string name="permissions_details_requesting_apps_label">Anmodende apps</string>
     <string name="overview_device_android_version_label">Android-version</string>
     <string name="overview_device_name_label">Enhed</string>
     <string name="overview_device_android_patch_label">Patch-niveau</string>
     <string name="overview_summary_apps_active_profile_label">Apps i aktiv profil</string>
     <string name="overview_summary_apps_other_profile_label">Apps i administrerede brugerprofiler, eksklusive kloner</string>
-    <string name="overview_summary_apps_sideloaded_label">Apps sideloadet fra eksterne kilder</string>
+    <string name="overview_summary_apps_sideloaded_label">Apps manuelt installeret fra eksterne kilder</string>
     <string name="overview_summary_apps_installers_label">Apps med \'Installér fra ukendte kilder\' aktiveret</string>
     <string name="overview_summary_apps_overlayers_label">Apps, der kan \'Vises øverst\'</string>
     <string name="overview_summary_apps_offline_label">Apps, der har \'Intet internet\' tilladelser</string>
     <string name="overview_summary_apps_clones_label">Apps med kloner i andre profiler</string>
     <string name="overview_summary_apps_sharedids_label">Apps med SharedUserID</string>
+    <string name="overview_summary_apps_camera_label">Apps med kameraadgang</string>
+    <string name="overview_summary_apps_location_label">Apps med placeringsadgang</string>
+    <string name="overview_summary_apps_microphone_label">Apps med mikrofonadgang</string>
+    <string name="overview_summary_apps_contacts_label">Apps med kontaktadgang</string>
+    <string name="overview_summary_apps_gplay_label">Apps fra Google Play</string>
+    <string name="overview_summary_apps_oemstore_label">Apps fra OEM-butikker</string>
+    <string name="overview_summary_apps_battery_label">Apps uden batteribegrænsning</string>
+    <string name="overview_summary_apps_oldapi_label">Apps der målretter under Android 10</string>
+    <string name="overview_section_profile_label">Profil</string>
+    <string name="overview_section_install_source_label">Installationskilde</string>
+    <string name="overview_section_privacy_label">Privatliv</string>
+    <string name="overview_section_security_label">Sikkerhed</string>
+    <string name="overview_section_manifest_label">Manifest</string>
+    <string name="overview_summary_apps_manifest_flags_label">Kan opdage apps</string>
+    <string name="overview_section_system_label">System</string>
     <string name="permission_bind_accessibility_service_label">Tilbyd tilgængelighedstjeneste</string>
     <string name="permission_bind_accessibility_service_description">Tillader appen at tilbyde en tilgængelighedstjeneste, der kan aktiveres i systemindstillingerne.</string>
     <string name="debug_debuglog_sensitive_information_message">Denne fil indeholder følsomme oplysninger (f.eks. dine installerede applikationer). Del den kun med betroede parter.</string>
     <string name="settings_debuglog_explanation">Denne funktion optager alt, hvad appen laver, i en delbar fil. Den genererede fil indeholder følsomme oplysninger (f.eks. dine installerede applikationer). Del den kun med betroede parter (f.eks. app-udvikleren, hvis I fejlsøger et problem sammen).</string>
+    <string name="support_debuglog_recording">Optager…</string>
+    <string name="support_debuglog_stop_label">Stop fejlfindingslog</string>
+    <string name="support_contact_label">Kontakt udvikleren</string>
+    <string name="support_contact_desc">Udfyld en formular for at sende udvikleren en e-mail.</string>
+    <string name="support_debuglog_clear_action">Ryd gemte fejlsøgningslogge</string>
+    <string name="debug_debuglog_short_recording_title">Optagelse for kort</string>
+    <string name="debug_debuglog_short_recording_message">En fejlsøgningslog skal optage problemet, mens det sker. Start optagelsen, gengiv dit problem, og stop derefter optagelsen.</string>
+    <string name="debug_debuglog_short_recording_continue">Fortsæt optagelse</string>
+    <string name="debug_debuglog_short_recording_stop">Stop alligevel</string>
+    <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">%1$d fejlsøgningslog (%2$s)</item>
+        <item quantity="other">%1$d fejlsøgningslogge (%2$s)</item>
+    </plurals>
+    <string name="support_debuglog_clear_title">Ryd fejlsøgningslogge?</string>
+    <string name="support_debuglog_clear_message">Dette vil slette alle gemte fejlsøgningslogfiler.</string>
+    <string name="support_debuglog_sessions_title">Fejlsøgningslogge</string>
+    <string name="support_debuglog_session_delete_title">Slet fejlsøgningslog?</string>
+    <string name="support_debuglog_session_delete_message">Denne fejlsøgningslog slettes permanent.</string>
+    <string name="support_debuglog_sessions_empty">Ingen fejlsøgningslogge</string>
+    <string name="support_debuglog_session_invalid">Ugyldig session</string>
+    <string name="support_debuglog_session_recording">Optager…</string>
+    <string name="support_debuglog_session_compressing">Komprimerer…</string>
+    <string name="support_debuglog_failed_empty_log">Tom logfil</string>
+    <string name="support_debuglog_failed_missing_log">Manglende logfil</string>
+    <string name="support_debuglog_failed_corrupt_zip">Korrupt ZIP-fil</string>
+    <string name="support_debuglog_failed_zip_failed">Komprimering mislykkedes</string>
+    <string name="support_debuglog_sent_title">Log sendt?</string>
+    <string name="support_debuglog_sent_message">Hvis du sendte fejlsøgningsloggen, kan den slettes for at frigive plads.</string>
+    <string name="support_contact_sent_title">Besked sendt?</string>
+    <string name="support_contact_sent_message">Hvis du sendte e-mailen, kan denne session ryddes op.</string>
+    <string name="general_close_action">Luk</string>
+    <string name="debug_debuglog_screen_delete_action">Slet</string>
+    <!-- Contact form -->
+    <string name="contact_support_label">Kontakt support</string>
+    <string name="contact_category_label">Kategori</string>
+    <string name="contact_category_question_label">Spørgsmål</string>
+    <string name="contact_category_feature_label">Funktionsanmodning</string>
+    <string name="contact_category_bug_label">Fejlrapport</string>
+    <string name="contact_description_label">Beskrivelse</string>
+    <string name="contact_description_hint_question">Beskriv dit spørgsmål i detaljer. Vær specifik (minimum 20 ord).</string>
+    <string name="contact_description_hint_feature">Beskriv den funktion, du gerne vil se. Vær specifik (minimum 20 ord).</string>
+    <string name="contact_description_hint_bug">Beskriv hvad der skete og hvordan man genskaber problemet. Vær specifik (minimum 20 ord).</string>
+    <string name="contact_expected_behavior_label">Forventet adfærd</string>
+    <string name="contact_expected_behavior_hint">Beskriv hvad du forventede ville ske (minimum 10 ord).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d ord</item>
+        <item quantity="other">%1$d / %2$d ord</item>
+    </plurals>
+    <string name="contact_send_action">Åbn e-mail-app</string>
+    <string name="contact_debuglog_picker_label">Fejlfindingslog</string>
+    <string name="contact_debuglog_picker_hint">Vedhæft en eksisterende fejlsøgningslog, eller optag en ny.</string>
+    <string name="contact_debuglog_empty">Ingen fejlsøgningslogge fundet. Optag en først.</string>
+    <string name="contact_debuglog_record_action">Optag fejlfindingslog</string>
+    <string name="contact_debuglog_stop_action">Stop optagelse</string>
+    <string name="contact_debuglog_delete_title">Slet fejlsøgningslog?</string>
+    <string name="contact_debuglog_delete_message">Denne fejlsøgningslog slettes permanent.</string>
+    <string name="contact_debuglog_zip_error">Komprimering af fejlsøgningslog mislykkedes</string>
+    <string name="contact_no_email_app">Ingen e-mail-app fundet på denne enhed.</string>
+    <string name="contact_welcome_message">Jeg læser alle beskeder selv og gør mit bedste for at svare. Da jeg håndterer udvikling, fejlrettelser og support på egen hånd, kan det tage lidt tid. Tak for din tålmodighed.</string>
+    <string name="contact_footer_message">Din besked sendes via e-mail. Enheds- og konfigurationsoplysninger vedhæftes automatisk. Du kan vedhæfte skærmskud eller en video til e-mailen. Skriv venligst på engelsk hvis muligt.</string>
+    <!-- RecorderActivity -->
+    <string name="recorder_keep_action">Behold</string>
+    <!-- RecorderScreen (Compose) -->
+    <string name="debug_debuglog_screen_title">Fejlfindingslogs</string>
+    <string name="debug_debuglog_screen_subtitle">Eksporter fejlsøgningsoplysninger til fejlfinding</string>
+    <string name="debug_debuglog_screen_sensitive_title">Følsomme oplysninger</string>
+    <string name="debug_debuglog_screen_session_path_label">Session Sti</string>
+    <string name="debug_debuglog_screen_log_files_label">Log Filer</string>
+    <string name="debug_debuglog_screen_discard_action">Kassér</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">%1$d fil klar (%2$s)</item>
+        <item quantity="other">%1$d filer klar (%2$s)</item>
+    </plurals>
+    <!-- RecorderScreen format strings -->
+    <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
+    <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
+    <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
+    <string name="debug_debuglog_screen_duration_s">%1$ds</string>
+    <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
+    <!-- Contact form email tags -->
+    <string name="contact_email_tag_question">Spørgsmål</string>
+    <string name="contact_email_tag_feature">Funktion</string>
+    <string name="contact_email_tag_bug">Fejl</string>
+    <string name="contact_email_section_expected_behavior">--- Forventet adfærd ---</string>
+    <string name="contact_email_section_device_info">--- Enhedsinfo ---</string>
     <string name="onboarding_body1">Denne app hjælper dig med at navigere installerede applikationer og opdage tilladelser.</string>
     <string name="onboarding_body2">Permission Pilot indsamler installerede applikationsoplysninger for at kunne liste dine apps og krydshenvise deres tilladelser, når du bruger denne applikation.</string>
     <string name="onboarding_body3">Permission Pilot har ingen reklamer og behandler kun data lokalt.</string>
+    <!-- Theme settings -->
+    <string name="ui_theme_mode_label">Tematilstand</string>
+    <string name="ui_theme_mode_system_label">System</string>
+    <string name="ui_theme_mode_dark_label">Mørk</string>
+    <string name="ui_theme_mode_light_label">Lys</string>
+    <string name="ui_theme_style_label">Temastil</string>
+    <string name="ui_theme_style_default_label">Standard</string>
+    <string name="ui_theme_style_materialyou_label">Material You</string>
+    <string name="ui_theme_style_mediumcontrast_label">Mellem kontrast</string>
+    <string name="ui_theme_style_highcontrast_label">Høj kontrast</string>
+    <string name="ui_theme_color_label">Temafarve</string>
+    <string name="ui_theme_color_blue_label">Blå</string>
+    <string name="ui_theme_color_green_label">Grøn</string>
+    <string name="ui_theme_color_amber_label">Rav</string>
+    <string name="ui_theme_color_disabled_subtitle">Bruger tapetfarver</string>
+    <string name="upgrade_required_subtitle">Opgráder for at låse op</string>
+    <string name="settings_category_appearance_label">Udseende</string>
+    <!-- Upgrade benefit strings (shared by both flavors) -->
+    <string name="upgrade_benefit_themes">Tematilpasning</string>
+    <string name="upgrade_benefit_filtering">Avanceret filtrering</string>
+    <string name="upgrade_benefit_export">Batch-dataeksport</string>
+    <string name="upgrade_benefit_monitoring">Tilladelsesøvervågning</string>
+    <string name="upgrade_benefit_support">Støt udvikleren</string>
+    <string name="upgrade_benefit_manifest_viewer">Gennemse rå app-manifester</string>
+    <string name="general_upgrade_action">Opgrader</string>
+    <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Permission Watcher -->
+    <string name="watcher_tab_label">Watcher</string>
+    <string name="watcher_dashboard_feature_title">Tilladelsesovervåger</string>
+    <string name="watcher_dashboard_feature_description">Få besked når en appopdatering tilføjer nye tilladelser eller ændrer eksisterende. Tilladelsesovervåger tjekker dine apps efter hver opdatering og opretter en rapport, hvis noget er ændret.</string>
+    <string name="watcher_dashboard_manage_in_settings">Kan deaktiveres og konfigureres i Indstillinger</string>
+    <string name="watcher_enable_action">Aktiver</string>
+    <string name="watcher_channel_name">Tilladelsesovervåger</string>
+    <string name="watcher_channel_description">Notifikationer om tilladelsessændringer i installerede apps</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s fik %2$d ny tilladelse</item>
+        <item quantity="other">%1$s fik %2$d nye tilladelser</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d tilladelse ændret</item>
+        <item quantity="other">%1$s: %2$d tilladelser ændret</item>
+    </plurals>
+    <string name="watcher_settings_label">Tilladelsesovervåger</string>
+    <string name="watcher_settings_desc">Øvervåg apps for tilladelessændringer</string>
+    <string name="watcher_enabled_label">Aktiver overvåger</string>
+    <string name="watcher_enabled_desc">Registrer tilladelessændringer når apps installeres eller opdateres</string>
+    <string name="watcher_scope_label">Overvågningsområde</string>
+    <string name="watcher_scope_all">Alle apps</string>
+    <string name="watcher_scope_non_system">Kun ikke-systemapps</string>
+    <string name="watcher_reports_label">Tilladelsesændringsrapporter</string>
+    <string name="watcher_reports_empty">Ingen tilladelessændringer registreret endnu</string>
+    <string name="watcher_report_detail_label">Ændringsrapport</string>
+    <string name="watcher_diff_added_permissions">Nye tilladelser</string>
+    <string name="watcher_diff_removed_permissions">Fjernede tilladelser</string>
+    <string name="watcher_diff_grant_changes">Tildelsændringer</string>
+    <string name="watcher_diff_added_declared">Nye erklærede tilladelser</string>
+    <string name="watcher_diff_removed_declared">Fjernede erklærede tilladelser</string>
+    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
+    <string name="watcher_event_install">Installeret</string>
+    <string name="watcher_event_update">Opdateret</string>
+    <string name="watcher_event_removed">Fjernet</string>
+    <string name="watcher_event_grant_change">Tilladelse ændret</string>
+    <string name="watcher_mark_all_seen">Markér alle som set</string>
+    <string name="watcher_notification_action_mark_seen">Markér som set</string>
+    <string name="watcher_notification_action_delete">Slet</string>
+    <string name="watcher_notification_body_added">Tilføjet: %s</string>
+    <string name="watcher_notification_body_removed">Fjernet: %s</string>
+    <string name="watcher_notification_body_grant_changed">Tildeling ændret: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">%d app ændrede tilladelser</item>
+        <item quantity="other">%d apps ændrede tilladelser</item>
+    </plurals>
+    <string name="watcher_settings_notifications_label">Vis notifikationer</string>
+    <string name="watcher_settings_notifications_desc">Vis en notifikation når tilladelessændringer registreres</string>
+    <string name="watcher_settings_notifications_only_gained_label">Underret kun om opnåede tilladelser</string>
+    <string name="watcher_settings_notifications_only_gained_desc">Underret kun når apps får nye tilladelser, f.eks. en køretidstilladelse godkendes eller en installationstidstilladelse som internet tilføjes</string>
+    <string name="watcher_settings_retention_label">Behold rapporter</string>
+    <plurals name="watcher_settings_retention_days">
+        <item quantity="one">%d dag</item>
+        <item quantity="other">%d dage</item>
+    </plurals>
+    <string name="watcher_settings_clear_reports_label">Ryd alle rapporter</string>
+    <string name="watcher_settings_clear_reports_confirm_title">Ryd alle rapporter?</string>
+    <string name="watcher_settings_clear_reports_confirm_message">Alle tilladelsesændringsrapporter slettes permanent.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">%d rapport</item>
+        <item quantity="other">%d rapporter</item>
+    </plurals>
+    <string name="watcher_notification_permission_title">Notifikationer ikke tilgængelige</string>
+    <string name="watcher_notification_permission_description">Tilladelessændringer spores, men notifikationer kan ikke vises. Aktiver notifikationer for at modtage advarsler om tilladelessændringer.</string>
+    <string name="watcher_notification_permission_grant">Giv tilladelse</string>
+    <string name="watcher_notification_permission_open_settings">Åbn indstillinger</string>
+    <string name="watcher_notification_permission_disable">Deaktiver notifikationer</string>
+    <string name="watcher_detail_version_label">Version</string>
+    <string name="watcher_detail_version_code_label">Kode</string>
+    <string name="watcher_detail_installer_label">Installationskilde</string>
+    <string name="watcher_detail_installer_unknown">Ukendt</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">Tilladelser (%d)</item>
+        <item quantity="other">Tilladelser (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">Sidst kendte tilladelser (%d)</item>
+        <item quantity="other">Sidst kendte tilladelser (%d)</item>
+    </plurals>
+    <string name="watcher_detail_new_perms_subtitle">Disse tilladelser blev tilføjet med denne appversion.</string>
+    <string name="watcher_detail_removed_perms_subtitle">Disse tilladelser blev fjernet i denne opdatering.</string>
+    <string name="watcher_detail_grant_changes_subtitle">Disse tilladelsers tildelingsstatus er ændret.</string>
+    <string name="watcher_detail_last_known_perms_subtitle">Dette var de tilladelser appen havde før fjernelse.</string>
+    <string name="watcher_detail_grant_type_automatic">Tildeles automatisk</string>
+    <string name="watcher_detail_grant_type_approval">Kræver godkendelse</string>
+    <string name="watcher_detail_toggle_description">Skift beskrivelse</string>
+    <string name="watcher_detail_unknown_permission">Ukendt tilladelse</string>
+    <string name="watcher_detail_diff_error">Kunne ikke indlæse tilladelsesdetaljer</string>
+    <string name="watcher_settings_polling_label">Baggrundskontroltidsinterval</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">Hver %d time</item>
+        <item quantity="other">Hver %d timer</item>
+    </plurals>
+    <string name="watcher_refresh_scanning">Scanner apps…</string>
+    <string name="watcher_refresh_checking">Tjekker ændringer…</string>
+    <string name="watcher_search_hint">Søg i rapporter</string>
+    <string name="watcher_filter_has_added_permissions">Nye tilladelser anmodet</string>
+    <string name="watcher_filter_has_lost_permissions">Tilladelser frafaldet</string>
+    <string name="watcher_filter_has_gained_permissions">Ny adgang tildelt</string>
+    <string name="watcher_filter_unseen_only">Kun usete</string>
+    <string name="watcher_filter_section_event_type">Begivenhedstype</string>
+    <string name="watcher_filter_section_permission_changes">Tilladelessændringer</string>
+    <string name="watcher_filter_section_status">Status</string>
+    <string name="watcher_filter_reset">Nulstil</string>
+    <string name="watcher_reports_no_matches">Ingen rapporter matcher din søgning eller filtre</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">%d mere rapport</item>
+        <item quantity="other">%d flere rapporter</item>
+    </plurals>
+    <string name="watcher_upgrade_card_body">Opgráder for at se alle rapporter, detaljer og få notifikationer</string>
+    <string name="snapshot_sync_channel_name">Snapshot Sync</string>
+    <string name="snapshot_sync_channel_description">Synkronisering af appdata i baggrunden</string>
+    <string name="snapshot_sync_notification_title">Synkroniserer appdata…</string>
+    <!-- Selection -->
+    <string name="general_select_all_action">Vælg alle</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d valgt</item>
+        <item quantity="other">%d valgt</item>
+    </plurals>
+    <!-- Export -->
+    <string name="export_app_info_action">Eksportér app-info</string>
+    <string name="export_permission_info_action">Eksportér tilladelsesinfo</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">Eksportér %d app</item>
+        <item quantity="other">Eksportér %d apps</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">Eksportér %d tilladelse</item>
+        <item quantity="other">Eksportér %d tilladelser</item>
+    </plurals>
+    <string name="export_app_info_title">App-info-eksport</string>
+    <string name="export_permission_info_title">Tilladelsesinfo-eksport</string>
+    <string name="export_format_label">Format</string>
+    <string name="export_format_markdown_label">Markdown</string>
+    <string name="export_format_csv_label">CSV</string>
+    <string name="export_format_json_label">JSON</string>
+    <string name="export_app_include_meta_label">Inkluder installationsinfo</string>
+    <string name="export_app_include_meta_description">Version, installationsdato, SDK-niveauer</string>
+    <string name="export_app_include_permissions_label">Inkluder tilladelser</string>
+    <string name="export_app_include_permissions_description">Tilladelsesnavne og tildelt status</string>
+    <string name="export_app_include_perm_type_label">Inkluder tilladelsestype</string>
+    <string name="export_app_include_perm_full_label">Inkluder fulde tilladelsesdetaljer</string>
+    <string name="export_perm_include_apps_label">Inkluder anmodende apps</string>
+    <string name="export_perm_include_apps_description">Vis apps der anmoder om hver tilladelse</string>
+    <string name="export_perm_granted_only_label">Kun tildelte apps</string>
+    <string name="export_perm_include_summary_label">Inkluder oversigtsantal</string>
+    <string name="export_preview_label">Forhåndsvisning</string>
+    <string name="export_preview_label_of">Forhåndsvisning (%1$d af %2$d)</string>
+    <string name="export_action_label">Eksportér</string>
+    <string name="export_progress_label">Eksporterer…</string>
+    <string name="export_success_message">Eksport fuldført</string>
+    <string name="export_error_message">Eksport mislykkedes</string>
+    <string name="export_share_action">Del</string>
+    <string name="export_open_action">Åben</string>
+    <string name="export_done_action">Færdig</string>
+    <string name="export_retry_action">Prøv igen</string>
+    <string name="export_summary_filename">Fil</string>
+    <string name="export_summary_size">Størrelse</string>
+    <string name="export_summary_duration">Varighed</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Gratisversionen er begrænset til %d element og Markdown-format. Opgrader for ubegrænsede eksporter og alle formater.</item>
+        <item quantity="other">Gratisversionen er begrænset til %d elementer og Markdown-format. Opgrader for ubegrænsede eksporter og alle formater.</item>
+    </plurals>
+    <string name="export_upgrade_action">Opgrader</string>
 </resources>

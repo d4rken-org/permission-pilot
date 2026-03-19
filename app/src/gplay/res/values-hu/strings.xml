@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">A Google Play szolgáltatások nem érhetők el.</string>
     <string name="upgrades_no_purchases_found_check_account">Nem találhatók vásárlások. A megfelelő fiókot használod?</string>
+    <string name="upgrade_screen_preamble">A Permission Pilot reklámmentes és tiszteletben tartja az adatvédelmed. A frissítés támogatja a további fejlesztést.</string>
+    <string name="upgrade_screen_subscription_trial_action">Ingyenes próba indítása</string>
+    <string name="upgrade_screen_subscription_action">Iratkozz fel</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/hónap, bármikor lemondható</string>
+    <string name="upgrade_screen_iap_action">Pro megvásárlása</string>
+    <string name="upgrade_screen_iap_action_hint">Egyszeri vásárlás: %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Vásárlás visszaállítása</string>
+    <string name="upgrade_screen_restore_purchase_message">Nem található vásárlás. Ellenőrizd, hogy a megfelelő Google-fiókkal vagy vagy bejelentkezve.</string>
+    <string name="upgrade_screen_options_description">Az előfizetések automatikusan megújulnak. Bármikor lemondhatod.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

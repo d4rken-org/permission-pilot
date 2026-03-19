@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play -palvelut eivät ole käytettävissä.</string>
     <string name="upgrades_no_purchases_found_check_account">Ostoja ei löytynyt. Käytätkö oikeaa tiliä?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot on mainokseton ja kunnioittaa yksityisyyttäsi. Päivittäminen tukee jatkuvaa kehitystä.</string>
+    <string name="upgrade_screen_subscription_trial_action">Aloita ilmainen kokeilu</string>
+    <string name="upgrade_screen_subscription_action">Tilaa</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/kk, peruuta milloin tahansa</string>
+    <string name="upgrade_screen_iap_action">Osta Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Kertaostos hintaan %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Palauta ostos</string>
+    <string name="upgrade_screen_restore_purchase_message">Ostoksia ei löydy. Tarkista, että olet kirjautunut oikealla Google-tilillä.</string>
+    <string name="upgrade_screen_options_description">Tilaukset uusiutuvat automaattisesti. Voit peruuttaa milloin tahansa.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

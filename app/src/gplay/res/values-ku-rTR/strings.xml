@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Xizmetên Google Play berdest nînin.</string>
     <string name="upgrades_no_purchases_found_check_account">Kirîn nehate dîtin. Ma tu hesabê rast bi kar tînî?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot بێ رێکلامەیە و نھێنیتکەت پھابوو دەکات. بەرزترکردن پشتگیریکردنی گەشەپێکردنی دەوامەیە.</string>
+    <string name="upgrade_screen_subscription_trial_action">دەستپێککردنی تەستی بەژیوانی</string>
+    <string name="upgrade_screen_subscription_action">بوونهەڵبەست</string>
+    <string name="upgrade_screen_subscription_action_hint">%s لە مانگ، ھەر کاتیک لابردرێ</string>
+    <string name="upgrade_screen_iap_action">كڕینی Pro</string>
+    <string name="upgrade_screen_iap_action_hint">کڕینی یەکجارەی %s</string>
+    <string name="upgrade_screen_restore_purchase_action">گەڕاندنەوەکردنی کڕین</string>
+    <string name="upgrade_screen_restore_purchase_message">ھیچ کڕینیک نەدێت. چەکبکەرە كە بە ھەسابی ئیگووڵی گوگڵ دەست کەوتیی.</string>
+    <string name="upgrade_screen_options_description">بوونهەڵبەستەکان بە خۆدیکەوە نوێكردرەوەن. دەتوانیت ھەر کاتیک لاببکەیت.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>

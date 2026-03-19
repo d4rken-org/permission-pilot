@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot miễn phí và mã nguồn mở. Sự hỗ trợ của bạn giúp điều này tiếp tục.</string>
+    <string name="upgrade_foss_sponsor_action">Trở thành nhà tài trợ</string>
+    <string name="upgrade_foss_sponsor_subtitle">Mở GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">Vui lòng dành chút thời gian ghé thăm trang nhà tài trợ!</string>
 </resources>

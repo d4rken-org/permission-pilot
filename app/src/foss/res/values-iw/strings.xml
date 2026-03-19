@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot היא חינמית וקוד פתוח. התמיכה שלך עוזרת לשמור על כך.</string>
+    <string name="upgrade_foss_sponsor_action">הפוך לספונסר</string>
+    <string name="upgrade_foss_sponsor_subtitle">פותח את GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">אנא קדישי רגע לבדוק את דף הספונסרים!</string>
 </resources>

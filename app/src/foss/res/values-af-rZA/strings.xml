@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Permission Pilot is gratis en oopbron. Jou ondersteuning help om dit so te hou.</string>
+    <string name="upgrade_foss_sponsor_action">Word \'n borgskappe</string>
+    <string name="upgrade_foss_sponsor_subtitle">Maak GitHub-borge oop</string>
+    <string name="upgrade_foss_sponsor_returned_early">Neem asseblief \'n oomblik om die borgblad te besoek!</string>
 </resources>

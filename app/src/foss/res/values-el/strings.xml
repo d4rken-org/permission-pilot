@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="upgrade_foss_preamble">Το Permission Pilot είναι δωρεάν και ανοιχτού κώδικα. Η υποστήριξή σας βοηθά να παραμείνει έτσι.</string>
+    <string name="upgrade_foss_sponsor_action">Γίνετε Χορηγός</string>
+    <string name="upgrade_foss_sponsor_subtitle">Ανοίγει το GitHub Sponsors</string>
+    <string name="upgrade_foss_sponsor_returned_early">Αφιερώστε λίγο χρόνο για να δείτε τη σελίδα χορηγών!</string>
 </resources>

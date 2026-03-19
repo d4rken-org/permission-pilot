@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-tjänster är inte tillgängliga.</string>
     <string name="upgrades_no_purchases_found_check_account">Inga köp hittades. Använder du rätt konto?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot är reklamfri och respekterar din integritet. Att uppgradera stödjer fortsatt utveckling.</string>
+    <string name="upgrade_screen_subscription_trial_action">Starta gratis prov</string>
+    <string name="upgrade_screen_subscription_action">Prenumerera</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/månad, avsluta när som helst</string>
+    <string name="upgrade_screen_iap_action">Köp Pro</string>
+    <string name="upgrade_screen_iap_action_hint">Engångsingång av %s</string>
+    <string name="upgrade_screen_restore_purchase_action">Återställ köp</string>
+    <string name="upgrade_screen_restore_purchase_message">Inga köp hittades. Kontrollera att du är inloggad med rätt Google-konto.</string>
+    <string name="upgrade_screen_options_description">Prenumerationer förnyas automatiskt. Du kan avsluta när som helst.</string>
+    <string name="upgrade_title_suffix">Expert</string>
 </resources>

@@ -2,4 +2,14 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play hizmetleri kullanılamıyor.</string>
     <string name="upgrades_no_purchases_found_check_account">Satın alma bulunamadı. Doğru hesabı mı kullanıyorsunuz?</string>
+    <string name="upgrade_screen_preamble">Permission Pilot reklamsız ve gizliliğinize saygı gösteriyor. Yükseltme yapılması, sürekli geliştirmeyi destekler.</string>
+    <string name="upgrade_screen_subscription_trial_action">Ücretsiz deneme süresini başlatın</string>
+    <string name="upgrade_screen_subscription_action">Abone ol</string>
+    <string name="upgrade_screen_subscription_action_hint">%s/ay, istediğiniz zaman iptal edin</string>
+    <string name="upgrade_screen_iap_action">Pro Sürümü Satın Al</string>
+    <string name="upgrade_screen_iap_action_hint">%s tek seferlik satın alma</string>
+    <string name="upgrade_screen_restore_purchase_action">Satın almayı geri yükle</string>
+    <string name="upgrade_screen_restore_purchase_message">Satın alma bulunamadı. Doğru Google hesabıyla giriş yaptığınızdan emin olun.</string>
+    <string name="upgrade_screen_options_description">Abonelikler otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz.</string>
+    <string name="upgrade_title_suffix">Pro</string>
 </resources>
