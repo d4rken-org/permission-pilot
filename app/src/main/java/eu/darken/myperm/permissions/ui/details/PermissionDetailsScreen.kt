@@ -215,7 +215,7 @@ fun PermissionDetailsScreen(
                                     state.protectionFlags.forEach { ProtectionFlagPill(it) }
                                     if (state.protectionFlagOverflow > 0) {
                                         Pill(
-                                            text = stringResource(R.string.permissions_details_flags_more_label, state.protectionFlagOverflow),
+                                            text = pluralStringResource(R.plurals.permissions_details_flags_more_label, state.protectionFlagOverflow, state.protectionFlagOverflow),
                                             containerColor = MaterialTheme.colorScheme.surfaceVariant,
                                             contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                                         )

@@ -315,7 +315,10 @@
     <string name="permissions_details_system_badge_label">System</string>
 
     <!-- Flag overflow -->
-    <string name="permissions_details_flags_more_label">+%d more</string>
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d more</item>
+        <item quantity="other">+%d more</item>
+    </plurals>
 
     <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Permission indicators</string>
@@ -758,6 +761,9 @@
     <string name="export_summary_filename">File</string>
     <string name="export_summary_size">Size</string>
     <string name="export_summary_duration">Duration</string>
-    <string name="export_free_limit_message">Free version is limited to %d items and Markdown format. Upgrade for unlimited exports and all formats.</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Free version is limited to %d item and Markdown format. Upgrade for unlimited exports and all formats.</item>
+        <item quantity="other">Free version is limited to %d items and Markdown format. Upgrade for unlimited exports and all formats.</item>
+    </plurals>
     <string name="export_upgrade_action">Upgrade</string>
 </resources>
