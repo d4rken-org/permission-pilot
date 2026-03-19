@@ -41,6 +41,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.LabeledOption
+import android.Manifest
+import android.content.Intent
+import android.os.Build
+import android.provider.Settings
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.platform.LocalContext
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SingleChoiceSortDialog
@@ -61,6 +68,8 @@ fun WatcherSettingsScreenHost() {
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)
 
+    val context = LocalContext.current
+
     val isPro by vm.isPro.collectAsState()
     val isWatcherEnabled by vm.isWatcherEnabled.collectAsState(initial = false)
     val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
@@ -69,6 +78,17 @@ fun WatcherSettingsScreenHost() {
     val retentionDays by vm.retentionDays.collectAsState(initial = 30)
     val pollingIntervalHours by vm.pollingIntervalHours.collectAsState(initial = 4)
     val reportCount by vm.reportCount.collectAsState(initial = 0)
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (!isGranted) {
+            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+            }
+            context.startActivity(intent)
+        }
+    }
 
     WatcherSettingsScreen(
         onBack = { navCtrl?.up() },
@@ -79,7 +99,12 @@ fun WatcherSettingsScreenHost() {
         watcherScope = watcherScope,
         onWatcherScopeSelected = { vm.setWatcherScope(it) },
         isNotificationsEnabled = isNotificationsEnabled,
-        onNotificationsEnabledChanged = { vm.setNotificationsEnabled(it) },
+        onNotificationsEnabledChanged = { enabled ->
+            vm.setNotificationsEnabled(enabled)
+            if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && vm.isNotificationPermissionDenied()) {
+                permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        },
         isNotifyOnlyOnGained = isNotifyOnlyOnGained,
         onNotifyOnlyOnGainedChanged = { vm.setNotifyOnlyOnGained(it) },
         retentionDays = retentionDays,
@@ -162,7 +187,10 @@ fun WatcherSettingsScreen(
                 icon = Icons.TwoTone.Notifications,
                 title = stringResource(R.string.watcher_settings_notifications_label),
                 subtitle = stringResource(R.string.watcher_settings_notifications_desc),
-                onClick = if (isPro) {{ onNotificationsEnabledChanged(!isNotificationsEnabled) }} else onUpgrade,
+                onClick = if (isPro) {{ onNotificationsEnabledChanged(!isNotificationsEnabled) }} else {{
+                    onNotificationsEnabledChanged(false)
+                    onUpgrade()
+                }},
                 trailingContent = if (isPro) {{
                     Switch(
                         checked = isNotificationsEnabled,

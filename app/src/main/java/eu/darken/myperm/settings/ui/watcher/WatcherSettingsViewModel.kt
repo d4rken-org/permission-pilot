@@ -9,6 +9,7 @@ import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
+import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherScope
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.flow.Flow
@@ -26,6 +27,7 @@ class WatcherSettingsViewModel @Inject constructor(
     private val changeDao: PermissionChangeDao,
     private val watcherWorkScheduler: WatcherWorkScheduler,
     private val upgradeRepo: UpgradeRepo,
+    private val notificationCapability: WatcherNotificationCapability,
 ) : ViewModel4(dispatcherProvider) {
 
     val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
@@ -53,6 +55,8 @@ class WatcherSettingsViewModel @Inject constructor(
     fun setWatcherScope(scope: WatcherScope) = launch {
         generalSettings.watcherScope.value(scope)
     }
+
+    fun isNotificationPermissionDenied(): Boolean = notificationCapability.isRuntimePermissionDenied()
 
     fun setNotificationsEnabled(enabled: Boolean) = launch {
         generalSettings.isWatcherNotificationsEnabled.value(enabled)
