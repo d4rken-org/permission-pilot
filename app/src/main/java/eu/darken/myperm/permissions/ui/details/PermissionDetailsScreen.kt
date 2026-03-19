@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LabeledOption
@@ -119,7 +120,7 @@ fun PermissionDetailsScreenHost(
 fun PermissionDetailsScreen(
     state: PermissionDetailsViewModel.State,
     onBack: () -> Unit,
-    onAppClicked: (String, Int) -> Unit,
+    onAppClicked: (Pkg.Name, Int) -> Unit,
     onFilterClicked: () -> Unit,
     onPermissionHelpClicked: () -> Unit,
     onStatusHelpClicked: () -> Unit,
@@ -315,7 +316,7 @@ fun PermissionDetailsScreen(
                                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                                 ) {
                                     Text(
-                                        text = app.label ?: app.pkgName,
+                                        text = app.label ?: app.pkgName.value,
                                         style = MaterialTheme.typography.bodyMedium,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
@@ -326,7 +327,7 @@ fun PermissionDetailsScreen(
                                     }
                                 }
                                 Text(
-                                    text = app.pkgName,
+                                    text = app.pkgName.value,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,
@@ -385,7 +386,7 @@ fun PermissionDetailsScreen(
                                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                                 ) {
                                     Text(
-                                        text = app.label ?: app.pkgName,
+                                        text = app.label ?: app.pkgName.value,
                                         style = MaterialTheme.typography.bodyMedium,
                                         maxLines = 1,
                                         overflow = TextOverflow.Ellipsis,
@@ -397,7 +398,7 @@ fun PermissionDetailsScreen(
                                     GrantStatusPill(app.status)
                                 }
                                 Text(
-                                    text = app.pkgName,
+                                    text = app.pkgName.value,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,

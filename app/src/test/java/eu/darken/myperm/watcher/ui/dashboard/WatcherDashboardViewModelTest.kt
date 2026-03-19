@@ -6,6 +6,7 @@ import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
+import eu.darken.myperm.watcher.core.WatcherNotifications
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -43,6 +44,7 @@ class WatcherDashboardViewModelTest : BaseTest() {
     private val watcherManager: WatcherManager = mockk(relaxed = true) {
         every { phase } returns MutableStateFlow(null)
     }
+    private val watcherNotifications: WatcherNotifications = mockk(relaxed = true)
     private val json: Json = Json { ignoreUnknownKeys = true }
 
     @BeforeEach
@@ -78,6 +80,7 @@ class WatcherDashboardViewModelTest : BaseTest() {
         capability = capability,
         watcherWorkScheduler = watcherWorkScheduler,
         watcherManager = watcherManager,
+        watcherNotifications = watcherNotifications,
         json = json,
     )
 

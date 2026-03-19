@@ -331,7 +331,7 @@ private fun AppListItem(
             Column(modifier = Modifier.onSizeChanged { textBlockHeight = it.height }) {
                 if (item.showPkgName) {
                     Text(
-                        text = item.pkgName,
+                        text = item.pkgName.value,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,

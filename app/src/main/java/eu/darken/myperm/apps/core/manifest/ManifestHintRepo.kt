@@ -4,6 +4,7 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -32,12 +33,12 @@ class ManifestHintRepo @Inject constructor(
     private val _scanProgress = MutableStateFlow<ScanProgress?>(null)
     val scanProgress: StateFlow<ScanProgress?> = _scanProgress.asStateFlow()
 
-    private val _currentlyScanning = MutableStateFlow<String?>(null)
-    val currentlyScanning: StateFlow<String?> = _currentlyScanning.asStateFlow()
+    private val _currentlyScanning = MutableStateFlow<Pkg.Name?>(null)
+    val currentlyScanning: StateFlow<Pkg.Name?> = _currentlyScanning.asStateFlow()
 
     private val priorityQueue = ConcurrentLinkedQueue<String>()
 
-    val hints: StateFlow<Map<String, ManifestHintEntity>> = manifestHintDao.observeAll()
+    val hints: StateFlow<Map<Pkg.Name, ManifestHintEntity>> = manifestHintDao.observeAll()
         .map { list -> list.associateBy { it.pkgName } }
         .stateIn(appScope, SharingStarted.Eagerly, emptyMap())
 
@@ -50,9 +51,9 @@ class ManifestHintRepo @Inject constructor(
         )
     }
 
-    fun prioritize(pkgName: String) {
+    fun prioritize(pkgName: Pkg.Name) {
         log(TAG) { "Prioritizing $pkgName" }
-        priorityQueue.add(pkgName)
+        priorityQueue.add(pkgName.value)
         if (_scanProgress.value == null) {
             log(TAG) { "No scan in progress, triggering new scan for priority" }
             enqueueHintScan()
@@ -73,7 +74,7 @@ class ManifestHintRepo @Inject constructor(
         while (pending.isNotEmpty()) {
             val priorityPkg = priorityQueue.poll()
             val nextApp = if (priorityPkg != null) {
-                val idx = pending.indexOfFirst { it.pkgName == priorityPkg }
+                val idx = pending.indexOfFirst { it.pkgName.value == priorityPkg }
                 if (idx >= 0) pending.removeAt(idx) else pending.removeAt(0)
             } else {
                 pending.removeAt(0)

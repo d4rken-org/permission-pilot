@@ -34,7 +34,7 @@ data class InstallerInfo(
             return context.getString(R.string.apps_details_installer_unknown_label)
         }
 
-        return installingPkg?.getLabel(context) ?: installer!!.id.pkgName
+        return installingPkg?.getLabel(context) ?: installer!!.id.pkgName.value
     }
 
     fun getIcon(context: Context): Drawable? {
@@ -66,15 +66,15 @@ private suspend fun PackageInfo.getInstallerInfoApi30(ipcFunnel: IPCFunnel): Ins
         null
     }
     val initiatingPkg = sourceInfo?.initiatingPackageName
-        ?.let { Pkg.Id(it) }
+        ?.let { Pkg.Id(Pkg.Name(it)) }
         ?.let { it.toKnownPkg() ?: it.toContainer() }
 
     val installingPkg = sourceInfo?.installingPackageName
-        ?.let { Pkg.Id(it) }
+        ?.let { Pkg.Id(Pkg.Name(it)) }
         ?.let { it.toKnownPkg() ?: it.toContainer() }
 
     val originatingPkg = sourceInfo?.originatingPackageName
-        ?.let { Pkg.Id(it) }
+        ?.let { Pkg.Id(Pkg.Name(it)) }
         ?.let { it.toKnownPkg() ?: it.toContainer() }
 
     return InstallerInfo(
@@ -87,7 +87,7 @@ private suspend fun PackageInfo.getInstallerInfoApi30(ipcFunnel: IPCFunnel): Ins
 private suspend fun PackageInfo.getInstallerInfoLegacy(ipcFunnel: IPCFunnel): InstallerInfo {
     val installingPkg = try {
         ipcFunnel.packageManager.getInstallerPackageName(packageName)
-            ?.let { Pkg.Id(it) }
+            ?.let { Pkg.Id(Pkg.Name(it)) }
             ?.let { it.toKnownPkg() ?: it.toContainer() }
     } catch (e: IllegalArgumentException) {
         log(WARN) { "OS race condition, package ($packageName) was uninstalled?: ${e.asLog()}" }

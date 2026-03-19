@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
@@ -45,8 +46,8 @@ class WatcherDiffRunner @Inject constructor(
     )
 
     private data class SnapshotPermissions(
-        val requested: Map<Pair<String, Int>, List<SnapshotPkgPermEntity>>,
-        val declared: Map<Pair<String, Int>, List<SnapshotPkgDeclaredPermEntity>>,
+        val requested: Map<Pair<Pkg.Name, Int>, List<SnapshotPkgPermEntity>>,
+        val declared: Map<Pair<Pkg.Name, Int>, List<SnapshotPkgDeclaredPermEntity>>,
     )
 
     private suspend fun getLatestSnapshotId(): String? {
@@ -133,7 +134,7 @@ class WatcherDiffRunner @Inject constructor(
         val isPro = upgradeRepo.upgradeInfo.value.isPro
         var totalReports = 0
         var totalNotified = 0
-        val reportedPackages = mutableSetOf<Pair<String, Int>>()
+        val reportedPackages = mutableSetOf<Pair<Pkg.Name, Int>>()
 
         for (pair in chain.pairs) {
             val (reports, notified) = diffSnapshotPair(pair, scope, reportedPackages, isPro)
@@ -154,7 +155,7 @@ class WatcherDiffRunner @Inject constructor(
     private suspend fun diffSnapshotPair(
         pair: SnapshotPair,
         scope: WatcherScope,
-        reportedPackages: MutableSet<Pair<String, Int>>,
+        reportedPackages: MutableSet<Pair<Pkg.Name, Int>>,
         isPro: Boolean,
     ): Pair<Int, Int> {
         var reportsCreated = 0

@@ -562,14 +562,14 @@ private fun ReportListItem(
                     .onSizeChanged { textBlockHeight = it.height },
             ) {
                 Text(
-                    text = item.appLabel ?: item.packageName,
+                    text = item.appLabel ?: item.packageName.value,
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
                 if (item.showPkgName || item.appLabel == null) {
                     Text(
-                        text = item.packageName,
+                        text = item.packageName.value,
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
@@ -634,7 +634,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
             reports = listOf(
                 WatcherReportItem(
                     id = 1,
-                    packageName = "com.example.app",
+                    packageName = Pkg.Name("com.example.app"),
                     appLabel = "Example App",
                     versionName = "2.1.0",
                     previousVersionName = "1.8.3",
@@ -647,7 +647,7 @@ private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
                 ),
                 WatcherReportItem(
                     id = 2,
-                    packageName = "com.example.browser",
+                    packageName = Pkg.Name("com.example.browser"),
                     appLabel = "My Browser",
                     versionName = "4.0.1",
                     previousVersionName = null,
@@ -684,7 +684,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
             reports = listOf(
                 WatcherReportItem(
                     id = 1,
-                    packageName = "com.example.app",
+                    packageName = Pkg.Name("com.example.app"),
                     appLabel = "Example App",
                     versionName = "2.1.0",
                     previousVersionName = "1.8.3",

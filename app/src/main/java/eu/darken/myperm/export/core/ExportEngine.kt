@@ -87,7 +87,7 @@ class ExportEngine @Inject constructor(
                 grantedAppCount = perm.grantingApps.size,
                 requestingApps = perm.requestingApps.map { ref ->
                     ResolvedAppRef(
-                        pkgName = ref.pkgName,
+                        pkgName = ref.pkgName.value,
                         label = ref.label,
                         isGranted = ref.status.isGranted,
                     )

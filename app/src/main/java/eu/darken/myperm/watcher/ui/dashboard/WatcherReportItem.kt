@@ -1,10 +1,11 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.watcher.core.WatcherEventType
 
 data class WatcherReportItem(
     val id: Long,
-    val packageName: String,
+    val packageName: Pkg.Name,
     val appLabel: String?,
     val showPkgName: Boolean = false,
     val versionName: String?,

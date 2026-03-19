@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationManagerCompat
 import dagger.hilt.android.AndroidEntryPoint
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.toNotificationId
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
@@ -23,8 +25,8 @@ class WatcherActionReceiver : BroadcastReceiver() {
         val reportId = intent.getLongExtra(EXTRA_REPORT_ID, -1L)
         if (reportId < 0) return
 
-        val packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME) ?: return
-        val notificationId = packageName.hashCode()
+        val packageName = Pkg.Name(intent.getStringExtra(EXTRA_PACKAGE_NAME) ?: return)
+        val notificationId = packageName.toNotificationId()
 
         val pendingResult = goAsync()
         CoroutineScope(Dispatchers.IO).launch {

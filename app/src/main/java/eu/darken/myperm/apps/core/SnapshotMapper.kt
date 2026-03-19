@@ -48,13 +48,13 @@ class SnapshotMapper @Inject constructor(
             batteryOptimization = pkg.batteryOptimization,
             installerPkgName = pkg.installerInfo.installingPkg?.id?.pkgName,
             applicationFlags = pkg.applicationInfo?.flags ?: 0,
-            cachedLabel = pkg.getLabel(context) ?: pkg.id.pkgName,
+            cachedLabel = pkg.getLabel(context) ?: pkg.id.pkgName.value,
             twinCount = pkg.twins.size,
             siblingCount = pkg.siblings.size,
             hasAccessibilityServices = pkg.accessibilityServices.isNotEmpty(),
             hasDeviceAdmin = pkg.requestedPermissions.any { it.id == APerm.BIND_DEVICE_ADMIN.id },
             allInstallerPkgNames = pkg.installerInfo.allInstallers
-                .map { it.id.pkgName }
+                .map { it.id.pkgName.value }
                 .takeIf { it.isNotEmpty() }
                 ?.joinToString(","),
         )
@@ -95,7 +95,7 @@ class SnapshotMapper @Inject constructor(
     ): AppInfo = AppInfo(
         pkgName = pkgEntity.pkgName,
         userHandleId = pkgEntity.userHandleId,
-        label = pkgEntity.cachedLabel ?: pkgEntity.pkgName,
+        label = pkgEntity.cachedLabel ?: pkgEntity.pkgName.value,
         versionName = pkgEntity.versionName,
         versionCode = pkgEntity.versionCode,
         isSystemApp = pkgEntity.isSystemApp,
@@ -126,6 +126,7 @@ class SnapshotMapper @Inject constructor(
         allInstallerPkgNames = pkgEntity.allInstallerPkgNames
             ?.split(",")
             ?.filter { it.isNotBlank() }
+            ?.map { Pkg.Name(it) }
             ?: emptyList(),
         sharedUserId = pkgEntity.sharedUserId,
         hasManifestFlags = manifestHint?.let { ManifestHintScanner.hasFlaggedIssues(it) },

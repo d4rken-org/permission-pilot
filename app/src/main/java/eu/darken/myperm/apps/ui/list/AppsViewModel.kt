@@ -58,20 +58,20 @@ class AppsViewModel @Inject constructor(
     private val filterOptions = generalSettings.appsFilterOptions.flow
     private val sortOptions = generalSettings.appsSortOptions.flow
 
-    data class SelectionKey(val pkgName: String, val userHandleId: Int)
+    data class SelectionKey(val pkgName: Pkg.Name, val userHandleId: Int)
 
     private val selectedItems = MutableStateFlow<Set<SelectionKey>>(emptySet())
 
     data class PermChip(@StringRes val labelRes: Int)
 
     data class AppItem(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val userHandleId: Int,
         val iconModel: Pkg,
         val label: String,
         val isSystemApp: Boolean,
         val showPkgName: Boolean,
-        val installerIconPkg: String?,
+        val installerIconPkg: Pkg.Name?,
         val installerLabel: String,
         val updatedAtFormatted: String?,
         val permChips: List<PermChip>,
@@ -101,7 +101,7 @@ class AppsViewModel @Inject constructor(
             .filter { app -> filterOptions.matches(app) }
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
-                if (it.pkgName.lowercase().contains(prunedTerm)) return@filter true
+                if (it.pkgName.value.lowercase().contains(prunedTerm)) return@filter true
                 if (it.label.lowercase().contains(prunedTerm)) return@filter true
                 false
             }
@@ -113,14 +113,14 @@ class AppsViewModel @Inject constructor(
 
         val listItems = filtered.map { app ->
             // Install source: known store → PM label → manually installed/pre-installed
-            val knownStoreLabel = app.installerPkgName?.let { pkgName ->
-                AKnownPkg.values.firstOrNull { it.id.pkgName == pkgName }?.labelRes
+            val knownStoreLabel = app.installerPkgName?.let { ipn ->
+                AKnownPkg.values.firstOrNull { it.id.pkgName == ipn }?.labelRes
                     ?.let { context.getString(it) }
             }
             val installerLabel = knownStoreLabel ?: run {
                 app.allInstallerPkgNames.firstNotNullOfOrNull { installerPkg ->
                     try {
-                        val ai = context.packageManager.getApplicationInfo(installerPkg, 0)
+                        val ai = context.packageManager.getApplicationInfo(installerPkg.value, 0)
                         context.packageManager.getApplicationLabel(ai)?.toString()
                     } catch (_: PackageManager.NameNotFoundException) {
                         null
@@ -189,7 +189,7 @@ class AppsViewModel @Inject constructor(
         log(TAG) { "Navigating to ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.pkgName,
+                pkgName = item.pkgName.value,
                 userHandle = item.userHandleId,
                 appLabel = item.label,
             )
@@ -221,7 +221,7 @@ class AppsViewModel @Inject constructor(
     fun onExportSelected() {
         val selection = selectedItems.value
         if (selection.isEmpty()) return
-        val ids = selection.map { "${it.pkgName}:${it.userHandleId}" }
+        val ids = selection.map { "${it.pkgName.value}:${it.userHandleId}" }
         val token = exportSelectionStore.save(ids)
         clearSelection()
         navTo(Nav.Export.Config(token = token, mode = "apps"))

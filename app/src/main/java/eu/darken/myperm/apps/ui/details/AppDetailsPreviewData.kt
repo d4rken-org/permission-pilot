@@ -27,8 +27,8 @@ internal object AppDetailsPreviewData {
 
     fun loadedState() = AppDetailsViewModel.State(
         label = "Chrome",
-        packageName = "com.google.chrome",
-        pkg = Pkg.Container(Pkg.Id("com.google.chrome")),
+        packageName = Pkg.Name("com.google.chrome"),
+        pkg = Pkg.Container(Pkg.Id(Pkg.Name("com.google.chrome"))),
         isSystemApp = false,
         versionName = "120.0.6099.43",
         versionCode = 612009943,
@@ -42,7 +42,7 @@ internal object AppDetailsPreviewData {
         installerLabel = "Google Play Store",
         installerSourceLabel = "Installed by:",
         canOpen = true,
-        installerPkgNames = listOf("com.android.vending"),
+        installerPkgNames = listOf(Pkg.Name("com.android.vending")),
         installerAppName = "Google Play Store",
         permissions = listOf(
             permItem("android.permission.CAMERA", "Camera", UsesPermission.Status.GRANTED, isRuntime = true),
@@ -54,10 +54,10 @@ internal object AppDetailsPreviewData {
             permItem("com.google.chrome.DYNAMIC_RECEIVER", null, UsesPermission.Status.UNKNOWN, isDeclaredByApp = true),
         ),
         twins = listOf(
-            AppDetailsViewModel.TwinItem("com.google.chrome", 10, "Chrome (Work)"),
+            AppDetailsViewModel.TwinItem(Pkg.Name("com.google.chrome"), 10, "Chrome (Work)"),
         ),
         siblings = listOf(
-            AppDetailsViewModel.SiblingItem("com.google.android.webview", 0, "Android System WebView"),
+            AppDetailsViewModel.SiblingItem(Pkg.Name("com.google.android.webview"), 0, "Android System WebView"),
         ),
         isLoading = false,
     )
@@ -69,8 +69,8 @@ internal object AppDetailsPreviewData {
 
     fun systemAppState() = AppDetailsViewModel.State(
         label = "System UI",
-        packageName = "com.android.systemui",
-        pkg = Pkg.Container(Pkg.Id("com.android.systemui")),
+        packageName = Pkg.Name("com.android.systemui"),
+        pkg = Pkg.Container(Pkg.Id(Pkg.Name("com.android.systemui"))),
         isSystemApp = true,
         versionName = "14",
         versionCode = 34,
@@ -87,8 +87,8 @@ internal object AppDetailsPreviewData {
 
     fun emptyFilterState() = AppDetailsViewModel.State(
         label = "Chrome",
-        packageName = "com.google.chrome",
-        pkg = Pkg.Container(Pkg.Id("com.google.chrome")),
+        packageName = Pkg.Name("com.google.chrome"),
+        pkg = Pkg.Container(Pkg.Id(Pkg.Name("com.google.chrome"))),
         grantedCount = 8,
         totalPermCount = 12,
         permissions = emptyList(),

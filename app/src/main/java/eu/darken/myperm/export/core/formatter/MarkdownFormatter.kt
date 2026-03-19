@@ -25,7 +25,7 @@ class MarkdownFormatter @Inject constructor() : ExportFormatter {
         appendLine()
 
         apps.sortedBy { it.label.lowercase() }.forEach { app ->
-            appendLine("## ${escapeMd(app.label)} (${escapeMd(app.pkgName)})")
+            appendLine("## ${escapeMd(app.label)} (${escapeMd(app.pkgName.value)})")
             appendLine()
 
             if (config.includeMetaInfo) {

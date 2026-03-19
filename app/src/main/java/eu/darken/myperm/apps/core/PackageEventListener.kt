@@ -38,11 +38,11 @@ class PackageEventListener @Inject constructor(
 
                 when (intent.action) {
                     Intent.ACTION_PACKAGE_ADDED -> {
-                        val pkgId = intent.data?.encodedSchemeSpecificPart?.let { Pkg.Id(it) }
+                        val pkgId = intent.data?.encodedSchemeSpecificPart?.let { Pkg.Id(Pkg.Name(it)) }
                         pkgId?.let { trySendBlocking(Event.PackageInstalled(it)) }
                     }
                     Intent.ACTION_PACKAGE_REMOVED -> {
-                        val pkgId = intent.data?.encodedSchemeSpecificPart?.let { Pkg.Id(it) }
+                        val pkgId = intent.data?.encodedSchemeSpecificPart?.let { Pkg.Id(Pkg.Name(it)) }
                         pkgId?.let { trySendBlocking(Event.PackageRemoved(it)) }
                     }
                     else -> log(ERROR) { "Unknown intent: $intent" }

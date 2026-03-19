@@ -326,7 +326,7 @@ class ExportViewModel @Inject constructor(
         ids: List<Pair<String, Int>>,
     ): List<AppInfo> {
         val idSet = ids.toSet()
-        return allApps.filter { (it.pkgName to it.userHandleId) in idSet }
+        return allApps.filter { (it.pkgName.value to it.userHandleId) in idSet }
     }
 
     private fun resolvePermissions(

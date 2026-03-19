@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.watcher.core.WatcherEventType
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
@@ -16,7 +17,7 @@ class WatcherFilterOptionsTest : BaseTest() {
         lostCount: Int = 0,
     ) = WatcherReportItem(
         id = 1,
-        packageName = "com.example.app",
+        packageName = Pkg.Name("com.example.app"),
         appLabel = "Test App",
         versionName = "1.0",
         previousVersionName = null,

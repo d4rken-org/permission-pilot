@@ -3,6 +3,7 @@ package eu.darken.myperm.common.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
@@ -33,22 +34,22 @@ interface SnapshotPkgDao {
     suspend fun getDeclaredPermCountsForSnapshot(snapshotId: String): List<DeclaredPermCount>
 
     data class DeclaredPermCount(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val userHandleId: Int,
         val declaredCount: Int,
     )
 
     @Query("SELECT * FROM snapshot_pkg_perms WHERE snapshotId = :snapshotId AND pkgName = :pkgName AND userHandleId = :userHandleId")
-    suspend fun getPermsForPkg(snapshotId: String, pkgName: String, userHandleId: Int): List<SnapshotPkgPermEntity>
+    suspend fun getPermsForPkg(snapshotId: String, pkgName: Pkg.Name, userHandleId: Int): List<SnapshotPkgPermEntity>
 
     @Query("SELECT * FROM snapshot_pkg_declared_perms WHERE snapshotId = :snapshotId AND pkgName = :pkgName AND userHandleId = :userHandleId")
-    suspend fun getDeclaredPermsForPkg(snapshotId: String, pkgName: String, userHandleId: Int): List<SnapshotPkgDeclaredPermEntity>
+    suspend fun getDeclaredPermsForPkg(snapshotId: String, pkgName: Pkg.Name, userHandleId: Int): List<SnapshotPkgDeclaredPermEntity>
 
     @Query("SELECT * FROM snapshot_pkgs WHERE snapshotId = :snapshotId AND pkgName = :pkgName AND userHandleId = :userHandleId")
-    suspend fun getPkgByName(snapshotId: String, pkgName: String, userHandleId: Int): SnapshotPkgEntity?
+    suspend fun getPkgByName(snapshotId: String, pkgName: Pkg.Name, userHandleId: Int): SnapshotPkgEntity?
 
     @Query("DELETE FROM snapshot_pkgs WHERE snapshotId = :snapshotId AND pkgName = :pkgName AND userHandleId = :userHandleId")
-    suspend fun deletePkg(snapshotId: String, pkgName: String, userHandleId: Int)
+    suspend fun deletePkg(snapshotId: String, pkgName: Pkg.Name, userHandleId: Int)
 
     @Query("SELECT * FROM snapshot_pkgs WHERE snapshotId = :snapshotId")
     fun observePkgsForSnapshot(snapshotId: String): Flow<List<SnapshotPkgEntity>>

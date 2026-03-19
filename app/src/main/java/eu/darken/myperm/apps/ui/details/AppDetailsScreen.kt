@@ -64,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
 import eu.darken.myperm.common.compose.LoadingContent
@@ -128,7 +129,7 @@ fun AppDetailsScreen(
     onGoSettings: () -> Unit,
     onOpenApp: () -> Unit,
     onFilter: (Set<AppDetailsFilterOptions.Filter>) -> Unit,
-    onInstallerClicked: (String) -> Unit,
+    onInstallerClicked: (Pkg.Name) -> Unit,
     onManifestClicked: () -> Unit = {},
 ) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
@@ -235,7 +236,7 @@ fun AppDetailsScreen(
                                         }
                                     }
                                     Text(
-                                        text = state.packageName,
+                                        text = state.packageName.value,
                                         style = MaterialTheme.typography.bodySmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         maxLines = 1,
@@ -318,7 +319,7 @@ fun AppDetailsScreen(
                                     overflow = TextOverflow.Ellipsis,
                                 )
                                 Text(
-                                    text = twin.pkgName,
+                                    text = twin.pkgName.value,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,
@@ -367,7 +368,7 @@ fun AppDetailsScreen(
                                     overflow = TextOverflow.Ellipsis,
                                 )
                                 Text(
-                                    text = sibling.pkgName,
+                                    text = sibling.pkgName.value,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     maxLines = 1,
@@ -600,7 +601,7 @@ private fun PermissionSummaryBar(grantedCount: Int, totalCount: Int) {
 @Composable
 private fun MetadataGrid(
     state: AppDetailsViewModel.State,
-    onInstallerClicked: (String) -> Unit,
+    onInstallerClicked: (Pkg.Name) -> Unit,
 ) {
     val dateFormatter = remember {
         DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
@@ -683,7 +684,7 @@ private fun MetadataGrid(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.width(4.dp))
-                val displayName = state.installerAppName ?: state.installerLabel ?: state.installerPkgNames.first()
+                val displayName = state.installerAppName ?: state.installerLabel ?: state.installerPkgNames.first().value
                 Text(
                     text = displayName,
                     style = MaterialTheme.typography.labelSmall,

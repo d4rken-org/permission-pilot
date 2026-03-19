@@ -14,6 +14,7 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.uix.ViewModel4
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.getPermissionInfo2
 import eu.darken.myperm.permissions.core.Permission
@@ -53,7 +54,7 @@ class ReportDetailViewModel @AssistedInject constructor(
     }
 
     data class State(
-        val packageName: String = "",
+        val packageName: Pkg.Name = Pkg.Name(""),
         val appLabel: String? = null,
         val eventType: WatcherEventType = WatcherEventType.INSTALL,
         val versionName: String? = null,
@@ -90,7 +91,7 @@ class ReportDetailViewModel @AssistedInject constructor(
                 val installerLabel = snapshotPkg?.installerPkgName?.let { name ->
                     AKnownPkg.values.firstOrNull { it.id.pkgName == name }?.labelRes
                         ?.let { context.getString(it) }
-                        ?: name.substringAfterLast('.')
+                        ?: name.value.substringAfterLast('.')
                 }
 
                 val permissionInfoMap = resolvePermissions(diff)
@@ -159,7 +160,7 @@ class ReportDetailViewModel @AssistedInject constructor(
 
     fun onViewApp() {
         val current = _state.value
-        navTo(Nav.Details.AppDetails(current.packageName, current.userHandleId, current.appLabel))
+        navTo(Nav.Details.AppDetails(current.packageName.value, current.userHandleId, current.appLabel))
     }
 
     companion object {

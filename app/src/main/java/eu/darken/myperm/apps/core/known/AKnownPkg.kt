@@ -9,7 +9,7 @@ import kotlin.reflect.full.isSubclassOf
 
 @Keep
 sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
-    constructor(rawPkgId: String) : this(Pkg.Id(rawPkgId))
+    constructor(rawPkgId: String) : this(Pkg.Id(Pkg.Name(rawPkgId)))
 
     @get:StringRes open val labelRes: Int? = null
 
@@ -20,7 +20,7 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
     object GooglePlay : AKnownPkg("com.android.vending"), AppStore {
         override val labelRes: Int = R.string.apps_known_installer_gplay_label
         override val urlGenerator: ((Pkg.Id) -> String) = {
-            "https://play.google.com/store/apps/details?id=${it.pkgName}"
+            "https://play.google.com/store/apps/details?id=${it.pkgName.value}"
         }
     }
 

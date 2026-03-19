@@ -1,6 +1,7 @@
 package eu.darken.myperm.export.core.formatter
 
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.InternetAccess
@@ -28,7 +29,7 @@ class MarkdownFormatterTest : BaseTest() {
         label: String = "Test App",
         permissions: List<PermissionUse> = emptyList(),
     ) = AppInfo(
-        pkgName = pkgName,
+        pkgName = Pkg.Name(pkgName),
         userHandleId = 0,
         label = label,
         versionName = "1.0.0",

@@ -1,6 +1,7 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
@@ -72,7 +73,7 @@ class WatcherDashboardViewModel @Inject constructor(
             .filter { filterOpts.matches(it) }
             .filter {
                 val term = search?.lowercase() ?: return@filter true
-                if (it.packageName.lowercase().contains(term)) return@filter true
+                if (it.packageName.value.lowercase().contains(term)) return@filter true
                 if (it.appLabel?.lowercase()?.contains(term) == true) return@filter true
                 false
             }

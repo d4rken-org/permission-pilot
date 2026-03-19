@@ -58,7 +58,7 @@ class AppDetailsViewModel @Inject constructor(
     private val upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
-    var pkgName: String = ""
+    var pkgName: Pkg.Name = Pkg.Name("")
         private set
     var userHandleId: Int = 0
         private set
@@ -69,7 +69,7 @@ class AppDetailsViewModel @Inject constructor(
         get() = context.getSystemService(LauncherApps::class.java)
 
     fun init(route: Nav.Details.AppDetails) {
-        pkgName = route.pkgName
+        pkgName = Pkg.Name(route.pkgName)
         userHandleId = route.userHandle
         initialLabel = route.appLabel
     }
@@ -91,20 +91,20 @@ class AppDetailsViewModel @Inject constructor(
     )
 
     data class TwinItem(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val userHandleId: Int,
         val label: String,
     )
 
     data class SiblingItem(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val userHandleId: Int,
         val label: String,
     )
 
     data class State(
         val label: String = "",
-        val packageName: String = "",
+        val packageName: Pkg.Name = Pkg.Name(""),
         val pkg: Pkg? = null,
         val isSystemApp: Boolean = false,
         val versionName: String? = null,
@@ -119,7 +119,7 @@ class AppDetailsViewModel @Inject constructor(
         val installerLabel: String? = null,
         val installerSourceLabel: String? = null,
         val canOpen: Boolean = false,
-        val installerPkgNames: List<String> = emptyList(),
+        val installerPkgNames: List<Pkg.Name> = emptyList(),
         val installerAppName: String? = null,
         val permissions: List<PermItem> = emptyList(),
         val twins: List<TwinItem> = emptyList(),
@@ -136,10 +136,10 @@ class AppDetailsViewModel @Inject constructor(
             permissionRepo.permissions,
             generalSettings.appDetailsFilterOptions.flow,
         ) { allApps, permissions, filterOpts ->
-            if (allApps == null) return@combine State(label = initialLabel ?: pkgName, isLoading = true)
+            if (allApps == null) return@combine State(label = initialLabel ?: pkgName.value, isLoading = true)
 
             val appInfo = allApps.singleOrNull { it.pkgName == pkgName && it.userHandleId == userHandleId }
-                ?: return@combine State(label = initialLabel ?: pkgName, isLoading = true)
+                ?: return@combine State(label = initialLabel ?: pkgName.value, isLoading = true)
 
             val allPerms = appInfo.requestedPermissions
                 .mapNotNull { cachedPerm ->
@@ -205,7 +205,7 @@ class AppDetailsViewModel @Inject constructor(
             // Resolve installer label from PackageManager
             val installerAppName = appInfo.allInstallerPkgNames.firstNotNullOfOrNull { installerPkg ->
                 try {
-                    val ai = context.packageManager.getApplicationInfo(installerPkg, 0)
+                    val ai = context.packageManager.getApplicationInfo(installerPkg.value, 0)
                     context.packageManager.getApplicationLabel(ai)?.toString()
                 } catch (_: PackageManager.NameNotFoundException) {
                     null
@@ -226,15 +226,15 @@ class AppDetailsViewModel @Inject constructor(
                 apiTargetDesc = appInfo.apiTargetLevel?.let { context.getString(R.string.api_target_level_x, formatApiLevel(it)) },
                 apiMinimumDesc = appInfo.apiMinimumLevel?.let { context.getString(R.string.api_minimum_level_x, formatApiLevel(it)) },
                 apiCompileDesc = appInfo.apiCompileLevel?.let { context.getString(R.string.api_build_level_x, formatApiLevel(it)) },
-                installerLabel = appInfo.installerPkgName,
+                installerLabel = appInfo.installerPkgName?.value,
                 installerSourceLabel = context.getString(R.string.apps_details_installer_label),
                 canOpen = run {
                     val userHandle = getUserHandle()
                     val la = launcherApps
                     if (la != null && userHandle != null) {
-                        la.getActivityList(appInfo.pkgName, userHandle).isNotEmpty()
+                        la.getActivityList(appInfo.pkgName.value, userHandle).isNotEmpty()
                     } else {
-                        context.packageManager.getLaunchIntentForPackage(appInfo.pkgName) != null
+                        context.packageManager.getLaunchIntentForPackage(appInfo.pkgName.value) != null
                     }
                 },
                 installerPkgNames = appInfo.allInstallerPkgNames,
@@ -320,7 +320,7 @@ class AppDetailsViewModel @Inject constructor(
                     navTo(Nav.Main.Upgrade)
                     return
                 }
-                navTo(Nav.Details.AppManifest(pkgName = pkgName, appLabel = initialLabel))
+                navTo(Nav.Details.AppManifest(pkgName = pkgName.value, appLabel = initialLabel))
             }
         }
     }
@@ -334,7 +334,7 @@ class AppDetailsViewModel @Inject constructor(
         log(TAG) { "Navigating to twin ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.pkgName,
+                pkgName = item.pkgName.value,
                 userHandle = item.userHandleId,
                 appLabel = item.label,
             )
@@ -345,7 +345,7 @@ class AppDetailsViewModel @Inject constructor(
         log(TAG) { "Navigating to sibling ${item.pkgName}" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = item.pkgName,
+                pkgName = item.pkgName.value,
                 userHandle = item.userHandleId,
                 appLabel = item.label,
             )
@@ -362,7 +362,7 @@ class AppDetailsViewModel @Inject constructor(
         val userHandle = getUserHandle()
         if (la != null && userHandle != null) {
             try {
-                la.startAppDetailsActivity(ComponentName(pkgName, ""), userHandle, null, null)
+                la.startAppDetailsActivity(ComponentName(pkgName.value, ""), userHandle, null, null)
             } catch (e: Exception) {
                 log(TAG) { "startAppDetailsActivity failed: $e" }
                 Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
@@ -378,7 +378,7 @@ class AppDetailsViewModel @Inject constructor(
         val la = launcherApps
         val userHandle = getUserHandle()
         if (la != null && userHandle != null) {
-            val activities = la.getActivityList(pkgName, userHandle)
+            val activities = la.getActivityList(pkgName.value, userHandle)
             val component = activities.firstOrNull()?.componentName
             if (component != null) {
                 try {
@@ -397,11 +397,11 @@ class AppDetailsViewModel @Inject constructor(
         }
     }
 
-    fun onInstallerClicked(pkgName: String) {
+    fun onInstallerClicked(pkgName: Pkg.Name) {
         log(TAG) { "onInstallerClicked: $pkgName" }
         navTo(
             Nav.Details.AppDetails(
-                pkgName = pkgName,
+                pkgName = pkgName.value,
                 userHandle = userHandleId,
                 appLabel = null,
             )

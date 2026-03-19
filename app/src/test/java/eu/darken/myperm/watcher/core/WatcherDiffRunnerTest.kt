@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
@@ -85,7 +86,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         cachedLabel: String? = pkgName,
     ) = SnapshotPkgEntity(
         snapshotId = snapshotId,
-        pkgName = pkgName,
+        pkgName = Pkg.Name(pkgName),
         userHandleId = 0,
         pkgType = PkgType.PRIMARY,
         versionName = "1.0",
@@ -107,7 +108,7 @@ class WatcherDiffRunnerTest : BaseTest() {
     private fun perm(snapshotId: String, pkgName: String, permId: String, status: String = "GRANTED") =
         SnapshotPkgPermEntity(
             snapshotId = snapshotId,
-            pkgName = pkgName,
+            pkgName = Pkg.Name(pkgName),
             userHandleId = 0,
             permissionId = permId,
             status = status,
@@ -116,7 +117,7 @@ class WatcherDiffRunnerTest : BaseTest() {
     private fun declaredPerm(snapshotId: String, pkgName: String, permId: String) =
         SnapshotPkgDeclaredPermEntity(
             snapshotId = snapshotId,
-            pkgName = pkgName,
+            pkgName = Pkg.Name(pkgName),
             userHandleId = 0,
             permissionId = permId,
             protectionLevel = null,
@@ -201,7 +202,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         coVerify { changeDao.insert(capture(slot)) }
 
         slot.captured.eventType shouldBe WatcherEventType.INSTALL
-        slot.captured.packageName shouldBe "com.new.app"
+        slot.captured.packageName shouldBe Pkg.Name("com.new.app")
         slot.captured.sourceSnapshotId shouldBe "snap-new"
 
         val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
@@ -222,7 +223,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         coVerify { changeDao.insert(capture(slot)) }
 
         slot.captured.eventType shouldBe WatcherEventType.INSTALL
-        slot.captured.packageName shouldBe "com.simple.app"
+        slot.captured.packageName shouldBe Pkg.Name("com.simple.app")
     }
 
     @Test
@@ -304,7 +305,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         coVerify { changeDao.insert(capture(slot)) }
 
         slot.captured.eventType shouldBe WatcherEventType.REMOVED
-        slot.captured.packageName shouldBe "com.empty.app"
+        slot.captured.packageName shouldBe Pkg.Name("com.empty.app")
         val diff = json.decodeFromString<PermissionDiff>(slot.captured.changesJson)
         diff.removedPermissions shouldBe emptyList()
         diff.removedDeclared shouldBe emptyList()
@@ -375,7 +376,7 @@ class WatcherDiffRunnerTest : BaseTest() {
         )
 
         // Simulate that this report was already created
-        coEvery { changeDao.existsByPackageAndSnapshot("com.new.app", 0, "snap-new") } returns true
+        coEvery { changeDao.existsByPackageAndSnapshot(Pkg.Name("com.new.app"), 0, "snap-new") } returns true
 
         val count = createRunner().processNewSnapshots()
         count shouldBe 0

@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
@@ -13,7 +14,7 @@ class SnapshotDifferTest : BaseTest() {
 
     private val differ = SnapshotDiffer()
     private val snapshotId = "snapshot-1"
-    private val pkgName = "com.example.app"
+    private val pkgName = Pkg.Name("com.example.app")
     private val userHandleId = 0
 
     private fun perm(id: String, status: String) = SnapshotPkgPermEntity(

@@ -21,10 +21,10 @@ class AppStoreTool @Inject constructor(
     fun openAppStoreFor(target: Pkg, installer: Pkg) {
         if (hasApiLevel(24)) {
             val generic = Intent(Intent.ACTION_SHOW_APP_INFO).apply {
-                setPackage(installer.packageName)
+                setPackage(installer.packageName.value)
             }
             val specific = generic.resolveToActivity()?.apply {
-                putExtra(Intent.EXTRA_PACKAGE_NAME, target.packageName)
+                putExtra(Intent.EXTRA_PACKAGE_NAME, target.packageName.value)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             if (specific != null) {

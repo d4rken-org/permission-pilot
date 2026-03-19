@@ -8,6 +8,7 @@ import eu.darken.myperm.apps.core.manifest.ManifestSectionParser
 import eu.darken.myperm.apps.core.manifest.QueriesResult
 import eu.darken.myperm.apps.core.manifest.RawXmlResult
 import eu.darken.myperm.apps.core.manifest.SectionType
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
@@ -36,7 +37,7 @@ class ManifestViewerViewModel @Inject constructor(
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
     private var appLabel: String? = null
-    private var pkgName: String = ""
+    private var pkgName: Pkg.Name = Pkg.Name("")
 
     private val _sections = MutableStateFlow<List<ManifestSection>>(emptyList())
     private val _manualExpanded = MutableStateFlow<Set<SectionType>>(emptySet())
@@ -87,8 +88,8 @@ class ManifestViewerViewModel @Inject constructor(
     private val _loadState = MutableStateFlow(LoadState())
 
     fun init(route: Nav.Details.AppManifest) {
-        if (pkgName == route.pkgName) return
-        pkgName = route.pkgName
+        if (pkgName.value == route.pkgName) return
+        pkgName = Pkg.Name(route.pkgName)
         appLabel = route.appLabel
         loadManifest()
     }
