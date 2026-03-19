@@ -15,7 +15,7 @@ Dostępne są dwie perspektywy: można wyświetlić wszystkie uprawnienia żąda
 <b>Karta Aplikacje</b>
 Wszystkie zainstalowane aplikacje, w tym aplikacje systemowe i aplikacje profilu służbowego.
 Kliknięcie aplikacji spowoduje wyświetlenie listy wszystkich żądanych przez nią uprawnień, w tym tych widocznych w Menedżerze uprawnień i w Dostępie specjalnym, wraz z ich statusem.
-Obejmuje to również uprawnienia internetowe i status SharedUserID!
+Obejmuje to również uprawnienia internetowe i status Współdzielonego ID Użytkownika
 
 <b>Karta Uprawnienia</b>
 Wszystkie uprawnienia istniejące na urządzeniu, w tym te widoczne w Menedżerze uprawnień i w Dostępie specjalnym.

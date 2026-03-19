@@ -1,25 +1,25 @@
-<i>Pilote de permission</i> est une nouvelle application conçue pour vous aider à examiner les applications et leurs autorisations.
+<i>Permission Pilot </i> est une nouvelle sorte d’appli pour vous aider à examiner les applis et leurs autorisations.
 
-À chaque mise à jour d'Android, la gestion des autorisations se complexifie.
-Android affiche les autorisations à divers endroits, ce qui ne facilite pas leur examen :
+À chaque mise à jour d’Android, les autorisations deviennent de plus en plus complexes.
+Le fait qu’Android affiche les autorisations à différents endroits ne facilite pas leur vérification :
 
-* Page d'informations sur l'application
+* Page d’information des applis
 * Accès spécial
-* Gestionnaire d'autorisations
-* et bien plus encore...
+* Gestionnaire d’autorisations
+* et plus encore…
 
-<i>Pilote de permission</i> regroupe toutes les autorisations en un seul lieu, vous offrant une vue d'ensemble des autorisations des applications.
+<i>Permission Pilot</i> répertorie toutes les autorisations en un seul endroit, pour une vue d’ensemble des autorisations des applis.
 
-Deux perspectives sont disponibles : vous pouvez visualiser toutes les autorisations demandées par une application, ou bien toutes les applications qui sollicitent une autorisation spécifique.
+Deux perspectives s’offrent à vous : vous pouvez soit visualiser toutes les autorisations demandées par une appli, soit toutes les applis qui demandent une autorisation précise.
 
-<b>Onglet Applications</b>
-Liste de toutes les applications installées, y compris les applications système et celles du profil professionnel.
-En cliquant sur une application, vous verrez toutes les autorisations qu'elle a demandées, y compris celles qui figurent dans le Gestionnaire d'autorisations et l'Accès spécial, ainsi que leur statut.
-Cela inclut également les autorisations Internet et le statut SharedUserID !
+<b>Onglet des applis</b>
+Toutes les applis installées, dont les applis système et celles du profil professionnel.
+Cliquer sur une appli affiche toutes les autorisations qu’elle a demandées, dont celles qui apparaissent dans le Gestionnaire d’autorisations et dans Accès spéciaux, ainsi que leur état.
+Cela comprend aussi les autorisations Internet et l’état de l’ID utilisateur partagé !
 
-<b>Onglet Autorisations</b>
-Liste de toutes les autorisations existant sur votre appareil, y compris celles qui figurent dans le Gestionnaire d'autorisations et l'Accès spécial.
-Les autorisations sont regroupées pour faciliter la navigation (par ex.
-En cliquant sur une autorisation, vous verrez toutes les applications qui demandent à y accéder.
+<b>Onglet des autorisations</b>
+Toutes les autorisations qui existent sur votre appareil, dont celles qui figurent dans le Gestionnaire d’autorisations et l’Accès spécial.
+Les autorisations sont regroupées pour faciliter la navigation, p. ex. Contacts, Microphone, Appareil photo, etc.
+Cliquer sur une autorisation affiche toutes les applis qui demandent l’accès à cette autorisation.
 
-Les applications et les autorisations peuvent être recherchées par texte libre, triées et filtrées selon différents critères.
+Vous pouvez chercher des applis et des autorisations en texte libre, les trier et les filtrer selon différents critères.
