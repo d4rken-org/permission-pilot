@@ -302,7 +302,7 @@ private fun ExportConfigContent(
                         tint = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
                     Text(
-                        text = stringResource(R.string.export_free_limit_message, FREE_EXPORT_LIMIT),
+                        text = pluralStringResource(R.plurals.export_free_limit_message, FREE_EXPORT_LIMIT, FREE_EXPORT_LIMIT),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSecondaryContainer,
                     )
