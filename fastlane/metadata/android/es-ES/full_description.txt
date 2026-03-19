@@ -23,3 +23,15 @@ Los permisos están preagrupados para facilitar la navegación, por ejemplo, Con
 Al hacer clic en un permiso se muestran todas las aplicaciones que solicitan acceso a ese permiso.
 
 Las aplicaciones y los permisos se pueden buscar utilizando un texto, ordenados y filtrados por diferentes criterios.
+
+<b>Descripción general</b>
+Un panel de resumen que muestra el recuento de aplicaciones por categoría: privacidad, seguridad, origen de instalación y más. Cada fila de categoría navega directamente a una lista de aplicaciones filtrada.
+
+<b>Vigilante de permisos</b>
+Recibe notificaciones cuando una actualización de aplicación agrega nuevos permisos o cambia los existentes. El Vigilante de permisos revisa tus aplicaciones después de cada actualización y crea un informe si algo cambió.
+
+<b>Exportación de datos</b>
+Exporta datos de aplicaciones o permisos en formato Markdown, CSV o JSON.
+
+<b>Visor de manifiestos</b>
+Explora los manifiestos sin procesar de las aplicaciones con secciones con buscador y categorización. Consulta qué aplicaciones pueden descubrir otras aplicaciones instaladas.

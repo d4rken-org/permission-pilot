@@ -23,3 +23,15 @@ Behörigheter är förgrupperade för enklare navigering, t.ex. Kontakter, Mikro
 Om du klickar på en behörighet visas alla appar som begär åtkomst till den behörigheten.
 
 Appar och behörigheter kan sökas med fritext, sorteras och filtreras efter olika kriterier.
+
+<b>Översikt</b>
+En sammanfattningspanel som visar appantal per kategori — integritet, säkerhet, installationskälla och mer. Varje kategorirad navigerar direkt till en filtrerad applista.
+
+<b>Behörighetsbevakning</b>
+Få meddelanden när en appuppdatering lägger till nya behörigheter eller ändrar befintliga. Behörighetsbevakning kontrollerar dina appar efter varje uppdatering och skapar en rapport om något har ändrats.
+
+<b>Dataexport</b>
+Exportera app- eller behörighetsdata i Markdown, CSV eller JSON.
+
+<b>Manifestvisare</b>
+Bläddra bland råa appmanifest med sökbara, kategoriserade avsnitt. Se vilka appar som kan identifiera andra installerade appar.

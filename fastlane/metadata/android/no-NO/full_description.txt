@@ -23,3 +23,15 @@ Tillatelser er forhåndsgrupperte for enklere navigering, f.eks. Kontakter, Mikr
 Å trykke på en tillatelse viser alle apper som ber om tilgang til den tillatelsen.
 
 Apper og tillatelser kan søkes med fritekst, sorteres og filtreres etter ulike kriterier.
+
+<b>Oversikt</b>
+Et sammendragsdashbord som viser antall apper etter kategori — personvern, sikkerhet, installasjonskilde og mer. Hver kategorilinje navigerer direkte til en filtrert appliste.
+
+<b>Tillatelsesovervåker</b>
+Bli varslet når en appoppdatering legger til nye tillatelser eller endrer eksisterende. Tillatelsesovervåker sjekker appene dine etter hver oppdatering og lager en rapport hvis noe er endret.
+
+<b>Dataeksport</b>
+Eksporter app- eller tillatelsesdata i Markdown, CSV eller JSON.
+
+<b>Manifestviser</b>
+Bla gjennom rå appmanifester med søkbare, kategoriserte seksjoner. Se hvilke apper som kan oppdage andre installerte apper.

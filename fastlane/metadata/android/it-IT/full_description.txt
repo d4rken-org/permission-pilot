@@ -23,3 +23,15 @@ Le autorizzazioni sono pre-raggruppate per facilitare la navigazione, ad es.
 Facendo clic su un'autorizzazione vengono visualizzate tutte le app che richiedono l'accesso a tale autorizzazione.
 
 Le app e le autorizzazioni possono essere cercate utilizzando testo libero, ordinate e filtrate in base a diversi criteri.
+
+<b>Panoramica</b>
+Una dashboard di riepilogo che mostra il numero di app per categoria — privacy, sicurezza, fonte di installazione e altro ancora. Ogni riga di categoria porta direttamente a un elenco di app filtrato.
+
+<b>Controllo permessi</b>
+Ricevi una notifica quando un aggiornamento dell’app aggiunge nuovi permessi o ne modifica di esistenti. Controllo permessi verifica le tue app dopo ogni aggiornamento e crea un report se qualcosa è cambiato.
+
+<b>Esportazione dati</b>
+Esporta dati di app o permessi in formato Markdown, CSV o JSON.
+
+<b>Visualizzatore manifest</b>
+Sfoglia i manifest grezzi delle app con sezioni ricercabili e categorizzate. Scopri quali app possono rilevare le altre app installate.

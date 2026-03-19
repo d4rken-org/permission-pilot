@@ -23,3 +23,15 @@ Oprávnění jsou předem seskupena pro snazší navigaci, např. Kontakty, Mikr
 Kliknutím na oprávnění se zobrazí všechny aplikace, které požadují přístup k tomuto oprávnění.
 
 Aplikace a oprávnění lze vyhledávat pomocí volného textu, třídit a filtrovat podle různých kritérií.
+
+<b>Přehled</b>
+Souhrnný přehled zobrazující počty aplikací podle kategorie — soukromí, bezpečnost, zdroj instalace a další. Každý řádek kategorie přechází přímo na filtrováný seznam aplikací.
+
+<b>Hlídáč oprávnění</b>
+Dostávejte upozornění, když aktualizace aplikace přidá nová oprávnění nebo změní stávající. Hlídáč oprávnění zkontroluje vaše aplikace po každé aktualizaci a vytvoří zprávu, pokud se něco změnilo.
+
+<b>Export dat</b>
+Exportujte data aplikací nebo oprávnění ve formátu Markdown, CSV nebo JSON.
+
+<b>Prohlížeč manifestu</b>
+Procházejte nezpracované manifesty aplikací s prohledávatelnými, kategorizovanými sekcemi. Zjistěte, které aplikace mohou zjistit jiné nainstalované aplikace.

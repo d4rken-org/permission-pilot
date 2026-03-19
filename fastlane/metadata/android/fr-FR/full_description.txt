@@ -23,3 +23,15 @@ Les autorisations sont regroupées pour faciliter la navigation, p. ex. Contacts
 Cliquer sur une autorisation affiche toutes les applis qui demandent l’accès à cette autorisation.
 
 Vous pouvez chercher des applis et des autorisations en texte libre, les trier et les filtrer selon différents critères.
+
+<b>Vue d'ensemble</b>
+Un tableau de bord récapitulatif affichant le nombre d'applis par catégorie — confidentialité, sécurité, source d'installation, et plus encore. Chaque ligne de catégorie mène directement à une liste d'applis filtrée.
+
+<b>Surveille-permissions</b>
+Recevez une notification lorsqu'une mise à jour d'appli ajoute de nouvelles autorisations ou modifie celles existantes. Surveille-permissions vérifie vos applis après chaque mise à jour et crée un rapport si quelque chose a changé.
+
+<b>Exportation de données</b>
+Exportez les données d'appli ou d'autorisation en Markdown, CSV ou JSON.
+
+<b>Visionneuse de manifeste</b>
+Parcourez les manifestes bruts des applis avec des sections consultables et catégorisées. Voyez quelles applis peuvent découvrir d'autres applis installées.

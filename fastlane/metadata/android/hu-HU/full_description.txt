@@ -23,3 +23,15 @@ Az engedélyek előre csoportosítva vannak a könnyebb navigáció érdekében,
 Egy engedélyre kattintva megjelenik az összes alkalmazás, amely hozzáférést kér ahhoz az engedélyhez.
 
 Az alkalmazások és engedélyek szabad szöveggel kereshetők, különböző szempontok szerint rendezhetők és szűrhetők.
+
+<b>Áttekintés</b>
+Egy összefoglaló vezérlőpult, amely kategóriánként mutatja az alkalmazások számát — adatvédelem, biztonság, telepítési forrás és egyéb szempontok szerint. Minden kategóriasor közvetlenül egy szűrt alkalmazáslistára navigál.
+
+<b>Jogosultság-figyelő</b>
+Értesítést kap, ha egy alkalmazásfrissítés új jogosultságokat ad hozzá vagy módosítja a meglévőket. A Jogosultság-figyelő minden frissítés után ellenőrzi az alkalmazásokat, és jelentést készít, ha bármi változott.
+
+<b>Adatexport</b>
+Exportálja az alkalmazás- vagy jogosultságadatokat Markdown, CSV vagy JSON formátumban.
+
+<b>Manifest-megjelenítő</b>
+Böngésszen nyers alkalmazásmanifesztek között kereshető, kategorizált szakaszokkal. Tekintse meg, mely alkalmazások fedezhetik fel a többi telepített alkalmazást.

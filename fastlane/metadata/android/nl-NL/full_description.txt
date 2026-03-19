@@ -23,3 +23,15 @@ Machtigingen zijn vooraf gegroepeerd voor eenvoudiger navigeren, bijv. Contacten
 Als u op een machtiging klikt, worden alle apps weergegeven die toegang tot die machtiging aanvragen.
 
 Apps en machtigingen kunnen worden doorzocht met vrije tekst, en worden gesorteerd en gefilterd op basis van verschillende criteria.
+
+<b>Overzicht</b>
+Een overzichtsdashboard met het aantal apps per categorie — privacy, beveiliging, installatiebron en meer. Elke categorierij navigeert direct naar een gefilterde applijst.
+
+<b>Toestemmingswachter</b>
+Ontvang een melding wanneer een app-update nieuwe toestemmingen toevoegt of bestaande wijzigt. Toestemmingswachter controleert uw apps na elke update en maakt een rapport als er iets is gewijzigd.
+
+<b>Gegevensexport</b>
+Exporteer app- of toestemmingsgegevens in Markdown, CSV of JSON.
+
+<b>Manifestviewer</b>
+Blader door onbewerkte app-manifesten met doorzoekbare, gecategoriseerde secties. Bekijk welke apps andere geïnstalleerde apps kunnen ontdekken.

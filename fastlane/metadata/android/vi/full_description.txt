@@ -23,3 +23,15 @@ Các quyền được nhóm sẵn để dễ điều hướng hơn, ví dụ: Da
 Nhấn vào một quyền sẽ hiển thị tất cả các ứng dụng yêu cầu quyền truy cập vào quyền đó.
 
 Ứng dụng và quyền có thể được tìm kiếm bằng văn bản tự do, sắp xếp và lọc theo các tiêu chí khác nhau.
+
+<b>Tổng quan</b>
+Bảng điều khiển tóm tắt hiển thị số lượng ứng dụng theo danh mục — quyền riêng tư, bảo mật, nguồn cài đặt và nhiều hơn nữa. Mỗi hàng danh mục điều hướng trực tiếp đến danh sách ứng dụng đã lọc.
+
+<b>Trình theo dõi quyền</b>
+Nhận thông báo khi bản cập nhật ứng dụng thêm quyền mới hoặc thay đổi quyền hiện có. Trình theo dõi quyền kiểm tra ứng dụng của bạn sau mỗi lần cập nhật và tạo báo cáo nếu có bất kỳ thay đổi nào.
+
+<b>Xuất dữ liệu</b>
+Xuất dữ liệu ứng dụng hoặc quyền ở định dạng Markdown, CSV hoặc JSON.
+
+<b>Trình xem Manifest</b>
+Duyệt qua các manifest ứng dụng thô với các phần có thể tìm kiếm và phân loại. Xem ứng dụng nào có thể phát hiện các ứng dụng đã cài đặt khác.

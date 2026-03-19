@@ -23,3 +23,15 @@ Permisiunile sunt pre-grupate pentru o navigare mai uşoară, de ex. Contacte, M
 Apăsând pe o permisiune vei vedea toate aplicațiile care solicită acces la acea permisiune.
 
 Aplicațiile şi permisiunile pot fi căutate prin text liber, sortate şi filtrate după diferite criterii.
+
+<b>Prezentare generală</b>
+Un panou de control rezumativ care afișează numărul de aplicații pe categorii — confidențialitate, securitate, sursă de instalare și altele. Fiecare rând de categorie navighează direct la o listă de aplicații filtrată.
+
+<b>Monitor de permisiuni</b>
+Primești notificări când o actualizare de aplicație adaugă permisiuni noi sau modifică permisiunile existente. Monitorul de permisiuni verifică aplicațiile după fiecare actualizare și creează un raport dacă s-a schimbat ceva.
+
+<b>Export de date</b>
+Exportă datele aplicațiilor sau ale permisiunilor în format Markdown, CSV sau JSON.
+
+<b>Vizualizator de manifest</b>
+Navighează prin manifestele brute ale aplicațiilor cu secțiuni căutabile și categorizate. Vedeți care aplicații pot descoperi alte aplicații instalate.

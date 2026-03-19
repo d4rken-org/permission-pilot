@@ -23,3 +23,15 @@ Käyttöoikeudet on esijaoteltu helpompaa selaamista varten, esim. Yhteystiedot,
 Napauttamalla käyttöoikeutta näet kaikki sovellukset, jotka pyytävät pääsyä siihen.
 
 Sovelluksia ja käyttöoikeuksia voi hakea vapaatekstillä, lajitella ja suodattaa eri kriteerien mukaan.
+
+<b>Yleiskatsaus</b>
+Yhteenvetopaneeli, joka näyttää sovellusten määrät kategorioittain — yksityisyys, turvallisuus, asennuslähde ja muuta. Jokainen kategoriariivi siirtyy suoraan suodatettuun sovellusluetteloon.
+
+<b>Käyttöoikeuksien tarkkailija</b>
+Saat ilmoituksen, kun sovelluspäivitys lisää uusia käyttöoikeuksia tai muuttaa olemassa olevia. Käyttöoikeuksien tarkkailija tarkistaa sovelluksesi jokaisen päivityksen jälkeen ja luo raportin, jos jokin on muuttunut.
+
+<b>Tietojen vienti</b>
+Vie sovellus- tai käyttöoikeustiedot Markdown-, CSV- tai JSON-muodossa.
+
+<b>Manifestin katseluohjelma</b>
+Selaa sovellusten raakoja manifesteja hakukelpoisilla, kategorisoituilla osioilla. Näe, mitkä sovellukset voivat löytää muita asennettuja sovelluksia.

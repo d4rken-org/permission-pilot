@@ -23,3 +23,15 @@ As permissões são pré-agrupadas para facilitar a navegação, por exemplo: Co
 Ao tocar em cada um deles, serão exibidos todos os apps que atualmente têm acesso a essa permissão.
 
 Aplicativos e permissões podem ser pesquisados por texto livre, ordenados e filtrados por diferentes critérios.
+
+<b>Visão geral</b>
+Um painel resumido exibindo contagens de aplicativos por categoria — privacidade, segurança, fonte de instalação e muito mais. Cada linha de categoria navega diretamente para uma lista de aplicativos filtrada.
+
+<b>Monitor de Permissões</b>
+Receba notificações quando uma atualização de aplicativo adicionar novas permissões ou alterar as existentes. O Monitor de Permissões verifica seus aplicativos após cada atualização e cria um relatório se algo mudar.
+
+<b>Exportação de Dados</b>
+Exporte dados de aplicativos ou permissões em Markdown, CSV ou JSON.
+
+<b>Visualizador de Manifesto</b>
+Navegue pelos manifestos brutos de aplicativos com seções pesquisáveis e categorizadas. Veja quais aplicativos podem descobrir outros aplicativos instalados.

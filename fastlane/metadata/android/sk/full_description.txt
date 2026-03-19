@@ -23,3 +23,15 @@ Oprávnenia sú vopred zoskupené pre jednoduchšiu navigáciu, napr. Kontakty, 
 Kliknutím na oprávnenie zobrazíte všetky aplikácie, ktoré požadujú prístup k danému oprávneniu.
 
 Aplikácie a oprávnenia je možné vyhľadávať pomocou voľného textu, triediť a filtrovať podľa rôznych kritérií.
+
+<b>Prehľad</b>
+Súhrnný dashboard zobrazujúci počty aplikácií podľa kategórie — súkromie, bezpečnosť, zdroj inštalácie a ďalšie. Každý riadok kategórie vedie priamo na filtrovaný zoznam aplikácií.
+
+<b>Sledovač oprávnení</b>
+Dostávajte upozornenia, keď aktualizácia aplikácie pridá nové oprávnenia alebo zmêní existujúce. Sledovač oprávnení kontroluje vaše aplikácie po každej aktualizácii a vytvorí správu, ak sa niečo zmenilo.
+
+<b>Export dát</b>
+Exportujte údaje o aplikáciách alebo oprávneniach vo formáte Markdown, CSV alebo JSON.
+
+<b>Prehľadávač manifestov</b>
+Prehľadávajte surové manifesty aplikácií s prehľadávateľnými kategorizovanými sekciami. Zistite, ktoré aplikácie môžu objavovať iné nainštalované aplikácie.

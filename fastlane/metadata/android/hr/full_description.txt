@@ -23,3 +23,15 @@ Dozvole su unaprijed grupirane radi lakše navigacije, npr. Kontakti, Mikrofon, 
 Klikom na dopuštenje prikazuju se sve aplikacije koje zahtijevaju pristup tom dopuštenju.
 
 Aplikacije i dopuštenja mogu se pretraživati ​​​​pomoću slobodnog teksta, sortirati i filtrirati prema različitim kriterijima.
+
+<b>Pregled</b>
+Sažeta nadzorna ploča koja prikazuje broj aplikacija po kategoriji — privatnost, sigurnost, izvor instalacije i više. Svaki red kategorije vodi izravno na filtrirani popis aplikacija.
+
+<b>Nadzornik dozvola</b>
+Primajte obavijesti kada ažuriranje aplikacije doda nove dozvole ili promijeni postojeće. Nadzornik dozvola provjerava vaše aplikacije nakon svakog ažuriranja i stvara izvještaj ako se nešto promijenilo.
+
+<b>Izvoz podataka</b>
+Izvezite podatke o aplikacijama ili dozvolama u Markdown, CSV ili JSON formatu.
+
+<b>Preglednik manifesta</b>
+Pregledajte sirove manifeste aplikacija s pretražljivim, kategoriziranim odjeljcima. Pogledajte koje aplikacije mogu otkriti druge instalirane aplikacije.

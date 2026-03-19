@@ -23,3 +23,15 @@ Uprawnienia są pogrupowane w celu ułatwienia nawigacji, np. Kontakty, Mikrofon
 Kliknięcie uprawnienia pokazuje wszystkie aplikacje, które żądają do niego dostępu.
 
 Aplikacje i uprawnienia można wyszukiwać za pomocą tekstu, sortować i filtrować według różnych kryteriów.
+
+<b>Przegląd</b>
+Pulpit nawigacyjny pokazujący liczbę aplikacji według kategorii — prywatność, bezpieczeństwo, źródło instalacji i inne. Każdy wiersz kategorii prowadzi bezpośrednio do przefiltrowanej listy aplikacji.
+
+<b>Obserwator uprawnień</b>
+Otrzymuj powiadomienia, gdy aktualizacja aplikacji dodaje nowe uprawnienia lub zmienia istniejące. Obserwator uprawnień sprawdza Twoje aplikacje po każdej aktualizacji i tworzy raport, jeśli coś się zmieniło.
+
+<b>Eksport danych</b>
+Eksportuj dane aplikacji lub uprawnień w formacie Markdown, CSV lub JSON.
+
+<b>Przeglądarka manifestów</b>
+Przeglądaj surowe manifesty aplikacji z możliwością wyszukiwania i kategoryzowanymi sekcjami. Sprawdź, które aplikacje mogą wykrywać inne zainstalowane aplikacje.

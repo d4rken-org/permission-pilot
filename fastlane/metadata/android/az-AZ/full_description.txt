@@ -23,3 +23,15 @@ Cihazınızda mövcud olan bütün icəzələr, İcazə Meneceri və Xüsusu Gir
 Bir icəzəyə klikləmək həmin icəzəyə giriş tələb edən bütün tətbiqləri göstərir.
 
 Tətbiqlər və icəzələr sərbəst mətn istifadə edərək axtarıla, müxtəlif meyarlara görə sıralana və filtrə edilə bilər.
+
+<b>İcmal</b>
+Kateqoriyaya görə tətbiq saylarını göstərən xülasə idarə paneli — məxfilik, təhlükəsizlik, quraşdırma mənbəyi və daha çox. Hər kateqoriya sətri birbaşa filtrlənmiş tətbiq siyahısına keçir.
+
+<b>İcazə Gözətçisi</b>
+Bir tətbiq yeniləməsi yeni icazələr əlavə etdikdə və ya mövcud olanları dəyişdirdikdə bildiriş alın. İcazə Gözətçisi hər yeniləmədən sonra tətbiqlərinizi yoxlayır və bir şey dəyişibsə hesabat yaradır.
+
+<b>Məlumat İxracı</b>
+Tətbiq və ya icazə məlumatlarını Markdown, CSV və ya JSON formatında ixrac edin.
+
+<b>Manifest Görüntüləyicisi</b>
+Axtarıla bilən, kateqoriyalara bölünmüş bölmələrlə xam tətbiq manifestlərini nəzərdən keçirin. Hansı tətbiqlərin quraşdırılmış digər tətbiqləri aşkar edə biləcəyini görün.

@@ -23,3 +23,15 @@ Els permisos estan preagrupats per facilitar la navegació, p. ex. contactes, mi
 En fer clic a un permís, es mostren totes les aplicacions que sol·liciten accés a aquest permís.
 
 Les aplicacions i els permisos es poden cercar mitjançant text lliure, ordenar i filtrar per diferents criteris.
+
+<b>Resum</b>
+Un tauler de resum que mostra el nombre d'aplicacions per categoria — privacitat, seguretat, origen d'instal·lació i més. Cada fila de categoria navega directament a una llista d'aplicacions filtrada.
+
+<b>Vigilant de permisos</b>
+Rebeu notificacions quan una actualització d'aplicació afegeix nous permisos o canvia els existents. El Vigilant de permisos comprova les vostres aplicacions després de cada actualització i crea un informe si hi ha algun canvi.
+
+<b>Exportació de dades</b>
+Exporteu dades d'aplicacions o permisos en format Markdown, CSV o JSON.
+
+<b>Visor de manifest</b>
+Navegueu pels manifests bruts de les aplicacions amb seccions cercables i categoritzades. Vegeu quines aplicacions poden descobrir altres aplicacions instal·lades.

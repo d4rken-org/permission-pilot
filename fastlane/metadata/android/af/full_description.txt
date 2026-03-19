@@ -23,3 +23,15 @@ Toestemmings is vooraf gegroepeer vir makliker navigasie, bv. Kontakte, Mikrofoo
 As jy op 'n toestemming klik, word alle programme gewys wat toegang tot daardie toestemming aanvra.
 
 Programme en toestemmings kan deur middel van vrye teks gesoek, gesorteer en gefilter word volgens verskillende kriteria.
+
+<b>Oorsig</b>
+'n Opsommingspaneel wat programme-tellings per kategorie toon — privaatheid, sekuriteit, installasie-bron, en meer. Elke kategoriery navigeer direk na 'n gefilterde programmelys.
+
+<b>Toestemmingswagter</b>
+Kry kennisgewings wanneer 'n programopdatering nuwe toestemmings byvoeg of bestaande verander. Toestemmingswagter kontroleer jou programme na elke opdatering en skep 'n verslag as enigiets verander het.
+
+<b>Data-uitvoer</b>
+Voer program- of toestemmingsdata uit in Markdown, CSV, of JSON.
+
+<b>Manifestkyker</b>
+Blaai deur ru program-manifeste met deursoekbare, gekategoriseerde afdelings. Sien watter programme ander geinstalleerde programme kan ontdek.

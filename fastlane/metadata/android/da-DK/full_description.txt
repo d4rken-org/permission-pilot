@@ -23,3 +23,15 @@ Tilladelser er forhåndsgrupperet for lettere navigation, f.eks. Kontakter, Mikr
 Klik på en tilladelse for at se alle apps, der anmoder om adgang til den pågældende tilladelse.
 
 Apps og tilladelser kan søges ved hjælp af fritekst og sorteres og filtreres efter forskellige kriterier.
+
+<b>Oversigt</b>
+Et oversigts-dashboard der viser antal apps pr. kategori — privatliv, sikkerhed, installationskilde og mere. Hver kategorirække navigerer direkte til en filtreret appliste.
+
+<b>Tilladelsesovervåger</b>
+Få besked, når en appopdatering tilføjer nye tilladelser eller ændrer eksisterende. Tilladelsesovervåger kontrollerer dine apps efter hver opdatering og opretter en rapport, hvis noget er ændret.
+
+<b>Dataeksport</b>
+Eksporter app- eller tilladelsesdata i Markdown, CSV eller JSON.
+
+<b>Manifest-fremviser</b>
+Gennemse rå app-manifester med søgbare, kategoriserede sektioner. Se hvilke apps der kan opdage andre installerede apps.

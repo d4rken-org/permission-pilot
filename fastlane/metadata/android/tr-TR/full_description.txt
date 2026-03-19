@@ -23,3 +23,15 @@ Bu aynı zamanda internet izinlerini, SharedUserID durumunu da içerecektir!
 Bir izne tıklandığında, o izne erişim isteyen tüm uygulamalar gösterilir.
 
 Uygulamalar ve izinler serbest metin kullanılarak aranabilir, farklı ölçütlere göre sıralanabilir ve filtrelenebilir.
+
+<b>Genel Bakış</b>
+Kategori başına uygulama sayılarını gösteren özet pano — gizlilik, güvenlik, kurulum kaynağı ve daha fazlası. Her kategori satırı, doğrudan filtrelenmiş bir uygulama listesine yönlendirir.
+
+<b>İzin İzleyici</b>
+Bir uygulama güncellemesi yeni izinler ekleyince veya mevcut izinleri değiştirince bildirim alın. İzin İzleyici, her güncellemeden sonra uygulamalarınızı kontrol eder ve herhangi bir değişiklik olursa rapor oluşturur.
+
+<b>Veri Dışa Aktarma</b>
+Uygulama veya izin verilerini Markdown, CSV ya da JSON biçiminde dışa aktarın.
+
+<b>Manifest Görüntüleyici</b>
+Ham uygulama manifest dosyalarına aranabilir, kategorize edilmiş bölümlerle göz atın. Hangi uygulamaların yüklü diğer uygulamaları keşfedebildiğini görün.
