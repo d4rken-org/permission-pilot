@@ -223,6 +223,13 @@ private fun EventTypePill(eventType: WatcherEventType) {
 
 @Composable
 private fun EventDetailsCard(state: ReportDetailViewModel.State) {
+    val hasContent = when (state.eventType) {
+        WatcherEventType.INSTALL, WatcherEventType.UPDATE -> true
+        WatcherEventType.REMOVED -> buildVersionText(state.versionName, state.versionCode) != null
+        WatcherEventType.GRANT_CHANGE -> false
+    }
+    if (!hasContent) return
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -258,19 +265,8 @@ private fun EventDetailsCard(state: ReportDetailViewModel.State) {
                     if (versionText != null) {
                         DetailRow(stringResource(R.string.watcher_detail_version_label), versionText)
                     }
-                    Text(
-                        text = stringResource(R.string.watcher_detail_app_removed_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.error,
-                        modifier = Modifier.padding(top = 4.dp),
-                    )
                 }
-                WatcherEventType.GRANT_CHANGE -> {
-                    Text(
-                        text = stringResource(R.string.watcher_detail_grant_change_desc),
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
+                WatcherEventType.GRANT_CHANGE -> Unit
             }
         }
     }

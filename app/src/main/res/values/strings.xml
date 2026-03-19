@@ -665,8 +665,6 @@
     <string name="watcher_detail_version_code_label">Code</string>
     <string name="watcher_detail_installer_label">Install source</string>
     <string name="watcher_detail_installer_unknown">Unknown</string>
-    <string name="watcher_detail_app_removed_desc">App was removed from device</string>
-    <string name="watcher_detail_grant_change_desc">Permission grants changed</string>
     <plurals name="watcher_detail_permissions_header">
         <item quantity="one">Permissions (%d)</item>
         <item quantity="other">Permissions (%d)</item>
