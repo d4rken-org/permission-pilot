@@ -9,6 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.AppInfo
 import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
@@ -62,6 +63,15 @@ class AppsViewModel @Inject constructor(
 
     private val selectedItems = MutableStateFlow<Set<SelectionKey>>(emptySet())
 
+    private val appDataWithLabels = appRepo.appData.map { state ->
+        val apps = (state as? AppRepo.AppDataState.Ready)?.apps
+        if (apps == null) {
+            state to emptyMap()
+        } else {
+            state to buildInstallerLabelCache(apps)
+        }
+    }
+
     data class PermChip(@StringRes val labelRes: Int)
 
     data class AppItem(
@@ -89,12 +99,13 @@ class AppsViewModel @Inject constructor(
     }
 
     val state = combine(
-        appRepo.appData,
+        appDataWithLabels,
         searchTerm,
         filterOptions,
         sortOptions,
         selectedItems,
-    ) { appDataState, searchTerm, filterOptions, sortOptions, selection ->
+    ) { appDataPair, searchTerm, filterOptions, sortOptions, selection ->
+        val (appDataState, installerLabels) = appDataPair
         val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
 
         val filtered = apps
@@ -112,24 +123,17 @@ class AppsViewModel @Inject constructor(
         val dateFormatter = DateTimeFormatter.ofPattern("MMM yyyy", Locale.getDefault())
 
         val listItems = filtered.map { app ->
-            // Install source: known store → PM label → manually installed/pre-installed
+            // Install source: known store → cached PM label → manually installed/pre-installed
             val knownStoreLabel = app.installerPkgName?.let { ipn ->
                 AKnownPkg.values.firstOrNull { it.id.pkgName == ipn }?.labelRes
                     ?.let { context.getString(it) }
             }
-            val installerLabel = knownStoreLabel ?: run {
-                app.allInstallerPkgNames.firstNotNullOfOrNull { installerPkg ->
-                    try {
-                        val ai = context.packageManager.getApplicationInfo(installerPkg.value, 0)
-                        context.packageManager.getApplicationLabel(ai)?.toString()
-                    } catch (_: PackageManager.NameNotFoundException) {
-                        null
-                    }
-                }
-            } ?: context.getString(
-                if (app.isSystemApp) R.string.apps_list_installer_preinstalled_label
-                else R.string.apps_list_installer_sideloaded_label
-            )
+            val installerLabel = knownStoreLabel
+                ?: app.allInstallerPkgNames.firstNotNullOfOrNull { installerLabels[it] }
+                ?: context.getString(
+                    if (app.isSystemApp) R.string.apps_list_installer_preinstalled_label
+                    else R.string.apps_list_installer_sideloaded_label
+                )
 
             // Updated date
             val updatedAtFormatted = app.updatedAt?.let { instant ->
@@ -254,6 +258,21 @@ class AppsViewModel @Inject constructor(
 
     fun onUpgrade() {
         navTo(Nav.Main.Upgrade)
+    }
+
+    private fun buildInstallerLabelCache(apps: List<AppInfo>): Map<Pkg.Name, String> {
+        val allInstallerPkgs = apps.flatMapTo(mutableSetOf()) { it.allInstallerPkgNames }
+        return buildMap {
+            for (pkg in allInstallerPkgs) {
+                if (AKnownPkg.values.any { it.id.pkgName == pkg }) continue
+                try {
+                    val ai = context.packageManager.getApplicationInfo(pkg.value, 0)
+                    context.packageManager.getApplicationLabel(ai)?.toString()?.let { put(pkg, it) }
+                } catch (_: PackageManager.NameNotFoundException) {
+                    // Installer package not installed
+                }
+            }
+        }
     }
 
     companion object {

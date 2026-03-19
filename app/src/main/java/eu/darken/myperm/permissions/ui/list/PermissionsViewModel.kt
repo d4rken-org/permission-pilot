@@ -19,7 +19,6 @@ import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.ExtraPermission
 import eu.darken.myperm.permissions.core.container.UnknownPermission
-import eu.darken.myperm.permissions.core.getGroupIds
 import eu.darken.myperm.permissions.core.known.APermGrp
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
@@ -56,6 +55,15 @@ class PermissionsViewModel @Inject constructor(
     private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
     private val selectedPermissions = MutableStateFlow<Set<Permission.Id>>(emptySet())
 
+    private val permDataWithLabels = permissionRepo.state.map { state ->
+        val perms = (state as? PermissionRepo.State.Ready)?.permissions
+        if (perms == null) {
+            state to emptyMap()
+        } else {
+            state to perms.associate { it.id to it.getLabel(context) }
+        }
+    }
+
     data class PermItem(
         val id: Permission.Id,
         val label: String?,
@@ -90,13 +98,14 @@ class PermissionsViewModel @Inject constructor(
     }
 
     val state = combine(
-        permissionRepo.state,
+        permDataWithLabels,
         expandedGroups,
         searchTerm,
         filterOptions,
         combine(sortOptions, selectedPermissions) { s, sel -> s to sel },
-    ) { permissionRepoState, expGroups, searchTerm, filterOptions, sortAndSel ->
+    ) { permDataPair, expGroups, searchTerm, filterOptions, sortAndSel ->
         val (sortOptions, selection) = sortAndSel
+        val (permissionRepoState, permLabelMap) = permDataPair
         val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
             ?: return@combine State.Loading
 
@@ -105,7 +114,7 @@ class PermissionsViewModel @Inject constructor(
             .filter {
                 val prunedTerm = searchTerm?.lowercase() ?: return@filter true
                 if (it.id.toString().lowercase().contains(prunedTerm)) return@filter true
-                if (it.getLabel(context)?.lowercase()?.contains(prunedTerm) == true) return@filter true
+                if (permLabelMap[it.id]?.lowercase()?.contains(prunedTerm) == true) return@filter true
                 false
             }
             .sortedWith(sortOptions.mainSort.getComparator(context))
@@ -113,7 +122,7 @@ class PermissionsViewModel @Inject constructor(
         val permItems = filtered.map { perm ->
             PermItem(
                 id = perm.id,
-                label = perm.getLabel(context),
+                label = permLabelMap[perm.id],
                 type = when (perm) {
                     is DeclaredPermission -> "declared"
                     is ExtraPermission -> "extra"
@@ -123,21 +132,31 @@ class PermissionsViewModel @Inject constructor(
                 grantedCount = perm.grantingApps.size,
                 permission = perm,
             )
-        }.toMutableList()
+        }
 
         var permissionCount = 0
         var groupCount = 0
         val listItems = mutableListOf<ListItem>()
         val groupPermsMap = mutableMapOf<PermissionGroup.Id, List<Permission.Id>>()
 
+        // Pre-group permissions by their group IDs (single pass)
+        val permsByGroup = mutableMapOf<PermissionGroup.Id, MutableList<PermItem>>()
+        for (item in permItems) {
+            for (grpId in item.permission.groupIds) {
+                permsByGroup.getOrPut(grpId) { mutableListOf() }.add(item)
+            }
+        }
+
+        val assigned = mutableSetOf<Permission.Id>()
         APermGrp.values
             .filter { it != APermGrp.Other }
             .sortedBy { context.getString(it.labelRes) }
             .forEach { grp ->
-                val permsInGrp = permItems
-                    .filter { perm -> filtered.any { it.id == perm.id && it.getGroupIds().contains(grp.id) } }
+                val permsInGrp = permsByGroup[grp.id]
+                    ?.filter { it.id !in assigned }
+                    ?: emptyList()
 
-                permItems -= permsInGrp.toSet()
+                assigned.addAll(permsInGrp.map { it.id })
                 val isExpanded = expGroups[grp.id] == true
 
                 if (permsInGrp.isNotEmpty()) {
@@ -154,18 +173,19 @@ class PermissionsViewModel @Inject constructor(
                 if (isExpanded) listItems.addAll(permsInGrp.map { ListItem.Perm(it) })
             }
 
-        // Other group
-        if (permItems.isNotEmpty()) {
+        // Other group: permissions not assigned to any named group
+        val ungrouped = permItems.filter { it.id !in assigned }
+        if (ungrouped.isNotEmpty()) {
             val isExpanded = expGroups[APermGrp.Other.id] == true
-            groupPermsMap[APermGrp.Other.id] = permItems.map { it.id }
+            groupPermsMap[APermGrp.Other.id] = ungrouped.map { it.id }
             listItems.add(
                 ListItem.Group(
-                    GroupItem(group = APermGrp.Other, permCount = permItems.size, isExpanded = isExpanded)
+                    GroupItem(group = APermGrp.Other, permCount = ungrouped.size, isExpanded = isExpanded)
                 )
             )
             groupCount++
-            permissionCount += permItems.size
-            if (isExpanded) listItems.addAll(permItems.map { ListItem.Perm(it) })
+            permissionCount += ungrouped.size
+            if (isExpanded) listItems.addAll(ungrouped.map { ListItem.Perm(it) })
         }
 
         State.Ready(
