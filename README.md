@@ -23,22 +23,23 @@ This app was created to fill in a void that currently exists in the Android App 
 
 #### THE SOLUTION
 
-Permission Pilot gives the user a bird's eye view of all permissions for installed apps from one place. Here's what you get:
+Permission Pilot gives you a bird's eye view of all permissions for installed apps from one place. Here's what you get:
 
-1. View snapshot of ALL permissions that every app has requested, their allowed/ denied status, battery management status, internet access, SharedUserID status, etc. You can see EVERYTHING about each installed app on your device from one place. This includes all hidden permissions too which are not visible under System Settings.
+1. **Overview Dashboard** — A summary of your device showing app counts by category (privacy, security, install source, system). Each category navigates directly to a filtered app list.
 
-2. Each icon you see is a 'clickable' shortcut that can quickly launch a configurable permission within System Settings, take you directly to the App Info page within System Settings, or take you to the App page on the Store where the app was downloaded/ updated from. This allows the user to quickly view and configure all permissions for each app, without the need to navigate through multiple pages within System Settings.
+2. **Apps tab** — All installed apps, including system apps, work profile, and multi-user apps. Tap any app to see every permission it has requested, their granted/denied status, install source, and a full manifest viewer.
 
-3. The Permissions Bar shows the most important permissions at a glance, and clicking any of the icons on it will display a short description of the permission at the bottom of your screen, with a link to view the list of all apps that have requested that permission.
+3. **Permissions tab** — All permissions on your device, grouped by category (Contacts, Camera, Microphone, etc.). Tap a permission to see every app that requests it.
 
-4. Several Sort and Filter options have been provided that can be used to quickly view list of apps that satisfy your chosen criteria.
+4. **Permission Watcher** — Monitors apps for permission changes when they are installed, updated, or removed. Creates reports showing added/removed permissions and grant changes, with optional notifications.
 
-5. Permission Pilot has support for apps installed in Work Profile and Multi-Users, though some of that is still Work-in-Progress (WIP).
- 
+5. **Data Export** — Export app or permission data in Markdown, CSV, or JSON with configurable detail level.
+
+6. **Search, Sort & Filter** — Free-text search, multiple sort options, and filter chips across all views.
 
 #### LIMITATIONS
 
-Android does NOT allow for configuring System Settings or App Permissions using a 3rd party app (on non-rooted devices). Permission Pilot, as such, can only show you all the information in one place, and also quickly launch the appropriate page within System Settings for any changes you may want to make to app permissions.
+Android does not allow third-party apps to change permissions on non-rooted devices. Permission Pilot shows all the information in one place and can launch the appropriate System Settings page for any changes you want to make.
 
 
 ## Downloads

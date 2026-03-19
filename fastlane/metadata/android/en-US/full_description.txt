@@ -23,3 +23,15 @@ Permissions are pre-grouped for easier navigation, e.g. Contacts, Microphone, Ca
 Clicking on a permission shows all the apps that request access to that permission.
 
 Apps and permissions can be searched using free-text, sorted and filtered by different criteria.
+
+<b>Overview</b>
+A summary dashboard showing app counts by category — privacy, security, install source, and more. Each category row navigates directly to a filtered app list.
+
+<b>Permission Watcher</b>
+Get notified when an app update adds new permissions or changes existing ones. Permission Watcher checks your apps after each update and creates a report if anything changed. Reports show added and removed permissions, grant changes, and install/update/removal events. Filter reports by type, search by app name, and optionally receive notifications. Configurable for all apps or non-system apps only.
+
+<b>Data Export</b>
+Export app or permission data in Markdown, CSV, or JSON. Configure what details to include — install info, permission names, grant status, and more.
+
+<b>Manifest Viewer</b>
+Browse raw app manifests with searchable, categorized sections. See which apps can discover other installed apps.
