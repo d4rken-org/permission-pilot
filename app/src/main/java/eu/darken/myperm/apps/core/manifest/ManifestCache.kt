@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.core.manifest
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -20,7 +21,7 @@ class ManifestCache @Inject constructor(
         get() = File(context.cacheDir, "manifests").also { it.mkdirs() }
 
     fun get(
-        pkgName: String,
+        pkgName: Pkg.Name,
         versionCode: Long,
         lastUpdateTime: Long,
     ): ManifestData? {
@@ -47,7 +48,7 @@ class ManifestCache @Inject constructor(
     }
 
     fun put(
-        pkgName: String,
+        pkgName: Pkg.Name,
         versionCode: Long,
         lastUpdateTime: Long,
         data: ManifestData,
@@ -68,8 +69,8 @@ class ManifestCache @Inject constructor(
         }
     }
 
-    private fun cacheFile(pkgName: String): File {
-        return File(cacheDir, "${pkgName}.json")
+    private fun cacheFile(pkgName: Pkg.Name): File {
+        return File(cacheDir, "${pkgName.value}.json")
     }
 
     @Serializable

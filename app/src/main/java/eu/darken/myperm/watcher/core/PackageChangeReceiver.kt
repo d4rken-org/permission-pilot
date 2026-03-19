@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import eu.darken.myperm.apps.core.Pkg
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -35,7 +36,7 @@ class PackageChangeReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        val packageName = intent.data?.schemeSpecificPart ?: return
+        val packageName = Pkg.Name(intent.data?.schemeSpecificPart ?: return)
         val isReplacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)
 
         val eventType = when (intent.action) {

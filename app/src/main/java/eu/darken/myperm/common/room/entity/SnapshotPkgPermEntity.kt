@@ -3,6 +3,7 @@ package eu.darken.myperm.common.room.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
+import eu.darken.myperm.apps.core.Pkg
 
 @Entity(
     tableName = "snapshot_pkg_perms",
@@ -19,7 +20,7 @@ import androidx.room.Index
 )
 data class SnapshotPkgPermEntity(
     val snapshotId: String,
-    val pkgName: String,
+    val pkgName: Pkg.Name,
     val userHandleId: Int,
     val permissionId: String,
     val status: String,

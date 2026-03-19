@@ -1,5 +1,6 @@
 package eu.darken.myperm.permissions.ui.list
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.permissions.core.Permission
@@ -106,7 +107,7 @@ class PermsFilterOptionsTest : BaseTest() {
         declaringApps = if (hasSystemDeclaringApp) {
             listOf(
                 PermissionAppRef(
-                    pkgName = "com.android.system",
+                    pkgName = Pkg.Name("com.android.system"),
                     userHandleId = 0,
                     label = "System",
                     isSystemApp = true,
@@ -117,7 +118,7 @@ class PermsFilterOptionsTest : BaseTest() {
         } else {
             listOf(
                 PermissionAppRef(
-                    pkgName = "com.example.app",
+                    pkgName = Pkg.Name("com.example.app"),
                     userHandleId = 0,
                     label = "User App",
                     isSystemApp = false,

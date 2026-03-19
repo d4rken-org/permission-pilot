@@ -52,7 +52,7 @@ class PermissionDetailsViewModel @Inject constructor(
     }
 
     data class DeclaringAppItem(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val pkg: Pkg,
         val label: String,
         val isSystemApp: Boolean,
@@ -60,7 +60,7 @@ class PermissionDetailsViewModel @Inject constructor(
     )
 
     data class RequestingAppItem(
-        val pkgName: String,
+        val pkgName: Pkg.Name,
         val pkg: Pkg,
         val label: String,
         val isSystemApp: Boolean,
@@ -176,9 +176,9 @@ class PermissionDetailsViewModel @Inject constructor(
         generalSettings.permissionDetailsFilterOptions.update { action(it) }
     }
 
-    fun onAppClicked(pkgName: String, userHandle: Int) {
+    fun onAppClicked(pkgName: Pkg.Name, userHandle: Int) {
         log(TAG) { "Navigating to app $pkgName" }
-        navTo(Nav.Details.AppDetails(pkgName = pkgName, userHandle = userHandle))
+        navTo(Nav.Details.AppDetails(pkgName = pkgName.value, userHandle = userHandle))
     }
 
     companion object {

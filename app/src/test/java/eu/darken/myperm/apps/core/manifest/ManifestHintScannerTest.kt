@@ -1,5 +1,6 @@
 package eu.darken.myperm.apps.core.manifest
 
+import eu.darken.myperm.apps.core.Pkg
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
@@ -159,7 +160,7 @@ class ManifestHintScannerTest : BaseTest() {
         totalProviders: Int = 0,
         actionMain: Boolean = false,
     ) = ManifestHintEntity(
-        pkgName = "com.test",
+        pkgName = Pkg.Name("com.test"),
         versionCode = 1,
         lastUpdateTime = 1000,
         hasActionMainQuery = actionMain,

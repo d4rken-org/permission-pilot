@@ -93,7 +93,7 @@ class AppRepoTest : BaseTest() {
         advanceTimeBy(100) // Let APP_LAUNCH complete first
         clearMocks(workManager, answers = false, recordedCalls = true, verificationMarks = true)
 
-        packageEvents.emit(PackageEventListener.Event.PackageInstalled(Pkg.Id("com.test.app")))
+        packageEvents.emit(PackageEventListener.Event.PackageInstalled(Pkg.Id(Pkg.Name("com.test.app"))))
         advanceTimeBy(1_100) // Past the 1s debounce
 
         verify {

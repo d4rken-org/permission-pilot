@@ -1,6 +1,7 @@
 package eu.darken.myperm.apps.ui.list
 
 import eu.darken.myperm.apps.core.AppInfo
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.apps.core.features.BatteryOptimization
 import eu.darken.myperm.apps.core.features.InternetAccess
@@ -111,13 +112,13 @@ class AppsFilterOptionsTest : BaseTest() {
         apiTargetLevel: Int? = null,
         requestedPermissions: List<PermissionUse> = emptyList(),
     ) = AppInfo(
-        pkgName = "com.example.app",
+        pkgName = Pkg.Name("com.example.app"),
         userHandleId = 0,
         label = "Test App",
         versionName = "1.0",
         versionCode = 1,
         isSystemApp = isSystemApp,
-        installerPkgName = allInstallerPkgNames.firstOrNull(),
+        installerPkgName = allInstallerPkgNames.firstOrNull()?.let { Pkg.Name(it) },
         apiTargetLevel = apiTargetLevel,
         apiCompileLevel = null,
         apiMinimumLevel = null,
@@ -132,7 +133,7 @@ class AppsFilterOptionsTest : BaseTest() {
         siblingCount = siblingCount,
         hasAccessibilityServices = hasAccessibilityServices,
         hasDeviceAdmin = false,
-        allInstallerPkgNames = allInstallerPkgNames,
+        allInstallerPkgNames = allInstallerPkgNames.map { Pkg.Name(it) },
     )
 
     private fun grantedPerm(id: String) = PermissionUse(id, UsesPermission.Status.GRANTED)

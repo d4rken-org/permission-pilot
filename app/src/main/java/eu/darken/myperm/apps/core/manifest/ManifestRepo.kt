@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -25,8 +26,8 @@ class ManifestRepo @Inject constructor(
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, ManifestData>?) = size > 30
     }
 
-    suspend fun getManifest(pkgName: String): ManifestData = withContext(dispatcherProvider.IO) {
-        val cacheKey = pkgName
+    suspend fun getManifest(pkgName: Pkg.Name): ManifestData = withContext(dispatcherProvider.IO) {
+        val cacheKey = pkgName.value
 
         synchronized(memoryCache) { memoryCache[cacheKey] }?.let {
             log(TAG) { "Memory cache hit for $pkgName" }
@@ -60,9 +61,9 @@ class ManifestRepo @Inject constructor(
         }
     }
 
-    private fun resolveAppMeta(pkgName: String): AppMeta? {
+    private fun resolveAppMeta(pkgName: Pkg.Name): AppMeta? {
         return try {
-            val pi = context.packageManager.getPackageInfo(pkgName, 0)
+            val pi = context.packageManager.getPackageInfo(pkgName.value, 0)
             val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 pi.longVersionCode
             } else {

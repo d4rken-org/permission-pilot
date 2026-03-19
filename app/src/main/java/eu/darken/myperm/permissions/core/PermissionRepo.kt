@@ -17,6 +17,7 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.shareLatest
 import eu.darken.myperm.apps.core.AppInfo
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.permissions.core.container.BasePermission
 import eu.darken.myperm.permissions.core.container.DeclaredPermission
 import eu.darken.myperm.permissions.core.container.ExtraPermission

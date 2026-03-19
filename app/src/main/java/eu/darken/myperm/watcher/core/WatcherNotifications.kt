@@ -11,6 +11,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.R
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.toNotificationId
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.main.ui.MainActivity
@@ -46,7 +48,7 @@ class WatcherNotifications @Inject constructor(
     suspend fun postChangeNotification(
         reportId: Long,
         appLabel: String?,
-        packageName: String,
+        packageName: Pkg.Name,
         diff: PermissionDiff,
     ): Boolean {
         if (!generalSettings.isWatcherNotificationsEnabled.value()) {
@@ -66,7 +68,7 @@ class WatcherNotifications @Inject constructor(
 
         ensureChannel()
 
-        val displayName = appLabel ?: packageName
+        val displayName = appLabel ?: packageName.value
         val totalChanges = diff.addedPermissions.size + diff.removedPermissions.size +
                 diff.grantChanges.size + diff.addedDeclared.size + diff.removedDeclared.size
 
@@ -100,7 +102,7 @@ class WatcherNotifications @Inject constructor(
         val markSeenIntent = Intent(context, WatcherActionReceiver::class.java).apply {
             action = WatcherActionReceiver.ACTION_MARK_SEEN
             putExtra(WatcherActionReceiver.EXTRA_REPORT_ID, reportId)
-            putExtra(WatcherActionReceiver.EXTRA_PACKAGE_NAME, packageName)
+            putExtra(WatcherActionReceiver.EXTRA_PACKAGE_NAME, packageName.value)
         }
         val markSeenPendingIntent = PendingIntent.getBroadcast(
             context,
@@ -137,7 +139,7 @@ class WatcherNotifications @Inject constructor(
             .build()
 
         @SuppressLint("MissingPermission") // Checked via capability.areNotificationsEnabled()
-        notificationManager.notify(packageName.hashCode(), notification)
+        notificationManager.notify(packageName.toNotificationId(), notification)
         return true
     }
 
@@ -179,9 +181,9 @@ class WatcherNotifications @Inject constructor(
         notificationManager.notify(SUMMARY_NOTIFICATION_ID, notification)
     }
 
-    fun cancelForPackage(packageName: String) {
+    fun cancelForPackage(packageName: Pkg.Name) {
         log(TAG) { "cancelForPackage($packageName)" }
-        notificationManager.cancel(packageName.hashCode())
+        notificationManager.cancel(packageName.toNotificationId())
     }
 
     fun cancelAllChangeNotifications() {

@@ -7,13 +7,13 @@ import eu.darken.myperm.common.room.entity.PkgType
 import java.time.Instant
 
 data class AppInfo(
-    val pkgName: String,
+    val pkgName: Pkg.Name,
     val userHandleId: Int,
     val label: String,
     val versionName: String?,
     val versionCode: Long,
     val isSystemApp: Boolean,
-    val installerPkgName: String?,
+    val installerPkgName: Pkg.Name?,
     val apiTargetLevel: Int?,
     val apiCompileLevel: Int?,
     val apiMinimumLevel: Int?,
@@ -28,7 +28,7 @@ data class AppInfo(
     val siblingCount: Int,
     val hasAccessibilityServices: Boolean,
     val hasDeviceAdmin: Boolean,
-    val allInstallerPkgNames: List<String>,
+    val allInstallerPkgNames: List<Pkg.Name>,
     val sharedUserId: String? = null,
     val hasManifestFlags: Boolean? = null,
 )

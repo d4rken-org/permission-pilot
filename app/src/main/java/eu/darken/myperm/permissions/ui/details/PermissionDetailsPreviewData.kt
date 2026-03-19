@@ -23,8 +23,8 @@ internal object PermissionDetailsPreviewData {
         totalSystemCount = 8,
         declaringApps = listOf(
             PermissionDetailsViewModel.DeclaringAppItem(
-                pkgName = "android",
-                pkg = Pkg.Container(Pkg.Id("android")),
+                pkgName = Pkg.Name("android"),
+                pkg = Pkg.Container(Pkg.Id(Pkg.Name("android"))),
                 label = "Android System",
                 isSystemApp = true,
                 userHandle = 0,
@@ -32,24 +32,24 @@ internal object PermissionDetailsPreviewData {
         ),
         requestingApps = listOf(
             PermissionDetailsViewModel.RequestingAppItem(
-                pkgName = "com.google.chrome",
-                pkg = Pkg.Container(Pkg.Id("com.google.chrome")),
+                pkgName = Pkg.Name("com.google.chrome"),
+                pkg = Pkg.Container(Pkg.Id(Pkg.Name("com.google.chrome"))),
                 label = "Chrome",
                 isSystemApp = false,
                 status = UsesPermission.Status.GRANTED,
                 userHandle = 0,
             ),
             PermissionDetailsViewModel.RequestingAppItem(
-                pkgName = "org.mozilla.firefox",
-                pkg = Pkg.Container(Pkg.Id("org.mozilla.firefox")),
+                pkgName = Pkg.Name("org.mozilla.firefox"),
+                pkg = Pkg.Container(Pkg.Id(Pkg.Name("org.mozilla.firefox"))),
                 label = "Firefox",
                 isSystemApp = false,
                 status = UsesPermission.Status.DENIED,
                 userHandle = 0,
             ),
             PermissionDetailsViewModel.RequestingAppItem(
-                pkgName = "com.android.camera",
-                pkg = Pkg.Container(Pkg.Id("com.android.camera")),
+                pkgName = Pkg.Name("com.android.camera"),
+                pkg = Pkg.Container(Pkg.Id(Pkg.Name("com.android.camera"))),
                 label = "Camera",
                 isSystemApp = true,
                 status = UsesPermission.Status.GRANTED,

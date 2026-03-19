@@ -56,7 +56,7 @@ class JsonFormatter @Inject constructor() : ExportFormatter {
         config: AppExportConfig,
         permissionLookup: (String) -> ResolvedPermissionInfo?,
     ): JsonObject = buildJsonObject {
-        put("packageName", app.pkgName)
+        put("packageName", app.pkgName.value)
         put("label", app.label)
 
         if (config.includeMetaInfo) {

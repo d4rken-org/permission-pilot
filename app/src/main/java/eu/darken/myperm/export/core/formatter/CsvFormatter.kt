@@ -87,7 +87,7 @@ class CsvFormatter @Inject constructor() : ExportFormatter {
     }
 
     private fun buildAppRow(app: AppInfo, config: AppExportConfig): List<String> = buildList {
-        add(app.pkgName)
+        add(app.pkgName.value)
         add(app.label)
         if (config.includeMetaInfo) {
             add(app.versionName ?: "")

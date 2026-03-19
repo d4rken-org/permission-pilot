@@ -3,6 +3,7 @@ package eu.darken.myperm.common.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -43,5 +44,5 @@ interface PermissionChangeDao {
     suspend fun deleteOlderThan(epochMs: Long)
 
     @Query("SELECT EXISTS(SELECT 1 FROM permission_change_reports WHERE packageName = :pkgName AND userHandleId = :userHandleId AND sourceSnapshotId = :snapshotId)")
-    suspend fun existsByPackageAndSnapshot(pkgName: String, userHandleId: Int, snapshotId: String): Boolean
+    suspend fun existsByPackageAndSnapshot(pkgName: Pkg.Name, userHandleId: Int, snapshotId: String): Boolean
 }

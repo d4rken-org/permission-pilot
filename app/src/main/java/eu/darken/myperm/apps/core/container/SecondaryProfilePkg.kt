@@ -39,14 +39,14 @@ class SecondaryProfilePkg(
     private val specialPermissionStatuses: Map<Permission.Id, UsesPermission.Status> = emptyMap(),
 ) : BasePkg(), SecondaryPkg {
 
-    override val id: Pkg.Id = Pkg.Id(packageInfo.packageName, userHandle)
+    override val id: Pkg.Id = Pkg.Id(Pkg.Name(packageInfo.packageName), userHandle)
 
 
     private var _label: String? = null
     private var _resolvingLabel = false
     override fun getLabel(context: Context): String {
         _label?.let { return it }
-        if (_resolvingLabel) return id.pkgName
+        if (_resolvingLabel) return id.pkgName.value
         _resolvingLabel = true
         try {
             val pm = context.packageManager
@@ -58,7 +58,7 @@ class SecondaryProfilePkg(
             }
                 ?: twins.firstNotNullOfOrNull { it.getLabel(context) }
                 ?: super.getLabel(context)
-                ?: id.pkgName
+                ?: id.pkgName.value
             _label = newLabel
             return newLabel
         } finally {

@@ -99,7 +99,7 @@ fun ReportDetailScreen(
                     }
                 },
                 actions = {
-                    if (!state.isLoading && state.packageName.isNotEmpty()) {
+                    if (!state.isLoading && state.packageName.value.isNotEmpty()) {
                         IconButton(onClick = onViewApp) {
                             Icon(
                                 Icons.Filled.Info,
@@ -174,11 +174,11 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = state.appLabel ?: state.packageName,
+                    text = state.appLabel ?: state.packageName.value,
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
-                    text = state.packageName,
+                    text = state.packageName.value,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -337,7 +337,7 @@ private fun ReportDetailUpdatePreview() {
         ReportDetailScreen(
             state = ReportDetailViewModel.State(
                 isLoading = false,
-                packageName = "com.example.app",
+                packageName = Pkg.Name("com.example.app"),
                 appLabel = "Example App",
                 eventType = WatcherEventType.UPDATE,
                 versionName = "2.1.0",
@@ -365,7 +365,7 @@ private fun ReportDetailInstallPreview() {
         ReportDetailScreen(
             state = ReportDetailViewModel.State(
                 isLoading = false,
-                packageName = "com.example.newapp",
+                packageName = Pkg.Name("com.example.newapp"),
                 appLabel = "New App",
                 eventType = WatcherEventType.INSTALL,
                 versionName = "1.0.0",
@@ -388,7 +388,7 @@ private fun ReportDetailRemovedPreview() {
         ReportDetailScreen(
             state = ReportDetailViewModel.State(
                 isLoading = false,
-                packageName = "com.example.oldapp",
+                packageName = Pkg.Name("com.example.oldapp"),
                 appLabel = "Old App",
                 eventType = WatcherEventType.REMOVED,
                 versionName = "3.2.1",
@@ -410,7 +410,7 @@ private fun ReportDetailGrantChangePreview() {
         ReportDetailScreen(
             state = ReportDetailViewModel.State(
                 isLoading = false,
-                packageName = "com.example.app",
+                packageName = Pkg.Name("com.example.app"),
                 appLabel = "Some App",
                 eventType = WatcherEventType.GRANT_CHANGE,
                 detectedAt = System.currentTimeMillis(),

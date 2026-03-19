@@ -154,7 +154,7 @@ androidComponents {
 
                 builtArtifacts.elements.forEach { element ->
                     val apkFile = File(element.outputFile)
-                    val outputFileName = "$packageName-v${element.versionName}-${element.versionCode}-$formattedVariantName-${lastCommitHash()}.apk"
+                    val outputFileName = "$packageName-v${element.versionName}-${element.versionCode}-$formattedVariantName.apk"
                     if (apkFile.exists() && apkFile.name != outputFileName) {
                         apkFile.copyTo(File(apkFile.parentFile, outputFileName), overwrite = true)
                     }
@@ -280,8 +280,8 @@ dependencies {
     testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
     testImplementation("androidx.test:core-ktx:1.4.0")
 
-    testImplementation("io.mockk:mockk:1.12.4")
-    androidTestImplementation("io.mockk:mockk-android:1.12.4")
+    testImplementation("io.mockk:mockk:1.14.9")
+    androidTestImplementation("io.mockk:mockk-android:1.14.9")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
