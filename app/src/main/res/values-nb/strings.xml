@@ -455,7 +455,7 @@
     </plurals>
     <string name="support_debuglog_clear_title">Slette feilsøkingslogger?</string>
     <string name="support_debuglog_clear_message">Dette vil slette alle lagrede feilsøkingsloggfiler.</string>
-    <string name="support_debuglog_sessions_title">Feilsjøkingslogger</string>
+    <string name="support_debuglog_sessions_title">Feilsøkingslogger</string>
     <string name="support_debuglog_session_delete_title">Slette feilsøkingslogg?</string>
     <string name="support_debuglog_session_delete_message">Denne feilsøkingsloggen vil bli permanent slettet.</string>
     <string name="support_debuglog_sessions_empty">Ingen feilsøkingslogger</string>

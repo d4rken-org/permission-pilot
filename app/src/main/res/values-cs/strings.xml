@@ -202,15 +202,45 @@
     <string name="apps_details_manifest_label">Manifest aplikace</string>
     <string name="apps_details_manifest_queued">Zařazeno do fronty analýzy…</string>
     <string name="apps_details_manifest_loading">Analýza manifestu…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifest zbývá k analýze…</item>
+        <item quantity="few">%d manifesty zbývají k analýze…</item>
+        <item quantity="many">%d manifestů zbývá k analýze…</item>
+        <item quantity="other">%d manifestů zbývá k analýze…</item>
+    </plurals>
     <string name="apps_details_manifest_queries_none">Nezjištěno nic neobvyklého</string>
     <string name="apps_details_manifest_unavailable">Manifest není přístupný</string>
     <string name="apps_details_manifest_error">Manifest nebylo možné přečíst</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d dotaz na balíček</item>
+        <item quantity="few">%d dotazy na balíček</item>
+        <item quantity="many">%d dotazů na balíček</item>
+        <item quantity="other">%d dotazů na balíček</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d dotaz na záměr</item>
+        <item quantity="few">%d dotazy na záměr</item>
+        <item quantity="many">%d dotazů na záměr</item>
+        <item quantity="other">%d dotazů na záměr</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d dotaz na poskytovatele</item>
+        <item quantity="few">%d dotazy na poskytovatele</item>
+        <item quantity="many">%d dotazů na poskytovatele</item>
+        <item quantity="other">%d dotazů na poskytovatele</item>
+    </plurals>
     <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_action_main">Může zjistit všechny nainstalované aplikace</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétních aplikací</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prohlížeč manifestu</string>
     <string name="apps_manifest_viewer_search_hint">Hledat v manifestu</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d shoda</item>
+        <item quantity="few">%d shody</item>
+        <item quantity="many">%d shod</item>
+        <item quantity="other">%d shod</item>
+    </plurals>
     <string name="apps_manifest_search_counter">%1$d z %2$d</string>
     <string name="apps_manifest_section_uses_permission">Používá oprávnění</string>
     <string name="apps_manifest_section_permission">Oprávnění</string>
@@ -753,5 +783,11 @@
     <string name="export_summary_filename">Soubor</string>
     <string name="export_summary_size">Velikost</string>
     <string name="export_summary_duration">Trvání</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Bezplatná verze je omezena na %d položku a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
+        <item quantity="few">Bezplatná verze je omezena na %d položky a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
+        <item quantity="many">Bezplatná verze je omezena na %d položek a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
+        <item quantity="other">Bezplatná verze je omezena na %d položek a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
+    </plurals>
     <string name="export_upgrade_action">Upgradovat</string>
 </resources>

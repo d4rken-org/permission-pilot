@@ -328,6 +328,12 @@
     <!-- System badge -->
     <string name="permissions_details_system_badge_label">Системная</string>
     <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d ещё</item>
+        <item quantity="few">+%d ещё</item>
+        <item quantity="many">+%d ещё</item>
+        <item quantity="other">+%d ещё</item>
+    </plurals>
     <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Индикаторы разрешений</string>
     <string name="permissions_details_help_section_protection">Тип защиты</string>
