@@ -31,9 +31,9 @@ Permission Pilot gives you a bird's eye view of all permissions for installed ap
 
 3. **Permissions tab** — All permissions on your device, grouped by category (Contacts, Camera, Microphone, etc.). Tap a permission to see every app that requests it.
 
-4. **Permission Watcher** — Monitors apps for permission changes when they are installed, updated, or removed. Creates reports showing added/removed permissions and grant changes, with optional notifications.
+4. **Permission Watcher** — Monitors apps for permission changes when they are installed, updated, or removed. Creates a report if anything changed.
 
-5. **Data Export** — Export app or permission data in Markdown, CSV, or JSON with configurable detail level.
+5. **Data Export** — Export app or permission data in Markdown, CSV, or JSON.
 
 6. **Search, Sort & Filter** — Free-text search, multiple sort options, and filter chips across all views.
 
