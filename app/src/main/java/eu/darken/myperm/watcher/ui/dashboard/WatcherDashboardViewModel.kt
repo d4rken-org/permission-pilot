@@ -17,6 +17,7 @@ import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.PermissionDiff
 import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
+import eu.darken.myperm.watcher.core.WatcherNotifications
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -32,6 +33,7 @@ class WatcherDashboardViewModel @Inject constructor(
     private val capability: WatcherNotificationCapability,
     private val watcherWorkScheduler: WatcherWorkScheduler,
     private val watcherManager: WatcherManager,
+    private val watcherNotifications: WatcherNotifications,
     private val json: Json,
 ) : ViewModel4(dispatcherProvider) {
 
@@ -120,6 +122,7 @@ class WatcherDashboardViewModel @Inject constructor(
             return@launch
         }
         changeDao.markSeen(item.id)
+        watcherNotifications.cancelForPackage(item.packageName)
         navTo(Nav.Watcher.ReportDetail(item.id))
     }
 
@@ -138,6 +141,7 @@ class WatcherDashboardViewModel @Inject constructor(
 
     fun markAllSeen() = launch {
         changeDao.markAllSeen()
+        watcherNotifications.cancelAllChangeNotifications()
     }
 
     fun disableNotifications() = launch {

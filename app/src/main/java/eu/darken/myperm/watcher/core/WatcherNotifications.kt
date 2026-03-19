@@ -179,6 +179,18 @@ class WatcherNotifications @Inject constructor(
         notificationManager.notify(SUMMARY_NOTIFICATION_ID, notification)
     }
 
+    fun cancelForPackage(packageName: String) {
+        log(TAG) { "cancelForPackage($packageName)" }
+        notificationManager.cancel(packageName.hashCode())
+    }
+
+    fun cancelAllChangeNotifications() {
+        log(TAG) { "cancelAllChangeNotifications()" }
+        notificationManager.activeNotifications
+            .filter { it.notification.group == GROUP_KEY }
+            .forEach { notificationManager.cancel(it.id) }
+    }
+
     companion object {
         const val CHANNEL_ID = "channel_permission_watcher"
         const val EXTRA_REPORT_ID = "watcher_report_id"
