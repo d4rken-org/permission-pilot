@@ -19,3 +19,4 @@ testapp/output/
 testapp/.gradle/
 testapp/build/
 testapp/local.properties
+.kotlin/sessions
