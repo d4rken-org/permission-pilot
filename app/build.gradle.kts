@@ -74,8 +74,8 @@ android {
                 disable.add("ExtraTranslation")
                 fatal.add("StopShip")
             }
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFiles(*customProguardRules.toList().toTypedArray())
         }
@@ -85,8 +85,8 @@ android {
                 disable.add("ExtraTranslation")
                 fatal.add("StopShip")
             }
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
             proguardFiles(*customProguardRules.toList().toTypedArray())
         }
