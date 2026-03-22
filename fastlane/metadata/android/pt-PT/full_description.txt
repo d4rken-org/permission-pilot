@@ -19,7 +19,7 @@ Isto também incluirá as permissões de Internet e o estado do SharedUserID!
 
 <b>Separador Permissões</b>
 Todas as permissões que existem no seu dispositivo, incluindo as que aparecem no Gestor de permissões e no Acesso especial.
-As permissões estão pré-agrupadas для facilitar a navegação (p. ex., Contactos, Microfone, Câmara, etc.).
+As permissões estão pré-agrupadas para facilitar a navegação (p. ex., Contactos, Microfone, Câmara, etc.).
 Ao clicar numa permissão, são mostradas todas as aplicações que solicitam acesso a essa permissão.
 
 As aplicações e as permissões podem ser pesquisadas por texto livre, ordenadas e filtradas segundo diferentes critérios.
