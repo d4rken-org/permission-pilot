@@ -155,7 +155,7 @@
     <string name="installed_at_x">První instalace: %s</string>
     <string name="apps_sort_install_source_label">Zdroj instalace</string>
     <string name="permissions_action_none_msg">Pro toto oprávnění není k dispozici žádná akce</string>
-    <string name="apps_filter_profile_secondary_label">Spravovaný profil(y)</string>
+    <string name="apps_filter_profile_secondary_label">Spravovaný profil</string>
     <string name="apps_filter_battery_optimization_label">Vlastní baterie</string>
     <string name="apps_filter_accessibility_label">Usnadnění přístupu</string>
     <string name="apps_filter_device_admin_label">Správce zařízení</string>
@@ -200,13 +200,13 @@
     <string name="apps_details_perm_help_declared">Ikona ⚠ znamená, že toto oprávnění vytvořila samotná aplikace, nejedná se tedy o standardní oprávnění systému Android.</string>
     <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest aplikace</string>
-    <string name="apps_details_manifest_queued">Zařazeno do fronty analýzy…</string>
-    <string name="apps_details_manifest_loading">Analýza manifestu…</string>
+    <string name="apps_details_manifest_queued">Zařazeno do fronty analýzy\u2026</string>
+    <string name="apps_details_manifest_loading">Analýza manifestu\u2026</string>
     <plurals name="apps_details_manifest_loading_progress">
-        <item quantity="one">%d manifest zbývá k analýze…</item>
-        <item quantity="few">%d manifesty zbývají k analýze…</item>
-        <item quantity="many">%d manifestů zbývá k analýze…</item>
-        <item quantity="other">%d manifestů zbývá k analýze…</item>
+        <item quantity="one">%d manifest zbývá k analýze\u2026</item>
+        <item quantity="few">%d manifesty zbývají k analýze\u2026</item>
+        <item quantity="many">%d manifestů zbývá k analýze\u2026</item>
+        <item quantity="other">%d manifestů zbývá k analýze\u2026</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Nezjištěno nic neobvyklého</string>
     <string name="apps_details_manifest_unavailable">Manifest není přístupný</string>
@@ -329,8 +329,8 @@
     <string name="permissions_details_system_badge_label">Podle systému</string>
     <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
-        <item quantity="one">+%d dalších</item>
-        <item quantity="few">+%d dalších</item>
+        <item quantity="one">+%d další</item>
+        <item quantity="few">+%d další</item>
         <item quantity="many">+%d dalších</item>
         <item quantity="other">+%d dalších</item>
     </plurals>
@@ -688,7 +688,7 @@
         <item quantity="other">Oprávnění (%d)</item>
     </plurals>
     <plurals name="watcher_detail_last_permissions_header">
-        <item quantity="one">Poslední známé oprávnění (%d)</item>
+        <item quantity="one">Poslední známá oprávnění (%d)</item>
         <item quantity="few">Poslední známá oprávnění (%d)</item>
         <item quantity="many">Poslední známá oprávnění (%d)</item>
         <item quantity="other">Poslední známá oprávnění (%d)</item>
@@ -704,14 +704,14 @@
     <string name="watcher_detail_diff_error">Nepodařilo se načíst podrobnosti oprávnění</string>
     <string name="watcher_settings_polling_label">Interval kontroly na pozadí</string>
     <plurals name="watcher_settings_polling_interval">
-        <item quantity="one">Každý %d hodin</item>
+        <item quantity="one">Každou %d hodinu</item>
         <item quantity="few">Každé %d hodiny</item>
         <item quantity="many">Každých %d hodin</item>
         <item quantity="other">Každých %d hodin</item>
     </plurals>
-    <string name="watcher_refresh_scanning">Prochází aplikacemi…</string>
-    <string name="watcher_refresh_checking">Kontroluje změny…</string>
-    <string name="watcher_search_hint">Hledat zprávy</string>
+    <string name="watcher_refresh_scanning">Skenování aplikací…</string>
+    <string name="watcher_refresh_checking">Kontrola změn…</string>
+    <string name="watcher_search_hint">Hledat hlášení</string>
     <string name="watcher_filter_has_added_permissions">Nová požadovaná oprávnění</string>
     <string name="watcher_filter_has_lost_permissions">Odebraná oprávnění</string>
     <string name="watcher_filter_has_gained_permissions">Nový udělený přístup</string>
@@ -720,24 +720,24 @@
     <string name="watcher_filter_section_permission_changes">Změny oprávnění</string>
     <string name="watcher_filter_section_status">Stav</string>
     <string name="watcher_filter_reset">Obnovit</string>
-    <string name="watcher_reports_no_matches">Žádné zprávy neodpovídají vašemu hledání nebo filtrům</string>
+    <string name="watcher_reports_no_matches">Žádná hlášení neodpovídají vašemu hledání nebo filtrům</string>
     <plurals name="watcher_upgrade_card_title">
-        <item quantity="one">Další %d zpráva</item>
-        <item quantity="few">Další %d zprávy</item>
-        <item quantity="many">Dalších %d zpráv</item>
-        <item quantity="other">Dalších %d zpráv</item>
+        <item quantity="one">%d další hlášení</item>
+        <item quantity="few">%d další hlášení</item>
+        <item quantity="many">%d dalších hlášení</item>
+        <item quantity="other">%d dalších hlášení</item>
     </plurals>
-    <string name="watcher_upgrade_card_body">Upgradujte pro zobrazení všech zpráv, podrobností a příjem upozornění</string>
+    <string name="watcher_upgrade_card_body">Upgradujte pro zobrazení všech hlášení, podrobností a příjem upozornění</string>
     <string name="snapshot_sync_channel_name">Synchronizace snímků</string>
     <string name="snapshot_sync_channel_description">Synchronizace dat aplikací na pozadí</string>
     <string name="snapshot_sync_notification_title">Synchronizace dat aplikace…</string>
     <!-- Selection -->
     <string name="general_select_all_action">Vybrat vše</string>
     <plurals name="general_x_selected_label">
-        <item quantity="one">%d vybráno</item>
-        <item quantity="few">%d vybrána</item>
-        <item quantity="many">%d vybráno</item>
-        <item quantity="other">%d vybráno</item>
+        <item quantity="one">Vybráno: %d</item>
+        <item quantity="few">Vybráno: %d</item>
+        <item quantity="many">Vybráno: %d</item>
+        <item quantity="other">Vybráno: %d</item>
     </plurals>
     <!-- Export -->
     <string name="export_app_info_action">Exportovat info o aplikaci</string>
@@ -782,7 +782,7 @@
     <string name="export_retry_action">Opakovat</string>
     <string name="export_summary_filename">Soubor</string>
     <string name="export_summary_size">Velikost</string>
-    <string name="export_summary_duration">Trvání</string>
+    <string name="export_summary_duration">Doba trvání</string>
     <plurals name="export_free_limit_message">
         <item quantity="one">Bezplatná verze je omezena na %d položku a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
         <item quantity="few">Bezplatná verze je omezena na %d položky a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
