@@ -596,7 +596,7 @@ private fun ReportListItem(
                     Text(
                         text = displayLabel,
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
+                        color = if (item.gainedCount > 0) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.primary,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier.weight(1f),
