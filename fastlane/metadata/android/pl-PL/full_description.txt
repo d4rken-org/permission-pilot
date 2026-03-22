@@ -28,7 +28,7 @@ Aplikacje i uprawnienia można wyszukiwać za pomocą tekstu, sortować i filtro
 Pulpit nawigacyjny pokazujący liczbę aplikacji według kategorii — prywatność, bezpieczeństwo, źródło instalacji i inne. Każdy wiersz kategorii prowadzi bezpośrednio do przefiltrowanej listy aplikacji.
 
 <b>Obserwator uprawnień</b>
-Otrzymuj powiadomienia, gdy aktualizacja aplikacji dodaje nowe uprawnienia lub zmienia istniejące. Obserwator uprawnień sprawdza Twoje aplikacje po każdej aktualizacji i tworzy raport, jeśli coś się zmieniło.
+Otrzymuj powiadomienia, gdy aktualizacja aplikacji dodaje nowe uprawnienia lub zmienia istniejące. Obserwator uprawnień sprawdza twoje aplikacje po każdej aktualizacji i tworzy raport, jeśli coś się zmieniło.
 
 <b>Eksport danych</b>
 Eksportuj dane aplikacji lub uprawnień w formacie Markdown, CSV lub JSON.
