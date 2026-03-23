@@ -34,6 +34,8 @@ import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 
 class PrimaryProfilePkg(
     override val packageInfo: PackageInfo,
@@ -48,8 +50,8 @@ class PrimaryProfilePkg(
 
     override val id: Pkg.Id = Pkg.Id(Pkg.Name(packageInfo.packageName), userHandle)
 
-    private var _label: String? = null
-    private var _resolvingLabel = false
+    @Volatile private var _label: String? = null
+    @Volatile private var _resolvingLabel = false
     override fun getLabel(context: Context): String {
         _label?.let { return it }
         if (_resolvingLabel) return id.pkgName.value
@@ -61,6 +63,10 @@ class PrimaryProfilePkg(
                 ?: id.pkgName.value
             _label = newLabel
             return newLabel
+        } catch (e: Exception) {
+            val fallback = id.pkgName.value
+            _label = fallback
+            return fallback
         } finally {
             _resolvingLabel = false
         }
@@ -141,9 +147,11 @@ suspend fun getNormalPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> {
     val activeAdminPkgs = ipcFunnel.devicePolicyManager.getActiveAdmins()
         ?.map { it.packageName }?.toSet() ?: emptySet()
 
+    val allPackages = ipcFunnel.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+    val semaphore = Semaphore(20)
     return coroutineScope {
-        ipcFunnel.packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
-            .map { async { it.toNormalPkg(ipcFunnel, activeAdminPkgs) } }
+        allPackages
+            .map { pkg -> async { semaphore.withPermit { pkg.toNormalPkg(ipcFunnel, activeAdminPkgs) } } }
             .awaitAll()
     }
 }

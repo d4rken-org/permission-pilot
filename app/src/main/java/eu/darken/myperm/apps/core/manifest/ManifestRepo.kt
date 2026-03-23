@@ -21,7 +21,7 @@ class ManifestRepo @Inject constructor(
     private val dispatcherProvider: DispatcherProvider,
     @ApplicationContext private val context: Context,
 ) {
-    private val semaphore = Semaphore(3)
+    private val semaphore = Semaphore(2)
     private val memoryCache = object : LinkedHashMap<String, ManifestData>(30, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, ManifestData>?) = size > 30
     }

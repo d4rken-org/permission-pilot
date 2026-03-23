@@ -31,12 +31,15 @@ import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.permissions.core.known.APermGrp
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.combineTransform
+import kotlinx.coroutines.flow.onStart
 import java.time.Instant
-import java.util.*
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.time.measureTimedValue
@@ -73,44 +76,32 @@ class PermissionRepo @Inject constructor(
         // Build declaring apps index from DB
         val declaredPermToApps = buildDeclaredPermToAppsIndex(apps)
 
-        val perms = coroutineScope {
-            val aosp = async(dispatcherProvider.Default) {
-                measureTimedValue {
-                    getPermissionsAOSP(permToApps, declaredPermToApps)
-                }.let {
-                    log(TAG) { "Perf: ${it.value.size} permissions from AOSP in ${it.duration.inWholeMilliseconds}ms" }
-                    it.value
-                }
-            }
-            val declared = async(dispatcherProvider.Default) {
-                measureTimedValue {
-                    getPermissionsDeclared(permToApps, declaredPermToApps)
-                        .filter { newPerm -> aosp.await().none { it.id == newPerm.id } }
-                }.let {
-                    log(TAG) { "Perf: ${it.value.size} permissions declared by apps in ${it.duration.inWholeMilliseconds}ms" }
-                    it.value
-                }
-            }
-            val extra = async(dispatcherProvider.Default) {
-                measureTimedValue {
-                    getPermissionsExtra(permToApps)
-                }.let {
-                    log(TAG) { "Perf: ${it.value.size} extra permissions in ${it.duration.inWholeMilliseconds}ms" }
-                    it.value
-                }
-            }
-            awaitAll(aosp, declared, extra)
-            listOf(aosp.await(), declared.await(), extra.await())
-        }
         val mappedPermissions = mutableSetOf<BasePermission>()
 
-        val fromAosp = perms[0]
+        val fromAosp = measureTimedValue {
+            getPermissionsAOSP(permToApps, declaredPermToApps)
+        }.let {
+            log(TAG) { "Perf: ${it.value.size} permissions from AOSP in ${it.duration.inWholeMilliseconds}ms" }
+            it.value
+        }
         mappedPermissions.addAll(fromAosp)
 
-        val declared = perms[1]
+        val aospIds = fromAosp.map { it.id }.toSet()
+
+        val declared = measureTimedValue {
+            getPermissionsDeclared(permToApps, declaredPermToApps, aospIds)
+        }.let {
+            log(TAG) { "Perf: ${it.value.size} permissions declared by apps in ${it.duration.inWholeMilliseconds}ms" }
+            it.value
+        }
         mappedPermissions.addAll(declared)
 
-        val extra = perms[2]
+        val extra = measureTimedValue {
+            getPermissionsExtra(permToApps)
+        }.let {
+            log(TAG) { "Perf: ${it.value.size} extra permissions in ${it.duration.inWholeMilliseconds}ms" }
+            it.value
+        }
         mappedPermissions.addAll(extra)
 
         val undeclared = measureTimedValue {
@@ -179,8 +170,8 @@ class PermissionRepo @Inject constructor(
     private suspend fun getPermissionsAOSP(
         permToApps: Map<String, List<PermissionAppRef>>,
         declaredPermToApps: Map<String, List<PermissionAppRef>>,
-    ): Collection<BasePermission> = coroutineScope {
-        (ipcFunnel.packageManager.getAllPermissionGroups(0) + listOf(null))
+    ): Collection<BasePermission> {
+        return (ipcFunnel.packageManager.getAllPermissionGroups(0) + listOf(null))
             .mapNotNull { permissionGroup ->
                 val name = permissionGroup?.name
                 log(TAG, VERBOSE) { "Querying permission group $name" }
@@ -192,32 +183,28 @@ class PermissionRepo @Inject constructor(
                 }
             }
             .flatten()
-            .map {
-                async { it.toDeclaredPermission(permToApps, declaredPermToApps) }
-            }
-            .awaitAll()
+            .map { it.toDeclaredPermission(permToApps, declaredPermToApps) }
             .distinctBy { it.id }
     }
 
     private suspend fun getPermissionsDeclared(
         permToApps: Map<String, List<PermissionAppRef>>,
         declaredPermToApps: Map<String, List<PermissionAppRef>>,
-    ): Collection<BasePermission> = coroutineScope {
+        aospIds: Set<Permission.Id>,
+    ): Collection<BasePermission> = withContext(dispatcherProvider.IO) {
         declaredPermToApps.keys
+            .filter { Permission.Id(it) !in aospIds }
             .map { permId ->
-                async {
-                    val permInfo = ipcFunnel.packageManager.getPermissionInfo2(
-                        Permission.Id(permId),
-                        PackageManager.GET_META_DATA,
-                    )
-                    if (permInfo != null) {
-                        permInfo.toDeclaredPermission(permToApps, declaredPermToApps)
-                    } else {
-                        Permission.Id(permId).toUnusedPermission(permToApps)
-                    }
+                val permInfo = ipcFunnel.packageManager.getPermissionInfo2(
+                    Permission.Id(permId),
+                    PackageManager.GET_META_DATA,
+                )
+                if (permInfo != null) {
+                    permInfo.toDeclaredPermission(permToApps, declaredPermToApps)
+                } else {
+                    Permission.Id(permId).toUnusedPermission(permToApps)
                 }
             }
-            .awaitAll()
             .distinctBy { it.id }
     }
 
@@ -247,21 +234,18 @@ class PermissionRepo @Inject constructor(
         permToApps: Map<String, List<PermissionAppRef>>,
         declaredPermToApps: Map<String, List<PermissionAppRef>>,
         mappedPermissions: Collection<BasePermission>,
-    ): Collection<BasePermission> = coroutineScope {
+    ): Collection<BasePermission> = withContext(dispatcherProvider.IO) {
         val mappedIds = mappedPermissions.map { it.id }.toSet()
         permToApps.keys
             .map { Permission.Id(it) }
             .filter { it !in mappedIds }
             .map { id ->
-                async {
-                    val info = ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
-                    when {
-                        info != null -> info.toDeclaredPermission(permToApps, declaredPermToApps)
-                        else -> id.toUnusedPermission(permToApps)
-                    }
+                val info = ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                when {
+                    info != null -> info.toDeclaredPermission(permToApps, declaredPermToApps)
+                    else -> id.toUnusedPermission(permToApps)
                 }
             }
-            .awaitAll()
             .distinctBy { it.id }
     }
 

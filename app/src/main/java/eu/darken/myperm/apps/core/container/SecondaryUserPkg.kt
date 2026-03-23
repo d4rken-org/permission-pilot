@@ -26,6 +26,8 @@ import eu.darken.myperm.permissions.core.known.APerm
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 import java.io.File
 
 class SecondaryUserPkg(
@@ -38,8 +40,8 @@ class SecondaryUserPkg(
 
     override val id: Pkg.Id = Pkg.Id(Pkg.Name(packageInfo.packageName), userHandle)
 
-    private var _label: String? = null
-    private var _resolvingLabel = false
+    @Volatile private var _label: String? = null
+    @Volatile private var _resolvingLabel = false
     override fun getLabel(context: Context): String {
         _label?.let { return it }
         if (_resolvingLabel) return id.pkgName.value
@@ -51,6 +53,10 @@ class SecondaryUserPkg(
                 ?: id.pkgName.value
             _label = newLabel
             return newLabel
+        } catch (e: Exception) {
+            val fallback = id.pkgName.value
+            _label = fallback
+            return fallback
         } finally {
             _resolvingLabel = false
         }
@@ -118,7 +124,7 @@ private fun PackageInfo.isUninstalled(): Boolean {
     }
 }
 
-suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> = coroutineScope {
+suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> {
     log(AppRepo.TAG) { "getSecondaryPkgs()" }
 
     val normal = ipcFunnel.packageManager.getInstalledPackages(0).map { it.packageName }
@@ -127,31 +133,37 @@ suspend fun getSecondaryUserPkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> = co
     )
     val newOnes = uninstalled.filter { !normal.contains(it.packageName) }
 
-    newOnes
-        .map { pkg ->
+    val semaphore = Semaphore(20)
+    return coroutineScope {
+        newOnes.map { pkg ->
             async {
-                val installerInfo = pkg.getInstallerInfo(ipcFunnel)
-                val extraPermissions = pkg.determineSpecialPermissions(ipcFunnel)
+                semaphore.withPermit {
+                    val installerInfo = pkg.getInstallerInfo(ipcFunnel)
+                    val extraPermissions = pkg.determineSpecialPermissions(ipcFunnel)
 
-                val specialPermissionStatuses = pkg.getSpecialPermissionStatuses(ipcFunnel)
-                if (pkg.isUninstalled()) {
-                    UninstalledDataPkg(
-                        packageInfo = pkg,
-                        installerInfo = installerInfo,
-                        userHandle = Process.myUserHandle(),
-                        extraPermissions = extraPermissions,
-                        specialPermissionStatuses = specialPermissionStatuses,
-                    ).also { log(AppRepo.TAG) { "PKG[uninstalled]: $it" } }
-                } else {
-                    SecondaryUserPkg(
-                        packageInfo = pkg,
-                        installerInfo = installerInfo,
-                        userHandle = ipcFunnel.userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
-                        extraPermissions = extraPermissions,
-                        specialPermissionStatuses = specialPermissionStatuses,
-                    ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
+                    val specialPermissionStatuses = pkg.getSpecialPermissionStatuses(ipcFunnel)
+                    if (pkg.isUninstalled()) {
+                        UninstalledDataPkg(
+                            packageInfo = pkg,
+                            installerInfo = installerInfo,
+                            userHandle = Process.myUserHandle(),
+                            extraPermissions = extraPermissions,
+                            specialPermissionStatuses = specialPermissionStatuses,
+                        ).also { log(AppRepo.TAG) { "PKG[uninstalled]: $it" } }
+                    } else {
+                        // Handle 11 is a best-guess: without MANAGE_USERS permission we can't
+                        // enumerate other OS users or determine which user owns this package.
+                        // Convention: 0=owner, 10=first work profile, 11=first secondary user.
+                        SecondaryUserPkg(
+                            packageInfo = pkg,
+                            installerInfo = installerInfo,
+                            userHandle = ipcFunnel.userManager.tryCreateUserHandle(11) ?: Process.myUserHandle(),
+                            extraPermissions = extraPermissions,
+                            specialPermissionStatuses = specialPermissionStatuses,
+                        ).also { log(AppRepo.TAG) { "PKG[secondary]: $it" } }
+                    }
                 }
             }
-        }
-        .awaitAll()
+        }.awaitAll()
+    }
 }
