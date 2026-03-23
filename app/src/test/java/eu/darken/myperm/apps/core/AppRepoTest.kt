@@ -62,6 +62,7 @@ class AppRepoTest : BaseTest() {
     }
 
     private fun createAppRepo(scope: TestScope) = AppRepo(
+        context = mockk(relaxed = true),
         appScope = scope,
         packageEventListener = packageEventListener,
         appSourcer = appSourcer,

@@ -1,6 +1,8 @@
 package eu.darken.myperm.apps.core
 
+import android.content.Context
 import androidx.work.WorkManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
@@ -15,8 +17,6 @@ import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
 import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
-import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
-import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
 import kotlinx.coroutines.CoroutineScope
@@ -44,6 +44,7 @@ import javax.inject.Singleton
 
 @Singleton
 class AppRepo @Inject constructor(
+    @ApplicationContext private val context: Context,
     @AppScope private val appScope: CoroutineScope,
     packageEventListener: PackageEventListener,
     private val appSourcer: AppSourcer,
@@ -150,19 +151,22 @@ class AppRepo @Inject constructor(
         val snapshotId = UUID.randomUUID().toString()
         log(TAG) { "saveSnapshot($snapshotId, reason=$reason, pkgs=${pkgs.size})" }
 
-        val mapStart = System.currentTimeMillis()
-        val allPkgEntities = ArrayList<SnapshotPkgEntity>(pkgs.size)
-        val allPermEntities = ArrayList<SnapshotPkgPermEntity>()
-        val allDeclaredPermEntities = ArrayList<SnapshotPkgDeclaredPermEntity>()
+        // Pre-resolve labels outside the transaction to avoid IPC under DB lock.
+        // loadLabel() can throw on corrupted APKs, so catch per-package.
+        val labelStart = System.currentTimeMillis()
         for (pkg in pkgs) {
-            val entities = snapshotMapper.toEntities(snapshotId, pkg)
-            allPkgEntities.add(entities.pkg)
-            allPermEntities.addAll(entities.permissions)
-            allDeclaredPermEntities.addAll(entities.declaredPermissions)
+            try {
+                pkg.getLabel(context)
+            } catch (e: Exception) {
+                log(TAG, WARN) { "Failed to pre-resolve label for ${pkg.id}: $e" }
+            }
         }
-        log(TAG) { "Perf: saveSnapshot() mapped ${pkgs.size} pkgs in ${System.currentTimeMillis() - mapStart}ms" }
+        log(TAG) { "Perf: saveSnapshot() pre-resolved labels in ${System.currentTimeMillis() - labelStart}ms" }
 
+        // Map + insert atomically, in chunks to limit peak entity memory.
+        // Labels are now cached — toEntities() does no IPC.
         val txStart = System.currentTimeMillis()
+        val pkgList = pkgs.toList()
         database.inTransaction {
             snapshotDao.insertSnapshot(
                 SnapshotEntity(
@@ -173,9 +177,12 @@ class AppRepo @Inject constructor(
                     durationMs = durationMs,
                 )
             )
-            snapshotPkgDao.insertPkgs(allPkgEntities)
-            snapshotPkgDao.insertPermissions(allPermEntities)
-            snapshotPkgDao.insertDeclaredPermissions(allDeclaredPermEntities)
+            for (chunk in pkgList.chunked(50)) {
+                val entities = chunk.map { snapshotMapper.toEntities(snapshotId, it) }
+                snapshotPkgDao.insertPkgs(entities.map { it.pkg })
+                snapshotPkgDao.insertPermissions(entities.flatMap { it.permissions })
+                snapshotPkgDao.insertDeclaredPermissions(entities.flatMap { it.declaredPermissions })
+            }
         }
         log(TAG) { "Perf: saveSnapshot() DB transaction in ${System.currentTimeMillis() - txStart}ms" }
 

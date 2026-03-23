@@ -42,8 +42,8 @@ class SecondaryProfilePkg(
     override val id: Pkg.Id = Pkg.Id(Pkg.Name(packageInfo.packageName), userHandle)
 
 
-    private var _label: String? = null
-    private var _resolvingLabel = false
+    @Volatile private var _label: String? = null
+    @Volatile private var _resolvingLabel = false
     override fun getLabel(context: Context): String {
         _label?.let { return it }
         if (_resolvingLabel) return id.pkgName.value
@@ -61,6 +61,10 @@ class SecondaryProfilePkg(
                 ?: id.pkgName.value
             _label = newLabel
             return newLabel
+        } catch (e: Exception) {
+            val fallback = id.pkgName.value
+            _label = fallback
+            return fallback
         } finally {
             _resolvingLabel = false
         }
