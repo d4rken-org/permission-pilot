@@ -1,6 +1,7 @@
 package eu.darken.myperm.export.ui
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.net.Uri
 import androidx.lifecycle.SavedStateHandle
@@ -86,7 +87,7 @@ class ExportViewModel @Inject constructor(
     val events = SingleEventFlow<Event>()
 
     sealed interface Event {
-        data class LaunchSaf(val mimeType: String, val fileName: String) : Event
+        data class LaunchSaf(val fileName: String) : Event
     }
 
     data class State(
@@ -247,7 +248,12 @@ class ExportViewModel @Inject constructor(
             is ExportMode.Permissions -> permConfig.value.format
         }
         val fileName = "permission-pilot-export.${format.extension}"
-        events.tryEmit(Event.LaunchSaf(format.mimeType, fileName))
+        events.tryEmit(Event.LaunchSaf(fileName))
+    }
+
+    fun onSafUnavailable() {
+        log(TAG, WARN) { "No file manager available for SAF" }
+        errorEvents.tryEmit(ActivityNotFoundException("No file manager available to save file"))
     }
 
     fun onSafResult(uri: Uri?) = launch {
