@@ -664,6 +664,12 @@
         <item quantity="other">%d lisäraporttia</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Päivitä nähdäksesi kaikki raportit, tiedot ja saadaksesi ilmoituksia</string>
+    <string name="watcher_battery_optimization_title">Akun optimointi aktiivinen</string>
+    <string name="watcher_battery_optimization_description">Akun optimointi saattaa estää taustatarkistuksia toimimasta luotettavasti. Voit vapauttaa tämän sovelluksen akun asetuksissa.</string>
+    <string name="watcher_battery_optimization_open_settings">Akun asetukset</string>
+    <string name="watcher_battery_optimization_dismiss">Älä näytä uudelleen</string>
+    <string name="watcher_settings_battery_hint_label">Näytä akun optimointivihjeen</string>
+    <string name="watcher_settings_battery_hint_desc">Näytä vihje, kun akun optimointi saattaa estää taustatarkistuksia</string>
     <string name="snapshot_sync_channel_name">Tilannekuvasynkronointi</string>
     <string name="snapshot_sync_channel_description">Sovellustietojen taustasynkronointi</string>
     <string name="snapshot_sync_notification_title">Synkronoidaan sovellustietoja…</string>

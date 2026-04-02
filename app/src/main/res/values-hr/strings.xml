@@ -696,6 +696,12 @@
         <item quantity="other">%d više izvješća</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Nadogradite za pregled svih izvješća, pojedinosti i primanje obavijesti</string>
+    <string name="watcher_battery_optimization_title">Optimizacija baterije aktivna</string>
+    <string name="watcher_battery_optimization_description">Optimizacija baterije može spriječiti pouzdano pokretanje pozadinskih provjera. Možete izuzeti ovu aplikaciju u postavkama baterije.</string>
+    <string name="watcher_battery_optimization_open_settings">Postavke baterije</string>
+    <string name="watcher_battery_optimization_dismiss">Ne prikazuj više</string>
+    <string name="watcher_settings_battery_hint_label">Prikaži savjet za optimizaciju baterije</string>
+    <string name="watcher_settings_battery_hint_desc">Prikaži savjet kada optimizacija baterije može spriječiti pozadinske provjere</string>
     <string name="snapshot_sync_channel_name">Sinkronizacija snižmaka</string>
     <string name="snapshot_sync_channel_description">Pozadinska sinkronizacija podataka aplikacija</string>
     <string name="snapshot_sync_notification_title">Sinkronizacija podataka aplikacija…</string>

@@ -664,6 +664,12 @@
         <item quantity="other">%d informes más</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Actualiza para ver todos los informes, detalles y recibir notificaciones</string>
+    <string name="watcher_battery_optimization_title">Optimización de batería activa</string>
+    <string name="watcher_battery_optimization_description">La optimización de batería puede impedir que las comprobaciones en segundo plano se ejecuten de forma fiable. Puedes eximir esta aplicación en los ajustes de batería.</string>
+    <string name="watcher_battery_optimization_open_settings">Ajustes de batería</string>
+    <string name="watcher_battery_optimization_dismiss">No mostrar de nuevo</string>
+    <string name="watcher_settings_battery_hint_label">Mostrar aviso de optimización de batería</string>
+    <string name="watcher_settings_battery_hint_desc">Mostrar un aviso cuando la optimización de batería pueda estar impidiendo las comprobaciones en segundo plano</string>
     <string name="snapshot_sync_channel_name">Sincronización de instantáneas</string>
     <string name="snapshot_sync_channel_description">Sincronización de datos de aplicaciones en segundo plano</string>
     <string name="snapshot_sync_notification_title">Sincronizando datos de la aplicación…</string>

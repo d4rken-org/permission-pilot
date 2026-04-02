@@ -792,6 +792,12 @@
         <item quantity="other">%d تقارير إضافية</item>
     </plurals>
     <string name="watcher_upgrade_card_body">قم بالترقية لعرض جميع التقارير والتفاصيل وتلقي الإشعارات</string>
+    <string name="watcher_battery_optimization_title">تحسين البطارية نشط</string>
+    <string name="watcher_battery_optimization_description">قد يمنع تحسين البطارية تشغيل عمليات الفحص في الخلفية بشكل موثوق. يمكنك إعفاء هذا التطبيق في إعدادات البطارية.</string>
+    <string name="watcher_battery_optimization_open_settings">إعدادات البطارية</string>
+    <string name="watcher_battery_optimization_dismiss">لا تُظهر مجدداً</string>
+    <string name="watcher_settings_battery_hint_label">إظهار تلميح تحسين البطارية</string>
+    <string name="watcher_settings_battery_hint_desc">إظهار تلميح عند احتمال منع تحسين البطارية لعمليات الفحص في الخلفية</string>
     <string name="snapshot_sync_channel_name">مزامنة اللقطات</string>
     <string name="snapshot_sync_channel_description">مزامنة بيانات التطبيق في الخلفية</string>
     <string name="snapshot_sync_notification_title">جاري مزامنة بيانات التطبيق…</string>

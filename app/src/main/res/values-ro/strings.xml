@@ -696,6 +696,12 @@
         <item quantity="other">%d de rapoarte în plus</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Actualizează pentru a vedea toate rapoartele, detaliile şi a primi notificări</string>
+    <string name="watcher_battery_optimization_title">Optimizare baterie activă</string>
+    <string name="watcher_battery_optimization_description">Optimizarea bateriei poate împiedica rularea fiabilă a verificărilor în fundal. Puteți excepta această aplicație în setările bateriei.</string>
+    <string name="watcher_battery_optimization_open_settings">Setări baterie</string>
+    <string name="watcher_battery_optimization_dismiss">Nu mai afișa</string>
+    <string name="watcher_settings_battery_hint_label">Afișează indiciu privind optimizarea bateriei</string>
+    <string name="watcher_settings_battery_hint_desc">Afișează un indiciu când optimizarea bateriei poate împiedica verificările în fundal</string>
     <string name="snapshot_sync_channel_name">Sincronizare instantaneu</string>
     <string name="snapshot_sync_channel_description">Sincronizare date aplicații în fundal</string>
     <string name="snapshot_sync_notification_title">Sincronizare date aplicații…</string>

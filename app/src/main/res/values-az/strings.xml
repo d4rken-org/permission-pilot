@@ -664,6 +664,12 @@
         <item quantity="other">%d daha hesabat</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Bütn hesabatları, təfsilatları görmək və bildirişlər almaq üçün yüksəlt</string>
+    <string name="watcher_battery_optimization_title">Batareya optimallaşdırması aktivdir</string>
+    <string name="watcher_battery_optimization_description">Batareya optimallaşdırması arxa fon yoxlamalarının etibarlı şəkildə işləməsinin qarşısını ala bilər. Bu tətbiqi batareya parametrlərindən istisna edə bilərsiniz.</string>
+    <string name="watcher_battery_optimization_open_settings">Batareya parametrləri</string>
+    <string name="watcher_battery_optimization_dismiss">Bir daha göstərmə</string>
+    <string name="watcher_settings_battery_hint_label">Batareya optimallaşdırma ipucunu göstər</string>
+    <string name="watcher_settings_battery_hint_desc">Batareya optimallaşdırması arxa fon yoxlamalarının qarşısını ala biləcəyi zaman ipucu göstər</string>
     <string name="snapshot_sync_channel_name">Snapshot Sinxronizasiyasi</string>
     <string name="snapshot_sync_channel_description">Arxa fonda tətbiq məlumatlarının sinxronizasiyası</string>
     <string name="snapshot_sync_notification_title">Tətbiq məlumatları sinxronlaşdırılır…</string>

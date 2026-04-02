@@ -664,6 +664,12 @@
         <item quantity="other">%d επιπλέον αναφορές</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Αναβαθμίστε για να δείτε όλες τις αναφορές, λεπτομέρειες και να λαμβάνετε ειδοποιήσεις</string>
+    <string name="watcher_battery_optimization_title">Βελτιστοποίηση μπαταρίας ενεργή</string>
+    <string name="watcher_battery_optimization_description">Η βελτιστοποίηση μπαταρίας ενδέχεται να εμποδίζει την αξιόπιστη εκτέλεση των ελέγχων παρασκηνίου. Μπορείτε να εξαιρέσετε αυτή την εφαρμογή στις ρυθμίσεις μπαταρίας.</string>
+    <string name="watcher_battery_optimization_open_settings">Ρυθμίσεις μπαταρίας</string>
+    <string name="watcher_battery_optimization_dismiss">Να μην εμφανιστεί ξανά</string>
+    <string name="watcher_settings_battery_hint_label">Εμφάνιση υπόδειξης βελτιστοποίησης μπαταρίας</string>
+    <string name="watcher_settings_battery_hint_desc">Εμφάνιση υπόδειξης όταν η βελτιστοποίηση μπαταρίας ενδέχεται να εμποδίζει τους ελέγχους παρασκηνίου</string>
     <string name="snapshot_sync_channel_name">Συγχρονισμός στιγμιότυπου</string>
     <string name="snapshot_sync_channel_description">Συγχρονισμός δεδομένων εφαρμογής στο παρασκήνιο</string>
     <string name="snapshot_sync_notification_title">Συγχρονισμός δεδομένων εφαρμογής…</string>

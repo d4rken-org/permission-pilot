@@ -728,6 +728,12 @@
         <item quantity="other">Ещё %d отчётов</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Обновитесь, чтобы просматривать все отчёты, детали и получать уведомления</string>
+    <string name="watcher_battery_optimization_title">Оптимизация батареи активна</string>
+    <string name="watcher_battery_optimization_description">Оптимизация батареи может препятствовать надёжному выполнению фоновых проверок. Вы можете добавить это приложение в исключения в настройках батареи.</string>
+    <string name="watcher_battery_optimization_open_settings">Настройки батареи</string>
+    <string name="watcher_battery_optimization_dismiss">Не показывать снова</string>
+    <string name="watcher_settings_battery_hint_label">Показывать подсказку об оптимизации батареи</string>
+    <string name="watcher_settings_battery_hint_desc">Показывать подсказку, когда оптимизация батареи может препятствовать фоновым проверкам</string>
     <string name="snapshot_sync_channel_name">Синхронизация снимков</string>
     <string name="snapshot_sync_channel_description">Фоновая синхронизация данных приложений</string>
     <string name="snapshot_sync_notification_title">Синхронизация данных приложений…</string>

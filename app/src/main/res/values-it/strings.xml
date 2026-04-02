@@ -664,6 +664,12 @@
         <item quantity="other">%d altri report</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Aggiorna per visualizzare tutti i report, i dettagli e ricevere notifiche</string>
+    <string name="watcher_battery_optimization_title">Ottimizzazione batteria attiva</string>
+    <string name="watcher_battery_optimization_description">L\'ottimizzazione della batteria potrebbe impedire l\'esecuzione affidabile dei controlli in background. Puoi esentare questa app nelle impostazioni della batteria.</string>
+    <string name="watcher_battery_optimization_open_settings">Impostazioni batteria</string>
+    <string name="watcher_battery_optimization_dismiss">Non mostrare più</string>
+    <string name="watcher_settings_battery_hint_label">Mostra suggerimento ottimizzazione batteria</string>
+    <string name="watcher_settings_battery_hint_desc">Mostra un suggerimento quando l\'ottimizzazione della batteria potrebbe impedire i controlli in background</string>
     <string name="snapshot_sync_channel_name">Sincronizzazione snapshot</string>
     <string name="snapshot_sync_channel_description">Sincronizzazione dati app in background</string>
     <string name="snapshot_sync_notification_title">Sincronizzazione dati app…</string>

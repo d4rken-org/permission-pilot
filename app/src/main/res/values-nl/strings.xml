@@ -664,6 +664,12 @@
         <item quantity="other">%d meer rapporten</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgrade om alle rapporten, details te bekijken en meldingen te ontvangen</string>
+    <string name="watcher_battery_optimization_title">Batterijoptimalisatie actief</string>
+    <string name="watcher_battery_optimization_description">Batterijoptimalisatie kan ervoor zorgen dat achtergrondcontroles niet betrouwbaar worden uitgevoerd. Je kunt deze app vrijstellen in de batterijinstellingen.</string>
+    <string name="watcher_battery_optimization_open_settings">Batterijinstellingen</string>
+    <string name="watcher_battery_optimization_dismiss">Niet meer tonen</string>
+    <string name="watcher_settings_battery_hint_label">Hint voor batterijoptimalisatie tonen</string>
+    <string name="watcher_settings_battery_hint_desc">Toon een hint wanneer batterijoptimalisatie achtergrondcontroles mogelijk verhindert</string>
     <string name="snapshot_sync_channel_name">Snapshot-synchronisatie</string>
     <string name="snapshot_sync_channel_description">Achtergrond app-gegevenssynchronisatie</string>
     <string name="snapshot_sync_notification_title">App-gegevens synchroniseren…</string>

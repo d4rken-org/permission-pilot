@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Pilot Uprawnień</string>
+    <string name="app_name">Pilot Uprawnień </string>
     <string name="label_help">Pomoc</string>
     <string name="general_error_label">Błąd</string>
     <string name="general_share_action">Udostępnij</string>
@@ -728,6 +728,12 @@
         <item quantity="other">%d raportów więcej</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Uaktualnij, aby przeglądać wszystkie raporty, szczegóły i otrzymywać powiadomienia</string>
+    <string name="watcher_battery_optimization_title">Optymalizacja baterii aktywna</string>
+    <string name="watcher_battery_optimization_description">Optymalizacja baterii może uniemożliwić niezawodne wykonywanie sprawdzeń w tle. Możesz wyłączyć tę aplikację z optymalizacji w ustawieniach baterii.</string>
+    <string name="watcher_battery_optimization_open_settings">Ustawienia baterii</string>
+    <string name="watcher_battery_optimization_dismiss">Nie pokazuj ponownie</string>
+    <string name="watcher_settings_battery_hint_label">Pokaż wskazówkę dotyczącą optymalizacji baterii</string>
+    <string name="watcher_settings_battery_hint_desc">Pokaż wskazówkę, gdy optymalizacja baterii może uniemożliwiać wykonywanie sprawdzeń w tle</string>
     <string name="snapshot_sync_channel_name">Synchronizacja migawek</string>
     <string name="snapshot_sync_channel_description">Synchronizacja danych aplikacji w tle</string>
     <string name="snapshot_sync_notification_title">Synchronizowanie danych aplikacji…</string>

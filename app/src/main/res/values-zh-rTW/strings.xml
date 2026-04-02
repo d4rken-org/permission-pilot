@@ -632,6 +632,12 @@
         <item quantity="other">再多 %d 個報告</item>
     </plurals>
     <string name="watcher_upgrade_card_body">升級以查看所有報告、詳情並接收通知</string>
+    <string name="watcher_battery_optimization_title">電池優化已啟用</string>
+    <string name="watcher_battery_optimization_description">電池優化可能導致背景檢查無法可靠執行。您可以在電池設定中將此應用程式設為例外。</string>
+    <string name="watcher_battery_optimization_open_settings">電池設定</string>
+    <string name="watcher_battery_optimization_dismiss">不再顯示</string>
+    <string name="watcher_settings_battery_hint_label">顯示電池優化提示</string>
+    <string name="watcher_settings_battery_hint_desc">當電池優化可能阻止背景檢查時顯示提示</string>
     <string name="snapshot_sync_channel_name">快照同步</string>
     <string name="snapshot_sync_channel_description">背景應用程式資料同步</string>
     <string name="snapshot_sync_notification_title">同步應用程式資料中…</string>

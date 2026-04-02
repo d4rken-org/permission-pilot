@@ -664,6 +664,12 @@
         <item quantity="other">%d fler rapporter</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Uppgradera för att se alla rapporter, detaljer och få meddelanden</string>
+    <string name="watcher_battery_optimization_title">Batterioptimering aktiv</string>
+    <string name="watcher_battery_optimization_description">Batterioptimering kan förhindra bakgrundskontroller från att köras tillförlitligt. Du kan undanta den här appen i batterinställningar.</string>
+    <string name="watcher_battery_optimization_open_settings">Batterinställningar</string>
+    <string name="watcher_battery_optimization_dismiss">Visa inte igen</string>
+    <string name="watcher_settings_battery_hint_label">Visa tips om batterioptimering</string>
+    <string name="watcher_settings_battery_hint_desc">Visa ett tips när batterioptimering kan förhindra bakgrundskontroller</string>
     <string name="snapshot_sync_channel_name">Snapshot-synkronisering</string>
     <string name="snapshot_sync_channel_description">Bakgrundssynkronisering av appdata</string>
     <string name="snapshot_sync_notification_title">Synkroniserar appdata…</string>

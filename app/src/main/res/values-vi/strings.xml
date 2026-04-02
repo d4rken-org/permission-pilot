@@ -632,6 +632,12 @@
         <item quantity="other">%d báo cáo nữa</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Nâng cấp để xem tất cả báo cáo, chi tiết và nhận thông báo</string>
+    <string name="watcher_battery_optimization_title">Tối ưu hóa pin đang hoạt động</string>
+    <string name="watcher_battery_optimization_description">Tối ưu hóa pin có thể ngăn các kiểm tra nền chạy ổn định. Bạn có thể miễn trừ ứng dụng này trong cài đặt pin.</string>
+    <string name="watcher_battery_optimization_open_settings">Cài đặt pin</string>
+    <string name="watcher_battery_optimization_dismiss">Không hiển thị lại</string>
+    <string name="watcher_settings_battery_hint_label">Hiển thị gợi ý tối ưu hóa pin</string>
+    <string name="watcher_settings_battery_hint_desc">Hiển thị gợi ý khi tối ưu hóa pin có thể ngăn các kiểm tra nền</string>
     <string name="snapshot_sync_channel_name">Đồng bộ ảnh chụp</string>
     <string name="snapshot_sync_channel_description">Đồng bộ dữ liệu ứng dụng nền</string>
     <string name="snapshot_sync_notification_title">Đang đồng bộ dữ liệu ứng dụng…</string>

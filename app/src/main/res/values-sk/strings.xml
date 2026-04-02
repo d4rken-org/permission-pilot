@@ -692,6 +692,12 @@
         <item quantity="other">%d d\'alších správ</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgradujte na zobrazenie všetkých správ, detailov a na prijatie upozornení</string>
+    <string name="watcher_battery_optimization_title">Aktívna optimalizácia batérie</string>
+    <string name="watcher_battery_optimization_description">Optimalizácia batérie môže zabrániť spoľahlivému spúšťaniu kontrol na pozadí. Túto aplikáciu môžete vyňať z optimalizácie v nastaveniach batérie.</string>
+    <string name="watcher_battery_optimization_open_settings">Nastavenia batérie</string>
+    <string name="watcher_battery_optimization_dismiss">Nezobrazovať znova</string>
+    <string name="watcher_settings_battery_hint_label">Zobraziť upozornenie na optimalizáciu batérie</string>
+    <string name="watcher_settings_battery_hint_desc">Zobraziť upozornenie, keď optimalizácia batérie môže brániť kontrolám na pozadí</string>
     <string name="snapshot_sync_channel_name">Synchronizácia snímok</string>
     <string name="snapshot_sync_channel_description">Synchronizácia dát aplikácií na pozadí</string>
     <string name="snapshot_sync_notification_title">Synchronizácia dát aplikácií…</string>

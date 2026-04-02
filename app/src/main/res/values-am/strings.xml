@@ -664,6 +664,12 @@
         <item quantity="other">%d ተጨማሪ ሪፖርቶች</item>
     </plurals>
     <string name="watcher_upgrade_card_body">ሁሉም ሪፖርቶችን፣ ዝርዖችን፣ ወደ ግበዘታዎች ለመከፈት ዳግግሩ</string>
+    <string name="watcher_battery_optimization_title">የባትሪ ኦፕቲሚዜሽን ገብሯል</string>
+    <string name="watcher_battery_optimization_description">የባትሪ ኦፕቲሚዜሽን የጀርባ ምርመራዎችን አስተማማኝ በሆነ መንገድ እንዳይሰሩ ሊከለክል ይችላል። ይህን መተግበሪያ በባትሪ ቅንብሮች ውስጥ ማስወጣት ይችላሉ።</string>
+    <string name="watcher_battery_optimization_open_settings">የባትሪ ቅንብሮች</string>
+    <string name="watcher_battery_optimization_dismiss">እንደገና አታሳይ</string>
+    <string name="watcher_settings_battery_hint_label">የባትሪ ኦፕቲሚዜሽን ፍንጭ አሳይ</string>
+    <string name="watcher_settings_battery_hint_desc">የባትሪ ኦፕቲሚዜሽን የጀርባ ምርመራዎችን ሊከለክል ሲችል ፍንጭ አሳይ</string>
     <string name="snapshot_sync_channel_name">የየለከ ሜኪኰበት እክክ</string>
     <string name="snapshot_sync_channel_description">የበስተመለ የአፕ ዳታ ሕረት</string>
     <string name="snapshot_sync_notification_title">የአፕ ዳታን ይብካለ…</string>

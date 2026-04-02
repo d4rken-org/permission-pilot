@@ -589,7 +589,7 @@
         <item quantity="other">%d件のレポート</item>
     </plurals>
     <string name="watcher_notification_permission_title">通知が利用できません</string>
-    <string name="watcher_notification_permission_description">権限変更は追跞されていますが、通知を表示できません。権限変更のアラートを受け取るには通知を有効にしてください。</string>
+    <string name="watcher_notification_permission_description">権限変更は追跡されていますが、通知を表示できません。権限変更のアラートを受け取るには通知を有効にしてください。</string>
     <string name="watcher_notification_permission_grant">権限を付与</string>
     <string name="watcher_notification_permission_open_settings">設定を開く</string>
     <string name="watcher_notification_permission_disable">通知を無効化</string>
@@ -632,6 +632,12 @@
         <item quantity="other">さらに%d件のレポート</item>
     </plurals>
     <string name="watcher_upgrade_card_body">すべてのレポート、詳細、通知を受け取るにはアップグレード</string>
+    <string name="watcher_battery_optimization_title">バッテリーの最適化が有効</string>
+    <string name="watcher_battery_optimization_description">バッテリーの最適化により、バックグラウンドチェックが正常に実行されない場合があります。バッテリー設定でこのアプリを除外できます。</string>
+    <string name="watcher_battery_optimization_open_settings">バッテリー設定</string>
+    <string name="watcher_battery_optimization_dismiss">次から表示しない</string>
+    <string name="watcher_settings_battery_hint_label">バッテリーの最適化ヒントを表示</string>
+    <string name="watcher_settings_battery_hint_desc">バッテリーの最適化によりバックグラウンドチェックが妨げられている可能性がある場合にヒントを表示</string>
     <string name="snapshot_sync_channel_name">スナップショット同期</string>
     <string name="snapshot_sync_channel_description">バックグラウンドアプリデータ同期</string>
     <string name="snapshot_sync_notification_title">アプリデータを同期中…</string>

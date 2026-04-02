@@ -632,6 +632,12 @@
         <item quantity="other">เพิ่มอีก %d รายงาน</item>
     </plurals>
     <string name="watcher_upgrade_card_body">อัปเกรดเพื่อดูรายงานทั้งหมด รายละเอียด และรับการแจ้งเตือน</string>
+    <string name="watcher_battery_optimization_title">การปรับแต่งแบตเตอรี่ใช้งานอยู่</string>
+    <string name="watcher_battery_optimization_description">การปรับแต่งแบตเตอรี่อาจป้องกันไม่ให้การตรวจสอบเบื้องหลังทำงานได้อย่างน่าเชื่อถือ คุณสามารถยกเว้นแอปนี้ในการตั้งค่าแบตเตอรี่ได้</string>
+    <string name="watcher_battery_optimization_open_settings">การตั้งค่าแบตเตอรี่</string>
+    <string name="watcher_battery_optimization_dismiss">ไม่ต้องแสดงอีก</string>
+    <string name="watcher_settings_battery_hint_label">แสดงคำแนะนำการปรับแต่งแบตเตอรี่</string>
+    <string name="watcher_settings_battery_hint_desc">แสดงคำแนะนำเมื่อการปรับแต่งแบตเตอรี่อาจป้องกันการตรวจสอบเบื้องหลัง</string>
     <string name="snapshot_sync_channel_name">การซิงค์สแนปช็อต</string>
     <string name="snapshot_sync_channel_description">การซิงค์ข้อมูลแอปเบื้องหลัง</string>
     <string name="snapshot_sync_notification_title">กำลังซิงค์ข้อมูลแอป…</string>

@@ -664,6 +664,12 @@
         <item quantity="other">%d daha fazla rapor</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Tüm raporları görmek, ayrıntılara erişmek ve bildirim almak için yükselt</string>
+    <string name="watcher_battery_optimization_title">Pil optimizasyonu etkin</string>
+    <string name="watcher_battery_optimization_description">Pil optimizasyonu, arka plan kontrollerinin güvenilir şekilde çalışmasını engelleyebilir. Bu uygulamayı pil ayarlarından muaf tutabilirsiniz.</string>
+    <string name="watcher_battery_optimization_open_settings">Pil ayarları</string>
+    <string name="watcher_battery_optimization_dismiss">Bir daha gösterme</string>
+    <string name="watcher_settings_battery_hint_label">Pil optimizasyonu ipucunu göster</string>
+    <string name="watcher_settings_battery_hint_desc">Pil optimizasyonu arka plan kontrollerini engelliyor olabileceğinde ipucu göster</string>
     <string name="snapshot_sync_channel_name">Anlık Görüntü Senkronizasyonu</string>
     <string name="snapshot_sync_channel_description">Arka planda uygulama veri senkronizasyonu</string>
     <string name="snapshot_sync_notification_title">Uygulama verileri senkronize ediliyor…</string>

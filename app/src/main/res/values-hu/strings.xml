@@ -664,6 +664,12 @@
         <item quantity="other">%d további jelentés</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Frissíts az összes jelentés, részlet megtekitéséhez és értesítések fogadásához</string>
+    <string name="watcher_battery_optimization_title">Akkumulátor-optimalizálás aktív</string>
+    <string name="watcher_battery_optimization_description">Az akkumulátor-optimalizálás megakadályozhatja a háttérellenőrzések megbízható futtatását. Mentesítheti ezt az alkalmazást az akkumulátor beállításaiban.</string>
+    <string name="watcher_battery_optimization_open_settings">Akkumulátor beállításai</string>
+    <string name="watcher_battery_optimization_dismiss">Ne jelenjen meg újra</string>
+    <string name="watcher_settings_battery_hint_label">Akkumulátor-optimalizálási tipp megjelenítése</string>
+    <string name="watcher_settings_battery_hint_desc">Tipp megjelenítése, ha az akkumulátor-optimalizálás megakadályozhatja a háttérellenőrzéseket</string>
     <string name="snapshot_sync_channel_name">Pillanatkép-szinkronizáció</string>
     <string name="snapshot_sync_channel_description">Háttérbeli alkalmazásadatok szinkronizálása</string>
     <string name="snapshot_sync_notification_title">Alkalmazásadatok szinkronizálása…</string>

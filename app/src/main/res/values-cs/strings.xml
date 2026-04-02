@@ -609,10 +609,10 @@
     <string name="watcher_channel_name">Hlídač oprávnění</string>
     <string name="watcher_channel_description">Upozornění o změnách oprávnění v nainstalovaných aplikacích</string>
     <plurals name="watcher_notification_new_permissions">
-        <item quantity="one">%1$s získal %2$d nové oprávnění</item>
-        <item quantity="few">%1$s získal %2$d nová oprávnění</item>
-        <item quantity="many">%1$s získal %2$d nových oprávnění</item>
-        <item quantity="other">%1$s získal %2$d nových oprávnění</item>
+        <item quantity="one">Aplikace %1$s získala %2$d nové oprávnění</item>
+        <item quantity="few">Aplikace %1$s získala %2$d nová oprávnění</item>
+        <item quantity="many">Aplikace %1$s získala %2$d nových oprávnění</item>
+        <item quantity="other">Aplikace %1$s získala %2$d nových oprávnění</item>
     </plurals>
     <plurals name="watcher_notification_changed_permissions">
         <item quantity="one">%1$s: %2$d oprávnění bylo změněno</item>
@@ -728,6 +728,12 @@
         <item quantity="other">%d dalších hlášení</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgradujte pro zobrazení všech hlášení, podrobností a příjem upozornění</string>
+    <string name="watcher_battery_optimization_title">Optimalizace baterie aktivní</string>
+    <string name="watcher_battery_optimization_description">Optimalizace baterie může bránit spolehlivému spouštění kontrol na pozadí. Tuto aplikaci můžete vyloučit v nastavení baterie.</string>
+    <string name="watcher_battery_optimization_open_settings">Nastavení baterie</string>
+    <string name="watcher_battery_optimization_dismiss">Příště nezobrazovat</string>
+    <string name="watcher_settings_battery_hint_label">Zobrazit nápovědu k optimalizaci baterie</string>
+    <string name="watcher_settings_battery_hint_desc">Zobrazit nápovědu, když optimalizace baterie může bránit kontrolám na pozadí</string>
     <string name="snapshot_sync_channel_name">Synchronizace snímků</string>
     <string name="snapshot_sync_channel_description">Synchronizace dat aplikací na pozadí</string>
     <string name="snapshot_sync_notification_title">Synchronizace dat aplikace…</string>
