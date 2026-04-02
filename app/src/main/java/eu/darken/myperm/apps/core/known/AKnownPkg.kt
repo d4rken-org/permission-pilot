@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.AppStore
-import kotlin.reflect.full.isSubclassOf
 
 @Keep
 sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
@@ -51,10 +50,16 @@ sealed class AKnownPkg constructor(override val id: Pkg.Id) : Pkg {
     companion object {
         // Without lazy there is an NPE: https://youtrack.jetbrains.com/issue/KT-25957
         val values: List<AKnownPkg> by lazy {
-            AKnownPkg::class.nestedClasses
-                .filter { clazz -> clazz.isSubclassOf(AKnownPkg::class) }
-                .map { clazz -> clazz.objectInstance }
-                .filterIsInstance<AKnownPkg>()
+            listOf(
+                AndroidSystem,
+                GooglePlay,
+                VivoAppStore,
+                OppoMarket,
+                HuaweiAppGallery,
+                SamsungAppStore,
+                XiaomiAppStore,
+                FDroid,
+            )
         }
 
         val APP_STORES by lazy { values.filterIsInstance<AppStore>() }

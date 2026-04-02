@@ -16,4 +16,4 @@ sealed class QueriesResult {
     data class Error(val error: Throwable) : QueriesResult()
 }
 
-enum class UnavailableReason { APK_NOT_FOUND, APK_NOT_READABLE, PKG_NOT_FOUND }
+enum class UnavailableReason { APK_NOT_FOUND, APK_NOT_READABLE, PKG_NOT_FOUND, LOW_MEMORY }

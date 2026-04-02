@@ -55,8 +55,11 @@ class ManifestRepo @Inject constructor(
 
             log(TAG) { "Parsing APK for $pkgName at ${appMeta.sourceDir}" }
             val result = apkManifestReader.readManifest(appMeta.sourceDir)
-            manifestCache.put(pkgName, appMeta.versionCode, appMeta.lastUpdateTime, result)
-            synchronized(memoryCache) { memoryCache[cacheKey] = result }
+            // Only cache successful parses — transient failures (LOW_MEMORY) should be retried
+            if (result.rawXml is RawXmlResult.Success) {
+                manifestCache.put(pkgName, appMeta.versionCode, appMeta.lastUpdateTime, result)
+                synchronized(memoryCache) { memoryCache[cacheKey] = result }
+            }
             result
         }
     }

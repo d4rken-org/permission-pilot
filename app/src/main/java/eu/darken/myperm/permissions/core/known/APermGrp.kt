@@ -4,7 +4,6 @@ import androidx.annotation.Keep
 import androidx.annotation.StringRes
 import eu.darken.myperm.R
 import eu.darken.myperm.permissions.core.PermissionGroup
-import kotlin.reflect.full.isSubclassOf
 
 @Keep
 sealed class APermGrp constructor(override val id: PermissionGroup.Id) : PermissionGroup {
@@ -78,10 +77,20 @@ sealed class APermGrp constructor(override val id: PermissionGroup.Id) : Permiss
 
     companion object {
         val values: List<APermGrp> by lazy {
-            APermGrp::class.nestedClasses
-                .filter { clazz -> clazz.isSubclassOf(APermGrp::class) }
-                .map { clazz -> clazz.objectInstance }
-                .filterIsInstance<APermGrp>()
+            listOf(
+                Camera,
+                Audio,
+                Calendar,
+                Contacts,
+                Files,
+                Apps,
+                Location,
+                Calls,
+                Sensors,
+                Messaging,
+                Connectivity,
+                Other,
+            )
         }
     }
 }
