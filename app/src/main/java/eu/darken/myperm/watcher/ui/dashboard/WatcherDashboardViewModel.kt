@@ -17,6 +17,7 @@ import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.PermissionDiff
 import eu.darken.myperm.watcher.core.WatcherManager
+import eu.darken.myperm.watcher.core.WatcherBatteryCapability
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherNotifications
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
@@ -35,6 +36,7 @@ class WatcherDashboardViewModel @Inject constructor(
     private val watcherWorkScheduler: WatcherWorkScheduler,
     private val watcherManager: WatcherManager,
     private val watcherNotifications: WatcherNotifications,
+    private val batteryCapability: WatcherBatteryCapability,
     private val json: Json,
 ) : ViewModel4(dispatcherProvider) {
 
@@ -44,6 +46,7 @@ class WatcherDashboardViewModel @Inject constructor(
         val reports: List<WatcherReportItem> = emptyList(),
         val showNotificationPermissionCard: Boolean = false,
         val canRequestNotificationPermission: Boolean = false,
+        val showBatteryOptimizationCard: Boolean = false,
         val refreshPhase: WatcherManager.Phase? = null,
         val filterOptions: WatcherFilterOptions = WatcherFilterOptions(),
         val hasUnseen: Boolean = false,
@@ -52,10 +55,28 @@ class WatcherDashboardViewModel @Inject constructor(
     )
 
     private val notificationsAvailable = MutableStateFlow(capability.areNotificationsEnabled())
+    private val showBatteryCard = MutableStateFlow(computeBatteryCard())
     private val searchTerm = MutableStateFlow<String?>(null)
 
     fun refreshNotificationState() {
         notificationsAvailable.value = capability.areNotificationsEnabled()
+    }
+
+    private fun computeBatteryCard(): Boolean {
+        val isOptimized = !batteryCapability.isBatteryOptimizationIgnored()
+        if (!isOptimized) return false
+        val lastPoll = generalSettings.watcherLastSuccessfulPollAt.valueBlocking
+        val intervalMs = generalSettings.watcherPollingIntervalHours.valueBlocking.toLong() * 3_600_000L
+        val staleSince = System.currentTimeMillis() - lastPoll
+        return lastPoll > 0L && staleSince > intervalMs * 4
+    }
+
+    fun refreshBatteryState() {
+        showBatteryCard.value = computeBatteryCard()
+    }
+
+    fun dismissBatteryHint() = launch {
+        generalSettings.isWatcherBatteryHintDismissed.value(true)
     }
 
     val state = combine(
@@ -67,7 +88,9 @@ class WatcherDashboardViewModel @Inject constructor(
         watcherManager.phase,
         searchTerm,
         generalSettings.watcherFilterOptions.flow,
-    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase, search, filterOpts ->
+        showBatteryCard,
+        generalSettings.isWatcherBatteryHintDismissed.flow,
+    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase, search, filterOpts, batteryCardVisible, batteryDismissed ->
         val allItems = entities.map { it.toItem() }
         val filteredItems = allItems
             .filter { filterOpts.matches(it) }
@@ -101,6 +124,7 @@ class WatcherDashboardViewModel @Inject constructor(
             reports = reports,
             showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable && isPro,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
+            showBatteryOptimizationCard = isEnabled && batteryCardVisible && !batteryDismissed,
             refreshPhase = phase,
             filterOptions = filterOpts,
             hasUnseen = reports.any { !it.isSeen },
@@ -135,6 +159,7 @@ class WatcherDashboardViewModel @Inject constructor(
         log(TAG) { "refreshNow()" }
         try {
             watcherManager.scanDiffAndPrune(TriggerReason.MANUAL_REFRESH)
+            generalSettings.watcherLastSuccessfulPollAt.value(System.currentTimeMillis())
         } catch (e: Exception) {
             log(TAG, WARN) { "Refresh failed: ${e.asLog()}" }
         }

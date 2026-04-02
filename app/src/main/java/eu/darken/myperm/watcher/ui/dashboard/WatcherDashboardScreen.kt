@@ -2,6 +2,7 @@ package eu.darken.myperm.watcher.ui.dashboard
 
 import android.Manifest
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -29,6 +30,7 @@ import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.DoneAll
 import androidx.compose.material.icons.filled.FiberNew
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.BatteryAlert
 import androidx.compose.material.icons.filled.NotificationsOff
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
@@ -113,6 +115,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
 
     LifecycleResumeEffect(Unit) {
         vm.refreshNotificationState()
+        vm.refreshBatteryState()
         onPauseOrDispose {}
     }
 
@@ -129,6 +132,18 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         }
     }
 
+    val onOpenBatterySettings: () -> Unit = {
+        runCatching {
+            context.startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+        }.onFailure {
+            context.startActivity(
+                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    data = Uri.parse("package:${context.packageName}")
+                }
+            )
+        }
+    }
+
     WatcherDashboardScreen(
         state = state,
         onToggle = { vm.toggleWatcher() },
@@ -140,6 +155,8 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onFilter = { showFilterSheet = true },
         onGrantNotificationPermission = onGrantNotificationPermission,
         onDisableNotifications = { vm.disableNotifications() },
+        onOpenBatterySettings = onOpenBatterySettings,
+        onDismissBatteryHint = { vm.dismissBatteryHint() },
         onUpgrade = { vm.goToUpgrade() },
         useSettingsFallback = useSettingsFallback,
     )
@@ -167,6 +184,8 @@ fun WatcherDashboardScreen(
     onFilter: () -> Unit,
     onGrantNotificationPermission: () -> Unit = {},
     onDisableNotifications: () -> Unit = {},
+    onOpenBatterySettings: () -> Unit = {},
+    onDismissBatteryHint: () -> Unit = {},
     onUpgrade: () -> Unit = {},
     useSettingsFallback: Boolean = false,
 ) {
@@ -297,6 +316,9 @@ fun WatcherDashboardScreen(
                     useSettingsFallback = useSettingsFallback,
                     onGrantNotificationPermission = onGrantNotificationPermission,
                     onDisableNotifications = onDisableNotifications,
+                    showBatteryOptimizationCard = state?.showBatteryOptimizationCard ?: false,
+                    onOpenBatterySettings = onOpenBatterySettings,
+                    onDismissBatteryHint = onDismissBatteryHint,
                 )
             }
         }
@@ -370,6 +392,9 @@ private fun EnabledContent(
     useSettingsFallback: Boolean = false,
     onGrantNotificationPermission: () -> Unit = {},
     onDisableNotifications: () -> Unit = {},
+    showBatteryOptimizationCard: Boolean = false,
+    onOpenBatterySettings: () -> Unit = {},
+    onDismissBatteryHint: () -> Unit = {},
 ) {
     LazyColumn(modifier = modifier) {
         if (showNotificationPermissionCard) {
@@ -382,11 +407,24 @@ private fun EnabledContent(
                 )
             }
         }
+        if (showBatteryOptimizationCard) {
+            item(key = "battery_optimization") {
+                BatteryOptimizationCard(
+                    onOpenSettings = onOpenBatterySettings,
+                    onDismiss = onDismissBatteryHint,
+                    modifier = Modifier.padding(16.dp),
+                )
+            }
+        }
+        val hasInfoCards = showNotificationPermissionCard || showBatteryOptimizationCard
         if (reports.isEmpty()) {
             item(key = "empty") {
                 Box(
                     modifier = Modifier
-                        .fillParentMaxSize()
+                        .then(
+                            if (hasInfoCards) Modifier.fillMaxWidth()
+                            else Modifier.fillParentMaxSize()
+                        )
                         .padding(16.dp),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -478,6 +516,61 @@ private fun NotificationPermissionCard(
                             stringResource(R.string.watcher_notification_permission_open_settings)
                         }
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun BatteryOptimizationCard(
+    onOpenSettings: () -> Unit,
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        ),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.BatteryAlert,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+                Text(
+                    text = stringResource(R.string.watcher_battery_optimization_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                )
+            }
+            Text(
+                text = stringResource(R.string.watcher_battery_optimization_description),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                TextButton(onClick = onDismiss) {
+                    Text(text = stringResource(R.string.watcher_battery_optimization_dismiss))
+                }
+                Button(onClick = onOpenSettings) {
+                    Text(text = stringResource(R.string.watcher_battery_optimization_open_settings))
                 }
             }
         }

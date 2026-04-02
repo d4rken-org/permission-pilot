@@ -40,6 +40,7 @@ class WatcherSettingsViewModel @Inject constructor(
     val isNotifyOnlyOnGained: Flow<Boolean> = generalSettings.isWatcherNotifyOnlyOnGained.flow
     val retentionDays: Flow<Int> = generalSettings.watcherRetentionDays.flow
     val pollingIntervalHours: Flow<Int> = generalSettings.watcherPollingIntervalHours.flow
+    val isBatteryHintDismissed: Flow<Boolean> = generalSettings.isWatcherBatteryHintDismissed.flow
     val reportCount: Flow<Int> = changeDao.getTotalCount()
 
     fun setWatcherEnabled(enabled: Boolean) = launch {
@@ -77,6 +78,10 @@ class WatcherSettingsViewModel @Inject constructor(
         log(TAG) { "Setting polling interval to $hours hours" }
         generalSettings.watcherPollingIntervalHours.value(hours)
         watcherWorkScheduler.reschedule(hours)
+    }
+
+    fun setBatteryHintDismissed(dismissed: Boolean) = launch {
+        generalSettings.isWatcherBatteryHintDismissed.value(dismissed)
     }
 
     fun clearAllReports() = launch {
