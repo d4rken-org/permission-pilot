@@ -1,5 +1,6 @@
 package eu.darken.myperm.export.ui
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -96,7 +97,11 @@ fun ExportScreenHost(
         vm.events.collect { event ->
             when (event) {
                 is ExportViewModel.Event.LaunchSaf -> {
-                    safLauncher.launch(event.fileName)
+                    try {
+                        safLauncher.launch(event.fileName)
+                    } catch (e: ActivityNotFoundException) {
+                        vm.onSafUnavailable()
+                    }
                 }
             }
         }
@@ -562,7 +567,7 @@ private fun ExportSuccessContent(
                         putExtra(Intent.EXTRA_STREAM, result.uri)
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     }
-                    context.startActivity(Intent.createChooser(shareIntent, null))
+                    runCatching { context.startActivity(Intent.createChooser(shareIntent, null)) }
                 },
             ) {
                 Icon(Icons.Filled.Share, contentDescription = null, modifier = Modifier.size(18.dp))
