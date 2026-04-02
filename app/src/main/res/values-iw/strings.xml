@@ -202,15 +202,45 @@
     <string name="apps_details_manifest_label">מניפסט אפליקציה</string>
     <string name="apps_details_manifest_queued">בתור לניתוח…</string>
     <string name="apps_details_manifest_loading">מנתח מניפסט…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">נותר %d מניפסט לניתוח…</item>
+        <item quantity="two">%d מניפסטים נותרו לניתוח…</item>
+        <item quantity="many">%d מניפסטים נותרו לניתוח…</item>
+        <item quantity="other">נותרו %d מניפסטים לניתוח…</item>
+    </plurals>
     <string name="apps_details_manifest_queries_none">לא נמצא דבר חריג</string>
     <string name="apps_details_manifest_unavailable">המניפסט אינו נגיש</string>
     <string name="apps_details_manifest_error">לא ניתן לקרוא את המניפסט</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d שאילתת חבילה</item>
+        <item quantity="two">%d שאילותות חבילה</item>
+        <item quantity="many">%d שאילותות חבילה</item>
+        <item quantity="other">%d שאילותות חבילה</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d שאילתת כוונה</item>
+        <item quantity="two">%d שאילותות כוונה</item>
+        <item quantity="many">%d שאילותות כוונה</item>
+        <item quantity="other">%d שאילותות כוונה</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d שאילתת ספק</item>
+        <item quantity="two">%d שאילותות ספק</item>
+        <item quantity="many">%d שאילותות ספק</item>
+        <item quantity="other">%d שאילותות ספק</item>
+    </plurals>
     <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_action_main">יכול לגלות את כל האפליקציות המותקנות</string>
     <string name="apps_details_manifest_hint_excessive">בודק אפליקציות ספציפיות רבות</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">צופה במניפסט</string>
     <string name="apps_manifest_viewer_search_hint">חיפוש במניפסט</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d תוצאה</item>
+        <item quantity="two">%d התאמות</item>
+        <item quantity="many">%d התאמות</item>
+        <item quantity="other">%d תוצאות</item>
+    </plurals>
     <string name="apps_manifest_search_counter">%1$d מתוך %2$d</string>
     <string name="apps_manifest_section_uses_permission">משתמש בהרשאה</string>
     <string name="apps_manifest_section_permission">הרשאה</string>
@@ -271,6 +301,18 @@
         <item quantity="many">אפליקציות מערכת: הוענקה ל-%1$d מתוך %2$d.</item>
         <item quantity="other">אפליקציות מערכת: הוענקה ל-%1$d מתוך %2$d.</item>
     </plurals>
+    <plurals name="permissions_details_count_other_profile_apps">
+        <item quantity="one">%d אפליקציה בפרופילי משתמש אחרים מבקשת גם היא הרשאה זו.</item>
+        <item quantity="two">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
+        <item quantity="many">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
+        <item quantity="other">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
+    </plurals>
+    <plurals name="permissions_details_count_uninstalled_apps">
+        <item quantity="one">%d אפליקציה שהוסרה עם נתונים שנשמרו מבקשת גם היא הרשאה זו.</item>
+        <item quantity="two">%d אפליקציות שהוסרו עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
+        <item quantity="many">%d אפליקציות שהוסרו עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
+        <item quantity="other">%d אפליקציות מוסרות עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
+    </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">אפליקציות המותקנות בפרופילי משתמש אחרים אינן נכללות בחישוב שלמעלה בשל מגבלות Android.</string>
     <string name="permissions_details_empty_filter_message">אין אפליקציות התואמות את המסננים הנוכחיים. הקש על סמל המסנן כדי להתאים.</string>
     <!-- Permission tag chip labels -->
@@ -286,6 +328,12 @@
     <!-- System badge -->
     <string name="permissions_details_system_badge_label">מערכת</string>
     <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d נוסף</item>
+        <item quantity="two">+%d נוספים</item>
+        <item quantity="many">+%d נוספים</item>
+        <item quantity="other">+%d נוספים</item>
+    </plurals>
     <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">מדדי הרשאות</string>
     <string name="permissions_details_help_section_protection">סוג הגנה</string>
@@ -441,6 +489,12 @@
     <string name="debug_debuglog_short_recording_continue">המשך בהקלטה</string>
     <string name="debug_debuglog_short_recording_stop">עצור בכל זאת</string>
     <!-- Debug log folder -->
+    <plurals name="support_debuglog_folder_summary">
+        <item quantity="one">יומן באגים %1$d אחד (%2$s)</item>
+        <item quantity="two">%1$d יומני ניפוי שגיאות (%2$s)</item>
+        <item quantity="many">%1$d יומני ניפוי שגיאות (%2$s)</item>
+        <item quantity="other">%1$d יומני באגים (%2$s)</item>
+    </plurals>
     <string name="support_debuglog_clear_title">נקה יומני ניפוי שגיאות?</string>
     <string name="support_debuglog_clear_message">פעולה זו תמחק את כל קבצי יומן ניפוי שגיאות השמורים.</string>
     <string name="support_debuglog_sessions_title">יומני ניפוי שגיאות</string>
@@ -472,6 +526,12 @@
     <string name="contact_description_hint_bug">תאר מה קרה וכיצד לשחזר על הבעיה. אנא היי ספציפי (מינימום 20 מילים).</string>
     <string name="contact_expected_behavior_label">התנהגות צפויה</string>
     <string name="contact_expected_behavior_hint">תאר מה צפית שיקרה (מינימום 10 מילים).</string>
+    <plurals name="contact_word_count">
+        <item quantity="one">%1$d / %2$d מילה</item>
+        <item quantity="two">%1$d / %2$d מילים</item>
+        <item quantity="many">%1$d / %2$d מילים</item>
+        <item quantity="other">%1$d / %2$d מילים</item>
+    </plurals>
     <string name="contact_send_action">פתח אפליקציית דואל</string>
     <string name="contact_debuglog_picker_label">יומן באגים</string>
     <string name="contact_debuglog_picker_hint">צרף יומן ניפוי שגיאות קיים, או הקלט חדש.</string>
@@ -493,6 +553,12 @@
     <string name="debug_debuglog_screen_session_path_label">נתיב הסשיה</string>
     <string name="debug_debuglog_screen_log_files_label">קבצי יומן</string>
     <string name="debug_debuglog_screen_discard_action">ביטול</string>
+    <plurals name="debug_debuglog_screen_log_files_ready">
+        <item quantity="one">קובץ %1$d מוכן (%2$s)</item>
+        <item quantity="two">%1$d קבצים מוכנים (%2$s)</item>
+        <item quantity="many">%1$d קבצים מוכנים (%2$s)</item>
+        <item quantity="other">%1$d קבצים מוכנים (%2$s)</item>
+    </plurals>
     <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
@@ -542,6 +608,18 @@
     <string name="watcher_enable_action">הפעל</string>
     <string name="watcher_channel_name">צופה הרשאות</string>
     <string name="watcher_channel_description">התראות לגבי שינויי הרשאות באפליקציות מותקנות</string>
+    <plurals name="watcher_notification_new_permissions">
+        <item quantity="one">%1$s קיבלה הרשאה חדשה אחת (%2$d).</item>
+        <item quantity="two">%1$s קיבלה %2$d הרשאות חדשות.</item>
+        <item quantity="many">%1$s קיבלה %2$d הרשאות חדשות.</item>
+        <item quantity="other">%1$s קיבלה %2$d הרשאות חדשות.</item>
+    </plurals>
+    <plurals name="watcher_notification_changed_permissions">
+        <item quantity="one">%1$s: %2$d הרשאה השתנתה</item>
+        <item quantity="two">%1$s: %2$d הרשאות השתנו</item>
+        <item quantity="many">%1$s: %2$d הרשאות השתנו</item>
+        <item quantity="other">%1$s: %2$d הרשאות השתנו</item>
+    </plurals>
     <string name="watcher_settings_label">צופה הרשאות</string>
     <string name="watcher_settings_desc">ניטור אפליקציות לשינויי הרשאות</string>
     <string name="watcher_enabled_label">הפעל צופה</string>
@@ -568,6 +646,12 @@
     <string name="watcher_notification_body_added">נוסף: %s</string>
     <string name="watcher_notification_body_removed">הוסר: %s</string>
     <string name="watcher_notification_body_grant_changed">הרשאה שונתה: %s</string>
+    <plurals name="watcher_notification_summary_title">
+        <item quantity="one">אפליקציה %d שינתה הרשאות</item>
+        <item quantity="two">%d אפליקציות שינו הרשאות</item>
+        <item quantity="many">%d אפליקציות שינו הרשאות</item>
+        <item quantity="other">%d אפליקציות שינו הרשאות</item>
+    </plurals>
     <string name="watcher_settings_notifications_label">הצג התראות</string>
     <string name="watcher_settings_notifications_desc">הצג התראה שימוש בשינויי הרשאות</string>
     <string name="watcher_settings_notifications_only_gained_label">התראה רק על הרשאות שהתקבלו</string>
@@ -582,6 +666,12 @@
     <string name="watcher_settings_clear_reports_label">נקה כל הדוחות</string>
     <string name="watcher_settings_clear_reports_confirm_title">נקה כל הדוחות?</string>
     <string name="watcher_settings_clear_reports_confirm_message">כל דוחות שינויי הרשאות יימחקו לצמיתות.</string>
+    <plurals name="watcher_settings_report_count">
+        <item quantity="one">דוח %d</item>
+        <item quantity="two">%d דוחות</item>
+        <item quantity="many">%d דוחות</item>
+        <item quantity="other">%d דוחות</item>
+    </plurals>
     <string name="watcher_notification_permission_title">התראות אינן זמינות</string>
     <string name="watcher_notification_permission_description">שינויי הרשאות נמצאים במעקב, אך אין אפשרות להציג התראות. הפעל התראות כדי לקבל התראות לגבי שינויי הרשאות.</string>
     <string name="watcher_notification_permission_grant">הענק הרשאה</string>
@@ -591,6 +681,18 @@
     <string name="watcher_detail_version_code_label">קוד</string>
     <string name="watcher_detail_installer_label">מקור התקנה</string>
     <string name="watcher_detail_installer_unknown">לא ידוע</string>
+    <plurals name="watcher_detail_permissions_header">
+        <item quantity="one">הרשאות (%d)</item>
+        <item quantity="two">הרשאות (%d)</item>
+        <item quantity="many">הרשאות (%d)</item>
+        <item quantity="other">הרשאות (%d)</item>
+    </plurals>
+    <plurals name="watcher_detail_last_permissions_header">
+        <item quantity="one">הרשאות ידועות אחרונות (%d)</item>
+        <item quantity="two">הרשאות אחרונות ידועות (%d)</item>
+        <item quantity="many">הרשאות אחרונות ידועות (%d)</item>
+        <item quantity="other">הרשאות ידועות אחרונות (%d)</item>
+    </plurals>
     <string name="watcher_detail_new_perms_subtitle">הרשאות אלו נוספו עם גרסה זו של האפליקציה.</string>
     <string name="watcher_detail_removed_perms_subtitle">הרשאות אלו הוסרו בעדכון זה.</string>
     <string name="watcher_detail_grant_changes_subtitle">סטטוס הרשאה של הרשאות אלו שונה.</string>
@@ -601,6 +703,12 @@
     <string name="watcher_detail_unknown_permission">הרשאה לא ידועה</string>
     <string name="watcher_detail_diff_error">לא ניתן לטעון פרטי הרשאה</string>
     <string name="watcher_settings_polling_label">מרווח בדיקה ברקע</string>
+    <plurals name="watcher_settings_polling_interval">
+        <item quantity="one">כל %d שעה</item>
+        <item quantity="two">כל %d שעות</item>
+        <item quantity="many">כל %d שעות</item>
+        <item quantity="other">כל %d שעות</item>
+    </plurals>
     <string name="watcher_refresh_scanning">סורק אפליקציות…</string>
     <string name="watcher_refresh_checking">בודק שינויים…</string>
     <string name="watcher_search_hint">חפש דוחות</string>
@@ -613,15 +721,45 @@
     <string name="watcher_filter_section_status">מצב</string>
     <string name="watcher_filter_reset">איפוס</string>
     <string name="watcher_reports_no_matches">אין דוחות התואמים לחיפוש או לסננים</string>
+    <plurals name="watcher_upgrade_card_title">
+        <item quantity="one">עוד %d דוח</item>
+        <item quantity="two">%d דוחות נוספים</item>
+        <item quantity="many">%d דוחות נוספים</item>
+        <item quantity="other">עוד %d דוחות</item>
+    </plurals>
     <string name="watcher_upgrade_card_body">שדרג כדי לצפות בכל הדוחות, פרטים ולקבל התראות</string>
+    <string name="watcher_battery_optimization_title">אופטימיזציית סוללה פעילה</string>
+    <string name="watcher_battery_optimization_description">אופטימיזציית הסוללה עשויה למנוע הפעלה אמינה של בדיקות ברקע. ניתן לפטור אפליקציה זו בהגדרות הסוללה.</string>
+    <string name="watcher_battery_optimization_open_settings">הגדרות סוללה</string>
+    <string name="watcher_battery_optimization_dismiss">אל תציג שוב</string>
+    <string name="watcher_settings_battery_hint_label">הצג רמז אופטימיזציית סוללה</string>
+    <string name="watcher_settings_battery_hint_desc">הצג רמז כאשר אופטימיזציית הסוללה עשויה למנוע בדיקות ברקע</string>
     <string name="snapshot_sync_channel_name">סנכרון תמונתי מצב</string>
     <string name="snapshot_sync_channel_description">סנכרון נתוני אפליקציה ברקע</string>
     <string name="snapshot_sync_notification_title">מסנכרן נתוני אפליקציה…</string>
     <!-- Selection -->
     <string name="general_select_all_action">בחר הכל</string>
+    <plurals name="general_x_selected_label">
+        <item quantity="one">%d נבחר</item>
+        <item quantity="two">%d נבחרו</item>
+        <item quantity="many">%d נבחרו</item>
+        <item quantity="other">%d נבחרו</item>
+    </plurals>
     <!-- Export -->
     <string name="export_app_info_action">ייצוא פרטי אפליקציה</string>
     <string name="export_permission_info_action">ייצוא פרטי הרשאה</string>
+    <plurals name="export_title_apps">
+        <item quantity="one">ייצוא %d אפליקציה</item>
+        <item quantity="two">ייצוא %d אפליקציות</item>
+        <item quantity="many">ייצוא %d אפליקציות</item>
+        <item quantity="other">ייצוא %d אפליקציות</item>
+    </plurals>
+    <plurals name="export_title_permissions">
+        <item quantity="one">ייצוא %d הרשאה</item>
+        <item quantity="two">ייצוא %d הרשאות</item>
+        <item quantity="many">ייצוא %d הרשאות</item>
+        <item quantity="other">ייצוא %d הרשאות</item>
+    </plurals>
     <string name="export_app_info_title">ייצוא פרטי אפליקציה</string>
     <string name="export_permission_info_title">ייצוא פרטי הרשאה</string>
     <string name="export_format_label">פורמט</string>
@@ -651,5 +789,11 @@
     <string name="export_summary_filename">קובץ</string>
     <string name="export_summary_size">גודל</string>
     <string name="export_summary_duration">משך</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">הגרסה החינמית מוגבלת ל‑%d פריט ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
+        <item quantity="two">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
+        <item quantity="many">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
+        <item quantity="other">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
+    </plurals>
     <string name="export_upgrade_action">שדרוג</string>
 </resources>

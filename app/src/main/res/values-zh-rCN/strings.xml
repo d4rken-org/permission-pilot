@@ -632,6 +632,12 @@
         <item quantity="other">再加 %d 条报告</item>
     </plurals>
     <string name="watcher_upgrade_card_body">升级以查看所有报告、详情并获取通知</string>
+    <string name="watcher_battery_optimization_title">电池优化已启用</string>
+    <string name="watcher_battery_optimization_description">电池优化可能会阻止后台检查可靠运行。您可以在电池设置中将此应用排除在外。</string>
+    <string name="watcher_battery_optimization_open_settings">电池设置</string>
+    <string name="watcher_battery_optimization_dismiss">不再显示</string>
+    <string name="watcher_settings_battery_hint_label">显示电池优化提示</string>
+    <string name="watcher_settings_battery_hint_desc">当电池优化可能阻止后台检查时显示提示</string>
     <string name="snapshot_sync_channel_name">快照同步</string>
     <string name="snapshot_sync_channel_description">后台应用数据同步</string>
     <string name="snapshot_sync_notification_title">正在同步应用数据…</string>

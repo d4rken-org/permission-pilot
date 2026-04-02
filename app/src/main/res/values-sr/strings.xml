@@ -696,6 +696,12 @@
         <item quantity="other">%d додатних извештаја</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Надоградите да видите све извештаје, детаље и добијете обавештења</string>
+    <string name="watcher_battery_optimization_title">Оптимизација батерије је активна</string>
+    <string name="watcher_battery_optimization_description">Оптимизација батерије може спречити поуздано покретање провера у позадини. Можете изузети ову апликацију у подешавањима батерије.</string>
+    <string name="watcher_battery_optimization_open_settings">Подешавања батерије</string>
+    <string name="watcher_battery_optimization_dismiss">Не приказуј поново</string>
+    <string name="watcher_settings_battery_hint_label">Прикажи напомену о оптимизацији батерије</string>
+    <string name="watcher_settings_battery_hint_desc">Прикажи напомену када оптимизација батерије можда спречава провере у позадини</string>
     <string name="snapshot_sync_channel_name">Синхронизација снимка</string>
     <string name="snapshot_sync_channel_description">Синхронизација података апликације у позадини</string>
     <string name="snapshot_sync_notification_title">Синхронизација података апликације…</string>

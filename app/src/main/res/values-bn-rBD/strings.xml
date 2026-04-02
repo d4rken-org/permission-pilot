@@ -664,6 +664,12 @@
         <item quantity="other">আরো %dটি রিপোর্ট</item>
     </plurals>
     <string name="watcher_upgrade_card_body">সর্ব রিপোর্ট, বিস্তারিত তথ্য দেখতে ও বিজ্ঞপ্তি পেতে আপগ্রেড করুন</string>
+    <string name="watcher_battery_optimization_title">ব্যাটারি অপ্টিমাইজেশন সক্রিয়</string>
+    <string name="watcher_battery_optimization_description">ব্যাটারি অপ্টিমাইজেশন ব্যাকগ্রাউন্ড চেক নির্ভরযোগ্যভাবে চালাতে বাধা দিতে পারে। আপনি ব্যাটারি সেটিংসে এই অ্যাপটিকে ছাড় দিতে পারেন।</string>
+    <string name="watcher_battery_optimization_open_settings">ব্যাটারি সেটিংস</string>
+    <string name="watcher_battery_optimization_dismiss">আর দেখাবে না</string>
+    <string name="watcher_settings_battery_hint_label">ব্যাটারি অপ্টিমাইজেশন ইঙ্গিত দেখান</string>
+    <string name="watcher_settings_battery_hint_desc">ব্যাটারি অপ্টিমাইজেশন ব্যাকগ্রাউন্ড চেক বাধাগ্রস্ত করতে পারে এমন সময় একটি ইঙ্গিত দেখান</string>
     <string name="snapshot_sync_channel_name">স্ন্যাপশট সিন্ক</string>
     <string name="snapshot_sync_channel_description">ব্যাকগ্রাউন্ড অ্যাপ ডেটা সিন্ক্রনাইজেশন</string>
     <string name="snapshot_sync_notification_title">অ্যাপ ডেটা সিন্ক হচ্ছে…</string>

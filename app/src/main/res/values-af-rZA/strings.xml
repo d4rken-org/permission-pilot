@@ -664,6 +664,12 @@
         <item quantity="other">%d meer verslae</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Opgradeer om alle verslae, besonderhede te bekyk en kennisgewings te ontvang</string>
+    <string name="watcher_battery_optimization_title">Batteryoptimalisering aktief</string>
+    <string name="watcher_battery_optimization_description">Batteryoptimalisering kan verhoed dat agtergrondkontroles betroubaar loop. Jy kan hierdie program vrygestel in battery-instellings.</string>
+    <string name="watcher_battery_optimization_open_settings">Battery-instellings</string>
+    <string name="watcher_battery_optimization_dismiss">Moenie weer wys nie</string>
+    <string name="watcher_settings_battery_hint_label">Wys batteryoptimalisering wenk</string>
+    <string name="watcher_settings_battery_hint_desc">Wys \'n wenk wanneer batteryoptimalisering agtergrondkontroles kan verhoed</string>
     <string name="snapshot_sync_channel_name">Momentopname-sinkronisering</string>
     <string name="snapshot_sync_channel_description">Agtergrond-programdata-sinkronisering</string>
     <string name="snapshot_sync_notification_title">Programdata sinkroniseer…</string>

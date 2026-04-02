@@ -664,6 +664,12 @@
         <item quantity="other">%d informes més</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Milloreu per veure tots els informes, detalls i rebre notificacions</string>
+    <string name="watcher_battery_optimization_title">Optimització de bateria activa</string>
+    <string name="watcher_battery_optimization_description">L\'optimització de bateria pot impedir que les comprovacions en segon pla s\'executin de manera fiable. Podeu exemptar aquesta aplicació a la configuració de bateria.</string>
+    <string name="watcher_battery_optimization_open_settings">Configuració de bateria</string>
+    <string name="watcher_battery_optimization_dismiss">No mostris de nou</string>
+    <string name="watcher_settings_battery_hint_label">Mostra el suggeriment d\'optimització de bateria</string>
+    <string name="watcher_settings_battery_hint_desc">Mostra un suggeriment quan l\'optimització de bateria pugui estar impedint les comprovacions en segon pla</string>
     <string name="snapshot_sync_channel_name">Sincronització d\'instantànies</string>
     <string name="snapshot_sync_channel_description">Sincronització de dades de l\'aplicació en segon pla</string>
     <string name="snapshot_sync_notification_title">S\'estan sincronitzant les dades de l\'aplicació…</string>

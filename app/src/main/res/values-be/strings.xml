@@ -728,6 +728,12 @@
         <item quantity="other">Яшчэ знайсці %d справаздач</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Абнавіцеся, каб праглядаць усе справаздачы, дэталі і атрымліваць апавяшчэнні</string>
+    <string name="watcher_battery_optimization_title">Аптымізацыя батарэі актыўная</string>
+    <string name="watcher_battery_optimization_description">Аптымізацыя батарэі можа перашкодзіць надзейнай працы фонавых праверак. Вы можаце выключыць гэтую праграму з аптымізацыі ў наладах батарэі.</string>
+    <string name="watcher_battery_optimization_open_settings">Налады батарэі</string>
+    <string name="watcher_battery_optimization_dismiss">Не паказваць зноў</string>
+    <string name="watcher_settings_battery_hint_label">Паказваць падказку аб аптымізацыі батарэі</string>
+    <string name="watcher_settings_battery_hint_desc">Паказваць падказку, калі аптымізацыя батарэі можа перашкаджаць фонавым праверкам</string>
     <string name="snapshot_sync_channel_name">Сінхранізацыя здымкаў</string>
     <string name="snapshot_sync_channel_description">Фонавая сінхранізацыя даных праграм</string>
     <string name="snapshot_sync_notification_title">Сінхранізацыя даных праграмы…</string>

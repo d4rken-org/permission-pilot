@@ -664,6 +664,12 @@
         <item quantity="other">%d weitere Berichte</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgrade, um alle Berichte, Details zu sehen und Benachrichtigungen zu erhalten</string>
+    <string name="watcher_battery_optimization_title">Akkuoptimierung aktiv</string>
+    <string name="watcher_battery_optimization_description">Die Akkuoptimierung kann verhindern, dass Hintergrundprüfungen zuverlässig ausgeführt werden. Du kannst diese App in den Akkueinstellungen ausnehmen.</string>
+    <string name="watcher_battery_optimization_open_settings">Akkueinstellungen</string>
+    <string name="watcher_battery_optimization_dismiss">Nicht mehr anzeigen</string>
+    <string name="watcher_settings_battery_hint_label">Hinweis zur Akkuoptimierung anzeigen</string>
+    <string name="watcher_settings_battery_hint_desc">Einen Hinweis anzeigen, wenn die Akkuoptimierung möglicherweise Hintergrundprüfungen verhindert</string>
     <string name="snapshot_sync_channel_name">Snapshot-Synchronisierung</string>
     <string name="snapshot_sync_channel_description">Hintergrund-App-Datensynchronisierung</string>
     <string name="snapshot_sync_notification_title">App-Daten werden synchronisiert…</string>

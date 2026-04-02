@@ -664,6 +664,12 @@
         <item quantity="other">%d और रिपोर्ट</item>
     </plurals>
     <string name="watcher_upgrade_card_body">सभी रिपोर्ट, विवरण देखने और सूचनाएं पाने के लिए अपग्रेड करें</string>
+    <string name="watcher_battery_optimization_title">बैटरी अनुकूलन सक्रिय</string>
+    <string name="watcher_battery_optimization_description">बैटरी अनुकूलन पृष्ठभूमि जाँच को विश्वसनीय रूप से चलने से रोक सकता है। आप इस ऐप को बैटरी सेटिंग में छूट दे सकते हैं।</string>
+    <string name="watcher_battery_optimization_open_settings">बैटरी सेटिंग</string>
+    <string name="watcher_battery_optimization_dismiss">दोबारा न दिखाएं</string>
+    <string name="watcher_settings_battery_hint_label">बैटरी अनुकूलन संकेत दिखाएं</string>
+    <string name="watcher_settings_battery_hint_desc">जब बैटरी अनुकूलन पृष्ठभूमि जाँच को रोक रहा हो तो एक संकेत दिखाएं</string>
     <string name="snapshot_sync_channel_name">स्नैपशॉट सिंक</string>
     <string name="snapshot_sync_channel_description">बैकग्राउंड ऐप डेटा सिंक्रनाइज़ेशन</string>
     <string name="snapshot_sync_notification_title">ऐप डेटा सिंक हो रहा है…</string>

@@ -401,7 +401,7 @@
     <string name="permission_group_audio_label">Mîkrofon</string>
     <string name="permission_group_audio_description">Destûrên têkildarê mîkrofonê.</string>
     <string name="permissions_list_empty_message">ھیچ ئەجازەیەک بۆ نیشاندانی نییە.</string>
-    <string name="permissions_list_empty_search_message">ھیچ ئەجازەیەک با گە楜تنکردنەکانت هاودەندەکات.</string>
+    <string name="permissions_list_empty_search_message">ھیچ ئەجازەیەک با گەڕانکردنەکانت هاودەندەکات.</string>
     <string name="permission_picture_in_picture_label">Wêne di nav wêneyê de</string>
     <string name="permission_legacy_storage_label">بەڕێزی کۆن</string>
     <string name="permission_legacy_storage_description">بەرنامەکان ڕازدەدەن كە بەڕێزی بەرێوی دەرێوەن بە بێ سنوربەستیی بەڕێزیی چەرچەوەکراو. ئەمەش ڕەفتاری ھێشتیی پێش لە ئەندرۆید 10ە بوو. بەرنامەکانی بە ئەم دەسترسییە دەتوانۮن ফەیڵ بخوێننە و بنوسن لە ھەر کێگەیەکی لەسەر بەڕێزیی ھەندێکراو.</string>
@@ -649,7 +649,7 @@
     </plurals>
     <string name="watcher_refresh_scanning">سکانکردنی بەرنامەکان…</string>
     <string name="watcher_refresh_checking">چەککردنی گەڕانەکان…</string>
-    <string name="watcher_search_hint">گە楜تنکردنی ڕاپۆڕتەکان</string>
+    <string name="watcher_search_hint">گەڕانکردنی ڕاپۆڕتەکان</string>
     <string name="watcher_filter_has_added_permissions">ئەجازەکانی نوێی داواتخوازکراو</string>
     <string name="watcher_filter_has_lost_permissions">ئەجازەکان ڕەخنەوەکراون</string>
     <string name="watcher_filter_has_gained_permissions">دەسترسیی نوێ ڕازکراو</string>
@@ -658,12 +658,18 @@
     <string name="watcher_filter_section_permission_changes">گەڕانیی ئەجازە</string>
     <string name="watcher_filter_section_status">بارە</string>
     <string name="watcher_filter_reset">ڕێکخستنەوەکردن</string>
-    <string name="watcher_reports_no_matches">ھیچ ڕاپۆڕتەک بە گە楜تنکردن یا فلتەرەکانت هاودەندەکات</string>
+    <string name="watcher_reports_no_matches">ھیچ ڕاپۆڕتەک بە گەڕانکردن یا فلتەرەکانت هاودەندەکات</string>
     <plurals name="watcher_upgrade_card_title">
         <item quantity="one">%d ڕاپۆڕتی زیاتر</item>
         <item quantity="other">%d ڕاپۆڕتی زیاتر</item>
     </plurals>
     <string name="watcher_upgrade_card_body">بەرزترکردن بۆ بێنینەوەکانی ھەموو ڕاپۆڕتەکان، کەلوومەکان و بەدەستھێنانی ئاگادارکردنەوەکان</string>
+    <string name="watcher_battery_optimization_title">باشکردنی باتری چالاکە</string>
+    <string name="watcher_battery_optimization_description">باشکردنی باتری لەوانەیە پشکنینی پاشزەمینەکان لە کارکردنی بەشێوەیەکی متمانەپێکراو بپارێزێت. دەتوانیت ئەم ئەپە لە ڕێکخستنەکانی باتری بەگوێرەی خۆت دابنێیت.</string>
+    <string name="watcher_battery_optimization_open_settings">ڕێکخستنەکانی باتری</string>
+    <string name="watcher_battery_optimization_dismiss">دیسان پیشان مەدە</string>
+    <string name="watcher_settings_battery_hint_label">ئاماژەی باشکردنی باتری پیشان بدە</string>
+    <string name="watcher_settings_battery_hint_desc">ئاماژەیەک پیشان بدە کاتێک باشکردنی باتری لەوانەیە پشکنینی پاشزەمینەکان بپارێزێت</string>
     <string name="snapshot_sync_channel_name">ھاوالكردنی سناپشەت</string>
     <string name="snapshot_sync_channel_description">ھاوالكردنی داتای بەرنامەکەک لە پاشا</string>
     <string name="snapshot_sync_notification_title">ھاوالكردنی داتای بەرنامەکە…</string>

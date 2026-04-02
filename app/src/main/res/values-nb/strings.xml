@@ -664,6 +664,12 @@
         <item quantity="other">%d til rapporter</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Oppgrader for å se alle rapporter, detaljer og få varsler</string>
+    <string name="watcher_battery_optimization_title">Batterioptimalisering aktiv</string>
+    <string name="watcher_battery_optimization_description">Batterioptimalisering kan hindre bakgrunnskontroller i å kjøre pålitelig. Du kan unnta denne appen i batteriinnstillingene.</string>
+    <string name="watcher_battery_optimization_open_settings">Batteriinnstillinger</string>
+    <string name="watcher_battery_optimization_dismiss">Ikke vis igjen</string>
+    <string name="watcher_settings_battery_hint_label">Vis hint om batterioptimalisering</string>
+    <string name="watcher_settings_battery_hint_desc">Vis et hint når batterioptimalisering kan hindre bakgrunnskontroller</string>
     <string name="snapshot_sync_channel_name">Snapshot-synkronisering</string>
     <string name="snapshot_sync_channel_description">Bakgrunnssynkronisering av appdata</string>
     <string name="snapshot_sync_notification_title">Synkroniserer appdata…</string>
