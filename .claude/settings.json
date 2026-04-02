@@ -1,25 +1,26 @@
 {
   "permissions": {
-	"allow": [
-	  "mcp__ide__getDiagnostics",
-	  "Bash(./gradlew tasks:*)",
-	  "Bash(./gradlew:*)",
-	  "Bash(find:*)",
-	  "Bash(ls:*)",
-	  "Bash(grep:*)",
-	  "Bash(git add:*)",
-	  "Bash(git log:*)",
-	  "Bash(git commit:*)",
-	  "Bash(git show:*)",
-	  "WebSearch",
-	  "WebFetch(domain:developer.android.com)"
-	]
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(./gradlew tasks:*)",
+      "Bash(./gradlew:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(git add:*)",
+      "Bash(git log:*)",
+      "Bash(git commit:*)",
+      "Bash(git show:*)",
+      "WebSearch",
+      "WebFetch(domain:developer.android.com)"
+    ]
   },
   "enabledPlugins": {
-	"android-translation@claude-code-cafe": true,
-	"debugbadger@claude-code-cafe": true,
-	"jvm-tools@claude-code-cafe": true,
-	"frontend-design@claude-plugins-official": true,
-	"kotlin-lsp@claude-plugins-official": true
+    "android-translation@claude-code-cafe": true,
+    "debugbadger@claude-code-cafe": true,
+    "jvm-tools@claude-code-cafe": true,
+    "frontend-design@claude-plugins-official": true,
+    "kotlin-lsp@claude-plugins-official": true,
+    "support-investigator@claude-code-cafe": true
   }
 }
