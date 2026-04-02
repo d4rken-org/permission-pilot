@@ -151,20 +151,8 @@ class AppRepo @Inject constructor(
         val snapshotId = UUID.randomUUID().toString()
         log(TAG) { "saveSnapshot($snapshotId, reason=$reason, pkgs=${pkgs.size})" }
 
-        // Pre-resolve labels outside the transaction to avoid IPC under DB lock.
-        // loadLabel() can throw on corrupted APKs, so catch per-package.
-        val labelStart = System.currentTimeMillis()
-        for (pkg in pkgs) {
-            try {
-                pkg.getLabel(context)
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to pre-resolve label for ${pkg.id}: $e" }
-            }
-        }
-        log(TAG) { "Perf: saveSnapshot() pre-resolved labels in ${System.currentTimeMillis() - labelStart}ms" }
-
-        // Map + insert atomically, in chunks to limit peak entity memory.
-        // Labels are now cached — toEntities() does no IPC.
+        // Map + insert in chunks. Labels are resolved per-chunk (outside the DB insert)
+        // to cap peak memory at ~50 packages worth of transient Resources objects.
         val txStart = System.currentTimeMillis()
         val pkgList = pkgs.toList()
         database.inTransaction {
@@ -178,6 +166,15 @@ class AppRepo @Inject constructor(
                 )
             )
             for (chunk in pkgList.chunked(50)) {
+                // Pre-resolve labels for this chunk before mapping to entities.
+                // loadLabel() triggers IPC + resource loading, so keep it outside entity mapping.
+                for (pkg in chunk) {
+                    try {
+                        pkg.getLabel(context)
+                    } catch (e: Exception) {
+                        log(TAG, WARN) { "Failed to pre-resolve label for ${pkg.id}: $e" }
+                    }
+                }
                 val entities = chunk.map { snapshotMapper.toEntities(snapshotId, it) }
                 snapshotPkgDao.insertPkgs(entities.map { it.pkg })
                 snapshotPkgDao.insertPermissions(entities.flatMap { it.permissions })

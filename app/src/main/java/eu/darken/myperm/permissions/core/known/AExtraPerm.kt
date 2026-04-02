@@ -8,7 +8,6 @@ import eu.darken.myperm.permissions.core.features.NotNormalPerm
 import eu.darken.myperm.permissions.core.features.PermissionTag
 import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.grpIds
-import kotlin.reflect.full.isSubclassOf
 
 sealed class AExtraPerm constructor(val id: Permission.Id) {
 
@@ -35,10 +34,10 @@ sealed class AExtraPerm constructor(val id: Permission.Id) {
 
     companion object {
         val values: List<AExtraPerm> by lazy {
-            AExtraPerm::class.nestedClasses
-                .filter { clazz -> clazz.isSubclassOf(AExtraPerm::class) }
-                .map { clazz -> clazz.objectInstance }
-                .filterIsInstance<AExtraPerm>()
+            listOf(
+                PICTURE_IN_PICTURE,
+                LEGACY_STORAGE,
+            )
         }
     }
 }

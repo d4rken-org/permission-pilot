@@ -29,8 +29,24 @@ class ApkManifestReader @Inject constructor() {
             )
         }
 
+        val runtime = Runtime.getRuntime()
+        val freeHeap = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())
+        if (freeHeap < runtime.maxMemory() * 0.15) {
+            log(TAG, WARN) { "Skipping manifest parse for $apkPath: low memory (${freeHeap / 1024}KB free)" }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                queries = QueriesResult.Error(IllegalStateException("Low memory")),
+            )
+        }
+
         val xml = try {
             ApkFile(apkFile).use { it.manifestXml }
+        } catch (e: OutOfMemoryError) {
+            log(TAG, WARN) { "OOM reading manifest from $apkPath: $e" }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                queries = QueriesResult.Error(IllegalStateException("OOM during manifest parse", e)),
+            )
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to read manifest from $apkPath: $e" }
             return ManifestData(
@@ -41,6 +57,9 @@ class ApkManifestReader @Inject constructor() {
 
         val queriesResult = try {
             QueriesResult.Success(parseQueries(xml))
+        } catch (e: OutOfMemoryError) {
+            log(TAG, WARN) { "OOM parsing queries from $apkPath: $e" }
+            QueriesResult.Error(IllegalStateException("OOM during queries parse", e))
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to parse queries from $apkPath: $e" }
             QueriesResult.Error(e)

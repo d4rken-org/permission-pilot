@@ -90,6 +90,16 @@ class ManifestHintRepo @Inject constructor(
 
             _currentlyScanning.value = nextApp.pkgName
             val manifestData = manifestRepo.getManifest(nextApp.pkgName)
+
+            // Skip hint upsert on transient failures (LOW_MEMORY/OOM) to avoid persisting false "no queries"
+            if (manifestData.rawXml is RawXmlResult.Unavailable &&
+                (manifestData.rawXml as RawXmlResult.Unavailable).reason == UnavailableReason.LOW_MEMORY
+            ) {
+                scanned++
+                _scanProgress.value = ScanProgress(total, scanned)
+                continue
+            }
+
             val queriesInfo = when (val q = manifestData.queries) {
                 is QueriesResult.Success -> q.info
                 is QueriesResult.Error -> QueriesInfo()
