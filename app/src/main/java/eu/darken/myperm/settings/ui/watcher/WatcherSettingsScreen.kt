@@ -14,6 +14,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.twotone.DeleteSweep
 import androidx.compose.material.icons.twotone.FilterList
 import eu.darken.myperm.common.compose.LucideRadar
+import androidx.compose.material.icons.twotone.BatteryAlert
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Schedule
 import androidx.compose.material3.Switch
@@ -77,6 +78,7 @@ fun WatcherSettingsScreenHost() {
     val isNotifyOnlyOnGained by vm.isNotifyOnlyOnGained.collectAsState(initial = true)
     val retentionDays by vm.retentionDays.collectAsState(initial = 30)
     val pollingIntervalHours by vm.pollingIntervalHours.collectAsState(initial = 4)
+    val isBatteryHintDismissed by vm.isBatteryHintDismissed.collectAsState(initial = false)
     val reportCount by vm.reportCount.collectAsState(initial = 0)
 
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -111,6 +113,8 @@ fun WatcherSettingsScreenHost() {
         onRetentionDaysSelected = { vm.setRetentionDays(it) },
         pollingIntervalHours = pollingIntervalHours,
         onPollingIntervalChanged = { vm.setPollingIntervalHours(it) },
+        isBatteryHintShown = !isBatteryHintDismissed,
+        onBatteryHintShownChanged = { shown -> vm.setBatteryHintDismissed(!shown) },
         onClearReports = { vm.clearAllReports() },
         reportCount = reportCount,
     )
@@ -133,6 +137,8 @@ fun WatcherSettingsScreen(
     onRetentionDaysSelected: (Int) -> Unit = {},
     pollingIntervalHours: Int = 4,
     onPollingIntervalChanged: (Int) -> Unit = {},
+    isBatteryHintShown: Boolean = true,
+    onBatteryHintShownChanged: (Boolean) -> Unit = {},
     onClearReports: () -> Unit = {},
     reportCount: Int = 0,
 ) {
@@ -209,6 +215,14 @@ fun WatcherSettingsScreen(
                     enabled = isNotificationsEnabled,
                 )
             }
+            SettingsDivider()
+            SettingsSwitchItem(
+                icon = Icons.TwoTone.BatteryAlert,
+                title = stringResource(R.string.watcher_settings_battery_hint_label),
+                subtitle = stringResource(R.string.watcher_settings_battery_hint_desc),
+                checked = isBatteryHintShown,
+                onCheckedChange = onBatteryHintShownChanged,
+            )
             SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.watcher_settings_retention_label),

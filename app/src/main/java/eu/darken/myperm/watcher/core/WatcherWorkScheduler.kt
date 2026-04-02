@@ -1,5 +1,6 @@
 package eu.darken.myperm.watcher.core
 
+import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequestBuilder
@@ -40,8 +41,12 @@ class WatcherWorkScheduler @Inject constructor(
 
     private fun enqueue(intervalHours: Int, policy: ExistingPeriodicWorkPolicy) {
         log(TAG) { "enqueue(intervalHours=$intervalHours, policy=$policy)" }
+        // Explicit: work should run even on low battery (this is the default,
+        // but documenting intent prevents future regressions)
         val request = PeriodicWorkRequestBuilder<PermissionPollWorker>(
             intervalHours.toLong(), TimeUnit.HOURS,
+        ).setConstraints(
+            Constraints.Builder().setRequiresBatteryNotLow(false).build()
         ).build()
         workManager.enqueueUniquePeriodicWork(WORK_NAME, policy, request)
     }

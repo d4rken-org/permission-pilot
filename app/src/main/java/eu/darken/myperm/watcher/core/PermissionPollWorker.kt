@@ -32,6 +32,7 @@ class PermissionPollWorker @AssistedInject constructor(
 
         return try {
             watcherManager.scanDiffAndPrune(TriggerReason.PERMISSION_POLL)
+            generalSettings.watcherLastSuccessfulPollAt.value(System.currentTimeMillis())
             log(TAG) { "doWork() completed" }
             Result.success()
         } catch (e: Exception) {

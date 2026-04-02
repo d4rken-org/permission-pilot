@@ -707,6 +707,12 @@
         <item quantity="other">%d more reports</item>
     </plurals>
     <string name="watcher_upgrade_card_body">Upgrade to view all reports, details, and get notifications</string>
+    <string name="watcher_battery_optimization_title">Battery optimization active</string>
+    <string name="watcher_battery_optimization_description">Battery optimization may prevent background checks from running reliably. You can exempt this app in battery settings.</string>
+    <string name="watcher_battery_optimization_open_settings">Battery settings</string>
+    <string name="watcher_battery_optimization_dismiss">Don\'t show again</string>
+    <string name="watcher_settings_battery_hint_label">Show battery optimization hint</string>
+    <string name="watcher_settings_battery_hint_desc">Show a hint when battery optimization may be preventing background checks</string>
 
     <string name="snapshot_sync_channel_name">Snapshot Sync</string>
     <string name="snapshot_sync_channel_description">Background app data synchronization</string>

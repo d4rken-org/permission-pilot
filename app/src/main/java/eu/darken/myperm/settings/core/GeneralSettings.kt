@@ -109,6 +109,8 @@ class GeneralSettings @Inject constructor(
     )
     val isWatcherNotificationsEnabled = dataStore.createValue("watcher.notifications.enabled", true)
     val isWatcherNotifyOnlyOnGained = dataStore.createValue("watcher.notifications.only.gained", true)
+    val isWatcherBatteryHintDismissed = dataStore.createValue("watcher.battery.hint.dismissed", false)
+    val watcherLastSuccessfulPollAt = dataStore.createValue("watcher.last.successful.poll.at", 0L)
     val watcherRetentionDays = dataStore.createValue("watcher.retention.days", 30)
 
     val watcherPollingIntervalHours = dataStore.createValue("watcher.polling.interval.hours", 4)
