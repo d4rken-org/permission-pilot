@@ -13,7 +13,7 @@ object Versions {
     }
 
     object Compose {
-        const val bom = "2025.06.01"
+        const val bom = "2026.03.01"
     }
 
     object Navigation3 {
