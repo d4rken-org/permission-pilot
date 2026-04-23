@@ -164,11 +164,24 @@ class ExportViewModel @Inject constructor(
     }
 
     private suspend fun regeneratePreview() {
+        // Abort preview if upstream data is in an Error state — otherwise we'd silently
+        // render an empty preview, which looks indistinguishable from "nothing selected".
+        val rawPermState = permissionRepo.state.first()
+        val scanError = appRepo.scanError.value
+        val appData = appRepo.appData.first()
+        if (rawPermState is PermissionRepo.State.Error ||
+            (scanError != null && appData is AppRepo.AppDataState.NoSnapshot)
+        ) {
+            log(TAG, WARN) { "Preview aborted: data source in error state" }
+            preview.value = null
+            isPreviewLoading.value = false
+            return
+        }
         isPreviewLoading.value = true
         val result = withContext(dispatcherProvider.IO) {
             runCatching {
-                val allApps = (appRepo.appData.first() as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
-                val allPerms = (permissionRepo.state.first() as? PermissionRepo.State.Ready)?.permissions ?: emptyList()
+                val allApps = (appData as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
+                val allPerms = (rawPermState as? PermissionRepo.State.Ready)?.permissions ?: emptyList()
                 val pro = isPro.value
 
                 when (val m = mode) {
@@ -259,10 +272,25 @@ class ExportViewModel @Inject constructor(
     fun onSafResult(uri: Uri?) = launch {
         if (uri == null) return@launch // User cancelled
 
+        // Block export when source data is in error; don't silently write an empty file.
+        val rawPermState = permissionRepo.state.first()
+        val scanError = appRepo.scanError.value
+        val appData = appRepo.appData.first()
+        if (rawPermState is PermissionRepo.State.Error) {
+            log(TAG, WARN) { "Export aborted: PermissionRepo in Error state" }
+            errorEvents.tryEmit(rawPermState.error)
+            return@launch
+        }
+        if (scanError != null && appData is AppRepo.AppDataState.NoSnapshot) {
+            log(TAG, WARN) { "Export aborted: initial app scan failed" }
+            errorEvents.tryEmit(scanError)
+            return@launch
+        }
+
         exportResult.value = ExportResult.InProgress
         val startMark = TimeSource.Monotonic.markNow()
 
-        val allApps = (appRepo.appData.first() as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
+        val allApps = (appData as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
         val allPerms = permissionRepo.permissions.first()
         val pro = isPro.value
 

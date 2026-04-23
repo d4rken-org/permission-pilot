@@ -83,6 +83,8 @@ class OverviewViewModel @Inject constructor(
         val upgradeInfo: UpgradeRepo.Info? = null,
         val versionDesc: String = BuildConfigWrap.VERSION_DESCRIPTION,
         val isLoading: Boolean = true,
+        val scanError: Throwable? = null,
+        val refreshError: Throwable? = null,
     )
 
     private val deviceData: Flow<DeviceInfo> = flow {
@@ -108,12 +110,18 @@ class OverviewViewModel @Inject constructor(
             buildSummary(apps)
         }.onStart { emit(null) },
         upgradeRepo.upgradeInfo.map<UpgradeRepo.Info, UpgradeRepo.Info?> { it }.onStart { emit(null) },
-    ) { device, summary, upgrade ->
+        appRepo.scanError,
+    ) { device, summary, upgrade, scanError ->
+        val hasData = summary != null
         State(
             deviceInfo = device,
             summaryInfo = summary,
             upgradeInfo = upgrade,
-            isLoading = summary == null,
+            // Blocking: no data AND scan failed → error screen takes over.
+            scanError = if (!hasData) scanError else null,
+            // Non-blocking: have data AND latest refresh failed → inline banner.
+            refreshError = if (hasData) scanError else null,
+            isLoading = !hasData && scanError == null,
         )
     }.asStateFlow()
 

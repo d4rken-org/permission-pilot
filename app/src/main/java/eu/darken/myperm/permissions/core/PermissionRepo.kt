@@ -11,6 +11,7 @@ import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -30,12 +31,12 @@ import eu.darken.myperm.permissions.core.features.SpecialAccess
 import eu.darken.myperm.permissions.core.known.AExtraPerm
 import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.permissions.core.known.APermGrp
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.flow.onStart
 import java.time.Instant
@@ -62,65 +63,78 @@ class PermissionRepo @Inject constructor(
 
     val state: Flow<State> = combineTransform(
         appRepo.appData,
-        refreshTrigger
-    ) { appDataState, _ ->
+        appRepo.scanError,
+        refreshTrigger,
+    ) { appDataState, scanError, _ ->
+        // Scan failed with no cached snapshot: cascade the error so permissions consumers
+        // see it too, instead of sitting on Loading forever.
+        if (scanError != null && appDataState is AppRepo.AppDataState.NoSnapshot) {
+            emit(State.Error(scanError))
+            return@combineTransform
+        }
+
         emit(State.Loading())
 
         val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combineTransform
 
-        val start = System.currentTimeMillis()
+        try {
+            val start = System.currentTimeMillis()
 
-        // Build indexes from cached app data
-        val permToApps = buildPermToAppsIndex(apps)
+            // Build indexes from cached app data
+            val permToApps = buildPermToAppsIndex(apps)
 
-        // Build declaring apps index from DB
-        val declaredPermToApps = buildDeclaredPermToAppsIndex(apps)
+            // Build declaring apps index from DB
+            val declaredPermToApps = buildDeclaredPermToAppsIndex(apps)
 
-        val mappedPermissions = mutableSetOf<BasePermission>()
+            val mappedPermissions = mutableSetOf<BasePermission>()
 
-        val fromAosp = measureTimedValue {
-            getPermissionsAOSP(permToApps, declaredPermToApps)
-        }.let {
-            log(TAG) { "Perf: ${it.value.size} permissions from AOSP in ${it.duration.inWholeMilliseconds}ms" }
-            it.value
+            val fromAosp = measureTimedValue {
+                getPermissionsAOSP(permToApps, declaredPermToApps)
+            }.let {
+                log(TAG) { "Perf: ${it.value.size} permissions from AOSP in ${it.duration.inWholeMilliseconds}ms" }
+                it.value
+            }
+            mappedPermissions.addAll(fromAosp)
+
+            val aospIds = fromAosp.map { it.id }.toSet()
+
+            val declared = measureTimedValue {
+                getPermissionsDeclared(permToApps, declaredPermToApps, aospIds)
+            }.let {
+                log(TAG) { "Perf: ${it.value.size} permissions declared by apps in ${it.duration.inWholeMilliseconds}ms" }
+                it.value
+            }
+            mappedPermissions.addAll(declared)
+
+            val extra = measureTimedValue {
+                getPermissionsExtra(permToApps)
+            }.let {
+                log(TAG) { "Perf: ${it.value.size} extra permissions in ${it.duration.inWholeMilliseconds}ms" }
+                it.value
+            }
+            mappedPermissions.addAll(extra)
+
+            val undeclared = measureTimedValue {
+                getUndeclaredPermissions(permToApps, declaredPermToApps, mappedPermissions)
+            }.let {
+                log(TAG) { "Perf: ${it.value.size} undeclared permissions in ${it.duration.inWholeMilliseconds}ms" }
+                it.value
+            }
+            mappedPermissions.addAll(undeclared)
+
+            val stop = System.currentTimeMillis()
+            log(TAG) { "Perf: Total permissions: ${mappedPermissions.size} in ${stop - start}ms" }
+
+            emit(State.Ready(permissions = mappedPermissions))
+        } catch (c: CancellationException) {
+            throw c
+        } catch (e: Exception) {
+            // Handle inside the transform so the flow stays alive; an outer .catch would
+            // complete the shared upstream and later refresh() calls couldn't re-run.
+            log(TAG, ERROR) { "Failed to generate permission data: ${e.asLog()}" }
+            emit(State.Error(e))
         }
-        mappedPermissions.addAll(fromAosp)
-
-        val aospIds = fromAosp.map { it.id }.toSet()
-
-        val declared = measureTimedValue {
-            getPermissionsDeclared(permToApps, declaredPermToApps, aospIds)
-        }.let {
-            log(TAG) { "Perf: ${it.value.size} permissions declared by apps in ${it.duration.inWholeMilliseconds}ms" }
-            it.value
-        }
-        mappedPermissions.addAll(declared)
-
-        val extra = measureTimedValue {
-            getPermissionsExtra(permToApps)
-        }.let {
-            log(TAG) { "Perf: ${it.value.size} extra permissions in ${it.duration.inWholeMilliseconds}ms" }
-            it.value
-        }
-        mappedPermissions.addAll(extra)
-
-        val undeclared = measureTimedValue {
-            getUndeclaredPermissions(permToApps, declaredPermToApps, mappedPermissions)
-        }.let {
-            log(TAG) { "Perf: ${it.value.size} undeclared permissions in ${it.duration.inWholeMilliseconds}ms" }
-            it.value
-        }
-        mappedPermissions.addAll(undeclared)
-
-        val stop = System.currentTimeMillis()
-        log(TAG) { "Perf: Total permissions: ${mappedPermissions.size} in ${stop - start}ms" }
-
-        emit(State.Ready(permissions = mappedPermissions))
     }
-        .catch {
-            log(TAG, ERROR) { "Failed to generate permission data: ${it.asLog()}" }
-            throw it
-        }
         .onStart { emit(State.Loading()) }
         .shareLatest(scope = appScope, started = SharingStarted.Lazily)
 
@@ -171,14 +185,20 @@ class PermissionRepo @Inject constructor(
         permToApps: Map<String, List<PermissionAppRef>>,
         declaredPermToApps: Map<String, List<PermissionAppRef>>,
     ): Collection<BasePermission> {
-        return (ipcFunnel.packageManager.getAllPermissionGroups(0) + listOf(null))
+        // getAllPermissionGroups is the platform-level query. A failure here means we
+        // can't enumerate system permissions reliably — bubble it up so the caller
+        // emits State.Error rather than returning silently-partial data.
+        val groups = ipcFunnel.packageManager.getAllPermissionGroups(0) + listOf(null)
+        return groups
             .mapNotNull { permissionGroup ->
                 val name = permissionGroup?.name
                 log(TAG, VERBOSE) { "Querying permission group $name" }
                 try {
                     ipcFunnel.packageManager.queryPermissionsByGroup(name, 0)
-                } catch (e: PackageManager.NameNotFoundException) {
-                    log(TAG) { "Failed to retrieve permission group $permissionGroup: $e" }
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Failed to retrieve permission group $permissionGroup: ${e.asLog()}" }
                     null
                 }
             }
@@ -195,14 +215,19 @@ class PermissionRepo @Inject constructor(
         declaredPermToApps.keys
             .filter { Permission.Id(it) !in aospIds }
             .map { permId ->
-                val permInfo = ipcFunnel.packageManager.getPermissionInfo2(
-                    Permission.Id(permId),
-                    PackageManager.GET_META_DATA,
-                )
+                val id = Permission.Id(permId)
+                val permInfo = try {
+                    ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "getPermissionInfo2 failed for $id: ${e.asLog()}" }
+                    null
+                }
                 if (permInfo != null) {
                     permInfo.toDeclaredPermission(permToApps, declaredPermToApps)
                 } else {
-                    Permission.Id(permId).toUnusedPermission(permToApps)
+                    id.toUnusedPermission(permToApps)
                 }
             }
             .distinctBy { it.id }
@@ -240,7 +265,14 @@ class PermissionRepo @Inject constructor(
             .map { Permission.Id(it) }
             .filter { it !in mappedIds }
             .map { id ->
-                val info = ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                val info = try {
+                    ipcFunnel.packageManager.getPermissionInfo2(id, PackageManager.GET_META_DATA)
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "getPermissionInfo2 failed for $id: ${e.asLog()}" }
+                    null
+                }
                 when {
                     info != null -> info.toDeclaredPermission(permToApps, declaredPermToApps)
                     else -> id.toUnusedPermission(permToApps)
@@ -302,6 +334,11 @@ class PermissionRepo @Inject constructor(
         data class Ready(
             val updatedAt: Instant = Instant.now(),
             val permissions: Collection<BasePermission>,
+        ) : State()
+
+        data class Error(
+            val error: Throwable,
+            val at: Instant = Instant.now(),
         ) : State()
     }
 

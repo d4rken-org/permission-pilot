@@ -19,6 +19,7 @@ import eu.darken.myperm.common.room.entity.SnapshotEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -72,7 +73,7 @@ class AppRepo @Inject constructor(
                 snapshotPkgDao.observeDeclaredPermCountsForSnapshot(snapshotId),
                 manifestHintRepo.hints,
             ) { pkgs, perms, declaredCounts, hints ->
-                if (pkgs.isEmpty()) return@combine AppDataState.NoSnapshot
+                if (pkgs.isEmpty()) return@combine AppDataState.Ready(emptyList())
                 val permsByPkg = perms.groupBy { Pair(it.pkgName, it.userHandleId) }
                 val declaredCountByPkg = declaredCounts.associateBy(
                     keySelector = { Pair(it.pkgName, it.userHandleId) },
@@ -97,6 +98,9 @@ class AppRepo @Inject constructor(
     private val _isScanning = MutableStateFlow(false)
     val isScanning: StateFlow<Boolean> = _isScanning.asStateFlow()
 
+    private val _scanError = MutableStateFlow<Throwable?>(null)
+    val scanError: StateFlow<Throwable?> = _scanError.asStateFlow()
+
     private val refreshTrigger = MutableSharedFlow<TriggerReason>(extraBufferCapacity = 1)
 
     init {
@@ -110,13 +114,31 @@ class AppRepo @Inject constructor(
                     if (index == 0) TriggerReason.APP_LAUNCH else TriggerReason.PACKAGE_CHANGE
                 },
         ).onEach { reason ->
+            _isScanning.value = true
             try {
-                _isScanning.value = true
-                scanAndSave(reason)
-                enqueuePermissionWatcher()
-                manifestHintRepo.enqueueHintScan()
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
+                try {
+                    scanAndSave(reason)
+                    _scanError.value = null
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Failed to scan/save: ${e.asLog()}" }
+                    _scanError.value = e
+                }
+                try {
+                    enqueuePermissionWatcher()
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Watcher enqueue failed: ${e.asLog()}" }
+                }
+                try {
+                    manifestHintRepo.enqueueHintScan()
+                } catch (c: CancellationException) {
+                    throw c
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Hint scan enqueue failed: ${e.asLog()}" }
+                }
             } finally {
                 _isScanning.value = false
             }
