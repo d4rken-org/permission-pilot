@@ -1,7 +1,5 @@
 package eu.darken.myperm.apps.core
 
-import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.container.BasePkg
 import eu.darken.myperm.apps.core.container.PrimaryProfilePkg
 import eu.darken.myperm.apps.core.container.SecondaryProfilePkg
@@ -20,13 +18,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SnapshotMapper @Inject constructor(
-    @ApplicationContext private val context: Context,
-) {
+class SnapshotMapper @Inject constructor() {
 
     fun toEntities(
         snapshotId: String,
         pkg: BasePkg,
+        resolvedLabel: String,
     ): PkgEntities {
         val userHandleId = pkg.userHandle.hashCode()
 
@@ -48,7 +45,7 @@ class SnapshotMapper @Inject constructor(
             batteryOptimization = pkg.batteryOptimization,
             installerPkgName = pkg.installerInfo.installingPkg?.id?.pkgName,
             applicationFlags = pkg.applicationInfo?.flags ?: 0,
-            cachedLabel = pkg.getLabel(context) ?: pkg.id.pkgName.value,
+            cachedLabel = resolvedLabel,
             twinCount = pkg.twins.size,
             siblingCount = pkg.siblings.size,
             hasAccessibilityServices = pkg.accessibilityServices.isNotEmpty(),
