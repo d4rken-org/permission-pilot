@@ -60,7 +60,7 @@ class ManifestHintRepo @Inject constructor(
         }
     }
 
-    suspend fun runScan(apps: List<AppInfo>) {
+    suspend fun runScan(apps: List<AppInfo>) = try {
         val existingByPkg = manifestHintDao.getAll().associateBy { it.pkgName }
         val pending = apps.distinctBy { it.pkgName }.toMutableList()
         val total = pending.size
@@ -70,6 +70,7 @@ class ManifestHintRepo @Inject constructor(
         log(TAG) { "Starting scan of $total unique packages" }
 
         val newHints = mutableListOf<ManifestHintEntity>()
+        val counts = OutcomeCounts()
 
         while (pending.isNotEmpty()) {
             val priorityPkg = priorityQueue.poll()
@@ -89,39 +90,55 @@ class ManifestHintRepo @Inject constructor(
             }
 
             _currentlyScanning.value = nextApp.pkgName
-            val manifestData = manifestRepo.getManifest(nextApp.pkgName)
+            val outcome = manifestRepo.getQueriesFor(nextApp.pkgName)
 
-            // Skip hint upsert on transient failures (LOW_MEMORY/OOM) to avoid persisting false "no queries"
-            if (manifestData.rawXml is RawXmlResult.Unavailable &&
-                (manifestData.rawXml as RawXmlResult.Unavailable).reason == UnavailableReason.LOW_MEMORY
-            ) {
-                scanned++
-                _scanProgress.value = ScanProgress(total, scanned)
-                continue
-            }
+            when (outcome) {
+                is QueriesOutcome.Success -> {
+                    counts.success++
+                    val flags = manifestHintScanner.evaluate(outcome.info)
+                    newHints.add(
+                        ManifestHintEntity(
+                            pkgName = nextApp.pkgName,
+                            versionCode = nextApp.versionCode,
+                            lastUpdateTime = lastUpdateTime,
+                            hasActionMainQuery = flags.hasActionMainQuery,
+                            packageQueryCount = flags.packageQueryCount,
+                            intentQueryCount = flags.intentQueryCount,
+                            providerQueryCount = flags.providerQueryCount,
+                            scannedAt = System.currentTimeMillis(),
+                        )
+                    )
 
-            val queriesInfo = when (val q = manifestData.queries) {
-                is QueriesResult.Success -> q.info
-                is QueriesResult.Error -> QueriesInfo()
-            }
+                    // Upsert in batches of 20 so hints become visible incrementally
+                    if (newHints.size >= 20) {
+                        manifestHintDao.upsertHints(newHints)
+                        newHints.clear()
+                    }
+                }
 
-            val flags = manifestHintScanner.evaluate(queriesInfo)
-            val hint = ManifestHintEntity(
-                pkgName = nextApp.pkgName,
-                versionCode = nextApp.versionCode,
-                lastUpdateTime = lastUpdateTime,
-                hasActionMainQuery = flags.hasActionMainQuery,
-                packageQueryCount = flags.packageQueryCount,
-                intentQueryCount = flags.intentQueryCount,
-                providerQueryCount = flags.providerQueryCount,
-                scannedAt = System.currentTimeMillis(),
-            )
-            newHints.add(hint)
+                is QueriesOutcome.Unavailable -> {
+                    when (outcome.reason) {
+                        UnavailableReason.LOW_MEMORY -> counts.lowMemory++
+                        UnavailableReason.APK_TOO_LARGE -> counts.apkTooLarge++
+                        UnavailableReason.MALFORMED_APK,
+                        UnavailableReason.APK_NOT_FOUND,
+                        UnavailableReason.APK_NOT_READABLE,
+                        UnavailableReason.PKG_NOT_FOUND -> counts.failure++
+                    }
+                    // If a prior scan succeeded for an older version, that stale hint must not
+                    // outlive the new (unreadable) app. Delete so the UI falls back to the
+                    // "queued/no data" state instead of showing old flags.
+                    if (existing != null) {
+                        manifestHintDao.deleteByPkgName(nextApp.pkgName)
+                    }
+                }
 
-            // Upsert in batches of 20 so hints become visible incrementally
-            if (newHints.size >= 20) {
-                manifestHintDao.upsertHints(newHints)
-                newHints.clear()
+                is QueriesOutcome.Failure -> {
+                    counts.failure++
+                    if (existing != null) {
+                        manifestHintDao.deleteByPkgName(nextApp.pkgName)
+                    }
+                }
             }
 
             scanned++
@@ -133,10 +150,21 @@ class ManifestHintRepo @Inject constructor(
         }
 
         manifestHintDao.pruneStale()
+
+        log(TAG) {
+            "Scan complete: $scanned packages — success=${counts.success} lowMemory=${counts.lowMemory} " +
+                "apkTooLarge=${counts.apkTooLarge} failure=${counts.failure}"
+        }
+    } finally {
         _currentlyScanning.value = null
         _scanProgress.value = null
+    }
 
-        log(TAG) { "Scan complete: $scanned packages processed" }
+    private class OutcomeCounts {
+        var success = 0
+        var lowMemory = 0
+        var apkTooLarge = 0
+        var failure = 0
     }
 
     companion object {

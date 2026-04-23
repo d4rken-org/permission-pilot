@@ -1,5 +1,6 @@
 package eu.darken.myperm.apps.core.manifest
 
+import androidx.annotation.VisibleForTesting
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
@@ -8,11 +9,20 @@ import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.File
 import java.io.StringReader
+import java.util.zip.ZipFile
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class ApkManifestReader @Inject constructor() {
+
+    internal data class HeapInfo(val maxHeap: Long, val freeHeap: Long)
+
+    @VisibleForTesting
+    internal var heapInfoProvider: () -> HeapInfo = {
+        val rt = Runtime.getRuntime()
+        HeapInfo(maxHeap = rt.maxMemory(), freeHeap = rt.maxMemory() - (rt.totalMemory() - rt.freeMemory()))
+    }
 
     fun readManifest(apkPath: String): ManifestData {
         val apkFile = File(apkPath)
@@ -29,13 +39,66 @@ class ApkManifestReader @Inject constructor() {
             )
         }
 
-        val runtime = Runtime.getRuntime()
-        val freeHeap = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())
-        if (freeHeap < runtime.maxMemory() * 0.15) {
-            log(TAG, WARN) { "Skipping manifest parse for $apkPath: low memory (${freeHeap / 1024}KB free)" }
+        // Entry gate: require 20% of max heap free. Reactive — the real protection is the
+        // post-preflight byte budget below, which sizes against actual parse cost.
+        val entryHeap = heapInfoProvider()
+        if (entryHeap.freeHeap < entryHeap.maxHeap * FREE_HEAP_ENTRY_RATIO) {
+            log(TAG, WARN) { "Skipping manifest parse for $apkPath: low memory (${entryHeap.freeHeap / 1024}KB free)" }
             return ManifestData(
                 rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
                 queries = QueriesResult.Error(IllegalStateException("Low memory")),
+            )
+        }
+
+        // Preflight: size the zip entries the parser will read. apk-parser loads both
+        // resources.arsc and AndroidManifest.xml via a ByteArrayOutputStream.grow cycle,
+        // which peaks around 3× the growing buffer (old + new + JVM overhead).
+        val (arscSize, manifestSize) = try {
+            ZipFile(apkFile).use { zip ->
+                val arscEntry = zip.getEntry("resources.arsc")
+                val manifestEntry = zip.getEntry("AndroidManifest.xml")
+                val arscSize: Long = arscEntry?.size?.takeIf { it >= 0L } ?: -1L
+                val manifestSize: Long = manifestEntry?.size?.takeIf { it >= 0L } ?: -1L
+                arscSize to manifestSize
+            }
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Zip preflight failed for $apkPath: $e" }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
+                queries = QueriesResult.Error(e),
+            )
+        }
+
+        if (arscSize < 0L || manifestSize < 0L) {
+            log(TAG, WARN) { "Missing/unknown zip entry sizes for $apkPath (arsc=$arscSize, manifest=$manifestSize)" }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
+                queries = QueriesResult.Error(IllegalStateException("Malformed APK: missing entry sizes")),
+            )
+        }
+
+        val estimatedPeak: Long = arscSize * 3L + manifestSize * 2L + PARSE_SLACK_BYTES
+        val postPreflightHeap = heapInfoProvider()
+        val budgetCeiling: Long = (postPreflightHeap.maxHeap * BUDGET_MAX_HEAP_RATIO).toLong()
+        if (estimatedPeak > budgetCeiling) {
+            log(TAG, WARN) {
+                "Skipping oversized APK $apkPath: estimatedPeak=${estimatedPeak / 1024}KB > budget=${budgetCeiling / 1024}KB"
+            }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.APK_TOO_LARGE),
+                queries = QueriesResult.Error(IllegalStateException("APK too large: estimatedPeak=$estimatedPeak")),
+            )
+        }
+
+        // Re-check free heap against the sized budget — if something consumed heap between
+        // the entry gate and here, bail before we trigger the doubling allocation.
+        if (postPreflightHeap.freeHeap < estimatedPeak + PARSE_SLACK_BYTES) {
+            log(TAG, WARN) {
+                "Insufficient heap for manifest parse $apkPath: free=${postPreflightHeap.freeHeap / 1024}KB, need=${(estimatedPeak + PARSE_SLACK_BYTES) / 1024}KB"
+            }
+            return ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                queries = QueriesResult.Error(IllegalStateException("Insufficient heap for parse")),
             )
         }
 
@@ -139,6 +202,9 @@ class ApkManifestReader @Inject constructor() {
 
     companion object {
         private const val ANDROID_NS = "http://schemas.android.com/apk/res/android"
+        private const val FREE_HEAP_ENTRY_RATIO = 0.20
+        private const val BUDGET_MAX_HEAP_RATIO = 0.25
+        private const val PARSE_SLACK_BYTES = 2L * 1024 * 1024 // 2 MB safety margin
         private val TAG = logTag("Apps", "Manifest", "Reader")
     }
 }
