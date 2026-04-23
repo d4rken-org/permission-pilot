@@ -3,6 +3,7 @@ package eu.darken.myperm.common.room.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -17,6 +18,9 @@ interface ManifestHintDao {
 
     @Upsert
     suspend fun upsertHints(hints: List<ManifestHintEntity>)
+
+    @Query("DELETE FROM manifest_hints WHERE pkgName = :pkgName")
+    suspend fun deleteByPkgName(pkgName: Pkg.Name)
 
     @Query(
         """DELETE FROM manifest_hints WHERE pkgName NOT IN (
