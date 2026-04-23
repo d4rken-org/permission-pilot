@@ -42,7 +42,7 @@ sealed class State {
 - Single Activity (`MainActivity`) with Navigation3 (Compose-based, no fragments)
 - Custom `NavigationController` + `NavigationEntry` (not AndroidX Navigation fragments)
 - `NavigationEventSource` interface: ViewModels expose `navEvents: SingleEventFlow<NavEvent>`
-- `NavEvent` sealed class: `GoTo(destination, popUpTo, inclusive)` and `Up`
+- `NavEvent` sealed interface: `GoTo(destination, popUpTo, inclusive)`, `Up`, and `Finish`
 - `ErrorEventSource2` interface: ViewModels expose `errorEvents: SingleEventFlow<Throwable>`
 
 ## Settings System
@@ -68,7 +68,8 @@ Representative structure (not exhaustive):
 
 ```
 app/src/main/java/eu/darken/myperm/
-├── main/           # MainActivity, main navigation hub
+├── main/
+│   └── ui/         # MainActivity + overview & onboarding sub-features
 ├── permissions/    # Permissions feature
 │   ├── core/       # PermissionRepo, data models
 │   └── ui/         # List and details Compose screens
@@ -78,6 +79,9 @@ app/src/main/java/eu/darken/myperm/
 ├── watcher/        # Permission change monitoring
 │   ├── core/       # WatcherManager, SnapshotDiffer, PermissionDiff
 │   └── ui/         # Dashboard and report detail screens
+├── export/         # Export permission/app data (CSV, Markdown, …)
+│   ├── core/       # ExportEngine, ExportConfig, ExportFormat, formatters
+│   └── ui/         # Export Compose screen
 ├── settings/       # Settings feature
 │   ├── core/       # GeneralSettings
 │   └── ui/         # Settings Compose screens
@@ -91,6 +95,8 @@ app/src/main/java/eu/darken/myperm/
     ├── room/       # Room database, DAOs, entities
     └── serialization/ # Kotlinx Serialization utilities
 ```
+
+`common/` also holds utility submodules for notifications, theming, upgrade flow, background work, support/feedback, debug/logging, and misc helpers (collections, flow, livedata, error, coil, etc.).
 
 ## Key Dependencies
 

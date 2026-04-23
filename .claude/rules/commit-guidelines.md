@@ -21,6 +21,7 @@ Use these prefixes to categorize commits and PR titles:
 - **Overview**: Overview/dashboard screen
 - **Settings**: Settings and preferences
 - **General**: Cross-cutting concerns, architecture, build system, CI
+- **Release**: Version bumps and release candidates (e.g., `Release: 2.0.3-rc0`)
 - **Fix**: Bug fixes that don't fit a specific area
 
 ## Commit Title Guidelines
