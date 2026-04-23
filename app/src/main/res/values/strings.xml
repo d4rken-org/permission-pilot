@@ -172,6 +172,9 @@
     <string name="installed_at_x">First installed: %s</string>
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
+    <string name="permissions_details_open_settings_action">Open system settings</string>
+    <string name="permissions_details_open_settings_content_description_x">Open system settings for %1$s</string>
+    <string name="permissions_details_open_settings_error">Could not open settings for this permission</string>
     <string name="apps_filter_profile_secondary_label">Managed profile(s)</string>
     <string name="apps_filter_battery_optimization_label">Custom battery</string>
     <string name="apps_filter_accessibility_label">Accessibility</string>

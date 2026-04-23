@@ -222,7 +222,7 @@ sealed class APerm(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_premium_sms_services_label
         override val descriptionRes: Int = R.string.permission_premium_sms_services_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Messaging)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object SEND_RESPOND_VIA_MESSAGE : APerm("android.permission.SEND_RESPOND_VIA_MESSAGE") {
@@ -529,7 +529,7 @@ sealed class APerm(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_appear_on_top_label
         override val descriptionRes: Int = R.string.permission_appear_on_top_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc, Highlighted)
+        override val tags = setOf(ManifestDoc, Highlighted, SpecialAccess)
     }
 
     object ACCESS_NOTIFICATION_POLICY : APerm("android.permission.ACCESS_NOTIFICATION_POLICY") {
@@ -542,7 +542,7 @@ sealed class APerm(val id: Permission.Id) {
         override val labelRes: Int = R.string.permission_modify_system_settings_label
         override val descriptionRes: Int = R.string.permission_modify_system_settings_description
         override val groupIds: Set<PermissionGroup.Id> = grpIds(APermGrp.Apps)
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object ACCESS_NOTIFICATIONS : APerm("android.permission.ACCESS_NOTIFICATIONS") {
@@ -561,7 +561,7 @@ sealed class APerm(val id: Permission.Id) {
     object SCHEDULE_EXACT_ALARM : APerm("android.permission.SCHEDULE_EXACT_ALARM") {
         override val labelRes: Int = R.string.permission_alarms_and_reminders_label
         override val descriptionRes: Int = R.string.permission_alarms_and_reminders_description
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object PACKAGE_USAGE_STATS : APerm("android.permission.PACKAGE_USAGE_STATS") {
@@ -1023,7 +1023,7 @@ sealed class APerm(val id: Permission.Id) {
     }
 
     object USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER : APerm("android.permission.USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER") {
-        override val tags = setOf(ManifestDoc)
+        override val tags = setOf(ManifestDoc, SpecialAccess)
     }
 
     object USE_SIP : APerm("android.permission.USE_SIP") {

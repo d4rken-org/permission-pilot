@@ -141,6 +141,7 @@ internal fun PermissionDetailsContent() = PreviewWrapper {
         onFilterClicked = {},
         onPermissionHelpClicked = {},
         onStatusHelpClicked = {},
+        onOpenSettingsClicked = {},
     )
 }
 
