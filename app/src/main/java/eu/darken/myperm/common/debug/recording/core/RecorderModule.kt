@@ -40,13 +40,17 @@ class RecorderModule @Inject constructor(
     private val installId: InstallId,
 ) {
 
-    private val triggerFile = try {
-        File(context.getExternalFilesDir(null), FORCE_FILE)
-    } catch (e: Exception) {
-        File(
-            Environment.getExternalStorageDirectory(),
-            "/Android/data/${BuildConfigWrap.APPLICATION_ID}/files/$FORCE_FILE"
-        )
+    // Lazy to keep Hilt construction off the filesystem — getExternalFilesDir()
+    // does mkdirs and can ANR on main thread during App.onCreate on slow devices.
+    private val triggerFile: File by lazy {
+        try {
+            File(context.getExternalFilesDir(null), FORCE_FILE)
+        } catch (e: Exception) {
+            File(
+                Environment.getExternalStorageDirectory(),
+                "/Android/data/${BuildConfigWrap.APPLICATION_ID}/files/$FORCE_FILE"
+            )
+        }
     }
 
     @Volatile
@@ -152,10 +156,12 @@ class RecorderModule @Inject constructor(
         return sessionDir
     }
 
-    internal val externalLogDir: File? = try {
-        context.getExternalFilesDir(null)?.let { File(it, "debug/logs") }
-    } catch (e: Exception) {
-        null
+    internal val externalLogDir: File? by lazy {
+        try {
+            context.getExternalFilesDir(null)?.let { File(it, "debug/logs") }
+        } catch (e: Exception) {
+            null
+        }
     }
 
     internal val cacheLogDir: File = File(context.cacheDir, "debug/logs")
