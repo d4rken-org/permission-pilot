@@ -45,7 +45,10 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.ui.state.ToggleableState
 import androidx.compose.material3.AlertDialog
+import eu.darken.myperm.common.compose.ErrorContent
 import eu.darken.myperm.common.compose.LoadingContent
+import eu.darken.myperm.common.compose.RefreshErrorBanner
+import eu.darken.myperm.common.compose.toErrorDetail
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -313,7 +316,23 @@ fun PermissionsScreen(
                     LoadingContent()
                 }
 
+                is PermissionsViewModel.State.Error -> {
+                    ErrorContent(
+                        title = stringResource(R.string.general_load_error_title),
+                        detail = state.error.toErrorDetail(),
+                        onRetry = onRefresh,
+                    )
+                }
+
                 is PermissionsViewModel.State.Ready -> {
+                    state.refreshError?.let { error ->
+                        RefreshErrorBanner(
+                            title = stringResource(R.string.general_refresh_error_hint),
+                            detail = error.toErrorDetail(),
+                            onRetry = onRefresh,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        )
+                    }
                     if (state.listData.isEmpty()) {
                         Box(
                             modifier = Modifier.fillMaxSize(),

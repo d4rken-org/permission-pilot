@@ -62,8 +62,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.ui.list.AppsFilterOptions
+import eu.darken.myperm.common.compose.ErrorContent
 import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.rememberFabVisibility
+import eu.darken.myperm.common.compose.toErrorDetail
+import eu.darken.myperm.common.compose.RefreshErrorBanner
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
@@ -138,22 +141,40 @@ fun OverviewScreen(
             )
         }
     ) { innerPadding ->
-        if (state.isLoading) {
-            LoadingContent(modifier = Modifier.padding(innerPadding))
-        } else {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                val summary = state.summaryInfo
-                val device = state.deviceInfo
-                if (summary != null) {
-                    HeroCard(summary, device)
-                    SummaryList(summary, onCategoryClick)
+        when {
+            state.scanError != null && state.summaryInfo == null -> {
+                ErrorContent(
+                    title = stringResource(R.string.general_load_error_title),
+                    detail = state.scanError.toErrorDetail(),
+                    onRetry = onRefresh,
+                    modifier = Modifier.padding(innerPadding),
+                )
+            }
+            state.isLoading -> {
+                LoadingContent(modifier = Modifier.padding(innerPadding))
+            }
+            else -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                        .verticalScroll(rememberScrollState())
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    state.refreshError?.let { error ->
+                        RefreshErrorBanner(
+                            title = stringResource(R.string.general_refresh_error_hint),
+                            detail = error.toErrorDetail(),
+                            onRetry = onRefresh,
+                        )
+                    }
+                    val summary = state.summaryInfo
+                    val device = state.deviceInfo
+                    if (summary != null) {
+                        HeroCard(summary, device)
+                        SummaryList(summary, onCategoryClick)
+                    }
                 }
             }
         }

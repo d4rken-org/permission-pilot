@@ -3,6 +3,10 @@
     <string name="label_help">Help</string>
 
     <string name="general_error_label">Error</string>
+    <string name="general_load_error_title">Couldn\'t load data</string>
+    <string name="general_load_error_hint">Something went wrong while scanning your installed apps.</string>
+    <string name="general_refresh_error_hint">Refresh failed.</string>
+    <string name="general_retry_action">Retry</string>
 
     <string name="general_share_action">Share</string>
     <string name="general_done_action">Done</string>
@@ -151,6 +155,8 @@
     <string name="apps_list_updated_label">Updated %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Manually installed</string>
     <string name="apps_list_installer_preinstalled_label">Pre-installed</string>
+    <string name="apps_list_empty_message">No apps to show.</string>
+    <string name="apps_list_empty_search_message">No apps match your search.</string>
     <string name="general_refresh_action">Refresh</string>
     <string name="general_expand_all_action">Expand all</string>
     <string name="general_collapse_all_action">Collapse all</string>

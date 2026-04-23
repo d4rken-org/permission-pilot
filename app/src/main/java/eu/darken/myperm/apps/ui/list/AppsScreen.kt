@@ -68,8 +68,11 @@ import coil.compose.AsyncImage
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.ErrorContent
 import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.Pill
+import eu.darken.myperm.common.compose.RefreshErrorBanner
+import eu.darken.myperm.common.compose.toErrorDetail
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.compose.SearchTextField
@@ -273,18 +276,53 @@ fun AppsScreen(
                     LoadingContent()
                 }
 
+                is AppsViewModel.State.Error -> {
+                    ErrorContent(
+                        title = stringResource(R.string.general_load_error_title),
+                        detail = state.error.toErrorDetail(),
+                        onRetry = onRefresh,
+                    )
+                }
+
                 is AppsViewModel.State.Ready -> {
-                    LazyColumn(modifier = Modifier.fillMaxSize()) {
-                        items(state.items, key = { "${it.pkgName}:${it.userHandleId}" }) { item ->
-                            val isItemSelected = AppsViewModel.SelectionKey(item.pkgName, item.userHandleId) in selection
-                            AppListItem(
-                                item = item,
-                                isSelecting = isSelecting,
-                                isSelected = isItemSelected,
-                                onClick = { onAppClicked(item) },
-                                onLongClick = { onAppLongPressed(item) },
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        state.refreshError?.let { error ->
+                            RefreshErrorBanner(
+                                title = stringResource(R.string.general_refresh_error_hint),
+                                detail = error.toErrorDetail(),
+                                onRetry = onRefresh,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                             )
-                            HorizontalDivider()
+                        }
+                        if (state.items.isEmpty()) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = stringResource(
+                                        if (searchQuery.isNotBlank()) R.string.apps_list_empty_search_message
+                                        else R.string.apps_list_empty_message
+                                    ),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(24.dp),
+                                )
+                            }
+                        } else {
+                            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                                items(state.items, key = { "${it.pkgName}:${it.userHandleId}" }) { item ->
+                                    val isItemSelected = AppsViewModel.SelectionKey(item.pkgName, item.userHandleId) in selection
+                                    AppListItem(
+                                        item = item,
+                                        isSelecting = isSelecting,
+                                        isSelected = isItemSelected,
+                                        onClick = { onAppClicked(item) },
+                                        onLongClick = { onAppLongPressed(item) },
+                                    )
+                                    HorizontalDivider()
+                                }
+                            }
                         }
                     }
                 }

@@ -9,7 +9,9 @@ import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
 import eu.darken.myperm.common.room.PermPilotDatabase
 import eu.darken.myperm.common.room.dao.SnapshotDao
 import eu.darken.myperm.common.room.dao.SnapshotPkgDao
-import kotlinx.coroutines.flow.flowOf
+import eu.darken.myperm.apps.core.manifest.ManifestHintEntity
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.every
@@ -19,6 +21,9 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
 import org.junit.jupiter.api.BeforeEach
@@ -104,5 +109,67 @@ class AppRepoTest : BaseTest() {
                 any<OneTimeWorkRequest>(),
             )
         }
+    }
+
+    @Test
+    fun `initial scan failure sets scanError`() = runTest2(autoCancel = true) {
+        val scanFailure = RuntimeException("simulated scan failure")
+        coEvery { appSourcer.scanPackages() } throws scanFailure
+
+        val repo = createAppRepo(this)
+        advanceTimeBy(100)
+
+        repo.scanError.value shouldBe scanFailure
+        repo.isScanning.value shouldBe false
+    }
+
+    @Test
+    fun `watcher enqueue failure does not set scanError`() = runTest2(autoCancel = true) {
+        // Scan succeeds, but the watcher enqueue step throws. scanError must stay null —
+        // only scanAndSave() failures count.
+        coEvery { appSourcer.scanPackages() } returns emptyList()
+        every { workManager.enqueueUniqueWork(any<String>(), any<ExistingWorkPolicy>(), any<OneTimeWorkRequest>()) } throws
+                IllegalStateException("watcher enqueue blew up")
+
+        val repo = createAppRepo(this)
+        advanceTimeBy(100)
+
+        repo.scanError.value shouldBe null
+        repo.isScanning.value shouldBe false
+    }
+
+    @Test
+    fun `successful scan after failure clears scanError`() = runTest2(autoCancel = true) {
+        val failure = RuntimeException("first scan boom")
+        var callCount = 0
+        coEvery { appSourcer.scanPackages() } answers {
+            callCount++
+            if (callCount == 1) throw failure else emptyList()
+        }
+
+        val repo = createAppRepo(this)
+        advanceTimeBy(100)
+        repo.scanError.value shouldBe failure
+
+        repo.refresh()
+        advanceTimeBy(100)
+        repo.scanError.value shouldBe null
+    }
+
+    @Test
+    fun `appData emits Ready(empty) when snapshot exists with zero pkgs`() = runTest2(autoCancel = true) {
+        // Locks in the §6 fix: an empty snapshot is a completed scan, not an un-loaded state.
+        // Previously this path emitted NoSnapshot and the UI showed "infinite loading".
+        every { snapshotDao.observeLatestSnapshotId() } returns flowOf("snap-1")
+        every { snapshotPkgDao.observePkgsForSnapshot("snap-1") } returns flowOf(emptyList())
+        every { snapshotPkgDao.observePermsForSnapshot("snap-1") } returns flowOf(emptyList())
+        every { snapshotPkgDao.observeDeclaredPermCountsForSnapshot("snap-1") } returns flowOf(emptyList())
+        every { manifestHintRepo.hints } returns MutableStateFlow(emptyMap<Pkg.Name, ManifestHintEntity>())
+
+        val repo = createAppRepo(this)
+
+        val state = repo.appData.first()
+        state.shouldBeInstanceOf<AppRepo.AppDataState.Ready>()
+        state.apps shouldBe emptyList()
     }
 }

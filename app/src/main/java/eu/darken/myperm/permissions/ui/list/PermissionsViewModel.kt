@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
@@ -55,12 +56,27 @@ class PermissionsViewModel @Inject constructor(
     private val expandedGroups = MutableStateFlow(mapOf<PermissionGroup.Id, Boolean>())
     private val selectedPermissions = MutableStateFlow<Set<Permission.Id>>(emptySet())
 
-    private val permDataWithLabels = permissionRepo.state.map { state ->
-        val perms = (state as? PermissionRepo.State.Ready)?.permissions
-        if (perms == null) {
-            state to emptyMap()
+    private data class RepoSnapshot(
+        val current: PermissionRepo.State,
+        val lastReady: PermissionRepo.State.Ready?,
+    )
+
+    // Preserve the last Ready state across intermediate Loading/Error emissions so that the
+    // UI doesn't blank back to a spinner on every refresh. Applied only to the repo stream
+    // (before combining with search/filter/selection) so those inputs stay live.
+    private val repoSnapshots = permissionRepo.state.scan(
+        RepoSnapshot(PermissionRepo.State.Loading(), null)
+    ) { acc, next ->
+        val lastReady = if (next is PermissionRepo.State.Ready) next else acc.lastReady
+        RepoSnapshot(next, lastReady)
+    }
+
+    private val permDataWithLabels = repoSnapshots.map { snap ->
+        val ready = snap.lastReady
+        if (ready == null) {
+            snap to emptyMap()
         } else {
-            state to perms.associate { it.id to it.getLabel(context) }
+            snap to ready.permissions.associate { it.id to it.getLabel(context) }
         }
     }
 
@@ -94,7 +110,10 @@ class PermissionsViewModel @Inject constructor(
             val sortOptions: PermsSortOptions = PermsSortOptions(),
             val selection: Set<Permission.Id> = emptySet(),
             val groupPerms: Map<PermissionGroup.Id, List<Permission.Id>> = emptyMap(),
+            val refreshError: Throwable? = null,
         ) : State()
+
+        data class Error(val error: Throwable) : State()
     }
 
     val state = combine(
@@ -105,9 +124,17 @@ class PermissionsViewModel @Inject constructor(
         combine(sortOptions, selectedPermissions) { s, sel -> s to sel },
     ) { permDataPair, expGroups, searchTerm, filterOptions, sortAndSel ->
         val (sortOptions, selection) = sortAndSel
-        val (permissionRepoState, permLabelMap) = permDataPair
-        val permissions = (permissionRepoState as? PermissionRepo.State.Ready)?.permissions
-            ?: return@combine State.Loading
+        val (snap, permLabelMap) = permDataPair
+        val ready = snap.lastReady
+        if (ready == null) {
+            // No prior Ready — surface Error blockingly, else stay Loading.
+            return@combine when (val c = snap.current) {
+                is PermissionRepo.State.Error -> State.Error(c.error)
+                else -> State.Loading
+            }
+        }
+        val permissions = ready.permissions
+        val refreshError = (snap.current as? PermissionRepo.State.Error)?.error
 
         val filtered = permissions
             .filter { perm -> filterOptions.matches(perm) }
@@ -196,6 +223,7 @@ class PermissionsViewModel @Inject constructor(
             sortOptions = sortOptions,
             selection = selection,
             groupPerms = groupPermsMap,
+            refreshError = refreshError,
         )
     }.asStateFlow()
 

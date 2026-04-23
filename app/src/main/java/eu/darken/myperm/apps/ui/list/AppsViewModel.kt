@@ -95,18 +95,29 @@ class AppsViewModel @Inject constructor(
             val filterOptions: AppsFilterOptions = AppsFilterOptions(),
             val sortOptions: AppsSortOptions = AppsSortOptions(),
             val selection: Set<SelectionKey> = emptySet(),
+            val refreshError: Throwable? = null,
         ) : State()
+
+        data class Error(val error: Throwable) : State()
     }
 
-    val state = combine(
+    private val appDataWithLabelsAndError = combine(
         appDataWithLabels,
+        appRepo.scanError,
+    ) { appDataPair, scanError -> Triple(appDataPair.first, appDataPair.second, scanError) }
+
+    val state = combine(
+        appDataWithLabelsAndError,
         searchTerm,
         filterOptions,
         sortOptions,
         selectedItems,
-    ) { appDataPair, searchTerm, filterOptions, sortOptions, selection ->
-        val (appDataState, installerLabels) = appDataPair
-        val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@combine State.Loading
+    ) { appDataTriple, searchTerm, filterOptions, sortOptions, selection ->
+        val (appDataState, installerLabels, scanError) = appDataTriple
+        val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps
+        if (apps == null) {
+            return@combine if (scanError != null) State.Error(scanError) else State.Loading
+        }
 
         val filtered = apps
             .filter { app -> filterOptions.matches(app) }
@@ -176,6 +187,7 @@ class AppsViewModel @Inject constructor(
             filterOptions = filterOptions,
             sortOptions = sortOptions,
             selection = selection,
+            refreshError = scanError,
         )
     }.asStateFlow()
 
