@@ -55,6 +55,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -63,6 +64,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import android.widget.Toast
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
@@ -75,13 +77,22 @@ import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
+import eu.darken.myperm.common.compose.findActivity
 import androidx.compose.runtime.collectAsState
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.permissions.core.Permission
+import eu.darken.myperm.permissions.core.features.PermissionAction
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
+
+private val TAG = logTag("AppDetails", "Screen")
 
 @Composable
 fun AppDetailsScreenHost(
@@ -94,6 +105,7 @@ fun AppDetailsScreenHost(
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val context = LocalContext.current
 
     val effectiveState = state ?: AppDetailsViewModel.State(
         label = route.appLabel ?: route.pkgName,
@@ -115,6 +127,18 @@ fun AppDetailsScreenHost(
         },
         onInstallerClicked = { vm.onInstallerClicked(it) },
         onManifestClicked = { vm.onManifestClicked() },
+        onOpenPermissionSettings = { permId ->
+            val pkg = effectiveState.pkg
+            val activity = context.findActivity()
+            val launched = activity?.let { act ->
+                runCatching { PermissionAction.launchSettings(act, permId, pkg) }
+                    .onFailure { err -> log(TAG, WARN) { "launchSettings failed: ${err.asLog()}" } }
+                    .isSuccess
+            } ?: false
+            if (!launched) {
+                Toast.makeText(context, R.string.permissions_details_open_settings_error, Toast.LENGTH_SHORT).show()
+            }
+        },
     )
 }
 
@@ -131,6 +155,7 @@ fun AppDetailsScreen(
     onFilter: (Set<AppDetailsFilterOptions.Filter>) -> Unit,
     onInstallerClicked: (Pkg.Name) -> Unit,
     onManifestClicked: () -> Unit = {},
+    onOpenPermissionSettings: (Permission.Id) -> Unit = {},
 ) {
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showPermHelpDialog by rememberSaveable { mutableStateOf(false) }
@@ -413,6 +438,7 @@ fun AppDetailsScreen(
                     PermissionRow(
                         item = perm,
                         onClick = { onPermClicked(perm) },
+                        onOpenSettings = { onOpenPermissionSettings(perm.permId) },
                     )
                     HorizontalDivider(
                         modifier = Modifier.padding(start = PermRowHPadding + PermRowIconSize + PermRowIconGap),
@@ -763,7 +789,9 @@ private val PermRowIconGap = 8.dp
 private fun PermissionRow(
     item: AppDetailsViewModel.PermItem,
     onClick: () -> Unit,
+    onOpenSettings: () -> Unit = {},
 ) {
+    val canOpenSettings = PermissionAction.canLaunchSettings(item.permId)
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -830,6 +858,24 @@ private fun PermissionRow(
                             .semantics { contentDescription = declaredDesc },
                     )
                 }
+            }
+        }
+
+        if (canOpenSettings) {
+            val labelForA11y = item.permLabel ?: item.permId.value
+            IconButton(
+                onClick = onOpenSettings,
+                modifier = Modifier.size(32.dp),
+            ) {
+                Icon(
+                    Icons.Filled.Settings,
+                    contentDescription = stringResource(
+                        R.string.permissions_details_open_settings_content_description_x,
+                        labelForA11y,
+                    ),
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.primary,
+                )
             }
         }
     }

@@ -19,9 +19,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,11 +44,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import android.widget.Toast
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
@@ -61,11 +65,20 @@ import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.compose.SystemPill
 import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
+import eu.darken.myperm.common.compose.findActivity
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.ProtectionFlag
 import eu.darken.myperm.permissions.core.ProtectionType
+import eu.darken.myperm.permissions.core.features.PermissionAction
+
+private val TAG = logTag("PermissionDetails", "Screen")
 
 @Composable
 fun PermissionDetailsScreenHost(
@@ -78,6 +91,7 @@ fun PermissionDetailsScreenHost(
     NavigationEventHandler(vm)
 
     val state by vm.state.collectAsState()
+    val context = LocalContext.current
 
     var showFilterDialog by rememberSaveable { mutableStateOf(false) }
     var showPermissionHelpDialog by rememberSaveable { mutableStateOf(false) }
@@ -91,6 +105,18 @@ fun PermissionDetailsScreenHost(
             onFilterClicked = { showFilterDialog = true },
             onPermissionHelpClicked = { showPermissionHelpDialog = true },
             onStatusHelpClicked = { showStatusHelpDialog = true },
+            onOpenSettingsClicked = {
+                val permId = it.permission?.id ?: Permission.Id(it.permissionId)
+                val activity = context.findActivity()
+                val launched = activity?.let { act ->
+                    runCatching { PermissionAction.launchSettings(act, permId, pkg = null) }
+                        .onFailure { err -> log(TAG, WARN) { "launchSettings failed: ${err.asLog()}" } }
+                        .isSuccess
+                } ?: false
+                if (!launched) {
+                    Toast.makeText(context, R.string.permissions_details_open_settings_error, Toast.LENGTH_SHORT).show()
+                }
+            },
         )
     }
 
@@ -124,7 +150,10 @@ fun PermissionDetailsScreen(
     onFilterClicked: () -> Unit,
     onPermissionHelpClicked: () -> Unit,
     onStatusHelpClicked: () -> Unit,
+    onOpenSettingsClicked: () -> Unit,
 ) {
+    val permId = state.permission?.id ?: Permission.Id(state.permissionId)
+    val canOpenSettings = PermissionAction.canLaunchSettings(permId)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -231,6 +260,21 @@ fun PermissionDetailsScreen(
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 )
+                            }
+
+                            if (canOpenSettings) {
+                                FilledTonalButton(
+                                    onClick = onOpenSettingsClicked,
+                                    modifier = Modifier.fillMaxWidth(),
+                                ) {
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.OpenInNew,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(18.dp),
+                                    )
+                                    Spacer(modifier = Modifier.size(8.dp))
+                                    Text(stringResource(R.string.permissions_details_open_settings_action))
+                                }
                             }
 
                             if (state.totalUserCount > 0) {
@@ -633,6 +677,7 @@ private fun PermissionDetailsScreenPreview() = PreviewWrapper {
         onFilterClicked = {},
         onPermissionHelpClicked = {},
         onStatusHelpClicked = {},
+        onOpenSettingsClicked = {},
     )
 }
 
@@ -646,5 +691,6 @@ private fun PermissionDetailsScreenLoadingPreview() = PreviewWrapper {
         onFilterClicked = {},
         onPermissionHelpClicked = {},
         onStatusHelpClicked = {},
+        onOpenSettingsClicked = {},
     )
 }
