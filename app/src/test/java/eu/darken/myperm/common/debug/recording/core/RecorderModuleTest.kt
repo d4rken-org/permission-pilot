@@ -10,6 +10,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -64,6 +65,30 @@ class RecorderModuleTest {
             dispatcherProvider = dispatcherProvider,
             installId = installId,
         )
+    }
+
+    @Test
+    fun `construction does not touch getExternalFilesDir`() {
+        // Paused dispatcher so init's launchIn schedules but does not run. This simulates
+        // production where the init coroutines run on Dispatchers.Default (off the main
+        // thread that Hilt injection happens on). Only the synchronous constructor path
+        // is under test here.
+        val pausedScope = CoroutineScope(SupervisorJob() + StandardTestDispatcher())
+        val strictContext = mockk<Context>(relaxed = true)
+        every { strictContext.getExternalFilesDir(null) } throws AssertionError(
+            "getExternalFilesDir must not be called on the construction path"
+        )
+        every { strictContext.cacheDir } returns cacheDir
+
+        // Must not throw — both triggerFile and externalLogDir are `by lazy`, and the
+        // DynamicStateFlow start-value provider is only invoked when the flow is collected.
+        RecorderModule(
+            context = strictContext,
+            appScope = pausedScope,
+            dispatcherProvider = TestDispatcherProvider(StandardTestDispatcher()),
+            installId = installId,
+        )
+        pausedScope.cancel()
     }
 
     @Test
