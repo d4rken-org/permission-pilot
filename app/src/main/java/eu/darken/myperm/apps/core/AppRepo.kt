@@ -173,10 +173,29 @@ class AppRepo @Inject constructor(
         val snapshotId = UUID.randomUUID().toString()
         log(TAG) { "saveSnapshot($snapshotId, reason=$reason, pkgs=${pkgs.size})" }
 
-        // Map + insert in chunks. Labels are resolved per-chunk (outside the DB insert)
-        // to cap peak memory at ~50 packages worth of transient Resources objects.
-        val txStart = System.currentTimeMillis()
         val pkgList = pkgs.toList()
+
+        // Resolve labels BEFORE the transaction. loadLabel() triggers PackageManager IPC
+        // and Resources loading; holding the DB write lock during that blocks every
+        // concurrent reader. We chunk the work to keep peak transient allocations bounded
+        // (~50 Resources objects at a time).
+        val labelStart = System.currentTimeMillis()
+        val resolvedLabels: Map<Pkg.Id, String> = buildMap {
+            for (chunk in pkgList.chunked(50)) {
+                for (pkg in chunk) {
+                    val label = try {
+                        pkg.getLabel(context)
+                    } catch (e: Exception) {
+                        log(TAG, WARN) { "Failed to pre-resolve label for ${pkg.id}: $e" }
+                        null
+                    }
+                    put(pkg.id, label ?: pkg.id.pkgName.value)
+                }
+            }
+        }
+        log(TAG) { "Perf: saveSnapshot() label resolution in ${System.currentTimeMillis() - labelStart}ms" }
+
+        val txStart = System.currentTimeMillis()
         database.inTransaction {
             snapshotDao.insertSnapshot(
                 SnapshotEntity(
@@ -188,16 +207,9 @@ class AppRepo @Inject constructor(
                 )
             )
             for (chunk in pkgList.chunked(50)) {
-                // Pre-resolve labels for this chunk before mapping to entities.
-                // loadLabel() triggers IPC + resource loading, so keep it outside entity mapping.
-                for (pkg in chunk) {
-                    try {
-                        pkg.getLabel(context)
-                    } catch (e: Exception) {
-                        log(TAG, WARN) { "Failed to pre-resolve label for ${pkg.id}: $e" }
-                    }
+                val entities = chunk.map {
+                    snapshotMapper.toEntities(snapshotId, it, resolvedLabels.getValue(it.id))
                 }
-                val entities = chunk.map { snapshotMapper.toEntities(snapshotId, it) }
                 snapshotPkgDao.insertPkgs(entities.map { it.pkg })
                 snapshotPkgDao.insertPermissions(entities.flatMap { it.permissions })
                 snapshotPkgDao.insertDeclaredPermissions(entities.flatMap { it.declaredPermissions })

@@ -131,7 +131,7 @@ class AppRepoSaveSnapshotTest : BaseTest() {
             )
         }
 
-        coEvery { snapshotMapper.toEntities(any(), pkg) } returns SnapshotMapper.PkgEntities(
+        coEvery { snapshotMapper.toEntities(any(), pkg, any()) } returns SnapshotMapper.PkgEntities(
             pkg = pkgEntity.copy(snapshotId = ""), // snapshotId is set dynamically
             permissions = permEntities.map { it.copy(snapshotId = "") },
             declaredPermissions = declaredPermEntities.map { it.copy(snapshotId = "") },
@@ -237,6 +237,72 @@ class AppRepoSaveSnapshotTest : BaseTest() {
         val totalPkgs = capturedPkgs.flatten()
         totalPkgs.size shouldBe 2
     }
+
+    @Test
+    fun `labels resolve before the transaction and mapper receives resolved label`() =
+        runTest2(autoCancel = true) {
+            val repo = createAppRepo(this)
+            settleInit()
+
+            // Gate: flip to true when database.inTransaction is entered. After that point,
+            // any call to pkg.getLabel() indicates a regression (label resolution leaked
+            // back into the transaction).
+            val inTransaction = java.util.concurrent.atomic.AtomicBoolean(false)
+            @Suppress("UNCHECKED_CAST")
+            coEvery { database.inTransaction(any<suspend () -> Any?>()) } coAnswers {
+                inTransaction.set(true)
+                val block = firstArg<suspend () -> Any?>()
+                val result = block()
+                inTransaction.set(false)
+                result
+            }
+
+            val pkg = mockk<BasePkg>(relaxed = true)
+            every { pkg.id } returns Pkg.Id(Pkg.Name("single.pkg"))
+            every { pkg.getLabel(any()) } answers {
+                if (inTransaction.get()) {
+                    error("pkg.getLabel() must not be called inside database.inTransaction")
+                }
+                "Resolved Label"
+            }
+            val capturedLabel = slot<String>()
+            coEvery {
+                snapshotMapper.toEntities(any(), pkg, capture(capturedLabel))
+            } returns SnapshotMapper.PkgEntities(
+                pkg = SnapshotPkgEntity(
+                    snapshotId = "",
+                    pkgName = Pkg.Name("single.pkg"),
+                    userHandleId = 0,
+                    pkgType = PkgType.PRIMARY,
+                    versionName = "1.0",
+                    versionCode = 1L,
+                    sharedUserId = null,
+                    apiTargetLevel = 33,
+                    apiCompileLevel = null,
+                    apiMinimumLevel = null,
+                    isSystemApp = false,
+                    installedAt = null,
+                    updatedAt = null,
+                    internetAccess = InternetAccess.UNKNOWN,
+                    batteryOptimization = BatteryOptimization.UNKNOWN,
+                    installerPkgName = null,
+                    applicationFlags = 0,
+                    cachedLabel = "Resolved Label",
+                    twinCount = 0,
+                    siblingCount = 0,
+                    hasAccessibilityServices = false,
+                    hasDeviceAdmin = false,
+                    allInstallerPkgNames = null,
+                ),
+                permissions = emptyList(),
+                declaredPermissions = emptyList(),
+            )
+
+            coEvery { appSourcer.scanPackages() } returns listOf(pkg)
+            repo.scanAndSave(TriggerReason.MANUAL_REFRESH)
+
+            capturedLabel.captured shouldBe "Resolved Label"
+        }
 
     @Test
     fun `scanAndSave works with fewer packages than chunk size`() = runTest2(autoCancel = true) {
