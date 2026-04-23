@@ -20,3 +20,4 @@ testapp/.gradle/
 testapp/build/
 testapp/local.properties
 .kotlin/sessions
+.codex
