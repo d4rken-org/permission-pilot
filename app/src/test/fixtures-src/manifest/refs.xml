@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.refs">
+
+    <uses-sdk android:minSdkVersion="24" />
+
+    <!--
+      Framework refs only — aapt2 resolves @android:* against the platform jar at link time,
+      so these encode as TYPE_REFERENCE with a framework package id (0x01).
+    -->
+    <application
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:theme="@android:style/Theme.DeviceDefault"
+        android:label="Ref Fixture">
+        <activity
+            android:name="com.example.refs.MainActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>
