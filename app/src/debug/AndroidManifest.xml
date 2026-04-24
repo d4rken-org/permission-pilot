@@ -5,16 +5,6 @@
         <activity
             android:name="eu.darken.myperm.HiltTestActivity"
             android:exported="false" />
-
-        <!-- Debug-only: parser parity checker, triggered via adb broadcast. -->
-        <receiver
-            android:name="eu.darken.myperm.debug.manifest.ParserParityReceiver"
-            android:exported="true"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="eu.darken.myperm.DEBUG_PARSER_PARITY" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>
