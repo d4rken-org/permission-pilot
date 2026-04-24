@@ -17,8 +17,11 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.mockk.Runs
+import io.mockk.coVerify
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.just
@@ -303,6 +306,29 @@ class AppRepoSaveSnapshotTest : BaseTest() {
 
             capturedLabel.captured shouldBe "Resolved Label"
         }
+
+    @Test
+    fun `scanAndSave rejects duplicate Pkg Ids from the scanner`() = runTest2(autoCancel = true) {
+        val repo = createAppRepo(this)
+        settleInit()
+
+        // Two BasePkg mocks share the same Pkg.Id instance, matching the scanner regression
+        // where LauncherApps.getActivityList emitted two SecondaryProfilePkg objects for the
+        // same (packageName, userHandle).
+        val duplicateId = Pkg.Id(Pkg.Name("duplicate.app"))
+        val pkg1 = mockk<BasePkg>(relaxed = true).also { every { it.id } returns duplicateId }
+        val pkg2 = mockk<BasePkg>(relaxed = true).also { every { it.id } returns duplicateId }
+
+        coEvery { appSourcer.scanPackages() } returns listOf(pkg1, pkg2)
+
+        val thrown = shouldThrow<IllegalStateException> {
+            repo.scanAndSave(TriggerReason.MANUAL_REFRESH)
+        }
+        thrown.message!! shouldContain "duplicate.app"
+
+        coVerify(exactly = 0) { snapshotPkgDao.insertPkgs(any()) }
+        coVerify(exactly = 0) { snapshotDao.insertSnapshot(any()) }
+    }
 
     @Test
     fun `scanAndSave works with fewer packages than chunk size`() = runTest2(autoCancel = true) {

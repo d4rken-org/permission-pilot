@@ -175,6 +175,14 @@ class AppRepo @Inject constructor(
 
         val pkgList = pkgs.toList()
 
+        // Storage identity is (snapshotId, pkgName, userHandleId); Pkg.Id matches that
+        // by design. Scanner output must be unique by Pkg.Id, so a duplicate here is a
+        // scanner bug. Fail fast with the offending ids instead of a SQLite UNIQUE trace.
+        val duplicates = pkgList.groupBy { it.id }.filterValues { it.size > 1 }
+        check(duplicates.isEmpty()) {
+            "Duplicate Pkg.Id in scanner output: ${duplicates.keys}"
+        }
+
         // Resolve labels BEFORE the transaction. loadLabel() triggers PackageManager IPC
         // and Resources loading; holding the DB write lock during that blocks every
         // concurrent reader. We chunk the work to keep peak transient allocations bounded
