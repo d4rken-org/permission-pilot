@@ -17,9 +17,15 @@ import javax.inject.Singleton
  * - `<pkg>.json` — full manifest including raw XML, used by the manifest viewer.
  * - `<pkg>.queries.json` — queries projection only, used by the hint scanner.
  *
- * Corruption in one file does not evict the valid sibling. On a queries-only miss we
- * lazily backfill the sibling from the full cache if it is present and version-valid
- * (prevents a reparse storm after upgrade to a version that writes both files).
+ * The full cache carries a [CachedManifest.formatVersion] to guard against format drift.
+ * Entries that predate v2 (written by the old `apk-parser`-based reader) are deleted on read
+ * — their attribute/reference formatting is not guaranteed to match the new renderer, and
+ * blindly trusting them would leak old-format XML to the viewer.
+ *
+ * The queries sibling is a pure projection and is NOT version-gated — its schema has not
+ * changed with the parser rewrite.
+ *
+ * Corruption of one file does not evict the valid sibling.
  */
 @Singleton
 class ManifestCache @Inject constructor(
@@ -29,7 +35,10 @@ class ManifestCache @Inject constructor(
     private val cacheDir: File
         get() = File(context.cacheDir, "manifests").also { it.mkdirs() }
 
-    /** Full cache read. Returns null on miss, version mismatch, or corruption. */
+    /**
+     * Full cache read. Returns null on miss, version mismatch, corruption, or pre-v2 format.
+     * Pre-v2 entries are deleted to stop them being considered on subsequent reads.
+     */
     fun get(
         pkgName: Pkg.Name,
         versionCode: Long,
@@ -40,6 +49,11 @@ class ManifestCache @Inject constructor(
 
         return try {
             val cached = json.decodeFromString<CachedManifest>(file.readText())
+            if (cached.formatVersion != CURRENT_FORMAT_VERSION) {
+                log(TAG) { "Full cache format stale for $pkgName: v${cached.formatVersion} != v$CURRENT_FORMAT_VERSION" }
+                file.delete()
+                return null
+            }
             if (cached.versionCode != versionCode || cached.lastUpdateTime != lastUpdateTime) {
                 log(TAG) { "Full cache stale for $pkgName: version/time mismatch" }
                 file.delete()
@@ -58,8 +72,11 @@ class ManifestCache @Inject constructor(
     }
 
     /**
-     * Queries-only cache read. Never deserializes raw XML. Falls back to backfilling from
-     * the full cache if the sibling is missing but the full file is present and valid.
+     * Queries-only cache read. Never deserializes raw XML; never backfills from the full cache
+     * (would defeat the memory win — a backfill would deserialize the old rawXml just to extract
+     * queries, which is exactly what we're trying to avoid).
+     *
+     * On a miss, callers re-parse the APK via the lightweight [ApkManifestReader.readQueries] path.
      */
     fun getQueries(
         pkgName: Pkg.Name,
@@ -67,50 +84,25 @@ class ManifestCache @Inject constructor(
         lastUpdateTime: Long,
     ): QueriesInfo? {
         val siblingFile = queriesCacheFile(pkgName)
-        if (siblingFile.exists()) {
-            try {
-                val cached = json.decodeFromString<CachedQueries>(siblingFile.readText())
-                if (cached.versionCode != versionCode || cached.lastUpdateTime != lastUpdateTime) {
-                    log(TAG) { "Queries cache stale for $pkgName: version/time mismatch" }
-                    siblingFile.delete()
-                } else {
-                    return cached.queries
-                }
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to read queries cache for $pkgName: $e" }
-                siblingFile.delete()
-                // fall through to backfill attempt
-            }
-        }
+        if (!siblingFile.exists()) return null
 
-        // Lazy backfill from the full cache, if available and version-valid. Avoids a
-        // reparse storm on upgrade when only the old full `.json` files exist.
-        val fullFile = fullCacheFile(pkgName)
-        if (!fullFile.exists()) return null
         return try {
-            val cached = json.decodeFromString<CachedManifest>(fullFile.readText())
+            val cached = json.decodeFromString<CachedQueries>(siblingFile.readText())
             if (cached.versionCode != versionCode || cached.lastUpdateTime != lastUpdateTime) {
-                return null
+                log(TAG) { "Queries cache stale for $pkgName: version/time mismatch" }
+                siblingFile.delete()
+                null
+            } else {
+                cached.queries
             }
-            val queries = cached.queries ?: return null
-            // Write the sibling so future reads skip the rawXml deserialization.
-            try {
-                siblingFile.writeText(
-                    json.encodeToString(
-                        CachedQueries.serializer(),
-                        CachedQueries(versionCode, lastUpdateTime, queries),
-                    )
-                )
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to backfill queries cache for $pkgName: $e" }
-            }
-            queries
         } catch (e: Exception) {
-            log(TAG, WARN) { "Failed to backfill-read full cache for $pkgName: $e" }
+            log(TAG, WARN) { "Failed to read queries cache for $pkgName: $e" }
+            siblingFile.delete()
             null
         }
     }
 
+    /** Writes both the full cache (with current format version) and the queries sibling. */
     fun put(
         pkgName: Pkg.Name,
         versionCode: Long,
@@ -122,6 +114,7 @@ class ManifestCache @Inject constructor(
 
         try {
             val cached = CachedManifest(
+                formatVersion = CURRENT_FORMAT_VERSION,
                 versionCode = versionCode,
                 lastUpdateTime = lastUpdateTime,
                 rawXml = rawXml,
@@ -133,14 +126,33 @@ class ManifestCache @Inject constructor(
         }
 
         if (queries != null) {
-            try {
-                val siblingPayload = CachedQueries(versionCode, lastUpdateTime, queries)
-                queriesCacheFile(pkgName).writeText(
-                    json.encodeToString(CachedQueries.serializer(), siblingPayload)
-                )
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Failed to write queries cache for $pkgName: $e" }
-            }
+            writeQueriesSibling(pkgName, versionCode, lastUpdateTime, queries)
+        }
+    }
+
+    /** Writes only the queries sibling — used by the scanner-only path. */
+    fun putQueries(
+        pkgName: Pkg.Name,
+        versionCode: Long,
+        lastUpdateTime: Long,
+        queries: QueriesInfo,
+    ) {
+        writeQueriesSibling(pkgName, versionCode, lastUpdateTime, queries)
+    }
+
+    private fun writeQueriesSibling(
+        pkgName: Pkg.Name,
+        versionCode: Long,
+        lastUpdateTime: Long,
+        queries: QueriesInfo,
+    ) {
+        try {
+            val payload = CachedQueries(versionCode, lastUpdateTime, queries)
+            queriesCacheFile(pkgName).writeText(
+                json.encodeToString(CachedQueries.serializer(), payload)
+            )
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Failed to write queries cache for $pkgName: $e" }
         }
     }
 
@@ -148,8 +160,15 @@ class ManifestCache @Inject constructor(
 
     private fun queriesCacheFile(pkgName: Pkg.Name): File = File(cacheDir, "${pkgName.value}.queries.json")
 
+    /**
+     * `formatVersion` is nullable so that pre-migration JSONs (which have no such field) do NOT
+     * silently deserialize as "v2" via a non-null default. kotlinx.serialization fills a missing
+     * field with the declared default, so the default must be `null` to be distinguishable from a
+     * written v2 entry. On read we reject anything that isn't exactly [CURRENT_FORMAT_VERSION].
+     */
     @Serializable
-    private data class CachedManifest(
+    internal data class CachedManifest(
+        val formatVersion: Int? = null,
         val versionCode: Long,
         val lastUpdateTime: Long,
         val rawXml: String,
@@ -157,13 +176,14 @@ class ManifestCache @Inject constructor(
     )
 
     @Serializable
-    private data class CachedQueries(
+    internal data class CachedQueries(
         val versionCode: Long,
         val lastUpdateTime: Long,
         val queries: QueriesInfo,
     )
 
     companion object {
+        internal const val CURRENT_FORMAT_VERSION = 2
         private val TAG = logTag("Apps", "Manifest", "Cache")
     }
 }

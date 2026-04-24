@@ -45,10 +45,13 @@ class ManifestRepoTest : BaseTest() {
         explicitNulls = false
     }
 
-    private fun successData(pkgQueries: List<String> = listOf("com.other")): ManifestData = ManifestData(
+    private fun successFullData(queries: List<String> = listOf("com.other")): ManifestData = ManifestData(
         rawXml = RawXmlResult.Success("<manifest/>"),
-        queries = QueriesResult.Success(QueriesInfo(packageQueries = pkgQueries)),
+        queries = QueriesResult.Success(QueriesInfo(packageQueries = queries)),
     )
+
+    private fun successQueries(queries: List<String> = listOf("com.other")): QueriesReadResult.Success =
+        QueriesReadResult.Success(QueriesInfo(packageQueries = queries))
 
     @BeforeEach
     fun setup() {
@@ -66,9 +69,6 @@ class ManifestRepoTest : BaseTest() {
 
     @Suppress("DEPRECATION")
     private fun stubPackageInfo(versionCode: Long, lastUpdate: Long) {
-        // JVM unit tests run against the Android stub jar: setLongVersionCode is a no-op
-        // and Build.VERSION.SDK_INT returns the default 0. So resolveAppMeta falls through
-        // to `pi.versionCode.toLong()` (the public int field), which we set directly.
         val appInfo = ApplicationInfo().apply { sourceDir = apkPath }
         val packageInfo = PackageInfo().apply {
             this.packageName = pkg.value
@@ -79,10 +79,6 @@ class ManifestRepoTest : BaseTest() {
         every { packageManager.getPackageInfo(pkg.value, 0) } returns packageInfo
     }
 
-    /**
-     * Builds a ManifestRepo whose IO dispatcher and appScope share [scope]'s TestScheduler,
-     * so [runTest]'s scheduler fully drives the repo's internal async work.
-     */
     private fun buildRepo(scope: TestScope): ManifestRepo {
         val sharedDispatcher = UnconfinedTestDispatcher(scope.testScheduler)
         val dispatcherProvider = TestDispatcherProvider(sharedDispatcher)
@@ -96,21 +92,43 @@ class ManifestRepoTest : BaseTest() {
     }
 
     @Test
-    fun `getQueriesFor returns Success and memory-caches the projection`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns successData(pkgQueries = listOf("com.target"))
+    fun `getQueriesFor calls readQueries not readFullManifest`() = runTest {
+        every { apkReader.readQueries(apkPath) } returns successQueries(listOf("com.target"))
         val repo = buildRepo(this)
 
         val outcome = repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Success>()
         outcome.info.packageQueries shouldBe listOf("com.target")
 
-        // Second call hits memory cache.
-        repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Success>()
-        verify(exactly = 1) { apkReader.readManifest(apkPath) }
+        verify(exactly = 1) { apkReader.readQueries(apkPath) }
+        verify(exactly = 0) { apkReader.readFullManifest(any(), any()) }
+    }
+
+    @Test
+    fun `getManifest calls readFullManifest not readQueries`() = runTest {
+        every { apkReader.readFullManifest(apkPath, pkg) } returns successFullData()
+        val repo = buildRepo(this)
+
+        val data = repo.getManifest(pkg)
+        data.rawXml.shouldBeInstanceOf<RawXmlResult.Success>()
+
+        verify(exactly = 1) { apkReader.readFullManifest(apkPath, pkg) }
+        verify(exactly = 0) { apkReader.readQueries(any()) }
+    }
+
+    @Test
+    fun `getQueriesFor memory-caches successful projection`() = runTest {
+        every { apkReader.readQueries(apkPath) } returns successQueries(listOf("com.target"))
+        val repo = buildRepo(this)
+
+        repo.getQueriesFor(pkg)
+        repo.getQueriesFor(pkg)
+
+        verify(exactly = 1) { apkReader.readQueries(apkPath) }
     }
 
     @Test
     fun `memory cache entry never references raw XML`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns successData()
+        every { apkReader.readQueries(apkPath) } returns successQueries()
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg)
@@ -128,71 +146,94 @@ class ManifestRepoTest : BaseTest() {
 
     @Test
     fun `cache invalidates when versionCode changes`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns successData()
+        every { apkReader.readQueries(apkPath) } returns successQueries()
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg)
 
-        // Simulate an app update — new versionCode means a new cache key and a new disk entry.
         stubPackageInfo(versionCode = versionCode + 1, lastUpdate = lastUpdate)
         repo.getQueriesFor(pkg)
 
-        verify(exactly = 2) { apkReader.readManifest(apkPath) }
+        verify(exactly = 2) { apkReader.readQueries(apkPath) }
     }
 
     @Test
     fun `LOW_MEMORY outcome is not memory-cached`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns ManifestData(
-            rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-            queries = QueriesResult.Error(IllegalStateException("low")),
-        )
+        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
 
-        verify(exactly = 2) { apkReader.readManifest(apkPath) }
+        verify(exactly = 2) { apkReader.readQueries(apkPath) }
     }
 
     @Test
     fun `Failure outcome is not memory-cached`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns ManifestData(
-            rawXml = RawXmlResult.Error(RuntimeException("parser boom")),
-            queries = QueriesResult.Error(RuntimeException("parser boom")),
-        )
+        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Error(RuntimeException("parser boom"))
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Failure>()
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Failure>()
 
-        verify(exactly = 2) { apkReader.readManifest(apkPath) }
+        verify(exactly = 2) { apkReader.readQueries(apkPath) }
     }
 
     @Test
     fun `APK_TOO_LARGE outcome is memory-cached`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns ManifestData(
-            rawXml = RawXmlResult.Unavailable(UnavailableReason.APK_TOO_LARGE),
-            queries = QueriesResult.Error(IllegalStateException("too large")),
-        )
+        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.APK_TOO_LARGE)
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
 
-        // Stable until the app updates — avoid reparsing.
-        verify(exactly = 1) { apkReader.readManifest(apkPath) }
+        verify(exactly = 1) { apkReader.readQueries(apkPath) }
     }
 
     @Test
-    fun `getManifest and getQueriesFor share single parse for same key`() = runTest {
-        every { apkReader.readManifest(apkPath) } returns successData(pkgQueries = listOf("com.shared"))
+    fun `viewer starts first then queries caller - single parse shared`() = runTest {
+        every { apkReader.readFullManifest(apkPath, pkg) } returns successFullData(listOf("com.shared"))
         val repo = buildRepo(this)
 
-        val a = async { repo.getQueriesFor(pkg) }
-        val b = async { repo.getManifest(pkg) }
-        a.await()
-        b.await()
+        val viewer = async { repo.getManifest(pkg) }
+        val scanner = async { repo.getQueriesFor(pkg) }
+        viewer.await()
+        scanner.await()
 
-        verify(exactly = 1) { apkReader.readManifest(apkPath) }
+        verify(exactly = 1) { apkReader.readFullManifest(apkPath, pkg) }
+        verify(exactly = 0) { apkReader.readQueries(any()) }
+    }
+
+    @Test
+    fun `queries-only path does not trigger full parse`() = runTest {
+        every { apkReader.readQueries(apkPath) } returns successQueries(listOf("com.x"))
+        val repo = buildRepo(this)
+
+        repo.getQueriesFor(pkg)
+        repo.getQueriesFor(pkg)
+
+        verify(exactly = 0) { apkReader.readFullManifest(any(), any()) }
+    }
+
+    @Test
+    fun `getQueriesFor writes only the sibling cache`() = runTest {
+        every { apkReader.readQueries(apkPath) } returns successQueries(listOf("com.target"))
+        val repo = buildRepo(this)
+
+        repo.getQueriesFor(pkg)
+
+        File(cacheRoot, "manifests/${pkg.value}.queries.json").exists() shouldBe true
+        File(cacheRoot, "manifests/${pkg.value}.json").exists() shouldBe false
+    }
+
+    @Test
+    fun `getManifest writes both cache files`() = runTest {
+        every { apkReader.readFullManifest(apkPath, pkg) } returns successFullData(listOf("com.target"))
+        val repo = buildRepo(this)
+
+        repo.getManifest(pkg)
+
+        File(cacheRoot, "manifests/${pkg.value}.json").exists() shouldBe true
+        File(cacheRoot, "manifests/${pkg.value}.queries.json").exists() shouldBe true
     }
 }

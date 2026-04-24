@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.core.manifest
 
 import android.content.Context
 import eu.darken.myperm.apps.core.Pkg
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldNotContain
@@ -56,7 +57,7 @@ class ManifestCacheTest : BaseTest() {
     }
 
     @Test
-    fun `put writes both files and getQueries prefers sibling`() {
+    fun `put writes both files and getQueries hits sibling`() {
         val queries = QueriesInfo(packageQueries = listOf("com.target"))
         cache.put(pkg, versionCode, lastUpdate, sampleData(queries))
 
@@ -68,37 +69,101 @@ class ManifestCacheTest : BaseTest() {
     }
 
     @Test
-    fun `getQueries sibling file never contains rawXml`() {
+    fun `sibling file never contains rawXml`() {
         val queries = QueriesInfo(packageQueries = listOf("com.target"))
         cache.put(pkg, versionCode, lastUpdate, sampleData(queries))
 
-        // The sibling file must NOT include rawXml — that's the whole point of the split.
         queriesFile().readText().shouldNotContain("rawXml")
     }
 
     @Test
-    fun `getQueries backfills sibling from existing full cache`() {
-        // Simulate pre-upgrade state: only the full cache file exists (no sibling).
+    fun `getQueries returns null when full cache present but sibling missing`() {
+        // Backfill path was removed — a full-cache-only state must NOT populate queries.
         val queries = QueriesInfo(packageQueries = listOf("com.existing"))
         cache.put(pkg, versionCode, lastUpdate, sampleData(queries))
         queriesFile().delete()
         queriesFile().exists() shouldBe false
 
-        val result = cache.getQueries(pkg, versionCode, lastUpdate).shouldNotBeNull()
-        result.packageQueries shouldBe listOf("com.existing")
-
-        // Sibling should have been written as a side effect of the backfill.
-        queriesFile().exists() shouldBe true
-        queriesFile().readText().shouldNotContain("rawXml")
+        cache.getQueries(pkg, versionCode, lastUpdate) shouldBe null
+        // No side-effect write should happen either.
+        queriesFile().exists() shouldBe false
     }
 
     @Test
-    fun `getQueries returns null when sibling stale and full absent`() {
-        // Write stale sibling.
+    fun `putQueries writes only the sibling`() {
+        val queries = QueriesInfo(packageQueries = listOf("com.target"))
+        cache.putQueries(pkg, versionCode, lastUpdate, queries)
+
+        queriesFile().exists() shouldBe true
+        fullFile().exists() shouldBe false
+
+        val result = cache.getQueries(pkg, versionCode, lastUpdate).shouldNotBeNull()
+        result.packageQueries shouldBe listOf("com.target")
+    }
+
+    @Test
+    fun `raw pre-v2 JSON without formatVersion is deleted on read`() {
+        // A pre-migration entry has no formatVersion field at all.
+        val rawJson = """
+            {
+              "versionCode": 42,
+              "lastUpdateTime": 1700000000000,
+              "rawXml": "<old/>",
+              "queries": null
+            }
+        """.trimIndent()
+        fullFile().writeText(rawJson)
+
+        val result = cache.get(pkg, versionCode = 42L, lastUpdateTime = 1_700_000_000_000L)
+        result.shouldBeNull()
+        fullFile().exists() shouldBe false
+    }
+
+    @Test
+    fun `wrong formatVersion is deleted on read`() {
+        val rawJson = """
+            {
+              "formatVersion": 1,
+              "versionCode": 42,
+              "lastUpdateTime": 1700000000000,
+              "rawXml": "<old/>",
+              "queries": null
+            }
+        """.trimIndent()
+        fullFile().writeText(rawJson)
+
+        val result = cache.get(pkg, versionCode = 42L, lastUpdateTime = 1_700_000_000_000L)
+        result.shouldBeNull()
+        fullFile().exists() shouldBe false
+    }
+
+    @Test
+    fun `queries sibling is preserved when full cache is pre-v2 and deleted`() {
+        // Write a valid sibling.
+        cache.putQueries(pkg, versionCode, lastUpdate, QueriesInfo(packageQueries = listOf("x")))
+        // Drop a pre-v2 full file next to it.
+        fullFile().writeText(
+            """
+                {
+                  "versionCode": 42,
+                  "lastUpdateTime": 1700000000000,
+                  "rawXml": "<old/>",
+                  "queries": null
+                }
+            """.trimIndent()
+        )
+
+        cache.get(pkg, versionCode, lastUpdate) shouldBe null
+        fullFile().exists() shouldBe false
+        // Sibling still valid.
+        cache.getQueries(pkg, versionCode, lastUpdate)!!.packageQueries shouldBe listOf("x")
+    }
+
+    @Test
+    fun `getQueries returns null when sibling stale`() {
         queriesFile().writeText("""{"versionCode":1,"lastUpdateTime":1,"queries":{"packageQueries":[]}}""")
 
         cache.getQueries(pkg, versionCode, lastUpdate) shouldBe null
-        // Stale sibling should be cleaned up.
         queriesFile().exists() shouldBe false
     }
 
@@ -107,8 +172,10 @@ class ManifestCacheTest : BaseTest() {
         cache.put(pkg, versionCode, lastUpdate, sampleData())
         queriesFile().writeText("{not valid json")
 
-        // getQueries should fall back to backfilling from full, NOT delete full.
-        cache.getQueries(pkg, versionCode, lastUpdate).shouldNotBeNull()
+        // getQueries deletes the corrupt sibling and returns null (no backfill).
+        cache.getQueries(pkg, versionCode, lastUpdate) shouldBe null
+        queriesFile().exists() shouldBe false
+        // Full file untouched.
         fullFile().exists() shouldBe true
     }
 
@@ -117,10 +184,8 @@ class ManifestCacheTest : BaseTest() {
         cache.put(pkg, versionCode, lastUpdate, sampleData())
         fullFile().writeText("{not valid json")
 
-        // Full read returns null and deletes corrupted full …
         cache.get(pkg, versionCode, lastUpdate) shouldBe null
         fullFile().exists() shouldBe false
-        // … but the sibling is untouched and still serves queries.
         queriesFile().exists() shouldBe true
         cache.getQueries(pkg, versionCode, lastUpdate).shouldNotBeNull()
     }
@@ -129,7 +194,6 @@ class ManifestCacheTest : BaseTest() {
     fun `stale full cache deletes full but not sibling`() {
         cache.put(pkg, versionCode, lastUpdate, sampleData())
 
-        // Caller asks for a different version — stale.
         val result = cache.get(pkg, versionCode = versionCode + 1, lastUpdateTime = lastUpdate)
         result shouldBe null
         fullFile().exists() shouldBe false

@@ -1,20 +1,39 @@
 package eu.darken.myperm.apps.core.manifest
 
 import androidx.annotation.VisibleForTesting
+import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.apps.core.manifest.binaryxml.BinaryXmlException
+import eu.darken.myperm.apps.core.manifest.binaryxml.BinaryXmlStreamer
+import eu.darken.myperm.apps.core.manifest.binaryxml.CompositeVisitor
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
-import net.dongliu.apk.parser.ApkFile
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserFactory
 import java.io.File
-import java.io.StringReader
+import java.io.FileNotFoundException
+import java.io.IOException
+import java.util.zip.ZipEntry
+import java.util.zip.ZipException
 import java.util.zip.ZipFile
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Streaming APK manifest reader.
+ *
+ * Two entry points:
+ * - [readQueries] — lightweight path for the hint scanner; runs a single streamer pass with
+ *   [QueriesExtractor] only. No rawXml is built, no resource resolution.
+ * - [readFullManifest] — viewer path; composite visitor produces both rawXml (via
+ *   [ManifestTextRenderer]) and [QueriesInfo] in a single parse.
+ *
+ * `resources.arsc` is never read. Symbolic resource names for the viewer are resolved through
+ * [ResourceNameResolver], which delegates to `PackageManager.getResourcesForApplication` (public
+ * API, zero Java heap cost).
+ */
 @Singleton
-class ApkManifestReader @Inject constructor() {
+class ApkManifestReader @Inject constructor(
+    private val resourceNameResolver: ResourceNameResolver,
+) {
 
     internal data class HeapInfo(val maxHeap: Long, val freeHeap: Long)
 
@@ -24,187 +43,200 @@ class ApkManifestReader @Inject constructor() {
         HeapInfo(maxHeap = rt.maxMemory(), freeHeap = rt.maxMemory() - (rt.totalMemory() - rt.freeMemory()))
     }
 
-    fun readManifest(apkPath: String): ManifestData {
-        val apkFile = File(apkPath)
-        if (!apkFile.exists()) {
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.APK_NOT_FOUND),
-                queries = QueriesResult.Error(IllegalStateException("APK not found: $apkPath")),
-            )
+    /** Scanner path. Returns the `<queries>` projection. */
+    fun readQueries(apkPath: String): QueriesReadResult {
+        val preflight = openAndPreflight(apkPath, Mode.QUERIES_ONLY)
+        if (preflight is Preflight.Failed) return QueriesReadResult.Unavailable(preflight.reason)
+        val ok = preflight as Preflight.Ok
+        ok.zip.use { zip ->
+            val bytes = try {
+                readManifestBytes(zip, ok.manifestEntry)
+            } catch (e: LowMemoryException) {
+                log(TAG, WARN) { "OOM reading manifest bytes: ${e.cause}" }
+                return QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
+            } catch (e: MalformedApkException) {
+                log(TAG, WARN) { "Malformed manifest entry: $e" }
+                return QueriesReadResult.Unavailable(UnavailableReason.MALFORMED_APK)
+            }
+            return try {
+                val extractor = QueriesExtractor()
+                BinaryXmlStreamer().parse(bytes, extractor)
+                QueriesReadResult.Success(extractor.result())
+            } catch (oom: OutOfMemoryError) {
+                log(TAG, WARN) { "OOM during manifest parse: $oom" }
+                QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
+            } catch (e: BinaryXmlException) {
+                log(TAG, WARN) { "Binary XML parse failed: $e" }
+                QueriesReadResult.Error(e)
+            } catch (e: Exception) {
+                log(TAG, WARN) { "Unexpected parse error: $e" }
+                QueriesReadResult.Error(e)
+            }
         }
-        if (!apkFile.canRead()) {
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.APK_NOT_READABLE),
-                queries = QueriesResult.Error(IllegalStateException("APK not readable: $apkPath")),
-            )
-        }
+    }
 
-        // Entry gate: require 20% of max heap free. Reactive — the real protection is the
-        // post-preflight byte budget below, which sizes against actual parse cost.
+    /** Viewer path. Returns rawXml and queries from a single streamer pass. */
+    fun readFullManifest(apkPath: String, pkgName: Pkg.Name): ManifestData {
+        val preflight = openAndPreflight(apkPath, Mode.FULL)
+        if (preflight is Preflight.Failed) return ManifestData(
+            rawXml = RawXmlResult.Unavailable(preflight.reason),
+            queries = QueriesResult.Error(IllegalStateException(preflight.reason.name)),
+        )
+        val ok = preflight as Preflight.Ok
+        ok.zip.use { zip ->
+            val bytes = try {
+                readManifestBytes(zip, ok.manifestEntry)
+            } catch (e: LowMemoryException) {
+                log(TAG, WARN) { "OOM reading manifest bytes: ${e.cause}" }
+                return ManifestData(
+                    rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                    queries = QueriesResult.Error(IllegalStateException("OOM reading bytes", e)),
+                )
+            } catch (e: MalformedApkException) {
+                log(TAG, WARN) { "Malformed manifest entry: $e" }
+                return ManifestData(
+                    rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
+                    queries = QueriesResult.Error(e),
+                )
+            }
+            return try {
+                val extractor = QueriesExtractor()
+                val renderer = ManifestTextRenderer(resourceNameResolver.forPackage(pkgName))
+                BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(renderer, extractor)))
+                ManifestData(
+                    rawXml = RawXmlResult.Success(renderer.result()),
+                    queries = QueriesResult.Success(extractor.result()),
+                )
+            } catch (oom: OutOfMemoryError) {
+                log(TAG, WARN) { "OOM during manifest parse: $oom" }
+                ManifestData(
+                    rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                    queries = QueriesResult.Error(IllegalStateException("OOM during parse", oom)),
+                )
+            } catch (e: BinaryXmlException) {
+                log(TAG, WARN) { "Binary XML parse failed: $e" }
+                ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+            } catch (e: Exception) {
+                log(TAG, WARN) { "Unexpected parse error: $e" }
+                ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+            }
+        }
+    }
+
+    private fun openAndPreflight(apkPath: String, mode: Mode): Preflight {
+        val apkFile = File(apkPath)
+        if (!apkFile.exists()) return Preflight.Failed(UnavailableReason.APK_NOT_FOUND)
+        if (!apkFile.canRead()) return Preflight.Failed(UnavailableReason.APK_NOT_READABLE)
+
         val entryHeap = heapInfoProvider()
         if (entryHeap.freeHeap < entryHeap.maxHeap * FREE_HEAP_ENTRY_RATIO) {
             log(TAG, WARN) { "Skipping manifest parse for $apkPath: low memory (${entryHeap.freeHeap / 1024}KB free)" }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                queries = QueriesResult.Error(IllegalStateException("Low memory")),
-            )
+            return Preflight.Failed(UnavailableReason.LOW_MEMORY)
         }
 
-        // Preflight: size the zip entries the parser will read. apk-parser loads both
-        // resources.arsc and AndroidManifest.xml via a ByteArrayOutputStream.grow cycle,
-        // which peaks around 3× the growing buffer (old + new + JVM overhead).
-        val (arscSize, manifestSize) = try {
-            ZipFile(apkFile).use { zip ->
-                val arscEntry = zip.getEntry("resources.arsc")
-                val manifestEntry = zip.getEntry("AndroidManifest.xml")
-                val arscSize: Long = arscEntry?.size?.takeIf { it >= 0L } ?: -1L
-                val manifestSize: Long = manifestEntry?.size?.takeIf { it >= 0L } ?: -1L
-                arscSize to manifestSize
-            }
-        } catch (e: Exception) {
-            log(TAG, WARN) { "Zip preflight failed for $apkPath: $e" }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
-                queries = QueriesResult.Error(e),
-            )
+        val zip = try {
+            ZipFile(apkFile)
+        } catch (_: FileNotFoundException) {
+            return Preflight.Failed(UnavailableReason.APK_NOT_FOUND)
+        } catch (_: SecurityException) {
+            return Preflight.Failed(UnavailableReason.APK_NOT_READABLE)
+        } catch (e: ZipException) {
+            log(TAG, WARN) { "Zip open failed: $e" }
+            return Preflight.Failed(UnavailableReason.MALFORMED_APK)
+        } catch (e: IOException) {
+            log(TAG, WARN) { "IO error opening APK: $e" }
+            return Preflight.Failed(UnavailableReason.MALFORMED_APK)
         }
 
-        if (arscSize < 0L || manifestSize < 0L) {
-            log(TAG, WARN) { "Missing/unknown zip entry sizes for $apkPath (arsc=$arscSize, manifest=$manifestSize)" }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
-                queries = QueriesResult.Error(IllegalStateException("Malformed APK: missing entry sizes")),
-            )
+        val manifestEntry = zip.getEntry(MANIFEST_ENTRY)
+        if (manifestEntry == null || manifestEntry.size < 0L) {
+            zip.close()
+            return Preflight.Failed(UnavailableReason.MALFORMED_APK)
         }
 
-        val estimatedPeak: Long = arscSize * 3L + manifestSize * 2L + PARSE_SLACK_BYTES
+        val manifestSize = manifestEntry.size
+        if (manifestSize <= 0L || manifestSize > Int.MAX_VALUE) {
+            zip.close()
+            log(TAG, WARN) { "Invalid manifest entry size $manifestSize for $apkPath" }
+            return Preflight.Failed(UnavailableReason.MALFORMED_APK)
+        }
+
+        val estimatedPeak: Long = manifestSize * peakMultiplier(mode) + PARSE_SLACK_BYTES
         val postPreflightHeap = heapInfoProvider()
         val budgetCeiling: Long = (postPreflightHeap.maxHeap * BUDGET_MAX_HEAP_RATIO).toLong()
         if (estimatedPeak > budgetCeiling) {
+            zip.close()
             log(TAG, WARN) {
                 "Skipping oversized APK $apkPath: estimatedPeak=${estimatedPeak / 1024}KB > budget=${budgetCeiling / 1024}KB"
             }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.APK_TOO_LARGE),
-                queries = QueriesResult.Error(IllegalStateException("APK too large: estimatedPeak=$estimatedPeak")),
-            )
+            return Preflight.Failed(UnavailableReason.APK_TOO_LARGE)
         }
 
-        // Re-check free heap against the sized budget — if something consumed heap between
-        // the entry gate and here, bail before we trigger the doubling allocation.
         if (postPreflightHeap.freeHeap < estimatedPeak + PARSE_SLACK_BYTES) {
+            zip.close()
             log(TAG, WARN) {
                 "Insufficient heap for manifest parse $apkPath: free=${postPreflightHeap.freeHeap / 1024}KB, need=${(estimatedPeak + PARSE_SLACK_BYTES) / 1024}KB"
             }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                queries = QueriesResult.Error(IllegalStateException("Insufficient heap for parse")),
-            )
+            return Preflight.Failed(UnavailableReason.LOW_MEMORY)
         }
 
-        val xml = try {
-            ApkFile(apkFile).use { it.manifestXml }
-        } catch (e: OutOfMemoryError) {
-            log(TAG, WARN) { "OOM reading manifest from $apkPath: $e" }
-            return ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                queries = QueriesResult.Error(IllegalStateException("OOM during manifest parse", e)),
-            )
-        } catch (e: Exception) {
-            log(TAG, WARN) { "Failed to read manifest from $apkPath: $e" }
-            return ManifestData(
-                rawXml = RawXmlResult.Error(e),
-                queries = QueriesResult.Error(e),
-            )
-        }
-
-        val queriesResult = try {
-            QueriesResult.Success(parseQueries(xml))
-        } catch (e: OutOfMemoryError) {
-            log(TAG, WARN) { "OOM parsing queries from $apkPath: $e" }
-            QueriesResult.Error(IllegalStateException("OOM during queries parse", e))
-        } catch (e: Exception) {
-            log(TAG, WARN) { "Failed to parse queries from $apkPath: $e" }
-            QueriesResult.Error(e)
-        }
-
-        return ManifestData(
-            rawXml = RawXmlResult.Success(xml),
-            queries = queriesResult,
-        )
+        return Preflight.Ok(zip, manifestEntry)
     }
 
-    private fun parseQueries(xml: String): QueriesInfo {
-        val factory = XmlPullParserFactory.newInstance().apply { isNamespaceAware = true }
-        val parser = factory.newPullParser()
-        parser.setInput(StringReader(xml))
+    private fun peakMultiplier(mode: Mode): Long = when (mode) {
+        Mode.QUERIES_ONLY -> QUERIES_PEAK_MULTIPLIER
+        Mode.FULL -> FULL_PEAK_MULTIPLIER
+    }
 
-        var inQueries = false
-        var inIntent = false
-        val packages = mutableListOf<String>()
-        val intents = mutableListOf<QueriesInfo.IntentQuery>()
-        val providers = mutableListOf<String>()
-        var currentActions = mutableListOf<String>()
-        var currentData = mutableListOf<String>()
-        var currentCategories = mutableListOf<String>()
-
-        var eventType = parser.eventType
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            when (eventType) {
-                XmlPullParser.START_TAG -> when (parser.name) {
-                    "queries" -> inQueries = true
-                    "package" -> if (inQueries && !inIntent) {
-                        getAndroidAttr(parser, "name")?.let { packages.add(it) }
-                    }
-                    "intent" -> if (inQueries) {
-                        inIntent = true
-                        currentActions = mutableListOf()
-                        currentData = mutableListOf()
-                        currentCategories = mutableListOf()
-                    }
-                    "action" -> if (inIntent) {
-                        getAndroidAttr(parser, "name")?.let { currentActions.add(it) }
-                    }
-                    "data" -> if (inIntent) {
-                        val specs = buildList {
-                            getAndroidAttr(parser, "scheme")?.let { add("scheme=$it") }
-                            getAndroidAttr(parser, "host")?.let { add("host=$it") }
-                            getAndroidAttr(parser, "mimeType")?.let { add("mimeType=$it") }
-                        }
-                        if (specs.isNotEmpty()) currentData.add(specs.joinToString(", "))
-                    }
-                    "category" -> if (inIntent) {
-                        getAndroidAttr(parser, "name")?.let { currentCategories.add(it) }
-                    }
-                    "provider" -> if (inQueries && !inIntent) {
-                        getAndroidAttr(parser, "authorities")?.let { providers.add(it) }
-                    }
-                }
-
-                XmlPullParser.END_TAG -> when (parser.name) {
-                    "queries" -> inQueries = false
-                    "intent" -> if (inQueries) {
-                        intents.add(QueriesInfo.IntentQuery(currentActions, currentData, currentCategories))
-                        inIntent = false
-                    }
-                }
+    @VisibleForTesting
+    internal fun readManifestBytes(zip: ZipFile, entry: ZipEntry): ByteArray {
+        if (entry.isDirectory) throw MalformedApkException("AndroidManifest.xml is a directory entry")
+        val size = entry.size
+        if (size <= 0 || size > Int.MAX_VALUE) throw MalformedApkException("bad manifest size: $size")
+        val buf = try {
+            ByteArray(size.toInt())
+        } catch (oom: OutOfMemoryError) {
+            throw LowMemoryException(oom)
+        }
+        zip.getInputStream(entry).use { input ->
+            var read = 0
+            while (read < buf.size) {
+                val n = input.read(buf, read, buf.size - read)
+                if (n < 0) throw MalformedApkException("short read at $read/${buf.size}")
+                read += n
             }
-            eventType = parser.next()
         }
-
-        return QueriesInfo(packages, intents, providers)
+        return buf
     }
 
-    private fun getAndroidAttr(parser: XmlPullParser, name: String): String? {
-        return parser.getAttributeValue(ANDROID_NS, name)
-            ?: parser.getAttributeValue(null, "android:$name")
+    private enum class Mode { QUERIES_ONLY, FULL }
+
+    private sealed class Preflight {
+        data class Ok(val zip: ZipFile, val manifestEntry: ZipEntry) : Preflight()
+        data class Failed(val reason: UnavailableReason) : Preflight()
     }
+
+    internal class MalformedApkException(message: String) : RuntimeException(message)
+    internal class LowMemoryException(cause: Throwable) : RuntimeException(cause)
 
     companion object {
-        private const val ANDROID_NS = "http://schemas.android.com/apk/res/android"
-        private const val FREE_HEAP_ENTRY_RATIO = 0.20
+        private const val MANIFEST_ENTRY = "AndroidManifest.xml"
+        private const val FREE_HEAP_ENTRY_RATIO = 0.10
         private const val BUDGET_MAX_HEAP_RATIO = 0.25
-        private const val PARSE_SLACK_BYTES = 2L * 1024 * 1024 // 2 MB safety margin
+
+        // Scanner path: raw bytes + decoded string pool + transient parser state.
+        private const val QUERIES_PEAK_MULTIPLIER = 4L
+
+        // Viewer path: additionally accumulates the textual rawXml StringBuilder.
+        private const val FULL_PEAK_MULTIPLIER = 6L
+
+        private const val PARSE_SLACK_BYTES = 2L * 1024 * 1024
         private val TAG = logTag("Apps", "Manifest", "Reader")
     }
+}
+
+sealed class QueriesReadResult {
+    data class Success(val info: QueriesInfo) : QueriesReadResult()
+    data class Unavailable(val reason: UnavailableReason) : QueriesReadResult()
+    data class Error(val error: Throwable) : QueriesReadResult()
 }
