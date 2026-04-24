@@ -126,16 +126,13 @@ class ManifestRepo @Inject constructor(
         versionCode: Long,
         lastUpdateTime: Long,
     ): QueriesOutcome {
-        // If the viewer is already parsing this package, piggyback on its work — we can extract
-        // queries from the full result without running a second parse.
-        val fullShared = inFlightMutex.withLock { fullInFlight[key] }
-        if (fullShared != null) {
-            log(TAG) { "Piggybacking queries on in-flight viewer parse for $pkgName" }
-            return toOutcome(fullShared.await())
-        }
-
-        val deferred: Deferred<QueriesOutcome> = inFlightMutex.withLock {
-            queriesInFlight[key] ?: appScope.async(dispatcherProvider.IO) {
+        // Atomic lookup across both in-flight maps — otherwise a viewer parse registering between
+        // the `fullInFlight` check and the `queriesInFlight` insertion would be missed, causing a
+        // duplicate parse for the same key.
+        val parse: InFlight = inFlightMutex.withLock {
+            fullInFlight[key]?.let { return@withLock InFlight.Full(it) }
+            queriesInFlight[key]?.let { return@withLock InFlight.Queries(it) }
+            val newDeferred = appScope.async(dispatcherProvider.IO) {
                 try {
                     semaphore.withPermit {
                         log(TAG) { "Parsing queries for $pkgName at $sourceDir" }
@@ -152,9 +149,22 @@ class ManifestRepo @Inject constructor(
                 } finally {
                     inFlightMutex.withLock { queriesInFlight.remove(key) }
                 }
-            }.also { queriesInFlight[key] = it }
+            }
+            queriesInFlight[key] = newDeferred
+            InFlight.Queries(newDeferred)
         }
-        return deferred.await()
+        return when (parse) {
+            is InFlight.Full -> {
+                log(TAG) { "Piggybacking queries on in-flight viewer parse for $pkgName" }
+                toOutcome(parse.deferred.await())
+            }
+            is InFlight.Queries -> parse.deferred.await()
+        }
+    }
+
+    private sealed class InFlight {
+        data class Full(val deferred: Deferred<ManifestData>) : InFlight()
+        data class Queries(val deferred: Deferred<QueriesOutcome>) : InFlight()
     }
 
     private fun queriesResultToOutcome(result: QueriesReadResult): QueriesOutcome = when (result) {

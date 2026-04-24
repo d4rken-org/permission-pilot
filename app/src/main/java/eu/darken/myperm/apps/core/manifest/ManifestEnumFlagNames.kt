@@ -1,5 +1,7 @@
 package eu.darken.myperm.apps.core.manifest
 
+import android.R as AndroidR
+
 /**
  * Curated decoder for high-frequency enum/flag-typed manifest attributes.
  *
@@ -7,43 +9,56 @@ package eu.darken.myperm.apps.core.manifest
  * We don't load that metadata, so we ship a small hand-maintained table covering the attrs that
  * users actually read in the manifest viewer. Attrs outside the table render as plain numbers.
  *
- * Framework resource IDs are stable public contract — declared on `android.R.attr` and safe to
- * reference numerically. The values here are verified against the platform sources and every
- * entry is covered by unit tests.
+ * Framework resource IDs are pulled from `android.R.attr.*` — compile-time constants sourced from
+ * the platform, eliminating the risk of hand-typed numeric errors. Each entry is covered by a
+ * unit test (`ManifestEnumFlagNamesTest`).
  */
 internal object ManifestEnumFlagNames {
 
     private val table: Map<Int, Decoder> = mapOf(
-        // android.R.attr.protectionLevel (0x01010009)
-        0x01010009 to Decoder.Flag(
-            FlagBit(0x1, "dangerous"),
-            FlagBit(0x2, "signature"),
-            FlagBit(0x4, "signatureOrSystem"),
-            FlagBit(0x10, "privileged"),
-            FlagBit(0x20, "development"),
-            FlagBit(0x40, "appop"),
-            FlagBit(0x80, "pre23"),
-            FlagBit(0x100, "installer"),
-            FlagBit(0x200, "verifier"),
-            FlagBit(0x400, "preinstalled"),
-            FlagBit(0x800, "setup"),
-            FlagBit(0x1000, "instant"),
-            FlagBit(0x2000, "runtime"),
-            FlagBit(0x4000, "oem"),
-            FlagBit(0x8000, "vendorPrivileged"),
-            FlagBit(0x10000, "textClassifier"),
-            defaultWhenZero = "normal",
+        // Base enum (0..4) + privilege/grant flag bits above 0x0F. Flags may OR with any base.
+        AndroidR.attr.protectionLevel to Decoder.EnumWithFlags(
+            baseMask = 0x0F,
+            baseEnum = mapOf(
+                0 to "normal",
+                1 to "dangerous",
+                2 to "signature",
+                3 to "signatureOrSystem",
+                4 to "internal",
+            ),
+            flags = listOf(
+                FlagBit(0x10, "privileged"),
+                FlagBit(0x20, "development"),
+                FlagBit(0x40, "appop"),
+                FlagBit(0x80, "pre23"),
+                FlagBit(0x100, "installer"),
+                FlagBit(0x200, "verifier"),
+                FlagBit(0x400, "preinstalled"),
+                FlagBit(0x800, "setup"),
+                FlagBit(0x1000, "instant"),
+                FlagBit(0x2000, "runtime"),
+                FlagBit(0x4000, "oem"),
+                FlagBit(0x8000, "vendorPrivileged"),
+                FlagBit(0x10000, "textClassifier"),
+                FlagBit(0x20000, "configurator"),
+                FlagBit(0x40000, "incidentReportApprover"),
+                FlagBit(0x80000, "appPredictor"),
+                FlagBit(0x100000, "moduleInstaller"),
+                FlagBit(0x200000, "companion"),
+                FlagBit(0x400000, "retailDemo"),
+                FlagBit(0x800000, "recents"),
+                FlagBit(0x1000000, "role"),
+                FlagBit(0x2000000, "knownSigner"),
+            ),
         ),
-        // android.R.attr.launchMode (0x0101001d)
-        0x0101001d to Decoder.Enum(
+        AndroidR.attr.launchMode to Decoder.Enum(
             0 to "standard",
             1 to "singleTop",
             2 to "singleTask",
             3 to "singleInstance",
             4 to "singleInstancePerTask",
         ),
-        // android.R.attr.screenOrientation (0x0101001e)
-        0x0101001e to Decoder.Enum(
+        AndroidR.attr.screenOrientation to Decoder.Enum(
             -1 to "unspecified",
             0 to "landscape",
             1 to "portrait",
@@ -61,8 +76,7 @@ internal object ManifestEnumFlagNames {
             13 to "fullUser",
             14 to "locked",
         ),
-        // android.R.attr.configChanges (0x0101001f)
-        0x0101001f to Decoder.Flag(
+        AndroidR.attr.configChanges to Decoder.Flag(
             FlagBit(0x0001, "mcc"),
             FlagBit(0x0002, "mnc"),
             FlagBit(0x0004, "locale"),
@@ -82,34 +96,37 @@ internal object ManifestEnumFlagNames {
             FlagBit(0x40000000.toInt(), "fontWeightAdjustment"),
             FlagBit(0x80000000.toInt(), "grammaticalGender"),
         ),
-        // android.R.attr.windowSoftInputMode (0x0101022b)
-        0x0101022b to Decoder.Flag(
-            FlagBit(0x1, "stateUnchanged"),
-            FlagBit(0x2, "stateHidden"),
-            FlagBit(0x3, "stateAlwaysHidden"),
-            FlagBit(0x4, "stateVisible"),
-            FlagBit(0x5, "stateAlwaysVisible"),
-            FlagBit(0x10, "adjustResize"),
-            FlagBit(0x20, "adjustPan"),
-            FlagBit(0x30, "adjustNothing"),
-            FlagBit(0x100, "adjustUnspecified"),
-            defaultWhenZero = "stateUnspecified",
+        // State nibble (low 4 bits, enum 0..5) + adjust nibble (bits 4..7, enum 0x00/0x10/0x20/0x30).
+        AndroidR.attr.windowSoftInputMode to Decoder.TwoNibbleEnum(
+            lowMask = 0x0F,
+            lowEnum = mapOf(
+                0 to "stateUnspecified",
+                1 to "stateUnchanged",
+                2 to "stateHidden",
+                3 to "stateAlwaysHidden",
+                4 to "stateVisible",
+                5 to "stateAlwaysVisible",
+            ),
+            highMask = 0xF0,
+            highEnum = mapOf(
+                0x00 to "adjustUnspecified",
+                0x10 to "adjustResize",
+                0x20 to "adjustPan",
+                0x30 to "adjustNothing",
+            ),
         ),
-        // android.R.attr.persistableMode (0x010103c9)
-        0x010103c9 to Decoder.Enum(
+        AndroidR.attr.persistableMode to Decoder.Enum(
             0 to "persistRootOnly",
             1 to "persistAcrossReboots",
             2 to "persistNever",
         ),
-        // android.R.attr.documentLaunchMode (0x01010445)
-        0x01010445 to Decoder.Enum(
+        AndroidR.attr.documentLaunchMode to Decoder.Enum(
             0 to "none",
             1 to "intoExisting",
             2 to "always",
             3 to "never",
         ),
-        // android.R.attr.foregroundServiceType (0x01010586)
-        0x01010586 to Decoder.Flag(
+        AndroidR.attr.foregroundServiceType to Decoder.Flag(
             FlagBit(0x00000001, "dataSync"),
             FlagBit(0x00000002, "mediaPlayback"),
             FlagBit(0x00000004, "phoneCall"),
@@ -126,31 +143,26 @@ internal object ManifestEnumFlagNames {
             FlagBit(0x00002000, "mediaProcessing"),
             FlagBit(0x00004000, "specialUse"),
         ),
-        // android.R.attr.importantForAccessibility (0x010103aa)
-        0x010103aa to Decoder.Enum(
+        AndroidR.attr.importantForAccessibility to Decoder.Enum(
             0 to "auto",
             1 to "yes",
             2 to "no",
             4 to "noHideDescendants",
         ),
-        // android.R.attr.importantForAutofill (0x01010524)
-        0x01010524 to Decoder.Flag(
+        AndroidR.attr.importantForAutofill to Decoder.Flag(
             FlagBit(0x1, "no"),
             FlagBit(0x2, "noExcludeDescendants"),
             FlagBit(0x4, "yes"),
             FlagBit(0x8, "yesExcludeDescendants"),
             defaultWhenZero = "auto",
         ),
-        // android.R.attr.gwpAsanMode (0x0101063d)
-        0x0101063d to Decoder.Enum(
+        AndroidR.attr.gwpAsanMode to Decoder.Enum(
             -1 to "default",
             0 to "never",
             1 to "always",
         ),
-        // android.R.attr.networkSecurityConfig is a reference type — no enum.
-        // android.R.attr.usesPermissionFlags (0x01010643)
-        0x01010643 to Decoder.Flag(
-            FlagBit(0x1, "neverForLocation"),
+        AndroidR.attr.usesPermissionFlags to Decoder.Flag(
+            FlagBit(0x00010000, "neverForLocation"),
         ),
     )
 
@@ -187,6 +199,62 @@ internal object ManifestEnumFlagNames {
                     out.append("0x").append(Integer.toHexString(remaining))
                 }
                 return if (out.isEmpty()) null else out.toString()
+            }
+        }
+
+        /**
+         * Enum in the low nibble (lower bits) combined with flag-like privilege bits in the upper
+         * bits. Used by `protectionLevel`, where the low nibble is a discrete protection level
+         * (normal/dangerous/signature/...) and the upper bits are optional grant flags.
+         */
+        class EnumWithFlags(
+            private val baseMask: Int,
+            private val baseEnum: Map<Int, String>,
+            private val flags: List<FlagBit>,
+        ) : Decoder() {
+            override fun format(data: Int): String? {
+                val baseValue = data and baseMask
+                val baseName = baseEnum[baseValue] ?: return null
+                val rest = data and baseMask.inv()
+                if (rest == 0) return baseName
+                val out = StringBuilder(baseName)
+                var remaining = rest
+                for (bit in flags) {
+                    if ((remaining and bit.mask) == bit.mask) {
+                        out.append('|').append(bit.name)
+                        remaining = remaining and bit.mask.inv()
+                    }
+                }
+                if (remaining != 0) {
+                    out.append("|0x").append(Integer.toHexString(remaining))
+                }
+                return out.toString()
+            }
+        }
+
+        /**
+         * Two independent enum fields packed into low and high nibbles. Used by
+         * `windowSoftInputMode`: `state` in bits 0..3 (enum 0..5), `adjust` in bits 4..7
+         * (enum 0x00/0x10/0x20/0x30). A `0x00` high nibble still decodes (unspecified).
+         */
+        class TwoNibbleEnum(
+            private val lowMask: Int,
+            private val lowEnum: Map<Int, String>,
+            private val highMask: Int,
+            private val highEnum: Map<Int, String>,
+        ) : Decoder() {
+            override fun format(data: Int): String? {
+                val low = data and lowMask
+                val high = data and highMask
+                val leftover = data and (lowMask or highMask).inv()
+                val lowName = lowEnum[low]
+                val highName = highEnum[high]
+                if (lowName == null && highName == null && leftover == 0) return null
+                val parts = mutableListOf<String>()
+                lowName?.let { parts.add(it) }
+                highName?.let { parts.add(it) }
+                if (leftover != 0) parts.add("0x${Integer.toHexString(leftover)}")
+                return parts.joinToString("|")
             }
         }
     }
