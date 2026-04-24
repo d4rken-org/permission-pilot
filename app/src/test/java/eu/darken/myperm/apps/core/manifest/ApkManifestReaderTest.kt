@@ -1,17 +1,23 @@
 package eu.darken.myperm.apps.core.manifest
 
 import eu.darken.myperm.apps.core.Pkg
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import testhelper.BaseTest
 import testhelper.binaryxml.AxmlFixtureBuilder
 import testhelper.binaryxml.AxmlFixtureBuilder.Attr
+import java.io.ByteArrayInputStream
 import java.io.File
+import java.io.InputStream
 import java.util.zip.ZipEntry
+import java.util.zip.ZipException
+import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
 class ApkManifestReaderTest : BaseTest() {
@@ -119,6 +125,83 @@ class ApkManifestReaderTest : BaseTest() {
         val queries = result.queries.shouldBeInstanceOf<QueriesResult.Success>()
         raw.xml.shouldContain("<manifest")
         queries.info.packageQueries shouldBe listOf("com.both")
+    }
+
+    // --- readManifestBytes direct edge-case tests ---
+
+    @Test
+    fun `readManifestBytes rejects directory entry`() {
+        val zip = mockk<ZipFile>()
+        // ZipEntry.isDirectory() is final and keyed off a trailing "/" in the name.
+        val dirEntry = ZipEntry("AndroidManifest.xml/")
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, dirEntry)
+        }
+        ex.message!!.shouldContain("directory entry")
+    }
+
+    @Test
+    fun `readManifestBytes rejects zero-size entry`() {
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = 0L }
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, entry)
+        }
+        ex.message!!.shouldContain("bad manifest size")
+    }
+
+    @Test
+    fun `readManifestBytes rejects size exceeding Int MAX_VALUE`() {
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = Int.MAX_VALUE.toLong() + 1L }
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, entry)
+        }
+        ex.message!!.shouldContain("bad manifest size")
+    }
+
+    @Test
+    fun `readManifestBytes reports short read as malformed`() {
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = 100L }
+        // Only 50 bytes available — the read loop sees -1 before filling the buffer.
+        every { zip.getInputStream(entry) } returns ByteArrayInputStream(ByteArray(50))
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, entry)
+        }
+        ex.message!!.shouldContain("short read")
+    }
+
+    @Test
+    fun `readManifestBytes wraps ZipException from corrupt deflate stream as malformed`() {
+        // F5 regression guard: a corrupt DEFLATE stream would previously let ZipException escape
+        // the reader and crash the caller. Must be classified as MALFORMED_APK instead.
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = 10L }
+        val throwingStream = object : InputStream() {
+            override fun read(): Int = throw ZipException("bad CRC")
+            override fun read(b: ByteArray, off: Int, len: Int): Int = throw ZipException("bad CRC")
+        }
+        every { zip.getInputStream(entry) } returns throwingStream
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, entry)
+        }
+        ex.message!!.shouldContain("zip read failed")
+    }
+
+    @Test
+    fun `readManifestBytes wraps generic IOException as malformed`() {
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = 10L }
+        val throwingStream = object : InputStream() {
+            override fun read(): Int = throw java.io.IOException("disk hiccup")
+            override fun read(b: ByteArray, off: Int, len: Int): Int = throw java.io.IOException("disk hiccup")
+        }
+        every { zip.getInputStream(entry) } returns throwingStream
+        val ex = shouldThrow<ApkManifestReader.MalformedApkException> {
+            reader().readManifestBytes(zip, entry)
+        }
+        ex.message!!.shouldContain("io read failed")
     }
 
     companion object {
