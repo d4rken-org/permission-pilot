@@ -143,7 +143,10 @@ class ManifestHintRepoTest : BaseTest() {
     }
 
     @Test
-    fun `Failure outcome with existing mismatched hint deletes stale entry`() = runTest2(autoCancel = true) {
+    fun `Failure outcome preserves existing hint`() = runTest2(autoCancel = true) {
+        // Parser exceptions are transient in the new model — they might be bugs in our new
+        // binary-XML parser, not actually broken APKs. We keep existing hints and retry on the
+        // next scan instead of destroying user-visible state.
         val pkgName = Pkg.Name("com.boom")
         val staleHint = ManifestHintEntity(
             pkgName = pkgName,
@@ -160,7 +163,7 @@ class ManifestHintRepoTest : BaseTest() {
 
         buildRepo().runScan(listOf(appInfo("com.boom", versionCode = 2L, lastUpdate = 2_000L)))
 
-        coVerify(exactly = 1) { manifestHintDao.deleteByPkgName(pkgName) }
+        coVerify(exactly = 0) { manifestHintDao.deleteByPkgName(pkgName) }
     }
 
     @Test

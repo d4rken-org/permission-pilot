@@ -28,25 +28,25 @@ class ManifestRepo @Inject constructor(
     @AppScope private val appScope: CoroutineScope,
     @ApplicationContext private val context: Context,
 ) {
-    // Single-permit so two 40MB parses never overlap. Single-flight below deduplicates
-    // concurrent callers for the same package so this isn't a throughput problem.
+    // Single-permit so two parses never overlap — cheap backstop even though the parses are now
+    // small (streaming). Single-flight below handles the same-key dedup.
     private val semaphore = Semaphore(1)
 
-    // Memory cache holds only the query projection — raw XML is NOT retained in memory.
+    // Memory cache holds only the queries projection — raw XML is NOT retained in memory.
     // Keyed by (pkg, versionCode, lastUpdate) so app updates auto-invalidate.
-    // Transient failures (LOW_MEMORY, Failure) are never cached so they're retried.
+    // Transient outcomes (LOW_MEMORY, Failure) are never cached so they're retried.
     private val memoryCache = object : LinkedHashMap<ParseCacheKey, QueriesOutcome>(MEMORY_CACHE_SIZE, 0.75f, true) {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<ParseCacheKey, QueriesOutcome>?) =
             size > MEMORY_CACHE_SIZE
     }
 
     private val inFlightMutex = Mutex()
-    private val inFlight = HashMap<ParseCacheKey, Deferred<ManifestData>>()
+    private val fullInFlight = HashMap<ParseCacheKey, Deferred<ManifestData>>()
+    private val queriesInFlight = HashMap<ParseCacheKey, Deferred<QueriesOutcome>>()
 
     /**
      * Full manifest — used by the manifest viewer. Returns raw XML.
-     * Goes through the single-flight parse path so a concurrent scanner call shares the work.
-     * Does not populate the memory cache with raw XML (the viewer re-reads from disk).
+     * Concurrent [getQueriesFor] callers can piggyback on this parse via the shared [fullInFlight] map.
      */
     suspend fun getManifest(pkgName: Pkg.Name): ManifestData = withContext(dispatcherProvider.IO) {
         val appMeta = resolveAppMeta(pkgName) ?: return@withContext ManifestData(
@@ -60,14 +60,13 @@ class ManifestRepo @Inject constructor(
             return@withContext it
         }
 
-        val data = parseOrAwait(key, appMeta.sourceDir, pkgName, appMeta.versionCode, appMeta.lastUpdateTime)
-        data
+        parseFullOrAwait(key, appMeta.sourceDir, pkgName, appMeta.versionCode, appMeta.lastUpdateTime)
     }
 
     /**
      * Queries-only — used by the background hint scanner. Never retains raw XML on this path.
-     * Memory cache holds only the [QueriesOutcome]. Disk cache (if hit) is read as the
-     * queries-only sibling, no raw XML deserialization.
+     * If a viewer parse is already in flight for the same key, await it and extract queries from
+     * the shared result. Otherwise runs the lightweight scanner-only path.
      */
     suspend fun getQueriesFor(pkgName: Pkg.Name): QueriesOutcome = withContext(dispatcherProvider.IO) {
         val appMeta = resolveAppMeta(pkgName) ?: return@withContext QueriesOutcome.Unavailable(UnavailableReason.PKG_NOT_FOUND)
@@ -85,15 +84,10 @@ class ManifestRepo @Inject constructor(
             return@withContext outcome
         }
 
-        val data = parseOrAwait(key, appMeta.sourceDir, pkgName, appMeta.versionCode, appMeta.lastUpdateTime)
-        toOutcomeAndCache(key, data)
+        parseQueriesOrAwait(key, appMeta.sourceDir, pkgName, appMeta.versionCode, appMeta.lastUpdateTime)
     }
 
-    /**
-     * Shared single-flight entry. Callers for the same [key] join the same deferred —
-     * we only open and parse the APK once, and each caller takes what they need.
-     */
-    private suspend fun parseOrAwait(
+    private suspend fun parseFullOrAwait(
         key: ParseCacheKey,
         sourceDir: String,
         pkgName: Pkg.Name,
@@ -101,30 +95,70 @@ class ManifestRepo @Inject constructor(
         lastUpdateTime: Long,
     ): ManifestData {
         val deferred: Deferred<ManifestData> = inFlightMutex.withLock {
-            inFlight[key] ?: appScope.async(dispatcherProvider.IO) {
+            fullInFlight[key] ?: appScope.async(dispatcherProvider.IO) {
                 try {
                     semaphore.withPermit {
-                        log(TAG) { "Parsing APK for $pkgName at $sourceDir" }
-                        val result = apkManifestReader.readManifest(sourceDir)
-                        if (result.rawXml is RawXmlResult.Success) {
-                            manifestCache.put(pkgName, versionCode, lastUpdateTime, result)
+                        log(TAG) { "Parsing full manifest for $pkgName at $sourceDir" }
+                        val data = apkManifestReader.readFullManifest(sourceDir, pkgName)
+                        if (data.rawXml is RawXmlResult.Success) {
+                            manifestCache.put(pkgName, versionCode, lastUpdateTime, data)
                         }
-                        result
+                        val outcome = toOutcome(data)
+                        if (shouldMemoryCache(outcome)) {
+                            synchronized(memoryCache) { memoryCache[key] = outcome }
+                        }
+                        data
                     }
                 } finally {
-                    inFlightMutex.withLock { inFlight.remove(key) }
+                    inFlightMutex.withLock { fullInFlight.remove(key) }
                 }
-            }.also { inFlight[key] = it }
+            }.also { fullInFlight[key] = it }
         }
         return deferred.await()
     }
 
-    private fun toOutcomeAndCache(key: ParseCacheKey, data: ManifestData): QueriesOutcome {
-        val outcome = toOutcome(data)
-        if (shouldMemoryCache(outcome)) {
-            synchronized(memoryCache) { memoryCache[key] = outcome }
+    private suspend fun parseQueriesOrAwait(
+        key: ParseCacheKey,
+        sourceDir: String,
+        pkgName: Pkg.Name,
+        versionCode: Long,
+        lastUpdateTime: Long,
+    ): QueriesOutcome {
+        // If the viewer is already parsing this package, piggyback on its work — we can extract
+        // queries from the full result without running a second parse.
+        val fullShared = inFlightMutex.withLock { fullInFlight[key] }
+        if (fullShared != null) {
+            log(TAG) { "Piggybacking queries on in-flight viewer parse for $pkgName" }
+            return toOutcome(fullShared.await())
         }
-        return outcome
+
+        val deferred: Deferred<QueriesOutcome> = inFlightMutex.withLock {
+            queriesInFlight[key] ?: appScope.async(dispatcherProvider.IO) {
+                try {
+                    semaphore.withPermit {
+                        log(TAG) { "Parsing queries for $pkgName at $sourceDir" }
+                        val result = apkManifestReader.readQueries(sourceDir)
+                        val outcome = queriesResultToOutcome(result)
+                        if (result is QueriesReadResult.Success) {
+                            manifestCache.putQueries(pkgName, versionCode, lastUpdateTime, result.info)
+                        }
+                        if (shouldMemoryCache(outcome)) {
+                            synchronized(memoryCache) { memoryCache[key] = outcome }
+                        }
+                        outcome
+                    }
+                } finally {
+                    inFlightMutex.withLock { queriesInFlight.remove(key) }
+                }
+            }.also { queriesInFlight[key] = it }
+        }
+        return deferred.await()
+    }
+
+    private fun queriesResultToOutcome(result: QueriesReadResult): QueriesOutcome = when (result) {
+        is QueriesReadResult.Success -> QueriesOutcome.Success(result.info)
+        is QueriesReadResult.Unavailable -> QueriesOutcome.Unavailable(result.reason)
+        is QueriesReadResult.Error -> QueriesOutcome.Failure(result.error)
     }
 
     private fun toOutcome(data: ManifestData): QueriesOutcome = when (val q = data.queries) {

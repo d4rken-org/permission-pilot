@@ -57,11 +57,6 @@ private val LICENSE_ENTRIES = listOf(
         "The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.",
         "https://developer.android.com/distribute/tools/promote/brand.html",
     ),
-    AckEntry(
-        "apk-parser",
-        "APK parser for Java/Android. (BSD 2-Clause)",
-        "https://github.com/nicedoc/apk-parser",
-    ),
 )
 
 @Composable

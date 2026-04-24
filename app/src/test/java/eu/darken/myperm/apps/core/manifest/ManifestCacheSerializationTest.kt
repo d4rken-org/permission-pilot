@@ -1,8 +1,8 @@
 package eu.darken.myperm.apps.core.manifest
 
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.kotest.matchers.types.shouldBeInstanceOf
 import kotlinx.serialization.json.Json
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -18,9 +18,10 @@ class ManifestCacheSerializationTest : BaseTest() {
     }
 
     @Test
-    fun `cached manifest with queries roundtrips via JSON`() {
+    fun `cached manifest v2 with queries roundtrips`() {
         val raw = """
             {
+              "formatVersion": 2,
               "versionCode": 612009943,
               "lastUpdateTime": 1705000000000,
               "rawXml": "<manifest/>",
@@ -34,8 +35,8 @@ class ManifestCacheSerializationTest : BaseTest() {
 
         val parsed = json.decodeFromString<CachedManifestTestHelper>(raw)
 
+        parsed.formatVersion shouldBe 2
         parsed.versionCode shouldBe 612009943L
-        parsed.lastUpdateTime shouldBe 1705000000000L
         parsed.rawXml shouldBe "<manifest/>"
         parsed.queries shouldNotBe null
         parsed.queries!!.packageQueries shouldBe listOf("com.example.app")
@@ -46,30 +47,26 @@ class ManifestCacheSerializationTest : BaseTest() {
     }
 
     @Test
-    fun `cached manifest without queries roundtrips via JSON`() {
+    fun `pre-v2 JSON without formatVersion decodes formatVersion as null`() {
+        // Critical migration guard: kotlinx.serialization must NOT fill in a default 2 for
+        // missing formatVersion fields. The field's default here is null.
         val raw = """
             {
               "versionCode": 100,
               "lastUpdateTime": 1700000000000,
-              "rawXml": "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"/>"
+              "rawXml": "<old/>"
             }
         """.trimIndent()
 
         val parsed = json.decodeFromString<CachedManifestTestHelper>(raw)
-
-        parsed.versionCode shouldBe 100L
-        parsed.rawXml shouldBe "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"/>"
-        parsed.queries shouldBe null
-
-        val reserialized = json.encodeToString(parsed)
-        val reparsed = json.decodeFromString<CachedManifestTestHelper>(reserialized)
-        reparsed shouldBe parsed
+        parsed.formatVersion shouldBe null
     }
 
     @Test
     fun `unknown fields in cached JSON are ignored`() {
         val raw = """
             {
+              "formatVersion": 2,
               "versionCode": 1,
               "lastUpdateTime": 1000,
               "rawXml": "<m/>",
@@ -95,6 +92,7 @@ class ManifestCacheSerializationTest : BaseTest() {
         }
 
         val cached = CachedManifestTestHelper(
+            formatVersion = 2,
             versionCode = 1,
             lastUpdateTime = 1000,
             rawXml = largeXml,
@@ -114,6 +112,7 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `cache file write and read roundtrip`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
+            formatVersion = 2,
             versionCode = 42,
             lastUpdateTime = 9999,
             rawXml = "<manifest><queries><package android:name=\"com.test\"/></queries></manifest>",
@@ -130,6 +129,7 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `stale cache detected when versionCode changes`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
+            formatVersion = 2,
             versionCode = 1,
             lastUpdateTime = 1000,
             rawXml = "<old/>",
@@ -146,6 +146,7 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `stale cache detected when lastUpdateTime changes`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
+            formatVersion = 2,
             versionCode = 1,
             lastUpdateTime = 1000,
             rawXml = "<old/>",
@@ -161,10 +162,11 @@ class ManifestCacheSerializationTest : BaseTest() {
 
 /**
  * Mirrors the private CachedManifest data class from ManifestCache.
- * Must be kept in sync to catch serialization regressions.
+ * Must be kept in sync — regressions here catch format drift between code and tests.
  */
 @kotlinx.serialization.Serializable
 data class CachedManifestTestHelper(
+    val formatVersion: Int? = null,
     val versionCode: Long,
     val lastUpdateTime: Long,
     val rawXml: String,

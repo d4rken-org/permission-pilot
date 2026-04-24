@@ -134,10 +134,10 @@ class ManifestHintRepo @Inject constructor(
                 }
 
                 is QueriesOutcome.Failure -> {
+                    // Parser errors (e.g. BinaryXmlException) are classified transient: the fault
+                    // may be a bug in our new binary-XML parser, not a broken APK. Keep any
+                    // existing hint so a subsequent scan can refresh it — don't delete proactively.
                     counts.failure++
-                    if (existing != null) {
-                        manifestHintDao.deleteByPkgName(nextApp.pkgName)
-                    }
                 }
             }
 
