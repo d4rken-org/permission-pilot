@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable
 import android.os.Process
 import android.os.UserHandle
 import eu.darken.myperm.apps.core.AppRepo
-import eu.darken.myperm.apps.core.GET_UNINSTALLED_PACKAGES_COMPAT
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.AccessibilityService
 import eu.darken.myperm.apps.core.features.InstallerInfo
@@ -149,34 +148,40 @@ suspend fun getSecondaryProfilePkgs(ipcFunnel: IPCFunnel): Collection<BasePkg> =
             emptyList()
         }
 
-        return launcherInfos.mapNotNull { lai ->
-            val appInfo = lai.applicationInfo
+        // LauncherApps.getActivityList returns one entry per launcher activity, so apps
+        // with multiple launcher activities yield multiple entries for the same package.
+        // Group by package and build one SecondaryProfilePkg per group, falling through to
+        // the next activity in the same group only if the current one's lookup fails.
+        return launcherInfos
+            .groupBy { it.applicationInfo.packageName }
+            .values
+            .mapNotNull { activitiesForPkg ->
+                activitiesForPkg.firstNotNullOfOrNull { lai ->
+                    val appInfo = lai.applicationInfo
 
-            var pkgInfo = ipcFunnel.packageManager.getPackageArchiveInfo(
-                appInfo.packageName,
-                GET_UNINSTALLED_PACKAGES_COMPAT
-            )
+                    val pkgInfo = ipcFunnel.packageManager.getPackageInfo(
+                        appInfo.packageName,
+                        PackageManager.GET_PERMISSIONS,
+                    ) ?: ipcFunnel.packageManager.getPackageArchiveInfo(
+                        appInfo.sourceDir,
+                        PackageManager.GET_PERMISSIONS,
+                    )
 
-            if (pkgInfo == null) {
-                log(AppRepo.TAG, VERBOSE) { "Failed to get info from packagemanager for $appInfo" }
-                pkgInfo =
-                    ipcFunnel.packageManager.getPackageArchiveInfo(appInfo.sourceDir, PackageManager.GET_PERMISSIONS)
+                    if (pkgInfo == null) {
+                        log(AppRepo.TAG, ERROR) { "Failed to read APK: ${appInfo.sourceDir}" }
+                        return@firstNotNullOfOrNull null
+                    }
+
+                    SecondaryProfilePkg(
+                        packageInfo = pkgInfo,
+                        installerInfo = pkgInfo.getInstallerInfo(ipcFunnel),
+                        launcherAppInfo = appInfo,
+                        userHandle = userHandle,
+                        extraPermissions = pkgInfo.determineSpecialPermissions(ipcFunnel, uidOverride = appInfo.uid),
+                        specialPermissionStatuses = pkgInfo.getSpecialPermissionStatuses(ipcFunnel, uidOverride = appInfo.uid),
+                    ).also { log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $it" } }
+                }
             }
-
-            if (pkgInfo == null) {
-                log(AppRepo.TAG, ERROR) { "Failed to read APK: ${appInfo.sourceDir}" }
-                return@mapNotNull null
-            }
-
-            SecondaryProfilePkg(
-                packageInfo = pkgInfo,
-                installerInfo = pkgInfo.getInstallerInfo(ipcFunnel),
-                launcherAppInfo = appInfo,
-                userHandle = userHandle,
-                extraPermissions = pkgInfo.determineSpecialPermissions(ipcFunnel, uidOverride = appInfo.uid),
-                specialPermissionStatuses = pkgInfo.getSpecialPermissionStatuses(ipcFunnel, uidOverride = appInfo.uid),
-            ).also { log(AppRepo.TAG) { "PKG[profile=${userHandle}}: $it" } }
-        }
     }
 
     extraProfiles
