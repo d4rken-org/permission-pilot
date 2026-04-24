@@ -6,6 +6,7 @@ import androidx.work.WorkManager
 import eu.darken.myperm.apps.core.AppInfo
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.AppScope
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.room.dao.ManifestHintDao
@@ -117,6 +118,7 @@ class ManifestHintRepo @Inject constructor(
                 }
 
                 is QueriesOutcome.Unavailable -> {
+                    log(TAG, WARN) { "Unavailable outcome for ${nextApp.pkgName}: reason=${outcome.reason}" }
                     when (outcome.reason) {
                         UnavailableReason.LOW_MEMORY -> counts.lowMemory++
                         UnavailableReason.APK_TOO_LARGE -> counts.apkTooLarge++
@@ -134,6 +136,7 @@ class ManifestHintRepo @Inject constructor(
                 }
 
                 is QueriesOutcome.Failure -> {
+                    log(TAG, WARN) { "Failure outcome for ${nextApp.pkgName}: ${outcome.error}" }
                     // Parser errors (e.g. BinaryXmlException) are classified transient: the fault
                     // may be a bug in our new binary-XML parser, not a broken APK. Keep any
                     // existing hint so a subsequent scan can refresh it — don't delete proactively.
