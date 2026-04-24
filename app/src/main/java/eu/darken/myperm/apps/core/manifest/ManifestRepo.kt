@@ -28,9 +28,11 @@ class ManifestRepo @Inject constructor(
     @AppScope private val appScope: CoroutineScope,
     @ApplicationContext private val context: Context,
 ) {
-    // Single-permit so two parses never overlap — cheap backstop even though the parses are now
-    // small (streaming). Single-flight below handles the same-key dedup.
-    private val semaphore = Semaphore(1)
+    // Bounded concurrency for unrelated-package parses. The streaming parser uses ~200 KB per
+    // parse, so 4 concurrent parses cost well under 1 MB — the limit exists to keep a runaway
+    // number of coroutines from all hitting disk at once, not for memory. Same-key callers
+    // dedup through the in-flight maps below regardless.
+    private val semaphore = Semaphore(MAX_CONCURRENT_PARSES)
 
     // Memory cache holds only the queries projection — raw XML is NOT retained in memory.
     // Keyed by (pkg, versionCode, lastUpdate) so app updates auto-invalidate.
@@ -178,7 +180,6 @@ class ManifestRepo @Inject constructor(
             UnavailableReason.APK_NOT_FOUND,
             UnavailableReason.APK_NOT_READABLE,
             UnavailableReason.PKG_NOT_FOUND,
-            UnavailableReason.APK_TOO_LARGE,
             UnavailableReason.MALFORMED_APK -> true          // stable until app updates
         }
     }
@@ -205,6 +206,7 @@ class ManifestRepo @Inject constructor(
 
     companion object {
         private const val MEMORY_CACHE_SIZE = 30
+        private const val MAX_CONCURRENT_PARSES = 4
         private val TAG = logTag("Apps", "Manifest", "Repo")
     }
 }

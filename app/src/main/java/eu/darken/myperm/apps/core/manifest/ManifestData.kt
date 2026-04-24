@@ -19,8 +19,8 @@ sealed class QueriesResult {
 /**
  * Narrow outcome for callers that only need the `<queries>` projection and must not retain
  * the raw manifest XML. Keeps the memory-cache footprint bounded and lets us distinguish
- * transient failures (LOW_MEMORY, generic Failure) that should be retried from stable ones
- * (APK_TOO_LARGE, PKG_NOT_FOUND) that can be cached.
+ * transient failures (LOW_MEMORY, generic Failure) from stable ones (APK_NOT_FOUND,
+ * MALFORMED_APK, PKG_NOT_FOUND) that can be cached.
  */
 sealed interface QueriesOutcome {
     data class Success(val info: QueriesInfo) : QueriesOutcome
@@ -33,6 +33,5 @@ enum class UnavailableReason {
     APK_NOT_READABLE,
     PKG_NOT_FOUND,
     LOW_MEMORY,
-    APK_TOO_LARGE,
     MALFORMED_APK,
 }

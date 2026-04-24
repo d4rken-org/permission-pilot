@@ -180,13 +180,14 @@ class ManifestRepoTest : BaseTest() {
     }
 
     @Test
-    fun `APK_TOO_LARGE outcome is memory-cached`() = runTest {
-        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.APK_TOO_LARGE)
+    fun `MALFORMED_APK outcome is memory-cached`() = runTest {
+        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.MALFORMED_APK)
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
 
+        // Stable outcome — cached until the app updates.
         verify(exactly = 1) { apkReader.readQueries(apkPath) }
     }
 
