@@ -74,8 +74,11 @@ internal object BinaryXmlStringPool {
         val charLen = readUtf16VarLen(chunk, at, chunkLimit)
         val p = at + if (((readU16(chunk, at)) and 0x8000) != 0) 4 else 2
         if (charLen < 0) throw BinaryXmlException("negative utf16 char length")
-        val byteLen = charLen * 2
-        if (p + byteLen > chunkLimit) throw BinaryXmlException("utf16 string overruns chunk")
+        // Compute byteLen in Long to prevent Int overflow (charLen up to 0x7FFFFFFF from the
+        // two-word varlen encoding; charLen * 2 as Int would wrap to negative, slipping past the
+        // bounds check and allocating a multi-GB CharArray before OOM classifies it).
+        val byteLen = charLen.toLong() * 2L
+        if (p.toLong() + byteLen > chunkLimit.toLong()) throw BinaryXmlException("utf16 string overruns chunk")
         val chars = CharArray(charLen)
         var cp = p
         for (i in 0 until charLen) {

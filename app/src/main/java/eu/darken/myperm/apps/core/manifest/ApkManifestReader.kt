@@ -158,13 +158,22 @@ class ApkManifestReader @Inject constructor(
         } catch (oom: OutOfMemoryError) {
             throw LowMemoryException(oom)
         }
-        zip.getInputStream(entry).use { input ->
-            var read = 0
-            while (read < buf.size) {
-                val n = input.read(buf, read, buf.size - read)
-                if (n < 0) throw MalformedApkException("short read at $read/${buf.size}")
-                read += n
+        try {
+            zip.getInputStream(entry).use { input ->
+                var read = 0
+                while (read < buf.size) {
+                    val n = input.read(buf, read, buf.size - read)
+                    if (n < 0) throw MalformedApkException("short read at $read/${buf.size}")
+                    read += n
+                }
             }
+        } catch (e: ZipException) {
+            // Corrupt DEFLATE stream or CRC mismatch. Surfacing as MalformedApkException lets the
+            // existing try/catch classify the outcome; we never want a raw IOException to escape
+            // the reader and crash the caller (the hint scanner runs over hundreds of APKs).
+            throw MalformedApkException("zip read failed: ${e.message}")
+        } catch (e: IOException) {
+            throw MalformedApkException("io read failed: ${e.message}")
         }
         return buf
     }

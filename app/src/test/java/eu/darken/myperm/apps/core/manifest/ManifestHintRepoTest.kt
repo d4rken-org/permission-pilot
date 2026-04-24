@@ -143,10 +143,11 @@ class ManifestHintRepoTest : BaseTest() {
     }
 
     @Test
-    fun `Failure outcome preserves existing hint`() = runTest2(autoCancel = true) {
-        // Parser exceptions are transient in the new model — they might be bugs in our new
-        // binary-XML parser, not actually broken APKs. We keep existing hints and retry on the
-        // next scan instead of destroying user-visible state.
+    fun `Failure outcome deletes stale-version existing hint`() = runTest2(autoCancel = true) {
+        // When the existing hint is for an OLDER version than the installed app and the scan fails
+        // with a parser error, the old hint's flags are for a different version of the app — don't
+        // leave them on the UI as if they were current. A subsequent scan will repopulate once the
+        // parser succeeds (failures are still transient — counted via counts.failure, not cached).
         val pkgName = Pkg.Name("com.boom")
         val staleHint = ManifestHintEntity(
             pkgName = pkgName,
@@ -162,6 +163,30 @@ class ManifestHintRepoTest : BaseTest() {
         coEvery { manifestRepo.getQueriesFor(pkgName) } returns QueriesOutcome.Failure(RuntimeException("parser"))
 
         buildRepo().runScan(listOf(appInfo("com.boom", versionCode = 2L, lastUpdate = 2_000L)))
+
+        coVerify(exactly = 1) { manifestHintDao.deleteByPkgName(pkgName) }
+    }
+
+    @Test
+    fun `LOW_MEMORY outcome preserves stale-version existing hint`() = runTest2(autoCancel = true) {
+        // LOW_MEMORY is transient — deleting a stale hint on a temporary OOM loses data the next
+        // successful scan would repopulate. Preserve it (the stale/fresh distinction is cosmetic
+        // compared to a LOW_MEMORY-triggered wipe-and-re-populate cycle).
+        val pkgName = Pkg.Name("com.hungry")
+        val staleHint = ManifestHintEntity(
+            pkgName = pkgName,
+            versionCode = 1L,
+            lastUpdateTime = 900L,
+            hasActionMainQuery = false,
+            packageQueryCount = 1,
+            intentQueryCount = 0,
+            providerQueryCount = 0,
+            scannedAt = 0L,
+        )
+        coEvery { manifestHintDao.getAll() } returns listOf(staleHint)
+        coEvery { manifestRepo.getQueriesFor(pkgName) } returns QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY)
+
+        buildRepo().runScan(listOf(appInfo("com.hungry", versionCode = 2L, lastUpdate = 2_000L)))
 
         coVerify(exactly = 0) { manifestHintDao.deleteByPkgName(pkgName) }
     }

@@ -126,20 +126,24 @@ class ManifestHintRepo @Inject constructor(
                         UnavailableReason.APK_NOT_READABLE,
                         UnavailableReason.PKG_NOT_FOUND -> counts.failure++
                     }
-                    // If a prior scan succeeded for an older version, that stale hint must not
-                    // outlive the new (unreadable) app. Delete so the UI falls back to the
-                    // "queued/no data" state instead of showing old flags.
-                    if (existing != null) {
+                    // Only delete stale hints for STABLE outcomes (app genuinely gone or manifest
+                    // genuinely malformed). LOW_MEMORY is transient — wiping a valid stale hint on
+                    // a temporary OOM loses data the next scan would repopulate anyway.
+                    if (existing != null && outcome.reason != UnavailableReason.LOW_MEMORY) {
                         manifestHintDao.deleteByPkgName(nextApp.pkgName)
                     }
                 }
 
                 is QueriesOutcome.Failure -> {
                     log(TAG, WARN) { "Failure outcome for ${nextApp.pkgName}: ${outcome.error}" }
-                    // Parser errors (e.g. BinaryXmlException) are classified transient: the fault
-                    // may be a bug in our new binary-XML parser, not a broken APK. Keep any
-                    // existing hint so a subsequent scan can refresh it — don't delete proactively.
                     counts.failure++
+                    // `existing` here is always a stale-version hint — the current-version
+                    // shortcut at the top of the loop would have skipped this app otherwise.
+                    // Showing flags from a different version of the app is wrong regardless of
+                    // whether the failure is transient, so delete the stale entry.
+                    if (existing != null) {
+                        manifestHintDao.deleteByPkgName(nextApp.pkgName)
+                    }
                 }
             }
 

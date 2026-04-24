@@ -81,6 +81,9 @@ class QueriesExtractor : BinaryXmlVisitor {
             intentDepth = -1
         } else if (queriesDepth != -1 && depth == queriesDepth && name == QUERIES_TAG) {
             queriesDepth = -1
+            // If a malformed manifest opens <queries><intent> without closing <intent>, clear
+            // intent state so it doesn't leak into elements after </queries>.
+            intentDepth = -1
         }
         depth--
     }
