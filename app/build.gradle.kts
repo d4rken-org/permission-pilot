@@ -229,6 +229,10 @@ dependencies {
     implementation("io.coil-kt:coil:2.4.0")
     implementation("io.coil-kt:coil-compose:2.4.0")
 
+    // Temporary: old parser kept alive in debug builds only for the ParserParityChecker.
+    // Remove along with the checker scaffolding after on-device validation.
+    debugImplementation("com.github.d4rken:apk-parser:v1.0.0")
+
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:${Versions.Compose.bom}")
     implementation(composeBom)
