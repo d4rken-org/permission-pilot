@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nulls">
+
+    <uses-sdk android:minSdkVersion="24" />
+
+    <!--
+      android:taskAffinity="" is encoded by aapt2 as TYPE_STRING with an empty value rather
+      than TYPE_NULL. Use resource attributes aapt2 is known to encode as nulls when empty
+      (taskAffinity empty, themeOverlayMappingPackage) — validates the Null(undefined) vs
+      Null(empty) distinction on the parser side.
+    -->
+    <application
+        android:label="Nulls Fixture"
+        android:taskAffinity="">
+        <activity
+            android:name="com.example.nulls.MainActivity"
+            android:exported="true"
+            android:taskAffinity="" />
+    </application>
+
+</manifest>

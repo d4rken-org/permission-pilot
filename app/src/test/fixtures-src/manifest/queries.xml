@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.queries">
+
+    <uses-sdk android:minSdkVersion="30" />
+
+    <queries>
+        <package android:name="com.google.android.gms" />
+        <package android:name="com.android.vending" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" android:host="example.com" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <provider android:authorities="com.android.contacts" />
+    </queries>
+
+    <application android:label="Queries Fixture">
+        <activity
+            android:name="com.example.queries.MainActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>
