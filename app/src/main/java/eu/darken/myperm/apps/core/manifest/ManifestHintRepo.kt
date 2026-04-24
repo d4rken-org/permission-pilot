@@ -121,7 +121,6 @@ class ManifestHintRepo @Inject constructor(
                     log(TAG, WARN) { "Unavailable outcome for ${nextApp.pkgName}: reason=${outcome.reason}" }
                     when (outcome.reason) {
                         UnavailableReason.LOW_MEMORY -> counts.lowMemory++
-                        UnavailableReason.APK_TOO_LARGE -> counts.apkTooLarge++
                         UnavailableReason.MALFORMED_APK,
                         UnavailableReason.APK_NOT_FOUND,
                         UnavailableReason.APK_NOT_READABLE,
@@ -155,8 +154,8 @@ class ManifestHintRepo @Inject constructor(
         manifestHintDao.pruneStale()
 
         log(TAG) {
-            "Scan complete: $scanned packages — success=${counts.success} lowMemory=${counts.lowMemory} " +
-                "apkTooLarge=${counts.apkTooLarge} failure=${counts.failure}"
+            "Scan complete: $scanned packages — success=${counts.success} " +
+                "lowMemory=${counts.lowMemory} failure=${counts.failure}"
         }
     } finally {
         _currentlyScanning.value = null
@@ -166,7 +165,6 @@ class ManifestHintRepo @Inject constructor(
     private class OutcomeCounts {
         var success = 0
         var lowMemory = 0
-        var apkTooLarge = 0
         var failure = 0
     }
 

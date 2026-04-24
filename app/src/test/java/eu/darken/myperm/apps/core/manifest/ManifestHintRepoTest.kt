@@ -108,7 +108,7 @@ class ManifestHintRepoTest : BaseTest() {
     }
 
     @Test
-    fun `APK_TOO_LARGE with existing version-mismatched hint deletes stale entry`() = runTest2(autoCancel = true) {
+    fun `MALFORMED_APK with existing version-mismatched hint deletes stale entry`() = runTest2(autoCancel = true) {
         val pkgName = Pkg.Name("com.stale")
         val staleHint = ManifestHintEntity(
             pkgName = pkgName,
@@ -121,7 +121,7 @@ class ManifestHintRepoTest : BaseTest() {
             scannedAt = 0L,
         )
         coEvery { manifestHintDao.getAll() } returns listOf(staleHint)
-        coEvery { manifestRepo.getQueriesFor(pkgName) } returns QueriesOutcome.Unavailable(UnavailableReason.APK_TOO_LARGE)
+        coEvery { manifestRepo.getQueriesFor(pkgName) } returns QueriesOutcome.Unavailable(UnavailableReason.MALFORMED_APK)
 
         // New scan sees a different versionCode — the old hint must be evicted.
         buildRepo().runScan(listOf(appInfo("com.stale", versionCode = 2L, lastUpdate = 2_000L)))

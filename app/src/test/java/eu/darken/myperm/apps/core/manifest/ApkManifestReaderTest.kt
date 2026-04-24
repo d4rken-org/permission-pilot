@@ -16,11 +16,9 @@ import java.util.zip.ZipOutputStream
 
 class ApkManifestReaderTest : BaseTest() {
 
-    private fun readerWithFakeHeap(maxHeap: Long, freeHeap: Long): ApkManifestReader {
+    private fun reader(): ApkManifestReader {
         val resolver = mockk<ResourceNameResolver>(relaxed = true)
-        return ApkManifestReader(resolver).also {
-            it.heapInfoProvider = { ApkManifestReader.HeapInfo(maxHeap = maxHeap, freeHeap = freeHeap) }
-        }
+        return ApkManifestReader(resolver)
     }
 
     private fun writeApk(
@@ -79,94 +77,48 @@ class ApkManifestReaderTest : BaseTest() {
 
     @Test
     fun `readQueries returns APK_NOT_FOUND when file missing`() {
-        val reader = readerWithFakeHeap(maxHeap = 100_000_000L, freeHeap = 95_000_000L)
-        val result = reader.readQueries("/does/not/exist.apk").shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries("/does/not/exist.apk").shouldBeInstanceOf<QueriesReadResult.Unavailable>()
         result.reason shouldBe UnavailableReason.APK_NOT_FOUND
-    }
-
-    @Test
-    fun `readQueries returns LOW_MEMORY when entry heap gate fails`(@TempDir tempDir: File) {
-        val apk = writeApk(tempDir)
-        val reader = readerWithFakeHeap(maxHeap = 100_000_000L, freeHeap = 5_000_000L) // <10%
-        val result = reader.readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
-        result.reason shouldBe UnavailableReason.LOW_MEMORY
     }
 
     @Test
     fun `readQueries returns MALFORMED_APK when manifest entry missing`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = null)
-        val reader = readerWithFakeHeap(maxHeap = 512_000_000L, freeHeap = 500_000_000L)
-        val result = reader.readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
         result.reason shouldBe UnavailableReason.MALFORMED_APK
     }
 
     @Test
-    fun `readQueries returns Success when manifest parses cleanly - arsc absent is OK`(@TempDir tempDir: File) {
+    fun `readQueries returns Success when manifest parses cleanly and arsc is absent`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = manifestWithQueries("com.foo"), includeArsc = false)
-        val reader = readerWithFakeHeap(maxHeap = 512_000_000L, freeHeap = 500_000_000L)
-
-        val result = reader.readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Success>()
+        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Success>()
         result.info.packageQueries shouldBe listOf("com.foo")
     }
 
     @Test
     fun `readQueries returns MALFORMED_APK for non-zip file`(@TempDir tempDir: File) {
         val notApk = File(tempDir, "nope.apk").apply { writeText("definitely not a zip") }
-        val reader = readerWithFakeHeap(maxHeap = 512_000_000L, freeHeap = 500_000_000L)
-
-        val result = reader.readQueries(notApk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries(notApk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
         result.reason shouldBe UnavailableReason.MALFORMED_APK
     }
 
     @Test
-    fun `readQueries returns APK_TOO_LARGE when estimated peak exceeds budget`(@TempDir tempDir: File) {
-        // Manifest * 4 multiplier + slack must exceed maxHeap * 0.25.
-        val bigManifest = ByteArray(20 * 1024 * 1024)  // 20 MB of garbage — zip will fail parse, but preflight comes first.
-        val apk = writeApk(tempDir, manifestBytes = bigManifest)
-        val reader = readerWithFakeHeap(maxHeap = 100_000_000L, freeHeap = 95_000_000L)
-
-        val result = reader.readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
-        result.reason shouldBe UnavailableReason.APK_TOO_LARGE
-    }
-
-    @Test
     fun `readQueries classifies BinaryXmlException as Error not Malformed`(@TempDir tempDir: File) {
-        // Garbage bytes: preflight passes (non-empty), but BinaryXmlStreamer will fail on the root chunk.
+        // Garbage bytes: zip opens fine, manifest entry exists and is readable, but BinaryXmlStreamer
+        // rejects the root chunk. That's a parser-layer failure, surfaced as Error (transient) so
+        // the scanner retries on the next run and doesn't delete existing hints.
         val apk = writeApk(tempDir, manifestBytes = ByteArray(64) { 0xFF.toByte() })
-        val reader = readerWithFakeHeap(maxHeap = 512_000_000L, freeHeap = 500_000_000L)
-
-        // Parser errors are surfaced as Error (transient), NOT Unavailable(MALFORMED_APK).
-        // The caller path in ManifestHintRepo treats Error (Failure outcome) as retry-on-next-scan
-        // without deleting stale hints, whereas MALFORMED_APK would delete them.
-        reader.readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Error>()
+        reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Error>()
     }
 
     @Test
     fun `readFullManifest returns rawXml and queries in a single pass`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = manifestWithQueries("com.both"))
-        val reader = readerWithFakeHeap(maxHeap = 512_000_000L, freeHeap = 500_000_000L)
-
-        val result = reader.readFullManifest(apk.absolutePath, Pkg.Name("com.other"))
+        val result = reader().readFullManifest(apk.absolutePath, Pkg.Name("com.other"))
         val raw = result.rawXml.shouldBeInstanceOf<RawXmlResult.Success>()
         val queries = result.queries.shouldBeInstanceOf<QueriesResult.Success>()
         raw.xml.shouldContain("<manifest")
         queries.info.packageQueries shouldBe listOf("com.both")
-    }
-
-    @Test
-    fun `readFullManifest preflight uses higher budget than readQueries`(@TempDir tempDir: File) {
-        // Size the manifest so queries budget (4x) fits but full budget (6x) exceeds 25% heap.
-        val manifestSize = 5 * 1024 * 1024  // 5 MB
-        val junk = ByteArray(manifestSize)
-        val apk = writeApk(tempDir, manifestBytes = junk)
-        // maxHeap = 120 MB → budget = 30 MB.
-        // queries peak = 5 * 4 + 2 = 22 MB < 30 MB → passes preflight (parse then fails).
-        // full peak    = 5 * 6 + 2 = 32 MB > 30 MB → APK_TOO_LARGE.
-        val reader = readerWithFakeHeap(maxHeap = 120_000_000L, freeHeap = 110_000_000L)
-
-        val full = reader.readFullManifest(apk.absolutePath, Pkg.Name("com.x"))
-        val unavailable = full.rawXml.shouldBeInstanceOf<RawXmlResult.Unavailable>()
-        unavailable.reason shouldBe UnavailableReason.APK_TOO_LARGE
     }
 
     companion object {

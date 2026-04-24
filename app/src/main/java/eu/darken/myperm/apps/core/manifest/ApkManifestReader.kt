@@ -29,23 +29,20 @@ import javax.inject.Singleton
  * `resources.arsc` is never read. Symbolic resource names for the viewer are resolved through
  * [ResourceNameResolver], which delegates to `PackageManager.getResourcesForApplication` (public
  * API, zero Java heap cost).
+ *
+ * Memory safety: each parse allocates ~150-200 KB transient (manifest bytes + string pool).
+ * No preflight heap budgeting — actual OOM during `ByteArray` allocation or parse is caught and
+ * classified as [UnavailableReason.LOW_MEMORY]. Real file errors (not found, unreadable, zip
+ * corruption) are classified up front.
  */
 @Singleton
 class ApkManifestReader @Inject constructor(
     private val resourceNameResolver: ResourceNameResolver,
 ) {
 
-    internal data class HeapInfo(val maxHeap: Long, val freeHeap: Long)
-
-    @VisibleForTesting
-    internal var heapInfoProvider: () -> HeapInfo = {
-        val rt = Runtime.getRuntime()
-        HeapInfo(maxHeap = rt.maxMemory(), freeHeap = rt.maxMemory() - (rt.totalMemory() - rt.freeMemory()))
-    }
-
     /** Scanner path. Returns the `<queries>` projection. */
     fun readQueries(apkPath: String): QueriesReadResult {
-        val preflight = openAndPreflight(apkPath, Mode.QUERIES_ONLY)
+        val preflight = openApk(apkPath)
         if (preflight is Preflight.Failed) return QueriesReadResult.Unavailable(preflight.reason)
         val ok = preflight as Preflight.Ok
         ok.zip.use { zip ->
@@ -77,7 +74,7 @@ class ApkManifestReader @Inject constructor(
 
     /** Viewer path. Returns rawXml and queries from a single streamer pass. */
     fun readFullManifest(apkPath: String, pkgName: Pkg.Name): ManifestData {
-        val preflight = openAndPreflight(apkPath, Mode.FULL)
+        val preflight = openApk(apkPath)
         if (preflight is Preflight.Failed) return ManifestData(
             rawXml = RawXmlResult.Unavailable(preflight.reason),
             queries = QueriesResult.Error(IllegalStateException(preflight.reason.name)),
@@ -123,16 +120,10 @@ class ApkManifestReader @Inject constructor(
         }
     }
 
-    private fun openAndPreflight(apkPath: String, mode: Mode): Preflight {
+    private fun openApk(apkPath: String): Preflight {
         val apkFile = File(apkPath)
         if (!apkFile.exists()) return Preflight.Failed(UnavailableReason.APK_NOT_FOUND)
         if (!apkFile.canRead()) return Preflight.Failed(UnavailableReason.APK_NOT_READABLE)
-
-        val entryHeap = heapInfoProvider()
-        if (entryHeap.freeHeap < entryHeap.maxHeap * FREE_HEAP_ENTRY_RATIO) {
-            log(TAG, WARN) { "Skipping manifest parse for $apkPath: low memory (${entryHeap.freeHeap / 1024}KB free)" }
-            return Preflight.Failed(UnavailableReason.LOW_MEMORY)
-        }
 
         val zip = try {
             ZipFile(apkFile)
@@ -154,38 +145,7 @@ class ApkManifestReader @Inject constructor(
             return Preflight.Failed(UnavailableReason.MALFORMED_APK)
         }
 
-        val manifestSize = manifestEntry.size
-        if (manifestSize <= 0L || manifestSize > Int.MAX_VALUE) {
-            zip.close()
-            log(TAG, WARN) { "Invalid manifest entry size $manifestSize for $apkPath" }
-            return Preflight.Failed(UnavailableReason.MALFORMED_APK)
-        }
-
-        val estimatedPeak: Long = manifestSize * peakMultiplier(mode) + PARSE_SLACK_BYTES
-        val postPreflightHeap = heapInfoProvider()
-        val budgetCeiling: Long = (postPreflightHeap.maxHeap * BUDGET_MAX_HEAP_RATIO).toLong()
-        if (estimatedPeak > budgetCeiling) {
-            zip.close()
-            log(TAG, WARN) {
-                "Skipping oversized APK $apkPath: estimatedPeak=${estimatedPeak / 1024}KB > budget=${budgetCeiling / 1024}KB"
-            }
-            return Preflight.Failed(UnavailableReason.APK_TOO_LARGE)
-        }
-
-        if (postPreflightHeap.freeHeap < estimatedPeak + PARSE_SLACK_BYTES) {
-            zip.close()
-            log(TAG, WARN) {
-                "Insufficient heap for manifest parse $apkPath: free=${postPreflightHeap.freeHeap / 1024}KB, need=${(estimatedPeak + PARSE_SLACK_BYTES) / 1024}KB"
-            }
-            return Preflight.Failed(UnavailableReason.LOW_MEMORY)
-        }
-
         return Preflight.Ok(zip, manifestEntry)
-    }
-
-    private fun peakMultiplier(mode: Mode): Long = when (mode) {
-        Mode.QUERIES_ONLY -> QUERIES_PEAK_MULTIPLIER
-        Mode.FULL -> FULL_PEAK_MULTIPLIER
     }
 
     @VisibleForTesting
@@ -209,8 +169,6 @@ class ApkManifestReader @Inject constructor(
         return buf
     }
 
-    private enum class Mode { QUERIES_ONLY, FULL }
-
     private sealed class Preflight {
         data class Ok(val zip: ZipFile, val manifestEntry: ZipEntry) : Preflight()
         data class Failed(val reason: UnavailableReason) : Preflight()
@@ -221,16 +179,6 @@ class ApkManifestReader @Inject constructor(
 
     companion object {
         private const val MANIFEST_ENTRY = "AndroidManifest.xml"
-        private const val FREE_HEAP_ENTRY_RATIO = 0.10
-        private const val BUDGET_MAX_HEAP_RATIO = 0.25
-
-        // Scanner path: raw bytes + decoded string pool + transient parser state.
-        private const val QUERIES_PEAK_MULTIPLIER = 4L
-
-        // Viewer path: additionally accumulates the textual rawXml StringBuilder.
-        private const val FULL_PEAK_MULTIPLIER = 6L
-
-        private const val PARSE_SLACK_BYTES = 2L * 1024 * 1024
         private val TAG = logTag("Apps", "Manifest", "Reader")
     }
 }
