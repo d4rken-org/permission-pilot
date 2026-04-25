@@ -22,12 +22,11 @@ fi
 # Format: number_label — number controls Play Store ordering, label aids humans.
 declare -A SCREEN_MAP=(
     [OverviewLight]="1_overview_light"
-    [OverviewDark]="2_overview_dark"
-    [AppsList]="3_apps_list"
-    [AppDetails]="4_app_details"
-    [PermissionsList]="5_permissions_list"
-    [PermissionDetails]="6_permission_details"
-    [SettingsIndex]="7_settings"
+    [AppsList]="2_apps_list"
+    [AppDetails]="3_app_details"
+    [PermissionsList]="4_permissions_list"
+    [PermissionDetails]="5_permission_details"
+    [WatcherDashboard]="6_watcher"
 )
 
 if [[ ! -d "$REF_DIR" ]]; then

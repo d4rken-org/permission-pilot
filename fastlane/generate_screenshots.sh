@@ -14,15 +14,16 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 LOCALES_FILE="$PROJECT_DIR/app/src/screenshotTest/kotlin/eu/darken/myperm/screenshots/PlayStoreLocales.kt"
 REF_DIR="$PROJECT_DIR/app/src/screenshotTestGplayDebug/reference"
 
-# Default batch size — 2 locales × 7 composables = 14 renders per batch.
+# Default batch size — 2 locales × 6 composables = 12 renders per batch.
 # Kept small to avoid layoutlib OOM (leaks ~10MB per rendered image at 1080p).
 BATCH_SIZE=2
+BATCH_SIZE_EXPLICIT=false
 SMOKE=false
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --smoke) SMOKE=true; shift ;;
-        --batch-size) BATCH_SIZE="$2"; shift 2 ;;
+        --batch-size) BATCH_SIZE="$2"; BATCH_SIZE_EXPLICIT=true; shift 2 ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -81,7 +82,9 @@ SMOKE_LOCALES=(
 
 if $SMOKE; then
     LOCALES=("${SMOKE_LOCALES[@]}")
-    BATCH_SIZE=${#LOCALES[@]}  # Single batch for smoke
+    if ! $BATCH_SIZE_EXPLICIT; then
+        BATCH_SIZE=${#LOCALES[@]}  # Single batch for smoke unless overridden
+    fi
 else
     LOCALES=("${ALL_LOCALES[@]}")
 fi
@@ -108,7 +111,6 @@ generate_locales_file() {
     cat > "$file" << 'HEADER'
 package eu.darken.myperm.screenshots
 
-import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview
 
 internal const val DS = "spec:width=1080px,height=2400px,dpi=428"
@@ -126,18 +128,6 @@ HEADER
         echo "@Preview(locale = \"$locale\", name = \"$name\", device = DS)" >> "$file"
     done
     echo "annotation class PlayStoreLocales" >> "$file"
-    echo "" >> "$file"
-
-    # Dark annotations
-    echo "/**" >> "$file"
-    echo " * Same locales but with night mode enabled for dark theme screenshots." >> "$file"
-    echo " */" >> "$file"
-    for entry in "${batch_locales[@]}"; do
-        local locale="${entry%%:*}"
-        local name="${entry##*:}"
-        echo "@Preview(locale = \"$locale\", name = \"$name\", device = DS, uiMode = Configuration.UI_MODE_NIGHT_YES)" >> "$file"
-    done
-    echo "annotation class PlayStoreLocalesDark" >> "$file"
     echo "" >> "$file"
 
     # Smoke annotation (single entry placeholder)
@@ -184,7 +174,7 @@ done
 
 # Count final results
 FINAL_COUNT=$(find "$REF_DIR" -name "*.png" 2>/dev/null | wc -l)
-EXPECTED=$(( TOTAL * 7 ))  # 7 composables per locale
+EXPECTED=$(( TOTAL * 6 ))  # 6 composables per locale
 
 echo "=== Generation Complete ==="
 echo "Generated: $FINAL_COUNT images (expected: $EXPECTED)"

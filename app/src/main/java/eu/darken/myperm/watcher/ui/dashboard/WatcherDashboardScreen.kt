@@ -721,40 +721,7 @@ private fun ReportListItem(
 @Composable
 private fun WatcherDashboardWithReportsPreview() = PreviewWrapper {
     WatcherDashboardScreen(
-        state = WatcherDashboardViewModel.State(
-            isWatcherEnabled = true,
-            isPro = true,
-            reports = listOf(
-                WatcherReportItem(
-                    id = 1,
-                    packageName = Pkg.Name("com.example.app"),
-                    appLabel = "Example App",
-                    versionName = "2.1.0",
-                    previousVersionName = "1.8.3",
-                    eventType = WatcherEventType.UPDATE,
-                    detectedAt = System.currentTimeMillis(),
-                    isSeen = false,
-                    hasAddedPermissions = true,
-                    hasLostPermissions = false,
-                    gainedCount = 2,
-                ),
-                WatcherReportItem(
-                    id = 2,
-                    packageName = Pkg.Name("com.example.browser"),
-                    appLabel = "My Browser",
-                    versionName = "4.0.1",
-                    previousVersionName = null,
-                    eventType = WatcherEventType.INSTALL,
-                    detectedAt = System.currentTimeMillis() - 86400000,
-                    isSeen = true,
-                    hasAddedPermissions = false,
-                    hasLostPermissions = false,
-                    lostCount = 1,
-                ),
-            ),
-            hasUnseen = true,
-            totalReportCount = 2,
-        ),
+        state = WatcherDashboardPreviewData.loadedState(),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},
