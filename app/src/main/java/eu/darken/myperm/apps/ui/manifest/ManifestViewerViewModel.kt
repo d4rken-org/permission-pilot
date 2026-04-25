@@ -244,13 +244,18 @@ class ManifestViewerViewModel @Inject constructor(
     fun onNextMatch() {
         val total = state.value.totalMatchCount
         if (total <= 0) return
-        _currentMatchIdx.update { (it + 1) % total }
+        // Step from the clamped value the UI is showing, not the raw flow's value. With the
+        // initial -1 in `_currentMatchIdx`, the combine clamps to 0 for display; stepping the raw
+        // value would land on 0 again, so the first tap would appear to no-op.
+        val current = state.value.currentMatchIndex.coerceAtLeast(0)
+        _currentMatchIdx.value = (current + 1) % total
     }
 
     fun onPrevMatch() {
         val total = state.value.totalMatchCount
         if (total <= 0) return
-        _currentMatchIdx.update { (it - 1 + total) % total }
+        val current = state.value.currentMatchIndex.coerceAtLeast(0)
+        _currentMatchIdx.value = (current - 1 + total) % total
     }
 
     fun onToggleSection(type: SectionType) {
