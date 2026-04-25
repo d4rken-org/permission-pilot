@@ -70,7 +70,12 @@ If you like the app, consider:
 
 Permission Pilot's code is available under a GPL v3 license, this excludes:
 
-* Icons, logos, mascots and marketing materials/assets.
+* Permission Pilot icons, logos, mascots, marketing materials and assets.
+* Permission Pilot animations and videos.
+* Permission Pilot documentation.
+* Google Play screenshots.
+* Google Play texts & descriptions.
+* Translations.
 
 ## Thanks
 
