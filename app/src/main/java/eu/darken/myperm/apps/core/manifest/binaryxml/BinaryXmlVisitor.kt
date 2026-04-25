@@ -1,5 +1,17 @@
 package eu.darken.myperm.apps.core.manifest.binaryxml
 
+/**
+ * Visitor surface emitted by [BinaryXmlStreamer].
+ *
+ * Event ordering contract:
+ * - [onStartNamespace] for a binding is always emitted before the [onStartElement]
+ *   whose attributes may use the bound prefix.
+ * - [onEndNamespace] follows the corresponding [onEndElement] (innermost first).
+ *
+ * [BinaryXmlStreamer] honours this because AXML chunk layout is namespace-then-element
+ * by construction. Visitors that defer namespace bookkeeping (e.g. accumulating
+ * pending declarations to attach to the next start element) rely on this invariant.
+ */
 interface BinaryXmlVisitor {
     fun onStartDocument() {}
     fun onEndDocument() {}
