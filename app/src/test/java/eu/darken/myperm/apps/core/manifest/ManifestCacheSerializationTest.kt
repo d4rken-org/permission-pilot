@@ -1,6 +1,6 @@
 package eu.darken.myperm.apps.core.manifest
 
-import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import kotlinx.serialization.json.Json
@@ -18,13 +18,19 @@ class ManifestCacheSerializationTest : BaseTest() {
     }
 
     @Test
-    fun `cached manifest v2 with queries roundtrips`() {
+    fun `cached manifest v3 with sections and queries roundtrips`() {
         val raw = """
             {
-              "formatVersion": 2,
+              "formatVersion": 3,
               "versionCode": 612009943,
               "lastUpdateTime": 1705000000000,
-              "rawXml": "<manifest/>",
+              "sections": [
+                {
+                  "type": "USES_PERMISSION",
+                  "elementCount": 1,
+                  "prettyXml": "<uses-permission android:name=\"x\" />"
+                }
+              ],
               "queries": {
                 "packageQueries": ["com.example.app"],
                 "intentQueries": [],
@@ -35,9 +41,10 @@ class ManifestCacheSerializationTest : BaseTest() {
 
         val parsed = json.decodeFromString<CachedManifestTestHelper>(raw)
 
-        parsed.formatVersion shouldBe 2
+        parsed.formatVersion shouldBe 3
         parsed.versionCode shouldBe 612009943L
-        parsed.rawXml shouldBe "<manifest/>"
+        parsed.sections.size shouldBe 1
+        parsed.sections.first().type shouldBe SectionType.USES_PERMISSION
         parsed.queries shouldNotBe null
         parsed.queries!!.packageQueries shouldBe listOf("com.example.app")
 
@@ -47,14 +54,14 @@ class ManifestCacheSerializationTest : BaseTest() {
     }
 
     @Test
-    fun `pre-v2 JSON without formatVersion decodes formatVersion as null`() {
-        // Critical migration guard: kotlinx.serialization must NOT fill in a default 2 for
+    fun `pre-v3 JSON without formatVersion decodes formatVersion as null`() {
+        // Critical migration guard: kotlinx.serialization must NOT fill in a default 3 for
         // missing formatVersion fields. The field's default here is null.
         val raw = """
             {
               "versionCode": 100,
               "lastUpdateTime": 1700000000000,
-              "rawXml": "<old/>"
+              "sections": []
             }
         """.trimIndent()
 
@@ -63,13 +70,32 @@ class ManifestCacheSerializationTest : BaseTest() {
     }
 
     @Test
+    fun `v2 JSON without sections fails to decode under v3 schema`() {
+        // Migration mechanism: v2 had `rawXml: String` (required) and no `sections` field.
+        // Decoding under the v3 schema (where `sections` is required) must throw, so that
+        // ManifestCache.get's corruption catch deletes the file.
+        val v2Json = """
+            {
+              "formatVersion": 2,
+              "versionCode": 42,
+              "lastUpdateTime": 1700000000000,
+              "rawXml": "<old/>"
+            }
+        """.trimIndent()
+
+        shouldThrow<Exception> {
+            json.decodeFromString<CachedManifestTestHelper>(v2Json)
+        }
+    }
+
+    @Test
     fun `unknown fields in cached JSON are ignored`() {
         val raw = """
             {
-              "formatVersion": 2,
+              "formatVersion": 3,
               "versionCode": 1,
               "lastUpdateTime": 1000,
-              "rawXml": "<m/>",
+              "sections": [],
               "queries": null,
               "futureField": "ignored"
             }
@@ -78,33 +104,31 @@ class ManifestCacheSerializationTest : BaseTest() {
         val parsed = json.decodeFromString<CachedManifestTestHelper>(raw)
 
         parsed.versionCode shouldBe 1L
-        parsed.rawXml shouldBe "<m/>"
+        parsed.sections shouldBe emptyList()
     }
 
     @Test
-    fun `large XML content survives serialization roundtrip`() {
-        val largeXml = buildString {
-            append("<manifest>")
-            repeat(1000) { i ->
-                append("<permission android:name=\"com.example.perm$i\"/>")
-            }
-            append("</manifest>")
+    fun `large section payload survives serialization roundtrip`() {
+        val sections = (1..1000).map { i ->
+            CachedManifestSection(
+                type = SectionType.USES_PERMISSION,
+                elementCount = 1,
+                prettyXml = "<uses-permission android:name=\"com.example.perm$i\" />",
+            )
         }
 
         val cached = CachedManifestTestHelper(
-            formatVersion = 2,
+            formatVersion = 3,
             versionCode = 1,
             lastUpdateTime = 1000,
-            rawXml = largeXml,
-            queries = QueriesInfo(
-                packageQueries = (1..50).map { "com.pkg.$it" },
-            ),
+            sections = sections,
+            queries = QueriesInfo(packageQueries = (1..50).map { "com.pkg.$it" }),
         )
 
         val serialized = json.encodeToString(cached)
         val restored = json.decodeFromString<CachedManifestTestHelper>(serialized)
 
-        restored.rawXml shouldBe largeXml
+        restored.sections.size shouldBe 1000
         restored.queries!!.packageQueries.size shouldBe 50
     }
 
@@ -112,10 +136,16 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `cache file write and read roundtrip`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
-            formatVersion = 2,
+            formatVersion = 3,
             versionCode = 42,
             lastUpdateTime = 9999,
-            rawXml = "<manifest><queries><package android:name=\"com.test\"/></queries></manifest>",
+            sections = listOf(
+                CachedManifestSection(
+                    type = SectionType.QUERIES,
+                    elementCount = 1,
+                    prettyXml = "<queries><package android:name=\"com.test\" /></queries>",
+                ),
+            ),
             queries = QueriesInfo(packageQueries = listOf("com.test")),
         )
 
@@ -129,10 +159,10 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `stale cache detected when versionCode changes`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
-            formatVersion = 2,
+            formatVersion = 3,
             versionCode = 1,
             lastUpdateTime = 1000,
-            rawXml = "<old/>",
+            sections = emptyList(),
             queries = null,
         )
         cacheFile.writeText(json.encodeToString(cached))
@@ -146,10 +176,10 @@ class ManifestCacheSerializationTest : BaseTest() {
     fun `stale cache detected when lastUpdateTime changes`(@TempDir tempDir: File) {
         val cacheFile = File(tempDir, "com.example.json")
         val cached = CachedManifestTestHelper(
-            formatVersion = 2,
+            formatVersion = 3,
             versionCode = 1,
             lastUpdateTime = 1000,
-            rawXml = "<old/>",
+            sections = emptyList(),
             queries = null,
         )
         cacheFile.writeText(json.encodeToString(cached))
@@ -165,10 +195,10 @@ class ManifestCacheSerializationTest : BaseTest() {
  * Must be kept in sync — regressions here catch format drift between code and tests.
  */
 @kotlinx.serialization.Serializable
-data class CachedManifestTestHelper(
+internal data class CachedManifestTestHelper(
     val formatVersion: Int? = null,
     val versionCode: Long,
     val lastUpdateTime: Long,
-    val rawXml: String,
-    val queries: QueriesInfo?,
+    val sections: List<CachedManifestSection>,
+    val queries: QueriesInfo? = null,
 )

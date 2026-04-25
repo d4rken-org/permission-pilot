@@ -22,9 +22,9 @@ import javax.inject.Singleton
  *
  * Two entry points:
  * - [readQueries] — lightweight path for the hint scanner; runs a single streamer pass with
- *   [QueriesExtractor] only. No rawXml is built, no resource resolution.
- * - [readFullManifest] — viewer path; composite visitor produces both rawXml (via
- *   [ManifestTextRenderer]) and [QueriesInfo] in a single parse.
+ *   [QueriesExtractor] only. No XML is rendered, no resource resolution.
+ * - [readFullManifest] — viewer path; composite visitor produces both per-section pretty
+ *   XML (via [ManifestSectionVisitor]) and the [QueriesInfo] projection in a single parse.
  *
  * `resources.arsc` is never read. Symbolic resource names for the viewer are resolved through
  * [ResourceNameResolver], which delegates to `PackageManager.getResourcesForApplication` (public
@@ -61,36 +61,36 @@ class ApkManifestReader @Inject constructor(
         }
     }
 
-    /** Viewer path. Returns rawXml and queries from a single streamer pass. */
+    /** Viewer path. Returns per-section pretty XML and queries from a single streamer pass. */
     fun readFullManifest(apkPath: String, pkgName: Pkg.Name): ManifestData = withManifestBytes(
         apkPath = apkPath,
         onUnavailable = { reason ->
             ManifestData(
-                rawXml = RawXmlResult.Unavailable(reason),
+                sections = SectionsResult.Unavailable(reason),
                 queries = QueriesOutcome.Unavailable(reason),
             )
         },
     ) { bytes ->
         try {
             val extractor = QueriesExtractor()
-            val renderer = ManifestTextRenderer(resourceNameResolver.forPackage(pkgName))
-            BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(renderer, extractor)))
+            val sectionVisitor = ManifestSectionVisitor(resourceNameResolver.forPackage(pkgName))
+            BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(sectionVisitor, extractor)))
             ManifestData(
-                rawXml = RawXmlResult.Success(renderer.result()),
+                sections = SectionsResult.Success(sectionVisitor.result()),
                 queries = QueriesOutcome.Success(extractor.result()),
             )
         } catch (oom: OutOfMemoryError) {
             log(TAG, WARN) { "OOM during manifest parse: $oom" }
             ManifestData(
-                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                sections = SectionsResult.Unavailable(UnavailableReason.LOW_MEMORY),
                 queries = QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY),
             )
         } catch (e: BinaryXmlException) {
             log(TAG, WARN) { "Binary XML parse failed: $e" }
-            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesOutcome.Failure(e))
+            ManifestData(sections = SectionsResult.Error(e), queries = QueriesOutcome.Failure(e))
         } catch (e: Exception) {
             log(TAG, WARN) { "Unexpected parse error: $e" }
-            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesOutcome.Failure(e))
+            ManifestData(sections = SectionsResult.Error(e), queries = QueriesOutcome.Failure(e))
         }
     }
 

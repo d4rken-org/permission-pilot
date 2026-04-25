@@ -13,8 +13,8 @@ fun interface ResourceRefResolver {
 }
 
 /**
- * Pure formatting helpers shared by visitors that emit human-readable XML — currently the
- * full-document [ManifestTextRenderer] and the per-section [ManifestSectionVisitor].
+ * Pure formatting helpers shared by [ManifestSectionVisitor] (and any future visitor that
+ * needs to emit human-readable XML).
  *
  * Stateless: no buffer, no element/depth bookkeeping. Each function takes everything it
  * needs as parameters so callers can format an attribute or value in any context.

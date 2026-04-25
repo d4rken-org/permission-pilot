@@ -1,8 +1,10 @@
 package eu.darken.myperm.apps.core.manifest.binaryxml
 
-import eu.darken.myperm.apps.core.manifest.ManifestTextRenderer
+import eu.darken.myperm.apps.core.manifest.ManifestSection
+import eu.darken.myperm.apps.core.manifest.ManifestSectionVisitor
 import eu.darken.myperm.apps.core.manifest.QueriesExtractor
 import eu.darken.myperm.apps.core.manifest.ResourceRefResolver
+import eu.darken.myperm.apps.core.manifest.SectionType
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAnyOf
@@ -12,9 +14,10 @@ import org.junit.jupiter.api.Test
 import testhelper.BaseTest
 
 /**
- * Cross-validates the streaming parser against real binary AXML blobs produced by aapt2.
- * Protects against the risk that our synthetic [testhelper.binaryxml.AxmlFixtureBuilder]
- * and the streamer share the same mental model of the format.
+ * Cross-validates the streaming parser + section visitor against real binary AXML blobs
+ * produced by aapt2. Protects against the risk that our synthetic
+ * [testhelper.binaryxml.AxmlFixtureBuilder] and the streamer share the same mental model
+ * of the format.
  *
  * Fixtures live in `app/src/test/resources/manifest/` and are regenerated via
  * `app/src/test/fixtures-src/generate.sh`.
@@ -29,10 +32,10 @@ class AaptFixtureIntegrationTest : BaseTest() {
         return resource.openStream().use { it.readBytes() }
     }
 
-    private fun renderXml(name: String): String {
-        val renderer = ManifestTextRenderer(nullResolver)
-        BinaryXmlStreamer().parse(loadFixture(name), renderer)
-        return renderer.result()
+    private fun runVisitor(name: String): List<ManifestSection> {
+        val visitor = ManifestSectionVisitor(nullResolver)
+        BinaryXmlStreamer().parse(loadFixture(name), visitor)
+        return visitor.result()
     }
 
     private fun extractQueries(name: String): eu.darken.myperm.apps.core.manifest.QueriesInfo {
@@ -42,22 +45,25 @@ class AaptFixtureIntegrationTest : BaseTest() {
     }
 
     @Test
-    fun `simple fixture parses cleanly via the streamer`() {
-        val rendered = renderXml("simple.manifest.bin")
-        rendered.shouldContain("<manifest")
-        rendered.shouldContain("com.example.simple")
-        rendered.shouldContain("android:name=\"android.permission.INTERNET\"")
-        rendered.shouldContain("Simple Fixture")
+    fun `simple fixture parses cleanly via the section visitor`() {
+        val sections = runVisitor("simple.manifest.bin")
+        val perm = sections.first { it.type == SectionType.USES_PERMISSION }
+        perm.prettyXml.shouldContain("android:name=\"android.permission.INTERNET\"")
+
+        val other = sections.first { it.type == SectionType.OTHER }
+        // <application>'s label/icon attributes go to OTHER as a self-closing fragment.
+        other.prettyXml.shouldContain("<application")
+        other.prettyXml.shouldContain("Simple Fixture")
     }
 
     @Test
-    fun `refs fixture resolves framework references with android prefix`() {
-        val rendered = renderXml("refs.manifest.bin")
-        rendered.shouldContain("<manifest")
-        rendered.shouldContain("android:icon=")
+    fun `refs fixture resolves framework references in the application attributes`() {
+        val sections = runVisitor("refs.manifest.bin")
+        val other = sections.first { it.type == SectionType.OTHER }
+        other.prettyXml.shouldContain("android:icon=")
         // Unresolved references emit @0xHHHHHHHH fallback (we use nullResolver).
         // Verify the format, not the specific framework id.
-        (rendered.contains("@0x0") || rendered.contains("@android:")).shouldBeTrue()
+        (other.prettyXml.contains("@0x0") || other.prettyXml.contains("@android:")).shouldBeTrue()
     }
 
     @Test
@@ -82,38 +88,32 @@ class AaptFixtureIntegrationTest : BaseTest() {
     }
 
     @Test
-    fun `enum_flags fixture renders symbolic flag and enum values`() {
-        val rendered = renderXml("enum_flags.manifest.bin")
+    fun `enum_flags fixture renders symbolic flag and enum values via the formatter`() {
+        val sections = runVisitor("enum_flags.manifest.bin")
 
         // protectionLevel="signature|privileged" -> ManifestEnumFlagNames maps bits 0x2|0x10.
-        rendered.shouldContain("android:protectionLevel=\"signature|privileged\"")
+        // Lives on a <permission> declaration, so the PERMISSION section.
+        val perm = sections.first { it.type == SectionType.PERMISSION }
+        perm.prettyXml.shouldContain("android:protectionLevel=\"signature|privileged\"")
 
-        // launchMode="singleTask" (enum value 2)
-        rendered.shouldContain("android:launchMode=\"singleTask\"")
-
-        // screenOrientation="portrait" (enum value 1)
-        rendered.shouldContain("android:screenOrientation=\"portrait\"")
-
-        // configChanges is a flag bitmask; renderer joins known bits with '|'.
-        rendered.shouldContain("android:configChanges=")
-        rendered.shouldContain("mcc")
-        rendered.shouldContain("locale")
-        rendered.shouldContain("orientation")
-
-        // windowSoftInputMode="stateHidden|adjustResize" (0x2|0x10)
-        rendered.shouldContain("android:windowSoftInputMode=")
-        rendered.shouldContain("stateHidden")
-        rendered.shouldContain("adjustResize")
+        // launchMode + screenOrientation + configChanges + windowSoftInputMode all live on
+        // the <activity>, which buckets to ACTIVITIES.
+        val activities = sections.first { it.type == SectionType.ACTIVITIES }
+        activities.prettyXml.shouldContain("android:launchMode=\"singleTask\"")
+        activities.prettyXml.shouldContain("android:screenOrientation=\"portrait\"")
+        activities.prettyXml.shouldContain("android:configChanges=")
+        activities.prettyXml.shouldContain("mcc")
+        activities.prettyXml.shouldContain("locale")
+        activities.prettyXml.shouldContain("orientation")
+        activities.prettyXml.shouldContain("android:windowSoftInputMode=")
+        activities.prettyXml.shouldContain("stateHidden")
+        activities.prettyXml.shouldContain("adjustResize")
     }
 
     @Test
-    fun `nulls fixture parses without exception`() {
-        // Primary goal: the streamer completes without throwing. The exact emission of
-        // `taskAffinity=""` depends on whether aapt2 encoded it as TYPE_STRING-empty or
-        // TYPE_NULL-empty; both should be handled gracefully.
-        val rendered = renderXml("nulls.manifest.bin")
-        rendered.shouldContain("<manifest")
-        rendered.shouldContain("com.example.nulls")
+    fun `nulls fixture parses without exception and produces some sections`() {
+        val sections = runVisitor("nulls.manifest.bin")
+        sections.isNotEmpty().shouldBeTrue()
     }
 
     @Test

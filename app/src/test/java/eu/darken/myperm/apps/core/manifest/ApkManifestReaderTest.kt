@@ -2,6 +2,7 @@ package eu.darken.myperm.apps.core.manifest
 
 import eu.darken.myperm.apps.core.Pkg
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -118,12 +119,12 @@ class ApkManifestReaderTest : BaseTest() {
     }
 
     @Test
-    fun `readFullManifest returns rawXml and queries in a single pass`(@TempDir tempDir: File) {
+    fun `readFullManifest returns sections and queries in a single pass`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = manifestWithQueries("com.both"))
         val result = reader().readFullManifest(apk.absolutePath, Pkg.Name("com.other"))
-        val raw = result.rawXml.shouldBeInstanceOf<RawXmlResult.Success>()
+        val sections = result.sections.shouldBeInstanceOf<SectionsResult.Success>()
         val queries = result.queries.shouldBeInstanceOf<QueriesOutcome.Success>()
-        raw.xml.shouldContain("<manifest")
+        sections.sections.map { it.type } shouldContain SectionType.QUERIES
         queries.info.packageQueries shouldBe listOf("com.both")
     }
 

@@ -1,14 +1,14 @@
 package eu.darken.myperm.apps.core.manifest
 
 data class ManifestData(
-    val rawXml: RawXmlResult,
+    val sections: SectionsResult,
     val queries: QueriesOutcome,
 )
 
-sealed class RawXmlResult {
-    data class Success(val xml: String) : RawXmlResult()
-    data class Unavailable(val reason: UnavailableReason) : RawXmlResult()
-    data class Error(val error: Throwable) : RawXmlResult()
+sealed class SectionsResult {
+    data class Success(val sections: List<ManifestSection>) : SectionsResult()
+    data class Unavailable(val reason: UnavailableReason) : SectionsResult()
+    data class Error(val error: Throwable) : SectionsResult()
 }
 
 /**
