@@ -58,7 +58,7 @@ class ManifestRepo @Inject constructor(
     suspend fun getManifest(pkgName: Pkg.Name): ManifestData = withContext(dispatcherProvider.IO) {
         val appMeta = resolveAppMeta(pkgName) ?: return@withContext ManifestData(
             rawXml = RawXmlResult.Unavailable(UnavailableReason.PKG_NOT_FOUND),
-            queries = QueriesResult.Error(IllegalStateException("Package not found: $pkgName")),
+            queries = QueriesOutcome.Unavailable(UnavailableReason.PKG_NOT_FOUND),
         )
         val key = ParseCacheKey(pkgName.value, appMeta.versionCode, appMeta.lastUpdateTime)
 
@@ -110,9 +110,8 @@ class ManifestRepo @Inject constructor(
                         if (data.rawXml is RawXmlResult.Success) {
                             manifestCache.put(pkgName, versionCode, lastUpdateTime, data)
                         }
-                        val outcome = toOutcome(data)
-                        if (shouldMemoryCache(outcome)) {
-                            cacheMutex.withLock { memoryCache[key] = outcome }
+                        if (shouldMemoryCache(data.queries)) {
+                            cacheMutex.withLock { memoryCache[key] = data.queries }
                         }
                         data
                     }
@@ -141,10 +140,9 @@ class ManifestRepo @Inject constructor(
                 try {
                     semaphore.withPermit {
                         log(TAG) { "Parsing queries for $pkgName at $sourceDir" }
-                        val result = apkManifestReader.readQueries(sourceDir)
-                        val outcome = queriesResultToOutcome(result)
-                        if (result is QueriesReadResult.Success) {
-                            manifestCache.putQueries(pkgName, versionCode, lastUpdateTime, result.info)
+                        val outcome = apkManifestReader.readQueries(sourceDir)
+                        if (outcome is QueriesOutcome.Success) {
+                            manifestCache.putQueries(pkgName, versionCode, lastUpdateTime, outcome.info)
                         }
                         if (shouldMemoryCache(outcome)) {
                             cacheMutex.withLock { memoryCache[key] = outcome }
@@ -161,7 +159,7 @@ class ManifestRepo @Inject constructor(
         return when (parse) {
             is InFlight.Full -> {
                 log(TAG) { "Piggybacking queries on in-flight viewer parse for $pkgName" }
-                toOutcome(parse.deferred.await())
+                parse.deferred.await().queries
             }
             is InFlight.Queries -> parse.deferred.await()
         }
@@ -172,31 +170,10 @@ class ManifestRepo @Inject constructor(
         data class Queries(val deferred: Deferred<QueriesOutcome>) : InFlight()
     }
 
-    private fun queriesResultToOutcome(result: QueriesReadResult): QueriesOutcome = when (result) {
-        is QueriesReadResult.Success -> QueriesOutcome.Success(result.info)
-        is QueriesReadResult.Unavailable -> QueriesOutcome.Unavailable(result.reason)
-        is QueriesReadResult.Error -> QueriesOutcome.Failure(result.error)
-    }
-
-    private fun toOutcome(data: ManifestData): QueriesOutcome = when (val q = data.queries) {
-        is QueriesResult.Success -> QueriesOutcome.Success(q.info)
-        is QueriesResult.Error -> when (val raw = data.rawXml) {
-            is RawXmlResult.Unavailable -> QueriesOutcome.Unavailable(raw.reason)
-            is RawXmlResult.Error -> QueriesOutcome.Failure(raw.error)
-            is RawXmlResult.Success -> QueriesOutcome.Failure(q.error)
-        }
-    }
-
     private fun shouldMemoryCache(outcome: QueriesOutcome): Boolean = when (outcome) {
         is QueriesOutcome.Success -> true
-        is QueriesOutcome.Failure -> false                   // transient, let it retry
-        is QueriesOutcome.Unavailable -> when (outcome.reason) {
-            UnavailableReason.LOW_MEMORY -> false            // transient
-            UnavailableReason.APK_NOT_FOUND,
-            UnavailableReason.APK_NOT_READABLE,
-            UnavailableReason.PKG_NOT_FOUND,
-            UnavailableReason.MALFORMED_APK -> true          // stable until app updates
-        }
+        is QueriesOutcome.Failure -> false                       // transient, let it retry
+        is QueriesOutcome.Unavailable -> !outcome.reason.isTransient
     }
 
     private fun resolveAppMeta(pkgName: Pkg.Name): AppMeta? {

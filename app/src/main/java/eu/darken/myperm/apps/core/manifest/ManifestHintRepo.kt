@@ -127,9 +127,10 @@ class ManifestHintRepo @Inject constructor(
                         UnavailableReason.PKG_NOT_FOUND -> counts.failure++
                     }
                     // Only delete stale hints for STABLE outcomes (app genuinely gone or manifest
-                    // genuinely malformed). LOW_MEMORY is transient — wiping a valid stale hint on
-                    // a temporary OOM loses data the next scan would repopulate anyway.
-                    if (existing != null && outcome.reason != UnavailableReason.LOW_MEMORY) {
+                    // genuinely malformed). Transient reasons (LOW_MEMORY) keep the existing hint
+                    // — wiping a valid stale hint on a temporary OOM loses data the next scan
+                    // would repopulate anyway.
+                    if (existing != null && !outcome.reason.isTransient) {
                         manifestHintDao.deleteByPkgName(nextApp.pkgName)
                     }
                 }

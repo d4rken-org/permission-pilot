@@ -47,8 +47,8 @@ class ManifestCacheTest : BaseTest() {
     private fun sampleData(queries: QueriesInfo? = QueriesInfo(packageQueries = listOf("com.other"))): ManifestData =
         ManifestData(
             rawXml = RawXmlResult.Success("<manifest/>"),
-            queries = queries?.let { QueriesResult.Success(it) }
-                ?: QueriesResult.Error(IllegalStateException("no queries")),
+            queries = queries?.let { QueriesOutcome.Success(it) }
+                ?: QueriesOutcome.Failure(IllegalStateException("no queries")),
         )
 
     @Test

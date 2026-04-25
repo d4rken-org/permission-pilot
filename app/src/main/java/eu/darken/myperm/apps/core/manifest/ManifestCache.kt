@@ -61,8 +61,8 @@ class ManifestCache @Inject constructor(
             }
             ManifestData(
                 rawXml = RawXmlResult.Success(cached.rawXml),
-                queries = cached.queries?.let { QueriesResult.Success(it) }
-                    ?: QueriesResult.Error(IllegalStateException("Queries not cached")),
+                queries = cached.queries?.let { QueriesOutcome.Success(it) }
+                    ?: QueriesOutcome.Failure(IllegalStateException("Queries not cached")),
             )
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to read full cache for $pkgName: $e" }
@@ -110,7 +110,7 @@ class ManifestCache @Inject constructor(
         data: ManifestData,
     ) {
         val rawXml = (data.rawXml as? RawXmlResult.Success)?.xml ?: return
-        val queries = (data.queries as? QueriesResult.Success)?.info
+        val queries = (data.queries as? QueriesOutcome.Success)?.info
 
         try {
             val cached = CachedManifest(
