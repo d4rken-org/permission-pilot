@@ -1,10 +1,12 @@
 package eu.darken.myperm.apps.core.manifest
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.res.Resources
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.apps.core.Pkg
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,9 +23,15 @@ class ResourceNameResolver @Inject constructor(
 ) {
 
     fun forPackage(pkgName: Pkg.Name): ResolverScope {
+        // PackageManager binders can throw a wider set than NameNotFoundException —
+        // DeadObjectException after a system_server hiccup, IllegalArgumentException for apps
+        // on currently-unmounted secondary storage, etc. Treat all of them as "no app
+        // resources" so the viewer falls back to raw 0xNNNNNNNN refs instead of failing
+        // the whole load.
         val appResources: Resources? = try {
             context.packageManager.getResourcesForApplication(pkgName.value)
-        } catch (_: PackageManager.NameNotFoundException) {
+        } catch (e: Exception) {
+            log(TAG, WARN) { "getResourcesForApplication failed for ${pkgName.value}: $e" }
             null
         }
         return ResolverScope(appResources, context.resources, pkgName)
@@ -61,6 +69,11 @@ class ResourceNameResolver @Inject constructor(
                 }
             } catch (_: Resources.NotFoundException) {
                 null
+            } catch (_: RuntimeException) {
+                // Mirror of the broadened catch in forPackage: a per-id lookup can fail with
+                // RuntimeExceptions other than NotFoundException (system_server transient
+                // failures). Degrade to an unresolved reference rather than aborting the parse.
+                null
             }
         }
     }
@@ -69,5 +82,6 @@ class ResourceNameResolver @Inject constructor(
         private const val FRAMEWORK_PKG_ID = 0x01
         private const val FRAMEWORK_PKG_NAME = "android"
         private const val NULL_REF = -1 // 0xFFFFFFFF as signed Int
+        private val TAG = logTag("Apps", "Manifest", "ResourceResolver")
     }
 }

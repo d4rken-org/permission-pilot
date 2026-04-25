@@ -56,13 +56,13 @@ class BinaryXmlStreamer {
                 }
                 ChunkTypes.RES_XML_START_NAMESPACE_TYPE -> {
                     val pool = stringPool ?: throw BinaryXmlException("namespace before string pool")
-                    val entry = readNamespaceChunk(bytes, cursor, headerSize, pool)
+                    val entry = readNamespaceChunk(bytes, cursor, headerSize, safeSize, pool)
                     namespaceStack.addLast(entry)
                     visitor.onStartNamespace(entry.prefix, entry.uri)
                 }
                 ChunkTypes.RES_XML_END_NAMESPACE_TYPE -> {
                     val pool = stringPool ?: throw BinaryXmlException("namespace before string pool")
-                    val entry = readNamespaceChunk(bytes, cursor, headerSize, pool)
+                    val entry = readNamespaceChunk(bytes, cursor, headerSize, safeSize, pool)
                     visitor.onEndNamespace(entry.prefix, entry.uri)
                     // Pop the matching namespace (usually the last; robust to out-of-order in malformed input).
                     val idx = namespaceStack.indexOfLast { it.prefix == entry.prefix && it.uri == entry.uri }
@@ -116,7 +116,11 @@ class BinaryXmlStreamer {
         val attributeCount = readU16(bytes, attrExtStart + 12)
         // idIndex (14), classIndex (16), styleIndex (18) — not needed for our use case.
 
+        if (attributeStart < 20) throw BinaryXmlException("attributeStart $attributeStart < 20 (overlaps attrExt header)")
         if (attributeSize < 20) throw BinaryXmlException("attributeSize $attributeSize < 20")
+        if (attributeCount > MAX_ATTRIBUTE_COUNT) {
+            throw BinaryXmlException("attributeCount $attributeCount exceeds limit $MAX_ATTRIBUTE_COUNT")
+        }
         val attrBlockStart = attrExtStart + attributeStart
         val attrBlockSize: Long = attributeCount.toLong() * attributeSize.toLong()
         if (attrBlockStart.toLong() + attrBlockSize > chunkLimit.toLong()) {
@@ -234,10 +238,15 @@ class BinaryXmlStreamer {
         bytes: ByteArray,
         chunkStart: Int,
         headerSize: Int,
+        chunkSize: Int,
         stringPool: Array<String?>,
     ): NamespaceEntry {
         if (headerSize < XML_NODE_HEADER_SIZE) throw BinaryXmlException("namespace header too small")
         val extStart = chunkStart + XML_NODE_HEADER_SIZE
+        // The 8-byte ResXMLTree_namespaceExt (prefix + uri) must fit inside the chunk.
+        if (extStart + 8 > chunkStart + chunkSize) {
+            throw BinaryXmlException("namespace ext past chunk end")
+        }
         val prefixIdx = readU32(bytes, extStart + 0)
         val uriIdx = readU32(bytes, extStart + 4)
         val prefix = stringAt(stringPool, prefixIdx) ?: ""
@@ -272,6 +281,9 @@ class BinaryXmlStreamer {
 
     companion object {
         private const val XML_NODE_HEADER_SIZE = 16  // 8 chunk header + 8 ResXMLTree_node
+        // Defensive cap to prevent pathological allocation on adversarial AXML. Real
+        // manifests have well under 100 attributes per element.
+        private const val MAX_ATTRIBUTE_COUNT = 4096
 
         private fun readU16(bytes: ByteArray, at: Int): Int {
             if (at + 2 > bytes.size) throw BinaryXmlException("u16 read past buffer at $at")

@@ -1,6 +1,9 @@
 package eu.darken.myperm.apps.ui.manifest
 
+import android.content.Context
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.manifest.ManifestRepo
 import eu.darken.myperm.apps.core.manifest.ManifestSection
@@ -14,12 +17,10 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -29,6 +30,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ManifestViewerViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val dispatcherProvider: DispatcherProvider,
     private val manifestRepo: ManifestRepo,
     private val hintScanner: ManifestHintScanner,
@@ -125,7 +127,10 @@ class ManifestViewerViewModel @Inject constructor(
             _loadState.value = LoadState(sections = sections, isLoading = false)
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to load manifest: $e" }
-            _loadState.value = LoadState(isLoading = false, error = e.message ?: "Unknown error")
+            _loadState.value = LoadState(
+                isLoading = false,
+                error = e.message ?: context.getString(R.string.apps_manifest_viewer_error_unknown),
+            )
         }
     }
 
@@ -134,15 +139,16 @@ class ManifestViewerViewModel @Inject constructor(
         else -> false
     }
 
-    @OptIn(FlowPreview::class)
     val state: StateFlow<State> by lazy {
-        val debouncedSearch = _searchQuery.debounce(300)
-
+        // No debounce on the search query: combine already coalesces upstream changes,
+        // and findMatches is a single-pass indexOf per section. Debouncing made rapid
+        // type-then-Next swallow the first navigation tap because state.value.totalMatchCount
+        // was stale within the debounce window.
         combine(
             _loadState,
             _manualExpanded,
             _manualCollapsed,
-            debouncedSearch,
+            _searchQuery,
             _currentMatchIdx,
         ) { loadState, manualExpanded, manualCollapsed, query, requestedMatchIdx ->
             if (loadState.isLoading || loadState.error != null) {

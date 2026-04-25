@@ -110,12 +110,14 @@ class ApkManifestReaderTest : BaseTest() {
     }
 
     @Test
-    fun `readQueries classifies BinaryXmlException as Error not Malformed`(@TempDir tempDir: File) {
+    fun `readQueries classifies BinaryXmlException as MALFORMED_APK`(@TempDir tempDir: File) {
         // Garbage bytes: zip opens fine, manifest entry exists and is readable, but BinaryXmlStreamer
-        // rejects the root chunk. That's a parser-layer failure, surfaced as Error (transient) so
-        // the scanner retries on the next run and doesn't delete existing hints.
+        // rejects the root chunk. That's a structural failure stable across attempts, so we surface
+        // it as MALFORMED_APK — the hint scanner caches the negative outcome and stops re-parsing
+        // the same broken APK on every run (which the previous transient Failure classification did).
         val apk = writeApk(tempDir, manifestBytes = ByteArray(64) { 0xFF.toByte() })
-        reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Failure>()
+        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
+        result.reason shouldBe UnavailableReason.MALFORMED_APK
     }
 
     @Test

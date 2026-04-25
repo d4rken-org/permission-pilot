@@ -18,6 +18,11 @@ package eu.darken.myperm.apps.core.manifest.binaryxml
  */
 internal object BinaryXmlStringPool {
 
+    // Defensive caps to prevent pathological allocation on adversarial AXML. Real string-pool
+    // entries are short — package names, attribute names, hex literals.
+    private const val MAX_STRING_CHAR_COUNT = 1_000_000
+    private const val MAX_STRING_BYTE_COUNT = 1_000_000
+
     fun decode(
         chunk: ByteArray,
         chunkStart: Int,
@@ -66,6 +71,9 @@ internal object BinaryXmlStringPool {
         val byteLen = readUtf8VarLen(chunk, p, chunkLimit)
         p += if ((chunk[p].toInt() and 0x80) != 0) 2 else 1
         if (byteLen < 0) throw BinaryXmlException("negative utf8 byte length")
+        if (byteLen > MAX_STRING_BYTE_COUNT) {
+            throw BinaryXmlException("utf8 byteLen $byteLen exceeds limit $MAX_STRING_BYTE_COUNT")
+        }
         if (p + byteLen > chunkLimit) throw BinaryXmlException("utf8 string overruns chunk")
         return String(chunk, p, byteLen, Charsets.UTF_8)
     }
@@ -74,6 +82,9 @@ internal object BinaryXmlStringPool {
         val charLen = readUtf16VarLen(chunk, at, chunkLimit)
         val p = at + if (((readU16(chunk, at)) and 0x8000) != 0) 4 else 2
         if (charLen < 0) throw BinaryXmlException("negative utf16 char length")
+        if (charLen > MAX_STRING_CHAR_COUNT) {
+            throw BinaryXmlException("utf16 charLen $charLen exceeds limit $MAX_STRING_CHAR_COUNT")
+        }
         // Compute byteLen in Long to prevent Int overflow (charLen up to 0x7FFFFFFF from the
         // two-word varlen encoding; charLen * 2 as Int would wrap to negative, slipping past the
         // bounds check and allocating a multi-GB CharArray before OOM classifies it).

@@ -246,6 +246,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest Viewer</string>
     <string name="apps_manifest_viewer_search_hint">Search in manifest</string>
+    <string name="apps_manifest_viewer_error_unknown">Unknown error loading manifest.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d match</item>
         <item quantity="other">%d matches</item>

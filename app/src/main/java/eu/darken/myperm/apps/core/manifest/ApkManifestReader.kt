@@ -53,8 +53,11 @@ class ApkManifestReader @Inject constructor(
             log(TAG, WARN) { "OOM during manifest parse: $oom" }
             QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY)
         } catch (e: BinaryXmlException) {
-            log(TAG, WARN) { "Binary XML parse failed: $e" }
-            QueriesOutcome.Failure(e)
+            // Structural rejection from the streaming parser is stable across attempts —
+            // classify as MALFORMED_APK so the hint scanner caches the negative outcome
+            // instead of re-parsing the same broken APK on every run.
+            log(TAG, WARN) { "Binary XML parse failed (treating as malformed): $e" }
+            QueriesOutcome.Unavailable(UnavailableReason.MALFORMED_APK)
         } catch (e: Exception) {
             log(TAG, WARN) { "Unexpected parse error: $e" }
             QueriesOutcome.Failure(e)
@@ -86,8 +89,15 @@ class ApkManifestReader @Inject constructor(
                 queries = QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY),
             )
         } catch (e: BinaryXmlException) {
-            log(TAG, WARN) { "Binary XML parse failed: $e" }
-            ManifestData(sections = SectionsResult.Error(e), queries = QueriesOutcome.Failure(e))
+            // Structural rejection from the streaming parser is stable across attempts —
+            // classify as MALFORMED_APK rather than as a transient Error/Failure so callers
+            // surface a cleaner "cannot read manifest" message and the hint scanner caches
+            // the negative outcome instead of re-parsing the same broken APK on every run.
+            log(TAG, WARN) { "Binary XML parse failed (treating as malformed): $e" }
+            ManifestData(
+                sections = SectionsResult.Unavailable(UnavailableReason.MALFORMED_APK),
+                queries = QueriesOutcome.Unavailable(UnavailableReason.MALFORMED_APK),
+            )
         } catch (e: Exception) {
             log(TAG, WARN) { "Unexpected parse error: $e" }
             ManifestData(sections = SectionsResult.Error(e), queries = QueriesOutcome.Failure(e))
