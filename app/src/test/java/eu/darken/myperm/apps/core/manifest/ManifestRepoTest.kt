@@ -46,7 +46,16 @@ class ManifestRepoTest : BaseTest() {
     }
 
     private fun successFullData(queries: List<String> = listOf("com.other")): ManifestData = ManifestData(
-        rawXml = RawXmlResult.Success("<manifest/>"),
+        sections = SectionsResult.Success(
+            listOf(
+                ManifestSection(
+                    type = SectionType.OTHER,
+                    elementCount = 1,
+                    prettyXml = "<application />",
+                    isFlagged = false,
+                ),
+            ),
+        ),
         queries = QueriesOutcome.Success(QueriesInfo(packageQueries = queries)),
     )
 
@@ -109,7 +118,7 @@ class ManifestRepoTest : BaseTest() {
         val repo = buildRepo(this)
 
         val data = repo.getManifest(pkg)
-        data.rawXml.shouldBeInstanceOf<RawXmlResult.Success>()
+        data.sections.shouldBeInstanceOf<SectionsResult.Success>()
 
         verify(exactly = 1) { apkReader.readFullManifest(apkPath, pkg) }
         verify(exactly = 0) { apkReader.readQueries(any()) }
@@ -127,7 +136,7 @@ class ManifestRepoTest : BaseTest() {
     }
 
     @Test
-    fun `memory cache entry never references raw XML`() = runTest {
+    fun `memory cache entry holds only the queries projection — no section payload`() = runTest {
         every { apkReader.readQueries(apkPath) } returns successQueries()
         val repo = buildRepo(this)
 
@@ -140,7 +149,7 @@ class ManifestRepoTest : BaseTest() {
         map.values.forEach { value ->
             (value is QueriesOutcome).shouldBeTrue()
             val text = value.toString()
-            (!text.contains("rawXml") && !text.contains("<manifest")).shouldBeTrue()
+            (!text.contains("prettyXml") && !text.contains("<application")).shouldBeTrue()
         }
     }
 

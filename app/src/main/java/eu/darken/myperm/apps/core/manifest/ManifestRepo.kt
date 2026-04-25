@@ -57,7 +57,7 @@ class ManifestRepo @Inject constructor(
      */
     suspend fun getManifest(pkgName: Pkg.Name): ManifestData = withContext(dispatcherProvider.IO) {
         val appMeta = resolveAppMeta(pkgName) ?: return@withContext ManifestData(
-            rawXml = RawXmlResult.Unavailable(UnavailableReason.PKG_NOT_FOUND),
+            sections = SectionsResult.Unavailable(UnavailableReason.PKG_NOT_FOUND),
             queries = QueriesOutcome.Unavailable(UnavailableReason.PKG_NOT_FOUND),
         )
         val key = ParseCacheKey(pkgName.value, appMeta.versionCode, appMeta.lastUpdateTime)
@@ -107,7 +107,7 @@ class ManifestRepo @Inject constructor(
                     semaphore.withPermit {
                         log(TAG) { "Parsing full manifest for $pkgName at $sourceDir" }
                         val data = apkManifestReader.readFullManifest(sourceDir, pkgName)
-                        if (data.rawXml is RawXmlResult.Success) {
+                        if (data.sections is SectionsResult.Success) {
                             manifestCache.put(pkgName, versionCode, lastUpdateTime, data)
                         }
                         if (shouldMemoryCache(data.queries)) {

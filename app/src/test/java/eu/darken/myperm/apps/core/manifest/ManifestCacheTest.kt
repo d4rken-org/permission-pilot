@@ -46,7 +46,16 @@ class ManifestCacheTest : BaseTest() {
 
     private fun sampleData(queries: QueriesInfo? = QueriesInfo(packageQueries = listOf("com.other"))): ManifestData =
         ManifestData(
-            rawXml = RawXmlResult.Success("<manifest/>"),
+            sections = SectionsResult.Success(
+                listOf(
+                    ManifestSection(
+                        type = SectionType.OTHER,
+                        elementCount = 1,
+                        prettyXml = "<application />",
+                        isFlagged = false,
+                    ),
+                ),
+            ),
             queries = queries?.let { QueriesOutcome.Success(it) }
                 ?: QueriesOutcome.Failure(IllegalStateException("no queries")),
         )
@@ -69,11 +78,13 @@ class ManifestCacheTest : BaseTest() {
     }
 
     @Test
-    fun `sibling file never contains rawXml`() {
+    fun `sibling file holds queries only — no section payload`() {
         val queries = QueriesInfo(packageQueries = listOf("com.target"))
         cache.put(pkg, versionCode, lastUpdate, sampleData(queries))
 
-        queriesFile().readText().shouldNotContain("rawXml")
+        val text = queriesFile().readText()
+        text.shouldNotContain("prettyXml")
+        text.shouldNotContain("sections")
     }
 
     @Test
@@ -126,6 +137,27 @@ class ManifestCacheTest : BaseTest() {
               "formatVersion": 1,
               "versionCode": 42,
               "lastUpdateTime": 1700000000000,
+              "sections": [],
+              "queries": null
+            }
+        """.trimIndent()
+        fullFile().writeText(rawJson)
+
+        val result = cache.get(pkg, versionCode = 42L, lastUpdateTime = 1_700_000_000_000L)
+        result.shouldBeNull()
+        fullFile().exists() shouldBe false
+    }
+
+    @Test
+    fun `v2 entry with rawXml is deleted on v3 read — migration via decode failure`() {
+        // v2 format had `rawXml: String` (required) and no `sections` field. Decoding under
+        // v3's schema fails because `sections` is required and unset; the corruption catch
+        // deletes the file.
+        val rawJson = """
+            {
+              "formatVersion": 2,
+              "versionCode": 42,
+              "lastUpdateTime": 1700000000000,
               "rawXml": "<old/>",
               "queries": null
             }
@@ -135,6 +167,26 @@ class ManifestCacheTest : BaseTest() {
         val result = cache.get(pkg, versionCode = 42L, lastUpdateTime = 1_700_000_000_000L)
         result.shouldBeNull()
         fullFile().exists() shouldBe false
+    }
+
+    @Test
+    fun `valid sibling survives v2 full-cache deletion during migration`() {
+        cache.putQueries(pkg, versionCode, lastUpdate, QueriesInfo(packageQueries = listOf("x")))
+        fullFile().writeText(
+            """
+                {
+                  "formatVersion": 2,
+                  "versionCode": 42,
+                  "lastUpdateTime": 1700000000000,
+                  "rawXml": "<old/>",
+                  "queries": null
+                }
+            """.trimIndent()
+        )
+
+        cache.get(pkg, versionCode, lastUpdate) shouldBe null
+        fullFile().exists() shouldBe false
+        cache.getQueries(pkg, versionCode, lastUpdate)!!.packageQueries shouldBe listOf("x")
     }
 
     @Test

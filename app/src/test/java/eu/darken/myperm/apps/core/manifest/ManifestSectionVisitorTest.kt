@@ -10,11 +10,6 @@ import testhelper.BaseTest
 
 /**
  * Verifies [ManifestSectionVisitor] against the aapt2 fixtures.
- *
- * No parity comparison against the legacy [ManifestSectionParser] — XmlPullParserFactory
- * has no SPI implementation in JVM unit tests, so the legacy parser falls into its
- * exception fallback and returns just `[OTHER]` regardless of input. Real-device
- * end-to-end validation in Step 5c covers the equivalence.
  */
 class ManifestSectionVisitorTest : BaseTest() {
 

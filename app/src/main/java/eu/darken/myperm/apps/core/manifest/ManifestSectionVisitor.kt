@@ -5,10 +5,9 @@ import eu.darken.myperm.apps.core.manifest.binaryxml.BinaryXmlVisitor
 
 /**
  * Streaming bucketing visitor that produces the per-section pretty XML the manifest viewer
- * displays. Replaces the binary→string→XmlPullParser double-parse done previously by
- * [ManifestSectionParser].
+ * displays. Replaces an earlier binary→string→XmlPullParser double-parse path.
  *
- * Section assignment mirrors the legacy parser:
+ * Section assignment:
  * - Top-level (depth 2) children of `<manifest>` map by tag to USES_PERMISSION / PERMISSION
  *   / QUERIES; anything else falls back to OTHER. `<application>`'s own attributes go to
  *   OTHER as a self-closing fragment; its children (depth 3) map to ACTIVITIES / SERVICES /
@@ -16,14 +15,11 @@ import eu.darken.myperm.apps.core.manifest.binaryxml.BinaryXmlVisitor
  * - Sections without entries are dropped from the result.
  *
  * Namespace handling: declarations on `<manifest>` are consumed when the manifest element
- * enters and are NOT propagated into any section's pretty XML. This matches the legacy
- * parser, which never saw the renderer's `xmlns:` attributes because `XmlPullParser`'s
- * START_TAG dispatch ignored the manifest root.
+ * enters and are NOT propagated into any section's pretty XML. Sections sit one level below
+ * `<manifest>` and inherit the prefix binding implicitly through the `android:` qualifier
+ * on attribute names emitted by [BinaryXmlFormatting.attributeName].
  *
- * Output style: renderer-conformant — every attribute on its own indented line, empty
- * elements rendered as ` />`. Whitespace differs from the legacy parser's mixed inline /
- * multi-line style, but the substance (section assignment, attribute names and values,
- * escaping, ordering) matches.
+ * Output style: every attribute on its own indented line, empty elements rendered as ` />`.
  *
  * `isFlagged` is intentionally **not** populated. Heuristic-based flagging depends on
  * scanner thresholds that change independently of cache contents; the viewer model

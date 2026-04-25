@@ -14,13 +14,13 @@ import javax.inject.Singleton
 
 /**
  * Two-tier on-disk cache:
- * - `<pkg>.json` — full manifest including raw XML, used by the manifest viewer.
+ * - `<pkg>.json` — per-section pretty XML, used by the manifest viewer.
  * - `<pkg>.queries.json` — queries projection only, used by the hint scanner.
  *
  * The full cache carries a [CachedManifest.formatVersion] to guard against format drift.
- * Entries that predate v2 (written by the old `apk-parser`-based reader) are deleted on read
- * — their attribute/reference formatting is not guaranteed to match the new renderer, and
- * blindly trusting them would leak old-format XML to the viewer.
+ * v2 entries (which stored the rendered raw XML before the streaming section visitor
+ * landed) fail decode against v3's required `sections` field and are deleted by the
+ * corruption catch on read.
  *
  * The queries sibling is a pure projection and is NOT version-gated — its schema has not
  * changed with the parser rewrite.
@@ -36,8 +36,10 @@ class ManifestCache @Inject constructor(
         get() = File(context.cacheDir, "manifests").also { it.mkdirs() }
 
     /**
-     * Full cache read. Returns null on miss, version mismatch, corruption, or pre-v2 format.
-     * Pre-v2 entries are deleted to stop them being considered on subsequent reads.
+     * Full cache read. Returns null on miss, version mismatch, or corruption (v2 entries
+     * fall through here because the schema gained a required `sections` field).
+     * `isFlagged` is left `false` on read; the caller is expected to recompute flags from
+     * the live queries projection.
      */
     fun get(
         pkgName: Pkg.Name,
@@ -59,8 +61,9 @@ class ManifestCache @Inject constructor(
                 file.delete()
                 return null
             }
+            val sections = cached.sections.map { it.toUiModel(isFlagged = false) }
             ManifestData(
-                rawXml = RawXmlResult.Success(cached.rawXml),
+                sections = SectionsResult.Success(sections),
                 queries = cached.queries?.let { QueriesOutcome.Success(it) }
                     ?: QueriesOutcome.Failure(IllegalStateException("Queries not cached")),
             )
@@ -72,9 +75,9 @@ class ManifestCache @Inject constructor(
     }
 
     /**
-     * Queries-only cache read. Never deserializes raw XML; never backfills from the full cache
-     * (would defeat the memory win — a backfill would deserialize the old rawXml just to extract
-     * queries, which is exactly what we're trying to avoid).
+     * Queries-only cache read. Never deserializes the section payload; never backfills from
+     * the full cache (a backfill would deserialize the entire section list just to extract
+     * queries, which defeats the memory win the sibling file exists for).
      *
      * On a miss, callers re-parse the APK via the lightweight [ApkManifestReader.readQueries] path.
      */
@@ -109,7 +112,7 @@ class ManifestCache @Inject constructor(
         lastUpdateTime: Long,
         data: ManifestData,
     ) {
-        val rawXml = (data.rawXml as? RawXmlResult.Success)?.xml ?: return
+        val sections = (data.sections as? SectionsResult.Success)?.sections ?: return
         val queries = (data.queries as? QueriesOutcome.Success)?.info
 
         try {
@@ -117,7 +120,7 @@ class ManifestCache @Inject constructor(
                 formatVersion = CURRENT_FORMAT_VERSION,
                 versionCode = versionCode,
                 lastUpdateTime = lastUpdateTime,
-                rawXml = rawXml,
+                sections = sections.map { it.toCacheModel() },
                 queries = queries,
             )
             fullCacheFile(pkgName).writeText(json.encodeToString(CachedManifest.serializer(), cached))
@@ -162,16 +165,19 @@ class ManifestCache @Inject constructor(
 
     /**
      * `formatVersion` is nullable so that pre-migration JSONs (which have no such field) do NOT
-     * silently deserialize as "v2" via a non-null default. kotlinx.serialization fills a missing
+     * silently deserialize as "v3" via a non-null default. kotlinx.serialization fills a missing
      * field with the declared default, so the default must be `null` to be distinguishable from a
-     * written v2 entry. On read we reject anything that isn't exactly [CURRENT_FORMAT_VERSION].
+     * written v3 entry. On read we reject anything that isn't exactly [CURRENT_FORMAT_VERSION].
+     *
+     * v2 entries (`rawXml: String` instead of `sections: List<CachedManifestSection>`) fail decode
+     * here because `sections` has no default; the corruption catch in [get] then deletes them.
      */
     @Serializable
     internal data class CachedManifest(
         val formatVersion: Int? = null,
         val versionCode: Long,
         val lastUpdateTime: Long,
-        val rawXml: String,
+        val sections: List<CachedManifestSection>,
         val queries: QueriesInfo?,
     )
 
@@ -183,7 +189,7 @@ class ManifestCache @Inject constructor(
     )
 
     companion object {
-        internal const val CURRENT_FORMAT_VERSION = 2
+        internal const val CURRENT_FORMAT_VERSION = 3
         private val TAG = logTag("Apps", "Manifest", "Cache")
     }
 }

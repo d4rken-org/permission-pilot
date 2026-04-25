@@ -4,10 +4,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.manifest.ManifestRepo
 import eu.darken.myperm.apps.core.manifest.ManifestSection
-import eu.darken.myperm.apps.core.manifest.ManifestSectionParser
 import eu.darken.myperm.apps.core.manifest.QueriesOutcome
-import eu.darken.myperm.apps.core.manifest.RawXmlResult
 import eu.darken.myperm.apps.core.manifest.SectionType
+import eu.darken.myperm.apps.core.manifest.SectionsResult
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
@@ -32,7 +31,6 @@ import javax.inject.Inject
 class ManifestViewerViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider,
     private val manifestRepo: ManifestRepo,
-    private val sectionParser: ManifestSectionParser,
     private val hintScanner: ManifestHintScanner,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
@@ -98,10 +96,10 @@ class ManifestViewerViewModel @Inject constructor(
         _loadState.value = LoadState(isLoading = true)
         try {
             val data = withContext(dispatcherProvider.IO) { manifestRepo.getManifest(pkgName) }
-            val xml = when (val result = data.rawXml) {
-                is RawXmlResult.Success -> result.xml
-                is RawXmlResult.Unavailable -> throw IllegalStateException(result.reason.name)
-                is RawXmlResult.Error -> throw result.error
+            val rawSections = when (val result = data.sections) {
+                is SectionsResult.Success -> result.sections
+                is SectionsResult.Unavailable -> throw IllegalStateException(result.reason.name)
+                is SectionsResult.Error -> throw result.error
             }
 
             val flags = when (val q = data.queries) {
@@ -111,20 +109,29 @@ class ManifestViewerViewModel @Inject constructor(
                     defaultHintFlags()
                 }
                 is QueriesOutcome.Unavailable -> {
-                    // Unreachable in the viewer flow — rawXml.Unavailable is thrown above before
+                    // Unreachable in the viewer flow — sections.Unavailable is thrown above before
                     // reaching this branch — but keep an exhaustive arm so the when stays total.
                     log(TAG, WARN) { "Queries unavailable, flags defaulted: ${q.reason}" }
                     defaultHintFlags()
                 }
             }
 
-            val sections = withContext(dispatcherProvider.Default) { sectionParser.parse(xml, flags) }
+            // isFlagged is recomputed from the live queries projection on every load — never
+            // taken from the cache, so threshold tuning takes effect immediately.
+            val sections = rawSections.map { section ->
+                section.copy(isFlagged = isSectionFlagged(section.type, flags))
+            }
             _manualExpanded.value = sections.filter { it.isFlagged }.map { it.type }.toSet()
             _loadState.value = LoadState(sections = sections, isLoading = false)
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to load manifest: $e" }
             _loadState.value = LoadState(isLoading = false, error = e.message ?: "Unknown error")
         }
+    }
+
+    private fun isSectionFlagged(type: SectionType, flags: ManifestHintScanner.Flags): Boolean = when (type) {
+        SectionType.QUERIES -> flags.hasActionMainQuery || flags.packageQueryCount > ManifestHintScanner.EXCESSIVE_THRESHOLD
+        else -> false
     }
 
     @OptIn(FlowPreview::class)
