@@ -2,7 +2,7 @@ package eu.darken.myperm.apps.core.manifest
 
 data class ManifestData(
     val rawXml: RawXmlResult,
-    val queries: QueriesResult,
+    val queries: QueriesOutcome,
 )
 
 sealed class RawXmlResult {
@@ -11,16 +11,13 @@ sealed class RawXmlResult {
     data class Error(val error: Throwable) : RawXmlResult()
 }
 
-sealed class QueriesResult {
-    data class Success(val info: QueriesInfo) : QueriesResult()
-    data class Error(val error: Throwable) : QueriesResult()
-}
-
 /**
- * Narrow outcome for callers that only need the `<queries>` projection and must not retain
- * the raw manifest XML. Keeps the memory-cache footprint bounded and lets us distinguish
- * transient failures (LOW_MEMORY, generic Failure) from stable ones (APK_NOT_FOUND,
- * MALFORMED_APK, PKG_NOT_FOUND) that can be cached.
+ * Outcome of resolving the `<queries>` projection — used at every layer (reader, cache,
+ * repo, scanner). Failure is split into [Unavailable] (the APK or its manifest could not be
+ * read at all) and [Failure] (read fine but parsing/extraction failed).
+ *
+ * Cacheability decisions key off [UnavailableReason.isTransient] so policy lives on the
+ * data, not in the consumers.
  */
 sealed interface QueriesOutcome {
     data class Success(val info: QueriesInfo) : QueriesOutcome
@@ -33,5 +30,13 @@ enum class UnavailableReason {
     APK_NOT_READABLE,
     PKG_NOT_FOUND,
     LOW_MEMORY,
-    MALFORMED_APK,
+    MALFORMED_APK;
+
+    /**
+     * True when the underlying condition is expected to clear without app changes
+     * (currently: only [LOW_MEMORY]). Callers decide their own policy: [ManifestRepo]
+     * skips the memory cache; [ManifestHintRepo] preserves stale hints rather than
+     * deleting them.
+     */
+    val isTransient: Boolean get() = this == LOW_MEMORY
 }

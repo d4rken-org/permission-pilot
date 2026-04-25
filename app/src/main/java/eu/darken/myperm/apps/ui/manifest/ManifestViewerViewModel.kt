@@ -5,7 +5,7 @@ import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.manifest.ManifestRepo
 import eu.darken.myperm.apps.core.manifest.ManifestSection
 import eu.darken.myperm.apps.core.manifest.ManifestSectionParser
-import eu.darken.myperm.apps.core.manifest.QueriesResult
+import eu.darken.myperm.apps.core.manifest.QueriesOutcome
 import eu.darken.myperm.apps.core.manifest.RawXmlResult
 import eu.darken.myperm.apps.core.manifest.SectionType
 import eu.darken.myperm.apps.core.Pkg
@@ -105,15 +105,16 @@ class ManifestViewerViewModel @Inject constructor(
             }
 
             val flags = when (val q = data.queries) {
-                is QueriesResult.Success -> hintScanner.evaluate(q.info)
-                is QueriesResult.Error -> {
-                    log(TAG, WARN) { "Queries parsing failed, flags unavailable: ${q.error}" }
-                    ManifestHintScanner.Flags(
-                        hasActionMainQuery = false,
-                        packageQueryCount = 0,
-                        intentQueryCount = 0,
-                        providerQueryCount = 0,
-                    )
+                is QueriesOutcome.Success -> hintScanner.evaluate(q.info)
+                is QueriesOutcome.Failure -> {
+                    log(TAG, WARN) { "Queries parsing failed, flags defaulted: ${q.error}" }
+                    defaultHintFlags()
+                }
+                is QueriesOutcome.Unavailable -> {
+                    // Unreachable in the viewer flow — rawXml.Unavailable is thrown above before
+                    // reaching this branch — but keep an exhaustive arm so the when stays total.
+                    log(TAG, WARN) { "Queries unavailable, flags defaulted: ${q.reason}" }
+                    defaultHintFlags()
                 }
             }
 
@@ -255,6 +256,13 @@ class ManifestViewerViewModel @Inject constructor(
             _manualCollapsed.update { it - type }
         }
     }
+
+    private fun defaultHintFlags() = ManifestHintScanner.Flags(
+        hasActionMainQuery = false,
+        packageQueryCount = 0,
+        intentQueryCount = 0,
+        providerQueryCount = 0,
+    )
 
     companion object {
         private val TAG = logTag("Apps", "Manifest", "Viewer", "VM")

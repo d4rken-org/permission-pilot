@@ -41,23 +41,23 @@ class ApkManifestReader @Inject constructor(
 ) {
 
     /** Scanner path. Returns the `<queries>` projection. */
-    fun readQueries(apkPath: String): QueriesReadResult = withManifestBytes(
+    fun readQueries(apkPath: String): QueriesOutcome = withManifestBytes(
         apkPath = apkPath,
-        onUnavailable = { QueriesReadResult.Unavailable(it) },
+        onUnavailable = { QueriesOutcome.Unavailable(it) },
     ) { bytes ->
         try {
             val extractor = QueriesExtractor()
             BinaryXmlStreamer().parse(bytes, extractor)
-            QueriesReadResult.Success(extractor.result())
+            QueriesOutcome.Success(extractor.result())
         } catch (oom: OutOfMemoryError) {
             log(TAG, WARN) { "OOM during manifest parse: $oom" }
-            QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
+            QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY)
         } catch (e: BinaryXmlException) {
             log(TAG, WARN) { "Binary XML parse failed: $e" }
-            QueriesReadResult.Error(e)
+            QueriesOutcome.Failure(e)
         } catch (e: Exception) {
             log(TAG, WARN) { "Unexpected parse error: $e" }
-            QueriesReadResult.Error(e)
+            QueriesOutcome.Failure(e)
         }
     }
 
@@ -67,7 +67,7 @@ class ApkManifestReader @Inject constructor(
         onUnavailable = { reason ->
             ManifestData(
                 rawXml = RawXmlResult.Unavailable(reason),
-                queries = QueriesResult.Error(IllegalStateException(reason.name)),
+                queries = QueriesOutcome.Unavailable(reason),
             )
         },
     ) { bytes ->
@@ -77,20 +77,20 @@ class ApkManifestReader @Inject constructor(
             BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(renderer, extractor)))
             ManifestData(
                 rawXml = RawXmlResult.Success(renderer.result()),
-                queries = QueriesResult.Success(extractor.result()),
+                queries = QueriesOutcome.Success(extractor.result()),
             )
         } catch (oom: OutOfMemoryError) {
             log(TAG, WARN) { "OOM during manifest parse: $oom" }
             ManifestData(
                 rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                queries = QueriesResult.Error(IllegalStateException("OOM during parse", oom)),
+                queries = QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY),
             )
         } catch (e: BinaryXmlException) {
             log(TAG, WARN) { "Binary XML parse failed: $e" }
-            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesOutcome.Failure(e))
         } catch (e: Exception) {
             log(TAG, WARN) { "Unexpected parse error: $e" }
-            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesOutcome.Failure(e))
         }
     }
 
@@ -200,8 +200,3 @@ class ApkManifestReader @Inject constructor(
     }
 }
 
-sealed class QueriesReadResult {
-    data class Success(val info: QueriesInfo) : QueriesReadResult()
-    data class Unavailable(val reason: UnavailableReason) : QueriesReadResult()
-    data class Error(val error: Throwable) : QueriesReadResult()
-}

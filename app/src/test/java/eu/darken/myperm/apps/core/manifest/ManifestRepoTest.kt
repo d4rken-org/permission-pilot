@@ -47,11 +47,11 @@ class ManifestRepoTest : BaseTest() {
 
     private fun successFullData(queries: List<String> = listOf("com.other")): ManifestData = ManifestData(
         rawXml = RawXmlResult.Success("<manifest/>"),
-        queries = QueriesResult.Success(QueriesInfo(packageQueries = queries)),
+        queries = QueriesOutcome.Success(QueriesInfo(packageQueries = queries)),
     )
 
-    private fun successQueries(queries: List<String> = listOf("com.other")): QueriesReadResult.Success =
-        QueriesReadResult.Success(QueriesInfo(packageQueries = queries))
+    private fun successQueries(queries: List<String> = listOf("com.other")): QueriesOutcome.Success =
+        QueriesOutcome.Success(QueriesInfo(packageQueries = queries))
 
     @BeforeEach
     fun setup() {
@@ -159,7 +159,7 @@ class ManifestRepoTest : BaseTest() {
 
     @Test
     fun `LOW_MEMORY outcome is not memory-cached`() = runTest {
-        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
+        every { apkReader.readQueries(apkPath) } returns QueriesOutcome.Unavailable(UnavailableReason.LOW_MEMORY)
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
@@ -170,7 +170,7 @@ class ManifestRepoTest : BaseTest() {
 
     @Test
     fun `Failure outcome is not memory-cached`() = runTest {
-        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Error(RuntimeException("parser boom"))
+        every { apkReader.readQueries(apkPath) } returns QueriesOutcome.Failure(RuntimeException("parser boom"))
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Failure>()
@@ -181,7 +181,7 @@ class ManifestRepoTest : BaseTest() {
 
     @Test
     fun `MALFORMED_APK outcome is memory-cached`() = runTest {
-        every { apkReader.readQueries(apkPath) } returns QueriesReadResult.Unavailable(UnavailableReason.MALFORMED_APK)
+        every { apkReader.readQueries(apkPath) } returns QueriesOutcome.Unavailable(UnavailableReason.MALFORMED_APK)
         val repo = buildRepo(this)
 
         repo.getQueriesFor(pkg).shouldBeInstanceOf<QueriesOutcome.Unavailable>()

@@ -83,28 +83,28 @@ class ApkManifestReaderTest : BaseTest() {
 
     @Test
     fun `readQueries returns APK_NOT_FOUND when file missing`() {
-        val result = reader().readQueries("/does/not/exist.apk").shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries("/does/not/exist.apk").shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         result.reason shouldBe UnavailableReason.APK_NOT_FOUND
     }
 
     @Test
     fun `readQueries returns MALFORMED_APK when manifest entry missing`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = null)
-        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         result.reason shouldBe UnavailableReason.MALFORMED_APK
     }
 
     @Test
     fun `readQueries returns Success when manifest parses cleanly and arsc is absent`(@TempDir tempDir: File) {
         val apk = writeApk(tempDir, manifestBytes = manifestWithQueries("com.foo"), includeArsc = false)
-        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Success>()
+        val result = reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Success>()
         result.info.packageQueries shouldBe listOf("com.foo")
     }
 
     @Test
     fun `readQueries returns MALFORMED_APK for non-zip file`(@TempDir tempDir: File) {
         val notApk = File(tempDir, "nope.apk").apply { writeText("definitely not a zip") }
-        val result = reader().readQueries(notApk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Unavailable>()
+        val result = reader().readQueries(notApk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Unavailable>()
         result.reason shouldBe UnavailableReason.MALFORMED_APK
     }
 
@@ -114,7 +114,7 @@ class ApkManifestReaderTest : BaseTest() {
         // rejects the root chunk. That's a parser-layer failure, surfaced as Error (transient) so
         // the scanner retries on the next run and doesn't delete existing hints.
         val apk = writeApk(tempDir, manifestBytes = ByteArray(64) { 0xFF.toByte() })
-        reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesReadResult.Error>()
+        reader().readQueries(apk.absolutePath).shouldBeInstanceOf<QueriesOutcome.Failure>()
     }
 
     @Test
@@ -122,7 +122,7 @@ class ApkManifestReaderTest : BaseTest() {
         val apk = writeApk(tempDir, manifestBytes = manifestWithQueries("com.both"))
         val result = reader().readFullManifest(apk.absolutePath, Pkg.Name("com.other"))
         val raw = result.rawXml.shouldBeInstanceOf<RawXmlResult.Success>()
-        val queries = result.queries.shouldBeInstanceOf<QueriesResult.Success>()
+        val queries = result.queries.shouldBeInstanceOf<QueriesOutcome.Success>()
         raw.xml.shouldContain("<manifest")
         queries.info.packageQueries shouldBe listOf("com.both")
     }
