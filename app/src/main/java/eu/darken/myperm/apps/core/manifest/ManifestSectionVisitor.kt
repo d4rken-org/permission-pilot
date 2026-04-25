@@ -32,6 +32,12 @@ class ManifestSectionVisitor(
     private val sections = mutableMapOf<SectionType, MutableList<String>>()
     private val pendingNamespaces = ArrayDeque<Pair<String, String>>()
 
+    // Tracks currently-active non-`android` namespace bindings so that section roots can
+    // emit their xmlns:* declarations and stay well-formed XML. The `android` binding is
+    // implicit in qualified attribute names emitted by [BinaryXmlFormatting.attributeName],
+    // so it's intentionally excluded here.
+    private val activeNonAndroidNamespaces = linkedMapOf<String, String>()
+
     private var depth = 0
     private var inApplication = false
 
@@ -54,6 +60,11 @@ class ManifestSectionVisitor(
 
     override fun onStartNamespace(prefix: String, uri: String) {
         pendingNamespaces.addLast(prefix to uri)
+        if (uri != ANDROID_NS_URI) activeNonAndroidNamespaces[prefix] = uri
+    }
+
+    override fun onEndNamespace(prefix: String, uri: String) {
+        if (uri != ANDROID_NS_URI) activeNonAndroidNamespaces.remove(prefix)
     }
 
     override fun onStartElement(
@@ -159,6 +170,17 @@ class ManifestSectionVisitor(
         flushPendingOpen()
         current.append(INDENT.repeat(relIndent))
         current.append('<').append(BinaryXmlFormatting.qualifiedName(namespace, prefix, name))
+        if (relIndent == 0) {
+            // Section root — emit any active non-`android` namespace declarations so prefixed
+            // content (e.g. <dist:module>) renders as well-formed XML. Empty-prefix bindings
+            // map to bare `xmlns="…"`.
+            for ((p, u) in activeNonAndroidNamespaces) {
+                current.append('\n').append(INDENT.repeat(relIndent + 1))
+                if (p.isEmpty()) current.append("xmlns") else current.append("xmlns:").append(p)
+                current.append("=\"")
+                current.append(BinaryXmlFormatting.escapeXml(u)).append('"')
+            }
+        }
         for (attr in attributes) {
             current.append('\n').append(INDENT.repeat(relIndent + 1))
             current.append(BinaryXmlFormatting.attributeName(attr))
@@ -179,6 +201,7 @@ class ManifestSectionVisitor(
     companion object {
         private const val INDENT = "  "
         private const val APPLICATION_TAG = "application"
+        private const val ANDROID_NS_URI = "http://schemas.android.com/apk/res/android"
 
         private val SECTION_ORDER = listOf(
             SectionType.OTHER,

@@ -94,6 +94,13 @@ class ManifestRepo @Inject constructor(
         parseQueriesOrAwait(key, appMeta.sourceDir, pkgName, appMeta.versionCode, appMeta.lastUpdateTime)
     }
 
+    /**
+     * Intentional asymmetry vs [parseQueriesOrAwait]: a viewer call cannot piggyback on a
+     * queries-only parse (which doesn't render sections), so this path consults only
+     * [fullInFlight]. If a queries-only parse is in flight for the same key, we still
+     * launch a parallel full parse here rather than waiting then re-parsing for sections —
+     * viewer-first is the common case and the wasted CPU is bounded by [MAX_CONCURRENT_PARSES].
+     */
     private suspend fun parseFullOrAwait(
         key: ParseCacheKey,
         sourceDir: String,
@@ -185,7 +192,12 @@ class ManifestRepo @Inject constructor(
                 @Suppress("DEPRECATION")
                 pi.versionCode.toLong()
             }
-            val sourceDir = pi.applicationInfo?.sourceDir ?: return null
+            // PackageInfo.applicationInfo is nullable on Android 14+ when no GET_* flag was
+            // requested. Falling through to "package not found" would mislabel an installed
+            // app, so retry with a dedicated getApplicationInfo call before giving up.
+            val sourceDir = pi.applicationInfo?.sourceDir
+                ?: context.packageManager.getApplicationInfo(pkgName.value, 0).sourceDir
+                ?: return null
             AppMeta(versionCode, pi.lastUpdateTime, sourceDir)
         } catch (_: PackageManager.NameNotFoundException) {
             null

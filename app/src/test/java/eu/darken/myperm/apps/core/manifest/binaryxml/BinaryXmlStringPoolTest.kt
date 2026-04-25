@@ -48,16 +48,18 @@ class BinaryXmlStringPoolTest : BaseTest() {
     }
 
     @Test
-    fun `utf16 oversized charLen with overflow-safe bounds check throws rather than OOMs`() {
-        // Regression guard for the F7 fix: without Long-safe arithmetic, charLen * 2 as Int
-        // wraps to negative (here 0x7FFFFFFF * 2 = -2 as signed Int) and the bounds check
-        // `p + byteLen > chunkLimit` passes silently, then CharArray(0x7FFFFFFF) OOMs.
-        // The Long-based check must reject this before any large allocation.
+    fun `utf16 oversized charLen is rejected before any large allocation`() {
+        // Two layers of defense for the same OOM scenario:
+        //   1. MAX_STRING_CHAR_COUNT cap rejects pathological charLen up front.
+        //   2. Long-safe `byteLen = charLen * 2L` bounds check would reject overflow values
+        //      that slipped past (e.g., if the cap were ever raised above Int.MAX_VALUE / 2).
+        // The cap fires first with a more specific message; either rejection prevents the
+        // multi-GB CharArray allocation that the original bug would have triggered.
         val chunk = craftUtf16PoolWithOverflowCharLen()
         val ex = shouldThrow<BinaryXmlException> {
             BinaryXmlStringPool.decode(chunk, 0, chunk.headerSize(), chunk.chunkSize())
         }
-        ex.message!!.shouldContain("utf16 string overruns chunk")
+        ex.message!!.shouldContain("exceeds limit")
     }
 
     @Test
