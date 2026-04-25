@@ -10,11 +10,6 @@ import com.android.tools.screenshot.PreviewTest
 fun OverviewLight() = OverviewLightContent()
 
 @PreviewTest
-@PlayStoreLocalesDark
-@Composable
-fun OverviewDark() = OverviewDarkContent()
-
-@PreviewTest
 @PlayStoreLocales
 @Composable
 fun AppsList() = AppsListContent()
@@ -37,4 +32,4 @@ fun PermissionDetails() = PermissionDetailsContent()
 @PreviewTest
 @PlayStoreLocales
 @Composable
-fun SettingsIndex() = SettingsIndexContent()
+fun WatcherDashboard() = WatcherDashboardContent()
