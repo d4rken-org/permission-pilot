@@ -46,6 +46,11 @@ class ManifestRepo @Inject constructor(
     private val fullInFlight = HashMap<ParseCacheKey, Deferred<ManifestData>>()
     private val queriesInFlight = HashMap<ParseCacheKey, Deferred<QueriesOutcome>>()
 
+    // Serializes access to memoryCache. LinkedHashMap(accessOrder = true) mutates on read
+    // (LRU touch), so reads must be serialized too. Kept separate from inFlightMutex to keep
+    // in-flight bookkeeping isolated from cache access.
+    private val cacheMutex = Mutex()
+
     /**
      * Full manifest — used by the manifest viewer. Returns raw XML.
      * Concurrent [getQueriesFor] callers can piggyback on this parse via the shared [fullInFlight] map.
@@ -74,7 +79,7 @@ class ManifestRepo @Inject constructor(
         val appMeta = resolveAppMeta(pkgName) ?: return@withContext QueriesOutcome.Unavailable(UnavailableReason.PKG_NOT_FOUND)
         val key = ParseCacheKey(pkgName.value, appMeta.versionCode, appMeta.lastUpdateTime)
 
-        synchronized(memoryCache) { memoryCache[key] }?.let {
+        cacheMutex.withLock { memoryCache[key] }?.let {
             log(TAG) { "Queries memory cache hit for $pkgName" }
             return@withContext it
         }
@@ -82,7 +87,7 @@ class ManifestRepo @Inject constructor(
         manifestCache.getQueries(pkgName, appMeta.versionCode, appMeta.lastUpdateTime)?.let { queries ->
             log(TAG) { "Queries disk cache hit for $pkgName" }
             val outcome = QueriesOutcome.Success(queries)
-            synchronized(memoryCache) { memoryCache[key] = outcome }
+            cacheMutex.withLock { memoryCache[key] = outcome }
             return@withContext outcome
         }
 
@@ -107,7 +112,7 @@ class ManifestRepo @Inject constructor(
                         }
                         val outcome = toOutcome(data)
                         if (shouldMemoryCache(outcome)) {
-                            synchronized(memoryCache) { memoryCache[key] = outcome }
+                            cacheMutex.withLock { memoryCache[key] = outcome }
                         }
                         data
                     }
@@ -142,7 +147,7 @@ class ManifestRepo @Inject constructor(
                             manifestCache.putQueries(pkgName, versionCode, lastUpdateTime, result.info)
                         }
                         if (shouldMemoryCache(outcome)) {
-                            synchronized(memoryCache) { memoryCache[key] = outcome }
+                            cacheMutex.withLock { memoryCache[key] = outcome }
                         }
                         outcome
                     }
