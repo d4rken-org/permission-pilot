@@ -190,6 +190,19 @@ class ApkManifestReaderTest : BaseTest() {
     }
 
     @Test
+    fun `readManifestBytes lets SecurityException propagate for the helper to classify`() {
+        // A mid-parse permission revocation can cause getInputStream to throw SecurityException
+        // after openApk's preflight has already passed. readManifestBytes intentionally does NOT
+        // wrap this — withManifestBytes catches it and classifies as APK_NOT_READABLE.
+        val zip = mockk<ZipFile>()
+        val entry = ZipEntry("AndroidManifest.xml").apply { size = 10L }
+        every { zip.getInputStream(entry) } throws SecurityException("revoked")
+        shouldThrow<SecurityException> {
+            reader().readManifestBytes(zip, entry)
+        }
+    }
+
+    @Test
     fun `readManifestBytes wraps generic IOException as malformed`() {
         val zip = mockk<ZipFile>()
         val entry = ZipEntry("AndroidManifest.xml").apply { size = 10L }

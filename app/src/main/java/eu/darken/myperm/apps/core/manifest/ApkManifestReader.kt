@@ -41,82 +41,90 @@ class ApkManifestReader @Inject constructor(
 ) {
 
     /** Scanner path. Returns the `<queries>` projection. */
-    fun readQueries(apkPath: String): QueriesReadResult {
-        val preflight = openApk(apkPath)
-        if (preflight is Preflight.Failed) return QueriesReadResult.Unavailable(preflight.reason)
-        val ok = preflight as Preflight.Ok
-        ok.zip.use { zip ->
-            val bytes = try {
-                readManifestBytes(zip, ok.manifestEntry)
-            } catch (e: LowMemoryException) {
-                log(TAG, WARN) { "OOM reading manifest bytes: ${e.cause}" }
-                return QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
-            } catch (e: MalformedApkException) {
-                log(TAG, WARN) { "Malformed manifest entry: $e" }
-                return QueriesReadResult.Unavailable(UnavailableReason.MALFORMED_APK)
-            }
-            return try {
-                val extractor = QueriesExtractor()
-                BinaryXmlStreamer().parse(bytes, extractor)
-                QueriesReadResult.Success(extractor.result())
-            } catch (oom: OutOfMemoryError) {
-                log(TAG, WARN) { "OOM during manifest parse: $oom" }
-                QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
-            } catch (e: BinaryXmlException) {
-                log(TAG, WARN) { "Binary XML parse failed: $e" }
-                QueriesReadResult.Error(e)
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Unexpected parse error: $e" }
-                QueriesReadResult.Error(e)
-            }
+    fun readQueries(apkPath: String): QueriesReadResult = withManifestBytes(
+        apkPath = apkPath,
+        onUnavailable = { QueriesReadResult.Unavailable(it) },
+    ) { bytes ->
+        try {
+            val extractor = QueriesExtractor()
+            BinaryXmlStreamer().parse(bytes, extractor)
+            QueriesReadResult.Success(extractor.result())
+        } catch (oom: OutOfMemoryError) {
+            log(TAG, WARN) { "OOM during manifest parse: $oom" }
+            QueriesReadResult.Unavailable(UnavailableReason.LOW_MEMORY)
+        } catch (e: BinaryXmlException) {
+            log(TAG, WARN) { "Binary XML parse failed: $e" }
+            QueriesReadResult.Error(e)
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Unexpected parse error: $e" }
+            QueriesReadResult.Error(e)
         }
     }
 
     /** Viewer path. Returns rawXml and queries from a single streamer pass. */
-    fun readFullManifest(apkPath: String, pkgName: Pkg.Name): ManifestData {
+    fun readFullManifest(apkPath: String, pkgName: Pkg.Name): ManifestData = withManifestBytes(
+        apkPath = apkPath,
+        onUnavailable = { reason ->
+            ManifestData(
+                rawXml = RawXmlResult.Unavailable(reason),
+                queries = QueriesResult.Error(IllegalStateException(reason.name)),
+            )
+        },
+    ) { bytes ->
+        try {
+            val extractor = QueriesExtractor()
+            val renderer = ManifestTextRenderer(resourceNameResolver.forPackage(pkgName))
+            BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(renderer, extractor)))
+            ManifestData(
+                rawXml = RawXmlResult.Success(renderer.result()),
+                queries = QueriesResult.Success(extractor.result()),
+            )
+        } catch (oom: OutOfMemoryError) {
+            log(TAG, WARN) { "OOM during manifest parse: $oom" }
+            ManifestData(
+                rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
+                queries = QueriesResult.Error(IllegalStateException("OOM during parse", oom)),
+            )
+        } catch (e: BinaryXmlException) {
+            log(TAG, WARN) { "Binary XML parse failed: $e" }
+            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+        } catch (e: Exception) {
+            log(TAG, WARN) { "Unexpected parse error: $e" }
+            ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
+        }
+    }
+
+    /**
+     * Shared preflight + bytes-read preamble for [readQueries] and [readFullManifest].
+     * Classifies file/zip-level failures into [UnavailableReason] via [onUnavailable];
+     * hands valid manifest bytes to [body] for parser-time handling.
+     *
+     * The [SecurityException] arm closes the read-time race window: [openApk]'s preflight
+     * classifies a SecurityException at `ZipFile()` construction, but the APK could become
+     * unreadable between the preflight check and the actual byte read.
+     */
+    private inline fun <T> withManifestBytes(
+        apkPath: String,
+        onUnavailable: (UnavailableReason) -> T,
+        body: (ByteArray) -> T,
+    ): T {
         val preflight = openApk(apkPath)
-        if (preflight is Preflight.Failed) return ManifestData(
-            rawXml = RawXmlResult.Unavailable(preflight.reason),
-            queries = QueriesResult.Error(IllegalStateException(preflight.reason.name)),
-        )
+        if (preflight is Preflight.Failed) return onUnavailable(preflight.reason)
         val ok = preflight as Preflight.Ok
-        ok.zip.use { zip ->
+        return ok.zip.use { zip ->
             val bytes = try {
                 readManifestBytes(zip, ok.manifestEntry)
             } catch (e: LowMemoryException) {
                 log(TAG, WARN) { "OOM reading manifest bytes: ${e.cause}" }
-                return ManifestData(
-                    rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                    queries = QueriesResult.Error(IllegalStateException("OOM reading bytes", e)),
-                )
+                return@use onUnavailable(UnavailableReason.LOW_MEMORY)
             } catch (e: MalformedApkException) {
                 log(TAG, WARN) { "Malformed manifest entry: $e" }
-                return ManifestData(
-                    rawXml = RawXmlResult.Unavailable(UnavailableReason.MALFORMED_APK),
-                    queries = QueriesResult.Error(e),
-                )
+                return@use onUnavailable(UnavailableReason.MALFORMED_APK)
+            } catch (e: SecurityException) {
+                log(TAG, WARN) { "SecurityException reading manifest: $e" }
+                return@use onUnavailable(UnavailableReason.APK_NOT_READABLE)
             }
-            return try {
-                val extractor = QueriesExtractor()
-                val renderer = ManifestTextRenderer(resourceNameResolver.forPackage(pkgName))
-                BinaryXmlStreamer().parse(bytes, CompositeVisitor(listOf(renderer, extractor)))
-                ManifestData(
-                    rawXml = RawXmlResult.Success(renderer.result()),
-                    queries = QueriesResult.Success(extractor.result()),
-                )
-            } catch (oom: OutOfMemoryError) {
-                log(TAG, WARN) { "OOM during manifest parse: $oom" }
-                ManifestData(
-                    rawXml = RawXmlResult.Unavailable(UnavailableReason.LOW_MEMORY),
-                    queries = QueriesResult.Error(IllegalStateException("OOM during parse", oom)),
-                )
-            } catch (e: BinaryXmlException) {
-                log(TAG, WARN) { "Binary XML parse failed: $e" }
-                ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
-            } catch (e: Exception) {
-                log(TAG, WARN) { "Unexpected parse error: $e" }
-                ManifestData(rawXml = RawXmlResult.Error(e), queries = QueriesResult.Error(e))
-            }
+            body(bytes)
         }
     }
 
