@@ -21,3 +21,6 @@ testapp/build/
 testapp/local.properties
 .kotlin/sessions
 .codex
+_site/
+.jekyll-cache/
+vendor/bundle/
