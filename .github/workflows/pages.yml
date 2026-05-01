@@ -3,8 +3,14 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - _config.yml
+      - _layouts/**
+      - README.md
+      - CHANGELOG.md
+      - PRIVACY_POLICY.md
+      - CNAME
+      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
@@ -45,7 +51,7 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-22.04
     permissions:
