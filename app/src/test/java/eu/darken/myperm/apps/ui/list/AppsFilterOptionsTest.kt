@@ -264,6 +264,19 @@ class AppsFilterOptionsTest : BaseTest() {
     }
 
     @Test
+    fun `BATTERY_OPTIMIZATION filter only matches whitelisted (IGNORED) apps`() {
+        val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.BATTERY_OPTIMIZATION))
+        // IGNORED = on doze whitelist (Unrestricted) — matches
+        options.matches(app(batteryOptimization = BatteryOptimization.IGNORED)) shouldBe true
+        // OPTIMIZED = declares perm but not whitelisted (default Doze) — does not match
+        options.matches(app(batteryOptimization = BatteryOptimization.OPTIMIZED)) shouldBe false
+        // MANAGED_BY_SYSTEM = does not declare perm — does not match
+        options.matches(app(batteryOptimization = BatteryOptimization.MANAGED_BY_SYSTEM)) shouldBe false
+        // UNKNOWN — does not match
+        options.matches(app(batteryOptimization = BatteryOptimization.UNKNOWN)) shouldBe false
+    }
+
+    @Test
     fun `OLD_API_TARGET filter boundary - null, 28, 29`() {
         val options = AppsFilterOptions(filters = setOf(AppsFilterOptions.Filter.OLD_API_TARGET))
         // null apiTargetLevel — does not match
