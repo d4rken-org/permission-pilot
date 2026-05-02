@@ -173,7 +173,7 @@ class OverviewViewModel @Inject constructor(
             },
             SummaryCategory.SHARED_IDS to countPkg { it.siblingCount > 0 },
             SummaryCategory.BATTERY_OPT to countPkg {
-                it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM
+                it.batteryOptimization == BatteryOptimization.IGNORED
             },
             SummaryCategory.OLD_API to countPkg {
                 it.apiTargetLevel != null && it.apiTargetLevel < AppsFilterOptions.OLD_API_THRESHOLD

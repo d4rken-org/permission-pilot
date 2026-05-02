@@ -94,7 +94,7 @@ data class AppsFilterOptions(
         BATTERY_OPTIMIZATION(
             group = Group.PROPERTIES,
             labelRes = R.string.apps_filter_battery_optimization_label,
-            matches = { it.batteryOptimization != BatteryOptimization.MANAGED_BY_SYSTEM }
+            matches = { it.batteryOptimization == BatteryOptimization.IGNORED }
         ),
         @SerialName("ACCESSIBILITY")
         ACCESSIBILITY(
