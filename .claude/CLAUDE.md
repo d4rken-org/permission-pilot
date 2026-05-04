@@ -22,6 +22,7 @@ Permission Pilot is an Android app that helps users understand and manage app pe
 Detailed guidelines are in `.claude/rules/`:
 - `commit-guidelines.md` — Commit message format, PR description format, area prefixes
 - `build-commands.md` — Build, test, lint, screenshot, and release commands
+- `screenshots.md` — Play Store screenshot tracking, regeneration, and upload workflow
 - `architecture.md` — Module structure, patterns, base classes, data flow
 - `code-style.md` — Kotlin conventions, ViewModel/Compose patterns, logging
 - `testing.md` — Test locations, patterns, running tests

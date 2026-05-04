@@ -44,8 +44,10 @@
 
 ## Screenshots
 
+For the full regen + Play Store upload workflow (smoke-only tracking, on-demand full regen, manual upload), see `.claude/rules/screenshots.md`.
+
 ```bash
-# Generate all localized screenshots (39 locales x 7 screens, batched)
+# Generate all localized screenshots (39 locales x 6 screens, batched)
 ./fastlane/generate_screenshots.sh
 
 # Smoke test (6 locales for fast iteration)

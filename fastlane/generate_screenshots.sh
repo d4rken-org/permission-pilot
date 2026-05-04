@@ -180,8 +180,9 @@ echo "=== Generation Complete ==="
 echo "Generated: $FINAL_COUNT images (expected: $EXPECTED)"
 
 if (( FINAL_COUNT != EXPECTED )); then
-    echo "WARNING: Count mismatch! Some screenshots may be missing."
+    echo "ERROR: Count mismatch! Some screenshots may be missing."
     echo "Check $REF_DIR for details."
+    exit 1
 fi
 
 echo ""
