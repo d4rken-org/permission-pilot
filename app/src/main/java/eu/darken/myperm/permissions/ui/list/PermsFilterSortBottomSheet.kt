@@ -59,7 +59,9 @@ fun PermsFilterSortBottomSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
+                // overscrollEffect = null: API 31+ stretch overscroll dispatches nested-scroll deltas
+                // that race with ModalBottomSheet's drag-to-dismiss, causing visible jitter at the top.
+                .verticalScroll(state = rememberScrollState(), overscrollEffect = null)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = 16.dp),
         ) {
