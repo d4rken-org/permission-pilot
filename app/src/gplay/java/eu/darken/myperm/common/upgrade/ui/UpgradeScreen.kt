@@ -278,7 +278,7 @@ private fun PricingContent(
 
         if (state.subPrice != null) {
             Text(
-                text = stringResource(R.string.upgrade_screen_subscription_action_hint, state.subPrice),
+                text = stringResource(R.string.upgrade_screen_subscription_action_hint_yearly, state.subPrice),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp),
