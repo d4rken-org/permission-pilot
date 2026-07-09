@@ -3,6 +3,10 @@
     <string name="app_name">ፍቃድ ፓይሎት</string>
     <string name="label_help">እርዳታ</string>
     <string name="general_error_label">ስህተት</string>
+    <string name="general_load_error_title">ውሂብ ሊጫን አልቻለም</string>
+    <string name="general_load_error_hint">ተጭበቅ ሲምረመሩ ስህተት ተከስቷል</string>
+    <string name="general_refresh_error_hint">ማሳደስ ወድቋል</string>
+    <string name="general_retry_action">እንደገና ሞክር</string>
     <string name="general_share_action">ያጋሩ</string>
     <string name="general_done_action">ተጠናቋል</string>
     <string name="general_open_action">ይክፈቱ</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">ተዘምኗል %1$s</string>
     <string name="apps_list_installer_sideloaded_label">በእጅ የተጫነ</string>
     <string name="apps_list_installer_preinstalled_label">አስቀድሞ የተጫነ</string>
+    <string name="apps_list_empty_message">ለማሳየት ተጭበቅ የለም</string>
+    <string name="apps_list_empty_search_message">ከእርስዎ ፍለጋ ጋር የሚዛመዱ ተጭበቅ የሉም</string>
     <string name="general_refresh_action">ዳግም አዘምን</string>
     <string name="general_expand_all_action">ሁሉንም አስፋ</string>
     <string name="general_collapse_all_action">ሁሉንም አሳንስ</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">አንደገና ተጫኗል፡ %s</string>
     <string name="apps_sort_install_source_label">ተጫኝ ምንጭ</string>
     <string name="permissions_action_none_msg">ለዚህ ፍቃድ የለኝ ድርሻ አለ።</string>
+    <string name="permissions_details_open_settings_action">የስርዓት ቅንብሮች ክፈት</string>
+    <string name="permissions_details_open_settings_content_description_x">ለ%1$s ስርዓት ቅንብሮች ክፈት</string>
+    <string name="permissions_details_open_settings_error">ለዚህ ልቀናት ቅንብሮች ሊከፍቱ አልቻሉም</string>
     <string name="apps_filter_profile_secondary_label">የተተዳደሩ መገለጫ(ዎች)</string>
     <string name="apps_filter_battery_optimization_label">ሰው ሰራሽ ባትሪ</string>
     <string name="apps_filter_accessibility_label">ተደራሽነት</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ማኒፌስት ጨያይ</string>
     <string name="apps_manifest_viewer_search_hint">በማኒፌስት አክቅ</string>
+    <string name="apps_manifest_viewer_error_unknown">Manifest ሲጫን ያልታወቀ ስህተት</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d ተያይ</item>
         <item quantity="other">%d ተያዮች</item>

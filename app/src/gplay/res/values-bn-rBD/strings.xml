@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot বিজ্ঞাপনমুক্ত এবং আপনার গোপনীয়তাকে সম্মান করে। আপগ্রেড করা চলমান ডিভেলপমেন্টকে সমর্থন করে।</string>
     <string name="upgrade_screen_subscription_trial_action">বিনামূল্যের ট্রায়াল শুরু করুন</string>
     <string name="upgrade_screen_subscription_action">সাবস্ক্রাইব করুন</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/মাস, যেকোনো সময় বাতিল করুন</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/বছর, যেকোনো সময় বাতিল করুন</string>
     <string name="upgrade_screen_iap_action">Pro কিনুন</string>
     <string name="upgrade_screen_iap_action_hint">%s-র একবারের ক্রয়</string>
     <string name="upgrade_screen_restore_purchase_action">ক্রয় পুনরুদ্ধার</string>

@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Hulp</string>
     <string name="general_error_label">Fout</string>
+    <string name="general_load_error_title">Kon nie data laai nie</string>
+    <string name="general_load_error_hint">Iets het fout gelopen terwyl jou geïnstalleerde toepassings geskandeer is.</string>
+    <string name="general_refresh_error_hint">Verfris het gefaal.</string>
+    <string name="general_retry_action">Probeer weer</string>
     <string name="general_share_action">Deel</string>
     <string name="general_done_action">Klaar</string>
     <string name="general_open_action">Maak oop</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">Opgedateer %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Handmatig geïnstalleer</string>
     <string name="apps_list_installer_preinstalled_label">Vooraf geïnstalleer</string>
+    <string name="apps_list_empty_message">Geen toepassings om te wys nie.</string>
+    <string name="apps_list_empty_search_message">Geen toepassings stem ooreen met jou soektog nie.</string>
     <string name="general_refresh_action">Verfris</string>
     <string name="general_expand_all_action">Brei alles uit</string>
     <string name="general_collapse_all_action">Vou alles toe</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">Eerste geïnstalleer: %s</string>
     <string name="apps_sort_install_source_label">Installeer bron</string>
     <string name="permissions_action_none_msg">Geen aksie beskikbaar vir hierdie toestemming nie</string>
+    <string name="permissions_details_open_settings_action">Maak sisteem instellings oop</string>
+    <string name="permissions_details_open_settings_content_description_x">Open stelselsettings vir %1$s</string>
+    <string name="permissions_details_open_settings_error">Kon nie instellings vir hierdie toestemming oopmaak nie</string>
     <string name="apps_filter_profile_secondary_label">Bestuurde profiel(e)</string>
     <string name="apps_filter_battery_optimization_label">Aangepaste battery</string>
     <string name="apps_filter_accessibility_label">Toeganklikheid</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest-kyker</string>
     <string name="apps_manifest_viewer_search_hint">Soek in manifest</string>
+    <string name="apps_manifest_viewer_error_unknown">Onbekende fout by laai van manifest.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d treffer</item>
         <item quantity="other">%d treffers</item>

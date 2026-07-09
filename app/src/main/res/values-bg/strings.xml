@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Помощ</string>
     <string name="general_error_label">Грешка</string>
+    <string name="general_load_error_title">Неуспешно зареждане на данни</string>
+    <string name="general_load_error_hint">Възникна грешка при сканирането на инсталираните приложения.</string>
+    <string name="general_refresh_error_hint">Обновяването е неуспешно.</string>
+    <string name="general_retry_action">Опитай отново</string>
     <string name="general_share_action">Споделяне</string>
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Отваряне</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">Обновено %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Инсталирано ръчно</string>
     <string name="apps_list_installer_preinstalled_label">Предварително инсталирано</string>
+    <string name="apps_list_empty_message">Няма приложения за показване.</string>
+    <string name="apps_list_empty_search_message">Няма приложения, които да съответстват на търсенето ви.</string>
     <string name="general_refresh_action">Обновяване</string>
     <string name="general_expand_all_action">Разгъване на всички</string>
     <string name="general_collapse_all_action">Свиване на всички</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">Първо инсталирано: %s</string>
     <string name="apps_sort_install_source_label">Източник на инсталация</string>
     <string name="permissions_action_none_msg">Няма налично действие за това разрешение</string>
+    <string name="permissions_details_open_settings_action">Отваряне на системните настройки</string>
+    <string name="permissions_details_open_settings_content_description_x">Отваряне на системните настройки за %1$s</string>
+    <string name="permissions_details_open_settings_error">Не можаха да се отворят настройките за това разрешение</string>
     <string name="apps_filter_profile_secondary_label">Управляван(и) профил(и)</string>
     <string name="apps_filter_battery_optimization_label">Персонализирана батерия</string>
     <string name="apps_filter_accessibility_label">Достъпност</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Преглед на манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Търсене в манифеста</string>
+    <string name="apps_manifest_viewer_error_unknown">Неизвестна грешка при зареждането на манифеста.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d съвпадение</item>
         <item quantity="other">%d съвпадения</item>

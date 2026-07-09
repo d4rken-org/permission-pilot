@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot är reklamfri och respekterar din integritet. Att uppgradera stödjer fortsatt utveckling.</string>
     <string name="upgrade_screen_subscription_trial_action">Starta gratis prov</string>
     <string name="upgrade_screen_subscription_action">Prenumerera</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/månad, avsluta när som helst</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/år, avbryt när som helst</string>
     <string name="upgrade_screen_iap_action">Köp Pro</string>
     <string name="upgrade_screen_iap_action_hint">Engångsingång av %s</string>
     <string name="upgrade_screen_restore_purchase_action">Återställ köp</string>

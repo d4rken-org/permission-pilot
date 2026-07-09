@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Помоћ</string>
     <string name="general_error_label">Грешка</string>
+    <string name="general_load_error_title">Није могло учитати податке</string>
+    <string name="general_load_error_hint">Нешто је пошло наопако приликом скенирања ваших инсталираних апликација.</string>
+    <string name="general_refresh_error_hint">Освежавање није успело.</string>
+    <string name="general_retry_action">Покушај поново</string>
     <string name="general_share_action">Подели</string>
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Отвори</string>
@@ -137,6 +141,8 @@
     <string name="apps_list_updated_label">Ажурирано %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Ручно инсталирано</string>
     <string name="apps_list_installer_preinstalled_label">Унапред инсталирано</string>
+    <string name="apps_list_empty_message">Нема апликација за приказивање.</string>
+    <string name="apps_list_empty_search_message">Ниједна апликација не одговара вашој претрази.</string>
     <string name="general_refresh_action">Освежи</string>
     <string name="general_expand_all_action">Прошири све</string>
     <string name="general_collapse_all_action">Скупи све</string>
@@ -152,6 +158,9 @@
     <string name="installed_at_x">Прва инсталација: %s</string>
     <string name="apps_sort_install_source_label">Извор инсталације</string>
     <string name="permissions_action_none_msg">Нема доступне акције за ову дозволу</string>
+    <string name="permissions_details_open_settings_action">Отвори системска подешавања</string>
+    <string name="permissions_details_open_settings_content_description_x">Отвори системске поставке за %1$s</string>
+    <string name="permissions_details_open_settings_error">Није могло отворити поставке за ову дозволу</string>
     <string name="apps_filter_profile_secondary_label">Управљани профил(и)</string>
     <string name="apps_filter_battery_optimization_label">Прилагођена батерија</string>
     <string name="apps_filter_accessibility_label">Приступачност</string>
@@ -226,6 +235,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Прегледач манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Претражите манифест</string>
+    <string name="apps_manifest_viewer_error_unknown">Непозната грешка приликом учитавања манифеста.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d подударање</item>
         <item quantity="few">%d подударања</item>

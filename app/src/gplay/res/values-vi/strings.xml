@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot không có quảng cáo và tôn trọng quyền riêng tư của bạn. Việc nâng cấp ủng hộ quá trình phát triển liên tục.</string>
     <string name="upgrade_screen_subscription_trial_action">Bắt đầu dùng thử miễn phí</string>
     <string name="upgrade_screen_subscription_action">Đăng ký</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/tháng, hủy bất kỳ lúc nào</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/năm, hủy bất cứ lúc nào</string>
     <string name="upgrade_screen_iap_action">Mua Pro</string>
     <string name="upgrade_screen_iap_action_hint">Mua một lần với giá %s</string>
     <string name="upgrade_screen_restore_purchase_action">Khôi phục thanh toán</string>

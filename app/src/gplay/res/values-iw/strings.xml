@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot היא בללי פרסומות ומכבדת את פרטיותך. שדרוג תומך בפיתוח המשך.</string>
     <string name="upgrade_screen_subscription_trial_action">התחל ניסיון חינם</string>
     <string name="upgrade_screen_subscription_action">הירשם כמנוי</string>
-    <string name="upgrade_screen_subscription_action_hint">%s לחודש, ביטול בכל עת</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/שנה, בטל בכל עת</string>
     <string name="upgrade_screen_iap_action">קנה פרו</string>
     <string name="upgrade_screen_iap_action_hint">רכישה חד פעמית של %s</string>
     <string name="upgrade_screen_restore_purchase_action">שחזור רכישה</string>

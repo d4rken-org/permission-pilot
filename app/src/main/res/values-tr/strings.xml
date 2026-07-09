@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Yardım</string>
     <string name="general_error_label">Hata</string>
+    <string name="general_load_error_title">Veriler yüklenemedi</string>
+    <string name="general_load_error_hint">Yüklü uygulamalarınız taranırken bir hata oluştu.</string>
+    <string name="general_refresh_error_hint">Yenileme başarısız oldu.</string>
+    <string name="general_retry_action">Yeniden Dene</string>
     <string name="general_share_action">Paylaş</string>
     <string name="general_done_action">Tamam</string>
     <string name="general_open_action">Aç</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">%1$s tarihinde güncellendi</string>
     <string name="apps_list_installer_sideloaded_label">Elle yüklenmiş</string>
     <string name="apps_list_installer_preinstalled_label">Önceden yüklenmiş</string>
+    <string name="apps_list_empty_message">Gösterilecek uygulama yok.</string>
+    <string name="apps_list_empty_search_message">Aramanızla eşleşen uygulama yok.</string>
     <string name="general_refresh_action">Yenile</string>
     <string name="general_expand_all_action">Tümünü genişlet</string>
     <string name="general_collapse_all_action">Tümünü daralt</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">İlk kurulum: %s</string>
     <string name="apps_sort_install_source_label">Kurulum kaynağı</string>
     <string name="permissions_action_none_msg">Bu izin için kullanılabilir eylem yok</string>
+    <string name="permissions_details_open_settings_action">Sistem ayarlarını aç</string>
+    <string name="permissions_details_open_settings_content_description_x">%1$s için sistem ayarlarını aç</string>
+    <string name="permissions_details_open_settings_error">Bu izin için ayarlar açılamadı</string>
     <string name="apps_filter_profile_secondary_label">Yönetilen profil(ler)</string>
     <string name="apps_filter_battery_optimization_label">Özel pil</string>
     <string name="apps_filter_accessibility_label">Erişilebilirlik</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifesto Görüntülleyici</string>
     <string name="apps_manifest_viewer_search_hint">Manifestoda ara</string>
+    <string name="apps_manifest_viewer_error_unknown">Manifest yüklenirken bilinmeyen hata oluştu.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d eşleşme</item>
         <item quantity="other">%d eşleşme</item>

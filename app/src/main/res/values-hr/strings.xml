@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Pomoć</string>
     <string name="general_error_label">Greška</string>
+    <string name="general_load_error_title">Nije moguće učitati podatke</string>
+    <string name="general_load_error_hint">Nešto je pošlo po zlu tijekom skeniranja instaliranih aplikacija.</string>
+    <string name="general_refresh_error_hint">Osvježavanje nije uspjelo.</string>
+    <string name="general_retry_action">Pokušaj ponovno</string>
     <string name="general_share_action">Dijeli</string>
     <string name="general_done_action">Gotovo</string>
     <string name="general_open_action">Otvori</string>
@@ -10,13 +14,13 @@
     <string name="general_no_action">Ne</string>
     <string name="debug_debuglog_record_action">Snimi</string>
     <string name="settings_category_other_label">Ostalo</string>
-    <string name="settings_category_gethelp_label">Dobij pomoć</string>
-    <string name="settings_category_debug_label">Debug</string>
+    <string name="settings_category_gethelp_label">Zatraži pomoć</string>
+    <string name="settings_category_debug_label">Otklanjanje pogrešaka</string>
     <string name="settings_category_advanced_label">Napredno</string>
     <string name="general_settings_label">Općenito</string>
     <string name="general_settings_desc">Opće postavke koje utječu na cijelu aplikaciju.</string>
     <string name="general_settings_scan_speed_label">Brzina skeniranja</string>
-    <string name="general_settings_scan_speed_desc">Kontrolira paralelne operacije pri skeniranju aplikacija. Više vrijednosti su brže, ali mogu uzrokovati padove na nekim uređajima.</string>
+    <string name="general_settings_scan_speed_desc">Kontrolira paralelne operacije pri skeniranju aplikacija. Više vrijednosti su brže, ali mogu uzrokovati rušenja na nekim uređajima.</string>
     <string name="general_settings_scan_speed_auto">Automatski (preporučeno)</string>
     <string name="general_settings_scan_speed_1">1 (najsigurnije)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -34,22 +38,22 @@
     <string name="discord_description">Mjesto za druženje i postavljanje pitanja.</string>
     <string name="issue_tracker_label">Praćenje problema</string>
     <string name="issue_tracker_description">Javni sustav praćenja problema koji služi za slanje izvješća o greškama i zahtjeva značajki.</string>
-    <string name="faq_label">FAQ</string>
-    <string name="faq_description">Često postavljana pitanja i uobičajena rješenja.</string>
+    <string name="faq_label">Često postavljena pitanja</string>
+    <string name="faq_description">Često postavljena pitanja i uobičajena rješenja.</string>
     <string name="acks_maxpatchs_desc">Hvala na predivnim ikonama.</string>
     <string name="acks_crowdin_desc">Za podršku prijevoda projekata otvorenog koda.</string>
     <string name="permissions_page_label">Dopuštenja</string>
     <string name="apps_page_label">Aplikacije</string>
     <string name="app_type_system_label">Aplikacija sustava</string>
     <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Nepoznata dozvola. Ova aplikacija je traži, ali je nijedna druga aplikacija ne deklarirane.</string>
-    <string name="permissions_unknown_description">Nepoznata dozvola. Aplikacije je traže, ali nije deklarirana nigdje.</string>
-    <string name="permissions_app_type_declaring_description">Dozvolu je stvorila ova aplikacija.</string>
-    <string name="permissions_app_type_requesting_description">Aplikacija traži dozvolu.</string>
+    <string name="apps_permission_unknown_description">Nepoznato dopuštenje. Zahtijeva ga ova aplikacija, ali nijedna druga aplikacija ga ne deklarira.</string>
+    <string name="permissions_unknown_description">Nepoznato dopuštenje. Aplikacije ga zatijevaju, ali nije nigdje deklarirano.</string>
+    <string name="permissions_app_type_declaring_description">Dopuštenje je stvorila ova aplikacija.</string>
+    <string name="permissions_app_type_requesting_description">Aplikacija traži dopuštenje.</string>
     <string name="general_filter_action">Filtriraj</string>
     <string name="general_cancel_action">Odustani</string>
     <string name="apps_filter_userapps_label">Korisničke aplikacije</string>
-    <string name="apps_filter_systemapps_label">Sistemske aplikacije</string>
+    <string name="apps_filter_systemapps_label">Aplikacije sustava</string>
     <string name="apps_filter_nointernet_label">Bez interneta</string>
     <string name="apps_filter_sideloaded_label">Ručno instalirano</string>
     <string name="apps_filter_gplay_label">Trgovina Google Play</string>
@@ -63,8 +67,8 @@
     <string name="general_sort_action">Sortiraj</string>
     <plurals name="apps_permissions_x_of_x_granted">
         <item quantity="one">%1$d od %2$d odobreno.</item>
-        <item quantity="few">%1$d od %2$d odobreno.</item>
-        <item quantity="other">%1$d od %2$d odobreno.</item>
+        <item quantity="few">%1$d od %2$d odobrena.</item>
+        <item quantity="other">%1$d od %2$d odobrena.</item>
     </plurals>
     <plurals name="apps_permissions_x_requested">
         <item quantity="one">%1$d dopuštenje zatraženo.</item>
@@ -118,11 +122,11 @@
         <item>Pravimo se zauzeti</item>
         <item>Zagrijavamo hrstački kotatač</item>
         <item>Uvjeravamo aplikacije da surađuju</item>
-        <item>Ljubazno tražimo dozvole</item>
+        <item>Ljubazno tražimo dopuštenja</item>
         <item>Vaše aplikacije traže odvjetnike</item>
         <item>Čitamo sitni tisak</item>
     </string-array>
-    <string name="apps_app_details_label">Pojedinosti aplikacije</string>
+    <string name="apps_app_details_label">Detalji o aplikaciji</string>
     <string name="apps_details_shareduserid_label">Aplikacije s dijeljenim korisničkim ID-om</string>
     <string name="apps_details_siblings_label">Braća i sestre</string>
     <string name="apps_known_installer_gplay_label">Trgovina Google Play</string>
@@ -132,26 +136,31 @@
     <string name="apps_known_installer_samsung_label">Samsung Galaxy Store</string>
     <string name="apps_known_installer_xiaomi_label">Xiaomi GetApps</string>
     <string name="apps_known_installer_fdroid_label">F-Droid</string>
-    <string name="apps_known_android_system_label">Android sustav</string>
+    <string name="apps_known_android_system_label">Sustav Android</string>
     <string name="apps_list_subtitle_format">%1$s · %2$s</string>
     <string name="apps_list_updated_label">Ažurirano %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Ručno instalirano</string>
     <string name="apps_list_installer_preinstalled_label">Unaprijed instalirano</string>
+    <string name="apps_list_empty_message">Nema aplikacija za prikaz.</string>
+    <string name="apps_list_empty_search_message">Nema aplikacija koje odgovaraju vašoj pretrazi.</string>
     <string name="general_refresh_action">Osvježi</string>
     <string name="general_expand_all_action">Proširi sve</string>
     <string name="general_collapse_all_action">Sažmi sve</string>
     <string name="general_more_options_action">Više opcija</string>
     <string name="apps_details_twins_label">Klonovi</string>
-    <string name="apps_details_twins_descriptions">Instalirane u drugim korisničkim profilima.</string>
+    <string name="apps_details_twins_descriptions">Instalirano u drugim korisničkim profilima.</string>
     <string name="install_date_label">Datum instalacije</string>
     <string name="apps_filter_sharedid_label">Dijeljeni korisnički ID</string>
     <string name="apps_filter_multipleprofiles_label">Ima klonove</string>
-    <string name="support_debuglog_label">Dnevnik za otklanjanje grešaka</string>
+    <string name="support_debuglog_label">Zapisnik za otklanjanje pogrešaka</string>
     <string name="support_debuglog_desc">Snimi sve što aplikacija radi u tekstualnu datoteku koju možete podijeliti.</string>
     <string name="updated_at_x">Zadnje ažuriranje: %s</string>
     <string name="installed_at_x">Prvo instalirane: %s</string>
     <string name="apps_sort_install_source_label">Izvor instalacije</string>
     <string name="permissions_action_none_msg">Nema dostupnih radnji za ovu dozvolu</string>
+    <string name="permissions_details_open_settings_action">Otvori postavke sustava</string>
+    <string name="permissions_details_open_settings_content_description_x">Otvori postavke sustava za %1$s</string>
+    <string name="permissions_details_open_settings_error">Nije moguće otvoriti postavke za ovu dozvolu</string>
     <string name="apps_filter_profile_secondary_label">Upravljani profil(i)</string>
     <string name="apps_filter_battery_optimization_label">Prilagođena baterija</string>
     <string name="apps_filter_accessibility_label">Pristupačnost</string>
@@ -226,6 +235,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Preglednik manifesta</string>
     <string name="apps_manifest_viewer_search_hint">Pretraži u manifestu</string>
+    <string name="apps_manifest_viewer_error_unknown">Nepoznata greška pri učitavanju manifesta.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d podudaranje</item>
         <item quantity="few">%d podudaranja</item>

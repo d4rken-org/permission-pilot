@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Hjälp</string>
     <string name="general_error_label">Fel</string>
+    <string name="general_load_error_title">Kunde inte läsa in data</string>
+    <string name="general_load_error_hint">Något gick fel vid skanning av installerade appar.</string>
+    <string name="general_refresh_error_hint">Uppdatering misslyckades.</string>
+    <string name="general_retry_action">Försök igen</string>
     <string name="general_share_action">Dela</string>
     <string name="general_done_action">Klar</string>
     <string name="general_open_action">Öppna</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">Uppdaterad %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Manuellt installerad</string>
     <string name="apps_list_installer_preinstalled_label">Förinstallerad</string>
+    <string name="apps_list_empty_message">Inga appar att visa.</string>
+    <string name="apps_list_empty_search_message">Inga appar matchar din sökning.</string>
     <string name="general_refresh_action">Uppdatera</string>
     <string name="general_expand_all_action">Expandera alla</string>
     <string name="general_collapse_all_action">Fäll ihop alla</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">Först installerad: %s</string>
     <string name="apps_sort_install_source_label">Installationskälla</string>
     <string name="permissions_action_none_msg">Ingen åtgärd tillgänglig för denna behörighet</string>
+    <string name="permissions_details_open_settings_action">Öppna systeminställningar</string>
+    <string name="permissions_details_open_settings_content_description_x">Öppna systeminställningar för %1$s</string>
+    <string name="permissions_details_open_settings_error">Kunde inte öppna inställningar för den här behörigheten</string>
     <string name="apps_filter_profile_secondary_label">Hanterad(e) profil(er)</string>
     <string name="apps_filter_battery_optimization_label">Anpassat batteri</string>
     <string name="apps_filter_accessibility_label">Tillgänglighet</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestvisare</string>
     <string name="apps_manifest_viewer_search_hint">Sök i manifest</string>
+    <string name="apps_manifest_viewer_error_unknown">Okänt fel vid inläsning av manifestet.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d träff</item>
         <item quantity="other">%d träffar</item>

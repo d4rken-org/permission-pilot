@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot rəkləmsüzdür və məxfiliyinizə hörmət edir. Yüksəltmək davamlı gelişdirməni dəstəkləyir.</string>
     <string name="upgrade_screen_subscription_trial_action">Pülsüz sınaq başladın</string>
     <string name="upgrade_screen_subscription_action">Abunə olun</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/ay, istədiyiniz zaman ldö bilirsiniz</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/il, istənilən vaxt ləğv edin</string>
     <string name="upgrade_screen_iap_action">Pro al</string>
     <string name="upgrade_screen_iap_action_hint">%s dəyərində bir dəfəlik alış</string>
     <string name="upgrade_screen_restore_purchase_action">Alışı bərpa et</string>

@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">ヘルプ</string>
     <string name="general_error_label">エラー</string>
+    <string name="general_load_error_title">データを読み込めませんでした</string>
+    <string name="general_load_error_hint">インストール済みアプリのスキャン中に問題が発生しました。</string>
+    <string name="general_refresh_error_hint">更新に失敗しました。</string>
+    <string name="general_retry_action">再試行</string>
     <string name="general_share_action">共有</string>
     <string name="general_done_action">完了</string>
     <string name="general_open_action">開く</string>
@@ -131,6 +135,8 @@
     <string name="apps_list_updated_label">%1$s に更新</string>
     <string name="apps_list_installer_sideloaded_label">手動インストール</string>
     <string name="apps_list_installer_preinstalled_label">プリインストール</string>
+    <string name="apps_list_empty_message">表示するアプリがありません。</string>
+    <string name="apps_list_empty_search_message">検索と一致するアプリがありません。</string>
     <string name="general_refresh_action">更新</string>
     <string name="general_expand_all_action">すべて展開</string>
     <string name="general_collapse_all_action">すべて折りたたむ</string>
@@ -146,6 +152,9 @@
     <string name="installed_at_x">初回インストール：%s</string>
     <string name="apps_sort_install_source_label">インストール元</string>
     <string name="permissions_action_none_msg">この権限に対する操作はありません</string>
+    <string name="permissions_details_open_settings_action">システムの設定を開く</string>
+    <string name="permissions_details_open_settings_content_description_x">%1$sのシステム設定を開く</string>
+    <string name="permissions_details_open_settings_error">このパーミッションの設定を開けませんでした</string>
     <string name="apps_filter_profile_secondary_label">管理プロファイル</string>
     <string name="apps_filter_battery_optimization_label">カスタムバッテリー</string>
     <string name="apps_filter_accessibility_label">アクセシビリティ</string>
@@ -208,6 +217,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">マニフェストビューア</string>
     <string name="apps_manifest_viewer_search_hint">マニフェストを検索</string>
+    <string name="apps_manifest_viewer_error_unknown">マニフェストの読み込み中にエラーが発生しました。</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="other">%d 件一致</item>
     </plurals>

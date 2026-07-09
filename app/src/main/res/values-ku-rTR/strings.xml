@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Alîkarî</string>
     <string name="general_error_label">Çewtî</string>
+    <string name="general_load_error_title">Daneyê barkirî nûket</string>
+    <string name="general_load_error_hint">Di dema sepên dakêşandî lêdanî kirinê de tiştekî rast nehat.</string>
+    <string name="general_refresh_error_hint">Nûkirdinew têk çû.</string>
+    <string name="general_retry_action">Dîsa biceribîne</string>
     <string name="general_share_action">Parve bike</string>
     <string name="general_done_action">Qediya</string>
     <string name="general_open_action">Veke</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">Nûvekirî %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Bi destan hatiye saz kirin</string>
     <string name="apps_list_installer_preinstalled_label">Pêş-sazkirî</string>
+    <string name="apps_list_empty_message">Sepyek neye nîşandan.</string>
+    <string name="apps_list_empty_search_message">Sepyek li gorî lêgerîna we nehatiye dîtin.</string>
     <string name="general_refresh_action">Nû bike</string>
     <string name="general_expand_all_action">Hemûyan veke</string>
     <string name="general_collapse_all_action">Hemûyan bigire</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">Sazkirina yekem: %s</string>
     <string name="apps_sort_install_source_label">Çavkaniya sazkirinê</string>
     <string name="permissions_action_none_msg">Ji bo vê destûrê çu çalakî tune ye</string>
+    <string name="permissions_details_open_settings_action">Sazûmanên pergalê veke</string>
+    <string name="permissions_details_open_settings_content_description_x">Sazûmanên pergalê ji bo %1$s veke</string>
+    <string name="permissions_details_open_settings_error">Nedikarî sazûmanên vê destûrê ve bikevin</string>
     <string name="apps_filter_profile_secondary_label">Profîl(ên) birêvebirî</string>
     <string name="apps_filter_battery_optimization_label">Bataryaya taybetî</string>
     <string name="apps_filter_accessibility_label">Gihîştinpezîrî</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Nêrînerê Manîfestoyê</string>
     <string name="apps_manifest_viewer_search_hint">Di manîfestoyê de bigere</string>
+    <string name="apps_manifest_viewer_error_unknown">Çewtiya nenas dema barkirina manifestê.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d hevber</item>
         <item quantity="other">%d hevberên</item>

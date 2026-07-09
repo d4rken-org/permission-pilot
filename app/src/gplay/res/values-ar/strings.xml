@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot خالي من الإعلانات ويحترم خصوصيتك. الترقية تدعم استمرار التطوير.</string>
     <string name="upgrade_screen_subscription_trial_action">ابدأ الإصدار التجريبي المجاني</string>
     <string name="upgrade_screen_subscription_action">اشتراك</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/شهرياً، إلغاء في أي وقت</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/سنة، إلغاء في أي وقت</string>
     <string name="upgrade_screen_iap_action">شراء النسخة المدفوعة</string>
     <string name="upgrade_screen_iap_action_hint">شراء لمرة واحدة بمبلغ %s</string>
     <string name="upgrade_screen_restore_purchase_action">استعادة المُشتَرَى</string>
