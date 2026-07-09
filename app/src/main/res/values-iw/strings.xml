@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">עזרה</string>
     <string name="general_error_label">שגיאה</string>
+    <string name="general_load_error_title">לא ניתן היה לטעון נתונים</string>
+    <string name="general_load_error_hint">משהו השתבש בזמן סריקת האפליקציות המותקנות שלך.</string>
+    <string name="general_refresh_error_hint">רענון נכשל.</string>
+    <string name="general_retry_action">נסה שוב</string>
     <string name="general_share_action">שתף</string>
     <string name="general_done_action">סיום</string>
     <string name="general_open_action">פתח</string>
@@ -140,6 +144,8 @@
     <string name="apps_list_updated_label">עודכן %1$s</string>
     <string name="apps_list_installer_sideloaded_label">מותקן ידנית</string>
     <string name="apps_list_installer_preinstalled_label">מותקן מראש</string>
+    <string name="apps_list_empty_message">אין אפליקציות להציג.</string>
+    <string name="apps_list_empty_search_message">אין אפליקציות התואמות לחיפוש שלך.</string>
     <string name="general_refresh_action">רענן</string>
     <string name="general_expand_all_action">הרחב הכל</string>
     <string name="general_collapse_all_action">כווץ הכל</string>
@@ -155,6 +161,9 @@
     <string name="installed_at_x">הותקן לראשונה: %s</string>
     <string name="apps_sort_install_source_label">מקור התקנה</string>
     <string name="permissions_action_none_msg">אין פעולה זמינה להרשאה זו</string>
+    <string name="permissions_details_open_settings_action">פתח הגדרות מכשיר</string>
+    <string name="permissions_details_open_settings_content_description_x">פתח הגדרות מערכת עבור %1$s</string>
+    <string name="permissions_details_open_settings_error">לא ניתן היה לפתוח הגדרות עבור הרשאה זו</string>
     <string name="apps_filter_profile_secondary_label">פרופיל(ים) מנוהל(ים)</string>
     <string name="apps_filter_battery_optimization_label">סוללה מותאמת אישית</string>
     <string name="apps_filter_accessibility_label">נגישות</string>
@@ -235,6 +244,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">צופה במניפסט</string>
     <string name="apps_manifest_viewer_search_hint">חיפוש במניפסט</string>
+    <string name="apps_manifest_viewer_error_unknown">שגיאה לא ידועה בטעינת מניפסט.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d תוצאה</item>
         <item quantity="two">%d התאמות</item>

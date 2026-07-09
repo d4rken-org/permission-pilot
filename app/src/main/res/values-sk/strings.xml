@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Pomocník</string>
     <string name="general_error_label">Chyba</string>
+    <string name="general_load_error_title">Nepodarilo sa načítať údaje</string>
+    <string name="general_load_error_hint">Počas skenovania nainštalovaných aplikácií sa niečo pokazilo.</string>
+    <string name="general_refresh_error_hint">Obnovenie zlyhalo.</string>
+    <string name="general_retry_action">Skúsiť znova</string>
     <string name="general_share_action">Zdieľať</string>
     <string name="general_done_action">Hotovo</string>
     <string name="general_open_action">Otvoriť</string>
@@ -140,6 +144,8 @@
     <string name="apps_list_updated_label">Aktualizované %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Manuálne nainštalované</string>
     <string name="apps_list_installer_preinstalled_label">Predinštalované</string>
+    <string name="apps_list_empty_message">Žiadne aplikácie na zobrazenie.</string>
+    <string name="apps_list_empty_search_message">Žiadne aplikácie sa nezhodujú s vaším hľadaním.</string>
     <string name="general_refresh_action">Obnoviť</string>
     <string name="general_expand_all_action">Rozbaliť všetko</string>
     <string name="general_collapse_all_action">Zbaliť všetko</string>
@@ -155,6 +161,9 @@
     <string name="installed_at_x">Prvá inštalácia: %s</string>
     <string name="apps_sort_install_source_label">Zdroj inštalácie</string>
     <string name="permissions_action_none_msg">Pre toto oprávnenie nie je dostupná žiadna akcia</string>
+    <string name="permissions_details_open_settings_action">Otvoriť nastavenia systému</string>
+    <string name="permissions_details_open_settings_content_description_x">Otvoriť nastavenia systému pre %1$s</string>
+    <string name="permissions_details_open_settings_error">Nepodarilo sa otvoriť nastavenia pre toto povolenie</string>
     <string name="apps_filter_profile_secondary_label">Spravovaný profil(y)</string>
     <string name="apps_filter_battery_optimization_label">Vlastná batéria</string>
     <string name="apps_filter_accessibility_label">Prístupnosť</string>
@@ -202,15 +211,46 @@
     <string name="apps_details_manifest_label">Manifest aplikácie</string>
     <string name="apps_details_manifest_queued">V rade na analýzu…</string>
     <string name="apps_details_manifest_loading">Analyzujem manifest…</string>
+    <plurals name="apps_details_manifest_loading_progress">
+        <item quantity="one">%d manifest zostal na analýzu…</item>
+        <item quantity="few">%d manifesty zostali na analýzu…</item>
+        <item quantity="many">%d manifestov zostáva na analýzu…</item>
+        <item quantity="other">%d manifestov zostalo na analýzu…</item>
+    </plurals>
     <string name="apps_details_manifest_queries_none">Nič nezvyčajné nebolo zistené</string>
     <string name="apps_details_manifest_unavailable">Manifest nie je dostupný</string>
     <string name="apps_details_manifest_error">Nepodarilo sa prečítať manifest</string>
+    <plurals name="apps_details_manifest_packages">
+        <item quantity="one">%d dotaz na balík</item>
+        <item quantity="few">%d dopyty na balíky</item>
+        <item quantity="many">%d dotazov na balíky</item>
+        <item quantity="other">%d dopytov na balíky</item>
+    </plurals>
+    <plurals name="apps_details_manifest_intents">
+        <item quantity="one">%d dotaz na zámer</item>
+        <item quantity="few">%d dopyty na zámery</item>
+        <item quantity="many">%d dotazov na zámery</item>
+        <item quantity="other">%d dopytov na zámery</item>
+    </plurals>
+    <plurals name="apps_details_manifest_providers">
+        <item quantity="one">%d dotaz na poskytovateľa</item>
+        <item quantity="few">%d dopyty na poskytovateľov</item>
+        <item quantity="many">%d dotazov na poskytovateľov</item>
+        <item quantity="other">%d dopytov na poskytovateľov</item>
+    </plurals>
     <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_action_main">Môže objaviť všetky nainštalované aplikácie</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétnych aplikácií</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prehľadáč manifestov</string>
     <string name="apps_manifest_viewer_search_hint">Hľadať v manifeste</string>
+    <string name="apps_manifest_viewer_error_unknown">Neznáma chyba pri načítavaní manifestu.</string>
+    <plurals name="apps_manifest_viewer_matches">
+        <item quantity="one">%d zhoda</item>
+        <item quantity="few">%d zhody</item>
+        <item quantity="many">%d zhôd</item>
+        <item quantity="other">%d zhôd</item>
+    </plurals>
     <string name="apps_manifest_search_counter">%1$d z %2$d</string>
     <string name="apps_manifest_section_uses_permission">Používa oprávnenie</string>
     <string name="apps_manifest_section_permission">Oprávnenie</string>
@@ -298,6 +338,12 @@
     <!-- System badge -->
     <string name="permissions_details_system_badge_label">Systém</string>
     <!-- Flag overflow -->
+    <plurals name="permissions_details_flags_more_label">
+        <item quantity="one">+%d ďalší</item>
+        <item quantity="few">+%d ďalších</item>
+        <item quantity="many">+%d ďalších</item>
+        <item quantity="other">+%d ďalších</item>
+    </plurals>
     <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indikátory oprávnení</string>
     <string name="permissions_details_help_section_protection">Typ ochrany</string>
@@ -753,5 +799,11 @@
     <string name="export_summary_filename">Súbor</string>
     <string name="export_summary_size">Veľkosť</string>
     <string name="export_summary_duration">Trvanie</string>
+    <plurals name="export_free_limit_message">
+        <item quantity="one">Bezplatná verzia je limitovaná na %d položku a formát Markdown. Upgradzujte na neobmedzené exporty a všetky formáty.</item>
+        <item quantity="few">Bezplatná verzia je limitovaná na %d položky a formát Markdown. Upgradzujte na neobmedzené exporty a všetky formáty.</item>
+        <item quantity="many">Bezplatná verzia je limitovaná na %d položiek a formát Markdown. Upgradzujte na neobmedzené exporty a všetky formáty.</item>
+        <item quantity="other">Bezplatná verzia je limitovaná na %d položiek a formát Markdown. Upgradzujte na neobmedzené exporty a všetky formáty.</item>
+    </plurals>
     <string name="export_upgrade_action">Inovovať</string>
 </resources>

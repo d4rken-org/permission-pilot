@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Aide</string>
     <string name="general_error_label">Erreur</string>
+    <string name="general_load_error_title">Impossible de charger les données</string>
+    <string name="general_load_error_hint">Une erreur s’est produite lors de l’analyse de vos applis installées.</string>
+    <string name="general_refresh_error_hint">L’actualisation a échoué.</string>
+    <string name="general_retry_action">Réessayer</string>
     <string name="general_share_action">Partager</string>
     <string name="general_done_action">Terminé</string>
     <string name="general_open_action">Ouvrir</string>
@@ -134,6 +138,8 @@
     <string name="apps_list_updated_label">Mis à jour %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Installée manuellement</string>
     <string name="apps_list_installer_preinstalled_label">Pré-installée</string>
+    <string name="apps_list_empty_message">Aucune appli à afficher.</string>
+    <string name="apps_list_empty_search_message">Aucune appli ne correspond à votre recherche.</string>
     <string name="general_refresh_action">Actualiser</string>
     <string name="general_expand_all_action">Tout développer</string>
     <string name="general_collapse_all_action">Tout réduire</string>
@@ -149,6 +155,9 @@
     <string name="installed_at_x">Première installation : %s</string>
     <string name="apps_sort_install_source_label">Source d’installation</string>
     <string name="permissions_action_none_msg">Aucune action n’est proposée pour cette autorisation</string>
+    <string name="permissions_details_open_settings_action">Ouvrir les paramètres système</string>
+    <string name="permissions_details_open_settings_content_description_x">Ouvrir les paramètres système pour %1$s</string>
+    <string name="permissions_details_open_settings_error">Impossible d’ouvrir les paramètres pour cette permission</string>
     <string name="apps_filter_profile_secondary_label">Profil(s) géré(s)</string>
     <string name="apps_filter_battery_optimization_label">Batterie personnalisée</string>
     <string name="apps_filter_accessibility_label">Accessibilité</string>
@@ -217,6 +226,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visionneuse de manifeste</string>
     <string name="apps_manifest_viewer_search_hint">Rechercher dans le manifeste</string>
+    <string name="apps_manifest_viewer_error_unknown">Erreur inconnue lors du chargement du manifeste.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d correspondance</item>
         <item quantity="other">%d correspondances</item>

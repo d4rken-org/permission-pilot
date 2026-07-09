@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Pilot Uprawnień jest wolny od reklam i szanuje twoją prywatność. Aktualizacja wspiera dalszy rozwój.</string>
     <string name="upgrade_screen_subscription_trial_action">Rozpocznij wersję próbną</string>
     <string name="upgrade_screen_subscription_action">Subskrybuj</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/miesiąc, anuluj w dowolnym momencie</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, anuluj w dowolnym momencie</string>
     <string name="upgrade_screen_iap_action">Kup Pro</string>
     <string name="upgrade_screen_iap_action_hint">Jednorazowy zakup za %s</string>
     <string name="upgrade_screen_restore_purchase_action">Przywróć zakup</string>

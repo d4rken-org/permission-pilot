@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">帮助</string>
     <string name="general_error_label">错误</string>
+    <string name="general_load_error_title">无法加载数据</string>
+    <string name="general_load_error_hint">扫描已安装的应用时出错。</string>
+    <string name="general_refresh_error_hint">刷新失败。</string>
+    <string name="general_retry_action">重试</string>
     <string name="general_share_action">分享</string>
     <string name="general_done_action">完成</string>
     <string name="general_open_action">打开</string>
@@ -131,6 +135,8 @@
     <string name="apps_list_updated_label">已更新 %1$s</string>
     <string name="apps_list_installer_sideloaded_label">手动安装</string>
     <string name="apps_list_installer_preinstalled_label">预装</string>
+    <string name="apps_list_empty_message">没有应用可显示。</string>
+    <string name="apps_list_empty_search_message">没有应用与您的搜索匹配。</string>
     <string name="general_refresh_action">刷新</string>
     <string name="general_expand_all_action">全部展开</string>
     <string name="general_collapse_all_action">全部折叠</string>
@@ -146,6 +152,9 @@
     <string name="installed_at_x">首次安装：%s</string>
     <string name="apps_sort_install_source_label">安装来源</string>
     <string name="permissions_action_none_msg">没有可用于此权限的操作</string>
+    <string name="permissions_details_open_settings_action">打开系统设置</string>
+    <string name="permissions_details_open_settings_content_description_x">打开%1$s的系统设置</string>
+    <string name="permissions_details_open_settings_error">无法打开此权限的设置</string>
     <string name="apps_filter_profile_secondary_label">托管配置文件</string>
     <string name="apps_filter_battery_optimization_label">自定义电池</string>
     <string name="apps_filter_accessibility_label">无障碍</string>
@@ -208,6 +217,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">清单查看器</string>
     <string name="apps_manifest_viewer_search_hint">在清单中搜索</string>
+    <string name="apps_manifest_viewer_error_unknown">加载清单时出现未知错误。</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="other">%d 个匹配</item>
     </plurals>

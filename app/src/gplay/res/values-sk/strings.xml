@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot je bez reklam a rešpektuje vaše súkromie. Upgrade podporuje ďalejší vyvoj.</string>
     <string name="upgrade_screen_subscription_trial_action">Vyskúšajte zadarmo</string>
     <string name="upgrade_screen_subscription_action">Predplatiť</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/mesiac, zrušite kedykoľvek</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, kedykoľvek zrušiť</string>
     <string name="upgrade_screen_iap_action">Kupí Pro</string>
     <string name="upgrade_screen_iap_action_hint">Jednorazový nákup za %s</string>
     <string name="upgrade_screen_restore_purchase_action">Obnoviť nákup</string>

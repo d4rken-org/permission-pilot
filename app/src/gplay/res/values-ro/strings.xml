@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot este fără reclame şi îți respectă confidențialitatea. Actualizarea sprijină dezvoltarea continuă.</string>
     <string name="upgrade_screen_subscription_trial_action">Începe încercarea gratuită</string>
     <string name="upgrade_screen_subscription_action">Abonează-te</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/lună, anulare oricând</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/an, anulează oricând</string>
     <string name="upgrade_screen_iap_action">Cumpără Pro</string>
     <string name="upgrade_screen_iap_action_hint">Achiziție unică de %s</string>
     <string name="upgrade_screen_restore_purchase_action">Restabiliți achiziția</string>

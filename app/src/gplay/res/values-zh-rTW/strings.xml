@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot 無廣告且尊重您的隱私。升級可支持持續開發。</string>
     <string name="upgrade_screen_subscription_trial_action">開始免費試用</string>
     <string name="upgrade_screen_subscription_action">訂閱</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/月，可隨時取消</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/年，隨時可取消</string>
     <string name="upgrade_screen_iap_action">購買 Pro</string>
     <string name="upgrade_screen_iap_action_hint">一次性購買 %s</string>
     <string name="upgrade_screen_restore_purchase_action">還原購買</string>

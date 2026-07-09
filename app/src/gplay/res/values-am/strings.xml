@@ -5,7 +5,7 @@
     <string name="upgrade_screen_preamble">Permission Pilot አዶዘቕ ዘርዘር እና ስሴያወን ይካባተኻላለ። ደርጉን ወደፈርም ብጅት ይደግፋለ።</string>
     <string name="upgrade_screen_subscription_trial_action">የ፣የ ንብስት ይጀምሩ</string>
     <string name="upgrade_screen_subscription_action">ይመዝገቡ</string>
-    <string name="upgrade_screen_subscription_action_hint">%s/ወር ፣ በመዘኘም መቀሰል ይቻላለ</string>
+    <string name="upgrade_screen_subscription_action_hint_yearly">%s/ዓመት፣ በማንኛውም ጊዜ ይሰርዙ</string>
     <string name="upgrade_screen_iap_action">Pro የጭንት</string>
     <string name="upgrade_screen_iap_action_hint">%s የአክ ሥዳን</string>
     <string name="upgrade_screen_restore_purchase_action">ግዢን ወደነበረበት መልስ</string>

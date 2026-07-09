@@ -3,6 +3,10 @@
     <string name="app_name">Pilot Uprawnień </string>
     <string name="label_help">Pomoc</string>
     <string name="general_error_label">Błąd</string>
+    <string name="general_load_error_title">Nie można załadować danych</string>
+    <string name="general_load_error_hint">Coś poszło nie tak podczas skanowania zainstalowanych aplikacji.</string>
+    <string name="general_refresh_error_hint">Odświeżanie nie powiodło się.</string>
+    <string name="general_retry_action">Ponów</string>
     <string name="general_share_action">Udostępnij</string>
     <string name="general_done_action">Gotowe</string>
     <string name="general_open_action">Otwórz</string>
@@ -140,6 +144,8 @@
     <string name="apps_list_updated_label">Zaktualizowano %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Zainstalowano ręcznie</string>
     <string name="apps_list_installer_preinstalled_label">Preinstalowana</string>
+    <string name="apps_list_empty_message">Brak aplikacji do wyświetlenia.</string>
+    <string name="apps_list_empty_search_message">Żadne aplikacje nie pasują do wyszukiwania.</string>
     <string name="general_refresh_action">Odśwież</string>
     <string name="general_expand_all_action">Rozwiń wszystko</string>
     <string name="general_collapse_all_action">Zwiń wszystko</string>
@@ -155,6 +161,9 @@
     <string name="installed_at_x">Pierwszy raz zainstalowane: %s</string>
     <string name="apps_sort_install_source_label">Źródło instalacji</string>
     <string name="permissions_action_none_msg">Brak dostępnych działań dla tego uprawnienia</string>
+    <string name="permissions_details_open_settings_action">Otwórz ustawienia systemowe</string>
+    <string name="permissions_details_open_settings_content_description_x">Otwórz ustawienia systemowe dla %1$s</string>
+    <string name="permissions_details_open_settings_error">Nie można otworzyć ustawień dla tego uprawnienia</string>
     <string name="apps_filter_profile_secondary_label">Zarządzane profile</string>
     <string name="apps_filter_battery_optimization_label">Niestandardowa bateria</string>
     <string name="apps_filter_accessibility_label">Dostępność</string>
@@ -235,6 +244,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Przeglądarka manifestu</string>
     <string name="apps_manifest_viewer_search_hint">Szukaj w manifeście</string>
+    <string name="apps_manifest_viewer_error_unknown">Nieznany błąd podczas ładowania manifestu.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d dopasowanie</item>
         <item quantity="few">%d dopasowania</item>

@@ -3,6 +3,10 @@
     <string name="app_name">Дазвол Пілот</string>
     <string name="label_help">Дапамога</string>
     <string name="general_error_label">Памылка</string>
+    <string name="general_load_error_title">Не ўдалося загрузіць дадзеныя</string>
+    <string name="general_load_error_hint">Нешта пайшло не так пры сканаванні ўстаноўленых прыкладанняў.</string>
+    <string name="general_refresh_error_hint">Абнаўленне не ўдалося.</string>
+    <string name="general_retry_action">Паўтарыць</string>
     <string name="general_share_action">Падзяліцца</string>
     <string name="general_done_action">Гатова</string>
     <string name="general_open_action">Адкрыць</string>
@@ -140,6 +144,8 @@
     <string name="apps_list_updated_label">Абноўлена %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Усталявана ўручную</string>
     <string name="apps_list_installer_preinstalled_label">Папярэдне ўсталявана</string>
+    <string name="apps_list_empty_message">Няма прыкладанняў для паказа.</string>
+    <string name="apps_list_empty_search_message">Няма прыкладанняў, якія адпавядаюць вашаму пошуку.</string>
     <string name="general_refresh_action">Абнавіць</string>
     <string name="general_expand_all_action">Разгарнуць усё</string>
     <string name="general_collapse_all_action">Згарнуць усё</string>
@@ -155,6 +161,9 @@
     <string name="installed_at_x">Першае ўсталяванне: %s</string>
     <string name="apps_sort_install_source_label">Крыніца ўсталявання</string>
     <string name="permissions_action_none_msg">Дзеянні для гэтага дазволу не даступныя</string>
+    <string name="permissions_details_open_settings_action">Адкрыць сістэмныя налады</string>
+    <string name="permissions_details_open_settings_content_description_x">Адкрыць параметры сістэмы для %1$s</string>
+    <string name="permissions_details_open_settings_error">Не ўдалося адкрыць параметры гэтага дазволу</string>
     <string name="apps_filter_profile_secondary_label">Кіраваны профіль(і)</string>
     <string name="apps_filter_battery_optimization_label">Карыстальніцкая батарэя</string>
     <string name="apps_filter_accessibility_label">Спецыяльныя магчымасці</string>
@@ -235,6 +244,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Праглядальнік маніфесту</string>
     <string name="apps_manifest_viewer_search_hint">Пошук ў маніфесце</string>
+    <string name="apps_manifest_viewer_error_unknown">Невядомая памылка пры загрузцы маніфеста.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="one">%d супадзенне</item>
         <item quantity="few">%d супадзенні</item>

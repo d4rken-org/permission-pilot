@@ -3,6 +3,10 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Trợ giúp</string>
     <string name="general_error_label">Lỗi</string>
+    <string name="general_load_error_title">Không thể tải dữ liệu</string>
+    <string name="general_load_error_hint">Đã xảy ra lỗi khi quét các ứng dụng đã cài đặt của bạn.</string>
+    <string name="general_refresh_error_hint">Làm mới thất bại.</string>
+    <string name="general_retry_action">Thử lại</string>
     <string name="general_share_action">Chia sẻ</string>
     <string name="general_done_action">Xong</string>
     <string name="general_open_action">Mở</string>
@@ -131,6 +135,8 @@
     <string name="apps_list_updated_label">Đã cập nhật %1$s</string>
     <string name="apps_list_installer_sideloaded_label">Cài đặt thủ công</string>
     <string name="apps_list_installer_preinstalled_label">Được cài đặt sẵn</string>
+    <string name="apps_list_empty_message">Không có ứng dụng nào để hiển thị.</string>
+    <string name="apps_list_empty_search_message">Không có ứng dụng nào phù hợp với tìm kiếm của bạn.</string>
     <string name="general_refresh_action">Làm mới</string>
     <string name="general_expand_all_action">Mở rộng tất cả</string>
     <string name="general_collapse_all_action">Thu gọn tất cả</string>
@@ -146,6 +152,9 @@
     <string name="installed_at_x">Cài đặt lần đầu: %s</string>
     <string name="apps_sort_install_source_label">Nguồn cài đặt</string>
     <string name="permissions_action_none_msg">Không có hành động nào khả dụng cho quyền này</string>
+    <string name="permissions_details_open_settings_action">Mở cài đặt hệ thống</string>
+    <string name="permissions_details_open_settings_content_description_x">Mở cài đặt hệ thống cho %1$s</string>
+    <string name="permissions_details_open_settings_error">Không thể mở cài đặt cho quyền này</string>
     <string name="apps_filter_profile_secondary_label">Hồ sơ được quản lý</string>
     <string name="apps_filter_battery_optimization_label">Pin tùy chỉnh</string>
     <string name="apps_filter_accessibility_label">Trợ năng</string>
@@ -208,6 +217,7 @@
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Trình xem Manifest</string>
     <string name="apps_manifest_viewer_search_hint">Tìm kiếm trong manifest</string>
+    <string name="apps_manifest_viewer_error_unknown">Lỗi không rõ khi tải tệp kê khai.</string>
     <plurals name="apps_manifest_viewer_matches">
         <item quantity="other">%d kết quả</item>
     </plurals>
