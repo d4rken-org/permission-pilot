@@ -3,6 +3,7 @@ package eu.darken.myperm.apps.ui.details
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
+import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
 import android.os.Process
@@ -22,6 +23,7 @@ import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.tryCreateUserHandle
 import eu.darken.myperm.common.AndroidVersionCodes
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
@@ -78,6 +80,19 @@ class AppDetailsViewModel @Inject constructor(
         if (userHandleId == Process.myUserHandle().hashCode()) return Process.myUserHandle()
         val userManager = context.getSystemService(UserManager::class.java) ?: return null
         return userManager.tryCreateUserHandle(userHandleId)
+    }
+
+    // getActivityList throws SecurityException for profiles this app can't access (e.g. a
+    // locked/managed work profile). The UserHandle is synthesized via reflection, so it can point
+    // at an inaccessible profile even when creation succeeds. Same guard as SecondaryProfilePkg.
+    private fun LauncherApps.getActivityListSafe(
+        packageName: String,
+        userHandle: UserHandle,
+    ): List<LauncherActivityInfo> = try {
+        getActivityList(packageName, userHandle)
+    } catch (e: SecurityException) {
+        log(TAG, WARN) { "getActivityList($packageName, $userHandle) failed: $e" }
+        emptyList()
     }
 
     data class PermItem(
@@ -232,7 +247,7 @@ class AppDetailsViewModel @Inject constructor(
                     val userHandle = getUserHandle()
                     val la = launcherApps
                     if (la != null && userHandle != null) {
-                        la.getActivityList(appInfo.pkgName.value, userHandle).isNotEmpty()
+                        la.getActivityListSafe(appInfo.pkgName.value, userHandle).isNotEmpty()
                     } else {
                         context.packageManager.getLaunchIntentForPackage(appInfo.pkgName.value) != null
                     }
@@ -378,7 +393,7 @@ class AppDetailsViewModel @Inject constructor(
         val la = launcherApps
         val userHandle = getUserHandle()
         if (la != null && userHandle != null) {
-            val activities = la.getActivityList(pkgName.value, userHandle)
+            val activities = la.getActivityListSafe(pkgName.value, userHandle)
             val component = activities.firstOrNull()?.componentName
             if (component != null) {
                 try {
