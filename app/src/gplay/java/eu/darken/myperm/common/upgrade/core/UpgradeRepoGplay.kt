@@ -3,13 +3,16 @@ package eu.darken.myperm.common.upgrade.core
 import android.app.Activity
 import android.os.SystemClock
 import eu.darken.myperm.common.coroutine.AppScope
+import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.flow.setupCommonEventHandlers
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.common.upgrade.core.client.BillingException
+import eu.darken.myperm.common.upgrade.core.client.ItemAlreadyOwnedBillingException
 import eu.darken.myperm.common.upgrade.core.data.BillingData
 import eu.darken.myperm.common.upgrade.core.data.BillingDataRepo
 import eu.darken.myperm.common.upgrade.core.data.PurchasedSku
@@ -22,10 +25,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.withTimeoutOrNull
 import java.io.IOException
 import java.time.Instant
 import javax.inject.Inject
@@ -80,10 +88,49 @@ class UpgradeRepoGplay @Inject constructor(
 
     // True once this install has ever confirmed a known Pro purchase; drives the proactive restore
     // banner. Local signal only — a fresh install or a switched Google account starts false.
-    val wasEverPro: Flow<Boolean> = billingCache.lastProStateAt.flow.map { it > 0 }
+    val wasEverPro: Flow<Boolean> = billingCache.lastProStateAt.flow
+        .map { it > 0 }
+        .distinctUntilChanged()
 
-    // Asynchronous purchase-flow failures (already user-friendly-mapped).
-    val purchaseFailures: Flow<Throwable> = billingDataRepo.purchaseFailures
+    init {
+        // Fresh-provenance grace stamping: the reactive upgradeInfo map is read-only; this
+        // persistent collector (subscribed once, never re-subscribes) stamps new emissions, and
+        // refresh()/restorePurchaseNow() stamp their returned query results. Stale purchase data
+        // replayed through the shared flows can no longer keep re-stamping a grace window after
+        // a refund.
+        billingDataRepo.billingData
+            .distinctUntilChanged()
+            .onEach { data ->
+                try {
+                    recordProState(data)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // A failed DataStore write must not kill this process-lifetime collector.
+                    log(TAG, WARN) { "Failed to record pro state: ${e.asLog()}" }
+                }
+            }
+            .setupCommonEventHandlers(TAG) { "proStateRecorder" }
+            .launchIn(scope)
+
+        // Async variant of the launch-result ITEM_ALREADY_OWNED case: Play told us mid-flow that
+        // the user already owns it. Reconcile silently — Play shows its own UI for purchase-sheet
+        // failures, so no app-side dialog here.
+        billingDataRepo.purchaseFailures
+            .filterIsInstance<ItemAlreadyOwnedBillingException>()
+            .onEach {
+                log(TAG, INFO) { "Async already-owned event -> restoring purchase" }
+                try {
+                    withTimeoutOrNull(RESTORE_ON_OWNED_TIMEOUT_MS) { restorePurchaseNow() }
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    log(TAG, WARN) { "Async already-owned restore failed: ${e.asLog()}" }
+                }
+            }
+            .setupCommonEventHandlers(TAG) { "asyncAlreadyOwned" }
+            .launchIn(scope)
+    }
 
     suspend fun querySkus(): Collection<SkuDetails> {
         return billingDataRepo.querySkus(*MyPermSku.PRO_SKUS.toTypedArray())
@@ -102,7 +149,9 @@ class UpgradeRepoGplay @Inject constructor(
         try {
             // Same evaluate-and-publish path as an explicit restore, so the authoritative result
             // always reaches upgradeInfo; only the error handling differs (swallow-and-log).
-            restorePurchaseNow()
+            // Bounded: with unbounded connection retry, an unavailable Play would otherwise keep
+            // background callers suspended indefinitely.
+            withTimeoutOrNull(REFRESH_TIMEOUT_MS) { restorePurchaseNow() }
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
@@ -117,8 +166,10 @@ class UpgradeRepoGplay @Inject constructor(
         log(TAG) { "restorePurchaseNow()" }
         val outcome = try {
             val data = billingDataRepo.refresh()
-            // Play answered authoritatively — retire the error-window override.
+            // Play answered authoritatively — retire the error-window override and stamp the
+            // grace state from the freshly returned query results.
             lastBillingErrorAtElapsed = null
+            recordProState(data)
             data.toUpgradeInfo()
         } catch (e: CancellationException) {
             throw e
@@ -139,18 +190,14 @@ class UpgradeRepoGplay @Inject constructor(
     }
 
     // Shared Pro/grace mapping used by both the reactive upgradeInfo flow and restorePurchaseNow().
-    // Only relinquishes Pro if we haven't had it for a while (grace period).
-    private suspend fun BillingData.toUpgradeInfo(): Info {
+    // Only relinquishes Pro if we haven't had it for a while (grace period). READ-ONLY: this also
+    // runs on replayed/stale shared-flow data, so it must never stamp the grace cache — see
+    // recordProState().
+    private fun BillingData.toUpgradeInfo(): Info {
         val now = System.currentTimeMillis()
-        val proSkus = getProSkus()
         log(TAG) { "toUpgradeInfo(): now=$now, lastProStateAt=$lastProStateAt, data=$this" }
         return when {
-            proSkus.isNotEmpty() -> {
-                // Only a *known* Pro SKU refreshes the grace state. Prefer the permanent IAP so
-                // its longer grace window applies when both product types are owned.
-                billingCache.confirmPro(at = now, sku = preferredProSku(proSkus)?.sku?.id.orEmpty())
-                Info(billingData = this)
-            }
+            getProSkus().isNotEmpty() -> Info(billingData = this)
 
             proStateAge(now) < graceWindowNormalMs() -> {
                 log(TAG, VERBOSE) { "We are not pro, but were recently, did GPlay try annoy us again?" }
@@ -161,6 +208,17 @@ class UpgradeRepoGplay @Inject constructor(
                 Info(billingData = this)
             }
         }
+    }
+
+    // Persists "we saw a known Pro purchase" for the grace machinery. Callers must only pass FRESH
+    // data (returned query results, or new emissions seen by the init collector) — never replayed
+    // flow data, so a refunded purchase can't keep re-stamping its grace window. Only a *known*
+    // Pro SKU counts; the permanent IAP is preferred so it drives the window length. Timestamp and
+    // SKU are written in one transaction (see BillingCache.confirmPro).
+    private suspend fun recordProState(data: BillingData) {
+        val sku = preferredProSku(data.getProSkus())?.sku ?: return
+        log(TAG) { "recordProState(): $sku" }
+        billingCache.confirmPro(at = System.currentTimeMillis(), sku = sku.id)
     }
 
     // Age of the last confirmed Pro state. A timestamp in the future (clock moved backwards) is
@@ -224,6 +282,8 @@ class UpgradeRepoGplay @Inject constructor(
         internal const val GRACE_PERIOD_ERROR_MS = 24 * 60 * 60 * 1000L   // 24h - billing errors / cold start
         internal const val GRACE_PERIOD_IAP_MS = 30 * 24 * 60 * 60 * 1000L // 30d - permanent one-time purchase
         private const val RETRY_DELAY_MS = 60_000L                         // 1min before re-subscribing
+        private const val RESTORE_ON_OWNED_TIMEOUT_MS = 15_000L
+        private const val REFRESH_TIMEOUT_MS = 30_000L
 
         private fun BillingData.getProSku(): PurchasedSku? = purchasedSkus
             .firstOrNull { it.sku in MyPermSku.PRO_SKUS }
