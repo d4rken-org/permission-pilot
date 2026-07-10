@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    API 31+ variant of backup_rules.xml: the billing entitlement cache (grace period state) is
+    device-local by design and must not survive backup/restore or device-to-device transfer.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude
+            domain="file"
+            path="datastore/settings_gplay.preferences_pb" />
+        <exclude
+            domain="sharedpref"
+            path="settings_gplay.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude
+            domain="file"
+            path="datastore/settings_gplay.preferences_pb" />
+        <exclude
+            domain="sharedpref"
+            path="settings_gplay.xml" />
+    </device-transfer>
+</data-extraction-rules>
