@@ -1,6 +1,7 @@
 package eu.darken.myperm.common.upgrade.core.data
 
 import android.app.Activity
+import com.android.billingclient.api.BillingClient.BillingResponseCode
 import com.android.billingclient.api.Purchase
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.Bugs
@@ -12,10 +13,13 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.replayingShare
 import eu.darken.myperm.common.flow.setupCommonEventHandlers
+import eu.darken.myperm.common.upgrade.core.client.BillingClientConnection
 import eu.darken.myperm.common.upgrade.core.client.BillingClientConnectionProvider
 import eu.darken.myperm.common.upgrade.core.client.BillingException
 import eu.darken.myperm.common.upgrade.core.client.BillingResultException
 import eu.darken.myperm.common.upgrade.core.client.GplayServiceUnavailableException
+import eu.darken.myperm.common.upgrade.core.client.ItemAlreadyOwnedBillingException
+import eu.darken.myperm.common.upgrade.core.client.UserCanceledBillingException
 import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailablePermanent
 import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailableTemporary
 import kotlinx.coroutines.CancellationException
@@ -30,6 +34,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.retryWhen
+import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -48,6 +53,19 @@ class BillingDataRepo @Inject constructor(
         .map { BillingData(purchases = it) }
         .setupCommonEventHandlers(TAG) { "billingData" }
         .replayingShare(scope)
+
+    // Asynchronous purchase-flow failures (onPurchasesUpdated with a non-OK result), mapped like
+    // the synchronous launch failures. Hot upstream — subscribers only see failures while active.
+    val purchaseFailures: Flow<Throwable> = connectionProvider
+        .flatMapLatest { it.purchaseFailures }
+        .map { result ->
+            log(TAG, WARN) { "Purchase flow failed: code=${result.responseCode}, message=${result.debugMessage}" }
+            if (!BUG_REPORT_IGNORED_CODES.contains(result.responseCode)) {
+                Bugs.report(RuntimeException("Purchase flow failed: code=${result.responseCode}"))
+            }
+            BillingResultException(result).tryMapUserFriendly()
+        }
+        .setupCommonEventHandlers(TAG) { "purchaseFailures" }
 
     init {
         connectionProvider
@@ -101,9 +119,18 @@ class BillingDataRepo @Inject constructor(
             .launchIn(scope)
     }
 
+    // The connection flow's errors are swallowed by the .catch above, so waiting on it can hang
+    // (or throw NoSuchElementException after completion). Bound it so user actions can't stall.
+    private suspend fun acquireConnection(): BillingClientConnection =
+        withTimeoutOrNull(CONNECTION_TIMEOUT_MS) { connectionProvider.first() }
+            ?: throw GplayServiceUnavailableException(
+                BillingException("Timed out waiting for a billing client connection")
+            )
+
     suspend fun querySkus(vararg skus: Sku): Collection<SkuDetails> = try {
-        val clientConnection = connectionProvider.first()
-        clientConnection.querySkus(*skus)
+        acquireConnection().querySkus(*skus)
+    } catch (e: CancellationException) {
+        throw e
     } catch (e: Exception) {
         throw e.tryMapUserFriendly()
     }
@@ -114,12 +141,12 @@ class BillingDataRepo @Inject constructor(
         offer: Sku.Subscription.Offer? = null,
     ) {
         try {
-            val clientConnection = connectionProvider.first()
-            clientConnection.launchBillingFlow(activity, skuDetails, offer)
+            acquireConnection().launchBillingFlow(activity, skuDetails, offer)
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to launch billing flow:\n${e.asLog()}" }
-            val ignoredCodes = listOf(3, 6)
-            if (e !is BillingResultException || !e.result.responseCode.let { ignoredCodes.contains(it) }) {
+            if (e !is BillingResultException || !BUG_REPORT_IGNORED_CODES.contains(e.result.responseCode)) {
                 Bugs.report(RuntimeException("Billing flow failed for ${skuDetails.sku}", e))
             }
 
@@ -127,23 +154,43 @@ class BillingDataRepo @Inject constructor(
         }
     }
 
-    suspend fun refresh() {
-        try {
-            val clientConnection = connectionProvider.first()
-            clientConnection.refreshPurchases()
-        } catch (e: Exception) {
-            throw e.tryMapUserFriendly()
-        }
+    // Queries Play now and returns the fresh purchase data directly, so callers get a real
+    // happens-before instead of racing the shared billingData replay cache after a refresh.
+    suspend fun refresh(): BillingData = try {
+        BillingData(purchases = acquireConnection().refreshPurchases())
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        throw e.tryMapUserFriendly()
     }
 
     companion object {
         val TAG: String = logTag("Upgrade", "Gplay", "Billing", "DataRepo")
+        private const val CONNECTION_TIMEOUT_MS = 10_000L
+
+        // Expected environmental/user situations get user-facing handling only, no bug report.
+        private val BUG_REPORT_IGNORED_CODES = setOf(
+            BillingResponseCode.USER_CANCELED,
+            BillingResponseCode.BILLING_UNAVAILABLE,
+            BillingResponseCode.ERROR,
+            BillingResponseCode.ITEM_ALREADY_OWNED,
+        )
 
         internal fun Throwable.tryMapUserFriendly(): Throwable = when {
+            this is BillingResultException && result.responseCode == BillingResponseCode.USER_CANCELED -> {
+                UserCanceledBillingException(result)
+            }
+            this is BillingResultException && result.responseCode == BillingResponseCode.ITEM_ALREADY_OWNED -> {
+                ItemAlreadyOwnedBillingException(result)
+            }
             this is BillingResultException && this.result.isGplayUnavailableTemporary -> {
                 GplayServiceUnavailableException(this)
             }
             this is BillingResultException && this.result.isGplayUnavailablePermanent -> {
+                GplayServiceUnavailableException(this)
+            }
+            this is NoSuchElementException -> {
+                // connectionProvider completed without emitting (connection retries exhausted)
                 GplayServiceUnavailableException(this)
             }
             else -> this

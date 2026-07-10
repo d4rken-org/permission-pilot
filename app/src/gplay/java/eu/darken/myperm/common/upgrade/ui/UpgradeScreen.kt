@@ -109,7 +109,7 @@ private data class Benefit(val icon: ImageVector, val textRes: Int)
 
 @Composable
 fun UpgradeScreen(
-    state: UpgradeViewModel.Pricing?,
+    state: UpgradeViewModel.State,
     onNavigateUp: () -> Unit,
     onSubscription: () -> Unit,
     onSubscriptionTrial: () -> Unit,
@@ -158,6 +158,15 @@ fun UpgradeScreen(
             )
 
             Spacer(modifier = Modifier.height(24.dp))
+
+            if (state.wasPreviouslyPro) {
+                RestoreBanner(
+                    onRestore = onRestore,
+                    restoreInProgress = state.restoreInProgress,
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+            }
 
             Card(
                 colors = CardDefaults.cardColors(
@@ -211,11 +220,12 @@ fun UpgradeScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            if (state == null) {
+            if (state.pricing == null) {
                 CircularProgressIndicator(modifier = Modifier.padding(16.dp))
             } else {
                 PricingContent(
-                    state = state,
+                    pricing = state.pricing,
+                    restoreInProgress = state.restoreInProgress,
                     onSubscription = onSubscription,
                     onSubscriptionTrial = onSubscriptionTrial,
                     onIap = onIap,
@@ -240,18 +250,60 @@ fun UpgradeScreen(
 }
 
 @Composable
+private fun RestoreBanner(
+    onRestore: () -> Unit,
+    restoreInProgress: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+        ),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = stringResource(R.string.upgrade_screen_restore_banner_title),
+                style = MaterialTheme.typography.titleMedium,
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = stringResource(R.string.upgrade_screen_restore_banner_body),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = onRestore,
+                enabled = !restoreInProgress,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                if (restoreInProgress) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(18.dp),
+                        strokeWidth = 2.dp,
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                Text(text = stringResource(R.string.upgrade_screen_restore_purchase_action))
+            }
+        }
+    }
+}
+
+@Composable
 private fun PricingContent(
-    state: UpgradeViewModel.Pricing,
+    pricing: UpgradeViewModel.Pricing,
+    restoreInProgress: Boolean,
     onSubscription: () -> Unit,
     onSubscriptionTrial: () -> Unit,
     onIap: () -> Unit,
     onRestore: () -> Unit,
 ) {
     // Subscription button (primary)
-    if (state.subAvailable) {
-        val subscriptionAction = if (state.hasTrialOffer) onSubscriptionTrial else onSubscription
+    if (pricing.subAvailable) {
+        val subscriptionAction = if (pricing.hasTrialOffer) onSubscriptionTrial else onSubscription
 
-        val subscriptionLabel = if (state.hasTrialOffer) {
+        val subscriptionLabel = if (pricing.hasTrialOffer) {
             stringResource(R.string.upgrade_screen_subscription_trial_action)
         } else {
             stringResource(R.string.upgrade_screen_subscription_action)
@@ -259,6 +311,7 @@ private fun PricingContent(
 
         Button(
             onClick = subscriptionAction,
+            enabled = !restoreInProgress,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(52.dp),
@@ -276,9 +329,9 @@ private fun PricingContent(
             )
         }
 
-        if (state.subPrice != null) {
+        if (pricing.subPrice != null) {
             Text(
-                text = stringResource(R.string.upgrade_screen_subscription_action_hint_yearly, state.subPrice),
+                text = stringResource(R.string.upgrade_screen_subscription_action_hint_yearly, pricing.subPrice),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp),
@@ -289,9 +342,10 @@ private fun PricingContent(
     }
 
     // IAP button (secondary)
-    if (state.iapAvailable) {
+    if (pricing.iapAvailable) {
         FilledTonalButton(
             onClick = onIap,
+            enabled = !restoreInProgress,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(52.dp),
@@ -303,9 +357,9 @@ private fun PricingContent(
             )
         }
 
-        if (state.iapPrice != null) {
+        if (pricing.iapPrice != null) {
             Text(
-                text = stringResource(R.string.upgrade_screen_iap_action_hint, state.iapPrice),
+                text = stringResource(R.string.upgrade_screen_iap_action_hint, pricing.iapPrice),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 4.dp),
@@ -314,9 +368,10 @@ private fun PricingContent(
     }
 
     // If no details loaded at all, show a simple fallback upgrade button
-    if (!state.subAvailable && !state.iapAvailable) {
+    if (!pricing.subAvailable && !pricing.iapAvailable) {
         Button(
             onClick = onIap,
+            enabled = !restoreInProgress,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(52.dp),
@@ -350,11 +405,19 @@ private fun PricingContent(
 
     OutlinedButton(
         onClick = onRestore,
+        enabled = !restoreInProgress,
         modifier = Modifier
             .fillMaxWidth()
             .height(52.dp),
         shape = RoundedCornerShape(12.dp),
     ) {
+        if (restoreInProgress) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(18.dp),
+                strokeWidth = 2.dp,
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+        }
         Text(text = stringResource(R.string.upgrade_screen_restore_purchase_action))
     }
 }

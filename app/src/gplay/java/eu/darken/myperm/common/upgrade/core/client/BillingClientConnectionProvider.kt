@@ -16,10 +16,12 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.setupCommonEventHandlers
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.retryWhen
@@ -34,6 +36,13 @@ class BillingClientConnectionProvider @Inject constructor(
 
     private val connectionProvider: Flow<BillingClientConnection> = callbackFlow {
         val purchasePublisher = MutableStateFlow<Collection<Purchase>>(emptySet())
+        // Purchase-flow outcomes can arrive here asynchronously after the Play sheet opened (e.g.
+        // ITEM_ALREADY_OWNED, declined payment) — publish them instead of dropping them, so the UI
+        // layer can react. tryEmit because the listener is a plain callback.
+        val purchaseFailurePublisher = MutableSharedFlow<BillingResult>(
+            extraBufferCapacity = 16,
+            onBufferOverflow = BufferOverflow.DROP_OLDEST,
+        )
 
         val client = newBuilder(context).apply {
             enablePendingPurchases(
@@ -51,6 +60,7 @@ class BillingClientConnectionProvider @Inject constructor(
                     log(TAG, WARN) {
                         "error: onPurchasesUpdated(code=${result.responseCode}, message=${result.debugMessage}, purchases=$purchases)"
                     }
+                    purchaseFailurePublisher.tryEmit(result)
                 }
             }
         }.build()
@@ -65,7 +75,7 @@ class BillingClientConnectionProvider @Inject constructor(
 
                 when (result.responseCode) {
                     BillingResponseCode.OK -> {
-                        val connection = BillingClientConnection(client, purchasePublisher)
+                        val connection = BillingClientConnection(client, purchasePublisher, purchaseFailurePublisher)
 
                         trySendBlocking(connection)
 
