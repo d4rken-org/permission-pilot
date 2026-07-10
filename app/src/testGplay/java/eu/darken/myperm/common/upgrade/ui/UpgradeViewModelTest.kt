@@ -20,7 +20,6 @@ import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -55,15 +54,12 @@ class UpgradeViewModelTest : BaseTest() {
         billingData = null,
     )
 
-    private val failureEvents = MutableSharedFlow<Throwable>()
-
     private fun mockRepo(
         isPro: Boolean = false,
         wasEverPro: Boolean = false,
     ): UpgradeRepoGplay = mockk<UpgradeRepoGplay>(relaxed = true).apply {
         every { upgradeInfo } returns MutableStateFlow(info(isPro))
         every { this@apply.wasEverPro } returns MutableStateFlow(wasEverPro)
-        every { purchaseFailures } returns failureEvents
         coEvery { querySkus() } returns emptyList()
     }
 
@@ -311,55 +307,6 @@ class UpgradeViewModelTest : BaseTest() {
 
         navEvents.size shouldBe 1
         collector.cancel()
-    }
-
-    @Test
-    fun `async already-owned failure triggers the silent auto-restore`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo()
-        coEvery { repo.restorePurchaseNow() } returns info(isPro = true)
-        val vm = buildVm(repo)
-
-        val errors = mutableListOf<Throwable>()
-        val collector = launch { vm.errorEvents.collect { errors.add(it) } }
-        advanceUntilIdle() // let the init collector subscribe before emitting
-
-        failureEvents.emit(ItemAlreadyOwnedBillingException(result(BillingResponseCode.ITEM_ALREADY_OWNED)))
-        advanceUntilIdle()
-
-        errors shouldBe emptyList()
-        coVerify(exactly = 1) { repo.restorePurchaseNow() }
-        collector.cancel()
-    }
-
-    @Test
-    fun `async user cancel stays silent`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo()
-        val vm = buildVm(repo)
-
-        val errors = mutableListOf<Throwable>()
-        val collector = launch { vm.errorEvents.collect { errors.add(it) } }
-        advanceUntilIdle()
-
-        failureEvents.emit(UserCanceledBillingException(result(BillingResponseCode.USER_CANCELED)))
-        advanceUntilIdle()
-
-        errors shouldBe emptyList()
-        coVerify(exactly = 0) { repo.restorePurchaseNow() }
-        collector.cancel()
-    }
-
-    @Test
-    fun `other async failures are forwarded to the error dialog`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo()
-        val boom = IllegalStateException("payment declined")
-        val vm = buildVm(repo)
-
-        advanceUntilIdle() // let the init collector subscribe before emitting
-
-        failureEvents.emit(boom)
-        advanceUntilIdle()
-
-        vm.errorEvents.first() shouldBe boom
     }
 
     @Test

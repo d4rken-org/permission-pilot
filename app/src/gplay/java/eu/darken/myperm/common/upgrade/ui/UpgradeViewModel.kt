@@ -129,26 +129,6 @@ class UpgradeViewModel @Inject constructor(
                 }
             }
             .launchIn(vmScope)
-
-        // Purchase-flow failures that arrive asynchronously via onPurchasesUpdated after the Play
-        // sheet opened — handled like the synchronous launch failures.
-        upgradeRepo.purchaseFailures
-            .onEach { failure ->
-                when (failure) {
-                    is UserCanceledBillingException -> log(TAG) { "User canceled the billing flow" }
-
-                    is ItemAlreadyOwnedBillingException -> {
-                        log(TAG, INFO) { "Purchase update says already owned, restoring purchase instead" }
-                        restoreAfterAlreadyOwned(failure)
-                    }
-
-                    else -> {
-                        log(TAG, WARN) { "Purchase flow failed: ${failure.asLog()}" }
-                        errorEvents.emitBlocking(failure)
-                    }
-                }
-            }
-            .launchIn(vmScope)
     }
 
     fun onGoIap() {

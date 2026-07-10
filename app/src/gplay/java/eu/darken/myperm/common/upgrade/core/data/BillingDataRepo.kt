@@ -27,7 +27,6 @@ import kotlinx.coroutines.CoroutineScope
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.launchIn
@@ -45,7 +44,19 @@ class BillingDataRepo @Inject constructor(
 ) {
 
     private val connectionProvider = clientConnectionProvider.connection
-        .catch { log(TAG, ERROR) { "Unable to provide client connection:\n${it.asLog()}" } }
+        .retryWhen { cause, attempt ->
+            // Never give up terminally: the ack collector pins this share for the process
+            // lifetime, so a completed upstream could never restart — one transient failure at
+            // first use (e.g. BILLING_UNAVAILABLE while the Play Store updates itself) would
+            // leave billing dead until process restart. Retry with capped backoff instead.
+            if (cause is CancellationException) {
+                false
+            } else {
+                log(TAG, WARN) { "Billing connection failed (attempt=$attempt), will retry: ${cause.asLog()}" }
+                delay((CONNECTION_RETRY_BASE_MS * (attempt + 1)).coerceAtMost(CONNECTION_RETRY_MAX_MS))
+                true
+            }
+        }
         .replayingShare(scope)
 
     val billingData: Flow<BillingData> = connectionProvider
@@ -167,6 +178,8 @@ class BillingDataRepo @Inject constructor(
     companion object {
         val TAG: String = logTag("Upgrade", "Gplay", "Billing", "DataRepo")
         private const val CONNECTION_TIMEOUT_MS = 10_000L
+        private const val CONNECTION_RETRY_BASE_MS = 30_000L
+        private const val CONNECTION_RETRY_MAX_MS = 300_000L
 
         // Expected environmental/user situations get user-facing handling only, no bug report.
         private val BUG_REPORT_IGNORED_CODES = setOf(
