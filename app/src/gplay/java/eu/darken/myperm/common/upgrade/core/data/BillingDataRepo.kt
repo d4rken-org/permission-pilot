@@ -24,7 +24,7 @@ import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailablePermanent
 import eu.darken.myperm.common.upgrade.core.client.isGplayUnavailableTemporary
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -43,6 +43,10 @@ class BillingDataRepo @Inject constructor(
     @AppScope private val scope: CoroutineScope,
 ) {
 
+    // Wakes an in-progress connection backoff. Conflated so a request sent while the retry loop is
+    // NOT sleeping is still consumed by the next backoff — exactly once, so it can't cause a spin.
+    private val reconnectSignal = Channel<Unit>(Channel.CONFLATED)
+
     private val connectionProvider = clientConnectionProvider.connection
         .retryWhen { cause, attempt ->
             // Never give up terminally: the ack collector pins this share for the process
@@ -53,7 +57,7 @@ class BillingDataRepo @Inject constructor(
                 false
             } else {
                 log(TAG, WARN) { "Billing connection failed (attempt=$attempt), will retry: ${cause.asLog()}" }
-                delay((CONNECTION_RETRY_BASE_MS * (attempt + 1)).coerceAtMost(CONNECTION_RETRY_MAX_MS))
+                awaitReconnectBackoff(attempt)
                 true
             }
         }
@@ -130,13 +134,35 @@ class BillingDataRepo @Inject constructor(
             .launchIn(scope)
     }
 
-    // The connection flow's errors are swallowed by the .catch above, so waiting on it can hang
-    // (or throw NoSuchElementException after completion). Bound it so user actions can't stall.
-    private suspend fun acquireConnection(): BillingClientConnection =
-        withTimeoutOrNull(CONNECTION_TIMEOUT_MS) { connectionProvider.first() }
+    // connectionProvider's retryWhen absorbs terminal errors (it never completes), so waiting on it
+    // can only stall, never throw. Bound it so user actions can't hang, and kick the retry loop so a
+    // connection that is mid-backoff after a failure reconnects within this call instead of waiting
+    // out the capped backoff (up to 5 min).
+    //
+    // `first { it.isReady }` — not plain first(): after a disconnect the dead connection lingers in
+    // the replay cache during the reconnect backoff. Skip it and wait for a live one (which the
+    // reconnect signal above makes arrive promptly) instead of handing back an ended client.
+    private suspend fun acquireConnection(): BillingClientConnection {
+        requestReconnect()
+        return withTimeoutOrNull(CONNECTION_TIMEOUT_MS) { connectionProvider.first { it.isReady } }
             ?: throw GplayServiceUnavailableException(
                 BillingException("Timed out waiting for a billing client connection")
             )
+    }
+
+    // Buffers a reconnect request (conflated). It has an effect only when the retry loop next enters
+    // its backoff — waking it so recovery doesn't wait out the capped backoff. Harmless while
+    // connected: the token is consumed by the next backoff that actually occurs.
+    internal fun requestReconnect() {
+        reconnectSignal.trySend(Unit)
+    }
+
+    // Interruptible connection backoff: sleeps the capped linear delay, or returns early when a
+    // reconnect is requested (an explicit user action). Extracted so the wake behavior is testable.
+    internal suspend fun awaitReconnectBackoff(attempt: Long) {
+        val backoff = (CONNECTION_RETRY_BASE_MS * (attempt + 1)).coerceAtMost(CONNECTION_RETRY_MAX_MS)
+        withTimeoutOrNull(backoff) { reconnectSignal.receive() }
+    }
 
     suspend fun querySkus(vararg skus: Sku): Collection<SkuDetails> = try {
         acquireConnection().querySkus(*skus)

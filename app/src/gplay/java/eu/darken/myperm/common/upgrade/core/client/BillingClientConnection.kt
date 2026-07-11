@@ -36,6 +36,11 @@ data class BillingClientConnection(
     private val queryCacheIaps = MutableStateFlow<Collection<Purchase>>(emptySet())
     private val queryCacheSubs = MutableStateFlow<Collection<Purchase>>(emptySet())
 
+    // Whether the underlying client is still connected. False for a connection that has since been
+    // disconnected/ended — callers must not use such a stale connection (it may linger in a replay
+    // cache while a reconnect is pending).
+    val isReady: Boolean get() = client.isReady
+
     // responseCode + monotonic (elapsedRealtime) time of the last synchronous launch failure.
     private val lastSyncLaunchFailure = MutableStateFlow<Pair<Int, Long>?>(null)
 
