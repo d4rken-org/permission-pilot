@@ -49,7 +49,14 @@ fun MainScreen(
         NavDisplay(
             modifier = Modifier
                 .weight(1f)
-                .consumeWindowInsets(WindowInsets.navigationBars),
+                // Only consume the navigation-bar inset when the bottom NavigationBar below actually
+                // occupies it (tab screens). Full-screen destinations (e.g. Upgrade) have no bottom
+                // bar, so they must keep the inset and pad their own content above the nav bar —
+                // otherwise the last element is clipped by the system navigation bar.
+                .then(
+                    if (isTabScreen) Modifier.consumeWindowInsets(WindowInsets.navigationBars)
+                    else Modifier,
+                ),
             backStack = backStack,
             onBack = {
                 if (!navCtrl.up()) {
