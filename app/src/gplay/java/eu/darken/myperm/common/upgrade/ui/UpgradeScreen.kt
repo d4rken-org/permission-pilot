@@ -88,6 +88,8 @@ fun UpgradeScreenHost(
     val state by vm.state.collectAsState()
 
     var showRestoreFailedDialog by remember { mutableStateOf(false) }
+    var showStillRenewingDialog by remember { mutableStateOf(false) }
+    var showCheckFailedDialog by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         vm.events.collect { event ->
             when (event) {
@@ -95,11 +97,8 @@ fun UpgradeScreenHost(
                 UpgradeViewModel.UpgradeEvent.RestoreSucceeded ->
                     Toast.makeText(context, R.string.upgrade_screen_restore_success_message, Toast.LENGTH_LONG).show()
 
-                UpgradeViewModel.UpgradeEvent.SubscriptionStillRenewing ->
-                    Toast.makeText(context, R.string.upgrade_screen_sub_still_renewing_message, Toast.LENGTH_LONG).show()
-
-                UpgradeViewModel.UpgradeEvent.SubscriptionCheckFailed ->
-                    Toast.makeText(context, R.string.upgrade_screen_sub_check_failed_message, Toast.LENGTH_LONG).show()
+                UpgradeViewModel.UpgradeEvent.SubscriptionStillRenewing -> showStillRenewingDialog = true
+                UpgradeViewModel.UpgradeEvent.SubscriptionCheckFailed -> showCheckFailedDialog = true
             }
         }
     }
@@ -109,6 +108,15 @@ fun UpgradeScreenHost(
             onContactSupport = { vm.onContactSupport() },
             onDismiss = { showRestoreFailedDialog = false },
         )
+    }
+    if (showStillRenewingDialog) {
+        SubscriptionStillRenewingDialog(
+            onManageSubscription = { vm.onManageSubscription() },
+            onDismiss = { showStillRenewingDialog = false },
+        )
+    }
+    if (showCheckFailedDialog) {
+        SubscriptionCheckFailedDialog(onDismiss = { showCheckFailedDialog = false })
     }
 
     UpgradeScreen(
@@ -257,6 +265,7 @@ private fun SalesContent(
     OffersCard(
         pricing = state.pricing,
         enabled = state.isSettled && !state.actionBusy,
+        verificationInProgress = state.verificationInProgress,
         onSubscribe = onSubscribe,
         onBuyIap = onBuyIap,
     )
