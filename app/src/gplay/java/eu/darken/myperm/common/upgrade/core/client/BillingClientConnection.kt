@@ -23,14 +23,24 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
+// A listener snapshot carrying a monotonic generation. The generation lets a fresh query detect
+// whether a purchase push arrived *during* the query (newer → must win) versus a stale snapshot from
+// before the query (the query is then authoritative). Money-path safety for the switch gate.
+data class ListenerPurchases(
+    val generation: Long,
+    val purchases: Collection<Purchase>,
+)
+
 data class BillingClientConnection(
     private val client: BillingClient,
-    private val purchasesGlobal: Flow<Collection<Purchase>>,
+    private val purchasesGlobal: StateFlow<ListenerPurchases>,
     private val purchaseFailuresGlobal: Flow<BillingResult>,
 ) {
     private val queryCacheIaps = MutableStateFlow<Collection<Purchase>>(emptySet())
@@ -60,7 +70,7 @@ data class BillingClientConnection(
     }
 
     val purchases: Flow<Collection<Purchase>> = combine(
-        purchasesGlobal, queryCacheIaps, queryCacheSubs
+        purchasesGlobal.map { it.purchases }, queryCacheIaps, queryCacheSubs
     ) { global, iaps, subs ->
         val combined = mutableMapOf<String, Purchase>()
         (global + iaps + subs).forEach { purchase ->
@@ -91,6 +101,29 @@ data class BillingClientConnection(
         val subs = subJob.await()
         log(TAG) { "Refreshed IAPs=${iaps.getOrNull()}, SUBs=${subs.getOrNull()}" }
         combinePurchaseResults(iaps, subs)
+    }
+
+    // Fail-closed SUBS-only query for the "switch subscription -> one-time purchase" gate: returns
+    // the freshest known PURCHASED subscriptions so the caller can check `isAutoRenewing`. Errors
+    // propagate (the caller must fail closed and NOT launch the purchase).
+    //
+    // Why a generation fence and not a plain query: `Purchase.purchaseTime` does not change when a
+    // subscription is cancelled (isAutoRenewing flips false on the SAME purchase token), so a naive
+    // merge can't order a fresh query against a concurrent listener push by time. We instead capture
+    // the listener generation before querying: only a push that arrived *during* the query (newer
+    // generation) overlays the query result by token — a stale pre-query snapshot never overrides the
+    // authoritative query, so a genuinely cancelled sub is recognised while a live renewing sub can
+    // never be masked (which would permit double billing).
+    suspend fun querySubscriptions(): Collection<Purchase> {
+        val result = verifyStableSubscriptions(
+            maxAttempts = SUBS_VERIFY_MAX_ATTEMPTS,
+            generation = { purchasesGlobal.value.generation },
+            query = { queryPurchasesByType(BillingClient.ProductType.SUBS) },
+        )
+        // Keep the reactive purchases flow consistent with this authoritative query.
+        queryCacheSubs.value = result
+        log(TAG) { "querySubscriptions(): $result" }
+        return result
     }
 
     // Never throws except on cancellation, so a single failing product-type query doesn't cancel
@@ -238,6 +271,30 @@ data class BillingClientConnection(
         ): Boolean = syncFailure != null &&
             syncFailure.first == result.responseCode &&
             (now - syncFailure.second) in 0 until SYNC_LAUNCH_FAILURE_ECHO_WINDOW_MS
+
+        internal const val SUBS_VERIFY_MAX_ATTEMPTS = 4
+
+        // Money-path double-billing guard. Re-runs the SUBS query until it completes WITHOUT the
+        // listener generation changing underneath it — i.e. no purchase/cancel callback raced the
+        // read, so the query result is authoritative. We can't trust the latest callback payload as a
+        // complete inventory (a superseding callback can drop an intervening subscription update), so
+        // a raced read is retried rather than merged. Throws when it can't get a stable read; the
+        // caller must then fail closed and NOT launch the one-time purchase. Pure/testable via the
+        // injected generation supplier and query lambda.
+        internal suspend fun verifyStableSubscriptions(
+            maxAttempts: Int,
+            generation: () -> Long,
+            query: suspend () -> Collection<Purchase>,
+        ): Collection<Purchase> {
+            repeat(maxAttempts) {
+                val before = generation()
+                val fresh = query().filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }
+                if (generation() == before) {
+                    return fresh.sortedByDescending { it.purchaseTime }
+                }
+            }
+            throw BillingException("Subscription verification did not stabilize after $maxAttempts attempts")
+        }
 
         // Combines the two product-type query results: a purchase found by either type is
         // authoritative; an error is only propagated when nothing was found, so callers can tell

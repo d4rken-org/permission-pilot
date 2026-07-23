@@ -2,6 +2,7 @@ package eu.darken.myperm.common.upgrade.core
 
 import android.app.Activity
 import android.os.SystemClock
+import com.android.billingclient.api.Purchase
 import eu.darken.myperm.common.coroutine.AppScope
 import eu.darken.myperm.common.debug.logging.Logging.Priority.INFO
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
@@ -92,6 +93,12 @@ class UpgradeRepoGplay @Inject constructor(
         .map { it > 0 }
         .distinctUntilChanged()
 
+    // Wall-clock time of the last confirmed Pro purchase (0 = never). Drives the lean grace
+    // diagnostics boundary: recovery UI (restore / switch offers) is surfaced once we've been unable
+    // to reconfirm a Pro purchase for GRACE_DIAGNOSTICS_AFTER. No separate episode stamp — this
+    // timestamp naturally ages during a Play outage, so the boundary advances without a live refresh.
+    val lastProConfirmedAt: Flow<Long> = billingCache.lastProStateAt.flow.distinctUntilChanged()
+
     init {
         // Fresh-provenance grace stamping: the reactive upgradeInfo map is read-only; this
         // persistent collector (subscribed once, never re-subscribes) stamps new emissions, and
@@ -135,6 +142,10 @@ class UpgradeRepoGplay @Inject constructor(
     suspend fun querySkus(): Collection<SkuDetails> {
         return billingDataRepo.querySkus(*MyPermSku.PRO_SKUS.toTypedArray())
     }
+
+    // Fresh SUBS-only query for the switch-to-one-time gate. Errors propagate so the caller fails
+    // closed (does not launch the one-time purchase while a subscription may still be renewing).
+    suspend fun queryCurrentSubscriptions(): Collection<Purchase> = billingDataRepo.querySubscriptions()
 
     suspend fun launchBillingFlow(
         activity: Activity,
@@ -253,15 +264,20 @@ class UpgradeRepoGplay @Inject constructor(
         MyPermSku.PRO_SKUS.singleOrNull { it.id == lastProStateSku }?.type == Sku.Type.IAP
 
     data class Info(
-        private val gracePeriod: Boolean = false,
+        val gracePeriod: Boolean = false,
         private val billingData: BillingData?,
     ) : UpgradeRepo.Info {
 
         override val type: UpgradeRepo.Type
             get() = UpgradeRepo.Type.GPLAY
 
+        // Owned Pro purchases (IAP and/or subscription). Empty during a grace-only window (kept Pro
+        // by the resilience grace with no confirmed purchase). Drives the ownership / switch UI.
+        val proPurchases: Collection<PurchasedSku>
+            get() = billingData?.getProSkus() ?: emptyList()
+
         override val isPro: Boolean
-            get() = billingData?.getProSku() != null || gracePeriod
+            get() = proPurchases.isNotEmpty() || gracePeriod
 
         override val upgradedAt: Instant?
             get() = billingData

@@ -352,7 +352,7 @@ class ExportViewModel @Inject constructor(
     }
 
     fun onUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     private fun resolveApps(

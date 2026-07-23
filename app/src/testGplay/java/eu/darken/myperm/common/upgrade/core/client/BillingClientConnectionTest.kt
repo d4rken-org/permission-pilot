@@ -7,6 +7,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
 
@@ -84,5 +85,66 @@ class BillingClientConnectionTest : BaseTest() {
 
         // A negative age is never an echo (clock anomalies must not suppress real failures).
         BillingClientConnection.isSyncLaunchFailureEcho(result(code), code to now + 1_000, now) shouldBe false
+    }
+
+    private fun purchasedSub(token: String = "tok", time: Long = 1_000L) = mockk<Purchase> {
+        every { purchaseToken } returns token
+        every { purchaseState } returns Purchase.PurchaseState.PURCHASED
+        every { purchaseTime } returns time
+    }
+
+    @Test
+    fun `verifyStable - a read with no racing callback is authoritative`() = runBlocking {
+        val subs = listOf(purchasedSub())
+        BillingClientConnection.verifyStableSubscriptions(
+            maxAttempts = 4,
+            generation = { 7L },
+            query = { subs },
+        ) shouldBe subs
+    }
+
+    @Test
+    fun `verifyStable - retries when a callback races the query, then succeeds`() = runBlocking {
+        var gen = 0L
+        var racesLeft = 1
+        val subs = listOf(purchasedSub())
+        val result = BillingClientConnection.verifyStableSubscriptions(
+            maxAttempts = 4,
+            generation = { gen },
+            query = {
+                if (racesLeft > 0) { racesLeft--; gen++ } // a purchase callback lands during the first read
+                subs
+            },
+        )
+        result shouldBe subs
+    }
+
+    @Test
+    fun `verifyStable - fails closed when it never stabilizes`() {
+        shouldThrow<BillingException> {
+            runBlocking {
+                var gen = 0L
+                BillingClientConnection.verifyStableSubscriptions(
+                    maxAttempts = 3,
+                    generation = { gen },
+                    query = { gen++; emptyList() },
+                )
+            }
+        }
+    }
+
+    @Test
+    fun `verifyStable - filters to PURCHASED only`() = runBlocking {
+        val purchased = purchasedSub()
+        val pending = mockk<Purchase> {
+            every { purchaseToken } returns "pending"
+            every { purchaseState } returns Purchase.PurchaseState.PENDING
+            every { purchaseTime } returns 1_000L
+        }
+        BillingClientConnection.verifyStableSubscriptions(
+            maxAttempts = 4,
+            generation = { 0L },
+            query = { listOf(purchased, pending) },
+        ) shouldBe listOf(purchased)
     }
 }

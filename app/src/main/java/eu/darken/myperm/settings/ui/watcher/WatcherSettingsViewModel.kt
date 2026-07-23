@@ -50,7 +50,7 @@ class WatcherSettingsViewModel @Inject constructor(
     }
 
     fun onUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     fun setWatcherScope(scope: WatcherScope) = launch {

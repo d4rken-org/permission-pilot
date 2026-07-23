@@ -332,7 +332,7 @@ class AppDetailsViewModel @Inject constructor(
                 if (!current.canViewManifest) return
                 if (!upgradeRepo.upgradeInfo.value.isPro) {
                     log(TAG) { "Not pro, navigating to upgrade instead of manifest viewer" }
-                    navTo(Nav.Main.Upgrade)
+                    navTo(Nav.Main.Upgrade())
                     return
                 }
                 navTo(Nav.Details.AppManifest(pkgName = pkgName.value, appLabel = initialLabel))

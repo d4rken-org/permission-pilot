@@ -50,7 +50,7 @@ class GeneralSettingsViewModel @Inject constructor(
     }
 
     fun onUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     companion object {

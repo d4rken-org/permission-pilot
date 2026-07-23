@@ -17,4 +17,38 @@
     <string name="upgrade_screen_restore_banner_body">It looks like you upgraded to Pro on this device before. Restore your purchase to unlock it again.</string>
     <string name="upgrade_screen_options_description">Subscriptions renew automatically. You can cancel anytime.</string>
     <string name="upgrade_title_suffix">Pro</string>
+
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">You\'re Pro — thank you!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Your one-time Pro purchase unlocks every Pro feature, forever.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Your subscription unlocks every Pro feature.</string>
+    <string name="upgrade_screen_owned_sub_title">Your subscription</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Your subscription is active and renews automatically.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Your subscription is set to expire and won\'t renew. You\'ll keep Pro until it ends.</string>
+    <string name="upgrade_screen_owned_both_warning">You own the one-time Pro upgrade and also have an active subscription. You don\'t need both — cancel the subscription in Google Play to avoid further charges.</string>
+    <string name="upgrade_screen_manage_subscription_action">Manage subscription</string>
+    <string name="upgrade_screen_owned_iap_title">Lifetime Pro</string>
+    <string name="upgrade_screen_owned_iap_body">You own the one-time Pro upgrade. No subscription, no renewals.</string>
+
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Switch to a one-time purchase</string>
+    <string name="upgrade_screen_switch_purchase_note">Your subscription won\'t renew, so you can move to the permanent one-time Pro purchase now.</string>
+    <string name="upgrade_screen_switch_locked_note">To switch to the one-time purchase, first cancel your subscription in Google Play. This offer unlocks once it\'s set not to renew.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play only checks the account you\'re currently signed in with. The one-time purchase is separate from your subscription.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Your subscription is still active and renewing. Cancel it in Google Play first.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Couldn\'t verify your subscription with Google Play. Please try again.</string>
+
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Confirming your purchase</string>
+    <string name="upgrade_screen_grace_body">Waiting for Google Play to re-confirm your Pro purchase. This usually resolves on its own.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">We still can\'t re-confirm your Pro purchase with Google Play. If this keeps happening, try restoring your purchase or contact support.</string>
+
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Status looks wrong?</string>
+    <string name="upgrade_screen_restore_status_body">If you\'ve purchased Pro but it isn\'t showing, run a live check against Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Purchase restored.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Make sure you\'re signed in with the Google account you used to purchase. A live check against Google Play just ran.</string>
 </resources>
