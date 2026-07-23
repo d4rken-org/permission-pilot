@@ -1,13 +1,17 @@
 package eu.darken.myperm.common.upgrade.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.OpenInNew
 import androidx.compose.material.icons.twotone.Stars
@@ -16,7 +20,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -26,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import eu.darken.myperm.R
@@ -54,6 +59,7 @@ fun OwnershipContent(
         OffersCard(
             pricing = state.pricing,
             enabled = state.isSettled && !state.actionBusy,
+            verificationInProgress = state.verificationInProgress,
             onSubscribe = onSubscribe,
             onBuyIap = onBuyIap,
         )
@@ -260,78 +266,131 @@ private fun GraceCard(
     }
 }
 
+// The "Upgrade options" card: header, subscription offer row, "or" divider, one-time offer row,
+// parity footnote. Subscription is the primary (filled) action, the one-time purchase is the
+// secondary (outlined) action — the button weight carries the hierarchy, no "recommended" badge.
 @Composable
 fun OffersCard(
     pricing: Pricing,
     enabled: Boolean,
+    verificationInProgress: Boolean,
     onSubscribe: () -> Unit,
     onBuyIap: () -> Unit,
 ) {
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        if (pricing.subAvailable) {
-            Button(
-                onClick = onSubscribe,
-                enabled = enabled,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp),
-                shape = RoundedCornerShape(12.dp),
-            ) {
-                Icon(Icons.TwoTone.Stars, contentDescription = null, modifier = Modifier.size(20.dp))
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = stringResource(
-                        if (pricing.subscriptionAction == SubscriptionAction.TRIAL) {
-                            R.string.upgrade_screen_subscription_trial_action
-                        } else {
-                            R.string.upgrade_screen_subscription_action
-                        },
-                    ),
-                    style = MaterialTheme.typography.titleMedium,
+    if (!pricing.subAvailable && !pricing.iapAvailable) return
+
+    Card(
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(modifier = Modifier.padding(18.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    Icons.TwoTone.Stars,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
                 )
-            }
-            if (pricing.subPrice != null) {
+                Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = stringResource(R.string.upgrade_screen_subscription_action_hint_yearly, pricing.subPrice),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp),
+                    text = stringResource(R.string.upgrade_screen_offers_title),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
-        }
 
-        if (pricing.iapAvailable) {
-            FilledTonalButton(
-                onClick = onBuyIap,
-                enabled = enabled,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp),
-                shape = RoundedCornerShape(12.dp),
-            ) {
-                Text(
-                    text = stringResource(R.string.upgrade_screen_iap_action),
-                    style = MaterialTheme.typography.titleMedium,
-                )
+            if (pricing.subAvailable) {
+                UpgradeOfferRow(
+                    title = stringResource(R.string.upgrade_screen_subscription_offer_title),
+                    price = pricing.subPrice,
+                    hint = stringResource(
+                        if (pricing.subscriptionAction == SubscriptionAction.TRIAL) {
+                            R.string.upgrade_screen_subscription_offer_body
+                        } else {
+                            R.string.upgrade_screen_subscription_offer_body_no_trial
+                        },
+                    ),
+                ) {
+                    Button(onClick = onSubscribe, enabled = enabled, modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            stringResource(
+                                if (pricing.subscriptionAction == SubscriptionAction.TRIAL) {
+                                    R.string.upgrade_screen_subscription_trial_action
+                                } else {
+                                    R.string.upgrade_screen_subscription_action
+                                },
+                            ),
+                        )
+                    }
+                }
             }
-            if (pricing.iapPrice != null) {
-                Text(
-                    text = stringResource(R.string.upgrade_screen_iap_action_hint, pricing.iapPrice),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(top = 4.dp),
-                )
-            }
-        }
 
-        Spacer(modifier = Modifier.height(8.dp))
+            if (pricing.subAvailable && pricing.iapAvailable) {
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                    Text(
+                        text = stringResource(R.string.upgrade_screen_offers_or),
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    HorizontalDivider(modifier = Modifier.weight(1f))
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+            }
+
+            if (pricing.iapAvailable) {
+                UpgradeOfferRow(
+                    title = stringResource(R.string.upgrade_screen_iap_offer_title),
+                    price = pricing.iapPrice,
+                    hint = stringResource(R.string.upgrade_screen_iap_offer_body),
+                ) {
+                    OutlinedButton(onClick = onBuyIap, enabled = enabled, modifier = Modifier.fillMaxWidth()) {
+                        if (verificationInProgress) {
+                            CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
+                            Spacer(modifier = Modifier.width(8.dp))
+                        }
+                        Text(stringResource(R.string.upgrade_screen_iap_action))
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = stringResource(R.string.upgrade_screen_offers_body),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
+}
+
+// One offer: "title · price" on one line, a terms line, then the action button.
+@Composable
+private fun UpgradeOfferRow(
+    title: String,
+    price: String?,
+    hint: String,
+    content: @Composable () -> Unit,
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            text = stringResource(R.string.upgrade_screen_options_description),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
+            text = listOfNotNull(title, price).joinToString(" · "),
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
         )
+        Text(
+            text = hint,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        content()
     }
 }
 
@@ -406,23 +465,25 @@ fun RestoreBanner(
     }
 }
 
+// Shown after a restore comes up empty (or times out). Leads with the just-happened live Play
+// check, then the troubleshooting steps, and is the ONLY contact-support surface in the flow.
 @Composable
 fun FailedRestoreDialog(
     onContactSupport: () -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val message = listOf(
+        stringResource(R.string.upgrade_screen_restore_checked_message),
+        stringResource(R.string.upgrade_screen_restore_multiaccount_hint),
+        stringResource(R.string.upgrade_screen_restore_sync_patience_hint),
+        stringResource(R.string.upgrade_screen_restore_contact_hint),
+    ).joinToString("\n\n")
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.upgrade_screen_restore_status_title)) },
         text = {
-            Column {
-                Text(stringResource(R.string.upgrade_screen_restore_purchase_message))
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = stringResource(R.string.upgrade_screen_restore_webinstall_hint),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                Text(text = message, style = MaterialTheme.typography.bodyMedium)
             }
         },
         confirmButton = {
@@ -431,7 +492,44 @@ fun FailedRestoreDialog(
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text(stringResource(R.string.general_cancel_action)) }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.general_close_action)) }
+        },
+    )
+}
+
+// The switch was blocked because a subscription is still auto-renewing — offer the Play deep link
+// to cancel it there first.
+@Composable
+fun SubscriptionStillRenewingDialog(
+    onManageSubscription: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.upgrade_screen_sub_still_renewing_title)) },
+        text = { Text(stringResource(R.string.upgrade_screen_sub_still_renewing_message)) },
+        confirmButton = {
+            TextButton(onClick = { onDismiss(); onManageSubscription() }) {
+                Text(stringResource(R.string.upgrade_screen_manage_subscription_action))
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.general_close_action)) }
+        },
+    )
+}
+
+// The pre-purchase subscription check couldn't complete (timeout/error) — fail closed and tell the
+// user to try again.
+@Composable
+fun SubscriptionCheckFailedDialog(
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        text = { Text(stringResource(R.string.upgrade_screen_sub_check_failed_message)) },
+        confirmButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.general_close_action)) }
         },
     )
 }
