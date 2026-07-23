@@ -21,28 +21,27 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.ArrowBack
+import androidx.compose.material.icons.twotone.Code
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material.icons.twotone.FileDownload
 import androidx.compose.material.icons.twotone.Notifications
 import androidx.compose.material.icons.twotone.Palette
-import androidx.compose.material.icons.twotone.Stars
-import androidx.compose.material.icons.twotone.Code
 import androidx.compose.material.icons.twotone.Tune
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -51,80 +50,101 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.compose.runtime.DisposableEffect
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.PermPilotMascot
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 
 @Composable
-fun UpgradeScreenHost(vm: UpgradeViewModel = hiltViewModel()) {
+fun UpgradeScreenHost(
+    manage: Boolean,
+    vm: UpgradeViewModel = hiltViewModel(),
+) {
     ErrorEventHandler(vm)
     NavigationEventHandler(vm)
 
     val context = LocalContext.current
     val activity = context as? Activity
     if (activity == null) Log.w("UpgradeScreen", "Context is not an Activity: $context")
+
+    LaunchedEffect(manage) { vm.init(manage) }
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) vm.onResume()
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
     val state by vm.state.collectAsState()
 
+    var showRestoreFailedDialog by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         vm.events.collect { event ->
             when (event) {
-                UpgradeViewModel.UpgradeEvent.RestoreFailed -> {
-                    Toast.makeText(
-                        context,
-                        R.string.upgrade_screen_restore_purchase_message,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+                UpgradeViewModel.UpgradeEvent.RestoreFailed -> showRestoreFailedDialog = true
+                UpgradeViewModel.UpgradeEvent.RestoreSucceeded ->
+                    Toast.makeText(context, R.string.upgrade_screen_restore_success_message, Toast.LENGTH_LONG).show()
+
+                UpgradeViewModel.UpgradeEvent.SubscriptionStillRenewing ->
+                    Toast.makeText(context, R.string.upgrade_screen_sub_still_renewing_message, Toast.LENGTH_LONG).show()
+
+                UpgradeViewModel.UpgradeEvent.SubscriptionCheckFailed ->
+                    Toast.makeText(context, R.string.upgrade_screen_sub_check_failed_message, Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    LaunchedEffect(Unit) {
-        vm.billingEvents.collect { event ->
-            activity ?: return@collect
-            when (event) {
-                UpgradeViewModel.BillingEvent.LaunchIap -> vm.launchBillingIap(activity)
-                UpgradeViewModel.BillingEvent.LaunchSubscription -> vm.launchBillingSubscription(activity)
-                UpgradeViewModel.BillingEvent.LaunchSubscriptionTrial -> vm.launchBillingSubscriptionTrial(activity)
-            }
-        }
+    if (showRestoreFailedDialog) {
+        FailedRestoreDialog(
+            onContactSupport = { vm.onContactSupport() },
+            onDismiss = { showRestoreFailedDialog = false },
+        )
     }
 
     UpgradeScreen(
         state = state,
         onNavigateUp = { vm.navUp() },
-        onSubscription = { vm.onGoSubscription() },
-        onSubscriptionTrial = { vm.onGoSubscriptionTrial() },
-        onIap = { vm.onGoIap() },
-        onRestore = { vm.restorePurchase() },
+        onSubscribe = { activity?.let { vm.onSubscribe(it) } },
+        onBuyIap = { activity?.let { vm.onBuyIap(it) } },
+        onSwitchToIap = { activity?.let { vm.onSwitchToIap(it) } },
+        onRestore = { vm.onRestore() },
+        onManageSubscription = { vm.onManageSubscription() },
+        onContactSupport = { vm.onContactSupport() },
     )
 }
 
 private data class Benefit(val icon: ImageVector, val textRes: Int)
 
+private val upgradeBenefits = listOf(
+    Benefit(Icons.TwoTone.Palette, R.string.upgrade_benefit_themes),
+    Benefit(Icons.TwoTone.Tune, R.string.upgrade_benefit_filtering),
+    Benefit(Icons.TwoTone.FileDownload, R.string.upgrade_benefit_export),
+    Benefit(Icons.TwoTone.Notifications, R.string.upgrade_benefit_monitoring),
+    Benefit(Icons.TwoTone.Code, R.string.upgrade_benefit_manifest_viewer),
+    Benefit(Icons.TwoTone.Favorite, R.string.upgrade_benefit_support),
+)
+
 @Composable
 fun UpgradeScreen(
-    state: UpgradeViewModel.State,
+    state: UpgradeUiState,
     onNavigateUp: () -> Unit,
-    onSubscription: () -> Unit,
-    onSubscriptionTrial: () -> Unit,
-    onIap: () -> Unit,
+    onSubscribe: () -> Unit,
+    onBuyIap: () -> Unit,
+    onSwitchToIap: () -> Unit,
     onRestore: () -> Unit,
+    onManageSubscription: () -> Unit,
+    onContactSupport: () -> Unit,
 ) {
-    val benefits = listOf(
-        Benefit(Icons.TwoTone.Palette, R.string.upgrade_benefit_themes),
-        Benefit(Icons.TwoTone.Tune, R.string.upgrade_benefit_filtering),
-        Benefit(Icons.TwoTone.FileDownload, R.string.upgrade_benefit_export),
-        Benefit(Icons.TwoTone.Notifications, R.string.upgrade_benefit_monitoring),
-        Benefit(Icons.TwoTone.Code, R.string.upgrade_benefit_manifest_viewer),
-        Benefit(Icons.TwoTone.Favorite, R.string.upgrade_benefit_support),
-    )
-
     Box(modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars)) {
         Column(
             modifier = Modifier
@@ -133,104 +153,34 @@ fun UpgradeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(16.dp))
-
-            Box(contentAlignment = Alignment.Center) {
-                Surface(
-                    modifier = Modifier.size(120.dp),
-                    shape = CircleShape,
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
-                ) {}
-                PermPilotMascot(size = 80.dp)
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = buildAnnotatedString {
-                    append(stringResource(R.string.upgrade_title_prefix))
-                    append(" ")
-                    withStyle(SpanStyle(color = MaterialTheme.colorScheme.tertiary, fontWeight = FontWeight.Bold)) {
-                        append(stringResource(R.string.upgrade_title_suffix))
-                    }
-                },
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-
+            UpgradeHeader()
             Spacer(modifier = Modifier.height(24.dp))
 
-            if (state.wasPreviouslyPro) {
-                RestoreBanner(
-                    onRestore = onRestore,
-                    restoreInProgress = state.restoreInProgress,
-                )
+            when (state) {
+                UpgradeUiState.Loading -> {
+                    CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+                }
 
-                Spacer(modifier = Modifier.height(24.dp))
-            }
-
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                ),
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text = stringResource(R.string.upgrade_screen_preamble),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(16.dp),
-                )
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Column(modifier = Modifier.padding(vertical = 4.dp)) {
-                    benefits.forEach { benefit ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 12.dp, vertical = 4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Surface(
-                                shape = RoundedCornerShape(8.dp),
-                                color = MaterialTheme.colorScheme.primaryContainer,
-                                modifier = Modifier.size(28.dp),
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Icon(
-                                        imageVector = benefit.icon,
-                                        contentDescription = null,
-                                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                                        modifier = Modifier.size(16.dp),
-                                    )
-                                }
-                            }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Text(
-                                text = stringResource(benefit.textRes),
-                                style = MaterialTheme.typography.bodyLarge,
-                            )
-                        }
+                is UpgradeUiState.Loaded -> {
+                    if (state.showOwnership) {
+                        OwnershipContent(
+                            state = state,
+                            onSubscribe = onSubscribe,
+                            onBuyIap = onBuyIap,
+                            onSwitchToIap = onSwitchToIap,
+                            onRestore = onRestore,
+                            onManageSubscription = onManageSubscription,
+                            onContactSupport = onContactSupport,
+                        )
+                    } else {
+                        SalesContent(
+                            state = state,
+                            onSubscribe = onSubscribe,
+                            onBuyIap = onBuyIap,
+                            onRestore = onRestore,
+                        )
                     }
                 }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            if (state.pricing == null) {
-                CircularProgressIndicator(modifier = Modifier.padding(16.dp))
-            } else {
-                PricingContent(
-                    pricing = state.pricing,
-                    restoreInProgress = state.restoreInProgress,
-                    onSubscription = onSubscription,
-                    onSubscriptionTrial = onSubscriptionTrial,
-                    onIap = onIap,
-                    onRestore = onRestore,
-                )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -250,174 +200,107 @@ fun UpgradeScreen(
 }
 
 @Composable
-private fun RestoreBanner(
-    onRestore: () -> Unit,
-    restoreInProgress: Boolean,
-    modifier: Modifier = Modifier,
-) {
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-        ),
-        modifier = modifier.fillMaxWidth(),
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(
-                text = stringResource(R.string.upgrade_screen_restore_banner_title),
-                style = MaterialTheme.typography.titleMedium,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = stringResource(R.string.upgrade_screen_restore_banner_body),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Button(
-                onClick = onRestore,
-                enabled = !restoreInProgress,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                if (restoreInProgress) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(18.dp),
-                        strokeWidth = 2.dp,
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-                Text(text = stringResource(R.string.upgrade_screen_restore_purchase_action))
-            }
-        }
+private fun UpgradeHeader() {
+    Box(contentAlignment = Alignment.Center) {
+        Surface(
+            modifier = Modifier.size(120.dp),
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+        ) {}
+        PermPilotMascot(size = 80.dp)
     }
+    Spacer(modifier = Modifier.height(16.dp))
+    Text(
+        text = buildAnnotatedString {
+            append(stringResource(R.string.upgrade_title_prefix))
+            append(" ")
+            withStyle(SpanStyle(color = MaterialTheme.colorScheme.tertiary, fontWeight = FontWeight.Bold)) {
+                append(stringResource(R.string.upgrade_title_suffix))
+            }
+        },
+        style = MaterialTheme.typography.headlineLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
 }
 
 @Composable
-private fun PricingContent(
-    pricing: UpgradeViewModel.Pricing,
-    restoreInProgress: Boolean,
-    onSubscription: () -> Unit,
-    onSubscriptionTrial: () -> Unit,
-    onIap: () -> Unit,
+private fun SalesContent(
+    state: UpgradeUiState.Loaded,
+    onSubscribe: () -> Unit,
+    onBuyIap: () -> Unit,
     onRestore: () -> Unit,
 ) {
-    // Subscription button (primary)
-    if (pricing.subAvailable) {
-        val subscriptionAction = if (pricing.hasTrialOffer) onSubscriptionTrial else onSubscription
-
-        val subscriptionLabel = if (pricing.hasTrialOffer) {
-            stringResource(R.string.upgrade_screen_subscription_trial_action)
-        } else {
-            stringResource(R.string.upgrade_screen_subscription_action)
-        }
-
-        Button(
-            onClick = subscriptionAction,
-            enabled = !restoreInProgress,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Icon(
-                imageVector = Icons.TwoTone.Stars,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = subscriptionLabel,
-                style = MaterialTheme.typography.titleMedium,
-            )
-        }
-
-        if (pricing.subPrice != null) {
-            Text(
-                text = stringResource(R.string.upgrade_screen_subscription_action_hint_yearly, pricing.subPrice),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 4.dp),
-            )
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
+    if (state.wasPreviouslyPro) {
+        RestoreBanner(
+            onRestore = onRestore,
+            restoreInProgress = state.restoreInProgress,
+            enabled = state.isSettled && !state.actionBusy,
+        )
+        Spacer(modifier = Modifier.height(24.dp))
     }
 
-    // IAP button (secondary)
-    if (pricing.iapAvailable) {
-        FilledTonalButton(
-            onClick = onIap,
-            enabled = !restoreInProgress,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.upgrade_screen_iap_action),
-                style = MaterialTheme.typography.titleMedium,
-            )
-        }
-
-        if (pricing.iapPrice != null) {
-            Text(
-                text = stringResource(R.string.upgrade_screen_iap_action_hint, pricing.iapPrice),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 4.dp),
-            )
-        }
+    Card(
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Text(
+            text = stringResource(R.string.upgrade_screen_preamble),
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(16.dp),
+        )
     }
 
-    // If no details loaded at all, show a simple fallback upgrade button
-    if (!pricing.subAvailable && !pricing.iapAvailable) {
-        Button(
-            onClick = onIap,
-            enabled = !restoreInProgress,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(52.dp),
-            shape = RoundedCornerShape(12.dp),
-        ) {
-            Icon(
-                imageVector = Icons.TwoTone.Stars,
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-                tint = MaterialTheme.colorScheme.onPrimary,
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = stringResource(R.string.general_upgrade_action),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onPrimary,
-            )
-        }
-    }
+    Spacer(modifier = Modifier.height(24.dp))
+    BenefitsCard()
+    Spacer(modifier = Modifier.height(24.dp))
 
-    Spacer(modifier = Modifier.height(8.dp))
-
-    Text(
-        text = stringResource(R.string.upgrade_screen_options_description),
-        style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = TextAlign.Center,
+    OffersCard(
+        pricing = state.pricing,
+        enabled = state.isSettled && !state.actionBusy,
+        onSubscribe = onSubscribe,
+        onBuyIap = onBuyIap,
     )
 
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(24.dp))
+    RestoreSection(
+        restoreInProgress = state.restoreInProgress,
+        enabled = state.isSettled && !state.actionBusy,
+        onRestore = onRestore,
+    )
+}
 
-    OutlinedButton(
-        onClick = onRestore,
-        enabled = !restoreInProgress,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp),
-        shape = RoundedCornerShape(12.dp),
-    ) {
-        if (restoreInProgress) {
-            CircularProgressIndicator(
-                modifier = Modifier.size(18.dp),
-                strokeWidth = 2.dp,
-            )
-            Spacer(modifier = Modifier.width(8.dp))
+@Composable
+private fun BenefitsCard() {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(vertical = 4.dp)) {
+            upgradeBenefits.forEach { benefit ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp, vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(8.dp),
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        modifier = Modifier.size(28.dp),
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = benefit.icon,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                                modifier = Modifier.size(16.dp),
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text(
+                        text = stringResource(benefit.textRes),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+            }
         }
-        Text(text = stringResource(R.string.upgrade_screen_restore_purchase_action))
     }
 }

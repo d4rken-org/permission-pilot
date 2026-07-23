@@ -195,7 +195,7 @@ class OverviewViewModel @Inject constructor(
     }
 
     fun onUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     fun onCategoryClicked(filters: Set<AppsFilterOptions.Filter>) = launch {

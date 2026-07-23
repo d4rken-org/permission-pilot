@@ -269,7 +269,7 @@ class AppsViewModel @Inject constructor(
     }
 
     fun onUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     private fun buildInstallerLabelCache(apps: List<AppInfo>): Map<Pkg.Name, String> {

@@ -6,7 +6,6 @@ import com.android.billingclient.api.BillingClient.newBuilder
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PendingPurchasesParams
-import com.android.billingclient.api.Purchase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
@@ -25,6 +24,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.retryWhen
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -35,7 +35,7 @@ class BillingClientConnectionProvider @Inject constructor(
 ) {
 
     private val connectionProvider: Flow<BillingClientConnection> = callbackFlow {
-        val purchasePublisher = MutableStateFlow<Collection<Purchase>>(emptySet())
+        val purchasePublisher = MutableStateFlow(ListenerPurchases(generation = 0L, purchases = emptySet()))
         // Purchase-flow outcomes can arrive here asynchronously after the Play sheet opened (e.g.
         // ITEM_ALREADY_OWNED, declined payment) — publish them instead of dropping them, so the UI
         // layer can react. tryEmit because the listener is a plain callback.
@@ -55,7 +55,11 @@ class BillingClientConnectionProvider @Inject constructor(
                     log(TAG) {
                         "onPurchasesUpdated(code=${result.responseCode}, message=${result.debugMessage}, purchases=$purchases)"
                     }
-                    purchasePublisher.value = purchases.orEmpty()
+                    // Bump the generation so a query in flight can tell this push arrived after it
+                    // started. update{} makes the read-modify-write atomic against concurrent callbacks.
+                    purchasePublisher.update {
+                        ListenerPurchases(generation = it.generation + 1, purchases = purchases.orEmpty())
+                    }
                 } else {
                     log(TAG, WARN) {
                         "error: onPurchasesUpdated(code=${result.responseCode}, message=${result.debugMessage}, purchases=$purchases)"

@@ -11,6 +11,7 @@ import androidx.compose.material.icons.twotone.ColorLens
 import androidx.compose.material.icons.twotone.FormatListNumbered
 import androidx.compose.material.icons.twotone.Favorite
 import androidx.compose.material.icons.twotone.Notifications
+import androidx.compose.material.icons.twotone.Stars
 import androidx.compose.material.icons.automirrored.twotone.HelpOutline
 import androidx.compose.material.icons.twotone.Info
 import androidx.compose.material3.Icon
@@ -45,6 +46,7 @@ fun SettingsIndexScreenHost() {
         onSupport = { navCtrl?.goTo(Nav.Settings.Support) },
         onAcknowledgements = { navCtrl?.goTo(Nav.Settings.Acknowledgements) },
         onPrivacyPolicy = { vm.openPrivacyPolicy() },
+        onUpgradeStatus = { navCtrl?.goTo(Nav.Main.Upgrade(manage = true)) },
     )
 }
 
@@ -57,6 +59,7 @@ fun SettingsIndexScreen(
     onSupport: () -> Unit,
     onAcknowledgements: () -> Unit,
     onPrivacyPolicy: () -> Unit,
+    onUpgradeStatus: () -> Unit = {},
     versionSubtitle: String = BuildConfigWrap.VERSION_DESCRIPTION,
 ) {
     Scaffold(
@@ -93,6 +96,13 @@ fun SettingsIndexScreen(
 
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
 
+            SettingsBaseItem(
+                title = stringResource(R.string.settings_upgrade_status_title),
+                subtitle = stringResource(R.string.settings_upgrade_description),
+                icon = Icons.TwoTone.Stars,
+                onClick = onUpgradeStatus,
+            )
+            SettingsDivider()
             SettingsBaseItem(
                 title = stringResource(R.string.settings_support_label),
                 subtitle = "\u00AF\\_(ツ)_/\u00AF",

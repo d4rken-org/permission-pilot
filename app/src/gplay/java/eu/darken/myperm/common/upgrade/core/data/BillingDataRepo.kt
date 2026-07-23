@@ -47,6 +47,14 @@ class BillingDataRepo @Inject constructor(
     // NOT sleeping is still consumed by the next backoff — exactly once, so it can't cause a spin.
     private val reconnectSignal = Channel<Unit>(Channel.CONFLATED)
 
+    // Purchase tokens we've already acknowledged at least once. Play keeps reporting a just-acked
+    // purchase as isAcknowledged=false until a fresh query supersedes it, so the ack legitimately
+    // re-fires on every emission. Re-acknowledging is a documented Play no-op, and gating the ack on
+    // this set would risk skipping a genuinely-needed ack (Play auto-refunds after ~3 days), so the
+    // set is used ONLY to pick the log level (first ack = INFO, idempotent repeats = DEBUG). Mutated
+    // from a single sequential collector, so no synchronization is needed.
+    private val loggedAckTokens = mutableSetOf<String>()
+
     private val connectionProvider = clientConnectionProvider.connection
         .retryWhen { cause, attempt ->
             // Never give up terminally: the ack collector pins this share for the process
@@ -90,17 +98,17 @@ class BillingDataRepo @Inject constructor(
             .onEach { (client, purchases) ->
                 purchases
                     .filter { it.purchaseState == Purchase.PurchaseState.PURCHASED }
-                    .filter {
-                        val needsAck = !it.isAcknowledged
-
-                        if (needsAck) log(TAG, INFO) { "Needs ACK: $it" }
-                        else log(TAG) { "Already ACK'ed: $it" }
-
-                        needsAck
-                    }
+                    .filter { !it.isAcknowledged }
                     .forEach {
-                        log(TAG, INFO) { "Acknowledging purchase: $it" }
+                        // Keep acking unconditionally (safe over-ack bias); use the token set only to
+                        // quiet idempotent-repeat logs from INFO to DEBUG.
+                        if (it.purchaseToken !in loggedAckTokens) {
+                            log(TAG, INFO) { "Acknowledging purchase: $it" }
+                        } else {
+                            log(TAG) { "Re-acknowledging (idempotent no-op until re-query): $it" }
+                        }
                         client.acknowledgePurchase(it)
+                        loggedAckTokens.add(it.purchaseToken)
                     }
             }
             .setupCommonEventHandlers(TAG) { "connection-acks" }
@@ -195,6 +203,16 @@ class BillingDataRepo @Inject constructor(
     // happens-before instead of racing the shared billingData replay cache after a refresh.
     suspend fun refresh(): BillingData = try {
         BillingData(purchases = acquireConnection().refreshPurchases())
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        throw e.tryMapUserFriendly()
+    }
+
+    // Fresh SUBS-only query for the switch-to-one-time gate. Errors propagate (mapped) so the caller
+    // fails closed and does not launch the purchase.
+    suspend fun querySubscriptions(): Collection<Purchase> = try {
+        acquireConnection().querySubscriptions()
     } catch (e: CancellationException) {
         throw e
     } catch (e: Exception) {

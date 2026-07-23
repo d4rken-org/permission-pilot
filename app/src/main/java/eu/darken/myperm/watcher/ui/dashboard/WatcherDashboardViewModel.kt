@@ -143,7 +143,7 @@ class WatcherDashboardViewModel @Inject constructor(
     fun onReportClicked(item: WatcherReportItem) = launch {
         if (!upgradeRepo.upgradeInfo.value.isPro) {
             log(TAG) { "Not pro, navigating to upgrade instead of detail" }
-            navTo(Nav.Main.Upgrade)
+            navTo(Nav.Main.Upgrade())
             return@launch
         }
         changeDao.markSeen(item.id)
@@ -152,7 +152,7 @@ class WatcherDashboardViewModel @Inject constructor(
     }
 
     fun goToUpgrade() {
-        navTo(Nav.Main.Upgrade)
+        navTo(Nav.Main.Upgrade())
     }
 
     fun refreshNow() = launch {
