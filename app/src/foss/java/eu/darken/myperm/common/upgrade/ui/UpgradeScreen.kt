@@ -3,7 +3,6 @@ package eu.darken.myperm.common.upgrade.ui
 import android.text.format.DateFormat
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -11,17 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.ArrowBack
-import androidx.compose.material.icons.twotone.Code
 import androidx.compose.material.icons.twotone.Favorite
-import androidx.compose.material.icons.twotone.FileDownload
-import androidx.compose.material.icons.twotone.Notifications
-import androidx.compose.material.icons.twotone.Palette
-import androidx.compose.material.icons.twotone.Tune
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,7 +26,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -43,20 +35,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import eu.darken.myperm.R
-import eu.darken.myperm.common.compose.PermPilotMascot
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
 import java.time.Instant
@@ -103,17 +89,6 @@ fun UpgradeScreenHost(
     )
 }
 
-private data class Benefit(val icon: ImageVector, val textRes: Int)
-
-private val upgradeBenefits = listOf(
-    Benefit(Icons.TwoTone.Palette, R.string.upgrade_benefit_themes),
-    Benefit(Icons.TwoTone.Tune, R.string.upgrade_benefit_filtering),
-    Benefit(Icons.TwoTone.FileDownload, R.string.upgrade_benefit_export),
-    Benefit(Icons.TwoTone.Notifications, R.string.upgrade_benefit_monitoring),
-    Benefit(Icons.TwoTone.Code, R.string.upgrade_benefit_manifest_viewer),
-    Benefit(Icons.TwoTone.Favorite, R.string.upgrade_benefit_support),
-)
-
 @Composable
 fun UpgradeScreen(
     state: UpgradeViewModel.State,
@@ -134,7 +109,11 @@ fun UpgradeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
-                UpgradeHeader()
+                UpgradeMascotHeader(
+                    circleColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f),
+                    suffixColor = MaterialTheme.colorScheme.secondary,
+                    titleColor = MaterialTheme.colorScheme.onSurface,
+                )
                 Spacer(modifier = Modifier.height(24.dp))
 
                 when (state.view) {
@@ -162,34 +141,16 @@ fun UpgradeScreen(
 }
 
 @Composable
-private fun UpgradeHeader() {
-    Box(contentAlignment = Alignment.Center) {
-        Surface(
-            modifier = Modifier.size(120.dp),
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f),
-        ) {}
-        PermPilotMascot(size = 80.dp)
-    }
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(
-        text = buildAnnotatedString {
-            append(stringResource(R.string.upgrade_title_prefix))
-            append(" ")
-            withStyle(SpanStyle(color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Bold)) {
-                append(stringResource(R.string.upgrade_title_suffix))
-            }
-        },
-        style = MaterialTheme.typography.headlineLarge,
-        color = MaterialTheme.colorScheme.onSurface,
-    )
-}
-
-@Composable
 private fun PitchContent(onSponsor: () -> Unit) {
-    PreambleCard(R.string.upgrade_foss_preamble)
+    UpgradePreambleCard(
+        text = stringResource(R.string.upgrade_foss_preamble),
+        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+    )
     Spacer(modifier = Modifier.height(16.dp))
-    BenefitsCard()
+    UpgradeBenefitsCard(
+        chipColor = MaterialTheme.colorScheme.secondaryContainer,
+        chipContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+    )
     Spacer(modifier = Modifier.height(16.dp))
     SponsorButton(labelRes = R.string.upgrade_foss_sponsor_action, onClick = onSponsor)
     Text(
@@ -207,7 +168,10 @@ private fun FreeStatusContent(onSponsor: () -> Unit) {
         bodyRes = R.string.upgrade_screen_status_free_body,
     )
     Spacer(modifier = Modifier.height(16.dp))
-    BenefitsCard()
+    UpgradeBenefitsCard(
+        chipColor = MaterialTheme.colorScheme.secondaryContainer,
+        chipContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+    )
     Spacer(modifier = Modifier.height(16.dp))
     SponsorButton(labelRes = R.string.upgrade_screen_status_free_action, onClick = onSponsor)
 }
@@ -265,59 +229,12 @@ private fun UpgradedStatusContent(
 }
 
 @Composable
-private fun PreambleCard(bodyRes: Int) {
-    Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-        modifier = Modifier.fillMaxWidth(),
-    ) {
-        Text(
-            text = stringResource(bodyRes),
-            style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(16.dp),
-        )
-    }
-}
-
-@Composable
 private fun StatusCard(titleRes: Int, bodyRes: Int) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = stringResource(titleRes), style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = stringResource(bodyRes), style = MaterialTheme.typography.bodyMedium)
-        }
-    }
-}
-
-@Composable
-private fun BenefitsCard() {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(vertical = 4.dp)) {
-            upgradeBenefits.forEach { benefit ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 12.dp, vertical = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Surface(
-                        shape = RoundedCornerShape(8.dp),
-                        color = MaterialTheme.colorScheme.secondaryContainer,
-                        modifier = Modifier.size(28.dp),
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                imageVector = benefit.icon,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                                modifier = Modifier.size(16.dp),
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Text(text = stringResource(benefit.textRes), style = MaterialTheme.typography.bodyLarge)
-                }
-            }
         }
     }
 }

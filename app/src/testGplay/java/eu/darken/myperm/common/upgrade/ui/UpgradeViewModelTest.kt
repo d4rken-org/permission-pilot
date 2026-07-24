@@ -73,6 +73,17 @@ class UpgradeViewModelTest : BaseTest() {
         },
     )
 
+    private fun subSkuDetails(): SkuDetails = SkuDetails(
+        sku = MyPermSku.Sub.PRO_UPGRADE,
+        details = mockk<ProductDetails> {
+            every { oneTimePurchaseOfferDetails } returns null
+            every { subscriptionOfferDetails } returns null
+        },
+    )
+
+    // A fully-loaded catalog: Ready requires BOTH the subscription and the one-time offer.
+    private fun bothSkus(): List<SkuDetails> = listOf(iapSkuDetails(), subSkuDetails())
+
     private fun result(code: Int): BillingResult = BillingResult.newBuilder().setResponseCode(code).build()
 
     private fun mockRepo(
@@ -81,6 +92,7 @@ class UpgradeViewModelTest : BaseTest() {
         skus: List<SkuDetails> = emptyList(),
     ): UpgradeRepoGplay = mockk<UpgradeRepoGplay>(relaxed = true).apply {
         every { upgradeInfo } returns MutableStateFlow<UpgradeRepo.Info>(info)
+        every { isSettled } returns MutableStateFlow(true)
         every { this@apply.wasEverPro } returns MutableStateFlow(wasEverPro)
         every { lastProConfirmedAt } returns MutableStateFlow(0L)
         coEvery { querySkus() } returns skus
@@ -169,7 +181,7 @@ class UpgradeViewModelTest : BaseTest() {
 
     @Test
     fun `switch blocked while a subscription is still renewing`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.queryCurrentSubscriptions() } returns listOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = true))
         val vm = buildVm(repo).also { it.init(manage = true) }
         vm.loaded()
@@ -184,7 +196,7 @@ class UpgradeViewModelTest : BaseTest() {
 
     @Test
     fun `switch fails closed when the verify times out`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.queryCurrentSubscriptions() } coAnswers {
             delay(20_000) // longer than VERIFY_TIMEOUT_MS
             emptyList()
@@ -202,7 +214,7 @@ class UpgradeViewModelTest : BaseTest() {
 
     @Test
     fun `switch launches the one-time purchase when no subscription is renewing`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.queryCurrentSubscriptions() } returns listOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = false))
         val vm = buildVm(repo).also { it.init(manage = true) }
         vm.loaded()
@@ -251,7 +263,7 @@ class UpgradeViewModelTest : BaseTest() {
 
     @Test
     fun `user cancel during the billing flow stays silent`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.launchBillingFlow(any(), any(), null) } throws
             UserCanceledBillingException(result(BillingResponseCode.USER_CANCELED))
         val vm = buildVm(repo).also { it.init(manage = false) }
@@ -268,7 +280,7 @@ class UpgradeViewModelTest : BaseTest() {
 
     @Test
     fun `already-owned buy attempt restores when the exact sku comes back`() = runTest2(context = testDispatcher) {
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.launchBillingFlow(any(), any(), null) } throws
             ItemAlreadyOwnedBillingException(result(BillingResponseCode.ITEM_ALREADY_OWNED))
         coEvery { repo.restorePurchaseNow() } returns iapOwnedInfo()
@@ -289,7 +301,7 @@ class UpgradeViewModelTest : BaseTest() {
     fun `direct buy is also gated and blocks while a subscription is renewing`() = runTest2(context = testDispatcher) {
         // Even the ordinary "Buy" button (e.g. exposed during a grace window) must not launch the
         // one-time purchase while a subscription is still auto-renewing.
-        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val repo = mockRepo(skus = bothSkus())
         coEvery { repo.queryCurrentSubscriptions() } returns listOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = true))
         val vm = buildVm(repo).also { it.init(manage = false) }
         vm.state.first { it is UpgradeUiState.Loaded && it.pricing.iap != null }
@@ -299,5 +311,123 @@ class UpgradeViewModelTest : BaseTest() {
 
         vm.events.first() shouldBe UpgradeViewModel.UpgradeEvent.SubscriptionStillRenewing
         coVerify(exactly = 0) { repo.launchBillingFlow(any(), any(), any()) }
+    }
+
+    // --- offer availability / unavailable state ------------------------------------------------
+
+    @Test
+    fun `non-pro with no usable offers shows Unavailable`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo() // querySkus returns an empty list -> no usable offer
+        val vm = buildVm(repo).also { it.init(manage = false) }
+
+        val state = vm.state.first { it is UpgradeUiState.Unavailable }
+
+        (state is UpgradeUiState.Unavailable) shouldBe true
+    }
+
+    @Test
+    fun `non-pro with only the one-time offer shows Unavailable`() = runTest2(context = testDispatcher) {
+        // A partial catalog (subscription offer missing) is treated as unavailable, not shown as a
+        // half-broken screen. Would be Loaded under an OR condition; must be Unavailable under AND.
+        val repo = mockRepo(skus = listOf(iapSkuDetails()))
+        val vm = buildVm(repo).also { it.init(manage = false) }
+
+        val state = vm.state.first { it is UpgradeUiState.Unavailable }
+
+        (state is UpgradeUiState.Unavailable) shouldBe true
+    }
+
+    @Test
+    fun `non-pro with only the subscription offer shows Unavailable`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo(skus = listOf(subSkuDetails()))
+        val vm = buildVm(repo).also { it.init(manage = false) }
+
+        val state = vm.state.first { it is UpgradeUiState.Unavailable }
+
+        (state is UpgradeUiState.Unavailable) shouldBe true
+    }
+
+    @Test
+    fun `owner with a failed sku query still sees the ownership screen`() = runTest2(context = testDispatcher) {
+        // The offer catalog is a non-pro concern; an owner must never be dropped into Unavailable
+        // because Play couldn't return prices.
+        val repo = mockRepo(info = iapOwnedInfo()) // querySkus empty -> Failed, but IAP is owned
+        val vm = buildVm(repo).also { it.init(manage = true) }
+
+        val loaded = vm.loaded()
+
+        loaded.isPro shouldBe true
+    }
+
+    @Test
+    fun `grace user with a failed sku query stays on the status screen`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo(info = graceInfo())
+        val vm = buildVm(repo).also { it.init(manage = true) }
+
+        val loaded = vm.loaded()
+
+        loaded.isPro shouldBe true
+        loaded.gracePeriod shouldBe true
+    }
+
+    @Test
+    fun `retry re-runs the sku query`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo()
+        val vm = buildVm(repo).also { it.init(manage = false) }
+        vm.state.first { it is UpgradeUiState.Unavailable }
+
+        vm.retrySkuQuery()
+        advanceUntilIdle()
+
+        coVerify(atLeast = 2) { repo.querySkus() }
+    }
+
+    @Test
+    fun `onResume retries the query after a failure`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo()
+        val vm = buildVm(repo).also { it.init(manage = false) }
+        vm.state.first { it is UpgradeUiState.Unavailable }
+
+        vm.onResume()
+        advanceUntilIdle()
+
+        coVerify(atLeast = 2) { repo.querySkus() }
+    }
+
+    @Test
+    fun `onResume does not re-query when offers are already loaded`() = runTest2(context = testDispatcher) {
+        val repo = mockRepo(skus = bothSkus())
+        val vm = buildVm(repo).also { it.init(manage = false) }
+        vm.state.first { it is UpgradeUiState.Loaded }
+
+        vm.onResume()
+        advanceUntilIdle()
+
+        coVerify(exactly = 1) { repo.querySkus() }
+    }
+
+    @Test
+    fun `switch is a silent no-op when the iap catalog is unavailable`() = runTest2(context = testDispatcher) {
+        // Owner of a non-renewing subscription with a failed price query. The UI disables the switch
+        // button here (pricing.iapAvailable is false); if it is invoked anyway, the VM must neither
+        // launch a broken flow nor pop an error dialog — it just quietly aborts.
+        val subInfo = UpgradeRepoGplay.Info(
+            billingData = BillingData(setOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = false))),
+        )
+        val repo = mockRepo(info = subInfo) // querySkus empty -> no IAP details
+        coEvery { repo.queryCurrentSubscriptions() } returns
+            listOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = false))
+        val vm = buildVm(repo).also { it.init(manage = true) }
+        vm.loaded()
+        advanceUntilIdle()
+
+        val errors = mutableListOf<Throwable>()
+        val collector = launch { vm.errorEvents.collect { errors.add(it) } }
+        vm.onSwitchToIap(activity)
+        advanceUntilIdle()
+
+        errors shouldBe emptyList()
+        coVerify(exactly = 0) { repo.launchBillingFlow(any(), any(), any()) }
+        collector.cancel()
     }
 }

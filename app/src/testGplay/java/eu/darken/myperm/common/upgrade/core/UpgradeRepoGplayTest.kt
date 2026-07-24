@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
@@ -240,6 +241,21 @@ class UpgradeRepoGplayTest : BaseTest() {
         )
 
         coVerify(exactly = 0) { billingDataRepo.refresh() }
+    }
+
+    @Test fun `isSettled is false until billing publishes a real value, then true`() = runTest2 {
+        // MutableSharedFlow (no replay) so nothing is published at construction: isSettled must stay
+        // false until a real billing emission arrives, then flip true — and it flips only after
+        // upgradeInfo already reflects that value (drop(1) skips the cached seed).
+        val billingData = MutableSharedFlow<BillingData>()
+        val repo = repo(billingData = billingData)
+
+        repo.isSettled.value shouldBe false
+
+        billingData.emit(BillingData(setOf(proPurchase())))
+
+        repo.isSettled.first { it } shouldBe true
+        repo.upgradeInfo.value.isPro shouldBe true
     }
 
     @Test fun `preferredProSku prefers the permanent IAP when both are owned`() {

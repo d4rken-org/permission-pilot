@@ -16,6 +16,7 @@ import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.core.MyPermSku
 import eu.darken.myperm.common.upgrade.core.UpgradeRepoGplay
+import eu.darken.myperm.common.upgrade.core.client.GplayServiceUnavailableException
 import eu.darken.myperm.common.upgrade.core.client.ItemAlreadyOwnedBillingException
 import eu.darken.myperm.common.upgrade.core.client.UserCanceledBillingException
 import eu.darken.myperm.common.upgrade.core.data.Sku
@@ -28,11 +29,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
@@ -60,11 +63,21 @@ class UpgradeViewModel @Inject constructor(
     // Single money-path guard: restore, switch-verification and purchase launch are mutually exclusive.
     private val action = MutableStateFlow(ActionState.IDLE)
 
-    // Billing has completed its first reconciliation (or the fallback elapsed). Purchase actions stay
-    // disabled until then so a cold-start empty snapshot can't offer acquisition to an existing owner.
-    private val settled = MutableStateFlow(false)
+    // Bumped to re-run the offer query (manual retry, or an on-resume retry after a failure).
+    private val retryTrigger = MutableStateFlow(0)
 
-    private val pricing = MutableStateFlow<Pricing?>(null)
+    // Query-status of the purchase offers. Kept as a VM-lifetime hot flow (Eagerly), NOT a cold flow
+    // folded into the combined UI state: that way backgrounding the screen (which drops the state
+    // subscription after 5s) can't discard a loaded catalog and re-query with a loading flash on
+    // return. flatMapLatest cancels an in-flight query when a newer retry supersedes it.
+    private val pricingState: StateFlow<PricingState> = retryTrigger
+        .flatMapLatest {
+            flow {
+                emit(PricingState.Pending)
+                emit(queryPricing())
+            }
+        }
+        .stateIn(vmScope, SharingStarted.Eagerly, PricingState.Pending)
 
     // Re-evaluates the 24h grace-diagnostics boundary while the screen is open (the boundary is
     // derived from a wall-clock timestamp, so combined flows alone won't re-fire when it elapses).
@@ -76,17 +89,31 @@ class UpgradeViewModel @Inject constructor(
     }
 
     val state: StateFlow<UpgradeUiState> = combine(
-        pricing,
+        pricingState,
         upgradeRepo.upgradeInfo,
         upgradeRepo.wasEverPro,
         upgradeRepo.lastProConfirmedAt,
-        combine(settled, action, manageMode.filterNotNull(), graceTick) { s, a, m, _ -> Triple(s, a, m) },
-    ) { pricing, info, wasEverPro, lastProAt, (isSettled, action, manage) ->
-        val gplayInfo = info as? UpgradeRepoGplay.Info ?: UpgradeRepoGplay.Info(billingData = null)
-        toLoadedState(
+        combine(upgradeRepo.isSettled, action, manageMode.filterNotNull(), graceTick) { s, a, m, _ -> Triple(s, a, m) },
+    ) { pricing, _, wasEverPro, lastProAt, (isSettled, action, manage) ->
+        // Resolve the freshest upgradeInfo rather than trusting this combine slot's value. isSettled
+        // is derived from upgradeInfo and flips true only AFTER upgradeInfo.value is reconciled, but
+        // `combine` provides no ordering between its branches — the isSettled branch can fire while the
+        // info branch still holds the pre-reconciliation snapshot. Reading .value guarantees that
+        // whenever isSettled is true we pair it with the reconciled Info, never a stale non-Pro one
+        // (which would briefly flash Unavailable, or enabled sales actions, to an owner on cold start).
+        // The upgradeInfo branch is still present in combine() above solely to trigger recomputation
+        // when the Info changes.
+        val gplayInfo = upgradeRepo.upgradeInfo.value as? UpgradeRepoGplay.Info
+            ?: UpgradeRepoGplay.Info(billingData = null)
+        // Owners AND grace users are Pro: their status/management surface renders regardless of the
+        // offer catalog, so a pending or failed price query never blocks them (Loading) nor errors
+        // them out (Unavailable). Only a genuine, settled, non-Pro buyer sees Unavailable.
+        val priceIndependent = gplayInfo.isPro
+
+        fun loaded(resolved: Pricing) = toLoadedState(
             manageMode = manage,
             info = gplayInfo,
-            pricing = pricing ?: Pricing(),
+            pricing = resolved,
             lastProConfirmedAt = lastProAt,
             now = System.currentTimeMillis(),
             isSettled = isSettled,
@@ -94,11 +121,30 @@ class UpgradeViewModel @Inject constructor(
             wasEverPro = wasEverPro,
             graceDiagnosticsAfterMs = GRACE_DIAGNOSTICS_AFTER_MS,
         )
+
+        when (pricing) {
+            is PricingState.Ready -> loaded(pricing.pricing)
+            PricingState.Pending -> if (isSettled && priceIndependent) loaded(Pricing()) else UpgradeUiState.Loading
+            is PricingState.Failed -> when {
+                priceIndependent -> loaded(Pricing())
+                !isSettled -> UpgradeUiState.Loading
+                else -> UpgradeUiState.Unavailable(pricing.error)
+            }
+        }
     }.stateIn(vmScope, SharingStarted.WhileSubscribed(5_000), UpgradeUiState.Loading)
 
     init {
-        launch { loadPricingNow() }
-        settle()
+        // Kick off the first billing reconciliation; the repo's isSettled flips once it publishes.
+        // (The offer query is started separately by pricingState's Eagerly sharing.)
+        launch {
+            try {
+                upgradeRepo.refresh()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                log(TAG, WARN) { "Initial refresh failed: ${e.asLog()}" }
+            }
+        }
     }
 
     fun init(manage: Boolean) {
@@ -127,49 +173,56 @@ class UpgradeViewModel @Inject constructor(
         } catch (e: Exception) {
             log(TAG, WARN) { "onResume refresh failed: ${e.asLog()}" }
         }
-        val current = pricing.value
-        if (current == null || (!current.subAvailable && !current.iapAvailable)) {
-            loadPricingNow()
-        }
+        // Retry the offer query only if the last attempt failed. Ready = usable offers already loaded;
+        // Pending = a query is in flight, restarting it would only cause a needless loading flash.
+        if (pricingState.value is PricingState.Failed) retrySkuQuery()
     }
 
-    private suspend fun loadPricingNow() {
+    // Re-run the offer query (from the Unavailable card's retry button, or on-resume after a failure).
+    fun retrySkuQuery() {
+        log(TAG) { "retrySkuQuery()" }
+        retryTrigger.update { it + 1 }
+    }
+
+    private suspend fun queryPricing(): PricingState {
         val skuDetails = try {
             withTimeoutOrNull(SKU_QUERY_TIMEOUT_MS) { upgradeRepo.querySkus() }
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to query SKUs: ${e.asLog()}" }
-            null
+            return PricingState.Failed(GplayServiceUnavailableException(e))
+        } ?: run {
+            log(TAG, WARN) { "SKU query timed out" }
+            return PricingState.Failed(GplayServiceUnavailableException(RuntimeException("SKU query timed out")))
         }
 
-        val iapDetails = skuDetails?.firstOrNull { it.sku.type == Sku.Type.IAP }
-        val subDetails = skuDetails?.firstOrNull { it.sku.type == Sku.Type.SUBSCRIPTION }
+        val iapDetails = skuDetails.firstOrNull { it.sku.type == Sku.Type.IAP }
+        val subDetails = skuDetails.firstOrNull { it.sku.type == Sku.Type.SUBSCRIPTION }
         val subOffers = subDetails?.details?.subscriptionOfferDetails
         val baseOffer = subOffers?.firstOrNull { MyPermSku.Sub.BASE_OFFER.matches(it) }
         val hasTrialOffer = subOffers?.any { MyPermSku.Sub.TRIAL_OFFER.matches(it) } == true
 
-        pricing.value = Pricing(
+        val pricing = Pricing(
             iap = iapDetails,
             sub = subDetails,
             subPrice = baseOffer?.pricingPhases?.pricingPhaseList?.lastOrNull()?.formattedPrice,
             iapPrice = iapDetails?.details?.oneTimePurchaseOfferDetails?.formattedPrice,
             hasTrialOffer = hasTrialOffer,
         )
-    }
-
-    private fun settle() = launch {
-        // Flip settled after the first reconciliation, or after a bounded fallback so actions can't
-        // stay disabled forever during a Play outage.
-        try {
-            withTimeoutOrNull(SETTLE_FALLBACK_MS) { upgradeRepo.refresh() }
-        } finally {
-            settled.value = true
+        // Both configured products must come back. A response missing either the subscription or the
+        // one-time offer is, to the buyer, a half-broken screen — treat it as a failure so we show a
+        // retry instead of a partial catalog (Play normally returns both; one missing signals a glitch).
+        return if (pricing.subAvailable && pricing.iapAvailable) {
+            PricingState.Ready(pricing)
+        } else {
+            log(TAG, WARN) { "SKU query returned an incomplete offer set (sub=${pricing.subAvailable}, iap=${pricing.iapAvailable})" }
+            PricingState.Failed(GplayServiceUnavailableException(RuntimeException("Incomplete purchase offer set")))
         }
     }
 
     fun onSubscribe(activity: Activity) {
-        val current = pricing.value ?: return
+        val current = pricingState.value.readyPricing ?: return
         val skuDetails = current.sub ?: return
         val offer = if (current.hasTrialOffer) MyPermSku.Sub.TRIAL_OFFER else MyPermSku.Sub.BASE_OFFER
         // Acquire the guard synchronously on the caller (main) thread BEFORE launching, so two rapid
@@ -220,9 +273,13 @@ class UpgradeViewModel @Inject constructor(
                     }
 
                     else -> {
-                        val iap = pricing.value?.iap
+                        val iap = pricingState.value.readyPricing?.iap
                         if (iap == null) {
-                            log(TAG, WARN) { "No IAP SkuDetails available" }
+                            // The IAP catalog isn't loaded. The UI gates the buy/switch buttons on IAP
+                            // availability (OffersCard / SwitchOfferCard), so this is only reachable if
+                            // the catalog dropped between render and tap — abort quietly rather than
+                            // launch a broken flow or pop a dialog.
+                            log(TAG, WARN) { "No IAP SkuDetails available -> aborting purchase launch" }
                         } else {
                             launchBillingFlow(activity, iap, null)
                         }
@@ -338,12 +395,25 @@ class UpgradeViewModel @Inject constructor(
         }
     }
 
+    private sealed interface PricingState {
+        // A query is in flight (initial load or a retry generation).
+        data object Pending : PricingState
+
+        // The query failed, timed out, or returned no usable offer. Non-Pro buyers see the Unavailable
+        // retry card; owners/grace users ignore it.
+        data class Failed(val error: Throwable) : PricingState
+
+        // At least one usable offer (subscription or one-time) is available.
+        data class Ready(val pricing: Pricing) : PricingState
+
+        val readyPricing: Pricing? get() = (this as? Ready)?.pricing
+    }
+
     companion object {
         internal const val VERIFY_TIMEOUT_MS = 10_000L
         internal const val SKU_QUERY_TIMEOUT_MS = 15_000L
         internal const val RESTORE_TIMEOUT_MS = 15_000L
         internal const val RESTORE_MIN_VISIBLE_MS = 1_500L
-        internal const val SETTLE_FALLBACK_MS = 10_000L
         internal const val GRACE_DIAGNOSTICS_AFTER_MS = 24 * 60 * 60 * 1000L
         private const val GRACE_TICK_INTERVAL_MS = 60_000L
         private val TAG = logTag("Upgrade", "Gplay", "VM")

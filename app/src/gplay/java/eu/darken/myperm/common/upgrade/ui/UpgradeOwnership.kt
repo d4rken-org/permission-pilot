@@ -84,7 +84,10 @@ fun OwnershipContent(
                 iapPrice = state.pricing.iapPrice,
                 switchUnlocked = state.switchUnlocked,
                 verificationInProgress = state.verificationInProgress,
-                enabled = state.isSettled && !state.actionBusy,
+                // Also require the one-time SkuDetails to be loaded: without it the launch can't run,
+                // so an enabled button would be a dead tap (the catalog may have failed to load for a
+                // Pro user, who still reaches this ownership screen).
+                enabled = state.isSettled && !state.actionBusy && state.pricing.iapAvailable,
                 onSwitchToIap = onSwitchToIap,
             )
         }
