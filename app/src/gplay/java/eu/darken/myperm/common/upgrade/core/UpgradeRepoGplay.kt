@@ -27,7 +27,9 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
@@ -86,6 +88,20 @@ class UpgradeRepoGplay @Inject constructor(
             },
         manualInfo,
     ).stateIn(scope, SharingStarted.Eagerly, cachedInfo())
+
+    // True once billing has published its first real reconciliation (a value beyond the cached seed),
+    // so callers can trust upgradeInfo as authoritative rather than a cold-cache guess. Derived from
+    // upgradeInfo itself and started Eagerly at the same time, so `drop(1)` skips only the seed and the
+    // flag can never be observed true before the value it certifies is already upgradeInfo.value — this
+    // is what prevents pairing "settled" with a stale non-Pro snapshot on a cold start. A fallback timer
+    // flips it during a total outage (no emission at all) so purchase actions can't stay disabled forever.
+    val isSettled: StateFlow<Boolean> = merge(
+        upgradeInfo.drop(1).map { true },
+        flow {
+            delay(SETTLE_FALLBACK_MS)
+            emit(true)
+        },
+    ).stateIn(scope, SharingStarted.Eagerly, false)
 
     // True once this install has ever confirmed a known Pro purchase; drives the proactive restore
     // banner. Local signal only — a fresh install or a switched Google account starts false.
@@ -300,6 +316,10 @@ class UpgradeRepoGplay @Inject constructor(
         private const val RETRY_DELAY_MS = 60_000L                         // 1min before re-subscribing
         private const val RESTORE_ON_OWNED_TIMEOUT_MS = 15_000L
         private const val REFRESH_TIMEOUT_MS = 30_000L
+
+        // Fallback for isSettled during a total Play outage (no billing emission at all), so purchase
+        // actions don't stay disabled forever.
+        internal const val SETTLE_FALLBACK_MS = 10_000L
 
         private fun BillingData.getProSku(): PurchasedSku? = purchasedSkus
             .firstOrNull { it.sku in MyPermSku.PRO_SKUS }

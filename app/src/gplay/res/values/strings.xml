@@ -6,6 +6,8 @@
     <string name="upgrades_gplay_already_owned_error">Google Play reports that you already own this upgrade, but it could not be restored. Check that you are signed in with the Google account used for the original purchase, then try “Restore purchase”.</string>
 
     <string name="upgrade_screen_preamble">Permission Pilot is ad-free and respects your privacy. Upgrading supports continued development.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play unavailable</string>
+    <string name="upgrade_screen_offers_unavailable_message">Couldn\'t load the purchase options. Google Play might be temporarily unavailable — check your connection and try again.</string>
     <string name="upgrade_screen_subscription_trial_action">Start free trial</string>
     <string name="upgrade_screen_subscription_action">Subscribe</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/year, cancel anytime</string>

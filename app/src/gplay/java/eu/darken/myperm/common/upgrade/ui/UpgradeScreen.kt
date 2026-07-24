@@ -3,10 +3,13 @@ package eu.darken.myperm.common.upgrade.ui
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
@@ -15,10 +18,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.twotone.ArrowBack
+import androidx.compose.material.icons.twotone.WarningAmber
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -106,6 +114,7 @@ fun UpgradeScreenHost(
         onRestore = { vm.onRestore() },
         onManageSubscription = { vm.onManageSubscription() },
         onContactSupport = { vm.onContactSupport() },
+        onRetry = { vm.retrySkuQuery() },
     )
 }
 
@@ -119,6 +128,7 @@ fun UpgradeScreen(
     onRestore: () -> Unit,
     onManageSubscription: () -> Unit,
     onContactSupport: () -> Unit,
+    onRetry: () -> Unit,
 ) {
     Box(modifier = Modifier.windowInsetsPadding(WindowInsets.systemBars)) {
         Column(
@@ -139,6 +149,8 @@ fun UpgradeScreen(
                 UpgradeUiState.Loading -> {
                     CircularProgressIndicator(modifier = Modifier.padding(16.dp))
                 }
+
+                is UpgradeUiState.Unavailable -> UnavailableContent(onRetry = onRetry)
 
                 is UpgradeUiState.Loaded -> {
                     if (state.showOwnership) {
@@ -194,16 +206,7 @@ private fun SalesContent(
         Spacer(modifier = Modifier.height(24.dp))
     }
 
-    UpgradePreambleCard(
-        text = stringResource(R.string.upgrade_screen_preamble),
-        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-    )
-
-    Spacer(modifier = Modifier.height(24.dp))
-    UpgradeBenefitsCard(
-        chipColor = MaterialTheme.colorScheme.primaryContainer,
-        chipContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-    )
+    SalesPitch()
     Spacer(modifier = Modifier.height(24.dp))
 
     OffersCard(
@@ -220,4 +223,73 @@ private fun SalesContent(
         enabled = state.isSettled && !state.actionBusy,
         onRestore = onRestore,
     )
+}
+
+// The purchase options couldn't be loaded and the user isn't Pro. The pitch still renders (nothing is
+// owned), with an inline warning + retry in place of the offers — and no restore section, matching the
+// "nothing to reconcile yet" framing.
+@Composable
+private fun UnavailableContent(onRetry: () -> Unit) {
+    SalesPitch()
+    Spacer(modifier = Modifier.height(24.dp))
+    UpgradeInlineStateCard(
+        title = stringResource(R.string.upgrade_screen_offers_unavailable_title),
+        body = stringResource(R.string.upgrade_screen_offers_unavailable_message),
+        onRetry = onRetry,
+    )
+}
+
+// Shared preamble + benefits pitch, rendered on both the sales and the offers-unavailable screens.
+@Composable
+private fun SalesPitch() {
+    UpgradePreambleCard(
+        text = stringResource(R.string.upgrade_screen_preamble),
+        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+    )
+    Spacer(modifier = Modifier.height(24.dp))
+    UpgradeBenefitsCard(
+        chipColor = MaterialTheme.colorScheme.primaryContainer,
+        chipContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+    )
+}
+
+@Composable
+private fun UpgradeInlineStateCard(
+    title: String,
+    body: String,
+    onRetry: () -> Unit,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.errorContainer,
+            contentColor = MaterialTheme.colorScheme.onErrorContainer,
+        ),
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(18.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Icon(
+                    imageVector = Icons.TwoTone.WarningAmber,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onErrorContainer,
+                )
+                Text(text = title, style = MaterialTheme.typography.titleMedium)
+            }
+            Text(text = body, style = MaterialTheme.typography.bodyMedium)
+            OutlinedButton(
+                onClick = onRetry,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(stringResource(R.string.general_retry_action))
+            }
+        }
+    }
 }

@@ -47,6 +47,11 @@ data class Pricing(
 sealed interface UpgradeUiState {
     data object Loading : UpgradeUiState
 
+    // The purchase-option query failed (or Google Play returned no usable offers) and the user is not
+    // already Pro, so there is nothing to buy and no status to show — the screen offers a retry. Owners
+    // and grace users never reach this: a failed price query is not their problem (see the ViewModel).
+    data class Unavailable(val error: Throwable) : UpgradeUiState
+
     data class Loaded(
         val manageMode: Boolean,
         val isPro: Boolean,
