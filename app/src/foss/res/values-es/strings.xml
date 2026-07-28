@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">Conviértete en patrocinador</string>
     <string name="upgrade_foss_sponsor_subtitle">Abre GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">¡Por favor, tómate un momento para visitar la página de patrocinadores!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">Versión gratuita</string>
+    <string name="upgrade_screen_status_free_body">Estás usando la compilación gratuita de código abierto. Apoya el desarrollo para desbloquear las funciones Pro.</string>
+    <string name="upgrade_screen_status_free_action">Conviértete en patrocinador</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">¡Gracias por tu apoyo!</string>
+    <string name="upgrade_screen_status_upgraded_body">Has desbloqueado todas las funciones Pro. Tu apoyo mantiene Permission Pilot gratuito y de código abierto.</string>
+    <string name="upgrade_screen_supporter_since">Patrocinador desde %1$s</string>
+    <string name="upgrade_screen_recurring_title">Apoya de nuevo</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot se desarrolla de forma abierta. Considera un patrocinio recurrente para ayudar a sostenerlo.</string>
+    <string name="upgrade_screen_recurring_action">Abrir Patrocinadores de GitHub</string>
 </resources>

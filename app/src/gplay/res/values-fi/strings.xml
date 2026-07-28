@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play -palvelut eivät ole käytettävissä.</string>
     <string name="upgrades_no_purchases_found_check_account">Ostoja ei löytynyt. Käytätkö oikeaa tiliä?</string>
+    <string name="upgrades_gplay_already_owned_title">Jo ostettu</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play ilmoittaa, että omistit jo tämän päivityksen, mutta sitä ei voitu palauttaa. Varmista, että olet kirjautunut Google-tilillä, jolla teit alkuperäisen ostoksen, ja yritä sitten \"Palauta osto\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot on mainokseton ja kunnioittaa yksityisyyttäsi. Päivittäminen tukee jatkuvaa kehitystä.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play ei ole käytettävissä</string>
+    <string name="upgrade_screen_offers_unavailable_message">Ostovaihtoehtoja ei voitu ladata. Google Play saattaa olla tilapäisesti poissa käytöstä – tarkista yhteytesi ja yritä uudelleen.</string>
     <string name="upgrade_screen_subscription_trial_action">Aloita ilmainen kokeilu</string>
     <string name="upgrade_screen_subscription_action">Tilaa</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/vuosi, voit peruuttaa milloin tahansa</string>
-    <string name="upgrade_screen_iap_action">Osta Pro</string>
+    <string name="upgrade_screen_iap_action">Kertaostos</string>
     <string name="upgrade_screen_iap_action_hint">Kertaostos hintaan %s</string>
     <string name="upgrade_screen_restore_purchase_action">Palauta ostos</string>
     <string name="upgrade_screen_restore_purchase_message">Ostoksia ei löydy. Tarkista, että olet kirjautunut oikealla Google-tilillä.</string>
+    <string name="upgrade_screen_restore_banner_title">Ostettu Pro jo?</string>
+    <string name="upgrade_screen_restore_banner_body">Näyttää siltä, että olet päivittänyt Pro-versioon tällä laitteella aiemmin. Palauta ostoksesi avataksesi sen uudelleen.</string>
     <string name="upgrade_screen_options_description">Tilaukset uusiutuvat automaattisesti. Voit peruuttaa milloin tahansa.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Olet Pro – kiitos!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Kertaluonteinen Pro-ostos avaa kaikki Pro-ominaisuudet ikuisesti.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Tilauksesi avaa kaikki Pro-ominaisuudet.</string>
+    <string name="upgrade_screen_owned_sub_title">Tilauksesi</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Tilauksesi on aktiivinen ja uusiutuu automaattisesti.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Tilauksesi on asetettu vanhentumaan eikä se uusiudu. Säilytät Pro-ominaisuudet sen loppuun asti.</string>
+    <string name="upgrade_screen_owned_both_warning">Omistat kertamaksullisen Pro-päivityksen ja sinulla on myös aktiivinen tilaus. Et tarvitse molempia – peruuta tilaus Google Playssa, jotta vältyt lisäkustannuksilta.</string>
+    <string name="upgrade_screen_manage_subscription_action">Hallitse tilausta</string>
+    <string name="upgrade_screen_owned_iap_title">Elinikäinen Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Omistat kertamaksullisen Pro-päivityksen. Ei tilausta, ei uusintoja.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Siirry kertamaksuun</string>
+    <string name="upgrade_screen_switch_purchase_note">Tilauksesi ei uusiudu, joten voit siirtyä pysyvään kertamaksulliseen Pro-ostoon nyt.</string>
+    <string name="upgrade_screen_switch_locked_note">Vaihda kertamaksun ostoon peruuttamalla ensin tilauspalvelusi Google Playsta. Tämä tarjous vapautuu, kun se on asetettu pois uusiutumasta.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play tarkistaa vain tilin, johon olet tällä hetkellä kirjautunut. Kertaosto on erillinen tilauspalvelustasi.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Tilauspalvelusi on vielä aktiivinen ja uusiutuu. Peruuta se ensin Google Playsta.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Tilauspalvelusi tarkistaminen Google Playsta epäonnistui. Yritä uudelleen.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Vahvistetaan ostoasi</string>
+    <string name="upgrade_screen_grace_body">Odotetaan Google Playta vahvistamaan uudelleen Pro-ostoasi. Tämä yleensä ratkeaa itsestään.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Emme silti pysty vahvistamaan Pro-ostoasi uudelleen Google Playssa. Jos tämä jatkuu, yritä palauttaa ostosi tai ota yhteyttä tukeen.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Tilanne näyttää väärältä?</string>
+    <string name="upgrade_screen_restore_status_body">Jos olet ostanut Pro:n mutta sitä ei näy, suorita reaaliaikainen tarkistus Google Playssa.</string>
+    <string name="upgrade_screen_restore_success_message">Osto palautettu.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Varmista, että olet kirjautunut Google-tilillä, jolla ostit. Google Play suoritti juuri tuoreen tarkistuksen.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Päivitysvaihtoehdot</string>
+    <string name="upgrade_screen_offers_body">Samat ominaisuudet, vain eri hinnoittelumallit.</string>
+    <string name="upgrade_screen_offers_or">tai</string>
+    <string name="upgrade_screen_subscription_offer_title">Vuosittainen tilaus</string>
+    <string name="upgrade_screen_subscription_offer_body">Uusiutuu vuosittain ilmaisen kokeilujakson jälkeen. Voit peruuttaa milloin tahansa Google Playssa.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Uusiutuu vuosittain. Voit peruuttaa milloin tahansa Google Playssa.</string>
+    <string name="upgrade_screen_iap_offer_title">Osta kerran</string>
+    <string name="upgrade_screen_iap_offer_body">Yksi maksu, ei uusintoja.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Tilaus on edelleen aktiivinen</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Playta tarkistettiin juuri, mutta Pro-ostoa ei voitu vahvistaa tilissä, jota tämä sovellus käyttää.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Useat tilit voivat hämmentää Google Playta. Sovelluksen asentaminen Google Play -verkkosivuston kautta pakottaa sen liittymään tiettyyn tiliin.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play -synkronointi voi kestää. Kokeile uudelleenkäynnistystä, Google Play -välimuistin tyhjentämistä tai vain odottamista.</string>
+    <string name="upgrade_screen_restore_contact_hint">Oletko vielä jumissa? Ota yhteyttä tukeen sähköpostista, jolla ostoksesi tehtiin, ja sisällytä Google Play -tilausnumerosi.</string>
 </resources>

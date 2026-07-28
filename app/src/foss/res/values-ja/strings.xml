@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">スポンサーになる</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsorsを開く</string>
     <string name="upgrade_foss_sponsor_returned_early">スポンサーページをご覧ください！</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">無料版</string>
+    <string name="upgrade_screen_status_free_body">無料のオープンソースビルドを使用しています。開発を支援して Pro 機能をロック解除してください。</string>
+    <string name="upgrade_screen_status_free_action">スポンサーになる</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">ご支援いただきありがとうございます！</string>
+    <string name="upgrade_screen_status_upgraded_body">すべての Pro 機能のロックを解除しました。あなたのご支援によって Permission Pilot は無料でオープンソースであり続けます。</string>
+    <string name="upgrade_screen_supporter_since">%1$s からのサポーター</string>
+    <string name="upgrade_screen_recurring_title">もう一度サポートする</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot はオープンな形で開発されています。継続的なスポンサーシップをご検討ください。</string>
+    <string name="upgrade_screen_recurring_action">GitHub スポンサーを開く</string>
 </resources>

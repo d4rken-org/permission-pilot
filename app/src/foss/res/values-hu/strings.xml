@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">Legyen szponzor</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors megnyitása</string>
     <string name="upgrade_foss_sponsor_returned_early">Kérlek, szánj egy pillanatot a szponzor oldal megtekintésére!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">Ingyenes verzió</string>
+    <string name="upgrade_screen_status_free_body">Az ingyenes, nyílt forráskódú verziót használod. Támogasd a fejlesztést a Pro funkciók feloldásához.</string>
+    <string name="upgrade_screen_status_free_action">Legyél szponzor</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">Köszönjük a támogatást!</string>
+    <string name="upgrade_screen_status_upgraded_body">Feloldottad az összes Pro funkciót. A támogatásod megtartja a Permission Pilot-ot ingyenesnek és nyílt forráskódúnak.</string>
+    <string name="upgrade_screen_supporter_since">Támogató %1$s óta</string>
+    <string name="upgrade_screen_recurring_title">Támogass újra</string>
+    <string name="upgrade_screen_recurring_body">A Permission Pilot nyílt forráskódban fejlesztik. Fontold meg az ismétlődő szponzorálást a fenntartásának segítésére.</string>
+    <string name="upgrade_screen_recurring_action">GitHub Sponsors megnyitása</string>
 </resources>

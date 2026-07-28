@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play አገልግሎቶች አይገኙም።</string>
     <string name="upgrades_no_purchases_found_check_account">ምንም ግዢዎች አልተገኙም። ትክክለኛውን መለያ እየተጠቀሙ ነው?</string>
+    <string name="upgrades_gplay_already_owned_title">ቀድሞ ተገዛ</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play ይህን ማሻሻያ ቀድሞ ይዤተዋል ይላል፣ ነገር ግን ሊመለስ አልተቻለም። ዋናውን ግዢ ለያዙ Google መለያ ገብተዋል መሆኑን ያረጋግጡ፣ ከዚያ \"ግዢ ወደ ነበር ሆኑ\" ሞክሩ።</string>
     <string name="upgrade_screen_preamble">Permission Pilot አዶዘቕ ዘርዘር እና ስሴያወን ይካባተኻላለ። ደርጉን ወደፈርም ብጅት ይደግፋለ።</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play አይገኝም</string>
+    <string name="upgrade_screen_offers_unavailable_message">ግዢ አማራጮችን መጫን አልተቻለም። Google Play በጊዜው አይገኝም ሊሆን ይችላል - ግንኙነትዎን ያረጋግጡ እና እንደገና ሞክሩ።</string>
     <string name="upgrade_screen_subscription_trial_action">የ፣የ ንብስት ይጀምሩ</string>
     <string name="upgrade_screen_subscription_action">ይመዝገቡ</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ዓመት፣ በማንኛውም ጊዜ ይሰርዙ</string>
-    <string name="upgrade_screen_iap_action">Pro የጭንት</string>
+    <string name="upgrade_screen_iap_action">አንድ ጊዜ ግዢ</string>
     <string name="upgrade_screen_iap_action_hint">%s የአክ ሥዳን</string>
     <string name="upgrade_screen_restore_purchase_action">ግዢን ወደነበረበት መልስ</string>
     <string name="upgrade_screen_restore_purchase_message">ምንም የሥዳ አልተገኙም። በဍርው የ Google መገለጫዘርዘር ፣ ለዒል ዘስትወ።</string>
+    <string name="upgrade_screen_restore_banner_title">ቀድሞ Pro ገዝተዋል?</string>
+    <string name="upgrade_screen_restore_banner_body">በዚህ መሣሪያ ላይ በፊት Pro ገዝተዋል ይመስላል። ዳግም ለመክፈት ግዢዎን ወደ ነበር ሆኑ።</string>
     <string name="upgrade_screen_options_description">ኰይዘቶች በርስ ይተያያኳሉ። በአንደም መቀሰል ይቻላሉ።</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Pro ነዎ — አመሰግናለሁ!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">የአንድ ጊዜ Pro ግዢ ሁሉንም Pro ባህሪ ለዘላለም ይከፍታል።</string>
+    <string name="upgrade_screen_owned_hero_sub_body">ሰዋስክ ሁሉም ፕሮ ባህሪ ይከፍታል።</string>
+    <string name="upgrade_screen_owned_sub_title">ሰዋስክ</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">ሰዋስክ ንቁ ነው እና ራሱ በራሱ ይታደሳል።</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">ሰዋስክ ለመጨረስ ተዘጋጅቷል እና አይታደስም። እስከሚያልቅ ድረስ ፕሮ ይኖርዎታል።</string>
+    <string name="upgrade_screen_owned_both_warning">ለአንድ ጊዜ ፕሮ ማሻሻያ ይዞታል እንዲሁም ንቁ ሰዋስ አለዎት። ሁለቱን ስለማያስፈልግዎ — ተጨማሪ ክፍያ ለማስወገድ በGoogle Play ሰዋስን ይሰርዙ።</string>
+    <string name="upgrade_screen_manage_subscription_action">ሰዋስን ያስተዳድሩ</string>
+    <string name="upgrade_screen_owned_iap_title">ለዘላለም ፕሮ</string>
+    <string name="upgrade_screen_owned_iap_body">ለአንድ ጊዜ ፕሮ ማሻሻያ ይዞታል። ሰዋስ የለም፣ ምንም ታደሳ አይደለም።</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">ወደ አንድ ጊዜ ግዢ ይቀይሩ</string>
+    <string name="upgrade_screen_switch_purchase_note">ሰዋስክ አይታደስም፣ ስለዚህ አሁን ወደ ዘላለም ለአንድ ጊዜ ፕሮ ግዢ መዋወር ይችላሉ።</string>
+    <string name="upgrade_screen_switch_locked_note">ወደ አንድ ጊዜ ያለው ገዥ ለመቀየር በመጀመሪያ Google Play ላይ የእርስዎን ምዝገባ ይሰርዙ። ይህ አማራጭ አቁም ሲተገበር ይክፈታል።</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play በሚገቡበት ሂሳብዎ ብቻ ይከታተላል። አንድ ጊዜ ያለው ገዥ ከእርስዎ ምዝገባ ተለይቶ ነው።</string>
+    <string name="upgrade_screen_sub_still_renewing_message">የእርስዎ ምዝገባ አሁንም ንቁ እና ይታደሳል። በGoogle Play ውስጥ በመጀመሪያ ይሰርዙት።</string>
+    <string name="upgrade_screen_sub_check_failed_message">የእርስዎን ምዝገባ በGoogle Play ሊያረጋገ አልቻለም። እንደገና ይሞክሩ።</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">የእርስዎን ገዥ በማረጋገጥ ላይ ነው</string>
+    <string name="upgrade_screen_grace_body">Google Play የእርስዎን Pro ገዥ ለማረጋገጥ ጠብቋ ነው። ይህ ብዙውን ጊዜ በራሱ ይፈታል።</string>
+    <string name="upgrade_screen_grace_diagnostics_body">አሁንም የእርስዎን Pro ገዥ በGoogle Play ሊያረጋገ አልቻለም። ይህ ሆኖ ቢቆየ የእርስዎን ገዥ ወደነበረበት ይመልሱ ወይም ደገፍ ያነጋግሩ።</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">ሁኔታው ትክክል አይመስልም?</string>
+    <string name="upgrade_screen_restore_status_body">Pro ገዥ ወደሩ ነገር ግን ይታይ ካልሆነ Google Play ላይ አሁን ምርመራ ያሂዱ።</string>
+    <string name="upgrade_screen_restore_success_message">ገዥ ወደነበረበት መልስ ተደረገ።</string>
+    <string name="upgrade_screen_restore_webinstall_hint">ያረጋግጡ ወደ ያገዛሙት Google ሐሳብዎ ተመዝገበዋል። Google Play ላይ ቀጥተኛ ምርመራ አሁን ተሮጠ።</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">የማሻሻያ አማራጮች</string>
+    <string name="upgrade_screen_offers_body">ተመሳሳይ ባህሪያት፤ የተለየ የዋጋ ሞዴል ብቻ።</string>
+    <string name="upgrade_screen_offers_or">ወይም</string>
+    <string name="upgrade_screen_subscription_offer_title">ዓመታዊ ምዝገባ</string>
+    <string name="upgrade_screen_subscription_offer_body">ነፃ ሙከራ ከቋጣ ዓመታዊ ይታጀብራል። በማንኛውም ጊዜ Google Play ውስጥ ይሰርዙ።</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">ዓመታዊ ይታጀብራል። በማንኛውም ጊዜ Google Play ውስጥ ይሰርዙ።</string>
+    <string name="upgrade_screen_iap_offer_title">አንድ ጊዜ ይገዙ</string>
+    <string name="upgrade_screen_iap_offer_body">አንድ ክፍያ፤ ምንም ማታጀብር የለም።</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">ምዝገባ አሁንም ንቁ ነው።</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play አሁን ተረጋገጧል፣ ግን ይህ መተግበሪያ ለሚጠቀሙት መለያ ምንም Pro ግዢ ማረጋገጥ አልተቻለም።</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">ብዙ መለያዎች Google Play ማምታታት ይችላሉ። መተግበሪያውን በGoogle Play ድርጣቢያ በኩል መጫን ከተወሰነ መለያ ጋር ግንኙነትን ያስገድዳል።</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play ሲምሪዝሽን ጊዜ ሊወስድ ይችላል። እንደገና ማስጀመር፣ Google Play Store መሸጎጫ ማጥራት ወይም ብቻ መጠበቅ ይሞክሩ።</string>
+    <string name="upgrade_screen_restore_contact_hint">አሁንም ተጣበቀ? ግዢውን ያደረገውን ኢሜይል በመጠቀም ድጋፋን ያገናኙ እና የGoogle Play ትዕዛዝ ቁጥር ያካትቱ።</string>
 </resources>

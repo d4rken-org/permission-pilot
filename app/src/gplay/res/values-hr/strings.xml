@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Usluge Google Playa nisu dostupne.</string>
     <string name="upgrades_no_purchases_found_check_account">Nisu pronađene kupnje. Koristite li pravi račun?</string>
+    <string name="upgrades_gplay_already_owned_title">Već kupljeno</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play izvještava da već posjedujete ovu nadogradnju, ali nije mogla biti vraćena. Provjerite jeste li prijavljeni sa Google računom korištenim za izvornu kupnju, pa pokušajte s opcijom \"Vrati kupnju\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot je bez oglasa i poštuje vašu privatnost. Nadogradnjom podržavate daljnji razvoj.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play nije dostupan</string>
+    <string name="upgrade_screen_offers_unavailable_message">Nije bilo moguće učitati opcije kupnje. Google Play možda je privremeno nedostupan — provjerite vašu vezu i pokušajte ponovno.</string>
     <string name="upgrade_screen_subscription_trial_action">Započnite besplatnu probu</string>
     <string name="upgrade_screen_subscription_action">Pretplatite se</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/godinu, otkaži bilo kada</string>
-    <string name="upgrade_screen_iap_action">Kupi Pro</string>
+    <string name="upgrade_screen_iap_action">Jednokratna kupnja</string>
     <string name="upgrade_screen_iap_action_hint">Jednokratna kupnja od %s</string>
     <string name="upgrade_screen_restore_purchase_action">Obnovi kupnju</string>
     <string name="upgrade_screen_restore_purchase_message">Nisu pronađene kupnje. Provjerite jeste li prijavljeni ispravnim Google računom.</string>
+    <string name="upgrade_screen_restore_banner_title">Već ste kupili Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Čini se da ste se prije na ovom uređaju nadogradili na Pro. Vratite vašu kupnju da je ponovno otključate.</string>
     <string name="upgrade_screen_options_description">Pretplate se automatski obnavljaju. Možete otkazati u bilo koje vrijeme.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Sada ste Pro — hvala!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Vaša jednokratna Pro kupnja otključava sve Pro značajke zauvijek.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Vaša pretplata otključava sve Pro značajke.</string>
+    <string name="upgrade_screen_owned_sub_title">Vaša pretplata</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Vaša pretplata je aktivna i obnavlja se automatski.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Vaša pretplata je postavljena da ističe i neće se obnoviti. Zadržat ćete Pro dok ne istekne.</string>
+    <string name="upgrade_screen_owned_both_warning">Posjedujete jednokratnu Pro nadogradnju i također imate aktivnu pretplatu. Ne trebate oboje — otkažite pretplatu u Google Playu kako biste izbjegli daljnje naknade.</string>
+    <string name="upgrade_screen_manage_subscription_action">Upravljajte pretplatom</string>
+    <string name="upgrade_screen_owned_iap_title">Doživotni Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Posjedujete jednokratnu Pro nadogradnju. Bez pretplate, bez obnove.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Prebacite se na jednokratnu kupnju</string>
+    <string name="upgrade_screen_switch_purchase_note">Vaša pretplata se neće obnoviti, pa sada možete prijeći na trajnu jednokratnu Pro kupnju.</string>
+    <string name="upgrade_screen_switch_locked_note">Za prebacivanje na jednokratnu kupnju, prvo trebate otkazati pretplatu na Google Playu. Ova ponuda se otključava nakon što je postavljena da se ne obnovi.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play provjerava samo račun na koji ste trenutno prijavljeni. Jednokratna kupnja je odvojena od vaše pretplate.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Vaša pretplata je i dalje aktivna i obnavlja se. Trebate je prvo otkazati na Google Playu.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Nije moguće provjeriti vašu pretplatu s Google Playom. Pokušajte ponovno.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Potvrda vaše kupnje</string>
+    <string name="upgrade_screen_grace_body">Čeka se da Google Play ponovno potvrdi vašu Pro kupnju. Obično se to razriješi samo od sebe.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Još uvijek ne možemo ponovno potvrditi vašu Pro kupnju s Google Playom. Ako se to nastavlja, pokušajte vratiti vašu kupnju ili se obratite podršci.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Stanje izgleda krivo?</string>
+    <string name="upgrade_screen_restore_status_body">Ako ste kupili Pro, ali se ne prikazuje, pokrenite živu provjeru s Google Playom.</string>
+    <string name="upgrade_screen_restore_success_message">Kupnja je vraćena.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Provjerite da ste prijavljeni s Google računom koji ste koristili za kupnju. Živa provjera s Google Playom upravo je pokrenuta.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Opcije nadogradnje</string>
+    <string name="upgrade_screen_offers_body">Iste mogućnosti, samo različiti modeli cijena.</string>
+    <string name="upgrade_screen_offers_or">ili</string>
+    <string name="upgrade_screen_subscription_offer_title">Godišnja pretplata</string>
+    <string name="upgrade_screen_subscription_offer_body">Obnavlja se godišnje nakon besplatnog probnog razdoblja. Otkažite bilo kada u Google Playu.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Obnavlja se godišnje. Otkažite bilo kada u Google Playu.</string>
+    <string name="upgrade_screen_iap_offer_title">Kupi jednom</string>
+    <string name="upgrade_screen_iap_offer_body">Jedna uplata, bez obnova.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Pretplata je još uvijek aktivna</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play je upravo provjeren, ali nijedna Pro kupnja nije mogla biti potvrđena za račun koji koristi ova aplikacija.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Više računa može zbuniti Google Play. Instaliranje aplikacije putem web-mjesta Google Playa prisiljava je da se poveže s određenim računom.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Sinkronizacija Google Playa može potrajati. Pokušajte ponovno pokrenuti, obrisati predmemoriju Google Play Storea ili samo pričekati.</string>
+    <string name="upgrade_screen_restore_contact_hint">Još uvijek zapeli? Kontaktirajte podršku s e-pošte koja je izvršila kupnju i uključite broj narudžbe s Google Playa.</string>
 </resources>

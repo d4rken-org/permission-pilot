@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">A Google Play szolgáltatások nem érhetők el.</string>
     <string name="upgrades_no_purchases_found_check_account">Nem találhatók vásárlások. A megfelelő fiókot használod?</string>
+    <string name="upgrades_gplay_already_owned_title">Már megvásárolt</string>
+    <string name="upgrades_gplay_already_owned_error">A Google Play azt jelenti, hogy már rendelkezel ezzel a frissítéssel, de nem sikerült helyreállítani. Ellenőrizd, hogy bejelentkeztél-e azzal a Google-fiókkal, amelyet az eredeti vásárláshoz használtál, majd próbáld meg a \"Vásárlás helyreállítása\" lehetőséget.</string>
     <string name="upgrade_screen_preamble">A Permission Pilot reklámmentes és tiszteletben tartja az adatvédelmed. A frissítés támogatja a további fejlesztést.</string>
+    <string name="upgrade_screen_offers_unavailable_title">A Google Play nem elérhető</string>
+    <string name="upgrade_screen_offers_unavailable_message">Nem sikerült betölteni a vásárlási lehetőségeket. A Google Play ideiglenesen nem érhető el – ellenőrizd az internetkapcsolatod, és próbáld újra.</string>
     <string name="upgrade_screen_subscription_trial_action">Ingyenes próba indítása</string>
     <string name="upgrade_screen_subscription_action">Iratkozz fel</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/év, bármikor lemondható</string>
-    <string name="upgrade_screen_iap_action">Pro megvásárlása</string>
+    <string name="upgrade_screen_iap_action">Egyszeri vásárlás</string>
     <string name="upgrade_screen_iap_action_hint">Egyszeri vásárlás: %s</string>
     <string name="upgrade_screen_restore_purchase_action">Vásárlás visszaállítása</string>
     <string name="upgrade_screen_restore_purchase_message">Nem található vásárlás. Ellenőrizd, hogy a megfelelő Google-fiókkal vagy vagy bejelentkezve.</string>
+    <string name="upgrade_screen_restore_banner_title">Már megvásároltad a Pro-t?</string>
+    <string name="upgrade_screen_restore_banner_body">Úgy tűnik, korábban már Pro-ra frissítettél ezen az eszközön. Állítsd vissza a vásárlást, hogy újra feloldhasd.</string>
     <string name="upgrade_screen_options_description">Az előfizetések automatikusan megújulnak. Bármikor lemondhatod.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Pro vagy – köszönjük!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Az egyszeri Pro vásárlásod minden Pro funkciót feloldja, örökre.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Az előfizetésed minden Pro funkciót feloldja.</string>
+    <string name="upgrade_screen_owned_sub_title">Az előfizetésed</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Az előfizetésed aktív és automatikusan megújul.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Az előfizetésed nem fog megújulni. Pro marad, amíg le nem jár.</string>
+    <string name="upgrade_screen_owned_both_warning">Megvásároltad az egyszeri Pro verzióját, és van egy aktív előfizetésed is. Nincs szükséged mindkettőre — szüntesd meg az előfizetésed a Google Play-ben a további díjak elkerüléséhez.</string>
+    <string name="upgrade_screen_manage_subscription_action">Előfizetés kezelése</string>
+    <string name="upgrade_screen_owned_iap_title">Élettartam Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Megvásároltad az egyszeri Pro verzióját. Nincs előfizetés, nincs megújítás.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Váltás egyszeri vásárlásra</string>
+    <string name="upgrade_screen_switch_purchase_note">Az előfizetésed nem újul meg, így most már áttérhetsz az egyszeri Pro vásárlásra.</string>
+    <string name="upgrade_screen_switch_locked_note">Az egyszeri vásárlásra való váltáshoz először szüntesd meg az előfizetésed a Google Play-ben. Ez az ajánlat akkor lesz elérhető, ha beállítod, hogy ne újuljon meg.</string>
+    <string name="upgrade_screen_limitation_disclosure">A Google Play csak az aktuálisan bejelentkeztetett fiókot ellenőrzi. Az egyszeri vásárlás és az előfizetésed egymástól függetlenek.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Az előfizetésed továbbra is aktív és megújul. Előbb szüntesd meg azt a Google Play-ben.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Nem sikerült ellenőrizni az előfizetésed a Google Play-ben. Kérjük, próbáld újra.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Vásárlás megerősítése</string>
+    <string name="upgrade_screen_grace_body">Arra várakozunk, hogy a Google Play újra megerősítse a Pro vásárlásod. Ez általában magától megoldódik.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Még mindig nem tudjuk újra megerősíteni a Pro vásárlásod a Google Play-ben. Ha ez továbbra is megtörténik, próbáld meg helyreállítani a vásárlásod, vagy vedd fel a kapcsolatot az ügyfélszolgálattal.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Nem megfelelőnek tűnik az állapot?</string>
+    <string name="upgrade_screen_restore_status_body">Ha megvásároltad a Pro verziót, de nem jelenik meg, futtass élő ellenőrzést a Google Play ellen.</string>
+    <string name="upgrade_screen_restore_success_message">Vásárlás helyreállítva.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Győződj meg arról, hogy a vásárláshoz használt Google-fiókkal vagy bejelentkezve. Az élő Google Play ellenőrzés éppen most futott le.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Frissítési lehetőségek</string>
+    <string name="upgrade_screen_offers_body">Ugyanazok a funkciók, csak más árképzési modellek.</string>
+    <string name="upgrade_screen_offers_or">vagy</string>
+    <string name="upgrade_screen_subscription_offer_title">Éves előfizetés</string>
+    <string name="upgrade_screen_subscription_offer_body">Évente megújul az ingyenes próbaidőszak után. Bármikor lemondható a Google Play-ben.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Évente megújul. Bármikor lemondható a Google Play-ben.</string>
+    <string name="upgrade_screen_iap_offer_title">Egyszeri vásárlás</string>
+    <string name="upgrade_screen_iap_offer_body">Egy fizetés, nincs megújítás.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Előfizetés még aktív</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">A Google Play-t éppen most ellenőrizték, de a Pro vásárlást nem sikerült megerősíteni az alkalmazásban használt fiók számára.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Több fiók összezavarhatja a Google Play-t. Az alkalmazás Google Play webhelyről történő telepítése azt kényszeríti, hogy egy adott fiókkal társuljon.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">A Google Play szinkronizálása eltarthat egy ideig. Próbálj meg újraindítani, töröld a Google Play Store gyorsítótárát, vagy egyszerűen csak várakozz.</string>
+    <string name="upgrade_screen_restore_contact_hint">Még mindig elakadt? Lépj kapcsolatba a támogatással a vásárlást végzett e-mail címről, és add meg a Google Play megrendelési számot.</string>
 </resources>

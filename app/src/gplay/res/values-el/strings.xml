@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Οι υπηρεσίες Google Play δεν είναι διαθέσιμες.</string>
     <string name="upgrades_no_purchases_found_check_account">Δεν βρέθηκαν αγορές. Χρησιμοποιείτε τον σωστό λογαριασμό;</string>
+    <string name="upgrades_gplay_already_owned_title">Ήδη αγορασμένο</string>
+    <string name="upgrades_gplay_already_owned_error">Το Google Play αναφέρει ότι έχετε ήδη αυτήν την αναβάθμιση, αλλά δεν ήταν δυνατό να επαναφερθεί. Βεβαιωθείτε ότι είστε συνδεδεμένοι με τον λογαριασμό Google που χρησιμοποιήθηκε για την αρχική αγορά, στη συνέχεια δοκιμάστε «Επαναφορά αγοράς».</string>
     <string name="upgrade_screen_preamble">Το Permission Pilot είναι χωρίς διαφημίσεις και σέβεται την ιδιωτικότητά σας. Η αναβάθμιση υποστηρίζει τη συνεχή ανάπτυξη.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Το Google Play δεν είναι διαθέσιμο</string>
+    <string name="upgrade_screen_offers_unavailable_message">Δεν ήταν δυνατό να φορτωθούν οι επιλογές αγοράς. Το Google Play μπορεί να είναι προσωρινά μη διαθέσιμο — ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.</string>
     <string name="upgrade_screen_subscription_trial_action">Έναρξη δωρεάν δοκιμής</string>
     <string name="upgrade_screen_subscription_action">Εγγραφή</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/χρόνο, ακύρωση ανά πάσα στιγμή</string>
-    <string name="upgrade_screen_iap_action">Αγορά Pro</string>
+    <string name="upgrade_screen_iap_action">Εφάπαξ αγορά</string>
     <string name="upgrade_screen_iap_action_hint">Εφάπαξ αγορά %s</string>
     <string name="upgrade_screen_restore_purchase_action">Επαναφορά αγοράς</string>
     <string name="upgrade_screen_restore_purchase_message">Δεν βρέθηκαν αγορές. Βεβαιωθείτε ότι είστε συνδεδεμένοι με τον σωστό λογαριασμό Google.</string>
+    <string name="upgrade_screen_restore_banner_title">Έχετε ήδη αγοράσει Pro;</string>
+    <string name="upgrade_screen_restore_banner_body">Φαίνεται ότι κάνατε αναβάθμιση σε Pro σε αυτήν τη συσκευή στο παρελθόν. Επαναφέρετε την αγορά σας για να το ξεκλειδώσετε ξανά.</string>
     <string name="upgrade_screen_options_description">Οι συνδρομές ανανεώνονται αυτόματα. Μπορείτε να ακυρώσετε ανά πάσα στιγμή.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Είστε Pro — ευχαριστούμε!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Η ενιαία αγορά Pro ξεκλειδώνει κάθε λειτουργία Pro, για πάντα.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Η συνδρομή σας ξεκλειδώνει κάθε λειτουργία Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Η συνδρομή σας</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Η συνδρομή σας είναι ενεργή και ανανεώνεται αυτόματα.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Η συνδρομή σας έχει οριστεί να λήξει και δεν θα ανανεωθεί. Θα διατηρήσετε το Pro μέχρι να τελειώσει.</string>
+    <string name="upgrade_screen_owned_both_warning">Διαθέτετε την εφάπαξ αναβάθμιση Pro και έχετε επίσης ενεργή συνδρομή. Δεν χρειάζεστε και τα δύο — ακυρώστε τη συνδρομή στο Google Play για να αποφύγετε περαιτέρω χρεώσεις.</string>
+    <string name="upgrade_screen_manage_subscription_action">Διαχείριση συνδρομής</string>
+    <string name="upgrade_screen_owned_iap_title">Ισόβιο Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Διαθέτετε την εφάπαξ αναβάθμιση Pro. Χωρίς συνδρομή, χωρίς ανανεώσεις.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Μετάβαση σε μια εφάπαξ αγορά</string>
+    <string name="upgrade_screen_switch_purchase_note">Η συνδρομή σας δεν θα ανανεωθεί, έτσι μπορείτε να μεταβείτε στη μόνιμη εφάπαξ αγορά Pro τώρα.</string>
+    <string name="upgrade_screen_switch_locked_note">Για να μεταβείτε στην εφάπαξ αγορά, ακυρώστε πρώτα τη συνδρομή σας στο Google Play. Αυτή η προσφορά ξεκλειδώνεται όταν οριστεί να μην ανανεωθεί.</string>
+    <string name="upgrade_screen_limitation_disclosure">Το Google Play ελέγχει μόνο το λογαριασμό στον οποίο είστε συνδεδεμένοι. Η εφάπαξ αγορά είναι ξεχωριστή από τη συνδρομή σας.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Η συνδρομή σας είναι ακόμα ενεργή και ανανεώνεται. Ακυρώστε την πρώτα στο Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Δεν ήταν δυνατή η επαλήθευση της συνδρομής σας με το Google Play. Δοκιμάστε ξανά.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Επιβεβαίωση της αγοράς σας</string>
+    <string name="upgrade_screen_grace_body">Αναμονή για το Google Play να επιβεβαιώσει ξανά την αγορά Pro σας. Συνήθως επιλύεται αυτόματα.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Δεν μπορούμε ακόμα να επιβεβαιώσουμε ξανά την αγορά Pro σας με το Google Play. Εάν συνεχίσει να συμβαίνει, δοκιμάστε να επαναφέρετε την αγορά σας ή επικοινωνήστε με την υποστήριξη.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Η κατάσταση φαίνεται λανθασμένη;</string>
+    <string name="upgrade_screen_restore_status_body">Εάν έχετε αγοράσει Pro αλλά δεν εμφανίζεται, εκτελέστε έναν έλεγχο σε πραγματικό χρόνο έναντι του Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Η αγορά επαναφέρθηκε.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Βεβαιωθείτε ότι είστε συνδεδεμένοι με τον λογαριασμό Google που χρησιμοποιήσατε για την αγορά. Ένας έλεγχος σε πραγματικό χρόνο έναντι του Google Play μόλις εκτελέστηκε.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Επιλογές αναβάθμισης</string>
+    <string name="upgrade_screen_offers_body">Ίδια χαρακτηριστικά, απλώς διαφορετικά μοντέλα τιμολόγησης.</string>
+    <string name="upgrade_screen_offers_or">ή</string>
+    <string name="upgrade_screen_subscription_offer_title">Ετήσια συνδρομή</string>
+    <string name="upgrade_screen_subscription_offer_body">Ανανεώνεται ετησίως μετά τη δωρεάν δοκιμή. Ακυρώστε ανά πάσα στιγμή στο Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Ανανεώνεται ετησίως. Ακυρώστε ανά πάσα στιγμή στο Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Αγοράστε μία φορά</string>
+    <string name="upgrade_screen_iap_offer_body">Μία πληρωμή, χωρίς ανανεώσεις.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Η συνδρομή είναι ακόμη ενεργή</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Το Google Play μόλις ελέγχθηκε, αλλά δεν ήταν δυνατή η επιβεβαίωση μιας αγοράς Pro για τον λογαριασμό που χρησιμοποιεί η εφαρμογή.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Πολλοί λογαριασμοί μπορεί να μπερδέψουν το Google Play. Η εγκατάσταση της εφαρμογής μέσω του ιστοτόπου Google Play την αναγκάζει να συσχετίζεται με έναν συγκεκριμένο λογαριασμό.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Ο συγχρονισμός του Google Play ενδέχεται να πάρει χρόνο. Δοκιμάστε να κάνετε επανεκκίνηση, να καθαρίσετε την προσωρινή μνήμη του Google Play Store ή απλώς να περιμένετε.</string>
+    <string name="upgrade_screen_restore_contact_hint">Ακόμα κολλημένοι; Επικοινωνήστε με την υποστήριξη από το email που έκανε την αγορά και συμπεριλάβετε τον αριθμό παραγγελίας του Google Play.</string>
 </resources>

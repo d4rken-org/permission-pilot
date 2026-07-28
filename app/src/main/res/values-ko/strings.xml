@@ -541,6 +541,8 @@
     <string name="upgrade_benefit_manifest_viewer">원시 앱 매니페스트 탐색</string>
     <string name="general_upgrade_action">업그레이드</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">업그레이드 상태 및 옵션</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">감시자</string>
     <string name="watcher_dashboard_feature_title">권한 감시자</string>

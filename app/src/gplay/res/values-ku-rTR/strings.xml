@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Xizmetên Google Play berdest nînin.</string>
     <string name="upgrades_no_purchases_found_check_account">Kirîn nehate dîtin. Ma tu hesabê rast bi kar tînî?</string>
+    <string name="upgrades_gplay_already_owned_title">Jixwe Kirî</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play raportê dike ku tu vê bulaşê jixwe di xwe de heye, lê nikare were gerandin. Kontrol bike ku tu bê nava ketî bi hesabê Google ya ku ji bo kirina yekem hatiye bikaranîn, û paşê \"Beşdarkirina Venîştin\" biceribîne.</string>
     <string name="upgrade_screen_preamble">Permission Pilot بێ رێکلامەیە و نھێنیتکەت پھابوو دەکات. بەرزترکردن پشتگیریکردنی گەشەپێکردنی دەوامەیە.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play ne berdest e</string>
+    <string name="upgrade_screen_offers_unavailable_message">Vebijarkên beşdarkirinê nikare werin barkirîn. Google Play dibe ku demek ne berdest be — peywendiya xwe kontrol bike û dî carî biceribîne.</string>
     <string name="upgrade_screen_subscription_trial_action">دەستپێککردنی تەستی بەژیوانی</string>
     <string name="upgrade_screen_subscription_action">بوونهەڵبەست</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/sal, hûndirim bê gerd</string>
-    <string name="upgrade_screen_iap_action">كڕینی Pro</string>
+    <string name="upgrade_screen_iap_action">Beşdarkirina Yek-Carek</string>
     <string name="upgrade_screen_iap_action_hint">کڕینی یەکجارەی %s</string>
     <string name="upgrade_screen_restore_purchase_action">گەڕاندنەوەکردنی کڕین</string>
     <string name="upgrade_screen_restore_purchase_message">ھیچ کڕینیک نەدێت. چەکبکەرە كە بە ھەسابی ئیگووڵی گوگڵ دەست کەوتیی.</string>
+    <string name="upgrade_screen_restore_banner_title">Jixwe Pro kirî?</string>
+    <string name="upgrade_screen_restore_banner_body">Xuya dike ku tu berê li vî amûrî veguhastî Pro. Beşdarkirina xwe venîştin da ku cara dî vê vekin.</string>
     <string name="upgrade_screen_options_description">بوونهەڵبەستەکان بە خۆدیکەوە نوێكردرەوەن. دەتوانیت ھەر کاتیک لاببکەیت.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Tu Pro yî — spas!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Kirîna Pro-ya yek-car hemû taybetmendiyên Pro derxîne, sedemzî.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Aboneya te hemû taybetmendiyên Pro derxîne.</string>
+    <string name="upgrade_screen_owned_sub_title">Aboneya te</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Aboneya te çalak e û bi otomatîk nû dibe.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Aboneya te sazkirî ye da ku qede bibe û nû nabibe. Tu Pro-yî heta qedandîna wê bihûnîne.</string>
+    <string name="upgrade_screen_owned_both_warning">Tu pêbazirandina Pro-ya yek-car heye û tu jî aboneyeke çalak heye. Tu hewce nikare her du — aboneya di Google Play de betal bike da ku xercên zêde nabe.</string>
+    <string name="upgrade_screen_manage_subscription_action">Aboneya birêve bike</string>
+    <string name="upgrade_screen_owned_iap_title">Pro-ya sedemzî</string>
+    <string name="upgrade_screen_owned_iap_body">Tu pêbazirandina Pro-ya yek-car heye. Aboneya tune, nû kirin tune.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Veguherîn bo kirîna yek-car</string>
+    <string name="upgrade_screen_switch_purchase_note">Peymanê we nabe nûkirî, lewra we niha dikarin biçin beşdareya Pro ya demdemî ya yekcarî.</string>
+    <string name="upgrade_screen_switch_locked_note">Ji bo ku biçin beşdareya yekcarî, pêşî peymanê we di Google Play da betal bikin. Ev pêşkêş açilî dibe dema peymanê we nabe nûkirî.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play tenê hesaba we ya niha kontrol dike. Beşdareya yekcarî ji peymanê we cuda ye.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Peymanê we hîn jî çalak e û nabe nûkirî. Pêşî ew di Google Play da betal bikin.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Peymanê we bi Google Play piştrast nekirî. Ji kerema xwe dîsa hewl bide.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Beşdareya we tê piştraskirin</string>
+    <string name="upgrade_screen_grace_body">Em li bendî ne ku Google Play beşdareya Pro ya we dîsa piştrast bike. Ev bi awayekî xweser çareserî dibe.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Em hîn nikarin beşdareya Pro ya we bi Google Play dîsa piştrast bikin. Ger ev dewam bike, beşdareya we vegerînin an jî ji piştgiriyê alîkarî xwastin.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Rewş xelet xuya dike?</string>
+    <string name="upgrade_screen_restore_status_body">Ger we Pro kiriye lê nayê nîşandan, li Google Play kontrollê zindî bike.</string>
+    <string name="upgrade_screen_restore_success_message">Kirrê vegerand.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Ewle bin ku tu bi hesabê Google-ê ya ji bo kirrê bikarî anî tê vekirin. Kontrolek zindî li dijiî Google Play tenê hat kirin.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Vebijarkên nûvekirinê</string>
+    <string name="upgrade_screen_offers_body">Taybetmendiyên wekhev, tenê modela berçavkandinê cuda ye.</string>
+    <string name="upgrade_screen_offers_or">an</string>
+    <string name="upgrade_screen_subscription_offer_title">Aboneya salî</string>
+    <string name="upgrade_screen_subscription_offer_body">Piştî demê bê bayê salî nûkirin dike. Di her demî de di Google Play de betal bike.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Salî nûkirin dike. Di her demî de di Google Play de betal bike.</string>
+    <string name="upgrade_screen_iap_offer_title">Carek bikire</string>
+    <string name="upgrade_screen_iap_offer_body">Yek peymê, nûkirin tune.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Aboneya Hê Aktîf e</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play tenê nû hat kontrolkirin, lê kirîya Pro-yê ya ji hesaba ku vê sepê bikar tîne nehat pejirandin.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Gelek hesab dikarin Google Play-ê têkev bikin. Stkirina sepê ji rûpela malê ya Google Play bê bicih dike ku ew bi hesabeke diyarkirî re têkilî bibe.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Hemdamîya Google Play dikare demek bigire. Biceribînin ku sîstema nû bikiriş, dîskerê Google Play Store paqij bikiriş, an jî bê derewî sekinê.</string>
+    <string name="upgrade_screen_restore_contact_hint">Hîn jî tê êşkirtin? Piştiranê ji e-nameyê ya ku kirînê kiribe bikişîne û jimara fermangeha Google Play-ê ya te cih bikiriş.</string>
 </resources>

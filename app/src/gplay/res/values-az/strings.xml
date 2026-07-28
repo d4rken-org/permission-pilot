@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play xidmətləri mövcud deyil.</string>
     <string name="upgrades_no_purchases_found_check_account">Heç bir satınalma tapılmadı. Doğru hesabı istifadə edirsiniz?</string>
+    <string name="upgrades_gplay_already_owned_title">Artıq satın alındı</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play bildirir ki, siz artıq bu yüksəltməyə sahibsiniz, lakin o bərpa olunmadı. Orijinal alış üçün istifadə etdiyiniz Google hesabına daxil olduğunuzu yoxlayın, sonra \"Satın almağı bərpa et\"-i cəhd edin.</string>
     <string name="upgrade_screen_preamble">Permission Pilot rəkləmsüzdür və məxfiliyinizə hörmət edir. Yüksəltmək davamlı gelişdirməni dəstəkləyir.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play əlçatan deyil</string>
+    <string name="upgrade_screen_offers_unavailable_message">Satın alma seçənəkləri yüklənə bilmədi. Google Play müvəqqəti olaraq əlçatan olmaya bilər — bağlantınızı yoxlayın və yenidən cəhd edin.</string>
     <string name="upgrade_screen_subscription_trial_action">Pülsüz sınaq başladın</string>
     <string name="upgrade_screen_subscription_action">Abunə olun</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/il, istənilən vaxt ləğv edin</string>
-    <string name="upgrade_screen_iap_action">Pro al</string>
+    <string name="upgrade_screen_iap_action">Birdəfəlik alış</string>
     <string name="upgrade_screen_iap_action_hint">%s dəyərində bir dəfəlik alış</string>
     <string name="upgrade_screen_restore_purchase_action">Alışı bərpa et</string>
     <string name="upgrade_screen_restore_purchase_message">Alış tapilmadı. Düzgün Google hesabıyla daxil olduğunuzu yoxlayın.</string>
+    <string name="upgrade_screen_restore_banner_title">Artıq Pro satın aldınız?</string>
+    <string name="upgrade_screen_restore_banner_body">Görünür ki, siz bu cihazda əvvəllər Pro-ya yüksəltdiniz. Bunu yenidən aktivləşdirmək üçün satın almağı bərpa edin.</string>
     <string name="upgrade_screen_options_description">Abunəliklər avtomatik olaraq yenilinər. Hər zaman ldö bilərsiniz.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Siz Pro istifadəçisisiniz — təşəkkür edirik!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Sizin tek seferlik Pro alımı hər Pro xüsusiyyətini əbədi açır.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Sizin abonelik hər Pro xüsusiyyətini açır.</string>
+    <string name="upgrade_screen_owned_sub_title">Sizin abonelik</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Sizin abonelik aktiv və avtomatik olaraq yenilənir.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Sizin abonelik bitməyə təyin edilib və yenilənməyəcək. Pro\'yu bitənə qədər saxlayacaqsınız.</string>
+    <string name="upgrade_screen_owned_both_warning">Sizin tek seferlik Pro yüksəltməsi və həm də aktiv abonelik var. Hər ikisinə ehtiyacınız yoxdur — əlavə ödəniş təkrarlamamaq üçün Google Play-də aboneliyi ləğv edin.</string>
+    <string name="upgrade_screen_manage_subscription_action">Aboneliyi idarə edin</string>
+    <string name="upgrade_screen_owned_iap_title">Ömürlük Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Sizin tek seferlik Pro yüksəltməsi var. Abonelik yoxdur, yenilənmə yoxdur.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Birdəfəlik satın almaya keçid</string>
+    <string name="upgrade_screen_switch_purchase_note">Sizin abunəlik yeniləməyəcəyindən, indi daimi birdefelik Pro satın almaya keçə bilərsiniz.</string>
+    <string name="upgrade_screen_switch_locked_note">Birdəfəlik satın almaya keçmək üçün əvvəlcə Google Play-də abunəliyinizi ləğv edin. Bu təklif abunəlik yeniləməsi söndürüldükdə açılacaq.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play yalnız indi daxil olduğunuz hesabı yoxlayır. Birdəfəlik satın alma abunəlikdən ayrıdır.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Sizin abunəlik hələ də aktivdir və yenilənir. Əvvəlcə Google Play-də ləğv edin.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Sizin abunəlik Google Play ilə təsdiqlənə bilmədi. Lütfən yenidən cəhd edin.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Alışınız təsdiqlənir</string>
+    <string name="upgrade_screen_grace_body">Google Play sizin Pro alışınızı yenidən təsdiqləməsi gözlənilir. Bu adətən öz-özünə həll olur.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Biz hələ də sizin Pro alışınızı Google Play ilə yenidən təsdiqlənə biləmirik. Əgər bu davam edərsə, alışınızı bərpa etməyi sınayın və ya dəstəklə əlaqə saxlayın.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Vəziyyət səhv görünürmü?</string>
+    <string name="upgrade_screen_restore_status_body">Pro satın aldığınızı ancaq görünmürsə, Google Play-da canlı yoxlama aparın.</string>
+    <string name="upgrade_screen_restore_success_message">Satın alma bərpa edildi.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Satın alma üçün istifadə etdiyiniz Google hesabı ilə daxil olduğunuzdan əmin olun. Google Play-da canlı yoxlama yerinə yetirildi.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Yüksəltmə seçimləri</string>
+    <string name="upgrade_screen_offers_body">Eyni xüsusiyyətlər, sadəcə fərqli qiymət modelləri.</string>
+    <string name="upgrade_screen_offers_or">və ya</string>
+    <string name="upgrade_screen_subscription_offer_title">İllik abunəlik</string>
+    <string name="upgrade_screen_subscription_offer_body">Pulsuz sınaq dövründən sonra hər il yenilənir. Google Play-da istənilən vaxt ləğv edə bilərsiniz.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Hər il yenilənir. Google Play-də istənilən vaxt ləğv edin.</string>
+    <string name="upgrade_screen_iap_offer_title">Bir dəfəlik</string>
+    <string name="upgrade_screen_iap_offer_body">Bir ödəniş, yeniləmə yoxdur.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Abunəlik hələ də fəaldır</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play yeni yoxlanılmış, lakin bu tətbiq üçün istifadə olunan hesab üçün Pro satınalması təsdiq edilə bilmədi.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Çoxlu hesablar Google Play-i çaşdıra bilər. Tətbiqini Google Play veb saytı vasitəsilə quraşdırmaq onu müəyyən hesabla əlaqələndirməyi məcbur edir.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play sinxronlaşdırması vaxt ala bilər. Yenidən başlatmağı, Google Play Store keşini təmizləməyi və ya sadəcə gözləməyi sınayın.</string>
+    <string name="upgrade_screen_restore_contact_hint">Hələ də problem yaşayırsınız? Satınalmaq üçün istifadə olunan e-poçt ünvanından dəstəyə müraciət edin və Google Play sifariş nömrənizi əlavə edin.</string>
 </resources>

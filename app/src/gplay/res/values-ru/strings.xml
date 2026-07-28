@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Сервисы Google Play недоступны.</string>
     <string name="upgrades_no_purchases_found_check_account">Покупки не найдены. Вы используете правильный аккаунт?</string>
+    <string name="upgrades_gplay_already_owned_title">Уже приобретено</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play сообщает, что вы уже владеете этим обновлением, но оно не удалось восстановить. Убедитесь, что вы вошли с помощью учетной записи Google, используемой для первоначальной покупки, затем попробуйте «Восстановить покупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot не содержит рекламы и уважает вашу конфиденциальность. Обновление поддерживает дальнейшую разработку.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play недоступен</string>
+    <string name="upgrade_screen_offers_unavailable_message">Не удалось загрузить параметры покупки. Google Play может быть временно недоступен — проверьте подключение и попробуйте еще раз.</string>
     <string name="upgrade_screen_subscription_trial_action">Начать бесплатный пробный период</string>
     <string name="upgrade_screen_subscription_action">Подписаться</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/год, отменить в любое время</string>
-    <string name="upgrade_screen_iap_action">Купить Pro</string>
+    <string name="upgrade_screen_iap_action">Разовая покупка</string>
     <string name="upgrade_screen_iap_action_hint">Единовременная покупка %s</string>
     <string name="upgrade_screen_restore_purchase_action">Восстановить покупку</string>
     <string name="upgrade_screen_restore_purchase_message">Покупки не найдены. Убедитесь, что вы вошли с правильным аккаунтом Google.</string>
+    <string name="upgrade_screen_restore_banner_title">Уже купили Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Похоже, что Вы уже обновились до Pro на этом устройстве. Восстановите свою покупку, чтобы разблокировать его снова.</string>
     <string name="upgrade_screen_options_description">Подписки обновляются автоматически. Вы можете отменить в любое время.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Вы Pro — спасибо!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Ваша единоразовая покупка Pro разблокирует все функции Pro навсегда.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Ваша подписка разблокирует все функции Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Ваша подписка</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Ваша подписка активна и автоматически продлевается.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша подписка истечет и не будет продлеваться. Вы сохраняете Pro до конца.</string>
+    <string name="upgrade_screen_owned_both_warning">Вы имеете единоразовое обновление Pro и активную подписку. Вам не нужны обе — отмените подписку в Google Play, чтобы избежать дополнительных платежей.</string>
+    <string name="upgrade_screen_manage_subscription_action">Управлять подпиской</string>
+    <string name="upgrade_screen_owned_iap_title">Pro на всю жизнь</string>
+    <string name="upgrade_screen_owned_iap_body">У вас есть единоразовое обновление Pro. Без подписки, без продлений.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Переключиться на единоразовую покупку</string>
+    <string name="upgrade_screen_switch_purchase_note">Ваша подписка не будет продлеваться, поэтому вы можете перейти на постоянное единоразовое обновление Pro.</string>
+    <string name="upgrade_screen_switch_locked_note">Чтобы переключиться на единоразовую покупку, сначала отмените подписку в Google Play. Это предложение станет доступным, когда вы отключите автоматическое продление.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play проверяет только аккаунт, в который вы сейчас вошли. Единоразовая покупка отделена от вашей подписки.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Ваша подписка по-прежнему активна и продлевается. Сначала отмените ее в Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Не удалось проверить вашу подписку в Google Play. Пожалуйста, попробуйте еще раз.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Подтверждение покупки</string>
+    <string name="upgrade_screen_grace_body">Ожидание подтверждения вашей покупки Pro в Google Play. Обычно это разрешается автоматически.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Нам по-прежнему не удается подтвердить вашу покупку Pro в Google Play. Если это продолжает происходить, попробуйте восстановить покупку или обратитесь в службу поддержки.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Статус выглядит неправильно?</string>
+    <string name="upgrade_screen_restore_status_body">Если вы приобрели Pro, но это не отображается, запустите проверку в Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Покупка восстановлена.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Убедитесь, что вы вошли с помощью аккаунта Google, который использовали для покупки. Проверка в Google Play только что выполнена.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Варианты обновления</string>
+    <string name="upgrade_screen_offers_body">Те же функции, просто разные модели ценообразования.</string>
+    <string name="upgrade_screen_offers_or">или</string>
+    <string name="upgrade_screen_subscription_offer_title">Годовая подписка</string>
+    <string name="upgrade_screen_subscription_offer_body">Возобновляется ежегодно после пробного периода. Отменить можно в любой момент в Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Возобновляется ежегодно. Отменить можно в любой момент в Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Одноразовая покупка</string>
+    <string name="upgrade_screen_iap_offer_body">Одноразовый платеж без возобновлений.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Подписка всё ещё активна</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play был только что проверен, но для аккаунта, используемого этим приложением, не удалось подтвердить покупку Pro.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Несколько аккаунтов могут запутать Google Play. Установка приложения через сайт Google Play заставляет его привязаться к определенному аккаунту.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Синхронизация Google Play может занять время. Попробуйте перезагрузить устройство, очистить кэш Google Play Store или просто подождать.</string>
+    <string name="upgrade_screen_restore_contact_hint">Всё ещё не получается? Свяжитесь с поддержкой с адреса электронной почты, который произвёл покупку, и укажите номер заказа Google Play.</string>
 </resources>

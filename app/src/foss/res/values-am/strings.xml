@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">የግል አስነሯ</string>
     <string name="upgrade_foss_sponsor_subtitle">የ GitHub Sponsors ይዘርቹ</string>
     <string name="upgrade_foss_sponsor_returned_early">የግል ቃኩልን አክበ ለመከፈት የጓል ደቁወቢ።</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">ነጻ ስሪት</string>
+    <string name="upgrade_screen_status_free_body">የነጻ፣ ከተመረቀ ምንጭ ግንባታ እየተጠቀሙ ነው። Pro ባህሪያትን ለመክፈት ልማትን ይደግፉ።</string>
+    <string name="upgrade_screen_status_free_action">ስፖንሰር ይሁኑ</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">ለድጋፍዎ አመሰግናለሁ!</string>
+    <string name="upgrade_screen_status_upgraded_body">ሁሉንም Pro ባህሪያት አክፍተዋል። ድጋፍዎ Permission Pilot ነጻ እና ከተመረቀ ምንጭ ያቆየዋል።</string>
+    <string name="upgrade_screen_supporter_since">ከ%1$s ጀምሮ ደጋፊ</string>
+    <string name="upgrade_screen_recurring_title">ደግመው ድጋፍ ስጥ</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot በክፍት ተሰራ። ሚስክ ለመርዳት ተደጋጋሚ ስፖንሰርሺፕ ያስቡ።</string>
+    <string name="upgrade_screen_recurring_action">GitHub Sponsors ይክፈቱ</string>
 </resources>

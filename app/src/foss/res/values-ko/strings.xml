@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">스폰서 되기</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors 열기</string>
     <string name="upgrade_foss_sponsor_returned_early">스폰서 페이지를 일찍 확인해 주세요!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">무료 버전</string>
+    <string name="upgrade_screen_status_free_body">무료 오픈소스 빌드를 사용 중입니다. 개발을 지원하여 Pro 기능을 잠금 해제하세요.</string>
+    <string name="upgrade_screen_status_free_action">스폰서 되기</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">지원해 주셔서 감사합니다!</string>
+    <string name="upgrade_screen_status_upgraded_body">모든 Pro 기능이 잠금 해제되었습니다. 귀하의 지원이 Permission Pilot을 무료 오픈소스로 유지시킵니다.</string>
+    <string name="upgrade_screen_supporter_since">%1$s부터 후원자</string>
+    <string name="upgrade_screen_recurring_title">다시 후원하기</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot는 공개적으로 개발되고 있습니다. 지속을 위해 정기 후원을 고려해주세요.</string>
+    <string name="upgrade_screen_recurring_action">GitHub Sponsors 열기</string>
 </resources>

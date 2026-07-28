@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Les services Google Play sont inaccessibles.</string>
     <string name="upgrades_no_purchases_found_check_account">Aucun achat n’a été trouvé. Utilisez-vous le bon compte ?</string>
+    <string name="upgrades_gplay_already_owned_title">Déjà acheté</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play indique que vous possédez déjà cette mise à niveau, mais elle n’a pas pu être restaurée. Vérifiez que vous êtes connecté au compte Google utilisé pour l’achat initial, puis essayez « Restaurer l’achat ».</string>
     <string name="upgrade_screen_preamble">Permission Pilot est sans publicité et respecte votre vie privée. La mise à niveau soutient le développement continu.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play indisponible</string>
+    <string name="upgrade_screen_offers_unavailable_message">Impossible de charger les options d’achat. Google Play est peut-être temporairement indisponible — vérifiez votre connexion et réessayez.</string>
     <string name="upgrade_screen_subscription_trial_action">Commencer l’essai gratuit</string>
     <string name="upgrade_screen_subscription_action">M’abonner</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/an, annulation à tout moment</string>
-    <string name="upgrade_screen_iap_action">Acheter Pro</string>
+    <string name="upgrade_screen_iap_action">Achat unique</string>
     <string name="upgrade_screen_iap_action_hint">Achat unique de %s</string>
     <string name="upgrade_screen_restore_purchase_action">Rétablir l’achat</string>
     <string name="upgrade_screen_restore_purchase_message">Aucun achat trouvé. Vérifiez que vous êtes connecté avec le bon compte Google.</string>
+    <string name="upgrade_screen_restore_banner_title">Vous avez déjà acheté Pro ?</string>
+    <string name="upgrade_screen_restore_banner_body">Il semble que vous ayez déjà fait la mise à niveau vers Pro sur cet appareil. Restaurez votre achat pour le déverrouiller à nouveau.</string>
     <string name="upgrade_screen_options_description">Les abonnements se renouvellent automatiquement. Vous pouvez annuler à tout moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Vous êtes Pro — merci !</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Votre achat Pro unique déverrouille toutes les fonctionnalités Pro, pour toujours.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Votre abonnement déverrouille toutes les fonctionnalités Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Votre abonnement</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Votre abonnement est actif et se renouvelle automatiquement.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Votre abonnement est configuré pour expirer et ne se renouvellera pas. Vous conserverez Pro jusqu’à sa fin.</string>
+    <string name="upgrade_screen_owned_both_warning">Vous possédez l’achat unique Pro et vous avez également un abonnement actif. Vous n’avez pas besoin des deux — annulez l’abonnement dans Google Play pour éviter des frais supplémentaires.</string>
+    <string name="upgrade_screen_manage_subscription_action">Gérer l’abonnement</string>
+    <string name="upgrade_screen_owned_iap_title">Pro à vie</string>
+    <string name="upgrade_screen_owned_iap_body">Vous possédez l’achat unique Pro. Pas d’abonnement, pas de renouvellements.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Passer à un achat unique</string>
+    <string name="upgrade_screen_switch_purchase_note">Votre abonnement ne se renouvellera pas, vous pouvez donc passer à l’achat Pro permanent et unique dès maintenant.</string>
+    <string name="upgrade_screen_switch_locked_note">Pour passer à l’achat unique, annulez d’abord votre abonnement dans Google Play. Cette offre se déverrouille une fois l’abonnement défini pour ne pas se renouveler.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play vérifie uniquement le compte auquel vous êtes actuellement connecté. L’achat unique est distinct de votre abonnement.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Votre abonnement est toujours actif et se renouvelle. Annulez-le d’abord dans Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Impossible de vérifier votre abonnement auprès de Google Play. Veuillez réessayer.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Confirmation de votre achat</string>
+    <string name="upgrade_screen_grace_body">En attente que Google Play confirme à nouveau votre achat Pro. Cela se résout généralement automatiquement.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Nous ne pouvons toujours pas confirmer à nouveau votre achat Pro auprès de Google Play. Si cela continue, essayez de restaurer votre achat ou contactez le support.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Le statut semble incorrect ?</string>
+    <string name="upgrade_screen_restore_status_body">Si vous avez acheté Pro mais cela ne s’affiche pas, exécutez une vérification en direct auprès de Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Achat restauré.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Assurez-vous d’être connecté avec le compte Google que vous avez utilisé pour votre achat. Une vérification en direct auprès de Google Play vient d’être effectuée.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Options de mise à niveau</string>
+    <string name="upgrade_screen_offers_body">Les mêmes fonctionnalités, simplement des modèles de tarification différents.</string>
+    <string name="upgrade_screen_offers_or">ou</string>
+    <string name="upgrade_screen_subscription_offer_title">Abonnement annuel</string>
+    <string name="upgrade_screen_subscription_offer_body">Se renouvelle annuellement après l’essai gratuit. Annulez à tout moment dans Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Se renouvelle annuellement. Annulez à tout moment dans Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Acheter une fois</string>
+    <string name="upgrade_screen_iap_offer_body">Un seul paiement, pas de renouvellement.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Abonnement toujours actif</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play a été consulté, mais aucun achat Pro n’a pu être confirmé pour le compte utilisé par cette appli.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Plusieurs comptes peuvent perturber Google Play. Installer l’appli via le site Web de Google Play force son association avec un compte spécifique.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">La synchronisation Google Play peut prendre du temps. Essayez de redémarrer votre appareil, de vider le cache de Google Play Store ou simplement d’attendre.</string>
+    <string name="upgrade_screen_restore_contact_hint">Toujours bloqué ? Contactez le support depuis l’adresse e-mail qui a effectué l’achat et incluez votre numéro de commande Google Play.</string>
 </resources>

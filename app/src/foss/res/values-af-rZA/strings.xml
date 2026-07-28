@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">Word \'n borgskappe</string>
     <string name="upgrade_foss_sponsor_subtitle">Maak GitHub-borge oop</string>
     <string name="upgrade_foss_sponsor_returned_early">Neem asseblief \'n oomblik om die borgblad te besoek!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">Vrye weergawe</string>
+    <string name="upgrade_screen_status_free_body">U gebruik die vrye, oopbronkode-weergawe. Ondersteun die ontwikkeling om die Pro-funksies te ontsluit.</string>
+    <string name="upgrade_screen_status_free_action">Word \'n Borger</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">Dankie vir u ondersteuning!</string>
+    <string name="upgrade_screen_status_upgraded_body">U het alle Pro-funksies ontsluit. U ondersteuning hou Permission Pilot vry en oopbronkode.</string>
+    <string name="upgrade_screen_supporter_since">Borger sedert %1$s</string>
+    <string name="upgrade_screen_recurring_title">Ondersteun weer</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot word in die openheid ontwikkel. Oorweeg \'n herhalende borgskap om dit te help volhou.</string>
+    <string name="upgrade_screen_recurring_action">Maak GitHub Sponsors oop</string>
 </resources>
