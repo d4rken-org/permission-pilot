@@ -226,8 +226,8 @@ dependencies {
     implementation("androidx.hilt:hilt-work:${Versions.HiltX.core}")
     ksp("androidx.hilt:hilt-compiler:${Versions.HiltX.core}")
 
-    implementation("io.coil-kt:coil:2.4.0")
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("io.coil-kt:coil:2.7.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:${Versions.Compose.bom}")
