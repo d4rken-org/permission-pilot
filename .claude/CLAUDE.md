@@ -19,11 +19,23 @@ Permission Pilot is an Android app that helps users understand and manage app pe
 
 ## Rules
 
-Detailed guidelines are in `.claude/rules/`:
-- `commit-guidelines.md` — Commit message format, PR description format, area prefixes
-- `build-commands.md` — Build, test, lint, screenshot, and release commands
-- `screenshots.md` — Play Store screenshot tracking, regeneration, and upload workflow
+Always loaded (`.claude/rules/`):
 - `architecture.md` — Module structure, patterns, base classes, data flow
 - `code-style.md` — Kotlin conventions, ViewModel/Compose patterns, logging
-- `testing.md` — Test locations, patterns, running tests
-- `localization.md` — String resources, naming conventions
+- `commit-guidelines.md` — Commit message format, PR description format, area prefixes
+- `build-commands.md` — Build, test, and lint commands
+
+Loaded only when touching matching files (`paths:` frontmatter):
+- `testing.md` — Test locations and patterns. Triggers on `app/src/{test,testGplay,testShared,androidTest,screenshotTest*}/`
+- `localization.md` — String resource conventions. Triggers on `app/src/*/res/values*/` and `fastlane/metadata/`
+- `screenshots.md`, `release.md` — one-line pointers that tell you to invoke the matching skill
+
+## Skills
+
+Multi-step procedures in `.claude/skills/`. The body loads only when invoked:
+- `/screenshots` — Play Store screenshot regeneration, smoke-locale tracking, and upload
+- `/release` — Version bumping and release tagging
+
+Read `testing.md` before deciding whether or how to add tests — a path trigger only fires once a matching file is actually read, so it won't have loaded while you're still deciding.
+
+**Do not add `paths:` to a skill.** On a skill it is restrictive, not additive: it gates the skill off entirely until a matching file is read, so `/screenshots` and `/release` become uninvocable by name. Path triggering for these two is handled by the pointer rules above instead.

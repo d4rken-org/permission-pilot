@@ -96,3 +96,7 @@ granted/denied status for BIND_DEVICE_ADMIN.
 
 - **Issue references**: Use "Closes #123", "Fixes #123", or "Resolves #123"
 - **Breaking changes**: Mark with "BREAKING:" prefix if applicable
+
+## Length
+
+Match the length of commit bodies and PR descriptions to what the change needs. Cover the substance, then stop — no filler sections, no redundant summaries, no restating the diff. A one-line change gets a one-line body. Both sections of the PR description are allowed to be short; an empty "Technical Context" is better than an invented one.
