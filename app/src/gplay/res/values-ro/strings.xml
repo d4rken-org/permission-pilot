@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Serviciile Google Play nu sunt disponibile.</string>
     <string name="upgrades_no_purchases_found_check_account">Nu s-au găsit achiziții. Folosești contul corect?</string>
+    <string name="upgrades_gplay_already_owned_title">Deja cumpărat</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play raportează că deja deții acest upgrade, dar nu a putut fi restaurat. Verifică că ești conectat cu contul Google folosit pentru achiziția originală, apoi încearcă „Restaurează achiziția”.</string>
     <string name="upgrade_screen_preamble">Permission Pilot este fără reclame şi îți respectă confidențialitatea. Actualizarea sprijină dezvoltarea continuă.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play indisponibil</string>
+    <string name="upgrade_screen_offers_unavailable_message">Nu s-au putut încărca opțiunile de achiziție. Google Play ar putea fi temporar indisponibil — verifică conexiunea și încearcă din nou.</string>
     <string name="upgrade_screen_subscription_trial_action">Începe încercarea gratuită</string>
     <string name="upgrade_screen_subscription_action">Abonează-te</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/an, anulează oricând</string>
-    <string name="upgrade_screen_iap_action">Cumpără Pro</string>
+    <string name="upgrade_screen_iap_action">Achiziție unică</string>
     <string name="upgrade_screen_iap_action_hint">Achiziție unică de %s</string>
     <string name="upgrade_screen_restore_purchase_action">Restabiliți achiziția</string>
     <string name="upgrade_screen_restore_purchase_message">Nicio achiziție găsită. Verifică că eşti autentificat cu contul Google corect.</string>
+    <string name="upgrade_screen_restore_banner_title">Deja ai cumpărat Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Se pare că ai cumpărat versiunea Pro pe acest dispozitiv anterior. Restaurează achiziția pentru a o debloca din nou.</string>
     <string name="upgrade_screen_options_description">Abonamentele se reînnoiesc automat. Poți anula oricând.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Ești Pro — mulțumim!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Achiziția ta Pro de o singură dată deblochează fiecare caracteristică Pro, pentru totdeauna.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Abonamentul tău deblochează fiecare caracteristică Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Abonamentul tău</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Abonamentul tău este activ și se reînoiește automat.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Abonamentul tău este setat să expire și nu se va reînnoi. Vei continua să ai acces la Pro până la expirare.</string>
+    <string name="upgrade_screen_owned_both_warning">Deții achiziția Pro de o singură dată și de asemenea ai un abonament activ. Nu ai nevoie de ambele — anulează abonamentul din Google Play pentru a evita cheltuielile suplimentare.</string>
+    <string name="upgrade_screen_manage_subscription_action">Gestionează abonamentul</string>
+    <string name="upgrade_screen_owned_iap_title">Pro pe viață</string>
+    <string name="upgrade_screen_owned_iap_body">Deții achiziția Pro de o singură dată. Fără abonament, fără reînnouiri.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Treci la o achiziție unică</string>
+    <string name="upgrade_screen_switch_purchase_note">Abonamentul tău nu se va reînnoi, deci poți trece acum la achiziția Pro unică și permanentă.</string>
+    <string name="upgrade_screen_switch_locked_note">Pentru a trece la achiziția unică, anulează mai întâi abonamentul tău în Google Play. Această ofertă se deblochează odată ce este setată să nu se reînnoiască.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play verifică doar contul cu care ești conectat în acest moment. Achiziția unică este separată de abonamentul tău.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Abonamentul tău este încă activ și se reînnoiește. Anulează-l mai întâi în Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Nu am putut verifica abonamentul tău cu Google Play. Te rog să încerci din nou.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Se confirmă achiziția ta</string>
+    <string name="upgrade_screen_grace_body">Se așteaptă ca Google Play să reconfirme achiziția Pro. De obicei se rezolvă de la sine.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Nu putem încă reconfirma achiziția Pro cu Google Play. Dacă continuă să se întâmple, încearcă să restabilești achiziția sau contactează suportul.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Starea arată greșit?</string>
+    <string name="upgrade_screen_restore_status_body">Dacă ai achiziționat Pro dar nu se afișează, efectuează o verificare în direct cu Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Achiziția a fost restabilită.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Asigură-te că ești conectat cu contul Google pe care l-ai folosit pentru achiziție. O verificare în direct cu Google Play a fost efectuată tocmai acum.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Opțiuni de upgrade</string>
+    <string name="upgrade_screen_offers_body">Aceleași funcții, doar modele de prețuri diferite.</string>
+    <string name="upgrade_screen_offers_or">sau</string>
+    <string name="upgrade_screen_subscription_offer_title">Abonament anual</string>
+    <string name="upgrade_screen_subscription_offer_body">Se reînnoiește anual după perioada de probă gratuită. Anulează oricând în Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Se reînnoiește anual. Anulează oricând în Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Cumpără o dată</string>
+    <string name="upgrade_screen_iap_offer_body">O plată, fără reînnoiri.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Abonament încă activ</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play a fost tocmai verificat, dar nu s-a putut confirma nicio achiziție Pro pentru contul pe care îl folosește aplicația.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Conturi multiple pot confunda Google Play. Instalarea aplicației prin site-ul Google Play o forțează să se asocieze cu un cont specific.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Sincronizarea Google Play poate dura ceva timp. Încearcă să repornești, să ștergi memoria cache a Google Play Store sau pur și simplu să aștepți.</string>
+    <string name="upgrade_screen_restore_contact_hint">Încă blocat? Contactează asistența din e-mailul care a realizat achiziția și include numărul comenzii Google Play.</string>
 </resources>

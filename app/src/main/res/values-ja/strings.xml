@@ -541,6 +541,8 @@
     <string name="upgrade_benefit_manifest_viewer">アプリの生のマニフェストを閲覧</string>
     <string name="general_upgrade_action">アップグレード</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">アップグレード状態とオプション</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">ウォッチャー</string>
     <string name="watcher_dashboard_feature_title">権限ウォッチャー</string>

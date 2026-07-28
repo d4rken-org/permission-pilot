@@ -3,8 +3,8 @@
     <string name="app_name">Permission Pilot</string>
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Error</string>
-    <string name="general_load_error_title">No s\'ha pogut carregar les dades</string>
-    <string name="general_load_error_hint">Ha ocorregut un error en escannejar les aplicacions instal·lades.</string>
+    <string name="general_load_error_title">No s\'han pogut carregar les dades</string>
+    <string name="general_load_error_hint">S\'ha produït un error en escanejar les aplicacions instal·lades.</string>
     <string name="general_refresh_error_hint">L\'actualització ha fallat.</string>
     <string name="general_retry_action">Reintenta</string>
     <string name="general_share_action">Comparteix</string>
@@ -156,8 +156,8 @@
     <string name="apps_sort_install_source_label">Origen de la instal·lació</string>
     <string name="permissions_action_none_msg">Cap acció disponible per aquest permís</string>
     <string name="permissions_details_open_settings_action">Obre la configuració del sistema</string>
-    <string name="permissions_details_open_settings_content_description_x">Obrir els paràmetres del sistema per a %1$s</string>
-    <string name="permissions_details_open_settings_error">No s\'han pogut obrir els paràmetres per a aquest permís</string>
+    <string name="permissions_details_open_settings_content_description_x">Obre la configuració del sistema per a %1$s</string>
+    <string name="permissions_details_open_settings_error">No s\'ha pogut obrir la configuració per aquest permís</string>
     <string name="apps_filter_profile_secondary_label">Perfil(s) gestionat(s)</string>
     <string name="apps_filter_battery_optimization_label">Bateria personalitzada</string>
     <string name="apps_filter_accessibility_label">Accessibilitat</string>
@@ -564,6 +564,8 @@
     <string name="upgrade_benefit_manifest_viewer">Navega pels manifests d’aplicacions en brut</string>
     <string name="general_upgrade_action">Millora</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">Estat de l\'actualització i opcions</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">Vigilant</string>
     <string name="watcher_dashboard_feature_title">Vigilant de permisos</string>

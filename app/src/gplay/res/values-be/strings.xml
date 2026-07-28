@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Сэрвісы Google Play недаступныя.</string>
     <string name="upgrades_no_purchases_found_check_account">Пакупкі не знойдзены. Вы выкарыстоўваеце правільны ўліковы запіс?</string>
+    <string name="upgrades_gplay_already_owned_title">Ужо куплена</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play паведамляе, што вы ўжо валодаеце гэтым абнаўленнем, але яго не ўдалося аднавіць. Праверце, што вы ўвайшлі ў акаўнт Google, выкарыстаны для арыгінальнай пакупкі, а затым паспрабуйце «Аднавіць пакупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot не мае рэкламы і паважае вашу прыватнасць. Абнаўленне падтрымлівае далейшую распрацоўку.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play недаступны</string>
+    <string name="upgrade_screen_offers_unavailable_message">Не ўдалося загрузіць варыянты пакупкі. Google Play можа быць часова недаступны — праверце сувязь і паспрабуйце яшчэ раз.</string>
     <string name="upgrade_screen_subscription_trial_action">Пачаць бясплатны пробны перыяд</string>
     <string name="upgrade_screen_subscription_action">Падпісацца</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/год, можна скасаваць у любы час</string>
-    <string name="upgrade_screen_iap_action">Купіць Pro</string>
+    <string name="upgrade_screen_iap_action">Аднаразовая пакупка</string>
     <string name="upgrade_screen_iap_action_hint">Аднаразовая пакупка за %s</string>
     <string name="upgrade_screen_restore_purchase_action">Аднавіць пакупку</string>
     <string name="upgrade_screen_restore_purchase_message">Пакупкі не знойдзены. Пераканайцеся, што вы ўвайшлі з правільным уліковым запісам Google.</string>
+    <string name="upgrade_screen_restore_banner_title">Ужо куплілі Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Выглядае, што вы раней купілі Pro на гэтым прыладзе. Аднавіце сваю пакупку, каб адблакаваць яе яшчэ раз.</string>
     <string name="upgrade_screen_options_description">Падпіскі аўтаматычна абнаўляюцца. Вы можаце адмяніць іх у любы час.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Вы маеце Pro — дзякуй!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Ваша аднаразовая пакупка Pro адкрывае ўсе функцыі Pro назаўжды.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Ваша падпіска адкрывае ўсе функцыі Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Ваша падпіска</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Ваша падпіска актыўная і аднаўляецца аўтаматычна.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша падпіска не будзе адноўлена і хутка скончыцца. Вы будзеце карыстацца Pro да яе заканчэння.</string>
+    <string name="upgrade_screen_owned_both_warning">Вы маеце аднаразовую пакупку Pro, а таксама актыўную падпіску. Вам не патрэбны абодва варыянты — адмяніце падпіску ў Google Play, каб пазбегнуць далейшых спагнанняў.</string>
+    <string name="upgrade_screen_manage_subscription_action">Кіраваць падпіскай</string>
+    <string name="upgrade_screen_owned_iap_title">Pro назаўжды</string>
+    <string name="upgrade_screen_owned_iap_body">Вы маеце аднаразовую пакупку Pro. Без падпіскі, без аднаўленняў.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Перайсці на адзінаразовую пакупку</string>
+    <string name="upgrade_screen_switch_purchase_note">Ваша падпіска не будзе аднаўляцца, таму вы можаце цяпер перайсці на сталую адзінаразовую пакупку Pro.</string>
+    <string name="upgrade_screen_switch_locked_note">Каб перайсці на адзінаразовую пакупку, спачатку скасуйце вашу падпіску ў Google Play. Гэтая прапанова разблакуецца, калі падпіска будзе наладжана не аднаўляцца.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play правярае толькі акаўнт, у які вы зараз увайшлі. Адзінаразовая пакупка не звязана з вашай падпіскай.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Ваша падпіска ўсё яшчэ актыўная і аднаўляецца. Спачатку скасуйце яе ў Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Не ўдалося праверыць вашу падпіску ў Google Play. Калі ласка, паспрабуйце яшчэ раз.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Пацвярджэнне вашай пакупкі</string>
+    <string name="upgrade_screen_grace_body">Мы чакаем паўторнага пацвярджэння вашай пакупкі Pro ад Google Play. Звычайна гэта вырашаецца самастойна.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Мы ўсё яшчэ не можам паўторна пацвердзіць вашу пакупку Pro з Google Play. Калі гэта паўтараецца, паспрабуйце аднавіць вашу пакупку або звяжыцеся з падтрымкай.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Стан выглядае неправільна?</string>
+    <string name="upgrade_screen_restore_status_body">Калі вы купілі Pro, але гэта не адлюстроўваецца, запусціце жывую праверку праз Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Пакупка адноўлена.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Пераканайцеся, што вы ўвайшлі ў акаўнт Google, які выкарыстоўвалі для пакупкі. Толькі што была выканана жывая праверка Google Play.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Варыянты абнаўлення</string>
+    <string name="upgrade_screen_offers_body">Тыя ж функцыі, толькі розныя мадэлі коштаў.</string>
+    <string name="upgrade_screen_offers_or">або</string>
+    <string name="upgrade_screen_subscription_offer_title">Гадавая падпіска</string>
+    <string name="upgrade_screen_subscription_offer_body">Аднаўляецца штогод пасля бясплатнага пробнага перыяду. Адмяніце ў любы час у Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Аднаўляецца штогод. Адмяніце у любы час у Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Купіць адзін раз</string>
+    <string name="upgrade_screen_iap_offer_body">Адзін плацёж, без аднаўленняў.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Падпіска ўсё яшчэ актыўная</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play быў толькі што правераны, але пакупку Pro не ўдалося пацвердзіць для акаўнта, які выкарыстоўвае гэтая праграма.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Некалькі акаўнтаў могуць заблытаць Google Play. Усталяванне праграмы праз вэб-сайт Google Play прывязвае яе да пэўнага акаўнта.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Сінхранізацыя Google Play можа заняць пэўны час. Паспрабуйце перазагрузіцца, ачысціць кэш Google Play Store або проста пачакаць.</string>
+    <string name="upgrade_screen_restore_contact_hint">Усё яшчэ не атрымліваецца? Звяжыцеся з падтрымкай з электроннай пошты, якую выкарыстоўвалі для пакупкі, і ўкажыце нумар замовы Google Play.</string>
 </resources>

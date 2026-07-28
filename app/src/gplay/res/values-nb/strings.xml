@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-tjenester er ikke tilgjengelige.</string>
     <string name="upgrades_no_purchases_found_check_account">Ingen kjøp funnet. Bruker du riktig konto?</string>
+    <string name="upgrades_gplay_already_owned_title">Allerede kjøpt</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play rapporterer at du allerede eier denne oppgraderingen, men den kunne ikke gjenopprettes. Sjekk at du er logget inn med Google-kontoen som ble brukt for det opprinnelige kjøpet, og prøv deretter \"Gjenopprett kjøp\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot er uten annonser og respekterer ditt personvern. Oppgradering støtter fortsatt utvikling.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play er utilgjengelig</string>
+    <string name="upgrade_screen_offers_unavailable_message">Kunne ikke laste kjøpsalternativene. Google Play kan være midlertidig utilgjengelig – kontroller tilkoblingen din og prøv igjen.</string>
     <string name="upgrade_screen_subscription_trial_action">Start gratis prøveperiode</string>
     <string name="upgrade_screen_subscription_action">Abonner</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/år, avbryt når som helst</string>
-    <string name="upgrade_screen_iap_action">Kjøp Pro</string>
+    <string name="upgrade_screen_iap_action">Engangskjøp</string>
     <string name="upgrade_screen_iap_action_hint">Engangsinnkjøp av %s</string>
     <string name="upgrade_screen_restore_purchase_action">Gjenopprett kjøp</string>
     <string name="upgrade_screen_restore_purchase_message">Ingen kjøp funnet. Sjekk at du er logget inn med riktig Google-konto.</string>
+    <string name="upgrade_screen_restore_banner_title">Allerede kjøpt Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Det ser ut til at du oppgraderte til Pro på denne enheten før. Gjenopprett kjøpet ditt for å låse det opp igjen.</string>
     <string name="upgrade_screen_options_description">Abonnementer fornyes automatisk. Du kan avbryte når som helst.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Du er Pro – takk!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Ditt engangs Pro-kjøp låser opp hver Pro-funksjon, for alltid.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Abonnementet ditt låser opp alle Pro-funksjoner.</string>
+    <string name="upgrade_screen_owned_sub_title">Abonnementet ditt</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Abonnementet ditt er aktivt og fornyes automatisk.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Abonnementet ditt er satt til å utløpe og vil ikke fornyes. Du beholder Pro til det utløper.</string>
+    <string name="upgrade_screen_owned_both_warning">Du eier engangs Pro-oppgraderingen og har også et aktivt abonnement. Du trenger ikke begge deler – avbryt abonnementet i Google Play for å unngå ytterligere kostnader.</string>
+    <string name="upgrade_screen_manage_subscription_action">Administrer abonnement</string>
+    <string name="upgrade_screen_owned_iap_title">Livstids Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Du eier engangs Pro-oppgraderingen. Ingen abonnement, ingen fornyelser.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Bytt til engangskjøp</string>
+    <string name="upgrade_screen_switch_purchase_note">Abonnementet ditt vil ikke fornyes, så du kan gå over til det permanente engangs Pro-kjøpet nå.</string>
+    <string name="upgrade_screen_switch_locked_note">For å bytte til engangskjøp, må du først avbryte abonnementet ditt i Google Play. Dette tilbudet låses opp når det er satt til ikke å fornyes.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play sjekker bare kontoen du er logget inn på. Engangskjøpet er atskilt fra abonnementet ditt.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Abonnementet ditt er fortsatt aktivt og fornyes. Avbryt det i Google Play først.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Kunne ikke bekrefte abonnementet ditt med Google Play. Vennligst prøv igjen.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Bekrefter kjøpet ditt</string>
+    <string name="upgrade_screen_grace_body">Venter på at Google Play skal bekrefte Pro-kjøpet ditt på nytt. Dette løser seg vanligvis av seg selv.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Vi kan fortsatt ikke bekrefte Pro-kjøpet ditt på nytt med Google Play. Hvis dette fortsetter å skje, prøv å gjenopprette kjøpet ditt eller kontakt support.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Ser statusen feil ut?</string>
+    <string name="upgrade_screen_restore_status_body">Hvis du har kjøpt Pro, men det vises ikke, kjør en live-kontroll mot Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Kjøp gjenopprettet.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Kontroller at du er logget inn med Google-kontoen du brukte til å kjøpe. En direktekontroll mot Google Play ble nettopp kjørt.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Oppgraderingsalternativer</string>
+    <string name="upgrade_screen_offers_body">De samme funksjonene, bare ulike prismodeller.</string>
+    <string name="upgrade_screen_offers_or">eller</string>
+    <string name="upgrade_screen_subscription_offer_title">Årlig abonnement</string>
+    <string name="upgrade_screen_subscription_offer_body">Fornyes årlig etter gratis prøveperiode. Avbryt når som helst i Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Fornyes årlig. Avbryt når som helst i Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Kjøp en gang</string>
+    <string name="upgrade_screen_iap_offer_body">En betaling, ingen fornyelser.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Abonnement er fortsatt aktivt</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play ble nettopp sjekket, men ingen Pro-kjøp kunne bekreftes for kontoen som brukes for denne appen.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Flere kontoer kan forvirre Google Play. Installering av appen gjennom Google Play-nettstedet tvinger appen til å knyttes til en bestemt konto.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play-synkronisering kan ta en stund. Prøv å starte på nytt, tøm Google Play Store-cachen, eller bare vent.</string>
+    <string name="upgrade_screen_restore_contact_hint">Fortsatt fast? Kontakt kundestøtte fra e-posten som gjorde kjøpet og ta med ditt Google Play-ordrenummer.</string>
 </resources>

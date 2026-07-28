@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-services zijn niet beschikbaar.</string>
     <string name="upgrades_no_purchases_found_check_account">Geen aankopen gevonden. Gebruik je het juiste account?</string>
+    <string name="upgrades_gplay_already_owned_title">Reeds gekocht</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play meldt dat je deze upgrade al bezit, maar deze kon niet worden hersteld. Controleer of je bent aangemeld met het Google-account dat voor de oorspronkelijke aankoop werd gebruikt, en probeer vervolgens \'Aankoop herstellen\'.</string>
     <string name="upgrade_screen_preamble">Permission Pilot is advertentievrij en respecteert je privacy. Upgraden ondersteunt verdere ontwikkeling.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play is niet beschikbaar</string>
+    <string name="upgrade_screen_offers_unavailable_message">Kon de aankoopopties niet laden. Google Play is mogelijk tijdelijk niet beschikbaar — controleer je verbinding en probeer het opnieuw.</string>
     <string name="upgrade_screen_subscription_trial_action">Start gratis proefperiode</string>
     <string name="upgrade_screen_subscription_action">Abonneren</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/jaar, annuleer op elk moment</string>
-    <string name="upgrade_screen_iap_action">Pro kopen</string>
+    <string name="upgrade_screen_iap_action">Eenmalige aankoop</string>
     <string name="upgrade_screen_iap_action_hint">Eenmalige aankoop van %s</string>
     <string name="upgrade_screen_restore_purchase_action">Herstel aankoop</string>
     <string name="upgrade_screen_restore_purchase_message">Geen aankopen gevonden. Controleer of je bent aangemeld met het juiste Google-account.</string>
+    <string name="upgrade_screen_restore_banner_title">Al Pro gekocht?</string>
+    <string name="upgrade_screen_restore_banner_body">Het lijkt erop dat je op dit apparaat eerder naar Pro bent geüpgraded. Herstel je aankoop om het opnieuw in te schakelen.</string>
     <string name="upgrade_screen_options_description">Abonnementen verlengen automatisch. Je kunt op elk moment opzeggen.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Je bent Pro — dank je wel!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Je eenmalige Pro-aankoop ontgrendelt elk Pro-onderdeel voor altijd.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Je abonnement ontgrendelt elk Pro-onderdeel.</string>
+    <string name="upgrade_screen_owned_sub_title">Je abonnement</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Je abonnement is actief en vernieuwt zich automatisch.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Je abonnement verloopt binnenkort en wordt niet vernieuwd. Je behoudt Pro totdat het afloopt.</string>
+    <string name="upgrade_screen_owned_both_warning">Je bezit de eenmalige Pro-upgrade en hebt ook een actief abonnement. Je hebt niet beide nodig — annuleer het abonnement in Google Play om verdere kosten te voorkomen.</string>
+    <string name="upgrade_screen_manage_subscription_action">Abonnement beheren</string>
+    <string name="upgrade_screen_owned_iap_title">Pro voor altijd</string>
+    <string name="upgrade_screen_owned_iap_body">Je bezit de eenmalige Pro-upgrade. Geen abonnement, geen verlengingen.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Schakel over naar eenmalige aankoop</string>
+    <string name="upgrade_screen_switch_purchase_note">Je abonnement wordt niet vernieuwd, dus je kunt nu overstappen naar de permanente eenmalige Pro-aankoop.</string>
+    <string name="upgrade_screen_switch_locked_note">Om over te schakelen naar de eenmalige aankoop, annuleer je abonnement eerst in Google Play. Deze aanbieding wordt beschikbaar zodra het is ingesteld om niet te verlengen.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play controleert alleen het account waarbij je momenteel bent aangemeld. De eenmalige aankoop is gescheiden van je abonnement.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Je abonnement is nog steeds actief en vernieuwt. Annuleer het eerst in Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Je abonnement kon niet met Google Play worden geverifieerd. Probeer het opnieuw.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Je aankoop bevestigen</string>
+    <string name="upgrade_screen_grace_body">Wachten tot Google Play je Pro-aankoop opnieuw bevestigt. Dit lost meestal vanzelf op.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">We kunnen je Pro-aankoop nog steeds niet opnieuw bevestigen met Google Play. Als dit blijft gebeuren, probeer je aankoop te herstellen of neem contact op met ondersteuning.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Ziet de status er fout uit?</string>
+    <string name="upgrade_screen_restore_status_body">Als je Pro hebt gekocht maar het wordt niet weergegeven, voer een live controle uit tegen Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Aankoop hersteld.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Zorg ervoor dat je bent aangemeld met het Google-account dat je voor de aankoop hebt gebruikt. Een live controle tegen Google Play is zojuist uitgevoerd.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Upgrade-opties</string>
+    <string name="upgrade_screen_offers_body">Dezelfde functies, alleen verschillende prijsmodellen.</string>
+    <string name="upgrade_screen_offers_or">of</string>
+    <string name="upgrade_screen_subscription_offer_title">Jaarabonnement</string>
+    <string name="upgrade_screen_subscription_offer_body">Wordt jaarlijks verlengd na de gratis proefperiode. Annuleer op elk moment in Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Wordt jaarlijks verlengd. Annuleer op elk moment in Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Eenmalig kopen</string>
+    <string name="upgrade_screen_iap_offer_body">Eenmalige betaling, geen verlengingen.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Abonnement nog actief</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play is zojuist gecontroleerd, maar kon geen Pro-aankoop bevestigen voor het account dat deze app gebruikt.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Meerdere accounts kunnen Google Play verwarren. Het installeren van de app via de Google Play-website zorgt ervoor dat deze aan een specifiek account wordt gekoppeld.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play-synchronisatie kan even duren. Probeer opnieuw op te starten, de Google Play Store-cache te wissen of gewoon te wachten.</string>
+    <string name="upgrade_screen_restore_contact_hint">Nog steeds vast? Neem contact op met ondersteuning vanuit het e-mailadres waarmee je de aankoop hebt gedaan en voeg je Google Play-ordernummer toe.</string>
 </resources>

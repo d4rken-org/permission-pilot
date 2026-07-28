@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">שירותי Google Play אינם זמינים.</string>
     <string name="upgrades_no_purchases_found_check_account">לא נמצאו רכישות. האם את/ה משתמש/ת בחשבון הנכון?</string>
+    <string name="upgrades_gplay_already_owned_title">כבר נקנה</string>
+    <string name="upgrades_gplay_already_owned_error">גוגל פליי דיווח שכבר קנית את השדרוג הזה, אך לא ניתן היה להשחזרו. בדוק שאתה מחובר עם חשבון גוגל שנשמש לרכישה המקורית, ולאחר מכן נסה \"השחזר רכישה\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot היא בללי פרסומות ומכבדת את פרטיותך. שדרוג תומך בפיתוח המשך.</string>
+    <string name="upgrade_screen_offers_unavailable_title">גוגל פליי לא זמין</string>
+    <string name="upgrade_screen_offers_unavailable_message">לא ניתן היה לטעון את אפשרויות הרכישה. גוגל פליי עשוי להיות לא זמין זמנית — בדוק את החיבור שלך ונסה שוב.</string>
     <string name="upgrade_screen_subscription_trial_action">התחל ניסיון חינם</string>
     <string name="upgrade_screen_subscription_action">הירשם כמנוי</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/שנה, בטל בכל עת</string>
-    <string name="upgrade_screen_iap_action">קנה פרו</string>
+    <string name="upgrade_screen_iap_action">רכישה חד-פעמית</string>
     <string name="upgrade_screen_iap_action_hint">רכישה חד פעמית של %s</string>
     <string name="upgrade_screen_restore_purchase_action">שחזור רכישה</string>
     <string name="upgrade_screen_restore_purchase_message">לא נמצאו רכישות. ודא שאתה מחובר באמצעות חשבון גוגל הנכון.</string>
+    <string name="upgrade_screen_restore_banner_title">כבר קנית Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">נראה שהשדרגת ל-Pro בעבר בהתקן זה. השחזר את הרכישה שלך כדי לפתוח אותה שוב.</string>
     <string name="upgrade_screen_options_description">מנויים מתחדשים אוטומטית. ניתן לבטל בכל עת.</string>
     <string name="upgrade_title_suffix">פרו</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">אתה Pro — תודה!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">הרכישה החד-פעמית של Pro שלך פותחת את כל תכונות Pro, לנצח.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">המנוי שלך פותח את כל תכונות Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">המנוי שלך</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">המנוי שלך פעיל ומתחדש באופן אוטומטי.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">המנוי שלך מוגדר לפוג ולא יתחדש. תוכל להשתמש ב-Pro עד שיסתיים.</string>
+    <string name="upgrade_screen_owned_both_warning">יש לך שדרוג Pro חד-פעמי ויש לך גם מנוי פעיל. אתה לא צריך את שניהם — בטל את המנוי בגוגל פליי כדי להימנע מחיובים נוספים.</string>
+    <string name="upgrade_screen_manage_subscription_action">ניהול המנוי</string>
+    <string name="upgrade_screen_owned_iap_title">Pro לכל החיים</string>
+    <string name="upgrade_screen_owned_iap_body">יש לך שדרוג Pro חד-פעמי. אין מנוי, אין התחדשויות.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">עבור לרכישה חד-פעמית</string>
+    <string name="upgrade_screen_switch_purchase_note">המנוי שלך לא יתחדש, כך שתוכל לעבור לרכישה קבועה של Pro עכשיו.</string>
+    <string name="upgrade_screen_switch_locked_note">כדי לעבור לרכישה חד-פעמית, ראשית בטל את המנוי שלך בגוגל פליי. ההצעה הזו נפתחת ברגע שהוגדרה לא להתחדש.</string>
+    <string name="upgrade_screen_limitation_disclosure">גוגל פליי בודקת רק את החשבון שאתה כרגע מחובר אליו. הרכישה החד-פעמית נפרדת מהמנוי שלך.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">המנוי שלך עדיין פעיל ומתחדש. בטל אותו בגוגל פליי קודם.</string>
+    <string name="upgrade_screen_sub_check_failed_message">לא הצלחנו לאמת את המנוי שלך עם גוגל פליי. אנא נסה שוב.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">מאשרים את הרכישה שלך</string>
+    <string name="upgrade_screen_grace_body">ממתינים לאישור חוזר מגוגל פליי לרכישת ה-Pro שלך. זה בדרך כלל נפתר מעצמו.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">עדיין לא הצלחנו לאשר מחדש את רכישת ה-Pro שלך עם גוגל פליי. אם זה ממשיך לקרות, נסה לשחזר את הרכישה שלך או פנה לתמיכה.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">הסטטוס נראה לא נכון?</string>
+    <string name="upgrade_screen_restore_status_body">אם קנית את Pro אבל זה לא מופיע, הפעל בדיקה חיה מול גוגל פליי.</string>
+    <string name="upgrade_screen_restore_success_message">הרכישה שוחזרה.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">וודא שאתה מחובר בחשבון הגוגל שבו השתמשת לרכישה. בדיקה חיה מול גוגל פליי זה עתה בוצעה.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">אפשרויות שדרוג</string>
+    <string name="upgrade_screen_offers_body">אותן תכונות, רק דגמי תמחור שונים.</string>
+    <string name="upgrade_screen_offers_or">או</string>
+    <string name="upgrade_screen_subscription_offer_title">מנוי שנתי</string>
+    <string name="upgrade_screen_subscription_offer_body">מתחדש כל שנה לאחר הניסיון החינם. בטל בכל עת בגוגל פליי.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">מתחדש כל שנה. בטל בכל עת בגוגל פליי.</string>
+    <string name="upgrade_screen_iap_offer_title">קנה פעם אחת</string>
+    <string name="upgrade_screen_iap_offer_body">תשלום אחד, ללא התחדשויות.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">המנוי עדיין פעיל</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">בדקנו את גוגל פליי, אך לא הצלחנו לאשר רכישת Pro עבור החשבון המשמש את האפליקציה הזו.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">מספר חשבונות יכול לגרום לבעיות בגוגל פליי. התקנת האפליקציה דרך אתר גוגל פליי מחייבת אותה להשתייך לחשבון מסוים.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">סנכרון גוגל פליי יכול לקחת זמן. נסה להפעיל מחדש, לנקות את המטמון של חנות גוגל פליי, או פשוט להמתין.</string>
+    <string name="upgrade_screen_restore_contact_hint">עדיין תקוע? צור קשר עם התמיכה מהכתובת דוא\"ל שבה בוצעה הרכישה וכלול את מספר ההזמנה של גוגל פליי שלך.</string>
 </resources>

@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">บริการ Google Play ไม่พร้อมใช้งาน</string>
     <string name="upgrades_no_purchases_found_check_account">ไม่พบรายการซื้อ คุณใช้บัญชีที่ถูกต้องหรือไม่?</string>
+    <string name="upgrades_gplay_already_owned_title">ซื้อแล้ว</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play รายงานว่าคุณเป็นเจ้าของการอัปเกรดนี้แล้ว แต่ไม่สามารถคืนค่าได้ ตรวจสอบว่าคุณลงชื่อเข้าใช้ด้วยบัญชี Google ที่ใช้สำหรับการซื้อครั้งแรก จากนั้นลองใช้ \"คืนค่าการซื้อ\"</string>
     <string name="upgrade_screen_preamble">Permission Pilot ไม่มีโฆษณาและเคารพความเป็นส่วนตัวของคุณ การอัปเกรดช่วยสนับสนุนการพัฒนาอย่างต่อเนื่อง</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play ไม่พร้อมใช้งาน</string>
+    <string name="upgrade_screen_offers_unavailable_message">ไม่สามารถโหลดตัวเลือกการซื้อได้ Google Play อาจไม่พร้อมใช้งานชั่วคราว — ตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง</string>
     <string name="upgrade_screen_subscription_trial_action">เริ่มทดลองใช้องค์ฟรี</string>
     <string name="upgrade_screen_subscription_action">สมัครสมาชิก</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ปี ยกเลิกได้ตลอดเวลา</string>
-    <string name="upgrade_screen_iap_action">ซื้อ Pro</string>
+    <string name="upgrade_screen_iap_action">ซื้อครั้งเดียว</string>
     <string name="upgrade_screen_iap_action_hint">ซื้อครั้งเดียวในราคา %s</string>
     <string name="upgrade_screen_restore_purchase_action">กู้คืนการซื้อ</string>
     <string name="upgrade_screen_restore_purchase_message">ไม่พบการซื้อ ตรวจสอบว่าคุณล็อกเข้าด้วยบัญชี Google ที่ถูกต้อง</string>
+    <string name="upgrade_screen_restore_banner_title">ซื้อ Pro ไปแล้วหรือ?</string>
+    <string name="upgrade_screen_restore_banner_body">ดูเหมือนว่าคุณได้อัปเกรดเป็น Pro บนอุปกรณ์นี้มาแล้ว คืนค่าการซื้อของคุณเพื่อปลดล็อคอีกครั้ง</string>
     <string name="upgrade_screen_options_description">สมาชิกภาพจะต่ออายุโดยอัตโนมัติ คุณยกเลิกได้เมื่อใดก็ได้</string>
     <string name="upgrade_title_suffix">โปร</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">คุณเป็น Pro — ขอบคุณ!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">การซื้อ Pro ครั้งเดียวของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมดเป็นการถาวร</string>
+    <string name="upgrade_screen_owned_hero_sub_body">การสมัครสมาชิกของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมด</string>
+    <string name="upgrade_screen_owned_sub_title">การสมัครสมาชิกของคุณ</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">การสมัครสมาชิกของคุณยังใช้งานอยู่ และต่ออายุโดยอัตโนมัติ</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">การสมัครสมาชิกของคุณจะหมดอายุและจะไม่ต่ออายุ คุณจะยังคงใช้ Pro จนกว่าจะสิ้นสุด</string>
+    <string name="upgrade_screen_owned_both_warning">คุณมี Pro upgrade แบบครั้งเดียว และมีการสมัครสมาชิกที่ยังใช้งานอยู่ คุณไม่ต้องใช้ทั้งสอง — ยกเลิกการสมัครสมาชิกใน Google Play เพื่อหลีกเลี่ยงค่าใช้จ่ายเพิ่มเติม</string>
+    <string name="upgrade_screen_manage_subscription_action">จัดการการสมัครสมาชิก</string>
+    <string name="upgrade_screen_owned_iap_title">Lifetime Pro</string>
+    <string name="upgrade_screen_owned_iap_body">คุณมี Pro upgrade แบบครั้งเดียว ไม่มีการสมัครสมาชิก ไม่มีการต่ออายุ</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">เปลี่ยนไปซื้อแบบครั้งเดียว</string>
+    <string name="upgrade_screen_switch_purchase_note">การสมัครสมาชิกของคุณจะไม่ต่ออายุ ดังนั้นตอนนี้คุณสามารถเปลี่ยนไปซื้อ Pro แบบครั้งเดียวได้</string>
+    <string name="upgrade_screen_switch_locked_note">หากต้องการสลับไปใช้การซื้อแบบครั้งเดียว ให้ยกเลิกการสมัครสมาชิกของคุณใน Google Play ก่อน ข้อเสนอนี้จะปลดล็อกเมื่อคุณตั้งค่าให้ไม่ต่ออายุ</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play จะตรวจสอบเฉพาะบัญชีที่คุณลงชื่อเข้าสู่ระบบอยู่เท่านั้น การซื้อแบบครั้งเดียวจะแยกต่างหากจากการสมัครสมาชิกของคุณ</string>
+    <string name="upgrade_screen_sub_still_renewing_message">การสมัครสมาชิกของคุณยังคงใช้งานและต่ออายุอยู่ ให้ยกเลิกใน Google Play ก่อน</string>
+    <string name="upgrade_screen_sub_check_failed_message">ไม่สามารถยืนยันการสมัครสมาชิกของคุณกับ Google Play ได้ โปรดลองอีกครั้ง</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">กำลังยืนยันการซื้อของคุณ</string>
+    <string name="upgrade_screen_grace_body">กำลังรอให้ Google Play ยืนยันการซื้อ Pro ของคุณอีกครั้ง ปกติจะแก้ไขได้เอง</string>
+    <string name="upgrade_screen_grace_diagnostics_body">เรายังไม่สามารถยืนยันการซื้อ Pro ของคุณกับ Google Play ได้ หากปัญหานี้ยังคงเกิดขึ้น ให้ลองกู้คืนการซื้อของคุณหรือติดต่อฝ่ายสนับสนุน</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">สถานะดูผิดปกติหรือ</string>
+    <string name="upgrade_screen_restore_status_body">หากคุณซื้อ Pro แล้วแต่ยังไม่ปรากฏ ให้ตรวจสอบแบบสดกับ Google Play</string>
+    <string name="upgrade_screen_restore_success_message">การซื้อได้รับการกู้คืนแล้ว</string>
+    <string name="upgrade_screen_restore_webinstall_hint">ตรวจสอบว่าคุณลงชื่อเข้าใช้ด้วยบัญชี Google ที่ใช้ในการซื้อแล้ว การตรวจสอบแบบสดกับ Google Play เพิ่งดำเนินการเสร็จสิ้น</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">ตัวเลือกอัปเกรด</string>
+    <string name="upgrade_screen_offers_body">คุณสมบัติเดียวกัน เพียงแค่แบบจ่ายเงินต่างกัน</string>
+    <string name="upgrade_screen_offers_or">หรือ</string>
+    <string name="upgrade_screen_subscription_offer_title">สมาชิกรายปี</string>
+    <string name="upgrade_screen_subscription_offer_body">ต่ออายุทุกปีหลังจากรอบทดลองใช้ฟรี คุณสามารถยกเลิกได้ตลอดเวลาใน Google Play</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">ต่ออายุทุกปี คุณสามารถยกเลิกได้ตลอดเวลาใน Google Play</string>
+    <string name="upgrade_screen_iap_offer_title">ซื้อครั้งเดียว</string>
+    <string name="upgrade_screen_iap_offer_body">ชำระเงินครั้งเดียว ไม่มีการต่ออายุ</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">การสมัครสมาชิกยังคงใช้งานอยู่</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play เพิ่งได้รับการตรวจสอบ แต่ไม่สามารถยืนยันการซื้อ Pro สำหรับบัญชีที่แอปนี้ใช้</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">บัญชีหลายบัญชีอาจทำให้ Google Play สับสน การติดตั้งแอปผ่านเว็บไซต์ Google Play จะทำให้มันเชื่อมโยงกับบัญชีเฉพาะเจาะจง</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">การซิงค์ Google Play อาจใช้เวลาสักครู่ ลองรีบูต ล้างแคชของ Google Play Store หรือเพียงแค่รอสักครู่</string>
+    <string name="upgrade_screen_restore_contact_hint">ยังติดอยู่หรือ? ติดต่อฝ่ายสนับสนุนจากอีเมลที่ใช้ซื้อ พร้อมแนบหมายเลขคำสั่งซื้อ Google Play ของคุณ</string>
 </resources>

@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">بوونهەڵبەستكەری بھە</string>
     <string name="upgrade_foss_sponsor_subtitle">کرانەوەی GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">تکایە کاتێک لەبەر دووری بخوێنەوە بۆ پەڕەی سپۆنسەرەکان!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">Guhertoya azad</string>
+    <string name="upgrade_screen_status_free_body">Tu guhertoya azad û open-source ya bikar tînî. Pêşve tînana vê sepê piştgirî bike ji bo der kirina taybetmendiyên Pro.</string>
+    <string name="upgrade_screen_status_free_action">Piştevandar bibe</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">Spas ji bo piştgiriya te!</string>
+    <string name="upgrade_screen_status_upgraded_body">Tu hemû taybetmendiyên Pro\'yî vekir. Piştgiriya te Permission Pilot\'î azad û çavkanî vekirî diparêze.</string>
+    <string name="upgrade_screen_supporter_since">Piştgirê ji %1$s ve</string>
+    <string name="upgrade_screen_recurring_title">Dîsa piştgirî bike</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot di demildestî de pêşve tê xistin. Mêvandarê dubarekirî bîr bike da ku ew berdewam bimîne.</string>
+    <string name="upgrade_screen_recurring_action">GitHub Sponsors Vekir</string>
 </resources>

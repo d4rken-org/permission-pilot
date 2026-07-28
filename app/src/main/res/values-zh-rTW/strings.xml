@@ -541,6 +541,8 @@
     <string name="upgrade_benefit_manifest_viewer">瀏覽原始應用程式清單</string>
     <string name="general_upgrade_action">升級</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">升級狀態與選項</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">監控器</string>
     <string name="watcher_dashboard_feature_title">權限監控器</string>

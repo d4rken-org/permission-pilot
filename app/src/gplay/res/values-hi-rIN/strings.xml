@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play सेवाएं उपलब्ध नहीं हैं।</string>
     <string name="upgrades_no_purchases_found_check_account">कोई खरीदारी नहीं मिली। क्या आप सही खाते का उपयोग कर रहे हैं?</string>
+    <string name="upgrades_gplay_already_owned_title">पहले से खरीदा गया</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play की रिपोर्ट है कि आप पहले से इस अपग्रेड के मालिक हैं, लेकिन इसे पुनः स्थापित नहीं किया जा सका। जांचें कि आप मूल खरीद के लिए उपयोग किए गए Google खाते से साइन इन हैं, फिर \"खरीद को पुनः स्थापित करें\" की कोशिश करें।</string>
     <string name="upgrade_screen_preamble">Permission Pilot विज्ञापन-मुक्त है और आपकी गोपनीयता का सम्मान करता है। अपग्रेड करना निरंतर विकास का समर्थन करता है।</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play अनुपलब्ध है</string>
+    <string name="upgrade_screen_offers_unavailable_message">खरीद विकल्पों को लोड नहीं किया जा सका। Google Play अस्थायी रूप से अनुपलब्ध हो सकता है — अपने कनेक्शन की जांच करें और फिर से कोशिश करें।</string>
     <string name="upgrade_screen_subscription_trial_action">निशुल्क प्रयोग प्रारंभ करें</string>
     <string name="upgrade_screen_subscription_action">सदस्यता लें</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/वर्ष, कभी भी रद्द करें</string>
-    <string name="upgrade_screen_iap_action">Pro खरीदें</string>
+    <string name="upgrade_screen_iap_action">एक-बार खरीदे</string>
     <string name="upgrade_screen_iap_action_hint">%s की एकमुश्त खरीद</string>
     <string name="upgrade_screen_restore_purchase_action">खरीदारी पुनर्स्थापित करें</string>
     <string name="upgrade_screen_restore_purchase_message">कोई खरीदारी नहीं मिली। जांचें कि आप सही Google खाते से साइन इन हैं।</string>
+    <string name="upgrade_screen_restore_banner_title">पहले से Pro खरीदा?</string>
+    <string name="upgrade_screen_restore_banner_body">ऐसा लगता है कि आप इस डिवाइस पर पहले Pro पर अपग्रेड कर चुके हैं। इसे फिर से अनलॉक करने के लिए अपनी खरीद को पुनः स्थापित करें।</string>
     <string name="upgrade_screen_options_description">सदस्यता स्वचालित रूप से नवीनीकृत होती है। आप कभी भी रद्द कर सकते हैं।</string>
     <string name="upgrade_title_suffix">प्रो</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">आप Pro हैं — धन्यवाद!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">आपकी एक बार की Pro खरीद हमेशा के लिए हर Pro सुविधा को अनलॉक करती है।</string>
+    <string name="upgrade_screen_owned_hero_sub_body">आपकी सदस्यता हर Pro सुविधा को अनलॉक करती है।</string>
+    <string name="upgrade_screen_owned_sub_title">आपकी सदस्यता</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">आपकी सदस्यता सक्रिय है और स्वचालित रूप से नवीनीकृत होती है।</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">आपकी सदस्यता समाप्त होने के लिए सेट है और नवीनीकृत नहीं होगी। आप इसके समाप्त होने तक Pro को रखेंगे।</string>
+    <string name="upgrade_screen_owned_both_warning">आप एक बार की Pro अपग्रेड के मालिक हैं और एक सक्रिय सदस्यता भी रखते हैं। आपको दोनों की आवश्यकता नहीं है — आगे के शुल्क से बचने के लिए Google Play में सदस्यता को रद्द करें।</string>
+    <string name="upgrade_screen_manage_subscription_action">सदस्यता प्रबंधित करें</string>
+    <string name="upgrade_screen_owned_iap_title">आजीवन Pro</string>
+    <string name="upgrade_screen_owned_iap_body">आप एक बार की Pro अपग्रेड के मालिक हैं। कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">एक बार की खरीदारी पर स्विच करें</string>
+    <string name="upgrade_screen_switch_purchase_note">आपकी सदस्यता नवीनीकृत नहीं होगी, इसलिए आप अब स्थायी एक बार की Pro खरीदारी पर जा सकते हैं।</string>
+    <string name="upgrade_screen_switch_locked_note">एक बार की खरीदारी पर स्विच करने के लिए, पहले Google Play में अपनी सदस्यता को रद्द करें। यह ऑफर तब अनलॉक हो जाता है जब इसे नवीनीकृत न करने के लिए सेट किया जाता है।</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play केवल उस खाते की जांच करता है जिसमें आप वर्तमान में साइन इन हैं। एक बार की खरीदारी आपकी सदस्यता से अलग है।</string>
+    <string name="upgrade_screen_sub_still_renewing_message">आपकी सदस्यता अभी भी सक्रिय है और नवीनीकृत हो रही है। पहले इसे Google Play में रद्द करें।</string>
+    <string name="upgrade_screen_sub_check_failed_message">Google Play के साथ आपकी सदस्यता को सत्यापित नहीं किया जा सका। कृपया पुनः प्रयास करें।</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">आपकी खरीदारी की पुष्टि की जा रही है</string>
+    <string name="upgrade_screen_grace_body">Google Play को आपकी Pro खरीदारी को फिर से पुष्टि करने की प्रतीक्षा है। यह आमतौर पर अपने आप ठीक हो जाता है।</string>
+    <string name="upgrade_screen_grace_diagnostics_body">हम अभी भी Google Play के साथ आपकी Pro खरीदारी को फिर से पुष्टि नहीं कर सकते। यदि यह बार-बार होता रहे, तो अपनी खरीदारी को पुनः स्थापित करने का प्रयास करें या सहायता से संपर्क करें।</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">स्थिति गलत लग रही है?</string>
+    <string name="upgrade_screen_restore_status_body">अगर आपने Pro खरीदा है लेकिन वह दिख नहीं रहा है, तो Google Play के साथ एक लाइव जांच चलाएं।</string>
+    <string name="upgrade_screen_restore_success_message">क्रय बहाल किया गया।</string>
+    <string name="upgrade_screen_restore_webinstall_hint">सुनिश्चित करें कि आप उस Google खाते से साइन इन हैं जिसका उपयोग आपने खरीदारी के लिए किया था। Google Play के साथ एक लाइव जांच अभी चली।</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">अपग्रेड विकल्प</string>
+    <string name="upgrade_screen_offers_body">समान विशेषताएं, बस विभिन्न मूल्य निर्धारण मॉडल।</string>
+    <string name="upgrade_screen_offers_or">या</string>
+    <string name="upgrade_screen_subscription_offer_title">वार्षिक सदस्यता</string>
+    <string name="upgrade_screen_subscription_offer_body">मुफ्त परीक्षण के बाद वार्षिक नवीकरण करता है। किसी भी समय Google Play में रद्द करें।</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">हर साल नवीनीकृत होता है। Google Play में कभी भी रद्द करें।</string>
+    <string name="upgrade_screen_iap_offer_title">एक बार खरीदें</string>
+    <string name="upgrade_screen_iap_offer_body">एक भुगतान, कोई नवीनीकरण नहीं।</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">सदस्यता अभी भी सक्रिय है</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play की अभी जांच की गई, लेकिन इस ऐप के लिए उपयोग किए जा रहे खाते के लिए कोई Pro खरीद की पुष्टि नहीं की जा सकी।</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">कई खाते Google Play को भ्रमित कर सकते हैं। Google Play वेबसाइट के माध्यम से ऐप इंस्टॉल करने से यह एक विशिष्ट खाते के साथ जुड़ने के लिए बाध्य होता है।</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play सिंक्रोनाइजेशन में समय लग सकता है। रीबूट करने, Google Play Store कैश साफ़ करने, या बस प्रतीक्षा करने का प्रयास करें।</string>
+    <string name="upgrade_screen_restore_contact_hint">अभी भी फंसे हुए हैं? खरीद करने वाले ईमेल से समर्थन से संपर्क करें और अपनी Google Play ऑर्डर संख्या शामिल करें।</string>
 </resources>

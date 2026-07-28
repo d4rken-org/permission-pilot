@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Služby Google Play nie sú dostupné.</string>
     <string name="upgrades_no_purchases_found_check_account">Nenašli sa žiadne nákupy. Používate správny účet?</string>
+    <string name="upgrades_gplay_already_owned_title">Už zakúpené</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play hlási, že už vlastníte tento upgrade, ale nepodarilo sa ho obnoviť. Skontrolujte, že ste prihlásení s účtom Google, ktorý ste používali pri pôvodnom nákupe, a potom skúste „Obnoviť nákup“.</string>
     <string name="upgrade_screen_preamble">Permission Pilot je bez reklam a rešpektuje vaše súkromie. Upgrade podporuje ďalejší vyvoj.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play nie je k dispozícii</string>
+    <string name="upgrade_screen_offers_unavailable_message">Nepodarilo sa načítať možnosti nákupu. Google Play môže byť dočasne nedostupný — skontrolujte vaše pripojenie a skúste znova.</string>
     <string name="upgrade_screen_subscription_trial_action">Vyskúšajte zadarmo</string>
     <string name="upgrade_screen_subscription_action">Predplatiť</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, kedykoľvek zrušiť</string>
-    <string name="upgrade_screen_iap_action">Kupí Pro</string>
+    <string name="upgrade_screen_iap_action">Jednorazový nákup</string>
     <string name="upgrade_screen_iap_action_hint">Jednorazový nákup za %s</string>
     <string name="upgrade_screen_restore_purchase_action">Obnoviť nákup</string>
     <string name="upgrade_screen_restore_purchase_message">Žiadne nákupy neboli nájdené. Skontrolujte, či ste prihlásení so správnym účtom Google.</string>
+    <string name="upgrade_screen_restore_banner_title">Už ste kúpili Pro?</string>
+    <string name="upgrade_screen_restore_banner_body">Vyzerá to, že ste na tomto zariadení predtým upgradovali na Pro. Obnovte si nákup a odomknite ho znova.</string>
     <string name="upgrade_screen_options_description">Predplatné sa obnovia automaticky. Môžete ich kedykoľvek zrušiť.</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Ste Pro — ďakujeme!</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Váš jednorazový nákup Pro odomyká všetky funkcie Pro. Navždy.</string>
+    <string name="upgrade_screen_owned_hero_sub_body">Vaše predplatné odomyká všetky funkcie Pro.</string>
+    <string name="upgrade_screen_owned_sub_title">Vaše predplatné</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">Vaše predplatné je aktívne a automaticky sa obnovuje.</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">Vaše predplatné vypršia a nebude sa obnovovať. Budete mať Pro až do jeho konca.</string>
+    <string name="upgrade_screen_owned_both_warning">Vlastníte jednorazový upgrade Pro a máte aj aktívne predplatné. Nepotrebujete oboje – zrušte predplatné v Google Play, aby ste sa vyhli ďalším poplatkom.</string>
+    <string name="upgrade_screen_manage_subscription_action">Spravovať predplatné</string>
+    <string name="upgrade_screen_owned_iap_title">Doživotný Pro</string>
+    <string name="upgrade_screen_owned_iap_body">Vlastníte jednorazový upgrade Pro. Žiadne predplatné, žiadne obnovy.</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">Prejsť na jednorazový nákup</string>
+    <string name="upgrade_screen_switch_purchase_note">Vaše predplatné sa neobnoví, takže teraz môžete prejsť na trvalý jednorazový nákup Pro.</string>
+    <string name="upgrade_screen_switch_locked_note">Ak chcete prejsť na jednorazový nákup, najskôr zrušte svoje predplatné v Google Play. Táto ponuka sa odomkne, keď nastavíte predplatné, aby sa neobnovalo.</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play kontroluje iba účet, s ktorým ste momentálne prihlásení. Jednorazový nákup je nezávislý od vášho predplatného.</string>
+    <string name="upgrade_screen_sub_still_renewing_message">Vaše predplatné je stále aktívne a obnovuje sa. Zrušte ho najskôr v Google Play.</string>
+    <string name="upgrade_screen_sub_check_failed_message">Nepodarilo sa overiť vaše predplatné v Google Play. Skúste znova prosím.</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">Potvrdzovanie vášho nákupu</string>
+    <string name="upgrade_screen_grace_body">Čakáme, kým Google Play znovu potvrdí váš nákup Pro. Zvyčajne sa to vyrieši automaticky.</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Stále nemôžeme znovu potvrdiť váš nákup Pro v Google Play. Ak sa to stále deje, skúste obnoviť svoj nákup alebo kontaktujte podporu.</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">Stav vyzerá zle?</string>
+    <string name="upgrade_screen_restore_status_body">Ak ste si kúpili Pro, ale nie je to viditeľné, spustite živú kontrolu voči Google Play.</string>
+    <string name="upgrade_screen_restore_success_message">Nákup obnovený.</string>
+    <string name="upgrade_screen_restore_webinstall_hint">Uistite sa, že ste prihlásení pomocou účtu Google, ktorý ste použili na nákup. Práve sa spustila živá kontrola voči Google Play.</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">Možnosti aktualizácie</string>
+    <string name="upgrade_screen_offers_body">Rovnaké funkcie, len iné cenové modely.</string>
+    <string name="upgrade_screen_offers_or">alebo</string>
+    <string name="upgrade_screen_subscription_offer_title">Ročné predplatné</string>
+    <string name="upgrade_screen_subscription_offer_body">Obnovuje sa ročne po bezplatnej skúšobnej dobe. Kedykoľvek ho môžete zrušiť v Google Play.</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">Obnovuje sa ročne. Kedykoľvek ho môžete zrušiť v Google Play.</string>
+    <string name="upgrade_screen_iap_offer_title">Kúpiť raz</string>
+    <string name="upgrade_screen_iap_offer_body">Jedna platba, bez obnovenia.</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">Predplatné je stále aktívne</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play bolo práve skontrolované, ale nákup Pro sa nedal potvrdiť pre účet, ktorý aplikácia používa.</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">Viaceré účty môžu zmiasť Google Play. Inštalácia aplikácie prostredníctvom webovej stránky Google Play si vynúti priradenie ku konkrétnemu účtu.</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Synchronizácia Google Play môže chvíľu trvať. Skúste reštartovať, vymazať vyrovnávaciu pamäť Google Play Store alebo jednoducho počkať.</string>
+    <string name="upgrade_screen_restore_contact_hint">Stále v problémoch? Kontaktujte podporu z e-mailu, ktorý bol použitý na nákup, a uveďte číslo svojej objednávky Google Play.</string>
 </resources>

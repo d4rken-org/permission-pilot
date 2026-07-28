@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play サービスを利用できません。</string>
     <string name="upgrades_no_purchases_found_check_account">購入履歴が見つかりません。正しいアカウントを使用していますか？</string>
+    <string name="upgrades_gplay_already_owned_title">既に購入済み</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play ではこのアップグレードを所有していると報告されていますが、復元できませんでした。元の購入に使用した Google アカウントでサインインしていることを確認してから、「購入を復元」をお試しください。</string>
     <string name="upgrade_screen_preamble">Permission Pilotは広告なしでプライバシーを尊重しています。アップグレードは継続的な開発をサポートします。</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play は利用できません</string>
+    <string name="upgrade_screen_offers_unavailable_message">購入オプションを読み込めませんでした。Google Play が一時的に利用できない可能性があります。接続を確認してもう一度お試しください。</string>
     <string name="upgrade_screen_subscription_trial_action">試用を開始する</string>
     <string name="upgrade_screen_subscription_action">登録</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年、いつでもキャンセルできます</string>
-    <string name="upgrade_screen_iap_action">Proを購入</string>
+    <string name="upgrade_screen_iap_action">1 回限りの購入</string>
     <string name="upgrade_screen_iap_action_hint">%sの一回購入</string>
     <string name="upgrade_screen_restore_purchase_action">購入を復元</string>
     <string name="upgrade_screen_restore_purchase_message">購入履歴が見つかりません。正しいGoogleアカウントでサインインしているか確認してください。</string>
+    <string name="upgrade_screen_restore_banner_title">Pro をすでに購入しましたか？</string>
+    <string name="upgrade_screen_restore_banner_body">以前このデバイスで Pro にアップグレードしたようです。購入を復元して Pro をもう一度ロック解除してください。</string>
     <string name="upgrade_screen_options_description">サブスクリプションは自動更新されます。いつでもキャンセルできます。</string>
     <string name="upgrade_title_suffix">Pro</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">Pro のご利用ありがとうございます！</string>
+    <string name="upgrade_screen_owned_hero_iap_body">Pro のワンタイム購入により、すべての Pro 機能が永久にロック解除されます。</string>
+    <string name="upgrade_screen_owned_hero_sub_body">ご契約により、すべての Pro 機能がロック解除されます。</string>
+    <string name="upgrade_screen_owned_sub_title">ご契約</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">ご契約は有効で、自動更新されます。</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">ご契約は更新しないように設定されており、終了予定です。Pro は終了までご利用いただけます。</string>
+    <string name="upgrade_screen_owned_both_warning">一度限りの Pro アップグレードとアクティブなサブスクリプションの両方をお持ちです。両方は必要ありません。さらなる料金を避けるため、Google Play でご契約をキャンセルしてください。</string>
+    <string name="upgrade_screen_manage_subscription_action">ご契約を管理</string>
+    <string name="upgrade_screen_owned_iap_title">生涯 Pro</string>
+    <string name="upgrade_screen_owned_iap_body">一度限りの Pro アップグレードをお持ちです。サブスクリプションはなく、更新もありません。</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">ワンタイム購入に切り替える</string>
+    <string name="upgrade_screen_switch_purchase_note">ご契約は更新されないため、今すぐ永続的なワンタイム Pro 購入に切り替えることができます。</string>
+    <string name="upgrade_screen_switch_locked_note">ワンタイム購入に切り替えるには、まず Google Play でご契約をキャンセルしてください。このオファーは、更新しないように設定されるとロック解除されます。</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play は、現在サインインしているアカウントのみをチェックします。一度限りの購入はサブスクリプションとは別です。</string>
+    <string name="upgrade_screen_sub_still_renewing_message">ご契約はまだ有効で更新されています。まず Google Play でキャンセルしてください。</string>
+    <string name="upgrade_screen_sub_check_failed_message">Google Play でご契約を確認できませんでした。もう一度お試しください。</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">購入を確認中</string>
+    <string name="upgrade_screen_grace_body">Google Play が Pro 購入を再確認するのを待っています。これは通常自動的に解決します。</string>
+    <string name="upgrade_screen_grace_diagnostics_body">Google Play で Pro 購入を再確認できません。この問題が続く場合は、購入を復元するか、サポートにお問い合わせください。</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">ステータスが間違っていますか？</string>
+    <string name="upgrade_screen_restore_status_body">Pro を購入しているのに表示されない場合は、Google Play に対してライブチェックを実行してください。</string>
+    <string name="upgrade_screen_restore_success_message">購入が復元されました。</string>
+    <string name="upgrade_screen_restore_webinstall_hint">購入に使用した Google アカウントでサインインしていることを確認してください。Google Play に対するライブチェックが実行されました。</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">アップグレードオプション</string>
+    <string name="upgrade_screen_offers_body">同じ機能ですが、価格設定モデルが異なります。</string>
+    <string name="upgrade_screen_offers_or">または</string>
+    <string name="upgrade_screen_subscription_offer_title">年間サブスクリプション</string>
+    <string name="upgrade_screen_subscription_offer_body">無料体験後、毎年更新されます。Google Play でいつでもキャンセルできます。</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">毎年更新されます。Google Play でいつでもキャンセルできます。</string>
+    <string name="upgrade_screen_iap_offer_title">1 回購入</string>
+    <string name="upgrade_screen_iap_offer_body">1 回の支払い、更新なし。</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">サブスクリプションはまだ有効です</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">Google Play を確認しましたが、このアプリが使用しているアカウントで Pro 購入を確認できませんでした。</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">複数のアカウントは Google Play を混乱させる可能性があります。Google Play ウェブサイトからアプリをインストールすれば、特定のアカウントに関連付けられます。</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play の同期には時間がかかる場合があります。再起動するか、Google Play ストアのキャッシュをクリアするか、しばらく待ってみてください。</string>
+    <string name="upgrade_screen_restore_contact_hint">まだお困りですか？購入に使用したメールアドレスからサポートに連絡し、Google Play の注文番号を含めてください。</string>
 </resources>

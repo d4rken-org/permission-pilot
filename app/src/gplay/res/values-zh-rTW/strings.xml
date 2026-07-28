@@ -2,14 +2,65 @@
 <resources>
     <string name="upgrades_gplay_unavailable_error">目前無法取用 Google Play 服務</string>
     <string name="upgrades_no_purchases_found_check_account">找不到購買紀錄，請確認使用的帳號是否正確。</string>
+    <string name="upgrades_gplay_already_owned_title">已購買</string>
+    <string name="upgrades_gplay_already_owned_error">Google Play 報告您已擁有此升級，但無法復原。請檢查您是否使用原始購買所用的 Google 帳戶登入，然後嘗試「復原購買」。</string>
     <string name="upgrade_screen_preamble">Permission Pilot 無廣告且尊重您的隱私。升級可支持持續開發。</string>
+    <string name="upgrade_screen_offers_unavailable_title">Google Play 無法使用</string>
+    <string name="upgrade_screen_offers_unavailable_message">無法載入購買選項。Google Play 可能暫時無法使用——請檢查您的連線並重試。</string>
     <string name="upgrade_screen_subscription_trial_action">開始免費試用</string>
     <string name="upgrade_screen_subscription_action">訂閱</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年，隨時可取消</string>
-    <string name="upgrade_screen_iap_action">購買 Pro</string>
+    <string name="upgrade_screen_iap_action">一次購買</string>
     <string name="upgrade_screen_iap_action_hint">一次性購買 %s</string>
     <string name="upgrade_screen_restore_purchase_action">還原購買</string>
     <string name="upgrade_screen_restore_purchase_message">找不到購買記錄。請確認您已使用正確的 Google 帳號登入。</string>
+    <string name="upgrade_screen_restore_banner_title">已購買 Pro？</string>
+    <string name="upgrade_screen_restore_banner_body">看起來您之前在此裝置上升級至 Pro。復原您的購買以重新解鎖。</string>
     <string name="upgrade_screen_options_description">訂閱自動續費。您可隨時取消。</string>
     <string name="upgrade_title_suffix">專業版</string>
+    <!-- Settings entry title (Play flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
+    <!-- Ownership / status -->
+    <string name="upgrade_screen_owned_hero_title">您已升級至 Pro——感謝您！</string>
+    <string name="upgrade_screen_owned_hero_iap_body">您的一次性 Pro 購買解鎖所有 Pro 功能，永久有效。</string>
+    <string name="upgrade_screen_owned_hero_sub_body">您的訂閱解鎖所有 Pro 功能。</string>
+    <string name="upgrade_screen_owned_sub_title">您的訂閱</string>
+    <string name="upgrade_screen_owned_sub_renewing_body">您的訂閱處於有效狀態，將自動更新。</string>
+    <string name="upgrade_screen_owned_sub_not_renewing_body">您的訂閱設定為過期且不會更新。在訂閱結束前，您將保持 Pro 狀態。</string>
+    <string name="upgrade_screen_owned_both_warning">您同時擁有一次性 Pro 升級和有效訂閱。您不需要兩者——取消 Google Play 中的訂閱以避免進一步扣費。</string>
+    <string name="upgrade_screen_manage_subscription_action">管理訂閱</string>
+    <string name="upgrade_screen_owned_iap_title">終身 Pro</string>
+    <string name="upgrade_screen_owned_iap_body">您擁有一次性 Pro 升級。無需訂閱，無需更新。</string>
+    <!-- Switch subscription -> one-time purchase -->
+    <string name="upgrade_screen_switch_title">切換為一次性購買</string>
+    <string name="upgrade_screen_switch_purchase_note">您的訂閱不會更新，因此您現在可以轉換為永久一次性 Pro 購買。</string>
+    <string name="upgrade_screen_switch_locked_note">若要切換到一次性購買，請先在 Google Play 中取消訂閱。將訂閱設為不自動續約後，此優惠即會解鎖。</string>
+    <string name="upgrade_screen_limitation_disclosure">Google Play 只會檢查您目前登入的帳戶。一次性購買與您的訂閱是分開的。</string>
+    <string name="upgrade_screen_sub_still_renewing_message">您的訂閱仍處於活動狀態且正在續約。請先在 Google Play 中取消訂閱。</string>
+    <string name="upgrade_screen_sub_check_failed_message">無法透過 Google Play 驗證您的訂閱。請重試。</string>
+    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_grace_title">正在確認您的購買</string>
+    <string name="upgrade_screen_grace_body">等待 Google Play 重新確認您的 Pro 購買。這通常會自動解決。</string>
+    <string name="upgrade_screen_grace_diagnostics_body">我們仍然無法透過 Google Play 重新確認您的 Pro 購買。如果問題持續發生，請嘗試恢復購買或聯絡支援。</string>
+    <!-- Restore -->
+    <string name="upgrade_screen_restore_status_title">狀態看起來有誤？</string>
+    <string name="upgrade_screen_restore_status_body">如果您已購買 Pro 但未顯示，請對 Google Play 執行即時檢查。</string>
+    <string name="upgrade_screen_restore_success_message">購買已恢復。</string>
+    <string name="upgrade_screen_restore_webinstall_hint">請確保您已登入購買時使用的 Google 帳戶。剛剛執行了 Google Play 即時檢查。</string>
+    <!-- Upgrade options card -->
+    <string name="upgrade_screen_offers_title">升級選項</string>
+    <string name="upgrade_screen_offers_body">功能相同，只是定價模式不同。</string>
+    <string name="upgrade_screen_offers_or">或</string>
+    <string name="upgrade_screen_subscription_offer_title">年度訂閱</string>
+    <string name="upgrade_screen_subscription_offer_body">免費試用後每年續訂。可在 Google Play 隨時取消。</string>
+    <string name="upgrade_screen_subscription_offer_body_no_trial">每年續訂。可在 Google Play 隨時取消。</string>
+    <string name="upgrade_screen_iap_offer_title">一次性購買</string>
+    <string name="upgrade_screen_iap_offer_body">一次性付款，無需續訂。</string>
+    <!-- Subscription-still-renewing dialog (blocks the switch) -->
+    <string name="upgrade_screen_sub_still_renewing_title">訂閱仍然有效</string>
+    <!-- Failed-restore troubleshooting dialog -->
+    <string name="upgrade_screen_restore_checked_message">剛才檢查了 Google Play，但無法確認此應用程式所用帳戶的 Pro 購買記錄。</string>
+    <string name="upgrade_screen_restore_multiaccount_hint">多個帳戶可能會導致 Google Play 混亂。透過 Google Play 網站安裝應用程式會強制將其與特定帳戶關聯。</string>
+    <string name="upgrade_screen_restore_sync_patience_hint">Google Play 同步可能需要一段時間。請嘗試重新啟動、清除 Google Play Store 快取或耐心等候。</string>
+    <string name="upgrade_screen_restore_contact_hint">仍未解決？請使用進行購買的電子郵件帳戶聯絡支援，並提供您的 Google Play 訂單編號。</string>
 </resources>

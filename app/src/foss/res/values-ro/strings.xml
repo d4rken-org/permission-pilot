@@ -4,4 +4,17 @@
     <string name="upgrade_foss_sponsor_action">Devino sponsor</string>
     <string name="upgrade_foss_sponsor_subtitle">Deschide GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">Te rugăm să arunci o privire la pagina de sponsori!</string>
+    <!-- Settings entry title (FOSS flavor) -->
+    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
+    <!-- Free status -->
+    <string name="upgrade_screen_status_free_title">Versiunea gratuită</string>
+    <string name="upgrade_screen_status_free_body">Folosești versiunea gratuită, cu sursă deschisă. Sprijină dezvoltarea pentru a debloca funcțiile Pro.</string>
+    <string name="upgrade_screen_status_free_action">Devino sponsor</string>
+    <!-- Supporter status -->
+    <string name="upgrade_screen_status_upgraded_title">Îți mulțumim pentru sprijin!</string>
+    <string name="upgrade_screen_status_upgraded_body">Ai deblocat toate funcțiile Pro. Sprijinul tău menține Permission Pilot gratuit și cu sursă deschisă.</string>
+    <string name="upgrade_screen_supporter_since">Suporter din %1$s</string>
+    <string name="upgrade_screen_recurring_title">Sprijină din nou</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot este dezvoltat deschis. Ia în considerare o sponsorizare recurentă pentru a-l susține.</string>
+    <string name="upgrade_screen_recurring_action">Deschide GitHub Sponsors</string>
 </resources>

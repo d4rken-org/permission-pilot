@@ -564,6 +564,8 @@
     <string name="upgrade_benefit_manifest_viewer">Blaai deur rou app-manifeste</string>
     <string name="general_upgrade_action">Opgradeer</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">Opgradering-status en opsies</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">Watcher</string>
     <string name="watcher_dashboard_feature_title">Toestemmingswatcher</string>

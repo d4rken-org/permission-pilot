@@ -564,6 +564,8 @@
     <string name="upgrade_benefit_manifest_viewer">Ham uygulama manifestolarına göz at</string>
     <string name="general_upgrade_action">Yükselt</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
+    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
+    <string name="settings_upgrade_description">Yükseltme durumu ve seçenekleri</string>
     <!-- Permission Watcher -->
     <string name="watcher_tab_label">İzleyici</string>
     <string name="watcher_dashboard_feature_title">İzin İzleyici</string>
