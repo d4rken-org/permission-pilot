@@ -44,27 +44,7 @@
 
 ## Screenshots
 
-For the full regen + Play Store upload workflow (smoke-only tracking, on-demand full regen, manual upload), see `.claude/rules/screenshots.md`.
-
-```bash
-# Generate all localized screenshots (39 locales x 6 screens, batched)
-./fastlane/generate_screenshots.sh
-
-# Smoke test (6 locales for fast iteration)
-./fastlane/generate_screenshots.sh --smoke
-
-# Custom batch size
-./fastlane/generate_screenshots.sh --batch-size 4
-
-# Copy generated PNGs to fastlane metadata directories
-./fastlane/copy_screenshots.sh
-
-# Clean existing screenshots before copying
-./fastlane/copy_screenshots.sh --clean
-
-# Direct Gradle task (single batch, all locales — may OOM)
-./gradlew updateGplayDebugScreenshotTest
-```
+Screenshot generation and Play Store upload is a multi-step procedure — invoke the `/screenshots` skill.
 
 ## Release
 
@@ -72,11 +52,4 @@ For the full regen + Play Store upload workflow (smoke-only tracking, on-demand 
 ./gradlew assembleFossRelease assembleGplayRelease
 ```
 
-## Context Management
-
-When running gradle builds or tests, use the Task tool with a sub-agent to keep verbose output isolated from the main conversation context. The sub-agent should report back only:
-- Success or failure
-- Compilation errors with file paths and line numbers
-- Warning counts
-
-Run gradle directly in the main context only when the user explicitly requests full output.
+Version bumping and tagging is a separate procedure — invoke the `/release` skill.

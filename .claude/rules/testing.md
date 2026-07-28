@@ -1,3 +1,13 @@
+---
+paths:
+  - "app/src/test/**"
+  - "app/src/testGplay/**"
+  - "app/src/testShared/**"
+  - "app/src/androidTest/**"
+  - "app/src/screenshotTest/**"
+  - "app/src/screenshotTestGplayDebug/**"
+---
+
 # Testing Guidelines
 
 ## Test Locations
@@ -53,4 +63,4 @@ Compose preview-based screenshot tests (enabled by `android.experimental.enableS
 - **Screen content under test**: `app/src/debug/java/eu/darken/myperm/screenshots/ScreenshotContent.kt` — edit this file when updating what a screenshot shows
 - **Driven by**: `fastlane/generate_screenshots.sh`, which runs `./gradlew updateGplayDebugScreenshotTest` and patches `PlayStoreLocales.kt` per batch
 
-See `.claude/rules/build-commands.md` for the fastlane wrapper commands (`generate_screenshots.sh`, `copy_screenshots.sh`).
+For the fastlane wrapper commands (`generate_screenshots.sh`, `copy_screenshots.sh`) and the Play Store upload workflow, invoke the `/screenshots` skill.

@@ -1,3 +1,9 @@
+---
+paths:
+  - "app/src/*/res/values*/**"
+  - "fastlane/metadata/**"
+---
+
 # Localization Guidelines
 
 ## String Extraction
