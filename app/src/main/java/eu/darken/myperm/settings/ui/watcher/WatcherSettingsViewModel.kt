@@ -4,6 +4,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.uix.ViewModel4
@@ -42,6 +43,17 @@ class WatcherSettingsViewModel @Inject constructor(
         .map { it.error == null && it.isSettled && !it.isPro }
         .stateIn(vmScope, SharingStarted.Eagerly, false)
 
+    val events = SingleEventFlow<Event>()
+
+    sealed interface Event {
+        /**
+         * Emitted only after the entitlement gate authorized the premium notification feature AND
+         * the enabled-preference write landed — the screen must not launch the OS permission dialog
+         * before that.
+         */
+        data object RequestNotificationPermission : Event
+    }
+
     val isWatcherEnabled: Flow<Boolean> = generalSettings.isWatcherEnabled.flow
     val watcherScope: Flow<WatcherScope> = generalSettings.watcherScope.flow
     val isNotificationsEnabled: Flow<Boolean> = generalSettings.isWatcherNotificationsEnabled.flow
@@ -69,8 +81,6 @@ class WatcherSettingsViewModel @Inject constructor(
         generalSettings.watcherScope.value(scope)
     }
 
-    fun isNotificationPermissionDenied(): Boolean = notificationCapability.isRuntimePermissionDenied()
-
     fun setNotificationsEnabled(enabled: Boolean) = launch {
         // Turning notifications OFF is a safe revocation: it never needs an entitlement, and the
         // free path deliberately writes `false` when the locked row is tapped.
@@ -79,6 +89,12 @@ class WatcherSettingsViewModel @Inject constructor(
             return@launch
         }
         generalSettings.isWatcherNotificationsEnabled.value(enabled)
+        // Only once the gated write has landed do we let the screen ask the OS for the permission;
+        // launching it off the tap would race ahead of the entitlement check.
+        // `isRuntimePermissionDenied()` is false below Android 13, so no event is emitted there.
+        if (enabled && notificationCapability.isRuntimePermissionDenied()) {
+            events.emit(Event.RequestNotificationPermission)
+        }
     }
 
     fun setNotifyOnlyOnGained(enabled: Boolean) = launch {

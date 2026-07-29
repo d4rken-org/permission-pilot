@@ -2,6 +2,8 @@ package eu.darken.myperm.watcher.ui.dashboard
 
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.datastore.DataStoreValue
+import eu.darken.myperm.common.navigation.Nav
+import eu.darken.myperm.common.navigation.NavEvent
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.upgrade.UpgradeRepo
@@ -12,17 +14,23 @@ import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherNotifications
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import kotlinx.serialization.json.Json
@@ -278,6 +286,59 @@ class WatcherDashboardViewModelTest : BaseTest() {
         state!!.isUpgradeLocked shouldBe false
         state.reports.size shouldBe 7
     }
+
+    // --- notification permission gate -----------------------------------------------------------
+
+    @Test
+    fun `a settled free user tapping grant is routed to upgrade instead of the OS prompt`() =
+        runTest(testDispatcher) {
+            upgradeInfo.value = info(isPro = false, isSettled = true)
+            val vm = createVM()
+            val events = mutableListOf<WatcherDashboardViewModel.Event>()
+            backgroundScope.launch { vm.events.toList(events) }
+            runCurrent()
+
+            vm.requestNotificationPermission()
+            advanceUntilIdle()
+
+            events.shouldBeEmpty()
+            vm.navEvents.first().shouldBeInstanceOf<NavEvent.GoTo>().destination shouldBe Nav.Main.Upgrade()
+        }
+
+    @Test
+    fun `a pro user tapping grant gets the permission request event`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = true, isSettled = true)
+        val vm = createVM()
+        val events = mutableListOf<WatcherDashboardViewModel.Event>()
+        backgroundScope.launch { vm.events.toList(events) }
+        runCurrent()
+
+        vm.requestNotificationPermission()
+        advanceUntilIdle()
+
+        events shouldBe listOf(WatcherDashboardViewModel.Event.RequestNotificationPermission)
+    }
+
+    @Test
+    fun `a paying user tapping during the unsettled cold start gets the prompt once the gate resolves`() =
+        runTest(testDispatcher) {
+            // No virtual time is advanced here: isProForUi must resolve off the settle signal, not
+            // off its fail-open timeout.
+            upgradeInfo.value = info(isPro = false, isSettled = false)
+            val vm = createVM()
+            val events = mutableListOf<WatcherDashboardViewModel.Event>()
+            backgroundScope.launch { vm.events.toList(events) }
+            runCurrent()
+
+            vm.requestNotificationPermission()
+            runCurrent()
+            events.shouldBeEmpty()
+
+            upgradeInfo.value = info(isPro = true, isSettled = true)
+            runCurrent()
+
+            events shouldBe listOf(WatcherDashboardViewModel.Event.RequestNotificationPermission)
+        }
 
     @Test
     fun `battery card hidden when watcher disabled`() = runTest(testDispatcher) {

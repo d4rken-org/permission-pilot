@@ -108,16 +108,27 @@ class ExportViewModel @Inject constructor(
         val exportResult: ExportResult? = null,
     )
 
+    private data class PresentationSlice(
+        val exportResult: ExportResult?,
+        val preview: String?,
+        val isPreviewLoading: Boolean,
+        val isPro: Boolean,
+    )
+
     val state: StateFlow<State?> = combine(
         appRepo.appData,
         permissionRepo.state,
         appConfig,
         permConfig,
-        combine(exportResult, preview, isPreviewLoading) { r, p, l -> Triple(r, p, l) },
-    ) { appDataState, permState, appCfg, permCfg, (result, previewText, previewLoading) ->
+        // [isPro] is a reactive input, not a one-shot `.value` read: the initial presentation is
+        // optimistic (unlocked while billing is unsettled), so when billing settles free afterwards
+        // the state has to re-lock instead of keeping the unlocked UI.
+        combine(exportResult, preview, isPreviewLoading, isPro) { r, p, l, pro ->
+            PresentationSlice(r, p, l, pro)
+        },
+    ) { appDataState, permState, appCfg, permCfg, (result, previewText, previewLoading, pro) ->
         val allApps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
         val allPerms = (permState as? PermissionRepo.State.Ready)?.permissions ?: emptyList()
-        val pro = isPro.value
 
         when (val m = mode) {
             is ExportMode.Apps -> {
@@ -159,16 +170,18 @@ class ExportViewModel @Inject constructor(
     }.asStateFlow()
 
     init {
-        // Async preview generation: debounce config changes, run on IO
+        // Async preview generation: debounce config changes, run on IO.
+        // [isPro] is part of the trigger so a late billing verdict regenerates the preview, and the
+        // emitted value is threaded into the generation instead of being re-read there.
         @OptIn(FlowPreview::class)
-        combine(appConfig, permConfig, appRepo.appData, permissionRepo.state) { appCfg, permCfg, appData, permState ->
-            appCfg to permCfg to (appData to permState)
-        }.debounce(200L).map {
-            regeneratePreview()
+        combine(appConfig, permConfig, appRepo.appData, permissionRepo.state, isPro) { _, _, _, _, pro ->
+            pro
+        }.debounce(200L).map { pro ->
+            regeneratePreview(pro)
         }.launchInViewModel()
     }
 
-    private suspend fun regeneratePreview() {
+    private suspend fun regeneratePreview(pro: Boolean) {
         // Abort preview if upstream data is in an Error state — otherwise we'd silently
         // render an empty preview, which looks indistinguishable from "nothing selected".
         val rawPermState = permissionRepo.state.first()
@@ -187,7 +200,6 @@ class ExportViewModel @Inject constructor(
             runCatching {
                 val allApps = (appData as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
                 val allPerms = (rawPermState as? PermissionRepo.State.Ready)?.permissions ?: emptyList()
-                val pro = isPro.value
 
                 when (val m = mode) {
                     is ExportMode.Apps -> {

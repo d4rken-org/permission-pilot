@@ -24,6 +24,8 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -165,6 +167,39 @@ class ExportViewModelTest : BaseTest() {
 
         vm.isPro.first() shouldBe false
         verify { exportEngine.previewPermissions(match { it.size == 5 }, any()) }
+    }
+
+    @Test
+    fun `billing settling free after the first preview re-locks preview and state`() = runTest(testDispatcher) {
+        // The initial presentation is optimistic (unlocked while unsettled). Once billing settles
+        // free, the presentation has to catch up with the execution gate instead of keeping the
+        // unlocked UI for the rest of the screen's life.
+        upgradeInfo.value = info(isPro = false, isSettled = false)
+        val vm = createVM()
+        vm.updatePermConfig { it.copy(format = ExportFormat.JSON) }
+        // One uninterrupted subscription across the transition: re-subscribing would recompute the
+        // state anyway and hide a non-reactive pro input.
+        val states = mutableListOf<ExportViewModel.State?>()
+        backgroundScope.launch { vm.state.toList(states) }
+        advanceUntilIdle()
+
+        verify { exportEngine.previewPermissions(match { it.size == 10 }, any()) }
+        val optimistic = states.last()!!
+        optimistic.isPro shouldBe true
+        optimistic.effectiveItemCount shouldBe 10
+        optimistic.isFreeLimited shouldBe false
+        optimistic.permConfig!!.format shouldBe ExportFormat.JSON
+
+        upgradeInfo.value = info(isPro = false, isSettled = true)
+        advanceUntilIdle()
+
+        vm.isPro.first() shouldBe false
+        verify { exportEngine.previewPermissions(match { it.size == 5 }, any()) }
+        val locked = states.last()!!
+        locked.isPro shouldBe false
+        locked.effectiveItemCount shouldBe 5
+        locked.isFreeLimited shouldBe true
+        locked.permConfig!!.format shouldBe ExportFormat.MARKDOWN
     }
 
     companion object {

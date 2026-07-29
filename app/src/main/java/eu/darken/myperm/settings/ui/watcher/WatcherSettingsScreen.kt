@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -92,6 +93,21 @@ fun WatcherSettingsScreenHost() {
         }
     }
 
+    // The OS prompt is launched exclusively from the gated VM event, never straight off the tap:
+    // the enabled-preference write runs async behind the entitlement check, so a direct launch
+    // could show the dialog before (or without) that check authorizing the premium feature.
+    LaunchedEffect(Unit) {
+        vm.events.collect { event ->
+            when (event) {
+                is WatcherSettingsViewModel.Event.RequestNotificationPermission -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                }
+            }
+        }
+    }
+
     WatcherSettingsScreen(
         onBack = { navCtrl?.up() },
         isUpgradeLocked = isUpgradeLocked,
@@ -101,12 +117,7 @@ fun WatcherSettingsScreenHost() {
         watcherScope = watcherScope,
         onWatcherScopeSelected = { vm.setWatcherScope(it) },
         isNotificationsEnabled = isNotificationsEnabled,
-        onNotificationsEnabledChanged = { enabled ->
-            vm.setNotificationsEnabled(enabled)
-            if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && vm.isNotificationPermissionDenied()) {
-                permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        },
+        onNotificationsEnabledChanged = { enabled -> vm.setNotificationsEnabled(enabled) },
         isNotifyOnlyOnGained = isNotifyOnlyOnGained,
         onNotifyOnlyOnGainedChanged = { vm.setNotifyOnlyOnGained(it) },
         retentionDays = retentionDays,

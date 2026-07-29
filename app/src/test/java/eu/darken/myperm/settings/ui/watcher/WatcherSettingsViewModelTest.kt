@@ -8,6 +8,7 @@ import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherScope
 import eu.darken.myperm.watcher.core.WatcherWorkScheduler
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.mockk.every
@@ -17,6 +18,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -186,6 +189,74 @@ class WatcherSettingsViewModelTest : BaseTest() {
 
             isNotifyOnlyOnGained.value() shouldBe true
             navEvent.await().shouldBeInstanceOf<NavEvent.GoTo>().destination shouldBe Nav.Main.Upgrade()
+        }
+
+    // --- notification permission gate -----------------------------------------------------------
+
+    @Test
+    fun `a settled free user tapping notifications gets no permission prompt`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = false, isSettled = true)
+        every { notificationCapability.isRuntimePermissionDenied() } returns true
+        isNotificationsEnabled.value(false)
+        val vm = createVM()
+        val events = mutableListOf<WatcherSettingsViewModel.Event>()
+        backgroundScope.launch { vm.events.toList(events) }
+
+        val navEvent = async { vm.navEvents.first() }
+        vm.setNotificationsEnabled(true)
+
+        events.shouldBeEmpty()
+        isNotificationsEnabled.value() shouldBe false
+        navEvent.await().shouldBeInstanceOf<NavEvent.GoTo>().destination shouldBe Nav.Main.Upgrade()
+    }
+
+    @Test
+    fun `a pro user gets the permission prompt only after the enabled write landed`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = true, isSettled = true)
+        every { notificationCapability.isRuntimePermissionDenied() } returns true
+        isNotificationsEnabled.value(false)
+        val vm = createVM()
+        val seenAtEventTime = mutableListOf<Boolean>()
+        backgroundScope.launch { vm.events.collect { seenAtEventTime += isNotificationsEnabled.value() } }
+
+        vm.setNotificationsEnabled(true)
+
+        isNotificationsEnabled.value() shouldBe true
+        seenAtEventTime shouldBe listOf(true)
+    }
+
+    @Test
+    fun `no permission prompt when the runtime permission is already granted`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = true, isSettled = true)
+        every { notificationCapability.isRuntimePermissionDenied() } returns false
+        isNotificationsEnabled.value(false)
+        val vm = createVM()
+        val events = mutableListOf<WatcherSettingsViewModel.Event>()
+        backgroundScope.launch { vm.events.toList(events) }
+
+        vm.setNotificationsEnabled(true)
+
+        isNotificationsEnabled.value() shouldBe true
+        events.shouldBeEmpty()
+    }
+
+    @Test
+    fun `a paying user tapping during the unsettled cold start gets the prompt after the gate resolves`() =
+        runTest(testDispatcher) {
+            upgradeInfo.value = info(isPro = false, isSettled = false)
+            every { notificationCapability.isRuntimePermissionDenied() } returns true
+            isNotificationsEnabled.value(false)
+            val vm = createVM()
+            val events = mutableListOf<WatcherSettingsViewModel.Event>()
+            backgroundScope.launch { vm.events.toList(events) }
+
+            vm.setNotificationsEnabled(true)
+            events.shouldBeEmpty()
+
+            upgradeInfo.value = info(isPro = true, isSettled = true)
+
+            isNotificationsEnabled.value() shouldBe true
+            events shouldBe listOf(WatcherSettingsViewModel.Event.RequestNotificationPermission)
         }
 
     @Test
