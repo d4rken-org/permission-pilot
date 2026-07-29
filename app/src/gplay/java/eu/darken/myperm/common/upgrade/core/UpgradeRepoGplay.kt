@@ -27,7 +27,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
@@ -35,6 +34,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.retryWhen
+import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withTimeoutOrNull
 import java.io.IOException
@@ -48,6 +48,10 @@ class UpgradeRepoGplay @Inject constructor(
     private val billingDataRepo: BillingDataRepo,
     private val billingCache: BillingCache,
 ) : UpgradeRepo {
+
+    override val storeSite: String = STORE_SITE
+    override val upgradeSite: String = UPGRADE_SITE
+    override val betaSite: String = BETA_SITE
 
     private var lastProStateAt: Long
         get() = billingCache.lastProStateAt.valueBlocking
@@ -71,7 +75,12 @@ class UpgradeRepoGplay @Inject constructor(
     // replay=1: an outcome must survive until the eagerly started stateIn collector attaches.
     private val manualInfo = MutableSharedFlow<Info>(replay = 1)
 
-    override val upgradeInfo: StateFlow<UpgradeRepo.Info> = merge(
+    // The cold-cache guess we start from: not a real entitlement lookup, hence unsettled.
+    private val cachedSeed: Info = cachedInfo()
+
+    // Every emission here is a real reconciliation: a billing query result, a definitive
+    // can't-reach-Play grace decision, or the outcome of an explicit restore.
+    private val reconciledInfo: Flow<Info> = merge(
         billingDataRepo.billingData
             .map { data -> data.toUpgradeInfo() }
             .retryWhen { cause, _ ->
@@ -87,21 +96,31 @@ class UpgradeRepoGplay @Inject constructor(
                 true
             },
         manualInfo,
-    ).stateIn(scope, SharingStarted.Eagerly, cachedInfo())
+    )
 
-    // True once billing has published its first real reconciliation (a value beyond the cached seed),
-    // so callers can trust upgradeInfo as authoritative rather than a cold-cache guess. Derived from
-    // upgradeInfo itself and started Eagerly at the same time, so `drop(1)` skips only the seed and the
-    // flag can never be observed true before the value it certifies is already upgradeInfo.value — this
-    // is what prevents pairing "settled" with a stale non-Pro snapshot on a cold start. A fallback timer
-    // flips it during a total outage (no emission at all) so purchase actions can't stay disabled forever.
-    val isSettled: StateFlow<Boolean> = merge(
-        upgradeInfo.drop(1).map { true },
+    // Settledness rides each emission instead of a parallel flow, so it can never be observed out of
+    // step with the ownership data it describes: the cached seed is unsettled, anything billing
+    // publishes is settled. The signals are folded sequentially (scan), so the fallback timer can
+    // only flip the flag on the freshest Info — it can never overwrite a reconciled state with the
+    // stale seed. That fallback exists for a total outage (no billing emission at all), so purchase
+    // actions don't stay disabled forever.
+    override val upgradeInfo: StateFlow<UpgradeRepo.Info> = merge(
+        reconciledInfo.map<Info, SettleSignal> { SettleSignal.Reconciled(it) },
         flow {
             delay(SETTLE_FALLBACK_MS)
-            emit(true)
+            emit(SettleSignal.Timeout)
         },
-    ).stateIn(scope, SharingStarted.Eagerly, false)
+    ).scan(cachedSeed) { previous, signal ->
+        when (signal) {
+            is SettleSignal.Reconciled -> signal.info.copy(isSettled = true)
+            SettleSignal.Timeout -> previous.copy(isSettled = true)
+        }
+    }.stateIn(scope, SharingStarted.Eagerly, cachedSeed)
+
+    private sealed interface SettleSignal {
+        data class Reconciled(val info: Info) : SettleSignal
+        data object Timeout : SettleSignal
+    }
 
     // True once this install has ever confirmed a known Pro purchase; drives the proactive restore
     // banner. Local signal only — a fresh install or a switched Google account starts false.
@@ -282,10 +301,15 @@ class UpgradeRepoGplay @Inject constructor(
     data class Info(
         val gracePeriod: Boolean = false,
         private val billingData: BillingData?,
+        override val isSettled: Boolean = false,
     ) : UpgradeRepo.Info {
 
         override val type: UpgradeRepo.Type
             get() = UpgradeRepo.Type.GPLAY
+
+        // The old core has no error concept; billing failures surface as grace/non-Pro states.
+        override val error: Throwable?
+            get() = null
 
         // Owned Pro purchases (IAP and/or subscription). Empty during a grace-only window (kept Pro
         // by the resilience grace with no confirmed purchase). Drives the ownership / switch UI.
@@ -310,6 +334,10 @@ class UpgradeRepoGplay @Inject constructor(
     }
 
     companion object {
+        private const val STORE_SITE = "https://play.google.com/store/apps/details?id=eu.darken.myperm"
+        private const val UPGRADE_SITE = "https://play.google.com/store/apps/details?id=eu.darken.myperm"
+        private const val BETA_SITE = "https://play.google.com/apps/testing/eu.darken.myperm"
+
         internal const val GRACE_PERIOD_NORMAL_MS = 6 * 60 * 60 * 1000L   // 6h - GPlay transient unavailability
         internal const val GRACE_PERIOD_ERROR_MS = 24 * 60 * 60 * 1000L   // 24h - billing errors / cold start
         internal const val GRACE_PERIOD_IAP_MS = 30 * 24 * 60 * 60 * 1000L // 30d - permanent one-time purchase

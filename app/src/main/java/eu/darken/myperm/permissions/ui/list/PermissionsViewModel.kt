@@ -46,7 +46,7 @@ class PermissionsViewModel @Inject constructor(
 
     val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
         .map { it.isPro }
-        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
+        .stateIn(vmScope, SharingStarted.Eagerly, false)
 
     val isRefreshing: StateFlow<Boolean> = appRepo.isScanning
 

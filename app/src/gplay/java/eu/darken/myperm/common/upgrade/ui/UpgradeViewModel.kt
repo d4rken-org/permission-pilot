@@ -93,18 +93,18 @@ class UpgradeViewModel @Inject constructor(
         upgradeRepo.upgradeInfo,
         upgradeRepo.wasEverPro,
         upgradeRepo.lastProConfirmedAt,
-        combine(upgradeRepo.isSettled, action, manageMode.filterNotNull(), graceTick) { s, a, m, _ -> Triple(s, a, m) },
-    ) { pricing, _, wasEverPro, lastProAt, (isSettled, action, manage) ->
-        // Resolve the freshest upgradeInfo rather than trusting this combine slot's value. isSettled
-        // is derived from upgradeInfo and flips true only AFTER upgradeInfo.value is reconciled, but
-        // `combine` provides no ordering between its branches — the isSettled branch can fire while the
-        // info branch still holds the pre-reconciliation snapshot. Reading .value guarantees that
-        // whenever isSettled is true we pair it with the reconciled Info, never a stale non-Pro one
-        // (which would briefly flash Unavailable, or enabled sales actions, to an owner on cold start).
-        // The upgradeInfo branch is still present in combine() above solely to trigger recomputation
-        // when the Info changes.
+        combine(action, manageMode.filterNotNull(), graceTick) { a, m, _ -> a to m },
+    ) { pricing, _, wasEverPro, lastProAt, (action, manage) ->
+        // Resolve the freshest upgradeInfo rather than trusting this combine slot's value: `combine`
+        // provides no ordering between its branches, so the action/manage branch can fire while the
+        // info branch still holds the pre-reconciliation snapshot. Settledness rides the Info itself,
+        // so reading .value pairs "settled" with the ownership data it certifies, never a stale
+        // non-Pro one (which would briefly flash Unavailable, or enabled sales actions, to an owner
+        // on cold start). The upgradeInfo branch is still present in combine() above solely to
+        // trigger recomputation when the Info changes.
         val gplayInfo = upgradeRepo.upgradeInfo.value as? UpgradeRepoGplay.Info
             ?: UpgradeRepoGplay.Info(billingData = null)
+        val isSettled = gplayInfo.isSettled
         // Owners AND grace users are Pro: their status/management surface renders regardless of the
         // offer catalog, so a pending or failed price query never blocks them (Loading) nor errors
         // them out (Unavailable). Only a genuine, settled, non-Pro buyer sees Unavailable.
@@ -134,7 +134,7 @@ class UpgradeViewModel @Inject constructor(
     }.stateIn(vmScope, SharingStarted.WhileSubscribed(5_000), UpgradeUiState.Loading)
 
     init {
-        // Kick off the first billing reconciliation; the repo's isSettled flips once it publishes.
+        // Kick off the first billing reconciliation; the Info's isSettled flips once it publishes.
         // (The offer query is started separately by pricingState's Eagerly sharing.)
         launch {
             try {

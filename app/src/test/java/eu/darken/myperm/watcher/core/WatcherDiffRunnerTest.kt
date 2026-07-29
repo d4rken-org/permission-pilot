@@ -20,6 +20,7 @@ import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import kotlinx.serialization.json.Json
 import eu.darken.myperm.watcher.core.WatcherEventType
@@ -51,13 +52,31 @@ class WatcherDiffRunnerTest : BaseTest() {
         coEvery { changeDao.insert(any()) } returns 1L
         coEvery { changeDao.existsByPackageAndSnapshot(any(), any(), any()) } returns false
         coEvery { watcherNotifications.postChangeNotification(any(), any(), any(), any()) } returns true
-        every { upgradeRepo.upgradeInfo } returns kotlinx.coroutines.flow.MutableStateFlow(
-            object : UpgradeRepo.Info {
-                override val type = UpgradeRepo.Type.FOSS
-                override val isPro = true
-                override val upgradedAt = null
-            }
-        )
+        coEvery { upgradeRepo.refresh() } returns Unit
+        every { upgradeRepo.upgradeInfo } returns upgradeInfo
+    }
+
+    /**
+     * Hot flow, never a finite `flowOf`: `isProSettled` waits for a pro emission, and a finished
+     * flow would push the gate onto its fail-open timeout path instead of the real decision.
+     */
+    private val upgradeInfo = MutableStateFlow<UpgradeRepo.Info>(info(isPro = true))
+
+    private fun info(
+        isPro: Boolean,
+        isSettled: Boolean = true,
+        error: Throwable? = null,
+    ): UpgradeRepo.Info {
+        val pro = isPro
+        val settled = isSettled
+        val failure = error
+        return object : UpgradeRepo.Info {
+            override val type = UpgradeRepo.Type.FOSS
+            override val isPro = pro
+            override val isSettled = settled
+            override val upgradedAt = null
+            override val error = failure
+        }
     }
 
     private fun createRunner() = WatcherDiffRunner(
@@ -470,6 +489,50 @@ class WatcherDiffRunnerTest : BaseTest() {
 
         coVerify(exactly = 0) { changeDao.insert(any()) }
         lastDiffedSnapshotId.value() shouldBe "snap-new"
+    }
+
+    // --- entitlement gate --------------------------------------------------------------------
+
+    @Test
+    fun `a pro user gets change notifications`() = runTest {
+        upgradeInfo.value = info(isPro = true)
+        setupSinglePairChain(
+            oldPkgs = emptyList(),
+            newPkgs = listOf(pkg("snap-new", "com.new.app")),
+        )
+
+        createRunner().processNewSnapshots() shouldBe 1
+
+        coVerify(exactly = 1) { watcherNotifications.postChangeNotification(any(), any(), any(), any()) }
+    }
+
+    @Test
+    fun `a settled free user still gets reports but no notifications`() = runTest {
+        upgradeInfo.value = info(isPro = false, isSettled = true)
+        setupSinglePairChain(
+            oldPkgs = emptyList(),
+            newPkgs = listOf(pkg("snap-new", "com.new.app")),
+        )
+
+        createRunner().processNewSnapshots() shouldBe 1
+
+        coVerify(exactly = 0) { watcherNotifications.postChangeNotification(any(), any(), any(), any()) }
+    }
+
+    @Test
+    fun `a batch during the unsettled cold start still notifies a paying user`() = runTest {
+        // The worker can fire before billing settled: the seed reports non-Pro even for a paying
+        // user. The gate reconciles instead of silently dropping their notifications.
+        upgradeInfo.value = info(isPro = false, isSettled = false)
+        coEvery { upgradeRepo.refresh() } answers { upgradeInfo.value = info(isPro = true) }
+        setupSinglePairChain(
+            oldPkgs = emptyList(),
+            newPkgs = listOf(pkg("snap-new", "com.new.app")),
+        )
+
+        createRunner().processNewSnapshots() shouldBe 1
+
+        coVerify(exactly = 1) { watcherNotifications.postChangeNotification(any(), any(), any(), any()) }
     }
 
     @Test

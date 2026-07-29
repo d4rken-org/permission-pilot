@@ -59,10 +59,13 @@ class UpgradeViewModelTest : BaseTest() {
         every { isAcknowledged } returns true
     }
 
-    private fun notProInfo() = UpgradeRepoGplay.Info(billingData = null)
-    private fun graceInfo() = UpgradeRepoGplay.Info(gracePeriod = true, billingData = null)
+    // Settled fixtures: settledness rides the Info itself, and an unsettled Info would park the
+    // screen in Loading instead of exercising the state under test.
+    private fun notProInfo() = UpgradeRepoGplay.Info(billingData = null, isSettled = true)
+    private fun graceInfo() = UpgradeRepoGplay.Info(gracePeriod = true, billingData = null, isSettled = true)
     private fun iapOwnedInfo() = UpgradeRepoGplay.Info(
         billingData = BillingData(setOf(purchase(MyPermSku.Iap.PRO_UPGRADE.id))),
+        isSettled = true,
     )
 
     private fun iapSkuDetails(): SkuDetails = SkuDetails(
@@ -92,7 +95,6 @@ class UpgradeViewModelTest : BaseTest() {
         skus: List<SkuDetails> = emptyList(),
     ): UpgradeRepoGplay = mockk<UpgradeRepoGplay>(relaxed = true).apply {
         every { upgradeInfo } returns MutableStateFlow<UpgradeRepo.Info>(info)
-        every { isSettled } returns MutableStateFlow(true)
         every { this@apply.wasEverPro } returns MutableStateFlow(wasEverPro)
         every { lastProConfirmedAt } returns MutableStateFlow(0L)
         coEvery { querySkus() } returns skus
@@ -413,6 +415,7 @@ class UpgradeViewModelTest : BaseTest() {
         // launch a broken flow nor pop an error dialog — it just quietly aborts.
         val subInfo = UpgradeRepoGplay.Info(
             billingData = BillingData(setOf(purchase(MyPermSku.Sub.PRO_UPGRADE.id, autoRenew = false))),
+            isSettled = true,
         )
         val repo = mockRepo(info = subInfo) // querySkus empty -> no IAP details
         coEvery { repo.queryCurrentSubscriptions() } returns

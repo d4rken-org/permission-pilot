@@ -738,7 +738,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
     WatcherDashboardScreen(
         state = WatcherDashboardViewModel.State(
             isWatcherEnabled = true,
-            isPro = true,
+            isUpgradeLocked = false,
             showNotificationPermissionCard = true,
             canRequestNotificationPermission = true,
             reports = listOf(
@@ -774,7 +774,7 @@ private fun WatcherDashboardNotificationCardPreview() = PreviewWrapper {
 @Composable
 private fun WatcherDashboardDisabledPreview() = PreviewWrapper {
     WatcherDashboardScreen(
-        state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isPro = false),
+        state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isUpgradeLocked = true),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},
@@ -789,7 +789,7 @@ private fun WatcherDashboardDisabledPreview() = PreviewWrapper {
 @Composable
 private fun WatcherDashboardDisabledProPreview() = PreviewWrapper {
     WatcherDashboardScreen(
-        state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isPro = true),
+        state = WatcherDashboardViewModel.State(isWatcherEnabled = false, isUpgradeLocked = false),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},
@@ -804,7 +804,7 @@ private fun WatcherDashboardDisabledProPreview() = PreviewWrapper {
 @Composable
 private fun WatcherDashboardEmptyPreview() = PreviewWrapper {
     WatcherDashboardScreen(
-        state = WatcherDashboardViewModel.State(isWatcherEnabled = true, isPro = true),
+        state = WatcherDashboardViewModel.State(isWatcherEnabled = true, isUpgradeLocked = false),
         onToggle = {},
         onRefresh = {},
         onReportClicked = {},

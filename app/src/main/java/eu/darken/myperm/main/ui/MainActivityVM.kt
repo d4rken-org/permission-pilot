@@ -16,10 +16,14 @@ import eu.darken.myperm.common.uix.ViewModel2
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherNotifications
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.take
@@ -56,7 +60,16 @@ class MainActivityVM @Inject constructor(
     val deepLinkNav = SingleEventFlow<NavigationDestination>()
 
     init {
-        upgradeRepo.upgradeInfo
+        // Readiness = the first entitlement emission, but bounded: the repos seed through cache
+        // reads (and GPlay only publishes once billing answers), so slow or failing storage must
+        // not keep the splash screen up. Whichever comes first wins.
+        merge(
+            upgradeRepo.upgradeInfo.take(1).map { },
+            flow {
+                delay(READY_FALLBACK_MS)
+                emit(Unit)
+            },
+        )
             .take(1)
             .onEach { _readyState.value = true }
             .launchInViewModel()
@@ -78,5 +91,9 @@ class MainActivityVM @Inject constructor(
                 deepLinkNav.emit(Nav.Watcher.ReportDetail(reportId))
             }
         }
+    }
+
+    companion object {
+        internal const val READY_FALLBACK_MS = 2_000L
     }
 }

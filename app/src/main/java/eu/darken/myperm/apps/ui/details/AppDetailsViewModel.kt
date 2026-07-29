@@ -29,6 +29,7 @@ import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.isProForUi
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.PermissionRepo
 import eu.darken.myperm.permissions.core.container.BasePermission
@@ -327,13 +328,15 @@ class AppDetailsViewModel @Inject constructor(
             is ManifestCardState.Analyzing -> {
                 log(TAG) { "Manifest already analyzing for $pkgName" }
             }
-            is ManifestCardState.Loaded -> {
-                val current = manifestCardState.value as? ManifestCardState.Loaded ?: return
-                if (!current.canViewManifest) return
-                if (!upgradeRepo.upgradeInfo.value.isPro) {
+            is ManifestCardState.Loaded -> launch {
+                val current = manifestCardState.value as? ManifestCardState.Loaded ?: return@launch
+                if (!current.canViewManifest) return@launch
+                // Interactive gate: waits out the cold-start handshake instead of bouncing a paying
+                // user to the upgrade screen, and resolves immediately for a settled free user.
+                if (!upgradeRepo.isProForUi()) {
                     log(TAG) { "Not pro, navigating to upgrade instead of manifest viewer" }
                     navTo(Nav.Main.Upgrade())
-                    return
+                    return@launch
                 }
                 navTo(Nav.Details.AppManifest(pkgName = pkgName.value, appLabel = initialLabel))
             }

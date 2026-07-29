@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,8 @@ import eu.darken.myperm.common.navigation.NavigationController
 import eu.darken.myperm.common.navigation.NavigationEntry
 import eu.darken.myperm.common.theming.PermPilotTheme
 import eu.darken.myperm.common.uix.Activity2
+import eu.darken.myperm.common.upgrade.UpgradeRepo
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,6 +40,7 @@ class MainActivity : Activity2() {
 
     @Inject lateinit var navCtrl: NavigationController
     @Inject lateinit var navigationEntries: Set<@JvmSuppressWildcards NavigationEntry>
+    @Inject lateinit var upgradeRepo: UpgradeRepo
 
     private var showSplashScreen by mutableStateOf(true)
 
@@ -97,6 +101,18 @@ class MainActivity : Activity2() {
                     )
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Per-resume, unthrottled entitlement reconciliation. This is what heals a renewal state
+        // that changed while the user was away (e.g. cancelling the subscription in Google Play's
+        // management page — returning to the app resumes this activity). refresh() is bounded and
+        // swallows its own failures.
+        lifecycleScope.launch {
+            log(TAG) { "onResume(): refreshing upgrade info" }
+            upgradeRepo.refresh()
         }
     }
 

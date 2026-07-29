@@ -1,10 +1,13 @@
 package eu.darken.myperm.watcher.ui.dashboard
 
+import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.common.datastore.DataStoreValue
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
+import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherBatteryCapability
+import eu.darken.myperm.watcher.core.WatcherEventType
 import eu.darken.myperm.watcher.core.WatcherManager
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherNotifications
@@ -33,10 +36,25 @@ class WatcherDashboardViewModelTest : BaseTest() {
 
     private val testDispatcher = StandardTestDispatcher()
 
+    private fun info(
+        isPro: Boolean,
+        isSettled: Boolean = true,
+        error: Throwable? = null,
+    ): UpgradeRepo.Info = mockk<UpgradeRepo.Info>(relaxed = true).also {
+        every { it.isPro } returns isPro
+        every { it.isSettled } returns isSettled
+        every { it.error } returns error
+        every { it.type } returns UpgradeRepo.Type.GPLAY
+    }
+
     private val isWatcherEnabled = MutableStateFlow(false)
     private val isNotificationsEnabled = MutableStateFlow(true)
     private val isBatteryHintDismissed = MutableStateFlow(false)
-    private val upgradeInfo = MutableStateFlow<UpgradeRepo.Info>(mockk { every { isPro } returns true })
+    /**
+     * Hot flow, never a finite `flowOf`: `isProForUi` waits for a settled emission, and a finished
+     * flow would push the tap gate onto its fail-open timeout path instead of the real decision.
+     */
+    private val upgradeInfo = MutableStateFlow(info(isPro = true))
     private val watcherFilterOptions = MutableStateFlow(WatcherFilterOptions())
 
     private val generalSettings: GeneralSettings = mockk(relaxed = true)
@@ -105,9 +123,11 @@ class WatcherDashboardViewModelTest : BaseTest() {
         isWatcherEnabled.value = false
         isNotificationsEnabled.value = true
         every { capability.areNotificationsEnabled() } returns false
+        // A report makes the computed state distinguishable from the default State() we start with.
+        every { changeDao.getAll() } returns flowOf(reports(1))
 
         val vm = createVM()
-        val state = vm.state.first { it != null && it != WatcherDashboardViewModel.State() }
+        val state = vm.state.first { it != null && it.totalReportCount == 1 }
 
         state!!.showNotificationPermissionCard shouldBe false
     }
@@ -191,13 +211,83 @@ class WatcherDashboardViewModelTest : BaseTest() {
         state2!!.showNotificationPermissionCard shouldBe false
     }
 
+    // --- upgrade lock ---------------------------------------------------------------------------
+
+    private fun reports(count: Int) = (1..count).map { index ->
+        PermissionChangeEntity(
+            id = index.toLong(),
+            packageName = Pkg.Name("com.example.app$index"),
+            userHandleId = 0,
+            appLabel = "App $index",
+            versionCode = 1L,
+            versionName = "1.0",
+            eventType = WatcherEventType.UPDATE,
+            changesJson = "{}",
+            detectedAt = index.toLong(),
+        )
+    }
+
+    @Test
+    fun `a settled free user sees a truncated report list`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = false, isSettled = true)
+        every { changeDao.getAll() } returns flowOf(reports(7))
+
+        val vm = createVM()
+        val state = vm.state.first { it != null && it.totalReportCount == 7 }
+
+        state!!.isUpgradeLocked shouldBe true
+        state.reports.size shouldBe 5
+        state.lockedReportCount shouldBe 2
+    }
+
+    @Test
+    fun `the unsettled cold start is not presented as hard-locked`() = runTest(testDispatcher) {
+        // The GPlay seed reports non-Pro even for paying users — truncating here would hide a
+        // paying user's reports while billing connects.
+        upgradeInfo.value = info(isPro = false, isSettled = false)
+        every { changeDao.getAll() } returns flowOf(reports(7))
+
+        val vm = createVM()
+        val state = vm.state.first { it != null && it.totalReportCount == 7 }
+
+        state!!.isUpgradeLocked shouldBe false
+        state.reports.size shouldBe 7
+        state.lockedReportCount shouldBe 0
+    }
+
+    @Test
+    fun `a settled error state is not presented as hard-locked`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = false, isSettled = true, error = IllegalStateException("nope"))
+        every { changeDao.getAll() } returns flowOf(reports(7))
+
+        val vm = createVM()
+        val state = vm.state.first { it != null && it.totalReportCount == 7 }
+
+        state!!.isUpgradeLocked shouldBe false
+        state.reports.size shouldBe 7
+    }
+
+    @Test
+    fun `a pro user is never hard-locked`() = runTest(testDispatcher) {
+        upgradeInfo.value = info(isPro = true, isSettled = true)
+        every { changeDao.getAll() } returns flowOf(reports(7))
+
+        val vm = createVM()
+        val state = vm.state.first { it != null && it.totalReportCount == 7 }
+
+        state!!.isUpgradeLocked shouldBe false
+        state.reports.size shouldBe 7
+    }
+
     @Test
     fun `battery card hidden when watcher disabled`() = runTest(testDispatcher) {
         isWatcherEnabled.value = false
         every { batteryCapability.isBatteryOptimizationIgnored() } returns false
+        // A report makes the computed state distinguishable from the default State() we start with.
+        every { changeDao.getAll() } returns flowOf(reports(1))
 
         val vm = createVM()
-        val state = vm.state.first { it != null && it != WatcherDashboardViewModel.State() }
+        val state = vm.state.first { it != null && it.totalReportCount == 1 }
 
         state!!.showBatteryOptimizationCard shouldBe false
     }

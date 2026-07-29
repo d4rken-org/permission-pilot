@@ -8,6 +8,7 @@ import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.isProForUi
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.WatcherNotificationCapability
 import eu.darken.myperm.watcher.core.WatcherScope
@@ -30,9 +31,16 @@ class WatcherSettingsViewModel @Inject constructor(
     private val notificationCapability: WatcherNotificationCapability,
 ) : ViewModel4(dispatcherProvider) {
 
-    val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
-        .map { it.isPro }
-        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
+    /**
+     * True only when billing settled without an error and reports no entitlement — the presentation
+     * mirror of what [isProForUi] would deny. While billing is still connecting (GPlay cold-start
+     * seed) a paying user keeps the real controls instead of being shown the upgrade branch (which
+     * would also force their notification preference off); the setters re-check via [isProForUi]
+     * before writing.
+     */
+    val isUpgradeLocked: StateFlow<Boolean> = upgradeRepo.upgradeInfo
+        .map { it.error == null && it.isSettled && !it.isPro }
+        .stateIn(vmScope, SharingStarted.Eagerly, false)
 
     val isWatcherEnabled: Flow<Boolean> = generalSettings.isWatcherEnabled.flow
     val watcherScope: Flow<WatcherScope> = generalSettings.watcherScope.flow
@@ -54,16 +62,30 @@ class WatcherSettingsViewModel @Inject constructor(
     }
 
     fun setWatcherScope(scope: WatcherScope) = launch {
+        if (!upgradeRepo.isProForUi()) {
+            navTo(Nav.Main.Upgrade())
+            return@launch
+        }
         generalSettings.watcherScope.value(scope)
     }
 
     fun isNotificationPermissionDenied(): Boolean = notificationCapability.isRuntimePermissionDenied()
 
     fun setNotificationsEnabled(enabled: Boolean) = launch {
+        // Turning notifications OFF is a safe revocation: it never needs an entitlement, and the
+        // free path deliberately writes `false` when the locked row is tapped.
+        if (enabled && !upgradeRepo.isProForUi()) {
+            navTo(Nav.Main.Upgrade())
+            return@launch
+        }
         generalSettings.isWatcherNotificationsEnabled.value(enabled)
     }
 
     fun setNotifyOnlyOnGained(enabled: Boolean) = launch {
+        if (!upgradeRepo.isProForUi()) {
+            navTo(Nav.Main.Upgrade())
+            return@launch
+        }
         generalSettings.isWatcherNotifyOnlyOnGained.value(enabled)
     }
 

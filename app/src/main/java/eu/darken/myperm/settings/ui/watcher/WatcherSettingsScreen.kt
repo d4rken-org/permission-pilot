@@ -71,7 +71,7 @@ fun WatcherSettingsScreenHost() {
 
     val context = LocalContext.current
 
-    val isPro by vm.isPro.collectAsState()
+    val isUpgradeLocked by vm.isUpgradeLocked.collectAsState()
     val isWatcherEnabled by vm.isWatcherEnabled.collectAsState(initial = false)
     val watcherScope by vm.watcherScope.collectAsState(initial = WatcherScope.NON_SYSTEM)
     val isNotificationsEnabled by vm.isNotificationsEnabled.collectAsState(initial = true)
@@ -94,7 +94,7 @@ fun WatcherSettingsScreenHost() {
 
     WatcherSettingsScreen(
         onBack = { navCtrl?.up() },
-        isPro = isPro,
+        isUpgradeLocked = isUpgradeLocked,
         isWatcherEnabled = isWatcherEnabled,
         onWatcherEnabledChanged = { vm.setWatcherEnabled(it) },
         onUpgrade = { vm.onUpgrade() },
@@ -123,7 +123,7 @@ fun WatcherSettingsScreenHost() {
 @Composable
 fun WatcherSettingsScreen(
     onBack: () -> Unit,
-    isPro: Boolean = true,
+    isUpgradeLocked: Boolean = false,
     isWatcherEnabled: Boolean = false,
     onWatcherEnabledChanged: (Boolean) -> Unit = {},
     onUpgrade: () -> Unit = {},
@@ -179,8 +179,8 @@ fun WatcherSettingsScreen(
                     WatcherScope.NON_SYSTEM -> stringResource(R.string.watcher_scope_non_system)
                 },
                 icon = Icons.TwoTone.FilterList,
-                onClick = if (isPro) {{ showScopeDialog = true }} else onUpgrade,
-                trailingContent = if (!isPro) {{ SettingsUpgradeIcon() }} else null,
+                onClick = if (isUpgradeLocked) onUpgrade else {{ showScopeDialog = true }},
+                trailingContent = if (isUpgradeLocked) {{ SettingsUpgradeIcon() }} else null,
             )
             SettingsDivider()
             PollingIntervalItem(
@@ -193,11 +193,11 @@ fun WatcherSettingsScreen(
                 icon = Icons.TwoTone.Notifications,
                 title = stringResource(R.string.watcher_settings_notifications_label),
                 subtitle = stringResource(R.string.watcher_settings_notifications_desc),
-                onClick = if (isPro) {{ onNotificationsEnabledChanged(!isNotificationsEnabled) }} else {{
+                onClick = if (isUpgradeLocked) {{
                     onNotificationsEnabledChanged(false)
                     onUpgrade()
-                }},
-                trailingContent = if (isPro) {{
+                }} else {{ onNotificationsEnabledChanged(!isNotificationsEnabled) }},
+                trailingContent = if (!isUpgradeLocked) {{
                     Switch(
                         checked = isNotificationsEnabled,
                         onCheckedChange = onNotificationsEnabledChanged,
@@ -205,7 +205,7 @@ fun WatcherSettingsScreen(
                     )
                 }} else {{ SettingsUpgradeIcon() }},
             )
-            if (isPro) {
+            if (!isUpgradeLocked) {
                 SettingsSwitchItem(
                     icon = Icons.TwoTone.Notifications,
                     title = stringResource(R.string.watcher_settings_notifications_only_gained_label),
