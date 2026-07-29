@@ -17,6 +17,10 @@ class UpgradeControlFoss @Inject constructor(
     private val fossCache: FossCache,
 ) : UpgradeRepo {
 
+    override val storeSite: String = STORE_SITE
+    override val upgradeSite: String = UPGRADE_SITE
+    override val betaSite: String = BETA_SITE
+
     override val upgradeInfo: StateFlow<UpgradeRepo.Info> = fossCache.upgrade.flow.map { data ->
         if (data == null) {
             Info()
@@ -51,5 +55,16 @@ class UpgradeControlFoss @Inject constructor(
         val upgradeReason: FossUpgrade.Reason? = null,
     ) : UpgradeRepo.Info {
         override val type: UpgradeRepo.Type = UpgradeRepo.Type.FOSS
+
+        // FOSS reads a local cache: every emission is a real entitlement lookup, and there is no
+        // remote billing that could fail.
+        override val isSettled: Boolean = true
+        override val error: Throwable? = null
+    }
+
+    companion object {
+        private const val STORE_SITE = "https://github.com/d4rken-org/permission-pilot/releases"
+        private const val UPGRADE_SITE = "https://github.com/sponsors/d4rken"
+        private const val BETA_SITE = "https://github.com/d4rken-org/permission-pilot/releases"
     }
 }

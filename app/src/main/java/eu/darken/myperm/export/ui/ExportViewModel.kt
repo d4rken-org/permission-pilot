@@ -17,6 +17,7 @@ import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.isProSettled
 import eu.darken.myperm.export.core.AppExportConfig
 import eu.darken.myperm.export.core.ExportEngine
 import eu.darken.myperm.export.core.ExportFormat
@@ -52,12 +53,16 @@ class ExportViewModel @Inject constructor(
     private val exportEngine: ExportEngine,
     private val exportWriter: ExportWriter,
     private val exportSelectionStore: ExportSelectionStore,
-    upgradeRepo: UpgradeRepo,
+    private val upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
+    // Presentation only: the hard-locked predicate (settled, error-free and no entitlement) inverted.
+    // While billing is still connecting — or a billing error left us without an answer — we render
+    // the unlocked UI, so a paying user's preview never flashes truncated and the format chips
+    // aren't locked during the cold-start seed. The actual export write re-checks via isProSettled().
     val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
-        .map { it.isPro }
-        .stateIn(vmScope, SharingStarted.Eagerly, upgradeRepo.upgradeInfo.value.isPro)
+        .map { !(it.error == null && it.isSettled && !it.isPro) }
+        .stateIn(vmScope, SharingStarted.Eagerly, true)
 
     private var mode: ExportMode = restoreMode() ?: ExportMode.Apps(emptyList())
 
@@ -292,7 +297,9 @@ class ExportViewModel @Inject constructor(
 
         val allApps = (appData as? AppRepo.AppDataState.Ready)?.apps ?: emptyList()
         val allPerms = permissionRepo.permissions.first()
-        val pro = isPro.value
+        // Execution gate at the file-write boundary: a paying user's export must not be silently
+        // truncated (or format-locked) because billing hadn't settled yet when the screen opened.
+        val pro = upgradeRepo.isProSettled()
 
         val result = when (val m = mode) {
             is ExportMode.Apps -> {

@@ -244,18 +244,19 @@ class UpgradeRepoGplayTest : BaseTest() {
     }
 
     @Test fun `isSettled is false until billing publishes a real value, then true`() = runTest2 {
-        // MutableSharedFlow (no replay) so nothing is published at construction: isSettled must stay
-        // false until a real billing emission arrives, then flip true — and it flips only after
-        // upgradeInfo already reflects that value (drop(1) skips the cached seed).
+        // MutableSharedFlow (no replay) so nothing is published at construction: the cached seed is
+        // unsettled until a real billing emission arrives. Settledness rides the Info itself, so it
+        // can never be read apart from the ownership data it certifies.
         val billingData = MutableSharedFlow<BillingData>()
         val repo = repo(billingData = billingData)
 
-        repo.isSettled.value shouldBe false
+        repo.upgradeInfo.value.isSettled shouldBe false
 
         billingData.emit(BillingData(setOf(proPurchase())))
 
-        repo.isSettled.first { it } shouldBe true
-        repo.upgradeInfo.value.isPro shouldBe true
+        // The Info that reports settled is the one that carries the purchase.
+        repo.upgradeInfo.first { it.isSettled }.isPro shouldBe true
+        repo.upgradeInfo.value.isSettled shouldBe true
     }
 
     @Test fun `preferredProSku prefers the permanent IAP when both are owned`() {

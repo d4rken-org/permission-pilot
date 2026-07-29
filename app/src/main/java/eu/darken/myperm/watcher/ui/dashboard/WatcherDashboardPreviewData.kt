@@ -7,7 +7,7 @@ internal object WatcherDashboardPreviewData {
 
     fun loadedState() = WatcherDashboardViewModel.State(
         isWatcherEnabled = true,
-        isPro = true,
+        isUpgradeLocked = false,
         reports = listOf(
             WatcherReportItem(
                 id = 1,

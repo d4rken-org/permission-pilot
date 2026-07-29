@@ -14,6 +14,7 @@ import eu.darken.myperm.common.room.entity.PermissionChangeEntity
 import eu.darken.myperm.common.room.entity.TriggerReason
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.isProForUi
 import eu.darken.myperm.settings.core.GeneralSettings
 import eu.darken.myperm.watcher.core.PermissionDiff
 import eu.darken.myperm.watcher.core.WatcherManager
@@ -42,7 +43,13 @@ class WatcherDashboardViewModel @Inject constructor(
 
     data class State(
         val isWatcherEnabled: Boolean = false,
-        val isPro: Boolean = false,
+        /**
+         * True only when billing settled without an error and reports no entitlement — the
+         * presentation mirror of what `isProForUi` would deny. While billing is still connecting
+         * (GPlay cold-start seed) a paying user keeps the full report list instead of seeing it
+         * truncated; the tap handlers re-check via `isProForUi` before acting.
+         */
+        val isUpgradeLocked: Boolean = false,
         val reports: List<WatcherReportItem> = emptyList(),
         val showNotificationPermissionCard: Boolean = false,
         val canRequestNotificationPermission: Boolean = false,
@@ -81,7 +88,10 @@ class WatcherDashboardViewModel @Inject constructor(
 
     val state = combine(
         generalSettings.isWatcherEnabled.flow,
-        upgradeRepo.upgradeInfo.map { it.isPro },
+        // Hard-locked = settled, error-free and no entitlement. Anything else (unsettled seed,
+        // error) keeps the pro presentation, so the cold-start race can't truncate a paying user's
+        // reports or hide their notification card.
+        upgradeRepo.upgradeInfo.map { it.error == null && it.isSettled && !it.isPro },
         changeDao.getAll(),
         generalSettings.isWatcherNotificationsEnabled.flow,
         notificationsAvailable,
@@ -90,7 +100,7 @@ class WatcherDashboardViewModel @Inject constructor(
         generalSettings.watcherFilterOptions.flow,
         showBatteryCard,
         generalSettings.isWatcherBatteryHintDismissed.flow,
-    ) { isEnabled, isPro, entities, notificationsEnabled, notifAvailable, phase, search, filterOpts, batteryCardVisible, batteryDismissed ->
+    ) { isEnabled, isUpgradeLocked, entities, notificationsEnabled, notifAvailable, phase, search, filterOpts, batteryCardVisible, batteryDismissed ->
         val allItems = entities.map { it.toItem() }
         val filteredItems = allItems
             .filter { filterOpts.matches(it) }
@@ -111,18 +121,18 @@ class WatcherDashboardViewModel @Inject constructor(
             item.copy(showPkgName = item.appLabel in duplicateLabels)
         }
 
-        val reports = if (!isPro && allReports.size > FREE_REPORT_LIMIT) {
+        val reports = if (isUpgradeLocked && allReports.size > FREE_REPORT_LIMIT) {
             allReports.take(FREE_REPORT_LIMIT)
         } else {
             allReports
         }
-        val lockedCount = if (!isPro) (allReports.size - reports.size).coerceAtLeast(0) else 0
+        val lockedCount = if (isUpgradeLocked) (allReports.size - reports.size).coerceAtLeast(0) else 0
 
         State(
             isWatcherEnabled = isEnabled,
-            isPro = isPro,
+            isUpgradeLocked = isUpgradeLocked,
             reports = reports,
-            showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable && isPro,
+            showNotificationPermissionCard = isEnabled && notificationsEnabled && !notifAvailable && !isUpgradeLocked,
             canRequestNotificationPermission = capability.isRuntimePermissionDenied(),
             showBatteryOptimizationCard = isEnabled && batteryCardVisible && !batteryDismissed,
             refreshPhase = phase,
@@ -141,7 +151,9 @@ class WatcherDashboardViewModel @Inject constructor(
     }
 
     fun onReportClicked(item: WatcherReportItem) = launch {
-        if (!upgradeRepo.upgradeInfo.value.isPro) {
+        // Interactive gate: waits out the cold-start handshake instead of bouncing a paying user
+        // to the upgrade screen, and resolves immediately for a settled free user.
+        if (!upgradeRepo.isProForUi()) {
             log(TAG) { "Not pro, navigating to upgrade instead of detail" }
             navTo(Nav.Main.Upgrade())
             return@launch

@@ -13,6 +13,7 @@ import eu.darken.myperm.common.room.entity.SnapshotPkgDeclaredPermEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgEntity
 import eu.darken.myperm.common.room.entity.SnapshotPkgPermEntity
 import eu.darken.myperm.common.upgrade.UpgradeRepo
+import eu.darken.myperm.common.upgrade.isProSettled
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -131,7 +132,10 @@ class WatcherDiffRunner @Inject constructor(
 
         log(TAG) { "Processing ${chain.pairs.size} new snapshot pair(s)" }
 
-        val isPro = upgradeRepo.upgradeInfo.value.isPro
+        // Execution gate: this worker runs in the background, where a batch can fire before billing
+        // has settled — reading the raw seed would silently drop a paying user's change
+        // notifications. One bounded, fail-open reconciliation per batch.
+        val isPro = upgradeRepo.isProSettled()
         var totalReports = 0
         var totalNotified = 0
         val reportedPackages = mutableSetOf<Pair<Pkg.Name, Int>>()

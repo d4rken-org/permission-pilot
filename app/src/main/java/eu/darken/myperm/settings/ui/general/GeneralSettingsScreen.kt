@@ -59,7 +59,7 @@ fun GeneralSettingsScreenHost() {
     val themeStyle by vm.themeStyle.collectAsState(initial = ThemeStyle.DEFAULT)
     val themeColor by vm.themeColor.collectAsState(initial = ThemeColor.BLUE)
     val isDynamicColorActive = LocalIsDynamicColorActive.current
-    val isPro by vm.isPro.collectAsState()
+    val isUpgradeLocked by vm.isUpgradeLocked.collectAsState()
     val ipcParallelisation by vm.ipcParallelisation.collectAsState(initial = 0)
 
     GeneralSettingsScreen(
@@ -68,7 +68,7 @@ fun GeneralSettingsScreenHost() {
         themeStyle = themeStyle,
         themeColor = themeColor,
         isDynamicColorActive = isDynamicColorActive,
-        isPro = isPro,
+        isUpgradeLocked = isUpgradeLocked,
         ipcParallelisation = ipcParallelisation,
         onThemeModeSelected = { vm.setThemeMode(it) },
         onThemeStyleSelected = { vm.setThemeStyle(it) },
@@ -87,7 +87,7 @@ fun GeneralSettingsScreen(
     themeStyle: ThemeStyle = ThemeStyle.DEFAULT,
     themeColor: ThemeColor = ThemeColor.BLUE,
     isDynamicColorActive: Boolean = false,
-    isPro: Boolean = true,
+    isUpgradeLocked: Boolean = false,
     ipcParallelisation: Int = 0,
     onThemeModeSelected: (ThemeMode) -> Unit = {},
     onThemeStyleSelected: (ThemeStyle) -> Unit = {},
@@ -117,7 +117,7 @@ fun GeneralSettingsScreen(
         ) {
             SettingsCategoryHeader(
                 text = stringResource(R.string.settings_category_appearance_label),
-                action = if (!isPro) {{
+                action = if (isUpgradeLocked) {{
                     FilledTonalButton(onClick = onUpgrade) {
                         Icon(
                             Icons.TwoTone.Lock,
@@ -137,7 +137,7 @@ fun GeneralSettingsScreen(
                 title = stringResource(R.string.ui_theme_mode_label),
                 subtitle = stringResource(themeMode.labelRes),
                 icon = Icons.TwoTone.DarkMode,
-                enabled = isPro,
+                enabled = !isUpgradeLocked,
                 onClick = { openDialog = SettingsDialog.THEME_MODE },
             )
             SettingsDivider()
@@ -145,12 +145,12 @@ fun GeneralSettingsScreen(
                 title = stringResource(R.string.ui_theme_style_label),
                 subtitle = stringResource(themeStyle.labelRes),
                 icon = Icons.TwoTone.Contrast,
-                enabled = isPro,
+                enabled = !isUpgradeLocked,
                 onClick = { openDialog = SettingsDialog.THEME_STYLE },
             )
             SettingsDivider()
 
-            val colorEnabled = isPro && !isDynamicColorActive
+            val colorEnabled = !isUpgradeLocked && !isDynamicColorActive
             SettingsBaseItem(
                 title = stringResource(R.string.ui_theme_color_label),
                 subtitle = if (!isDynamicColorActive) {
@@ -165,7 +165,7 @@ fun GeneralSettingsScreen(
 
             SettingsCategoryHeader(
                 text = stringResource(R.string.settings_category_advanced_label),
-                action = if (!isPro) {{
+                action = if (isUpgradeLocked) {{
                     FilledTonalButton(onClick = onUpgrade) {
                         Icon(
                             Icons.TwoTone.Lock,
@@ -191,7 +191,7 @@ fun GeneralSettingsScreen(
                     else -> stringResource(R.string.general_settings_scan_speed_auto)
                 },
                 icon = Icons.TwoTone.Speed,
-                enabled = isPro,
+                enabled = !isUpgradeLocked,
                 onClick = { openDialog = SettingsDialog.SCAN_SPEED },
             )
         }
