@@ -21,4 +21,11 @@
     <string name="upgrade_screen_recurring_title">Support again</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot is developed in the open. Consider a recurring sponsorship to help sustain it.</string>
     <string name="upgrade_screen_recurring_action">Open GitHub Sponsors</string>
+
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Support Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Upgrade benefits</string>
+    <string name="upgrade_screen_how_title">How to help</string>
+    <string name="upgrade_screen_how_body">Become a patron and sponsor development! Tap the button below to activate all extra features and open my GitHub Sponsors profile.</string>
+    <string name="upgrade_screen_thanks_toast">Thank you for supporting open-source development \u2764\ufe0f</string>
 </resources>

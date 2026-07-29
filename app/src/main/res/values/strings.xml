@@ -600,6 +600,8 @@
     <string name="upgrade_benefit_support">Support the developer</string>
     <string name="upgrade_benefit_manifest_viewer">Browse raw app manifests</string>
 
+    <string name="general_navigate_up_action">Navigate up</string>
+    <string name="general_progress_loading">Loading…</string>
     <string name="general_upgrade_action">Upgrade</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
 
