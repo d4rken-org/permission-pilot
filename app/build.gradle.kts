@@ -293,6 +293,12 @@ dependencies {
     androidTestImplementation("io.kotest:kotest-assertions-core-jvm:5.3.0")
     androidTestImplementation("io.kotest:kotest-property-jvm:5.3.0")
 
+    // Robolectric-backed Compose UI tests (run as regular unit tests via the vintage engine).
+    testImplementation(platform("androidx.compose:compose-bom:${Versions.Compose.bom}"))
+    testImplementation("androidx.compose.ui:ui-test-junit4")
+    testImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation("org.robolectric:robolectric:4.16.1")
+
     testImplementation("android.arch.core:core-testing:1.1.1")
     androidTestImplementation("android.arch.core:core-testing:1.1.1")
     debugImplementation("androidx.test:core-ktx:1.4.0")
