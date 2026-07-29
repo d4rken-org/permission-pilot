@@ -1,49 +1,97 @@
 package eu.darken.myperm.common.upgrade.core
 
 import android.content.Context
+import androidx.datastore.core.DataStore
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
+import eu.darken.myperm.common.datastore.basicReader
+import eu.darken.myperm.common.datastore.basicWriter
 import eu.darken.myperm.common.datastore.createValue
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
-
-private val Context.dataStore by preferencesDataStore(
-    name = "settings_gplay",
-    produceMigrations = { context ->
-        listOf(SharedPreferencesMigration(context, "settings_gplay"))
-    },
-    corruptionHandler = ReplaceFileCorruptionHandler { emptyPreferences() }
-)
 
 @Singleton
 class BillingCache @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
 
-    val lastProStateAt = context.dataStore.createValue(
-        "gplay.cache.lastProAt",
-        0L
+    // Retained PP resilience: installs that predate the DataStore move still carry their upgrade
+    // state in the "settings_gplay" SharedPreferences file, and a corrupted store resets to empty
+    // instead of crashing the app on every read.
+    private val Context.dataStore by preferencesDataStore(
+        name = "settings_gplay",
+        produceMigrations = { ctx -> listOf(SharedPreferencesMigration(ctx, "settings_gplay")) },
+        corruptionHandler = ReplaceFileCorruptionHandler { emptyPreferences() },
     )
 
-    // Product id of the last confirmed Pro purchase; determines the grace window length.
-    val lastProStateSku = context.dataStore.createValue(
-        "gplay.cache.lastProSku",
-        ""
+    private val dataStore: DataStore<Preferences>
+        get() = context.dataStore
+
+    // Raw keys shared between the DataStoreValues and stampLastProState's transaction — one
+    // source of truth for key name and encoding.
+    private val lastProStateAtKey = longPreferencesKey("gplay.cache.lastProAt")
+    private val lastProStateSkuKey = stringPreferencesKey("gplay.cache.lastProSku")
+    private val proUnconfirmedSinceKey = longPreferencesKey("gplay.cache.proUnconfirmedAt")
+
+    val lastProStateAt = dataStore.createValue(
+        key = lastProStateAtKey,
+        reader = basicReader(0L),
+        writer = basicWriter(),
+    )
+    val lastProStateSku = dataStore.createValue(
+        key = lastProStateSkuKey,
+        reader = basicReader(""),
+        writer = basicWriter(),
     )
 
-    // Both values in one transaction: a process death or interleaved writer must not pair a fresh
-    // timestamp with a stale SKU, they select the grace window together.
-    suspend fun confirmPro(at: Long, sku: String) {
-        context.dataStore.edit { prefs ->
-            @Suppress("UNCHECKED_CAST")
-            prefs[lastProStateAt.key as Preferences.Key<Long>] = at
-            @Suppress("UNCHECKED_CAST")
-            prefs[lastProStateSku.key as Preferences.Key<String>] = sku
+    // Start of the current "fresh data can't confirm Pro" episode (0 = none/confirmed). Drives the
+    // delayed grace hint on the upgrade screen; stamped only from fresh billing reconciliations —
+    // see UpgradeRepoGplay.recordProUnconfirmed().
+    val proUnconfirmedSince = dataStore.createValue(
+        key = proUnconfirmedSinceKey,
+        reader = basicReader(0L),
+        writer = basicWriter(),
+    )
+
+    // Point-in-time view of all three values. Reading them via three separate .value() calls can
+    // straddle a concurrent stampLastProState() and observe a combination that never existed --
+    // that write is transactional precisely because the values are only meaningful together.
+    data class Snapshot(
+        val lastProStateAt: Long,
+        val lastProStateSku: String,
+        val proUnconfirmedSince: Long,
+    )
+
+    suspend fun snapshot(): Snapshot {
+        val prefs = dataStore.data.first()
+        return Snapshot(
+            lastProStateAt = prefs[lastProStateAtKey] ?: 0L,
+            lastProStateSku = prefs[lastProStateSkuKey] ?: "",
+            proUnconfirmedSince = prefs[proUnconfirmedSinceKey] ?: 0L,
+        )
+    }
+
+    // One transaction for all three values: the timestamp gates the grace period, the SKU modifies
+    // its window length, and a confirmation closes the unconfirmed episode — none of it may be
+    // observable half-updated. `at` is the confirmation's OCCURRENCE time (commit time of the Play
+    // round-trip). The episode is closed only if it began at or before `at`: a failure that occurred
+    // AFTER this confirmation (e.g. a connection drop right after this success, delivered to the
+    // entitlement layer out of order) opened a still-valid episode that this older confirmation must
+    // not erase.
+    suspend fun stampLastProState(skuId: String, at: Long) {
+        dataStore.edit { prefs ->
+            prefs[lastProStateSkuKey] = skuId
+            prefs[lastProStateAtKey] = at
+            val episodeStart = prefs[proUnconfirmedSinceKey] ?: 0L
+            if (episodeStart in 1..at) prefs[proUnconfirmedSinceKey] = 0L
         }
     }
 }

@@ -72,4 +72,23 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Multiple accounts can confuse Google Play. Installing the app through the Google Play website forces it to associate with a specific account.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play synchronization can take a while. Try rebooting, clearing the Google Play Store cache, or simply waiting.</string>
     <string name="upgrade_screen_restore_contact_hint">Still stuck? Contact support from the email that made the purchase and include your Google Play order number.</string>
+
+    <!-- Screen title shown while Pro is not active -->
+    <string name="upgrade_screen_title">Get Permission Pilot Pro</string>
+    <string name="upgrade_screen_benefits_title">Upgrade benefits</string>
+    <string name="upgrade_screen_thanks_toast">You are the best! \u2764\ufe0f</string>
+    <string name="upgrade_screen_grace_body_short">Pro is still active. Waiting for Google Play to re-confirm your purchase, all Pro features stay unlocked in the meantime.</string>
+    <string name="upgrade_screen_restore_body">Restoring asks Google Play to re-check this app\'s purchases for the current account. It does not start a new purchase.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">The check with Google Play didn\'t finish in time, so your purchase status is still unknown. Nothing has changed on your account.</string>
+
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot can\'t connect to Google Play. Is Google Play installed and up to date? Is your Google Account logged in? Try clearing the cache of the Google Play app and rebooting your device.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play Issue</string>
+    <string name="upgrades_gplay_billing_error_description">There was a problem with Google Play. Please try again later or restart your device.\n\nDetails: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play error</string>
+    <string name="upgrades_gplay_internal_error_description">An internal Google Play error occurred. Please try the following:\n\n\u2022 Restart your device\n\u2022 Clear Google Play Store cache\n\u2022 Try again later</string>
+    <string name="upgrades_gplay_network_error_title">Connection error</string>
+    <string name="upgrades_gplay_network_error_description">Unable to connect to Google Play. Please check your internet connection and try again.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Offer unavailable</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play is currently not offering this upgrade option. Please try again later or check the Google Play Store.</string>
 </resources>

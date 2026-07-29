@@ -1,95 +1,136 @@
 package eu.darken.myperm.common.upgrade.ui
 
+import android.os.SystemClock
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
-import eu.darken.myperm.common.WebpageTool
+import eu.darken.myperm.R
 import eu.darken.myperm.common.coroutine.DispatcherProvider
+import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.SingleEventFlow
+import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
-import eu.darken.myperm.common.upgrade.core.FossUpgrade
-import eu.darken.myperm.common.upgrade.core.UpgradeControlFoss
+import eu.darken.myperm.common.upgrade.core.UpgradeRepoFoss
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.stateIn
-import java.time.Instant
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.take
 import javax.inject.Inject
-
-enum class FossUpgradeView { PITCH, STATUS_FREE, STATUS_UPGRADED }
 
 @HiltViewModel
 class UpgradeViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+    private val handle: SavedStateHandle,
     dispatcherProvider: DispatcherProvider,
-    private val upgradeControlFoss: UpgradeControlFoss,
-    private val webpageTool: WebpageTool,
-) : ViewModel4(dispatcherProvider) {
+    private val upgradeRepo: UpgradeRepoFoss,
+) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
-    sealed interface SponsorEvent {
-        data object ReturnedTooEarly : SponsorEvent
+    // Route is bound from the Host via bindRoute(); SavedStateHandle.toRoute<>() crashes under Nav3.
+    private val routeFlow = MutableStateFlow<Nav.Main.Upgrade?>(null)
+
+    fun bindRoute(route: Nav.Main.Upgrade) {
+        if (routeFlow.value != null) return
+        routeFlow.value = route
     }
 
-    val sponsorEvents = SingleEventFlow<SponsorEvent>()
+    val snackbarEvents = SingleEventFlow<Int>()
+    val toastEvents = SingleEventFlow<Int>()
 
-    // null until the route resolves. Keeps the view unresolved (Loading in the UI) until we know
-    // whether this is the sponsor pitch or the status screen.
-    private val manageMode = MutableStateFlow<Boolean?>(null)
-
-    data class State(
-        val view: FossUpgradeView? = null,
-        val upgradedAt: Instant? = null,
-        val reason: FossUpgrade.Reason? = null,
-    )
-
-    val state: StateFlow<State> = combine(
-        manageMode.filterNotNull(),
-        upgradeControlFoss.upgradeInfo,
-    ) { manage, info ->
-        val gplayInfo = info as? UpgradeControlFoss.Info
-        val view = when {
-            // Upgraded status always wins, even if a stale "show pitch" route was requested.
-            info.isPro -> FossUpgradeView.STATUS_UPGRADED
-            manage -> FossUpgradeView.STATUS_FREE
+    // Which presentation the screen shows. The manage route (settings "upgrade status" entry)
+    // gets a status view first; the pitch only appears once a free user asks for the upgrade
+    // options. Upgrading wins over that choice — completing the sponsor flow from the pitch must
+    // land on the upgraded status, not back on the ask. null until the route is bound.
+    internal val state: StateFlow<FossUpgradeView?> = combine(
+        routeFlow,
+        upgradeRepo.upgradeInfo,
+        handle.getStateFlow(KEY_SHOW_UPGRADE_OPTIONS, false),
+    ) { route, info, showOptions ->
+        when {
+            route == null -> null
+            route.manage && info.isPro -> FossUpgradeView.STATUS_UPGRADED
+            route.manage && !showOptions -> FossUpgradeView.STATUS_FREE
             else -> FossUpgradeView.PITCH
         }
-        State(view = view, upgradedAt = info.upgradedAt, reason = gplayInfo?.upgradeReason)
-    }.stateIn(vmScope, SharingStarted.WhileSubscribed(5_000), State())
+    }.safeStateIn(
+        initialValue = null,
+        onError = { FossUpgradeView.PITCH },
+    )
 
-    fun init(manage: Boolean) {
-        manageMode.compareAndSet(null, manage)
+    init {
+        routeFlow
+            .filterNotNull()
+            .take(1)
+            .onEach { route ->
+                // The manage route is the settings "upgrade status" entry — upgraded users must
+                // not be bounced out. Forced routes keep their existing don't-auto-close semantics.
+                if (!route.forced && !route.manage) {
+                    upgradeRepo.upgradeInfo
+                        .filter { it.isPro }
+                        .take(1)
+                        .onEach { navUp() }
+                        .launchInViewModel()
+                }
+            }
+            .launchInViewModel()
+
+        upgradeRepo.upgradeInfo
+            .filter { !it.isPro && it.error != null }
+            .onEach { current ->
+                @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
+                errorEvents.tryEmit(current.error!!)
+            }
+            .launchInViewModel()
     }
 
-    // Arming sponsor flow (pitch / free-status): after returning from the page (>= 5s) we unlock Pro
-    // locally on resume.
-    fun sponsor() {
-        savedStateHandle[KEY_SPONSOR_OPENED_AT] = System.currentTimeMillis()
-        webpageTool.open(SPONSOR_URL)
+    fun onShowUpgradeOptions() {
+        log(TAG) { "onShowUpgradeOptions()" }
+        // Handle-backed: surviving process recreation keeps the user on the pitch they asked for.
+        handle[KEY_SHOW_UPGRADE_OPTIONS] = true
     }
 
-    // Non-arming: from the upgraded-status view (recurring-donation nudge). Must NOT re-trigger the
-    // resume unlock heuristic — the user is already a supporter.
-    fun openSponsorPage() {
-        webpageTool.open(SPONSOR_URL)
+    fun goGithubSponsors() {
+        log(TAG) { "goGithubSponsors()" }
+        handle[KEY_SPONSOR_PRESSED_AT] = SystemClock.elapsedRealtime()
+        upgradeRepo.openGithubSponsorsPage()
     }
 
-    fun onResume() {
-        val openedAt = savedStateHandle.get<Long>(KEY_SPONSOR_OPENED_AT) ?: return
-        savedStateHandle.remove<Long>(KEY_SPONSOR_OPENED_AT)
+    /**
+     * Whether a sponsor-page launch is still awaiting its return.
+     *
+     * Handle-backed, so it survives process recreation while the browser is in front — the screen's
+     * in-memory return tracker does not, and gating on that alone drops the first return after a
+     * recreation.
+     */
+    fun hasPendingSponsorLaunch(): Boolean = handle.contains(KEY_SPONSOR_PRESSED_AT)
 
-        if (System.currentTimeMillis() - openedAt >= 5_000L) {
-            upgradeControlFoss.upgrade(FossUpgrade.Reason.DONATED)
-            navUp()
+    fun checkSponsorReturn() = launch {
+        val pressedAt = handle.remove<Long>(KEY_SPONSOR_PRESSED_AT) ?: return@launch
+        val elapsed = SystemClock.elapsedRealtime() - pressedAt
+        log(TAG) { "checkSponsorReturn(): elapsed=${elapsed}ms" }
+
+        if (elapsed < SPONSOR_DELAY_MS) {
+            // The nudge belongs to the unlock heuristic. An already upgraded user (recurring
+            // donation button) has nothing to unlock — peeking at the page needs no feedback.
+            if (upgradeRepo.upgradeInfo.first().isPro) {
+                log(TAG) { "checkSponsorReturn(): Too quick, but already upgraded, staying quiet" }
+            } else {
+                log(TAG) { "checkSponsorReturn(): Too quick, showing snackbar" }
+                snackbarEvents.tryEmit(R.string.upgrade_foss_sponsor_returned_early)
+            }
         } else {
-            sponsorEvents.tryEmit(SponsorEvent.ReturnedTooEarly)
+            log(TAG) { "checkSponsorReturn(): Delay passed, persisting upgrade" }
+            upgradeRepo.persistUpgrade()
+            toastEvents.tryEmit(R.string.upgrade_screen_thanks_toast)
         }
     }
 
     companion object {
-        private const val KEY_SPONSOR_OPENED_AT = "sponsor_opened_at"
-        private const val SPONSOR_URL = "https://github.com/sponsors/d4rken"
-        private val TAG = logTag("Upgrade", "Foss", "VM")
+        private const val KEY_SPONSOR_PRESSED_AT = "sponsor_pressed_at"
+        private const val KEY_SHOW_UPGRADE_OPTIONS = "show_upgrade_options"
+        private const val SPONSOR_DELAY_MS = 5_000L
+        private val TAG = logTag("Upgrade", "ViewModel")
     }
 }

@@ -8,7 +8,7 @@ object Nav {
         data object Onboarding : Main
 
         @Serializable
-        data class Upgrade(val manage: Boolean = false) : Main
+        data class Upgrade(val manage: Boolean = false, val forced: Boolean = false) : Main
     }
 
     sealed interface Tab : NavigationDestination {
