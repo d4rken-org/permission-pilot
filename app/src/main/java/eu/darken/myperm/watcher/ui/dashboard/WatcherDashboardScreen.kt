@@ -52,6 +52,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -119,16 +120,24 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onPauseOrDispose {}
     }
 
-    val canRequest = state?.canRequestNotificationPermission ?: false
-
-    val onGrantNotificationPermission: () -> Unit = {
-        if (canRequest && !useSettingsFallback && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        } else {
-            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
-                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+    // The OS prompt / settings intent is launched exclusively from the gated VM event, never
+    // straight off the tap: the card is visible while billing is unsettled, so the entitlement
+    // check has to authorize this premium feature first.
+    LaunchedEffect(Unit) {
+        vm.events.collect { event ->
+            when (event) {
+                is WatcherDashboardViewModel.Event.RequestNotificationPermission -> {
+                    val canRequest = vm.state.value?.canRequestNotificationPermission ?: false
+                    if (canRequest && !useSettingsFallback && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    } else {
+                        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                            putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                        }
+                        context.startActivity(intent)
+                    }
+                }
             }
-            context.startActivity(intent)
         }
     }
 
@@ -153,7 +162,7 @@ fun WatcherDashboardScreenHost(vm: WatcherDashboardViewModel = hiltViewModel()) 
         onSettings = { vm.goToSettings() },
         onSearchChanged = { vm.onSearchInputChanged(it) },
         onFilter = { showFilterSheet = true },
-        onGrantNotificationPermission = onGrantNotificationPermission,
+        onGrantNotificationPermission = { vm.requestNotificationPermission() },
         onDisableNotifications = { vm.disableNotifications() },
         onOpenBatterySettings = onOpenBatterySettings,
         onDismissBatteryHint = { vm.dismissBatteryHint() },

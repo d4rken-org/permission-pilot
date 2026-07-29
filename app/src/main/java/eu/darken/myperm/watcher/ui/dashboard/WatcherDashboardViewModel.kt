@@ -7,6 +7,7 @@ import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.flow.SingleEventFlow
 import eu.darken.myperm.common.flow.combine
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.room.dao.PermissionChangeDao
@@ -40,6 +41,17 @@ class WatcherDashboardViewModel @Inject constructor(
     private val batteryCapability: WatcherBatteryCapability,
     private val json: Json,
 ) : ViewModel4(dispatcherProvider) {
+
+    val events = SingleEventFlow<Event>()
+
+    sealed interface Event {
+        /**
+         * Emitted only after the entitlement gate authorized the premium notification feature — the
+         * screen must not launch the OS permission dialog (or the notification settings intent)
+         * before this arrives.
+         */
+        data object RequestNotificationPermission : Event
+    }
 
     data class State(
         val isWatcherEnabled: Boolean = false,
@@ -161,6 +173,17 @@ class WatcherDashboardViewModel @Inject constructor(
         changeDao.markSeen(item.id)
         watcherNotifications.cancelForPackage(item.packageName)
         navTo(Nav.Watcher.ReportDetail(item.id))
+    }
+
+    fun requestNotificationPermission() = launch {
+        // The notification card renders during the unsettled/error window (see [State.isUpgradeLocked]),
+        // so the OS prompt for this premium feature must pass the interactive gate first.
+        if (!upgradeRepo.isProForUi()) {
+            log(TAG) { "Not pro, navigating to upgrade instead of requesting notification permission" }
+            navTo(Nav.Main.Upgrade())
+            return@launch
+        }
+        events.emit(Event.RequestNotificationPermission)
     }
 
     fun goToUpgrade() {
