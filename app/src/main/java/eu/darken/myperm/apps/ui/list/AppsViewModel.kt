@@ -18,7 +18,6 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
-import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.export.core.ExportSelectionStore
 import eu.darken.myperm.permissions.core.Permission
 import eu.darken.myperm.permissions.core.features.Highlighted
@@ -27,11 +26,9 @@ import eu.darken.myperm.permissions.core.known.APermGrp
 import eu.darken.myperm.permissions.core.known.toKnownGroup
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -46,12 +43,7 @@ class AppsViewModel @Inject constructor(
     private val appRepo: AppRepo,
     private val generalSettings: GeneralSettings,
     private val exportSelectionStore: ExportSelectionStore,
-    upgradeRepo: UpgradeRepo,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
-
-    val isPro: StateFlow<Boolean> = upgradeRepo.upgradeInfo
-        .map { it.isPro }
-        .stateIn(vmScope, SharingStarted.Eagerly, false)
 
     val isRefreshing: StateFlow<Boolean> = appRepo.isScanning
 
