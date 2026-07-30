@@ -3,7 +3,9 @@ package eu.darken.myperm.common.upgrade.core
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -28,36 +30,42 @@ class BillingCacheLegacyMigrationTest : BaseTest() {
     // BillingCache is a @Singleton in production.
     @Test
     fun `legacy SharedPreferences upgrade state survives the DataStore migration`() = runTest {
-        val context: Context = ApplicationProvider.getApplicationContext()
-        context.getSharedPreferences("settings_gplay", Context.MODE_PRIVATE)
-            .edit()
-            .putLong("gplay.cache.lastProAt", LEGACY_PRO_AT)
-            .putString("gplay.cache.lastProSku", OurSku.Iap.PRO_UPGRADE.id)
-            .commit()
+        // Real time on purpose: snapshot()/stampLastProState() are bounded by cacheTimeoutMs, and
+        // the real DataStore does its I/O off the test scheduler -- under virtual time the bound
+        // would fire instantly while nothing else is scheduled.
+        withContext(Dispatchers.IO) {
+            resetBillingCacheDataStore()
+            val context: Context = ApplicationProvider.getApplicationContext()
+            context.getSharedPreferences("settings_gplay", Context.MODE_PRIVATE)
+                .edit()
+                .putLong("gplay.cache.lastProAt", LEGACY_PRO_AT)
+                .putString("gplay.cache.lastProSku", OurSku.Iap.PRO_UPGRADE.id)
+                .commit()
 
-        val cache = BillingCache(context)
+            val cache = BillingCache(context)
 
-        cache.lastProStateAt.value() shouldBe LEGACY_PRO_AT
-        cache.lastProStateSku.value() shouldBe OurSku.Iap.PRO_UPGRADE.id
-        // The third key is new in this schema: legacy stores have no episode, so it must read as
-        // "no unconfirmed episode" rather than as a stale grace start.
-        cache.proUnconfirmedSince.value() shouldBe 0L
+            cache.lastProStateAt.value() shouldBe LEGACY_PRO_AT
+            cache.lastProStateSku.value() shouldBe OurSku.Iap.PRO_UPGRADE.id
+            // The third key is new in this schema: legacy stores have no episode, so it must read as
+            // "no unconfirmed episode" rather than as a stale grace start.
+            cache.proUnconfirmedSince.value() shouldBe 0L
 
-        cache.snapshot() shouldBe BillingCache.Snapshot(
-            lastProStateAt = LEGACY_PRO_AT,
-            lastProStateSku = OurSku.Iap.PRO_UPGRADE.id,
-            proUnconfirmedSince = 0L,
-        )
+            cache.snapshot() shouldBe BillingCache.Snapshot(
+                lastProStateAt = LEGACY_PRO_AT,
+                lastProStateSku = OurSku.Iap.PRO_UPGRADE.id,
+                proUnconfirmedSince = 0L,
+            )
 
-        // The migrated values are ordinary DataStore entries afterwards: the atomic stamp
-        // transaction has to keep operating on them consistently.
-        cache.stampLastProState(OurSku.Sub.PRO_UPGRADE.id, LEGACY_PRO_AT + 1_000L)
+            // The migrated values are ordinary DataStore entries afterwards: the atomic stamp
+            // transaction has to keep operating on them consistently.
+            cache.stampLastProState(OurSku.Sub.PRO_UPGRADE.id, LEGACY_PRO_AT + 1_000L)
 
-        cache.snapshot() shouldBe BillingCache.Snapshot(
-            lastProStateAt = LEGACY_PRO_AT + 1_000L,
-            lastProStateSku = OurSku.Sub.PRO_UPGRADE.id,
-            proUnconfirmedSince = 0L,
-        )
+            cache.snapshot() shouldBe BillingCache.Snapshot(
+                lastProStateAt = LEGACY_PRO_AT + 1_000L,
+                lastProStateSku = OurSku.Sub.PRO_UPGRADE.id,
+                proUnconfirmedSince = 0L,
+            )
+        }
     }
 
     companion object {

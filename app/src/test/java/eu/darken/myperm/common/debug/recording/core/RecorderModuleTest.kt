@@ -4,7 +4,6 @@ import android.content.Context
 import eu.darken.myperm.common.InstallId
 import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
-import eu.darken.myperm.main.core.CurriculumVitae
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -34,7 +33,6 @@ class RecorderModuleTest {
     private lateinit var installId: InstallId
     private lateinit var dispatcherProvider: DispatcherProvider
     private lateinit var appScope: CoroutineScope
-    private lateinit var curriculumVitae: CurriculumVitae
     private lateinit var upgradeDiagnostics: UpgradeDiagnostics
 
     @BeforeEach
@@ -54,7 +52,6 @@ class RecorderModuleTest {
 
         // Inert diagnostics: the header reads are covered by RecorderModuleDiagnosticsTest, these
         // fixtures only need them to not touch storage.
-        curriculumVitae = mockk(relaxed = true)
         upgradeDiagnostics = mockk(relaxed = true)
     }
 
@@ -73,7 +70,6 @@ class RecorderModuleTest {
             appScope = appScope,
             dispatcherProvider = dispatcherProvider,
             installId = installId,
-            curriculumVitae = curriculumVitae,
             upgradeDiagnostics = upgradeDiagnostics,
         )
     }
@@ -98,9 +94,8 @@ class RecorderModuleTest {
             appScope = pausedScope,
             dispatcherProvider = TestDispatcherProvider(StandardTestDispatcher()),
             installId = installId,
-            // Strict mocks: the construction path must not read either diagnostics source, so any
-            // call here fails the "construction touches no storage" assertion this test exists for.
-            curriculumVitae = mockk(),
+            // Strict mock: the construction path must not read the diagnostics source, so any call
+            // here fails the "construction touches no storage" assertion this test exists for.
             upgradeDiagnostics = mockk(),
         )
         pausedScope.cancel()
