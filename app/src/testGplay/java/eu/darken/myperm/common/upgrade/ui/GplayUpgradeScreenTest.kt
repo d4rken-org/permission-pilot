@@ -148,6 +148,9 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_IAP).assertCountEquals(0)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_RESTORE).assertCountEquals(0)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_UNAVAILABLE).assertCountEquals(1)
+        // The card names the problem in its own title. The generic billing-error string is for the
+        // error dialog, not for a card that already carries the explanatory body below it.
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_offers_unavailable_title)).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_offers_unavailable_message)).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_benefits_title)).assertCountEquals(1)
     }
@@ -284,7 +287,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
     }
 
     @Test
-    fun `unavailable state offers a retry that fires the callback`() {
+    fun `unavailable state offers a retry that fires once and then latches`() {
         var retryClicks = 0
         composeRule.setUpgradeContent {
             UpgradeScreen(
@@ -299,6 +302,12 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         // would silently miss the button.
         composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_RETRY).performScrollTo().performClick()
         composeRule.runOnIdle { check(retryClicks == 1) { "expected 1 retry click, got $retryClicks" } }
+
+        // Latched: the state stays Unavailable until the re-query answers, so an impatient second
+        // tap would stack another query generation onto the first.
+        composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_RETRY).assertIsNotEnabled()
+        composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_RETRY).performClick()
+        composeRule.runOnIdle { check(retryClicks == 1) { "expected the retry to stay latched, got $retryClicks" } }
     }
 
     @Test
