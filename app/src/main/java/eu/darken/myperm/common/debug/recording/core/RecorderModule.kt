@@ -16,9 +16,9 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.flow.DynamicStateFlow
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
-import eu.darken.myperm.main.core.CurriculumVitae
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.plus
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -42,7 +43,6 @@ class RecorderModule @Inject constructor(
     @AppScope private val appScope: CoroutineScope,
     private val dispatcherProvider: DispatcherProvider,
     private val installId: InstallId,
-    private val curriculumVitae: CurriculumVitae,
     private val upgradeDiagnostics: UpgradeDiagnostics,
 ) {
 
@@ -99,11 +99,18 @@ class RecorderModule @Inject constructor(
 
                         try {
                             logRecordingHeader()
-                        } catch (e: CancellationException) {
-                            // The recorder is already running at this point: bailing out without
-                            // stopping it would leave a live recorder the module no longer tracks.
-                            newRecorder.stop()
-                            currentLogDir = null
+                        } catch (e: Exception) {
+                            // The recorder is already live but not yet committed to the state: an
+                            // exception escaping the header would abandon it where stopRecorder()
+                            // can't reach it.
+                            withContext(NonCancellable) {
+                                try {
+                                    newRecorder.stop()
+                                } catch (stopError: Exception) {
+                                    e.addSuppressed(stopError)
+                                }
+                                currentLogDir = null
+                            }
                             throw e
                         }
 
@@ -145,20 +152,6 @@ class RecorderModule @Inject constructor(
         log(TAG, INFO) { "Build.Fingerprint: ${Build.FINGERPRINT}" }
         log(TAG, INFO) { "BuildConfig.Versions: ${BuildConfigWrap.VERSION_DESCRIPTION}" }
 
-        try {
-            // Billing complaints usually arrive as debug logs: having the lifetime grace/Pro-loss
-            // history in the header saves a support round-trip.
-            log(TAG, INFO) { "Pro history: ${curriculumVitae.proHistory()}" }
-        } catch (e: CancellationException) {
-            throw e
-        } catch (e: Exception) {
-            // Diagnostics only — a broken history read must not stop the recorder from starting.
-            log(TAG, WARN) { "Pro history unavailable: ${e.asLog()}" }
-        }
-
-        // Separate boundary from the block above on purpose: these read different DataStores, and
-        // the counters above only cover installs new enough to have them. A failure to read one
-        // must not suppress the other's independent evidence.
         try {
             upgradeDiagnostics.debugInfo()?.let { log(TAG, INFO) { "Upgrade diagnostics: $it" } }
         } catch (e: CancellationException) {
