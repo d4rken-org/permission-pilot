@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -45,6 +46,10 @@ class RecorderModule @Inject constructor(
     private val installId: InstallId,
     private val upgradeDiagnostics: UpgradeDiagnostics,
 ) {
+
+    // Test seam: the header read below is bounded on real dispatchers, so a virtual-time test cannot
+    // advance the production bound. Same pattern as BillingCache.cacheTimeoutMs.
+    internal var headerReadTimeoutMs: Long = HEADER_READ_TIMEOUT_MS
 
     // Lazy to keep Hilt construction off the filesystem — getExternalFilesDir()
     // does mkdirs and can ANR on main thread during App.onCreate on slow devices.
@@ -153,13 +158,31 @@ class RecorderModule @Inject constructor(
         log(TAG, INFO) { "BuildConfig.Versions: ${BuildConfigWrap.VERSION_DESCRIPTION}" }
 
         try {
-            upgradeDiagnostics.debugInfo()?.let { log(TAG, INFO) { "Upgrade diagnostics: $it" } }
+            // Diagnostics only — a broken read must not stop the recorder from starting. Bounded on
+            // top of that: debug recording is what a user reaches for when the app is ALREADY
+            // misbehaving, so a source that never answers (a stuck DataStore file lock, a billing
+            // store that doesn't respond) must not hold up the start of the recording either.
+            val read = withTimeoutOrNull(headerReadTimeoutMs) { HeaderRead(upgradeDiagnostics.debugInfo()) }
+            when {
+                read == null -> log(TAG, WARN) {
+                    "Upgrade diagnostics unavailable, read did not finish within ${headerReadTimeoutMs}ms"
+                }
+                // Completion is tracked separately from the value: a flavor that legitimately has
+                // nothing to report (FOSS) returns null and gets no line at all, not an "unavailable".
+                read.value != null -> log(TAG, INFO) { "Upgrade diagnostics: ${read.value}" }
+            }
         } catch (e: CancellationException) {
             throw e
         } catch (e: Exception) {
             log(TAG, WARN) { "Upgrade diagnostics unavailable: ${e.asLog()}" }
         }
     }
+
+    /**
+     * Completion marker for a header read: tells a source that legitimately has nothing to report
+     * (no diagnostics on FOSS) apart from one that never answered within the deadline.
+     */
+    private class HeaderRead<T>(val value: T)
 
     private fun createSessionDir(): File {
         val sdf = SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'", Locale.US)
@@ -278,6 +301,9 @@ class RecorderModule @Inject constructor(
         internal val TAG = logTag("Debug", "Log", "Recorder", "Module")
         private const val FORCE_FILE = "myperm_force_debug_run"
         internal const val MIN_RECORDING_MS = 5_000L
+
+        // Budget for the header's diagnostics read.
+        private const val HEADER_READ_TIMEOUT_MS = 5_000L
 
         @VisibleForTesting
         internal fun parseTriggerContent(content: String): TriggerInfo? {

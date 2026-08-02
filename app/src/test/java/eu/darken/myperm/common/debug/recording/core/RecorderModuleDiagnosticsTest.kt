@@ -3,9 +3,11 @@ package eu.darken.myperm.common.debug.recording.core
 import androidx.test.core.app.ApplicationProvider
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.InstallId
+import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.FileLogger
 import eu.darken.myperm.common.debug.logging.Logging
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
+import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -18,12 +20,19 @@ import io.mockk.unmockkObject
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.withTimeoutOrNull
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -31,6 +40,8 @@ import org.robolectric.annotation.Config
 import testhelper.BaseTest
 import testhelper.coroutine.TestDispatcherProvider
 import testhelpers.TestApplication
+import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.system.measureTimeMillis
 
 /**
  * The recording header reads diagnostics that live outside the recorder. Those reads happen AFTER
@@ -43,18 +54,66 @@ import testhelpers.TestApplication
 @Config(sdk = [33], application = TestApplication::class)
 class RecorderModuleDiagnosticsTest : BaseTest() {
 
+    private val logLines = CopyOnWriteArrayList<String>()
+    private val logCapture = object : Logging.Logger {
+        override fun log(priority: Logging.Priority, tag: String, message: String, metaData: Map<String, Any>?) {
+            logLines.add(message)
+        }
+    }
+
+    @Before
+    fun installLogCapture() {
+        Logging.install(logCapture)
+    }
+
+    @After
+    fun removeLogCapture() {
+        Logging.remove(logCapture)
+    }
+
     private fun buildModule(
         scope: CoroutineScope,
         upgradeDiagnostics: UpgradeDiagnostics,
+        dispatcherProvider: DispatcherProvider = TestDispatcherProvider(),
     ) = RecorderModule(
         context = ApplicationProvider.getApplicationContext(),
         appScope = scope,
-        dispatcherProvider = TestDispatcherProvider(),
+        dispatcherProvider = dispatcherProvider,
         installId = mockk<InstallId>(relaxed = true).apply {
             every { id } returns "abcdef12-0000-0000-0000-000000000000"
         },
         upgradeDiagnostics = upgradeDiagnostics,
     )
+
+    /**
+     * Real dispatchers on purpose: the header's read deadline is wall-clock, so a virtual-time test
+     * would skip past it instead of exercising it — an ignored seam has to fail this, not pass after
+     * the full production budget. The seam is set before [RecorderModule.startRecorder] so no header
+     * read can run against the production bound.
+     *
+     * The block runs inside its own deadline: a missing or mis-wired production bound must fail this
+     * test rather than wedge the gradle worker on a read that never answers.
+     */
+    private fun withRealtimeModule(
+        upgradeDiagnostics: UpgradeDiagnostics,
+        headerTimeoutMs: Long = 300L,
+        block: suspend (RecorderModule) -> Unit,
+    ) {
+        val fileLoggersBefore = Logging.loggers.filterIsInstance<FileLogger>()
+        val moduleScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        val module = buildModule(moduleScope, upgradeDiagnostics, TestDispatcherProvider(Dispatchers.IO))
+        module.headerReadTimeoutMs = headerTimeoutMs
+        try {
+            runBlocking { withTimeout(TEST_ENVELOPE_MS) { block(module) } }
+        } finally {
+            // Stop the recorder BEFORE the scope goes: cancelling the scope alone leaves the
+            // recorder's globally installed FileLogger and its trigger file behind for every later
+            // test in this process.
+            runBlocking { withTimeoutOrNull(TEST_ENVELOPE_MS) { module.stopRecorder() } }
+            moduleScope.cancel()
+        }
+        Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
+    }
 
     @Test
     fun `a failing upgrade-diagnostics read still leaves a tracked recording`() = runTest {
@@ -132,5 +191,45 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
             moduleScope.cancel()
             unmockkObject(BuildConfigWrap)
         }
+    }
+
+    /**
+     * Debug recording is what a user reaches for when the app is ALREADY misbehaving, so a
+     * diagnostics source that never answers must not be the thing that denies them the log.
+     */
+    @Test
+    fun `a wedged upgrade diagnostics read does not hold up the recording`() {
+        val diagnostics = mockk<UpgradeDiagnostics>()
+        coEvery { diagnostics.debugInfo() } coAnswers { awaitCancellation() }
+
+        withRealtimeModule(diagnostics, headerTimeoutMs = 300L) { module ->
+            val elapsed = measureTimeMillis { module.startRecorder() }
+
+            module.state.first().isRecording shouldBe true
+            logLines.any { it.startsWith("Upgrade diagnostics unavailable") } shouldBe true
+            // Non-vacuity: without the bound this would sit on the wedged read forever.
+            elapsed shouldBeLessThan 1_500L
+        }
+    }
+
+    @Test
+    fun `a flavor without diagnostics is not reported as unavailable`() {
+        // FOSS has nothing to report and returns null: no diagnostics line at all, and above all
+        // not one claiming the read failed or timed out.
+        val diagnostics = mockk<UpgradeDiagnostics>()
+        coEvery { diagnostics.debugInfo() } returns null
+
+        withRealtimeModule(diagnostics) { module ->
+            module.startRecorder()
+
+            module.state.first().isRecording shouldBe true
+            logLines.any { it.startsWith("Upgrade diagnostics") } shouldBe false
+        }
+    }
+
+    companion object {
+        // Independent of the production bound: a missing or mis-wired one has to fail the test, not
+        // hang the gradle worker.
+        private const val TEST_ENVELOPE_MS = 10_000L
     }
 }
