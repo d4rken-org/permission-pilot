@@ -238,8 +238,8 @@ internal fun UpgradeScreen(
     UpgradeScreenScaffold(
         // Grace users are still Pro: they get the bare status title — "Get Permission Pilot Pro" on
         // the status screen would contradict the rest of the app, which behaves upgraded.
-        // Acquisition wraps that same brand in the pitch sentence. Either way the suffix is
-        // highlighted like the dashboard title does it.
+        // Acquisition wraps that same brand in the pitch sentence. Either way the suffix carries
+        // the same highlight the dashboard title gives supporters.
         title = if (ownedState != null || loaded?.grace != null) {
             upgradeScreenTitle(upgraded = true)
         } else {
