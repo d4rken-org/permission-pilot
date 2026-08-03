@@ -18,18 +18,29 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.After
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import testhelper.BaseTest
 import testhelper.coroutine.TestDispatcherProvider
+import testhelpers.TestApplication
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * The dashboard title brands itself for supporters, so the entitlement arm of the state must not
  * fall back to "unknown" when the state flow restarts inside the same process — that would flicker
  * a paying supporter's title back to the plain app name.
+ *
+ * Robolectric, like PP's other framework-touching tests: constructing the ViewModel initializes
+ * [eu.darken.myperm.apps.core.known.AKnownPkg] for its store-package sets, and every `Pkg.Id` in
+ * there defaults its userHandle to `Process.myUserHandle()` — null on a bare JVM, which fails the
+ * class initializer.
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [33], application = TestApplication::class)
 class OverviewViewModelTest : BaseTest() {
 
     private val testDispatcher = StandardTestDispatcher()
@@ -53,7 +64,7 @@ class OverviewViewModelTest : BaseTest() {
     private val upgradeRepo: UpgradeRepo = mockk(relaxed = true)
     private val generalSettings: GeneralSettings = mockk(relaxed = true)
 
-    @BeforeEach
+    @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
 
@@ -63,7 +74,7 @@ class OverviewViewModelTest : BaseTest() {
         every { upgradeRepo.upgradeInfo } returns upgradeInfoFlow
     }
 
-    @AfterEach
+    @After
     fun teardown() {
         Dispatchers.resetMain()
     }
