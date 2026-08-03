@@ -603,6 +603,9 @@
     <string name="general_navigate_up_action">Navigate up</string>
     <string name="general_progress_loading">Loading…</string>
     <string name="general_upgrade_action">Upgrade</string>
+    <string name="general_copy_action">Copy</string>
+    <string name="general_copied_to_clipboard_msg">Copied to clipboard</string>
+    <string name="general_view_details_for_x_action">View details for %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
 
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->

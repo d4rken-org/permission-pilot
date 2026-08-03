@@ -163,6 +163,15 @@ class ReportDetailViewModel @AssistedInject constructor(
         navTo(Nav.Details.AppDetails(current.packageName.value, current.userHandleId, current.appLabel))
     }
 
+    fun onViewPermission(permissionId: String) {
+        navTo(
+            Nav.Details.PermissionDetails(
+                permissionId = permissionId,
+                permLabel = _state.value.permissionInfoMap[permissionId]?.label,
+            )
+        )
+    }
+
     companion object {
         private val TAG = logTag("Watcher", "ReportDetail", "VM")
     }

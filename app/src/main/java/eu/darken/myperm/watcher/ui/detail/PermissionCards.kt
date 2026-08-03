@@ -15,12 +15,14 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -50,6 +52,7 @@ internal fun PermissionCards(
     diff: PermissionDiff,
     eventType: WatcherEventType,
     enrichedMap: Map<String, EnrichedPermission>,
+    onViewPermission: (String) -> Unit,
 ) {
     when (eventType) {
         WatcherEventType.INSTALL -> {
@@ -62,6 +65,7 @@ internal fun PermissionCards(
                     permissions = perms,
                     enrichedMap = enrichedMap,
                     showGrantType = true,
+                    onViewPermission = onViewPermission,
                 )
             }
         }
@@ -75,6 +79,7 @@ internal fun PermissionCards(
                     permissions = added,
                     enrichedMap = enrichedMap,
                     showGrantType = true,
+                    onViewPermission = onViewPermission,
                 )
             }
             val removed = diff.removedPermissions + diff.removedDeclared
@@ -86,6 +91,7 @@ internal fun PermissionCards(
                     permissions = removed,
                     enrichedMap = enrichedMap,
                     showGrantType = false,
+                    onViewPermission = onViewPermission,
                 )
             }
             if (diff.grantChanges.isNotEmpty()) {
@@ -94,6 +100,7 @@ internal fun PermissionCards(
                     subtitle = stringResource(R.string.watcher_detail_grant_changes_subtitle),
                     grantChanges = diff.grantChanges,
                     enrichedMap = enrichedMap,
+                    onViewPermission = onViewPermission,
                 )
             }
         }
@@ -107,6 +114,7 @@ internal fun PermissionCards(
                     permissions = perms,
                     enrichedMap = enrichedMap,
                     showGrantType = false,
+                    onViewPermission = onViewPermission,
                 )
             }
         }
@@ -117,6 +125,7 @@ internal fun PermissionCards(
                     subtitle = stringResource(R.string.watcher_detail_grant_changes_subtitle),
                     grantChanges = diff.grantChanges,
                     enrichedMap = enrichedMap,
+                    onViewPermission = onViewPermission,
                 )
             }
         }
@@ -131,6 +140,7 @@ internal fun PermissionCategoryCard(
     permissions: List<String>,
     enrichedMap: Map<String, EnrichedPermission>,
     showGrantType: Boolean,
+    onViewPermission: (String) -> Unit,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -155,6 +165,7 @@ internal fun PermissionCategoryCard(
                     permissionId = permId,
                     enriched = enrichedMap[permId],
                     showGrantType = showGrantType,
+                    onViewPermission = onViewPermission,
                 )
                 if (index < permissions.lastIndex) {
                     HorizontalDivider(
@@ -173,6 +184,7 @@ private fun EnrichedPermissionEntry(
     permissionId: String,
     enriched: EnrichedPermission?,
     showGrantType: Boolean,
+    onViewPermission: (String) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
     val hasDescription = enriched?.description != null
@@ -218,6 +230,17 @@ private fun EnrichedPermissionEntry(
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
+            IconButton(onClick = { onViewPermission(permissionId) }) {
+                Icon(
+                    imageVector = Icons.Filled.Info,
+                    contentDescription = stringResource(
+                        R.string.general_view_details_for_x_action,
+                        enriched?.label ?: permissionId,
+                    ),
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
         AnimatedVisibility(visible = expanded && hasDescription) {
             Text(
@@ -254,6 +277,7 @@ internal fun GrantChangesCategoryCard(
     subtitle: String,
     grantChanges: List<PermissionDiff.GrantChange>,
     enrichedMap: Map<String, EnrichedPermission>,
+    onViewPermission: (String) -> Unit,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -277,6 +301,7 @@ internal fun GrantChangesCategoryCard(
                 GrantChangeEntry(
                     change = change,
                     enriched = enrichedMap[change.permissionId],
+                    onViewPermission = onViewPermission,
                 )
                 if (index < grantChanges.lastIndex) {
                     HorizontalDivider(
@@ -294,6 +319,7 @@ internal fun GrantChangesCategoryCard(
 private fun GrantChangeEntry(
     change: PermissionDiff.GrantChange,
     enriched: EnrichedPermission?,
+    onViewPermission: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -320,6 +346,17 @@ private fun GrantChangeEntry(
                     style = MaterialTheme.typography.labelSmall,
                     fontFamily = FontFamily.Monospace,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            IconButton(onClick = { onViewPermission(change.permissionId) }) {
+                Icon(
+                    imageVector = Icons.Filled.Info,
+                    contentDescription = stringResource(
+                        R.string.general_view_details_for_x_action,
+                        enriched?.label ?: change.permissionId,
+                    ),
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -411,6 +448,7 @@ private fun PermissionCategoryCardPreview() {
                 ),
             ),
             showGrantType = true,
+            onViewPermission = {},
         )
     }
 }
@@ -442,6 +480,7 @@ private fun GrantChangesCategoryCardPreview() {
                     grantType = GrantType.RUNTIME,
                 ),
             ),
+            onViewPermission = {},
         )
     }
 }
