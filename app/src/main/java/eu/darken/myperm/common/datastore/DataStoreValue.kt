@@ -37,6 +37,22 @@ class DataStoreValue<T>(
         .map { prefs -> reader(prefs[key]) }
         .distinctUntilChanged()
 
+    /**
+     * Like [flow], but read failures are NOT swallowed: an IOException from the store propagates to
+     * the collector instead of presenting as "no record stored".
+     *
+     * For values whose consumers represent a read failure explicitly — the entitlement cache, where
+     * a swallowed failure would silently revoke a supporter's Pro status through the success path.
+     * The fail-soft default of [flow] suits preference-style values (a failed read of "show hints"
+     * is fine as the default), so every existing consumer keeps it.
+     *
+     * Decode fallback still applies: it lives inside [reader], so a record that fails to
+     * deserialize remains by-design absent rather than an error here.
+     */
+    val strictFlow: Flow<T> = dataStore.data
+        .map { prefs -> reader(prefs[key]) }
+        .distinctUntilChanged()
+
     suspend fun value(): T = flow.first()
 
     suspend fun value(newValue: T) {
