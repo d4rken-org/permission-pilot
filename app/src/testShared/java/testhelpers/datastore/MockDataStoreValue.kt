@@ -18,7 +18,10 @@ inline fun <reified T> mockDataStoreValue(
     }
     coEvery { instance.update(any()) } answers {
         val transform = arg<(T) -> T>(0)
-        flow.value = transform(flow.value)
+        val old = flow.value
+        val new = transform(old)
+        flow.value = new
+        DataStoreValue.Updated(old = old, new = new)
     }
     every { instance.valueBlocking } answers { flow.value }
     every { instance.valueBlocking = any() } answers {
