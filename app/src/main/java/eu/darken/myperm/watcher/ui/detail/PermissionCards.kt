@@ -98,7 +98,7 @@ internal fun PermissionCards(
             }
         }
         WatcherEventType.REMOVED -> {
-            val perms = diff.addedPermissions + diff.addedDeclared
+            val perms = diff.removedPermissions + diff.removedDeclared
             if (perms.isNotEmpty()) {
                 PermissionCategoryCard(
                     title = pluralStringResource(R.plurals.watcher_detail_last_permissions_header, perms.size, perms.size),
