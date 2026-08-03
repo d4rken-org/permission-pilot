@@ -95,7 +95,15 @@ class PermissionDetailsViewModel @Inject constructor(
             permissionsRepo.permissions.map { perms -> perms.singleOrNull { it.id == permId } },
             generalSettings.permissionDetailsFilterOptions.flow,
         ) { perm, filterOpts ->
-            if (perm == null) return@combine State(label = initialLabel ?: permId.value, isLoading = true)
+            // The repo skips Loading and maps Error to an empty list, so an unresolved permission here
+            // is terminal (e.g. a custom permission whose declaring app was updated or uninstalled).
+            if (perm == null) {
+                return@combine State(
+                    label = initialLabel ?: permId.value.substringAfterLast('.'),
+                    permissionId = permId.value,
+                    isLoading = false,
+                )
+            }
 
             val declaring = perm.declaringApps.map { ref ->
                 DeclaringAppItem(
