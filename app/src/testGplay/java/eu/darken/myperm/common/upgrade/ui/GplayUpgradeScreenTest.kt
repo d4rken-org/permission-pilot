@@ -1,7 +1,10 @@
 package eu.darken.myperm.common.upgrade.ui
 
 import android.content.Context
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
@@ -29,10 +32,64 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
     private val context: Context
         get() = ApplicationProvider.getApplicationContext()
 
+    // "Permission Pilot Pro" — the composed brand the screen renders for owners and grace users.
+    private val appNameWithPostfix: String
+        get() = "${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}"
+
     private fun appNameWithPostfixedHeroBody(bodyRes: Int): String = context.getString(
         bodyRes,
-        "${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}",
+        appNameWithPostfix,
     )
+
+    // What the acquisition top bar must render: the translated pitch pattern with the composed
+    // brand formatted into it.
+    private val acquisitionTitle: String
+        get() = context.getString(R.string.upgrade_screen_title_template, appNameWithPostfix)
+
+    private fun acquisitionState() = GplayUpgradeUiState.Loaded(
+        subscriptionAction = SubscriptionAction.STANDARD,
+        subscriptionEnabled = true,
+        subscriptionPrice = "$12.99",
+        iapEnabled = true,
+        iapPrice = "$24.99",
+    )
+
+    @Test
+    fun `acquisition titles the screen with the brand inside the pitch sentence`() {
+        composeRule.setUpgradeContent {
+            UpgradeScreen(uiState = acquisitionState())
+        }
+
+        composeRule.onAllNodesWithText(acquisitionTitle).assertCountEquals(1)
+    }
+
+    @Test
+    fun `the acquisition title colors exactly the brand suffix`() {
+        // PP's highlight is a theme role, not a color resource: capture it from the very
+        // composition under test instead of re-deriving it.
+        var expectedTertiary = Color.Unspecified
+        composeRule.setUpgradeContent {
+            expectedTertiary = MaterialTheme.colorScheme.tertiary
+            UpgradeScreen(uiState = acquisitionState())
+        }
+
+        // The pitch splices in the SAME styled brand the status title uses: the upgraded color must
+        // land on the suffix only, never on the surrounding sentence.
+        val rendered = composeRule.onNodeWithText(acquisitionTitle)
+            .fetchSemanticsNode()
+            .config[SemanticsProperties.Text]
+            .single()
+        val suffix = context.getString(R.string.upgrade_title_suffix)
+
+        rendered.text shouldBe acquisitionTitle
+        rendered.spanStyles.size shouldBe 1
+        val span = rendered.spanStyles.single()
+        span.item.color shouldBe expectedTertiary
+        rendered.text.substring(span.start, span.end) shouldBe suffix
+        // Pins the range rather than just its content: only one candidate position exists.
+        rendered.text.indexOf(suffix) shouldBe span.start
+        rendered.text.lastIndexOf(suffix) shouldBe span.start
+    }
 
     @Test
     fun `loading state shows progress and hides actions`() {
