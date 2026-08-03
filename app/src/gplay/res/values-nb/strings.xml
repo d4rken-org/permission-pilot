@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Allerede kjøpt</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporterer at du allerede eier denne oppgraderingen, men den kunne ikke gjenopprettes. Sjekk at du er logget inn med Google-kontoen som ble brukt for det opprinnelige kjøpet, og prøv deretter \"Gjenopprett kjøp\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot er uten annonser og respekterer ditt personvern. Oppgradering støtter fortsatt utvikling.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play er utilgjengelig</string>
-    <string name="upgrade_screen_offers_unavailable_message">Kunne ikke laste kjøpsalternativene. Google Play kan være midlertidig utilgjengelig – kontroller tilkoblingen din og prøv igjen.</string>
     <string name="upgrade_screen_subscription_trial_action">Start gratis prøveperiode</string>
     <string name="upgrade_screen_subscription_action">Abonner</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/år, avbryt når som helst</string>

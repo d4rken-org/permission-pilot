@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Уже приобретено</string>
     <string name="upgrades_gplay_already_owned_error">Google Play сообщает, что вы уже владеете этим обновлением, но оно не удалось восстановить. Убедитесь, что вы вошли с помощью учетной записи Google, используемой для первоначальной покупки, затем попробуйте «Восстановить покупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot не содержит рекламы и уважает вашу конфиденциальность. Обновление поддерживает дальнейшую разработку.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play недоступен</string>
-    <string name="upgrade_screen_offers_unavailable_message">Не удалось загрузить параметры покупки. Google Play может быть временно недоступен — проверьте подключение и попробуйте еще раз.</string>
     <string name="upgrade_screen_subscription_trial_action">Начать бесплатный пробный период</string>
     <string name="upgrade_screen_subscription_action">Подписаться</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/год, отменить в любое время</string>

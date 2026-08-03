@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Ja ho heu comprat</string>
     <string name="upgrades_gplay_already_owned_error">El Google Play indica que ja teniu aquesta actualització, però no s\'ha pogut restaurar. Comproveu que heu iniciat sessió amb el compte de Google que vau utilitzar per a la compra original i proveu «Restaura la compra».</string>
     <string name="upgrade_screen_preamble">El Permission Pilot no té anuncis i respecta la teva privadesa. L\'actualització permet el desenvolupament continu.</string>
-    <string name="upgrade_screen_offers_unavailable_title">El Google Play no està disponible</string>
-    <string name="upgrade_screen_offers_unavailable_message">No s\'han pogut carregar les opcions de compra. És possible qu eel Google Play no estigui disponible temporalment, comproveu la connexió i torneu-ho a provar.</string>
     <string name="upgrade_screen_subscription_trial_action">Inicia la prova gratuïta</string>
     <string name="upgrade_screen_subscription_action">Subscripció</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/any, cancel·leu en qualsevol moment</string>

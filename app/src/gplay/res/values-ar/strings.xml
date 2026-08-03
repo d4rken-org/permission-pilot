@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">تم شراؤه بالفعل</string>
     <string name="upgrades_gplay_already_owned_error">يفيد Google Play بأنك تمتلك هذه الترقية بالفعل، لكن لم يتمكن من استعادتها. تحقق من أنك مسجل الدخول بحساب Google الذي استخدمته في الشراء الأصلي، ثم جرّب \"استعادة الشراء\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot خالي من الإعلانات ويحترم خصوصيتك. الترقية تدعم استمرار التطوير.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play غير متوفر</string>
-    <string name="upgrade_screen_offers_unavailable_message">تعذر تحميل خيارات الشراء. قد يكون Google Play غير متوفر مؤقتاً - تحقق من اتصالك وحاول مرة أخرى.</string>
     <string name="upgrade_screen_subscription_trial_action">ابدأ الإصدار التجريبي المجاني</string>
     <string name="upgrade_screen_subscription_action">اشتراك</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/سنة، إلغاء في أي وقت</string>

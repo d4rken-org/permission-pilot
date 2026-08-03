@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Jo ostettu</string>
     <string name="upgrades_gplay_already_owned_error">Google Play ilmoittaa, että omistit jo tämän päivityksen, mutta sitä ei voitu palauttaa. Varmista, että olet kirjautunut Google-tilillä, jolla teit alkuperäisen ostoksen, ja yritä sitten \"Palauta osto\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot on mainokseton ja kunnioittaa yksityisyyttäsi. Päivittäminen tukee jatkuvaa kehitystä.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play ei ole käytettävissä</string>
-    <string name="upgrade_screen_offers_unavailable_message">Ostovaihtoehtoja ei voitu ladata. Google Play saattaa olla tilapäisesti poissa käytöstä – tarkista yhteytesi ja yritä uudelleen.</string>
     <string name="upgrade_screen_subscription_trial_action">Aloita ilmainen kokeilu</string>
     <string name="upgrade_screen_subscription_action">Tilaa</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/vuosi, voit peruuttaa milloin tahansa</string>

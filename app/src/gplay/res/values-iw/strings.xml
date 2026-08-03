@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">כבר נקנה</string>
     <string name="upgrades_gplay_already_owned_error">גוגל פליי דיווח שכבר קנית את השדרוג הזה, אך לא ניתן היה להשחזרו. בדוק שאתה מחובר עם חשבון גוגל שנשמש לרכישה המקורית, ולאחר מכן נסה \"השחזר רכישה\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot היא בללי פרסומות ומכבדת את פרטיותך. שדרוג תומך בפיתוח המשך.</string>
-    <string name="upgrade_screen_offers_unavailable_title">גוגל פליי לא זמין</string>
-    <string name="upgrade_screen_offers_unavailable_message">לא ניתן היה לטעון את אפשרויות הרכישה. גוגל פליי עשוי להיות לא זמין זמנית — בדוק את החיבור שלך ונסה שוב.</string>
     <string name="upgrade_screen_subscription_trial_action">התחל ניסיון חינם</string>
     <string name="upgrade_screen_subscription_action">הירשם כמנוי</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/שנה, בטל בכל עת</string>

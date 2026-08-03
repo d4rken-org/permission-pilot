@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">已購買</string>
     <string name="upgrades_gplay_already_owned_error">Google Play 報告您已擁有此升級，但無法復原。請檢查您是否使用原始購買所用的 Google 帳戶登入，然後嘗試「復原購買」。</string>
     <string name="upgrade_screen_preamble">Permission Pilot 無廣告且尊重您的隱私。升級可支持持續開發。</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play 無法使用</string>
-    <string name="upgrade_screen_offers_unavailable_message">無法載入購買選項。Google Play 可能暫時無法使用——請檢查您的連線並重試。</string>
     <string name="upgrade_screen_subscription_trial_action">開始免費試用</string>
     <string name="upgrade_screen_subscription_action">訂閱</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年，隨時可取消</string>

@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">既に購入済み</string>
     <string name="upgrades_gplay_already_owned_error">Google Play ではこのアップグレードを所有していると報告されていますが、復元できませんでした。元の購入に使用した Google アカウントでサインインしていることを確認してから、「購入を復元」をお試しください。</string>
     <string name="upgrade_screen_preamble">Permission Pilotは広告なしでプライバシーを尊重しています。アップグレードは継続的な開発をサポートします。</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play は利用できません</string>
-    <string name="upgrade_screen_offers_unavailable_message">購入オプションを読み込めませんでした。Google Play が一時的に利用できない可能性があります。接続を確認してもう一度お試しください。</string>
     <string name="upgrade_screen_subscription_trial_action">試用を開始する</string>
     <string name="upgrade_screen_subscription_action">登録</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年、いつでもキャンセルできます</string>

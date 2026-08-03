@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Đã mua</string>
     <string name="upgrades_gplay_already_owned_error">Google Play báo cáo rằng bạn đã sở hữu nâng cấp này, nhưng không thể khôi phục được. Kiểm tra rằng bạn đã đăng nhập bằng tài khoản Google được sử dụng để mua hàng ban đầu, sau đó hãy thử \"Khôi phục mua hàng\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot không có quảng cáo và tôn trọng quyền riêng tư của bạn. Việc nâng cấp ủng hộ quá trình phát triển liên tục.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play không khả dụng</string>
-    <string name="upgrade_screen_offers_unavailable_message">Không thể tải các tùy chọn mua hàng. Google Play có thể không khả dụng tạm thời — kiểm tra kết nối của bạn và thử lại.</string>
     <string name="upgrade_screen_subscription_trial_action">Bắt đầu dùng thử miễn phí</string>
     <string name="upgrade_screen_subscription_action">Đăng ký</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/năm, hủy bất cứ lúc nào</string>

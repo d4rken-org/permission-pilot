@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Bereits gekauft</string>
     <string name="upgrades_gplay_already_owned_error">Google Play meldet, dass Sie dieses Upgrade bereits besitzen, es konnte jedoch nicht wiederhergestellt werden. Stellen Sie sicher, dass Sie mit dem Google-Konto angemeldet sind, das für den ursprünglichen Kauf verwendet wurde, und versuchen Sie dann, den Kauf wiederherzustellen.</string>
     <string name="upgrade_screen_preamble">Permission Pilot ist werbefrei und respektiert deine Privatsphäre. Ein Upgrade unterstützt die weitere Entwicklung.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play ist nicht verfügbar</string>
-    <string name="upgrade_screen_offers_unavailable_message">Die Kaufoptionen konnten nicht geladen werden. Google Play ist möglicherweise vorübergehend nicht verfügbar – überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.</string>
     <string name="upgrade_screen_subscription_trial_action">Kostenlos testen</string>
     <string name="upgrade_screen_subscription_action">Abonnieren</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/Jahr, jederzeit kündbar</string>

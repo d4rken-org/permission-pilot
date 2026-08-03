@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">ซื้อแล้ว</string>
     <string name="upgrades_gplay_already_owned_error">Google Play รายงานว่าคุณเป็นเจ้าของการอัปเกรดนี้แล้ว แต่ไม่สามารถคืนค่าได้ ตรวจสอบว่าคุณลงชื่อเข้าใช้ด้วยบัญชี Google ที่ใช้สำหรับการซื้อครั้งแรก จากนั้นลองใช้ \"คืนค่าการซื้อ\"</string>
     <string name="upgrade_screen_preamble">Permission Pilot ไม่มีโฆษณาและเคารพความเป็นส่วนตัวของคุณ การอัปเกรดช่วยสนับสนุนการพัฒนาอย่างต่อเนื่อง</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play ไม่พร้อมใช้งาน</string>
-    <string name="upgrade_screen_offers_unavailable_message">ไม่สามารถโหลดตัวเลือกการซื้อได้ Google Play อาจไม่พร้อมใช้งานชั่วคราว — ตรวจสอบการเชื่อมต่อของคุณและลองอีกครั้ง</string>
     <string name="upgrade_screen_subscription_trial_action">เริ่มทดลองใช้องค์ฟรี</string>
     <string name="upgrade_screen_subscription_action">สมัครสมาชิก</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ปี ยกเลิกได้ตลอดเวลา</string>
