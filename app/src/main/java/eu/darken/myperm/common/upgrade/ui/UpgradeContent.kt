@@ -91,12 +91,14 @@ internal object UpgradeScreenTags {
     const val HERO = "upgrade_hero"
 }
 
-// Composed app title with the flavor postfix highlighted in the upgraded color while Pro is
-// active — the same treatment the dashboard title card uses.
+// Composed app title with the flavor suffix highlighted in the upgraded color while Pro is
+// active — the same treatment the dashboard title gives itself for supporters.
 @Composable
 internal fun upgradeScreenTitle(upgraded: Boolean): AnnotatedString {
     // PP already ships the title as a translated prefix + flavor-overridden suffix pair, which is
-    // exactly the shape the canonical highlight needs.
+    // exactly the shape the canonical highlight needs. Note the dashboard composes the same
+    // highlight from app_name instead of this prefix — deliberate: only app_name is translated in
+    // every locale, so the dashboard title keeps its language when the entitlement lands.
     val highlight = MaterialTheme.colorScheme.tertiary
     val prefix = stringResource(R.string.upgrade_title_prefix)
     val suffix = stringResource(R.string.upgrade_title_suffix)

@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
@@ -103,13 +104,21 @@ class OverviewViewModel @Inject constructor(
     private val oemPkgNames = AKnownPkg.OEM_STORES.map { it.id.pkgName }.toSet()
     private val googlePlayPkgName = AKnownPkg.GooglePlay.id.pkgName
 
+    // The entitlement seed for a (re)subscription: the repo's own flow can restart within the
+    // process (shareIn drops its replay after the last collector left), and seeding with null would
+    // flicker a supporter's branded dashboard title back to the plain one for a frame.
+    private var lastKnownUpgradeInfo: UpgradeRepo.Info? = null
+
     val state = combine(
         deviceData.onStart { emit(DeviceInfo("", "", "")) },
         appRepo.appData.map { appDataState ->
             val apps = (appDataState as? AppRepo.AppDataState.Ready)?.apps ?: return@map null
             buildSummary(apps)
         }.onStart { emit(null) },
-        upgradeRepo.upgradeInfo.map<UpgradeRepo.Info, UpgradeRepo.Info?> { it }.onStart { emit(null) },
+        upgradeRepo.upgradeInfo
+            .map<UpgradeRepo.Info, UpgradeRepo.Info?> { it }
+            .onEach { lastKnownUpgradeInfo = it }
+            .onStart { emit(lastKnownUpgradeInfo) },
         appRepo.scanError,
     ) { device, summary, upgrade, scanError ->
         val hasData = summary != null
