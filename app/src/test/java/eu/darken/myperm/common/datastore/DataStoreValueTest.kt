@@ -1,9 +1,15 @@
 package eu.darken.myperm.common.datastore
 
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
@@ -15,6 +21,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import testhelper.BaseTest
 import java.io.File
+import java.io.IOException
 
 class DataStoreValueTest : BaseTest() {
 
@@ -183,6 +190,30 @@ class DataStoreValueTest : BaseTest() {
         pref.valueBlocking = 77
         pref.value() shouldBe 77
         pref.flow.first() shouldBe 77
+    }
+
+    // A store whose reads always fail: the production corruption/IO path, without a real file.
+    private fun createFailingDataStore(error: Throwable) = mockk<DataStore<Preferences>>().apply {
+        every { data } returns flow { throw error }
+    }
+
+    @Test
+    fun `flow falls back to the default when the store read fails`() = runTest {
+        val ds = createFailingDataStore(IOException("store broken"))
+        val pref = ds.createValue("test.int", 42)
+
+        // Pins the fail-soft behaviour every existing preference-style consumer relies on.
+        pref.flow.first() shouldBe 42
+    }
+
+    @Test
+    fun `strictFlow surfaces a failing store read`() = runTest {
+        val ds = createFailingDataStore(IOException("store broken"))
+        val pref = ds.createValue("test.int", 42)
+
+        // The entitlement cache reads through this: a swallowed failure would look like "no record"
+        // and revoke Pro through the success path.
+        shouldThrow<IOException> { pref.strictFlow.first() }.message shouldBe "store broken"
     }
 
     @Test
