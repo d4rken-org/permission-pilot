@@ -143,24 +143,43 @@ class UpgradeViewModel @Inject constructor(
     fun checkSponsorReturn() = launch {
         val pressedAt = handle.remove<Long>(KEY_SPONSOR_PRESSED_AT) ?: return@launch
 
-        // Evaluated before the duration: an already upgraded supporter (recurring donation button)
-        // has nothing left to unlock, and persisting again would rewrite their upgradedAt — visibly
-        // resetting the "supporter since" date the status screen shows them.
-        if (upgradeRepo.upgradeInfo.first().isPro) {
-            log(TAG) { "checkSponsorReturn(): Already upgraded, staying quiet" }
-            return@launch
-        }
+        try {
+            // Evaluated before the duration: an already upgraded supporter (recurring donation
+            // button) has nothing left to unlock, so this fast path exists for the UX — return
+            // quietly, no redundant write attempt and no thanks toast for an unlock that already
+            // happened. Data integrity is not this guard's job: the repo's create-only transaction
+            // owns that.
+            if (upgradeRepo.upgradeInfo.first().isPro) {
+                log(TAG) { "checkSponsorReturn(): Already upgraded, staying quiet" }
+                return@launch
+            }
 
-        val elapsed = SystemClock.elapsedRealtime() - pressedAt
-        log(TAG) { "checkSponsorReturn(): elapsed=${elapsed}ms" }
+            val elapsed = SystemClock.elapsedRealtime() - pressedAt
+            log(TAG) { "checkSponsorReturn(): elapsed=${elapsed}ms" }
 
-        if (elapsed < SPONSOR_DELAY_MS) {
-            log(TAG) { "checkSponsorReturn(): Too quick, showing snackbar" }
-            snackbarEvents.tryEmit(R.string.upgrade_foss_sponsor_returned_early)
-        } else {
-            log(TAG) { "checkSponsorReturn(): Delay passed, persisting upgrade" }
-            upgradeRepo.persistUpgrade()
-            toastEvents.tryEmit(R.string.upgrade_screen_thanks_toast)
+            if (elapsed < SPONSOR_DELAY_MS) {
+                log(TAG) { "checkSponsorReturn(): Too quick, showing snackbar" }
+                snackbarEvents.tryEmit(R.string.upgrade_foss_sponsor_returned_early)
+            } else {
+                log(TAG) { "checkSponsorReturn(): Delay passed, persisting upgrade" }
+                val created = upgradeRepo.persistUpgrade()
+                if (created) {
+                    toastEvents.tryEmit(R.string.upgrade_screen_thanks_toast)
+                } else {
+                    // The isPro fast-path read a stale emission; the transaction kept the existing record.
+                    log(TAG) { "checkSponsorReturn(): Record already existed, staying quiet" }
+                }
+            }
+        } catch (e: Exception) {
+            // The marker was consumed above; neither a failed entitlement read nor a failed write may
+            // eat the user's valid sponsor visit — restore it so the next return/resume can retry the
+            // unlock. Conditional: the user may have armed a NEWER launch while this attempt was
+            // suspended, and that one must survive. Rethrow unconditionally: cancellation is not
+            // swallowed, other errors surface via the normal error path.
+            if (!handle.contains(KEY_SPONSOR_PRESSED_AT)) {
+                handle[KEY_SPONSOR_PRESSED_AT] = pressedAt
+            }
+            throw e
         }
     }
 

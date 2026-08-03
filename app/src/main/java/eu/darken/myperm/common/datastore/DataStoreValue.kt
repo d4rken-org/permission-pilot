@@ -43,18 +43,27 @@ class DataStoreValue<T>(
         update { newValue }
     }
 
-    suspend fun update(transform: (T) -> T) {
+    data class Updated<T>(
+        val old: T,
+        val new: T,
+    )
+
+    @Suppress("UNCHECKED_CAST")
+    suspend fun update(transform: (T) -> T): Updated<T> {
+        val values = arrayOfNulls<Any?>(2)
+
         dataStore.edit { prefs ->
-            val current = reader(prefs[key])
-            val newValue = transform(current)
+            val current = reader(prefs[key]).also { values[0] = it }
+            val newValue = transform(current).also { values[1] = it }
             val raw = writer(newValue)
-            @Suppress("UNCHECKED_CAST")
             if (raw != null) {
                 prefs[key as Preferences.Key<Any>] = raw
             } else {
                 prefs.remove(key)
             }
         }
+
+        return Updated(old = values[0] as T, new = values[1] as T)
     }
 
     var valueBlocking: T

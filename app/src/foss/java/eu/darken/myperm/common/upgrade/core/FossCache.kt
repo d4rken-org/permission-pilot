@@ -1,8 +1,10 @@
 package eu.darken.myperm.common.upgrade.core
 
 import android.content.Context
+import androidx.datastore.core.DataStore
 import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
 import androidx.datastore.preferences.SharedPreferencesMigration
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -20,12 +22,19 @@ private val Context.dataStore by preferencesDataStore(
 )
 
 @Singleton
-class FossCache @Inject constructor(
-    @ApplicationContext context: Context,
-    json: Json
+class FossCache internal constructor(
+    // Test seam: the store is handed in so a test can supply its own DataStore instead of the
+    // Context-bound production delegate.
+    private val dataStore: DataStore<Preferences>,
+    json: Json,
 ) {
 
-    val upgrade = context.dataStore.createValue<FossUpgrade?>(
+    @Inject constructor(
+        @ApplicationContext context: Context,
+        json: Json,
+    ) : this(context.dataStore, json)
+
+    val upgrade = dataStore.createValue<FossUpgrade?>(
         keyName = "foss.upgrade",
         json = json,
         defaultValue = null,
