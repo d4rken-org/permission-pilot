@@ -80,7 +80,7 @@ class OverviewViewModelTest : BaseTest() {
     fun `a restarted state flow seeds with the last known entitlement`() = runTest(testDispatcher) {
         val vm = createVM()
 
-        val firstCollector = launch { vm.state.collect() }
+        val firstCollector = launch { vm.state.collect { } }
         advanceUntilIdle()
         vm.state.value?.upgradeInfo?.isPro shouldBe true
         firstCollector.cancel()
@@ -89,7 +89,7 @@ class OverviewViewModelTest : BaseTest() {
         advanceTimeBy(10_000)
         advanceUntilIdle()
 
-        val secondCollector = launch { vm.state.collect() }
+        val secondCollector = launch { vm.state.collect { } }
         advanceUntilIdle()
 
         // Non-vacuity: the upstream really was re-subscribed, and it stayed silent this time — so
