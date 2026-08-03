@@ -51,6 +51,11 @@ class RecorderModule @Inject constructor(
     // advance the production bound. Same pattern as BillingCache.cacheTimeoutMs.
     internal var headerReadTimeoutMs: Long = HEADER_READ_TIMEOUT_MS
 
+    // Test seams for the two clocks the recording heuristics use. Same pattern as the header bound:
+    // the durations are wall-clock/monotonic, so virtual time cannot drive them.
+    internal var wallClock: () -> Long = System::currentTimeMillis
+    internal var monotonicClock: () -> Long = android.os.SystemClock::elapsedRealtime
+
     // Lazy to keep Hilt construction off the filesystem — getExternalFilesDir()
     // does mkdirs and can ANR on main thread during App.onCreate on slow devices.
     private val triggerFile: File by lazy {
@@ -94,7 +99,7 @@ class RecorderModule @Inject constructor(
                             log(TAG, INFO) { "Resuming recording in existing session: ${resumed.name}" }
                             recordingStartedAt
                         } else {
-                            System.currentTimeMillis()
+                            wallClock()
                         }
 
                         val logFile = File(sessionDir, "core.log")
@@ -125,6 +130,7 @@ class RecorderModule @Inject constructor(
                             recorder = newRecorder,
                             persistedLogDir = null,
                             recordingStartedAt = startTime,
+                            recordingStartedAtMonotonic = if (resumed != null) null else monotonicClock(),
                             logDir = sessionDir,
                         )
                     } else if (!shouldRecord && isRecording) {
@@ -140,6 +146,7 @@ class RecorderModule @Inject constructor(
                             recorder = null,
                             persistedLogDir = null,
                             recordingStartedAt = 0L,
+                            recordingStartedAtMonotonic = null,
                             logDir = null,
                         )
                     } else {
@@ -244,8 +251,12 @@ class RecorderModule @Inject constructor(
         val currentState = internalState.value()
         if (!currentState.isRecording) return StopResult.NotRecording
 
-        val duration = System.currentTimeMillis() - currentState.recordingStartedAt
-        if (duration < MIN_RECORDING_MS) return StopResult.TooShort
+        val duration = currentState.recordingStartedAtMonotonic
+            ?.let { monotonicClock() - it }             // live session: immune to wall-clock adjustments
+            ?: (wallClock() - currentState.recordingStartedAt)  // resumed: trigger file persists wall time only
+        // Negative = wall clock moved backward across a resume; fail open (no warning) rather than
+        // trap the user in TooShort.
+        if (duration in 0 until MIN_RECORDING_MS) return StopResult.TooShort
 
         val logDir = stopRecorder() ?: return StopResult.NotRecording
         val sessionId = DebugSessionManager.deriveBaseName(logDir)
@@ -265,6 +276,10 @@ class RecorderModule @Inject constructor(
         val shouldRecord: Boolean = false,
         internal val recorder: Recorder? = null,
         val recordingStartedAt: Long = 0L,
+        // Monotonic base for the duration heuristic, null when there is none: a resumed session's
+        // only start time is the persisted wall clock, and a monotonic value from a previous process
+        // or boot is meaningless. Nullable rather than 0L — 0 is a legal elapsedRealtime near boot.
+        val recordingStartedAtMonotonic: Long? = null,
         val logDir: File? = null,
         internal val persistedLogDir: File? = null,
     ) {
@@ -277,7 +292,7 @@ class RecorderModule @Inject constructor(
     internal fun readTriggerFile(): TriggerInfo? {
         return try {
             val content = triggerFile.readText()
-            parseTriggerContent(content)
+            parseTriggerContent(content, wallClock())
         } catch (e: Exception) {
             log(TAG, WARN) { "Failed to read trigger file: $e" }
             null
@@ -300,13 +315,26 @@ class RecorderModule @Inject constructor(
     companion object {
         internal val TAG = logTag("Debug", "Log", "Recorder", "Module")
         private const val FORCE_FILE = "myperm_force_debug_run"
-        internal const val MIN_RECORDING_MS = 5_000L
+
+        /**
+         * Duration heuristic for "did you forget to reproduce the issue?". A recording stopped
+         * this quickly usually contains nothing but the recorder starting and stopping, which
+         * costs a support round-trip to re-request.
+         *
+         * It stays a prompt because short recordings can be perfectly valid: a crash is logged
+         * and flushed immediately, so the reproduction is already on disk. "Stop anyway" works —
+         * the [StopResult.TooShort] consumers (the Support and ContactForm screens) stop via
+         * their direct [stopRecorder] path, which has no duration check.
+         */
+        internal const val MIN_RECORDING_MS = 10_000L
 
         // Budget for the header's diagnostics read.
         private const val HEADER_READ_TIMEOUT_MS = 5_000L
 
+        // The trigger file stores wall-clock timestamps: it has to survive reboots, which monotonic
+        // time does not. [now] is the module's wall clock, defaulted for direct test calls.
         @VisibleForTesting
-        internal fun parseTriggerContent(content: String): TriggerInfo? {
+        internal fun parseTriggerContent(content: String, now: Long = System.currentTimeMillis()): TriggerInfo? {
             if (content.isBlank()) return null
             val lines = content.trim().lines()
             if (lines.size != 2) return null
@@ -315,7 +343,6 @@ class RecorderModule @Inject constructor(
             if (!dir.exists() || !dir.isDirectory) return null
 
             val timestamp = lines[1].toLongOrNull() ?: return null
-            val now = System.currentTimeMillis()
             if (timestamp < 1 || timestamp > now + 60_000L) return null
 
             return TriggerInfo(logDir = dir, startedAt = timestamp)
