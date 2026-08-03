@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Artıq satın alındı</string>
     <string name="upgrades_gplay_already_owned_error">Google Play bildirir ki, siz artıq bu yüksəltməyə sahibsiniz, lakin o bərpa olunmadı. Orijinal alış üçün istifadə etdiyiniz Google hesabına daxil olduğunuzu yoxlayın, sonra \"Satın almağı bərpa et\"-i cəhd edin.</string>
     <string name="upgrade_screen_preamble">Permission Pilot rəkləmsüzdür və məxfiliyinizə hörmət edir. Yüksəltmək davamlı gelişdirməni dəstəkləyir.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play əlçatan deyil</string>
-    <string name="upgrade_screen_offers_unavailable_message">Satın alma seçənəkləri yüklənə bilmədi. Google Play müvəqqəti olaraq əlçatan olmaya bilər — bağlantınızı yoxlayın və yenidən cəhd edin.</string>
     <string name="upgrade_screen_subscription_trial_action">Pülsüz sınaq başladın</string>
     <string name="upgrade_screen_subscription_action">Abunə olun</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/il, istənilən vaxt ləğv edin</string>

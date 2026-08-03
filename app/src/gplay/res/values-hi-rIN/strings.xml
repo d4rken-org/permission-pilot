@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">पहले से खरीदा गया</string>
     <string name="upgrades_gplay_already_owned_error">Google Play की रिपोर्ट है कि आप पहले से इस अपग्रेड के मालिक हैं, लेकिन इसे पुनः स्थापित नहीं किया जा सका। जांचें कि आप मूल खरीद के लिए उपयोग किए गए Google खाते से साइन इन हैं, फिर \"खरीद को पुनः स्थापित करें\" की कोशिश करें।</string>
     <string name="upgrade_screen_preamble">Permission Pilot विज्ञापन-मुक्त है और आपकी गोपनीयता का सम्मान करता है। अपग्रेड करना निरंतर विकास का समर्थन करता है।</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play अनुपलब्ध है</string>
-    <string name="upgrade_screen_offers_unavailable_message">खरीद विकल्पों को लोड नहीं किया जा सका। Google Play अस्थायी रूप से अनुपलब्ध हो सकता है — अपने कनेक्शन की जांच करें और फिर से कोशिश करें।</string>
     <string name="upgrade_screen_subscription_trial_action">निशुल्क प्रयोग प्रारंभ करें</string>
     <string name="upgrade_screen_subscription_action">सदस्यता लें</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/वर्ष, कभी भी रद्द करें</string>

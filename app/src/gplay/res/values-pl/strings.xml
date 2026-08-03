@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Już zakupiono</string>
     <string name="upgrades_gplay_already_owned_error">Sklep Google Play informuje, że posiadasz już tę aktualizację, ale nie można jej przywrócić. Sprawdź, czy jesteś zalogowany na koncie Google użytym do pierwotnego zakupu, a następnie spróbuj Przywróć zakup.</string>
     <string name="upgrade_screen_preamble">Pilot Uprawnień jest wolny od reklam i szanuje twoją prywatność. Aktualizacja wspiera dalszy rozwój.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Sklep Google Play jest niedostępny</string>
-    <string name="upgrade_screen_offers_unavailable_message">Nie udało się załadować opcji zakupu. Sklep Google Play może być tymczasowo niedostępny — sprawdź połączenie i spróbuj ponownie.</string>
     <string name="upgrade_screen_subscription_trial_action">Rozpocznij wersję próbną</string>
     <string name="upgrade_screen_subscription_action">Subskrybuj</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, anuluj w dowolnym momencie</string>

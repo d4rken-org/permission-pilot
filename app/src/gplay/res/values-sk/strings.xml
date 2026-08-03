@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Už zakúpené</string>
     <string name="upgrades_gplay_already_owned_error">Google Play hlási, že už vlastníte tento upgrade, ale nepodarilo sa ho obnoviť. Skontrolujte, že ste prihlásení s účtom Google, ktorý ste používali pri pôvodnom nákupe, a potom skúste „Obnoviť nákup“.</string>
     <string name="upgrade_screen_preamble">Permission Pilot je bez reklam a rešpektuje vaše súkromie. Upgrade podporuje ďalejší vyvoj.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play nie je k dispozícii</string>
-    <string name="upgrade_screen_offers_unavailable_message">Nepodarilo sa načítať možnosti nákupu. Google Play môže byť dočasne nedostupný — skontrolujte vaše pripojenie a skúste znova.</string>
     <string name="upgrade_screen_subscription_trial_action">Vyskúšajte zadarmo</string>
     <string name="upgrade_screen_subscription_action">Predplatiť</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, kedykoľvek zrušiť</string>

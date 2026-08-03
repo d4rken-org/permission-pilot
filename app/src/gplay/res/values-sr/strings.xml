@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Већ куплено</string>
     <string name="upgrades_gplay_already_owned_error">Google Play извештава да већ поседујете ово унапређење, али га није могуће вратити. Проверите да ли сте пријављени са Google налогом који је коришћен за оригиналну куповину, а затим покушајте „Враћање куповине”.</string>
     <string name="upgrade_screen_preamble">Permission Pilot нема реклама и поштује вашу приватност. Надоградњом подржавате даљи развој.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play није доступан</string>
-    <string name="upgrade_screen_offers_unavailable_message">Није могуће учитати опције куповине. Google Play може бити привремено недоступан — проверите вашу везу и покушајте поново.</string>
     <string name="upgrade_screen_subscription_trial_action">Покрените бесплатно испробавање</string>
     <string name="upgrade_screen_subscription_action">Претплати се</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/година, отказ било када</string>

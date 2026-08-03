@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Ήδη αγορασμένο</string>
     <string name="upgrades_gplay_already_owned_error">Το Google Play αναφέρει ότι έχετε ήδη αυτήν την αναβάθμιση, αλλά δεν ήταν δυνατό να επαναφερθεί. Βεβαιωθείτε ότι είστε συνδεδεμένοι με τον λογαριασμό Google που χρησιμοποιήθηκε για την αρχική αγορά, στη συνέχεια δοκιμάστε «Επαναφορά αγοράς».</string>
     <string name="upgrade_screen_preamble">Το Permission Pilot είναι χωρίς διαφημίσεις και σέβεται την ιδιωτικότητά σας. Η αναβάθμιση υποστηρίζει τη συνεχή ανάπτυξη.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Το Google Play δεν είναι διαθέσιμο</string>
-    <string name="upgrade_screen_offers_unavailable_message">Δεν ήταν δυνατό να φορτωθούν οι επιλογές αγοράς. Το Google Play μπορεί να είναι προσωρινά μη διαθέσιμο — ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.</string>
     <string name="upgrade_screen_subscription_trial_action">Έναρξη δωρεάν δοκιμής</string>
     <string name="upgrade_screen_subscription_action">Εγγραφή</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/χρόνο, ακύρωση ανά πάσα στιγμή</string>

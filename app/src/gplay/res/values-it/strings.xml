@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Già acquistato</string>
     <string name="upgrades_gplay_already_owned_error">Google Play segnala che possiedi già questo acquisto, ma non è stato possibile ripristinarlo. Verifica che tu sia acceduto con l’account Google utilizzato per l’acquisto originale, quindi prova a «Ripristina acquisto».</string>
     <string name="upgrade_screen_preamble">Permission Pilot è senza pubblicità e rispetta la tua privacy. Aggiornare supporta lo sviluppo continuo.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play non è disponibile</string>
-    <string name="upgrade_screen_offers_unavailable_message">Impossibile caricare le opzioni di acquisto. Google Play potrebbe essere temporaneamente non disponibile — controlla la connessione e riprova.</string>
     <string name="upgrade_screen_subscription_trial_action">Inizia la prova gratuita</string>
     <string name="upgrade_screen_subscription_action">Abbonati</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/anno, annulla in qualsiasi momento</string>

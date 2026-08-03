@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Reeds gekoop</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporteer dat u reeds hierdie opgradering besit, maar dit kon nie herstel word nie. Kyk dat u aangemeld is met die Google-rekening wat vir die oorspronklike aankoop gebruik is, en probeer dan \"Aankoop herstel\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot is sonder advertensies en respekteer jou privaatheid. Opgradering ondersteun voortgesette ontwikkeling.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play is nie beskikbaar nie</string>
-    <string name="upgrade_screen_offers_unavailable_message">Kon nie die aankoop-opsies laai nie. Google Play kan tydelik nie beskikbaar wees nie — kyk u verbinding en probeer weer.</string>
     <string name="upgrade_screen_subscription_trial_action">Begin gratis proeftydperk</string>
     <string name="upgrade_screen_subscription_action">Teken in</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/jaar, kanselleer enige tyd</string>

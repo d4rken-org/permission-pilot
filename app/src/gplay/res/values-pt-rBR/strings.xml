@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Já comprado</string>
     <string name="upgrades_gplay_already_owned_error">O Google Play informa que você já possui esta atualização, mas ela não pôde ser restaurada. Verifique se você está conectado à conta do Google usada para a compra original e tente \"Restaurar compra\".</string>
     <string name="upgrade_screen_preamble">O Permission Pilot é livre de anúncios e respeita sua privacidade. Fazer um upgrade apoia o desenvolvimento contínuo.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play indisponível</string>
-    <string name="upgrade_screen_offers_unavailable_message">Não foi possível carregar as opções de compra. O Google Play pode estar temporariamente indisponível — verifique sua conexão e tente novamente.</string>
     <string name="upgrade_screen_subscription_trial_action">Iniciar teste gratuito</string>
     <string name="upgrade_screen_subscription_action">Se inscrever</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ano, cancele a qualquer momento</string>

@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">이미 구매됨</string>
     <string name="upgrades_gplay_already_owned_error">Google Play에서 이미 이 업그레이드를 소유하고 있다고 표시되지만 복구할 수 없습니다. 원래 구매에 사용한 Google 계정으로 로그인했는지 확인한 후 \'구매 복구\'를 시도하세요.</string>
     <string name="upgrade_screen_preamble">Permission Pilot은 광고가 없고 개인 정보를 존중합니다. 업그레이드는 지속적인 개발을 지원합니다.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play를 사용할 수 없음</string>
-    <string name="upgrade_screen_offers_unavailable_message">구매 옵션을 로드할 수 없습니다. Google Play가 일시적으로 사용 불가능할 수 있습니다. 연결을 확인하고 다시 시도하세요.</string>
     <string name="upgrade_screen_subscription_trial_action">무료 체험 시작</string>
     <string name="upgrade_screen_subscription_action">구독하기</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/년, 언제든 취소 가능</string>

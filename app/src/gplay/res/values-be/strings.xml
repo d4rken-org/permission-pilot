@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Ужо куплена</string>
     <string name="upgrades_gplay_already_owned_error">Google Play паведамляе, што вы ўжо валодаеце гэтым абнаўленнем, але яго не ўдалося аднавіць. Праверце, што вы ўвайшлі ў акаўнт Google, выкарыстаны для арыгінальнай пакупкі, а затым паспрабуйце «Аднавіць пакупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot не мае рэкламы і паважае вашу прыватнасць. Абнаўленне падтрымлівае далейшую распрацоўку.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play недаступны</string>
-    <string name="upgrade_screen_offers_unavailable_message">Не ўдалося загрузіць варыянты пакупкі. Google Play можа быць часова недаступны — праверце сувязь і паспрабуйце яшчэ раз.</string>
     <string name="upgrade_screen_subscription_trial_action">Пачаць бясплатны пробны перыяд</string>
     <string name="upgrade_screen_subscription_action">Падпісацца</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/год, можна скасаваць у любы час</string>

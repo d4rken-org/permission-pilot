@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Már megvásárolt</string>
     <string name="upgrades_gplay_already_owned_error">A Google Play azt jelenti, hogy már rendelkezel ezzel a frissítéssel, de nem sikerült helyreállítani. Ellenőrizd, hogy bejelentkeztél-e azzal a Google-fiókkal, amelyet az eredeti vásárláshoz használtál, majd próbáld meg a \"Vásárlás helyreállítása\" lehetőséget.</string>
     <string name="upgrade_screen_preamble">A Permission Pilot reklámmentes és tiszteletben tartja az adatvédelmed. A frissítés támogatja a további fejlesztést.</string>
-    <string name="upgrade_screen_offers_unavailable_title">A Google Play nem elérhető</string>
-    <string name="upgrade_screen_offers_unavailable_message">Nem sikerült betölteni a vásárlási lehetőségeket. A Google Play ideiglenesen nem érhető el – ellenőrizd az internetkapcsolatod, és próbáld újra.</string>
     <string name="upgrade_screen_subscription_trial_action">Ingyenes próba indítása</string>
     <string name="upgrade_screen_subscription_action">Iratkozz fel</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/év, bármikor lemondható</string>

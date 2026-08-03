@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">Jixwe Kirî</string>
     <string name="upgrades_gplay_already_owned_error">Google Play raportê dike ku tu vê bulaşê jixwe di xwe de heye, lê nikare were gerandin. Kontrol bike ku tu bê nava ketî bi hesabê Google ya ku ji bo kirina yekem hatiye bikaranîn, û paşê \"Beşdarkirina Venîştin\" biceribîne.</string>
     <string name="upgrade_screen_preamble">Permission Pilot بێ رێکلامەیە و نھێنیتکەت پھابوو دەکات. بەرزترکردن پشتگیریکردنی گەشەپێکردنی دەوامەیە.</string>
-    <string name="upgrade_screen_offers_unavailable_title">Google Play ne berdest e</string>
-    <string name="upgrade_screen_offers_unavailable_message">Vebijarkên beşdarkirinê nikare werin barkirîn. Google Play dibe ku demek ne berdest be — peywendiya xwe kontrol bike û dî carî biceribîne.</string>
     <string name="upgrade_screen_subscription_trial_action">دەستپێککردنی تەستی بەژیوانی</string>
     <string name="upgrade_screen_subscription_action">بوونهەڵبەست</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/sal, hûndirim bê gerd</string>

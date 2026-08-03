@@ -5,8 +5,6 @@
     <string name="upgrades_gplay_already_owned_title">ইতিমধ্যে ক্রয় করা হয়েছে</string>
     <string name="upgrades_gplay_already_owned_error">গুগল প্লে রিপোর্ট করে যে আপনি ইতিমধ্যে এই আপগ্রেডের মালিক, কিন্তু এটি পুনরুদ্ধার করা যায়নি। যাচাই করুন যে আপনি মূল ক্রয়ের জন্য ব্যবহৃত গুগল অ্যাকাউন্টে সাইন ইন করেছেন, তারপর \"ক্রয় পুনরুদ্ধার করুন\" চেষ্টা করুন।</string>
     <string name="upgrade_screen_preamble">Permission Pilot বিজ্ঞাপনমুক্ত এবং আপনার গোপনীয়তাকে সম্মান করে। আপগ্রেড করা চলমান ডিভেলপমেন্টকে সমর্থন করে।</string>
-    <string name="upgrade_screen_offers_unavailable_title">গুগল প্লে উপলব্ধ নয়</string>
-    <string name="upgrade_screen_offers_unavailable_message">ক্রয় বিকল্পগুলি লোড করা যায়নি। গুগল প্লে অস্থায়ীভাবে উপলব্ধ নাও হতে পারে — আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <string name="upgrade_screen_subscription_trial_action">বিনামূল্যের ট্রায়াল শুরু করুন</string>
     <string name="upgrade_screen_subscription_action">সাবস্ক্রাইব করুন</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/বছর, যেকোনো সময় বাতিল করুন</string>
