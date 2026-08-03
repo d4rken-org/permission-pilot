@@ -40,6 +40,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.CopyableText
 import eu.darken.myperm.common.compose.Pill
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.LocalNavigationController
@@ -67,6 +68,7 @@ fun ReportDetailScreenHost(
     ReportDetailScreen(
         state = state,
         onBack = { navCtrl?.up() },
+        onViewPermission = { vm.onViewPermission(it) },
         onViewApp = { vm.onViewApp() },
     )
 }
@@ -75,6 +77,7 @@ fun ReportDetailScreenHost(
 fun ReportDetailScreen(
     state: ReportDetailViewModel.State,
     onBack: () -> Unit,
+    onViewPermission: (String) -> Unit,
     onViewApp: () -> Unit = {},
 ) {
     Scaffold(
@@ -132,7 +135,12 @@ fun ReportDetailScreen(
                 AppHeaderCard(state)
                 EventDetailsCard(state)
                 if (state.diff != null) {
-                    PermissionCards(state.diff, state.eventType, state.permissionInfoMap)
+                    PermissionCards(
+                        diff = state.diff,
+                        eventType = state.eventType,
+                        enrichedMap = state.permissionInfoMap,
+                        onViewPermission = onViewPermission,
+                    )
                 } else {
                     DiffErrorCard()
                 }
@@ -177,11 +185,7 @@ private fun AppHeaderCard(state: ReportDetailViewModel.State) {
                     text = state.appLabel ?: state.packageName.value,
                     style = MaterialTheme.typography.titleLarge,
                 )
-                Text(
-                    text = state.packageName.value,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                CopyableText(text = state.packageName.value)
 
                 Spacer(modifier = Modifier.height(6.dp))
 
@@ -354,6 +358,7 @@ private fun ReportDetailUpdatePreview() {
                 ),
             ),
             onBack = {},
+            onViewPermission = {},
         )
     }
 }
@@ -377,6 +382,7 @@ private fun ReportDetailInstallPreview() {
                 ),
             ),
             onBack = {},
+            onViewPermission = {},
         )
     }
 }
@@ -399,6 +405,7 @@ private fun ReportDetailRemovedPreview() {
                 ),
             ),
             onBack = {},
+            onViewPermission = {},
         )
     }
 }
@@ -422,6 +429,7 @@ private fun ReportDetailGrantChangePreview() {
                 ),
             ),
             onBack = {},
+            onViewPermission = {},
         )
     }
 }

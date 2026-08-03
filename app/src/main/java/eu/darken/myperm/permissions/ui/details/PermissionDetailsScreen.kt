@@ -55,6 +55,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.CopyableText
 import eu.darken.myperm.common.compose.LabeledOption
 import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.MultiChoiceFilterDialog
@@ -215,13 +216,7 @@ fun PermissionDetailsScreen(
                                         text = state.description ?: state.label,
                                         style = MaterialTheme.typography.titleMedium,
                                     )
-                                    Text(
-                                        text = state.permissionId,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
+                                    CopyableText(text = state.permissionId)
                                 }
                                 IconButton(
                                     onClick = onPermissionHelpClicked,

@@ -69,6 +69,7 @@ import eu.darken.myperm.R
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
 import eu.darken.myperm.common.compose.AppIcon
+import eu.darken.myperm.common.compose.CopyableText
 import eu.darken.myperm.common.compose.LoadingContent
 import eu.darken.myperm.common.compose.GrantStatusPill
 import eu.darken.myperm.common.compose.Pill
@@ -260,13 +261,7 @@ fun AppDetailsScreen(
                                             )
                                         }
                                     }
-                                    Text(
-                                        text = state.packageName.value,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
+                                    CopyableText(text = state.packageName.value)
                                     if (state.versionName != null || state.versionCode != null) {
                                         Text(
                                             text = listOfNotNull(state.versionName, state.versionCode?.let { "($it)" }).joinToString(" "),
