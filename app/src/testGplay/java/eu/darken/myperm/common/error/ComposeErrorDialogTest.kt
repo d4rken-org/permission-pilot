@@ -64,7 +64,11 @@ class ComposeErrorDialogTest : BaseTest() {
         // message is exactly what this dialog used to do.
         composeRule.onNodeWithText(context.getString(R.string.upgrades_gplay_unavailable_error_description))
             .assertExists()
-        composeRule.onAllNodesWithText("Google Play services are unavailable.").assertCountEquals(0)
+        // PP's localized title happens to be word-for-word the raw exception message, so exactly
+        // ONE match is correct: the title at the top of the dialog. That the BODY carries the
+        // curated troubleshooting description instead of the raw message is pinned by the
+        // assertion above.
+        composeRule.onAllNodesWithText("Google Play services are unavailable.").assertCountEquals(1)
         composeRule.onNodeWithText("Google Play").assertExists()
         composeRule.onNodeWithText(context.getString(R.string.general_close_action)).assertExists()
         // Nothing is merely acknowledged here.
