@@ -143,7 +143,7 @@ class RecorderModule @Inject constructor(
                             // caller can surface, and the next start attempt re-arms cleanly.
                             copy(
                                 shouldRecord = false,
-                                startFailure = e,
+                                startFailure = asStartFailure(e),
                                 recorder = null,
                                 persistedLogDir = null,
                                 recordingStartedAt = 0L,
@@ -228,6 +228,20 @@ class RecorderModule @Inject constructor(
         } catch (_: Throwable) {
             // Bookkeeping only: nothing about the report may replace the failure being reported.
         }
+    }
+
+    /**
+     * A start failure that arrived as a [CancellationException] while this module's own scope was
+     * still alive — a bounded read inside the start work timing out, for example. Storing and
+     * rethrowing that unchanged makes every caller treat it as their OWN cancellation: the launch
+     * that requested the start ends "normally", and the error handler that would have surfaced the
+     * failure never runs.
+     */
+    class RecordingStartFailedException(cause: Throwable) : IllegalStateException("Failed to start recording", cause)
+
+    private fun asStartFailure(error: Exception): Throwable = when (error) {
+        is CancellationException -> RecordingStartFailedException(error)
+        else -> error
     }
 
     private fun deleteTriggerFile() {

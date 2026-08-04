@@ -10,6 +10,7 @@ import eu.darken.myperm.common.debug.logging.Logging
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -182,8 +183,16 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
         delay(1_000)
 
         coVerify { diagnostics.debugInfo() }
-        // The foreign cancellation became this attempt's failure instead of a wedged caller.
-        start.await().exceptionOrNull().shouldBeInstanceOf<CancellationException>()
+        // The foreign cancellation became this attempt's failure instead of a wedged caller, and it
+        // arrives as an ordinary exception: handed back as a cancellation, the caller's launch would
+        // end "normally" and never surface the failure. The original is kept as the cause, looked up
+        // along the chain because stack-trace recovery may hand back a copy that wraps the wrapper.
+        val error = start.await().exceptionOrNull()
+            .shouldBeInstanceOf<RecorderModule.RecordingStartFailedException>()
+        generateSequence(error.cause) { it.cause }
+            .filterIsInstance<CancellationException>()
+            .map { it.message }
+            .toList() shouldContain "scope died mid-read"
         module.state.first().isRecording shouldBe false
         module.currentLogDir.shouldBeNull()
         // The recorder that was already writing when the header aborted got stopped: its file
