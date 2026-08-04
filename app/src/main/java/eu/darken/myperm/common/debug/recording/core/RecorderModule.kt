@@ -187,7 +187,7 @@ class RecorderModule @Inject constructor(
             try {
                 recorder?.stop()
             } catch (e: Exception) {
-                cause.addSuppressed(e)
+                cause.recordSuppressed(e)
             }
 
             currentLogDir = null
@@ -196,7 +196,7 @@ class RecorderModule @Inject constructor(
                 // A trigger that survives the failure crash-loops every process start.
                 deleteTriggerFile()
             } catch (e: Exception) {
-                cause.addSuppressed(e)
+                cause.recordSuppressed(e)
             }
 
             try {
@@ -204,7 +204,7 @@ class RecorderModule @Inject constructor(
                     log(TAG, WARN) { "Failed to delete the session dir of a failed start: $createdSessionDir" }
                 }
             } catch (e: Exception) {
-                cause.addSuppressed(e)
+                cause.recordSuppressed(e)
             }
 
             try {
@@ -212,6 +212,21 @@ class RecorderModule @Inject constructor(
             } catch (_: Exception) {
                 // A logger that throws while we report the failure must not become the failure.
             }
+        }
+    }
+
+    /**
+     * Attaching a rollback failure to the failure being reported. The very same throwable can come
+     * back out of the rollback — a logger that fails the start rethrows on the teardown line too —
+     * and [Throwable.addSuppressed] rejects self-suppression with an [IllegalArgumentException],
+     * which would abort the rollback before the failure state is ever committed.
+     */
+    private fun Throwable.recordSuppressed(other: Throwable) {
+        if (other === this) return
+        try {
+            addSuppressed(other)
+        } catch (_: Throwable) {
+            // Bookkeeping only: nothing about the report may replace the failure being reported.
         }
     }
 
@@ -259,7 +274,7 @@ class RecorderModule @Inject constructor(
     private fun createSessionDir(): File {
         val sdf = SimpleDateFormat("yyyyMMdd'T'HHmmss'Z'", Locale.US)
         sdf.timeZone = TimeZone.getTimeZone("UTC")
-        val timestamp = sdf.format(Date())
+        val timestamp = sdf.format(Date(wallClock()))
         val installIdPrefix = installId.id.take(8)
         val dirName = "myperm_${BuildConfigWrap.VERSION_NAME}_${timestamp}_$installIdPrefix"
 
@@ -278,13 +293,26 @@ class RecorderModule @Inject constructor(
         }
 
         val parent = primaryParent ?: File(context.cacheDir, "debug/logs").also { it.mkdirs() }
-        val sessionDir = File(parent, dirName)
-        if (!sessionDir.mkdirs() && !sessionDir.exists()) {
-            throw java.io.IOException("Failed to create session directory: $sessionDir")
-        }
 
-        log(TAG) { "Created session dir: $sessionDir" }
-        return sessionDir
+        // Only a directory this call actually created is returned: mkdirs() reports true exactly
+        // when the creation happened, so a name that is already taken (a second recording within
+        // the same second) moves on to the next suffix instead of adopting the earlier session's
+        // directory — which the rollback of a failed start would then delete.
+        var attempt = 1
+        while (true) {
+            val candidate = File(parent, if (attempt == 1) dirName else "$dirName-$attempt")
+            if (candidate.mkdirs()) {
+                log(TAG) { "Created session dir: $candidate" }
+                return candidate
+            }
+            if (!candidate.exists()) {
+                throw java.io.IOException("Failed to create session directory: $candidate")
+            }
+            attempt++
+            if (attempt > MAX_SESSION_DIR_ATTEMPTS) {
+                throw java.io.IOException("Failed to create a unique session directory in: $parent")
+            }
+        }
     }
 
     internal val externalLogDir: File? by lazy {
@@ -408,6 +436,11 @@ class RecorderModule @Inject constructor(
 
         // Budget for the header's diagnostics read.
         private const val HEADER_READ_TIMEOUT_MS = 5_000L
+
+        // Suffix attempts for a session directory name that is already taken. The name carries a
+        // second-resolution timestamp, so collisions only come from repeated starts within one
+        // second; a bound keeps a permanently unwritable parent from spinning here.
+        private const val MAX_SESSION_DIR_ATTEMPTS = 10
 
         // The trigger file stores wall-clock timestamps: it has to survive reboots, which monotonic
         // time does not. [now] is the module's wall clock, defaulted for direct test calls.

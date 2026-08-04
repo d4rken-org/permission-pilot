@@ -1,7 +1,9 @@
 package eu.darken.myperm.common.debug.logging
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import org.junit.jupiter.api.Assumptions.assumeTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 import java.io.File
@@ -45,5 +47,31 @@ class FileLoggerTest {
         logger.stop()
 
         logFile.readText() shouldContain "recorded"
+    }
+
+    /**
+     * A resumed session appends to the log file of the recording it continues. Cleaning up after a
+     * failed open deleted that file unconditionally, so a resume that could not append (a full disk)
+     * destroyed the recording the user was about to send.
+     */
+    @Test
+    fun `a failed start keeps a log file it did not create`() {
+        val logFile = File(sessionDir, "core.log")
+        logFile.writeText("=== BEGIN ===\nprevious recording\n")
+        // Read-only: the append cannot be opened, but the file itself is perfectly deletable.
+        logFile.setWritable(false, false)
+        assumeTrue(!logFile.canWrite(), "The read-only bit is not enforced for this user")
+
+        try {
+            val logger = FileLogger(logFile)
+
+            shouldThrow<IOException> { logger.start() }
+
+            // Only a file THIS attempt created may be cleaned up.
+            logFile.exists() shouldBe true
+            logFile.readText() shouldContain "previous recording"
+        } finally {
+            logFile.setWritable(true, true)
+        }
     }
 }

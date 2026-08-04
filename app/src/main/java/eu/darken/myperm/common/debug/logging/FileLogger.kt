@@ -25,7 +25,11 @@ class FileLogger(private val logFile: File) : Logging.Logger {
         if (logWriter != null) return
 
         logFile.parentFile!!.mkdirs()
-        if (logFile.createNewFile()) {
+        // Whether THIS attempt created the file decides what a failure below may delete: a resumed
+        // session appends to a log file that already holds the previous recording, and failing to
+        // open it must not erase it.
+        val createdNow = logFile.createNewFile()
+        if (createdNow) {
             Log.i(TAG, "File logger writing to " + logFile.path)
         }
         if (logFile.setReadable(true, false)) {
@@ -44,7 +48,7 @@ class FileLogger(private val logFile: File) : Logging.Logger {
                 writer?.close()
             } catch (ignore: IOException) {
             }
-            logFile.delete()
+            if (createdNow) logFile.delete()
             throw e
         }
 
