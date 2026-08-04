@@ -184,11 +184,15 @@ class RecorderModuleStartFailureTest {
             val error = shouldThrow<IllegalStateException> {
                 runBlocking { withTimeout(TEST_ENVELOPE_MS) { recorder.start(logFile) } }
             }
-            error shouldBeSameInstanceAs saboteur.failure
-
+            // Cleanup is what this test is about, so it is asserted before anything about the
+            // exception: an assertion on the throw itself must not be what hides a leaked logger.
             recorder.isRecording shouldBe false
             recorder.path.shouldBeNull()
             Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
+
+            // By message, not by reference: the throw crosses the withTimeout coroutine above, and
+            // stack-trace recovery hands back a copy rather than the saboteur's own instance.
+            error.message shouldBe saboteur.failure.message
         } finally {
             saboteur.armed = false
             Logging.remove(saboteur)
