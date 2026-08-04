@@ -13,8 +13,14 @@ import java.time.Instant
 class FileLogger(private val logFile: File) : Logging.Logger {
     private var logWriter: OutputStreamWriter? = null
 
+    /**
+     * A failure here used to be swallowed, which left an installed logger writing nowhere: the
+     * recording looked like it had started and produced an empty log. The writer is published only
+     * once it is actually usable, and anything else is the caller's failure to handle.
+     */
     @SuppressLint("SetWorldReadable")
     @Synchronized
+    @Throws(IOException::class)
     fun start() {
         if (logWriter != null) return
 
@@ -26,19 +32,24 @@ class FileLogger(private val logFile: File) : Logging.Logger {
             Log.i(TAG, "Debug run log read permission set")
         }
 
+        var writer: OutputStreamWriter? = null
         try {
-            logWriter = OutputStreamWriter(FileOutputStream(logFile, true))
-            logWriter!!.write("=== BEGIN ===\n")
-            logWriter!!.write("Logfile: $logFile\n")
-            logWriter!!.flush()
-            Log.i(TAG, "File logger started.")
+            writer = OutputStreamWriter(FileOutputStream(logFile, true))
+            writer.write("=== BEGIN ===\n")
+            writer.write("Logfile: $logFile\n")
+            writer.flush()
         } catch (e: IOException) {
-            e.printStackTrace()
-
+            Log.e(TAG, "File logger failed to start.", e)
+            try {
+                writer?.close()
+            } catch (ignore: IOException) {
+            }
             logFile.delete()
-            if (logWriter != null) logWriter!!.close()
+            throw e
         }
 
+        logWriter = writer
+        Log.i(TAG, "File logger started.")
     }
 
     @Synchronized

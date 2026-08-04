@@ -54,8 +54,14 @@ object Logging {
     }
 
     fun remove(logger: Logger) {
-        log { "Removing: $logger" }
-        synchronized(internalLoggers) { internalLoggers.remove(logger) }
+        // The removal is unconditional: the announcement below goes through the loggers that are
+        // still installed, and one of those throwing must not be what keeps a dying logger in the
+        // list — that is exactly the situation a failed recording start unwinds from.
+        try {
+            log { "Removing: $logger" }
+        } finally {
+            synchronized(internalLoggers) { internalLoggers.remove(logger) }
+        }
     }
 
     fun logInternal(
