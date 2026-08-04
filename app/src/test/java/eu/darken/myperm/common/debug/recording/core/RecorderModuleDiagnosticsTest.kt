@@ -1,5 +1,6 @@
 package eu.darken.myperm.common.debug.recording.core
 
+import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import eu.darken.myperm.common.BuildConfigWrap
 import eu.darken.myperm.common.InstallId
@@ -7,10 +8,13 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.FileLogger
 import eu.darken.myperm.common.debug.logging.Logging
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -22,11 +26,11 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeout
@@ -40,6 +44,7 @@ import org.robolectric.annotation.Config
 import testhelper.BaseTest
 import testhelper.coroutine.TestDispatcherProvider
 import testhelpers.TestApplication
+import java.io.File
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.system.measureTimeMillis
 
@@ -47,8 +52,12 @@ import kotlin.system.measureTimeMillis
  * The recording header reads diagnostics that live outside the recorder. Those reads happen AFTER
  * the recorder is already writing, so a guarded failure must never abort the state update — that
  * would leave a running recorder the module no longer knows about, i.e. a debug recording that
- * can't be stopped or collected. Failures that DO escape the header have to take the uncommitted
- * recorder down with them.
+ * can't be stopped or collected.
+ *
+ * Failures that DO escape the header take the uncommitted recorder down with them and are then
+ * reported: the attempt is rolled back, the failure is committed to the state, and the caller gets
+ * it thrown. What must NOT happen is the old behaviour — the exception escaping the shared
+ * collector, which killed it, wedged every later start and crashed the process.
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], application = TestApplication::class)
@@ -69,6 +78,26 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
     @After
     fun removeLogCapture() {
         Logging.remove(logCapture)
+    }
+
+    // The trigger file lives next to the log dirs in the (shared) external files dir: a stale one
+    // would make the next module in this process resume-start during construction.
+    private val triggerFile: File
+        get() = File(
+            ApplicationProvider.getApplicationContext<Context>().getExternalFilesDir(null),
+            "myperm_force_debug_run",
+        )
+
+    @Before
+    fun clearTriggerFile() {
+        triggerFile.delete()
+    }
+
+    // Runs after the per-test leak assertions: a test that fails halfway must not hand its recorder's
+    // globally installed logger to the next one.
+    @After
+    fun removeStragglingFileLoggers() {
+        Logging.loggers.filterIsInstance<FileLogger>().forEach { Logging.remove(it) }
     }
 
     private fun buildModule(
@@ -132,13 +161,14 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
     }
 
     /**
-     * Cancellation is one of the failures that escape the header, so it is one of the failures that
-     * can abort the state update. The recorder is already live at that point: it has to be stopped
-     * on the way out, or it keeps writing into a session the module no longer tracks.
+     * A cancellation escaping the header is not necessarily OUR cancellation — a dependency can let
+     * one out while the module's scope is perfectly alive. The recorder is already live at that
+     * point: it has to be stopped on the way out, or it keeps writing into a session the module no
+     * longer tracks, and the caller has to be answered instead of left waiting on a start that will
+     * never arrive.
      *
-     * The start is launched, not awaited: an aborted update never flips isRecording, so
-     * startRecorder() stays suspended. The virtual-time delay is what lets the module's own
-     * background collectors run to completion.
+     * The start is launched, not awaited inline: the virtual-time delay is what lets the module's
+     * own background collectors run to completion before the assertions read the outcome.
      */
     @Test
     fun `a cancelled upgrade-diagnostics read stops the recorder instead of leaking it`() = runTest {
@@ -148,10 +178,12 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
 
         val module = buildModule(backgroundScope, diagnostics)
 
-        backgroundScope.launch { module.startRecorder() }
+        val start = backgroundScope.async { runCatching { module.startRecorder() } }
         delay(1_000)
 
         coVerify { diagnostics.debugInfo() }
+        // The foreign cancellation became this attempt's failure instead of a wedged caller.
+        start.await().exceptionOrNull().shouldBeInstanceOf<CancellationException>()
         module.state.first().isRecording shouldBe false
         module.currentLogDir.shouldBeNull()
         // The recorder that was already writing when the header aborted got stopped: its file
@@ -163,9 +195,13 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
      * Same window as above, but for an ordinary failure instead of a cancellation. The header's
      * injected sources are individually guarded, so the escape path is one of the unguarded first
      * log lines — here the build description read.
+     *
+     * Awaited, not launched: a start that cannot finish has to come back to its caller as a thrown
+     * error. This used to be a caller suspended forever behind a collector the same exception had
+     * already killed.
      */
     @Test
-    fun `a failing header read stops the uncommitted recorder`() = runTest {
+    fun `a failed start surfaces the error instead of hanging`() = runTest {
         val fileLoggersBefore = Logging.loggers.filterIsInstance<FileLogger>()
         val diagnostics = mockk<UpgradeDiagnostics>()
         coEvery { diagnostics.debugInfo() } returns "BillingCache(...)"
@@ -173,23 +209,108 @@ class RecorderModuleDiagnosticsTest : BaseTest() {
         mockkObject(BuildConfigWrap)
         every { BuildConfigWrap.VERSION_DESCRIPTION } throws IllegalStateException("build info unreadable")
 
-        // Own scope: the escaping exception fails the collector, which must not fail the test's own
-        // scope. SupervisorJob keeps the module's state flow alive so it can be inspected after.
-        val moduleScope = CoroutineScope(coroutineContext + SupervisorJob() + CoroutineExceptionHandler { _, _ -> })
+        // Own scope: nothing may reach it, but a module scope that is not the test's own keeps a
+        // regression from being reported as an unrelated test-scope failure.
+        val moduleScope = CoroutineScope(coroutineContext + SupervisorJob())
         try {
             val module = buildModule(moduleScope, diagnostics)
 
-            moduleScope.launch { module.startRecorder() }
-            delay(1_000)
+            val error = shouldThrow<IllegalStateException> { module.startRecorder() }
+            error.message shouldBe "build info unreadable"
 
-            module.state.first().isRecording shouldBe false
+            val settled = module.state.first()
+            settled.isRecording shouldBe false
+            // The request is retracted, so the next start is a fresh edge rather than a no-op.
+            settled.shouldRecord shouldBe false
             module.currentLogDir.shouldBeNull()
-            // Non-vacuity: without the guard's cleanup the started recorder's file logger would
-            // still be installed here.
+            // A trigger left behind would re-run this failing start on every process start.
+            triggerFile.exists() shouldBe false
+            // Non-vacuity: without the rollback the started recorder's file logger would still be
+            // installed here.
             Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
         } finally {
             moduleScope.cancel()
             unmockkObject(BuildConfigWrap)
+        }
+    }
+
+    /**
+     * The collector that processes a failed start has to survive it: it is the single shared
+     * collector behind every later start and stop request.
+     */
+    @Test
+    fun `the recorder recovers after a failed start`() = runTest {
+        val fileLoggersBefore = Logging.loggers.filterIsInstance<FileLogger>()
+        val diagnostics = mockk<UpgradeDiagnostics>()
+        coEvery { diagnostics.debugInfo() } returns null
+
+        mockkObject(BuildConfigWrap)
+        every { BuildConfigWrap.VERSION_DESCRIPTION } throws IllegalStateException("build info unreadable")
+
+        val moduleScope = CoroutineScope(coroutineContext + SupervisorJob())
+        try {
+            val module = buildModule(moduleScope, diagnostics)
+
+            shouldThrow<IllegalStateException> { module.startRecorder() }
+
+            every { BuildConfigWrap.VERSION_DESCRIPTION } returns "v1.2.3 (4) ~ deadbeef/foss/DEV"
+
+            val logDir = module.startRecorder()
+            module.state.first { it.isRecording }.logDir shouldBe logDir
+            module.currentLogDir shouldBe logDir
+            // The previous attempt's failure was cleared, not carried into the live recording.
+            module.state.first().startFailure.shouldBeNull()
+
+            module.stopRecorder().shouldNotBeNull()
+            module.state.first().isRecording shouldBe false
+            Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
+        } finally {
+            moduleScope.cancel()
+            unmockkObject(BuildConfigWrap)
+        }
+    }
+
+    /**
+     * A trigger file makes the module start recording during construction, i.e. during App.onCreate.
+     * A failure there used to be rethrown onto the app scope — a crash — while the trigger stayed on
+     * disk, so the next process start crashed the same way. The module has to settle instead.
+     */
+    @Test
+    fun `a boot trigger that cannot start settles instead of crash-looping`() = runTest {
+        val fileLoggersBefore = Logging.loggers.filterIsInstance<FileLogger>()
+        val diagnostics = mockk<UpgradeDiagnostics>()
+        coEvery { diagnostics.debugInfo() } returns null
+
+        val externalDir = ApplicationProvider.getApplicationContext<Context>().getExternalFilesDir(null)!!
+        val resumedDir = File(externalDir, "debug/logs/myperm_resumed_session").also { it.mkdirs() }
+        triggerFile.writeText("${resumedDir.absolutePath}\n${System.currentTimeMillis() - 5_000L}")
+
+        mockkObject(BuildConfigWrap)
+        every { BuildConfigWrap.VERSION_DESCRIPTION } throws IllegalStateException("build info unreadable")
+
+        // Inverted from the usual pattern: this handler stands in for the process default handler
+        // that an escaping exception would reach, and it has to stay empty.
+        val escaped = CopyOnWriteArrayList<Throwable>()
+        val moduleScope = CoroutineScope(
+            coroutineContext + SupervisorJob() + CoroutineExceptionHandler { _, e -> escaped.add(e) }
+        )
+        try {
+            val module = buildModule(moduleScope, diagnostics)
+
+            val settled = module.state.first { it.startFailure != null }
+            settled.isRecording shouldBe false
+            settled.shouldRecord shouldBe false
+            module.currentLogDir.shouldBeNull()
+            // The trigger is gone: this is what stops the failure from repeating every process start.
+            triggerFile.exists() shouldBe false
+            // The resumed session predates this attempt, so its directory stays.
+            resumedDir.exists() shouldBe true
+            escaped.shouldBeEmpty()
+            Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
+        } finally {
+            moduleScope.cancel()
+            unmockkObject(BuildConfigWrap)
+            resumedDir.deleteRecursively()
         }
     }
 
