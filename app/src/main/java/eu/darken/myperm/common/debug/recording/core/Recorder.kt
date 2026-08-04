@@ -28,10 +28,29 @@ class Recorder @Inject constructor() {
         if (fileLogger != null) return@withLock
         val logger = FileLogger(path)
         logger.start()
-        Logging.install(logger)
-        fileLogger = logger
-        this.path = path
-        log(TAG, INFO) { "Now logging to file!" }
+        try {
+            Logging.install(logger)
+            fileLogger = logger
+            this.path = path
+            log(TAG, INFO) { "Now logging to file!" }
+        } catch (e: Throwable) {
+            // Publication is announced through the loggers that are ALREADY installed, so one of
+            // them throwing lands here with this logger installed and open while nothing references
+            // it: the caller's rollback would find a recorder that never started. Undo it here.
+            try {
+                Logging.remove(logger)
+            } catch (inner: Throwable) {
+                if (inner !== e) e.addSuppressed(inner)
+            }
+            try {
+                logger.stop()
+            } catch (inner: Throwable) {
+                if (inner !== e) e.addSuppressed(inner)
+            }
+            fileLogger = null
+            this.path = null
+            throw e
+        }
     }
 
     /**

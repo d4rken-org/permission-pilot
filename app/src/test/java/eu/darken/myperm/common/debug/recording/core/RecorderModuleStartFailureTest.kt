@@ -8,9 +8,11 @@ import eu.darken.myperm.common.debug.logging.Logging
 import eu.darken.myperm.common.upgrade.UpgradeDiagnostics
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
+import io.kotest.matchers.types.shouldBeSameInstanceAs
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.CoroutineScope
@@ -160,9 +162,129 @@ class RecorderModuleStartFailureTest {
         }
     }
 
+    /**
+     * A logger that fails while it is being installed: [Logging.install] announces the new logger
+     * through the loggers that are already installed, so the throw arrives with the new logger
+     * already in the list. It used to stay there, open and unreferenced, because the recorder had
+     * not published it yet and its own teardown therefore had nothing to stop.
+     */
+    @Test
+    fun `a logger that fails during installation is not left installed`() {
+        val fileLoggersBefore = Logging.loggers.filterIsInstance<FileLogger>()
+        val logFile = File(externalDir, "debug/logs/install_failure/core.log")
+
+        // Armed only after its own installation announcement has gone through.
+        val saboteur = SaboteurLogger { it.contains("Was installed") }.apply { armed = false }
+        Logging.install(saboteur)
+        saboteur.armed = true
+
+        try {
+            val recorder = Recorder()
+
+            val error = shouldThrow<IllegalStateException> {
+                runBlocking { withTimeout(TEST_ENVELOPE_MS) { recorder.start(logFile) } }
+            }
+            error shouldBeSameInstanceAs saboteur.failure
+
+            recorder.isRecording shouldBe false
+            recorder.path.shouldBeNull()
+            Logging.loggers.filterIsInstance<FileLogger>() shouldBe fileLoggersBefore
+        } finally {
+            saboteur.armed = false
+            Logging.remove(saboteur)
+        }
+    }
+
+    /**
+     * Two recordings within the same second want the same session directory name. Reusing the
+     * earlier one made it count as created-by-this-attempt, so rolling back the second start
+     * deleted the first, completed recording.
+     */
+    @Test
+    fun `a failed start does not delete an earlier session from the same second`() {
+        withModule { module ->
+            // Fixed wall clock: the directory name carries a second-resolution timestamp, so this
+            // is what makes the collision certain rather than a matter of timing.
+            module.wallClock = { FIXED_WALL }
+
+            val earlier = module.startRecorder()
+            module.stopRecorder()
+            File(earlier, "evidence.txt").writeText("earlier session")
+
+            val saboteur = SaboteurLogger { it.contains("Build.Fingerprint") }
+            Logging.install(saboteur)
+            try {
+                shouldThrow<IllegalStateException> { module.startRecorder() } shouldBeSameInstanceAs saboteur.failure
+            } finally {
+                saboteur.armed = false
+                Logging.remove(saboteur)
+            }
+
+            val settled = module.state.first()
+            settled.isRecording shouldBe false
+            settled.shouldRecord shouldBe false
+
+            // The earlier session is untouched, and the directory the failed attempt created for
+            // itself is the only one that got cleaned up.
+            earlier.exists() shouldBe true
+            File(earlier, "evidence.txt").readText() shouldBe "earlier session"
+            File(earlier.parentFile, "${earlier.name}-2").exists() shouldBe false
+        }
+    }
+
+    /**
+     * The rollback can fail with the very same throwable that failed the start — one broken logger
+     * throws on the start's header line and again on the teardown line. Recording that as a
+     * suppressed exception of itself throws [IllegalArgumentException], which used to abort the
+     * rollback before the failure was ever committed: the collector died and every later start hung.
+     */
+    @Test
+    fun `a rollback failing with the start's own exception still commits the failure`() {
+        withModule { module ->
+            val saboteur = SaboteurLogger {
+                it.contains("Build.Fingerprint") || it.contains("Stopping file-logger-tree")
+            }
+            Logging.install(saboteur)
+            try {
+                shouldThrow<IllegalStateException> { module.startRecorder() } shouldBeSameInstanceAs saboteur.failure
+
+                val settled = module.state.first()
+                settled.startFailure shouldBeSameInstanceAs saboteur.failure
+                settled.isRecording shouldBe false
+                settled.shouldRecord shouldBe false
+                module.currentLogDir.shouldBeNull()
+                triggerFile.exists() shouldBe false
+            } finally {
+                saboteur.armed = false
+                Logging.remove(saboteur)
+            }
+
+            // The shared collector survived the rollback: it is what every later request runs on.
+            val logDir = module.startRecorder()
+            module.state.first { it.isRecording }.logDir shouldBe logDir
+            module.stopRecorder().shouldNotBeNull()
+        }
+    }
+
+    /**
+     * A logger that throws for the log lines the test picks, so a start fails at a chosen step. The
+     * failure is a single instance on purpose: the same one can come back out of the rollback.
+     */
+    private class SaboteurLogger(
+        val failure: IllegalStateException = IllegalStateException("logger sabotage"),
+        private val triggers: (String) -> Boolean,
+    ) : Logging.Logger {
+        var armed = true
+
+        override fun log(priority: Logging.Priority, tag: String, message: String, metaData: Map<String, Any>?) {
+            if (armed && triggers(message)) throw failure
+        }
+    }
+
     companion object {
         // Independent of any production bound: a wedged wait has to fail the test, not hang the
         // gradle worker.
         private const val TEST_ENVELOPE_MS = 10_000L
+        private const val FIXED_WALL = 1_800_000_000_000L
     }
 }
