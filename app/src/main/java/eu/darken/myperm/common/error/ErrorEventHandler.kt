@@ -13,6 +13,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import eu.darken.myperm.R
 import eu.darken.myperm.common.compose.findActivity
+import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
+import eu.darken.myperm.common.debug.logging.asLog
+import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 
 @Composable
 fun ErrorEventHandler(source: ErrorEventSource2) {
@@ -54,8 +58,16 @@ private fun ComposeErrorDialog(
             if (hasFix) {
                 TextButton(
                     onClick = {
-                        localizedError.fixAction!!.invoke(activity!!)
-                        onDismiss()
+                        // Fix actions are arbitrary code (e.g. intent launches): a throw here would
+                        // crash the UI thread from inside a click handler, and skipping onDismiss()
+                        // would leave the dialog latched on the current error with no way out.
+                        try {
+                            localizedError.fixAction!!.invoke(activity!!)
+                        } catch (e: Exception) {
+                            log(TAG, ERROR) { "Error action failed: ${e.asLog()}" }
+                        } finally {
+                            onDismiss()
+                        }
                     },
                 ) {
                     Text(text = localizedError.fixActionLabel ?: stringResource(android.R.string.ok))
@@ -78,3 +90,5 @@ private fun ComposeErrorDialog(
         },
     )
 }
+
+private val TAG = logTag("Error", "Dialog")
