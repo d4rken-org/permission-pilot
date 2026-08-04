@@ -84,6 +84,8 @@
 
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot can\'t connect to Google Play. Is Google Play installed and up to date? Is your Google Account logged in? Try clearing the cache of the Google Play app and rebooting your device.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play is not installed.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play Issue</string>
     <string name="upgrades_gplay_billing_error_description">There was a problem with Google Play. Please try again later or restart your device.\n\nDetails: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play error</string>
