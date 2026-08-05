@@ -19,6 +19,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
@@ -64,6 +65,14 @@ class GplayReviewTool @Inject constructor(
         hasPaidForPro && !isSnoozed && !hasReviewed
     }
         .distinctUntilChanged()
+        // Upstream of the shares: a settings read that throws (e.g. an undecodable stored timestamp)
+        // would otherwise kill the sharing coroutine on AppScope, i.e. crash the process, and never
+        // reach any collector's own error handling.
+        .catch { e ->
+            if (e is CancellationException) throw e
+            log(TAG, ERROR) { "Eligibility failed: ${e.asLog()}" }
+            emit(false)
+        }
 
     // Only probed once the user is eligible: Play counts requests against the app's quota, and an
     // `isNoOp` answer is Play's deliberate verdict, i.e. an answer and not a failure to retry.
@@ -106,6 +115,11 @@ class GplayReviewTool @Inject constructor(
     }
         .throttleLatest(500)
         .onStart { emit(ReviewTool.State()) }
+        .catch { e ->
+            if (e is CancellationException) throw e
+            log(TAG, ERROR) { "State failed: ${e.asLog()}" }
+            emit(ReviewTool.State())
+        }
         .replayingShare(appScope)
 
     // Single-flight: a second tap must not queue up behind the first, or Play's flow would be
