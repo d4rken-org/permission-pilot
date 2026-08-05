@@ -1,6 +1,7 @@
 package eu.darken.myperm.main.ui.overview
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Build
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.navigation.Nav
+import eu.darken.myperm.common.review.ReviewTool
 import eu.darken.myperm.common.room.entity.PkgType
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
@@ -24,6 +26,7 @@ import eu.darken.myperm.permissions.core.known.APerm
 import eu.darken.myperm.settings.core.GeneralSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -39,6 +42,7 @@ class OverviewViewModel @Inject constructor(
     private val appRepo: AppRepo,
     private val upgradeRepo: UpgradeRepo,
     private val generalSettings: GeneralSettings,
+    private val reviewTool: ReviewTool,
 ) : ViewModel4(dispatcherProvider = dispatcherProvider) {
 
     data class DeviceInfo(
@@ -86,6 +90,7 @@ class OverviewViewModel @Inject constructor(
         val isLoading: Boolean = true,
         val scanError: Throwable? = null,
         val refreshError: Throwable? = null,
+        val showReviewCard: Boolean = false,
     )
 
     private val deviceData: Flow<DeviceInfo> = flow {
@@ -120,17 +125,23 @@ class OverviewViewModel @Inject constructor(
             .onEach { lastKnownUpgradeInfo = it }
             .onStart { emit(lastKnownUpgradeInfo) },
         appRepo.scanError,
-    ) { device, summary, upgrade, scanError ->
+        // A broken review tool must not take the dashboard down with it.
+        reviewTool.state.catch { emit(ReviewTool.State()) },
+    ) { device, summary, upgrade, scanError, review ->
         val hasData = summary != null
+        // Blocking: no data AND scan failed → error screen takes over.
+        val blockingError = if (!hasData) scanError else null
+        // Non-blocking: have data AND latest refresh failed → inline banner.
+        val inlineError = if (hasData) scanError else null
         State(
             deviceInfo = device,
             summaryInfo = summary,
             upgradeInfo = upgrade,
-            // Blocking: no data AND scan failed → error screen takes over.
-            scanError = if (!hasData) scanError else null,
-            // Non-blocking: have data AND latest refresh failed → inline banner.
-            refreshError = if (hasData) scanError else null,
+            scanError = blockingError,
+            refreshError = inlineError,
             isLoading = !hasData && scanError == null,
+            // Asking for a review while the screen is showing a failure is bad timing.
+            showReviewCard = review.shouldAskForReview && blockingError == null && inlineError == null,
         )
     }.asStateFlow()
 
@@ -214,6 +225,16 @@ class OverviewViewModel @Inject constructor(
 
     fun goToSettings() {
         navTo(Nav.Settings.Index)
+    }
+
+    fun onReviewNow(activity: Activity) = launch {
+        log(TAG) { "onReviewNow($activity)" }
+        reviewTool.reviewNow(activity)
+    }
+
+    fun onReviewDismiss() = launch {
+        log(TAG) { "onReviewDismiss()" }
+        reviewTool.dismiss()
     }
 
     companion object {

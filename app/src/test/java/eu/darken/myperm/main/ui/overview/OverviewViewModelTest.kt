@@ -2,15 +2,18 @@ package eu.darken.myperm.main.ui.overview
 
 import androidx.lifecycle.SavedStateHandle
 import eu.darken.myperm.apps.core.AppRepo
+import eu.darken.myperm.common.review.ReviewTool
 import eu.darken.myperm.common.upgrade.UpgradeRepo
 import eu.darken.myperm.settings.core.GeneralSettings
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
@@ -64,6 +67,10 @@ class OverviewViewModelTest : BaseTest() {
     private val upgradeRepo: UpgradeRepo = mockk(relaxed = true)
     private val generalSettings: GeneralSettings = mockk(relaxed = true)
 
+    // Never relaxed: a relaxed `state` would hand the combine an empty flow, and the whole render
+    // state would silently stop being computed.
+    private val reviewTool: ReviewTool = mockk()
+
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
@@ -72,6 +79,7 @@ class OverviewViewModelTest : BaseTest() {
         every { appRepo.isScanning } returns MutableStateFlow(false)
         every { appRepo.scanError } returns MutableStateFlow<Throwable?>(null)
         every { upgradeRepo.upgradeInfo } returns upgradeInfoFlow
+        every { reviewTool.state } returns flowOf(ReviewTool.State())
     }
 
     @After
@@ -85,6 +93,7 @@ class OverviewViewModelTest : BaseTest() {
         appRepo = appRepo,
         upgradeRepo = upgradeRepo,
         generalSettings = generalSettings,
+        reviewTool = reviewTool,
     )
 
     @Test
@@ -109,5 +118,32 @@ class OverviewViewModelTest : BaseTest() {
         vm.state.value?.upgradeInfo?.isPro shouldBe true
 
         secondCollector.cancel()
+    }
+
+    @Test
+    fun `a refresh failure suppresses the review card`() = runTest(testDispatcher) {
+        every { reviewTool.state } returns flowOf(ReviewTool.State(shouldAskForReview = true))
+
+        // Non-vacuity: without an error the same eligibility does show the card.
+        createVM().let { vm ->
+            val subscription = launch { vm.state.collect { } }
+            advanceUntilIdle()
+            vm.state.value?.showReviewCard shouldBe true
+            subscription.cancel()
+        }
+
+        // Data plus a failed refresh: the screen carries an inline error banner, which is the wrong
+        // moment to ask the user for a five star rating.
+        every { appRepo.scanError } returns MutableStateFlow<Throwable?>(IllegalStateException("scan failed"))
+
+        createVM().let { vm ->
+            val subscription = launch { vm.state.collect { } }
+            advanceUntilIdle()
+            vm.state.value!!.apply {
+                refreshError shouldNotBe null
+                showReviewCard shouldBe false
+            }
+            subscription.cancel()
+        }
     }
 }
