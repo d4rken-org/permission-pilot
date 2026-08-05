@@ -62,6 +62,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.activity.compose.LocalActivity
 import androidx.hilt.navigation.compose.hiltViewModel
 import eu.darken.myperm.R
 import eu.darken.myperm.apps.ui.list.AppsFilterOptions
@@ -83,6 +84,8 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
 
     val state by vm.state.collectAsState()
     val isRefreshing by vm.isRefreshing.collectAsState()
+    // Play's review flow needs the hosting activity, and there is no guarantee one is available.
+    val activity = LocalActivity.current
 
     state?.let {
         OverviewScreen(
@@ -91,6 +94,9 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
             onRefresh = { vm.onRefresh() },
             onSettings = { vm.goToSettings() },
             onCategoryClick = { filters -> vm.onCategoryClicked(filters) },
+            onReviewNow = { activity?.let { host -> vm.onReviewNow(host) } },
+            onReviewDismiss = { vm.onReviewDismiss() },
+            canReview = activity != null,
         )
     }
 }
@@ -121,6 +127,9 @@ fun OverviewScreen(
     onRefresh: () -> Unit,
     onSettings: () -> Unit,
     onCategoryClick: (Set<AppsFilterOptions.Filter>) -> Unit = {},
+    onReviewNow: () -> Unit = {},
+    onReviewDismiss: () -> Unit = {},
+    canReview: Boolean = true,
 ) {
     val (fabVisible, scrollConnection) = rememberFabVisibility()
 
@@ -205,6 +214,13 @@ fun OverviewScreen(
                     val device = state.deviceInfo
                     if (summary != null) {
                         HeroCard(summary, device)
+                        if (state.showReviewCard) {
+                            ReviewCard(
+                                onReview = onReviewNow,
+                                onDismiss = onReviewDismiss,
+                                reviewEnabled = canReview,
+                            )
+                        }
                         SummaryList(summary, onCategoryClick)
                     }
                 }

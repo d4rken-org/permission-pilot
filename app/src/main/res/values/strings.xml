@@ -788,4 +788,8 @@
         <item quantity="other">Free version is limited to %d items and Markdown format. Upgrade for unlimited exports and all formats.</item>
     </plurals>
     <string name="export_upgrade_action">Upgrade</string>
+
+    <string name="review_app_body">Would you like to leave Permission Pilot a review? ❤️</string>
+    <string name="review_app_review_action">Review</string>
+    <string name="review_app_dismiss_action">Maybe later</string>
 </resources>
