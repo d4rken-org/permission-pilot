@@ -23,3 +23,15 @@ As permissões estão pré-agrupadas para facilitar a navegação (p. ex., Conta
 Ao clicar numa permissão, são mostradas todas as aplicações que solicitam acesso a essa permissão.
 
 As aplicações e as permissões podem ser pesquisadas por texto livre, ordenadas e filtradas segundo diferentes critérios.
+
+<b>Visão Geral</b>
+Um painel resumo que mostra a contagem de aplicações por categoria — privacidade, segurança, origem da instalação e muito mais. Cada linha de categoria navega diretamente para uma lista de aplicações filtrada.
+
+<b>Observador de Permissões</b>
+Receba notificações quando uma atualização de aplicação adiciona novas permissões ou altera as existentes. O Observador de Permissões verifica as suas aplicações após cada atualização e cria um relatório se algo mudou.
+
+<b>Exportação de Dados</b>
+Exporte dados de aplicações ou permissões em Markdown, CSV ou JSON.
+
+<b>Visualizador de Manifesto</b>
+Navegue pelos manifestos brutos das aplicações com secções pesquisáveis e categorizadas. Veja quais as aplicações que podem descobrir outras aplicações instaladas.
