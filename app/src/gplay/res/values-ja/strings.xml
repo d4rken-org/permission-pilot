@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">既に購入済み</string>
     <string name="upgrades_gplay_already_owned_error">Google Play ではこのアップグレードを所有していると報告されていますが、復元できませんでした。元の購入に使用した Google アカウントでサインインしていることを確認してから、「購入を復元」をお試しください。</string>
     <string name="upgrade_screen_preamble">Permission Pilotは広告なしでプライバシーを尊重しています。アップグレードは継続的な開発をサポートします。</string>
+    <string name="upgrade_screen_offers_unavailable_title">価格が利用できません</string>
+    <string name="upgrade_screen_offers_unavailable_message">価格を今すぐ読み込むことができません。Google Playを確認して、しばらくしてからもう一度お試しください。</string>
     <string name="upgrade_screen_subscription_trial_action">試用を開始する</string>
     <string name="upgrade_screen_subscription_action">登録</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年、いつでもキャンセルできます</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">複数のアカウントは Google Play を混乱させる可能性があります。Google Play ウェブサイトからアプリをインストールすれば、特定のアカウントに関連付けられます。</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play の同期には時間がかかる場合があります。再起動するか、Google Play ストアのキャッシュをクリアするか、しばらく待ってみてください。</string>
     <string name="upgrade_screen_restore_contact_hint">まだお困りですか？購入に使用したメールアドレスからサポートに連絡し、Google Play の注文番号を含めてください。</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$sを取得する</string>
+    <string name="upgrade_screen_benefits_title">アップグレードの利点</string>
+    <string name="upgrade_screen_thanks_toast">あなたは最高です！ ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Proはまだアクティブです。Google Playがあなたの購入を再確認するのを待っています。その間、すべてのPro機能はロック解除されたままです。</string>
+    <string name="upgrade_screen_restore_body">復元するとGoogle Playに現在のアカウントのこのアプリの購入を再確認するよう求めます。新しい購入は開始しません。</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Playとのチェックが時間内に完了しなかったため、購入ステータスはまだ不明です。アカウントには何も変更されていません。</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot は Google Play に接続できません。Google Playはインストールされており、最新の状態ですか？ あなたのGoogleアカウントはログインしていますか？ Google Playアプリのキャッシュをクリアしてデバイスを再起動してみてください。</string>
+    <string name="upgrades_gplay_billing_error_label">アプリ内購入の問題</string>
+    <string name="upgrades_gplay_billing_error_description">Google Playで問題が発生しました。後でもう一度試すか、デバイスを再起動してください。\n\n詳細: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play エラー</string>
+    <string name="upgrades_gplay_internal_error_description">Google Play の内部エラーが発生しました。以下をお試しください:\n\n• デバイスを再起動する\n• Google Play ストアのキャッシュをクリアする\n• 後でもう一度試す</string>
+    <string name="upgrades_gplay_network_error_title">接続エラー</string>
+    <string name="upgrades_gplay_network_error_description">Google Play に接続できません。インターネット接続を確認して、もう一度お試しください。</string>
+    <string name="upgrades_gplay_offer_unavailable_title">オファーが利用できません</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play は現在このアップグレード オプションを提供していません。後でもう一度試すか、Google Play ストアを確認してください。</string>
 </resources>

@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">چاودێریکردنی ئەجازە</string>
     <string name="upgrade_benefit_support">پشتگیریکردنی پێوەندەکار</string>
     <string name="upgrade_benefit_manifest_viewer">Manîfestoyên xav ên sepaê bigere</string>
+    <string name="general_navigate_up_action">Vegere</string>
+    <string name="general_progress_loading">Tê barkirin…</string>
     <string name="general_upgrade_action">بەرزترکردن</string>
+    <string name="general_copy_action">Kopî bike</string>
+    <string name="general_copied_to_clipboard_msg">Copî kir</string>
+    <string name="general_view_details_for_x_action">Hûrguşên %1$s bibîn</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Rewşa Bulaş û Vebijark</string>

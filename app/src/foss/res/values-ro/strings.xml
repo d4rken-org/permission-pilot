@@ -17,4 +17,9 @@
     <string name="upgrade_screen_recurring_title">Sprijină din nou</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot este dezvoltat deschis. Ia în considerare o sponsorizare recurentă pentru a-l susține.</string>
     <string name="upgrade_screen_recurring_action">Deschide GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Susțineți Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Beneficiile upgrade-ului</string>
+    <string name="upgrade_screen_how_title">Cum să ajuți</string>
+    <string name="upgrade_screen_thanks_toast">Mulțumim pentru susținerea dezvoltării open-source ❤️</string>
 </resources>

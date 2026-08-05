@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">অনুমতি পর্যবেক্ষণ</string>
     <string name="upgrade_benefit_support">ডিভেলপারকে সমর্থন করুন</string>
     <string name="upgrade_benefit_manifest_viewer">কাঁচা অ্যাপ ম্যানিফেস্ট ব্রাউজ করুন</string>
+    <string name="general_navigate_up_action">উপরে যান</string>
+    <string name="general_progress_loading">লোড হচ্ছে…</string>
     <string name="general_upgrade_action">আপগ্রেড করুন</string>
+    <string name="general_copy_action">কপি বা অনুলিপি করুন</string>
+    <string name="general_copied_to_clipboard_msg">ক্লিপবোর্ডে কপি করা হয়েছে</string>
+    <string name="general_view_details_for_x_action">%1$s এর বিবরণ দেখুন</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">আপগ্রেড স্ট্যাটাস এবং বিকল্পসমূহ</string>

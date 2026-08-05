@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">再次支持</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot 是以開源方式開發的。請考慮定期贊助以幫助維持它的發展。</string>
     <string name="upgrade_screen_recurring_action">開啟 GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">支持 Permission Pilot</string>
+    <string name="upgrade_screen_why_title">升級權益</string>
+    <string name="upgrade_screen_how_title">如何協助</string>
+    <string name="upgrade_screen_how_body">成為贊助者並贊助開發！輕觸下面的按鈕，啟用所有額外功能，並開啟我的 Github 贊助者設定檔。</string>
+    <string name="upgrade_screen_thanks_toast">感謝您對開放原始碼開發的支持 ❤️</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Jo ostettu</string>
     <string name="upgrades_gplay_already_owned_error">Google Play ilmoittaa, että omistit jo tämän päivityksen, mutta sitä ei voitu palauttaa. Varmista, että olet kirjautunut Google-tilillä, jolla teit alkuperäisen ostoksen, ja yritä sitten \"Palauta osto\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot on mainokseton ja kunnioittaa yksityisyyttäsi. Päivittäminen tukee jatkuvaa kehitystä.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Hinnat eivät ole saatavilla</string>
+    <string name="upgrade_screen_offers_unavailable_message">Hintoja ei voitu ladata juuri nyt. Tarkista Google Play ja yritä uudelleen hetken kuluttua.</string>
     <string name="upgrade_screen_subscription_trial_action">Aloita ilmainen kokeilu</string>
     <string name="upgrade_screen_subscription_action">Tilaa</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/vuosi, voit peruuttaa milloin tahansa</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Useat tilit voivat hämmentää Google Playta. Sovelluksen asentaminen Google Play -verkkosivuston kautta pakottaa sen liittymään tiettyyn tiliin.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play -synkronointi voi kestää. Kokeile uudelleenkäynnistystä, Google Play -välimuistin tyhjentämistä tai vain odottamista.</string>
     <string name="upgrade_screen_restore_contact_hint">Oletko vielä jumissa? Ota yhteyttä tukeen sähköpostista, jolla ostoksesi tehtiin, ja sisällytä Google Play -tilausnumerosi.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Hanki %1$s</string>
+    <string name="upgrade_screen_benefits_title">Päivityksen edut</string>
+    <string name="upgrade_screen_thanks_toast">Olet paras! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro on edelleen aktiivinen. Odotetaan Google Playn uudelleenvahvistusta ostoksellesi, kaikki Pro-ominaisuudet pysyvät lukitukselta vapaina väliajalla.</string>
+    <string name="upgrade_screen_restore_body">Palauttaminen pyytää Google Playta tarkistamaan uudelleen tämän sovelluksen ostokset nykyiselle tilille. Se ei aloita uutta ostoa.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Play -tarkistus ei valmistunut ajoissa, joten ostotilastasi on edelleen tuntematon. Tilillä ei ole muuttunut mitään.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ei voi yhdistää Google Playhin. Onko Google Play asennettu ja ajan tasalla? Onko Google-tilisi kirjautunut sisään? Kokeile tyhjentää Google Play -sovelluksen välimuisti ja käynnistä laitteesi uudelleen.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play -vika</string>
+    <string name="upgrades_gplay_billing_error_description">Google Playssa oli ongelma. Yritäthän myöhemmin uudelleen tai käynnistäthän laite uudelleen.\n\nYksityiskohdat: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play -vika</string>
+    <string name="upgrades_gplay_internal_error_description">Sisäinen Google Play -vika ilmeni. Yritä seuraavaa:\n\n• Käynnistä laitteesi uudelleen\n• Tyhjennä Google Play Store -välimuisti\n• Yritä myöhemmin</string>
+    <string name="upgrades_gplay_network_error_title">Yhteysvirhe</string>
+    <string name="upgrades_gplay_network_error_description">Google Playhin ei voida yhdistää. Tarkista internet-yhteytesi ja yritä uudelleen.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Tarjous ei ole saatavilla</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play ei tällä hetkellä tarjoa tätä päivitysvaihtoehtoa. Yritä myöhemmin uudelleen tai tarkista Google Play Store.</string>
 </resources>

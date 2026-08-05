@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Zaten satın alındı</string>
     <string name="upgrades_gplay_already_owned_error">Google Play, bu yükseltmeye zaten sahip olduğunuzu belirtiyor, ancak geri yüklenemedi. Orijinal satın alma işlemi için kullanılan Google hesabıyla oturum açmış olduğunuzdan emin olun, ardından \"Satın almayı geri yükle\" seçeneğini deneyin.</string>
     <string name="upgrade_screen_preamble">Permission Pilot reklamsız ve gizliliğinize saygı gösteriyor. Yükseltme yapılması, sürekli geliştirmeyi destekler.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Fiyatlar kullanılamıyor</string>
+    <string name="upgrade_screen_offers_unavailable_message">Fiyatlar şu anda yüklenemedi. Google Play\'i kontrol edin ve bir süre sonra tekrar deneyin.</string>
     <string name="upgrade_screen_subscription_trial_action">Ücretsiz deneme süresini başlatın</string>
     <string name="upgrade_screen_subscription_action">Abone ol</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/yıl, istediğiniz zaman iptal edebilirsiniz</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Birden fazla hesap Google Play\'i karıştırabilir. Belirli bir hesapla ilişkilendirmeye zorlayan Google Play web sitesi üzerinden uygulamayı yükleyin.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play senkronizasyonu zaman alabilir. Yeniden başlatmayı, Google Play Store önbelleğini temizlemeyi veya sadece beklemeyi deneyin.</string>
     <string name="upgrade_screen_restore_contact_hint">Hâlâ takılı kaldınız mı? Satın almayı yapan e-posta hesabından destek birimiyle iletişime geçin ve Google Play sipariş numaranızı ekleyin.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$s Al</string>
+    <string name="upgrade_screen_benefits_title">Yükseltme Faydaları</string>
+    <string name="upgrade_screen_thanks_toast">Sen en iyisisin! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro hâlâ etkindir. Google Play satın almayı yeniden onaylaması bekleniyor, bu sırada tüm Pro özellikleri kilit açık kalır.</string>
+    <string name="upgrade_screen_restore_body">Geri yükleme, Google Play\'den bu uygulamanın geçerli hesap için satın almalarını yeniden kontrol etmesini ister. Yeni bir satın alma başlatmaz.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Play ile yapılan kontrol zamanında bitmedi, bu nedenle satın alma durumunuz hâlâ bilinmiyor. Hesabınızda hiçbir şey değişmedi.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play\'e bağlanamıyor. Google Play yüklü ve güncel mi? Google Hesabınız ile oturum açtınız mı? Google Play uygulamasının önbelleğini temizlemeyi ve cihazınızı yeniden başlatmayı deneyin.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play Sorunu</string>
+    <string name="upgrades_gplay_billing_error_description">Google Play ile ilgili bir sorun oluştu. Lütfen daha sonra tekrar deneyin veya cihazınızı yeniden başlatın.\n\nDetaylar: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play Hatası</string>
+    <string name="upgrades_gplay_internal_error_description">Bir iç Google Play hatası oluştu. Lütfen aşağıdakileri deneyin:\n\n• Cihazınızı yeniden başlatın\n• Google Play Store önbelleğini temizleyin\n• Daha sonra tekrar deneyin</string>
+    <string name="upgrades_gplay_network_error_title">Bağlantı Hatası</string>
+    <string name="upgrades_gplay_network_error_description">Google Play\'e bağlanılamıyor. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Teklif Kullanılamıyor</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play şu anda bu yükseltme seçeneğini sunmuyor. Lütfen daha sonra tekrar deneyin veya Google Play Store\'u kontrol edin.</string>
 </resources>

@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Torneu a donar suport</string>
     <string name="upgrade_screen_recurring_body">El Permission Pilot es desenvolupa en obert. Considereu un patrocini recurrent per ajudar a mantenir-lo.</string>
     <string name="upgrade_screen_recurring_action">Obre els patrocinadors del GitHub</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Doneu suport al Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Beneficis de la millora</string>
+    <string name="upgrade_screen_how_title">Com ajudar</string>
+    <string name="upgrade_screen_how_body">Convertiu-vos en mecenes i patrocinadors del desenvolupament! Toqueu el botó següent per activar totes les funcions addicionals i obrir el meu perfil de patrocinadors del GitHub.</string>
+    <string name="upgrade_screen_thanks_toast">Gràcies per donar suport al desenvolupament de codi obert \ufe0f</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">ቀድሞ ተገዛ</string>
     <string name="upgrades_gplay_already_owned_error">Google Play ይህን ማሻሻያ ቀድሞ ይዤተዋል ይላል፣ ነገር ግን ሊመለስ አልተቻለም። ዋናውን ግዢ ለያዙ Google መለያ ገብተዋል መሆኑን ያረጋግጡ፣ ከዚያ \"ግዢ ወደ ነበር ሆኑ\" ሞክሩ።</string>
     <string name="upgrade_screen_preamble">Permission Pilot አዶዘቕ ዘርዘር እና ስሴያወን ይካባተኻላለ። ደርጉን ወደፈርም ብጅት ይደግፋለ።</string>
+    <string name="upgrade_screen_offers_unavailable_title">ዋጋዎች አይገኙም</string>
+    <string name="upgrade_screen_offers_unavailable_message">ዋጋዎች አሁን ሊጫኑ አልቻሉም። Google Play ይመልከቱ እና ከጥቂት ደቂቃዎች በኋላ እንደገና ሞክሩ።</string>
     <string name="upgrade_screen_subscription_trial_action">የ፣የ ንብስት ይጀምሩ</string>
     <string name="upgrade_screen_subscription_action">ይመዝገቡ</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ዓመት፣ በማንኛውም ጊዜ ይሰርዙ</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">ብዙ መለያዎች Google Play ማምታታት ይችላሉ። መተግበሪያውን በGoogle Play ድርጣቢያ በኩል መጫን ከተወሰነ መለያ ጋር ግንኙነትን ያስገድዳል።</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play ሲምሪዝሽን ጊዜ ሊወስድ ይችላል። እንደገና ማስጀመር፣ Google Play Store መሸጎጫ ማጥራት ወይም ብቻ መጠበቅ ይሞክሩ።</string>
     <string name="upgrade_screen_restore_contact_hint">አሁንም ተጣበቀ? ግዢውን ያደረገውን ኢሜይል በመጠቀም ድጋፋን ያገናኙ እና የGoogle Play ትዕዛዝ ቁጥር ያካትቱ።</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$s ያግኙ</string>
+    <string name="upgrade_screen_benefits_title">የማሻሻያ ጥቅሞች</string>
+    <string name="upgrade_screen_thanks_toast">እርስዎ ምርጥ ነዎት! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro አሁንም ንቁ ነው። Google Play ለእርስዎ ግዥ እንደገና ለማረጋገጥ ጠብቁ፣ ሁሉም Pro ባህሪዎች ለወቅቱ ተከፍተው ይሆናሉ።</string>
+    <string name="upgrade_screen_restore_body">ወደ ልክ መመለስ Google Play ይህን መተግባሪያ ግዥዎችን ለአሁኑ መለያ እንደገና ይመልከታል። አዲስ ግዥ አይጀምርም።</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Play ጋር ያለው ማረጋገጫ በጊዜ አልተጠናቀቀም፣ ስለሆነም የእርስዎ የግዥ ሁኔታ አሁንም ያልታወቀ ነው። በእርስዎ መለያ ላይ ምንም ነገር አልተወለጠም።</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ከGoogle Play ጋር መገናኘት አይችልም። Google Play ተጭኖ እና ወቅታዊ ነው? የGoogle መለያዎ ገብቷል? የGoogle Play መተግበሪያ መሸጎጫ ማጥራት እና መሳሪያዎን እንደገና ማስጀመር ይሞክሩ።</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play ችግር</string>
+    <string name="upgrades_gplay_billing_error_description">Google Play ጋር ችግር ተፈጠረ። ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ ወይም መሳሪያዎን እንደገና ያስጀምሩ።\n\nዝርዝር: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play ስህተት</string>
+    <string name="upgrades_gplay_internal_error_description">ውስጣዊ Google Play ስህተት ተፈጠረ። እባክዎ የሚከተለውን ይሞክሩ:\n\n• መሳሪያዎን እንደገና ያስጀምሩ\n• Google Play Store ካሽ ያጽዳ\n• ከጥቂት ደቂቃዎች በኋላ እንደገና ሞክር</string>
+    <string name="upgrades_gplay_network_error_title">ትስስር ስህተት</string>
+    <string name="upgrades_gplay_network_error_description">Google Play ጋር መገናኘት ያልተቻለ። እባክዎ Internet ግንኙነቶን ይመልከቱ እና እንደገና ሞክሩ።</string>
+    <string name="upgrades_gplay_offer_unavailable_title">ታሪፍ አይገኝም</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play አሁን ይህ ማሳሻያ አማራጭ አያቀርብም። እባክዎ ከጥቂት ደቂቃዎች በኋላ ወይም Google Play Store ይመልከቱ።</string>
 </resources>

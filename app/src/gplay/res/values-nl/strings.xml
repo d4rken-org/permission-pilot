@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Reeds gekocht</string>
     <string name="upgrades_gplay_already_owned_error">Google Play meldt dat je deze upgrade al bezit, maar deze kon niet worden hersteld. Controleer of je bent aangemeld met het Google-account dat voor de oorspronkelijke aankoop werd gebruikt, en probeer vervolgens \'Aankoop herstellen\'.</string>
     <string name="upgrade_screen_preamble">Permission Pilot is advertentievrij en respecteert je privacy. Upgraden ondersteunt verdere ontwikkeling.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Prijzen niet beschikbaar</string>
+    <string name="upgrade_screen_offers_unavailable_message">Prijzen kunnen op dit moment niet worden geladen. Controleer Google Play en probeer het straks opnieuw.</string>
     <string name="upgrade_screen_subscription_trial_action">Start gratis proefperiode</string>
     <string name="upgrade_screen_subscription_action">Abonneren</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/jaar, annuleer op elk moment</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Meerdere accounts kunnen Google Play verwarren. Het installeren van de app via de Google Play-website zorgt ervoor dat deze aan een specifiek account wordt gekoppeld.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play-synchronisatie kan even duren. Probeer opnieuw op te starten, de Google Play Store-cache te wissen of gewoon te wachten.</string>
     <string name="upgrade_screen_restore_contact_hint">Nog steeds vast? Neem contact op met ondersteuning vanuit het e-mailadres waarmee je de aankoop hebt gedaan en voeg je Google Play-ordernummer toe.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Verkrijg %1$s</string>
+    <string name="upgrade_screen_benefits_title">Voordelen van de upgrade</string>
+    <string name="upgrade_screen_thanks_toast">Jij bent de beste! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro is nog steeds actief. Wachten tot Google Play je aankoop opnieuw bevestigt; alle Pro-functies blijven ondertussen ontgrendeld.</string>
+    <string name="upgrade_screen_restore_body">Herstellen vraagt Google Play om de aankopen van deze app voor het huidige account opnieuw te controleren. Het start geen nieuwe aankoop.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">De controle bij Google Play is niet op tijd voltooid, waardoor de status van je aankoop nog steeds onbekend is. Er is niets gewijzigd in je account.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan geen verbinding maken met Google Play. Is Google Play geïnstalleerd en up-to-date? Is je Google-account ingelogd? Probeer de cache van de Google Play-app te wissen en je apparaat opnieuw op te starten.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play Probleem</string>
+    <string name="upgrades_gplay_billing_error_description">Er was een probleem met Google Play. Probeer het later opnieuw of herstart uw apparaat.\n\nDetails: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play-fout</string>
+    <string name="upgrades_gplay_internal_error_description">Er is een interne Google Play-fout opgetreden. Probeer het volgende:\n\n• Herstart je apparaat\n• Wis de cache van de Google Play Store\n• Probeer het later opnieuw</string>
+    <string name="upgrades_gplay_network_error_title">Verbindingsfout</string>
+    <string name="upgrades_gplay_network_error_description">Kan geen verbinding maken met Google Play. Controleer je internetverbinding en probeer het opnieuw.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Aanbieding niet beschikbaar</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play biedt deze upgrade-optie momenteel niet aan. Probeer het later opnieuw of raadpleeg de Google Play Store.</string>
 </resources>

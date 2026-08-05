@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Već kupljeno</string>
     <string name="upgrades_gplay_already_owned_error">Google Play izvještava da već posjedujete ovu nadogradnju, ali nije mogla biti vraćena. Provjerite jeste li prijavljeni sa Google računom korištenim za izvornu kupnju, pa pokušajte s opcijom \"Vrati kupnju\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot je bez oglasa i poštuje vašu privatnost. Nadogradnjom podržavate daljnji razvoj.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Cijene nisu dostupne</string>
+    <string name="upgrade_screen_offers_unavailable_message">Cijene se ne mogu učitati. Provjerite Google Play i pokušajte ponovno.</string>
     <string name="upgrade_screen_subscription_trial_action">Započnite besplatnu probu</string>
     <string name="upgrade_screen_subscription_action">Pretplatite se</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/godinu, otkaži bilo kada</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Više računa može zbuniti Google Play. Instaliranje aplikacije putem web-mjesta Google Playa prisiljava je da se poveže s određenim računom.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Sinkronizacija Google Playa može potrajati. Pokušajte ponovno pokrenuti, obrisati predmemoriju Google Play Storea ili samo pričekati.</string>
     <string name="upgrade_screen_restore_contact_hint">Još uvijek zapeli? Kontaktirajte podršku s e-pošte koja je izvršila kupnju i uključite broj narudžbe s Google Playa.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Nabavi %1$s</string>
+    <string name="upgrade_screen_benefits_title">Prednosti nadogradnje</string>
+    <string name="upgrade_screen_thanks_toast">Najbolji ste! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro je i dalje aktivan. Google Play ponovno potvrđuje vašu kupnju, sve Pro značajke ostaju otključane u međuvremenu.</string>
+    <string name="upgrade_screen_restore_body">Vraćanje traži od Google Playa da ponovno provjeri kupnje ove aplikacije za trenutni račun. Nema nove kupnje.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Provjera s Google Playem nije završena na vrijeme, pa je status vaše kupnje i dalje nepoznat. Ništa se nije promijenilo na vašem računu.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot se ne može povezati s Google Playem. Je li Google Play instaliran i ažuriran? Jeste li prijavljeni na svoj Google račun? Pokušajte očistiti predmemoriju Google Play aplikacije i ponovno pokrenuti uređaj.</string>
+    <string name="upgrades_gplay_billing_error_label">Greška Google Playa</string>
+    <string name="upgrades_gplay_billing_error_description">Došlo je do problema s Google Playom. Pokušajte ponovno kasnije ili ponovno pokrenite uređaj.\n\nDetalji: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Greška Google Playa</string>
+    <string name="upgrades_gplay_internal_error_description">Došlo je do interne greške Google Playa. Pokušajte sljedeće:\n\n• Ponovno pokrenite uređaj\n• Očistite predmemoriju Google Play trgovine\n• Pokušajte ponovno kasnije</string>
+    <string name="upgrades_gplay_network_error_title">Greška veze</string>
+    <string name="upgrades_gplay_network_error_description">Nije moguće povezati se s Google Playem. Provjerite internetsku vezu i pokušajte ponovno.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Ponuda nije dostupna</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play trenutno ne nudi tu opciju nadogradnje. Pokušajte ponovno kasnije ili provjerite Google Play trgovinu.</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Вже придбано</string>
     <string name="upgrades_gplay_already_owned_error">Google Play повідомляє, що ви вже володієте цим оновленням, але його не вдалося відновити. Переконайтесь, що ви увійшли з обліковим записом Google, який використовувався для початкової покупки, а потім спробуйте «Відновити покупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot без реклами і поважає вашу приватність. Оновлення підтримує подальшу розробку.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Ціни недоступні</string>
+    <string name="upgrade_screen_offers_unavailable_message">Ціни не можуть бути завантажені зараз. Перевірте Google Play і спробуйте ще раз через деякий час.</string>
     <string name="upgrade_screen_subscription_trial_action">Випробувати пробний період</string>
     <string name="upgrade_screen_subscription_action">Підписатися</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/рік, скасуйте у будь-який час</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Кілька акаунтів можуть спричинити проблеми в Google Play. Встановлення програми через веб-сайт Google Play примушує її асоціюватися з конкретним акаунтом.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Синхронізація Google Play може зайняти деякий час. Спробуйте перезавантажити пристрій, очистити кеш Google Play Store або просто почекайте.</string>
     <string name="upgrade_screen_restore_contact_hint">Все ще застрягли? Зв\'яжіться з підтримкою, використовуючи електронну пошту, яка здійснила покупку, та вкажіть номер замовлення Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Отримати %1$s</string>
+    <string name="upgrade_screen_benefits_title">Переваги оновлення</string>
+    <string name="upgrade_screen_thanks_toast">Ви найкращі! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro все ще активна. Очікуємо, поки Google Play повторно підтвердить вашу покупку. Усі функції Pro залишаються розблокованими в цей час.</string>
+    <string name="upgrade_screen_restore_body">Відновлення просить Google Play повторно перевірити покупки цього додатку для поточного облікового запису. Це не починає нову покупку.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Перевірка з Google Play не завершилась вчасно, тому статус вашої покупки все ще невідомий. На вашому обліковому записі нічого не змінилось.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не може підключитися до Google Play. Чи встановлено та оновлено Google Play? Ви ввійшли до свого облікового запису Google? Спробуйте очистити кеш додатку Google Play і перезавантажити пристрій.</string>
+    <string name="upgrades_gplay_billing_error_label">Проблема з Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Виникла проблема з Google Play. Будь ласка, спробуйте пізніше або перезавантажте пристрій.\n\nДеталі: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Помилка Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Сталася внутрішня помилка Google Play. Спробуйте виконати наступні дії:\n\n• Перезапустіть пристрій\n• Очистіть кеш Google Play Store\n• Спробуйте пізніше</string>
+    <string name="upgrades_gplay_network_error_title">Помилка підключення</string>
+    <string name="upgrades_gplay_network_error_description">Неможливо підключитися до Google Play. Перевірте підключення до Інтернету та спробуйте ще раз.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Пропозиція недоступна</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play наразі не пропонує цей варіант оновлення. Спробуйте ще раз пізніше або перевірте Google Play Store.</string>
 </resources>

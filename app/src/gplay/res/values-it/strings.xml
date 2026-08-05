@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Già acquistato</string>
     <string name="upgrades_gplay_already_owned_error">Google Play segnala che possiedi già questo acquisto, ma non è stato possibile ripristinarlo. Verifica che tu sia acceduto con l’account Google utilizzato per l’acquisto originale, quindi prova a «Ripristina acquisto».</string>
     <string name="upgrade_screen_preamble">Permission Pilot è senza pubblicità e rispetta la tua privacy. Aggiornare supporta lo sviluppo continuo.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Prezzi non disponibili</string>
+    <string name="upgrade_screen_offers_unavailable_message">I prezzi non potevano essere caricati adesso. Controlla Google Play e riprova tra un momento.</string>
     <string name="upgrade_screen_subscription_trial_action">Inizia la prova gratuita</string>
     <string name="upgrade_screen_subscription_action">Abbonati</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/anno, annulla in qualsiasi momento</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Account multipli possono confondere Google Play. Installare l’app dal sito di Google Play la costringe ad associarsi a un account specifico.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">La sincronizzazione di Google Play può richiedere un po’. Prova a riavviare, svuota la cache di Google Play Store o aspetta semplicemente.</string>
     <string name="upgrade_screen_restore_contact_hint">Ancora bloccato? Contatta il supporto dall’email che ha effettuato l’acquisto e includi il tuo numero d’ordine di Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Ottieni %1$s</string>
+    <string name="upgrade_screen_benefits_title">Vantaggi dell\'upgrade</string>
+    <string name="upgrade_screen_thanks_toast">Sei il migliore! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro è ancora attivo. In attesa che Google Play confermi di nuovo il tuo acquisto, tutte le funzioni Pro rimangono sbloccate nel frattempo.</string>
+    <string name="upgrade_screen_restore_body">Ripristinare chiede a Google Play di controllare nuovamente gli acquisti di questa app per l\'account corrente. Non avvia un nuovo acquisto.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Il controllo con Google Play non è terminato in tempo, quindi lo stato del tuo acquisto è ancora sconosciuto. Nulla è cambiato nel tuo account.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot non può connettersi a Google Play. Google Play è installato e aggiornato? Il tuo account Google è connesso? Prova a svuotare la cache dell\'app Google Play e riavviare il dispositivo.</string>
+    <string name="upgrades_gplay_billing_error_label">Problema con Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Si è verificato un problema con Google Play. Per favore riprova più tardi o riavvia il dispositivo.\n\nDettagli: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Errore di Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Si è verificato un errore interno di Google Play. Prova quanto segue:\n\n• Riavvia il dispositivo\n• Svuota la cache di Google Play Store\n• Riprova più tardi</string>
+    <string name="upgrades_gplay_network_error_title">Errore di connessione</string>
+    <string name="upgrades_gplay_network_error_description">Impossibile connettersi a Google Play. Verifica la tua connessione a Internet e riprova.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Offerta non disponibile</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play attualmente non offre questa opzione di upgrade. Per favore riprova più tardi o controlla il Google Play Store.</string>
 </resources>

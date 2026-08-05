@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">Monitoratge de permisos</string>
     <string name="upgrade_benefit_support">Doneu suport al desenvolupador</string>
     <string name="upgrade_benefit_manifest_viewer">Navega pels manifests d’aplicacions en brut</string>
+    <string name="general_navigate_up_action">Navega cap amunt</string>
+    <string name="general_progress_loading">S\'està carregant…</string>
     <string name="general_upgrade_action">Millora</string>
+    <string name="general_copy_action">Copia</string>
+    <string name="general_copied_to_clipboard_msg">S\'ha copiat al porta-retalls</string>
+    <string name="general_view_details_for_x_action">Mostra els detalls de %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Estat de l\'actualització i opcions</string>

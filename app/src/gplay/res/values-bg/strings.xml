@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Вече закупено</string>
     <string name="upgrades_gplay_already_owned_error">Google Play съобщава, че вече притежавате това обновление, но то не можа да бъде възстановено. Проверете дали сте влезли с Google акаунта, използван за първоначалната покупка, след което опитайте „Възстановяване на покупката“.</string>
     <string name="upgrade_screen_preamble">Permission Pilot е без реклами и защитава поверителността ви. Надградата подкрепя понататашното развитие.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Цените не са налични</string>
+    <string name="upgrade_screen_offers_unavailable_message">Цените не могат да бъдат заредени сега. Проверете Google Play и опитайте отново след малко.</string>
     <string name="upgrade_screen_subscription_trial_action">Стартирайте безплатен пробен период</string>
     <string name="upgrade_screen_subscription_action">Абонирайте се</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/година, анулиране по всяко време</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Множествените акаунти могат да объркат Google Play. Инсталирането на приложението чрез уебсайта на Google Play го принуждава да се асоциира с конкретен акаунт.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Синхронизацията на Google Play може да отнеме време. Опитайте рестартиране, изчистване на кеша на Google Play Store или просто изчакане.</string>
     <string name="upgrade_screen_restore_contact_hint">Все още закъсали? Свържете се с поддръжката от имейла, с който е направена покупката, и посочете номера на поръчката си в Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Вземи %1$s</string>
+    <string name="upgrade_screen_benefits_title">Предимства на надстройката</string>
+    <string name="upgrade_screen_thanks_toast">Вие сте най-добрите! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro е все още активен. Чакаме Google Play да потвърди отново вашата покупка, всички Pro функции остават отключени дотогава.</string>
+    <string name="upgrade_screen_restore_body">Възстановяването моли Google Play да провери отново покупките на това приложение за текущия акаунт. Не стартира нова покупка.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Проверката с Google Play не завърши навреме, затова състоянието на вашата покупка остава неизвестно. Нищо не се е променило по вашия акаунт.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не може да се свърже с Google Play. Инсталиран ли е Google Play и актуален ли е? Влязъл ли е вашият Google акаунт? Опитайте да изчистите кеша на приложението Google Play и да рестартирате устройството си.</string>
+    <string name="upgrades_gplay_billing_error_label">Проблем с Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Възникна проблем с Google Play. Опитайте отново по-късно или рестартирайте устройството си.\n\nПодробности: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Грешка на Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Възникна вътрешна грешка на Google Play. Моля, опитайте следното:\n\n• Рестартирайте устройството си\n• Изчистете кеша на Google Play Store\n• Опитайте отново по-късно</string>
+    <string name="upgrades_gplay_network_error_title">Грешка при свързване</string>
+    <string name="upgrades_gplay_network_error_description">Невъзможно е да се свържете с Google Play. Проверете вашата интернет връзка и опитайте отново.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Офертата не е налична</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play в момента не предлага тази опция за надстройка. Опитайте отново по-късно или проверете Google Play Store.</string>
 </resources>

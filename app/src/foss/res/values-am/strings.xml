@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">ደግመው ድጋፍ ስጥ</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot በክፍት ተሰራ። ሚስክ ለመርዳት ተደጋጋሚ ስፖንሰርሺፕ ያስቡ።</string>
     <string name="upgrade_screen_recurring_action">GitHub Sponsors ይክፈቱ</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Permission Pilot ን ደግፉ</string>
+    <string name="upgrade_screen_why_title">የማሻሻያ ጥቅሞች</string>
+    <string name="upgrade_screen_how_title">እንዴት መርዳት እንደሚችሉ</string>
+    <string name="upgrade_screen_how_body">ደጋፊ ይሁኑ እና ልማትን ይደግፉ! ሁሉንም ተጨማሪ ባህሪያት ለማንቃት እና የእኔን GitHub Sponsors መገለጫ ለመክፈት ከታች ያለውን ቁልፍ ይንኩ።</string>
+    <string name="upgrade_screen_thanks_toast">ክፍት ምንጭ ልማትን ስለደገፉ እናመሰግናለን ❤️</string>
 </resources>

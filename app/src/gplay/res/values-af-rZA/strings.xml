@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Reeds gekoop</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporteer dat u reeds hierdie opgradering besit, maar dit kon nie herstel word nie. Kyk dat u aangemeld is met die Google-rekening wat vir die oorspronklike aankoop gebruik is, en probeer dan \"Aankoop herstel\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot is sonder advertensies en respekteer jou privaatheid. Opgradering ondersteun voortgesette ontwikkeling.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Pryse nie beskikbaar nie</string>
+    <string name="upgrade_screen_offers_unavailable_message">Pryse kon nou nie gelaai word nie. Kontroleer Google Play en probeer oor \'n oomblik weer.</string>
     <string name="upgrade_screen_subscription_trial_action">Begin gratis proeftydperk</string>
     <string name="upgrade_screen_subscription_action">Teken in</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/jaar, kanselleer enige tyd</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Veelvuldige rekeninge kan Google Play verwar. Die installering van die toepassing deur die Google Play-webwerf dwing dit om met \'n spesifieke rekening geassosieer te word.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play-sinkronisasie kan tyd neem. Probeer herlaai, maak die Google Play Store-kas skoon of wag net.</string>
     <string name="upgrade_screen_restore_contact_hint">Steeds vasgevang? Kontak ondersteuning vanaf die e-posadres waarmee die aankoop gemaak is, en sluit u Google Play-ordernommer in.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Kry %1$s</string>
+    <string name="upgrade_screen_benefits_title">Opgraadvoordele</string>
+    <string name="upgrade_screen_thanks_toast">Jy is die beste! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro is nog steeds aktief. Wag vir Google Play om jou aankoop te herbevestig, al die Pro-funksies bly intussen ontgrendel.</string>
+    <string name="upgrade_screen_restore_body">Herstel vra Google Play om hierdie toepassing se aankope vir die huidige rekening te herkontroleer. Dit begin nie \'n nuwe aankoop nie.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Die kontrole met Google Play het nie betyds voltooi nie, dus is jou aankoupstatus nog steeds onbekend. Niks het op jou rekening verander nie.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan nie aan Google Play koppel nie. Is Google Play geïnstalleer en opgedateer? Is jou Google-rekening aangemeld? Probeer om die kas van die Google Play-toepassing skoon te maak en jou toestel herlaai.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play-probleem</string>
+    <string name="upgrades_gplay_billing_error_description">Daar was \'n probleem met Google Play. Probeer asseblief later weer of herstart jou toestel.\n\nBesonderhede: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play-fout</string>
+    <string name="upgrades_gplay_internal_error_description">\'n Interne Google Play-fout het voorgekom. Probeer asseblief die volgende:\n\n• Herstart jou toestel\n• Maak Google Play Store-kas skoon\n• Probeer later weer</string>
+    <string name="upgrades_gplay_network_error_title">Verbindingsfout</string>
+    <string name="upgrades_gplay_network_error_description">Kan nie aan Google Play koppel nie. Kontroleer asseblief jou internetverbinding en probeer weer.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Aanbod nie beskikbaar nie</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play bied hierdie opgraadopsie tans nie aan nie. Probeer asseblief later weer of kontroleer die Google Play Store.</string>
 </resources>

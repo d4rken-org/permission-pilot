@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">สนับสนุนอีกครั้ง</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot ได้รับการพัฒนาแบบเปิด ลองพิจารณาการสนับสนุนแบบประจำเพื่อช่วยรักษาแอปไว้</string>
     <string name="upgrade_screen_recurring_action">เปิด GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">สนับสนุน Permission Pilot</string>
+    <string name="upgrade_screen_why_title">ประโยชน์ของการอัปเกรด</string>
+    <string name="upgrade_screen_how_title">วิธีการช่วยเหลือ</string>
+    <string name="upgrade_screen_how_body">เป็นผู้อุปถัมภ์และสปอนเซอร์การพัฒนา! แตะปุ่มด้านล่างเพื่อเปิดใช้ฟีเจอร์เพิ่มเติมทั้งหมดและเปิดโปรไฟล์ GitHub Sponsors ของฉัน</string>
+    <string name="upgrade_screen_thanks_toast">ขอบคุณสำหรับการสนับสนุนการพัฒนาโอเพ่นซอร์ส ❤️</string>
 </resources>

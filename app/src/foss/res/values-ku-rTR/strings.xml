@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Dîsa piştgirî bike</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot di demildestî de pêşve tê xistin. Mêvandarê dubarekirî bîr bike da ku ew berdewam bimîne.</string>
     <string name="upgrade_screen_recurring_action">GitHub Sponsors Vekir</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Permission Pilotan desteki bike</string>
+    <string name="upgrade_screen_why_title">Sûdên pêşbirkî</string>
+    <string name="upgrade_screen_how_title">Çawa desteki bike</string>
+    <string name="upgrade_screen_how_body">Bibe patronê û pişteva peşveçûnê bike! Bişkoja jêr bikirte da ku hemû taybetmendiyên zêde çalak bikin û profila GitHub Sponsors veki bibin.</string>
+    <string name="upgrade_screen_thanks_toast">Sipasî ji bo destekkirina peşveçûna kodên vekirî ❤️</string>
 </resources>

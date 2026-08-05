@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">כבר נקנה</string>
     <string name="upgrades_gplay_already_owned_error">גוגל פליי דיווח שכבר קנית את השדרוג הזה, אך לא ניתן היה להשחזרו. בדוק שאתה מחובר עם חשבון גוגל שנשמש לרכישה המקורית, ולאחר מכן נסה \"השחזר רכישה\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot היא בללי פרסומות ומכבדת את פרטיותך. שדרוג תומך בפיתוח המשך.</string>
+    <string name="upgrade_screen_offers_unavailable_title">מחירים לא זמינים</string>
+    <string name="upgrade_screen_offers_unavailable_message">לא ניתן היה לטעון מחירים כעת. בדוק ב-Google Play ונסה שוב בעוד רגע.</string>
     <string name="upgrade_screen_subscription_trial_action">התחל ניסיון חינם</string>
     <string name="upgrade_screen_subscription_action">הירשם כמנוי</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/שנה, בטל בכל עת</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">מספר חשבונות יכול לגרום לבעיות בגוגל פליי. התקנת האפליקציה דרך אתר גוגל פליי מחייבת אותה להשתייך לחשבון מסוים.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">סנכרון גוגל פליי יכול לקחת זמן. נסה להפעיל מחדש, לנקות את המטמון של חנות גוגל פליי, או פשוט להמתין.</string>
     <string name="upgrade_screen_restore_contact_hint">עדיין תקוע? צור קשר עם התמיכה מהכתובת דוא\"ל שבה בוצעה הרכישה וכלול את מספר ההזמנה של גוגל פליי שלך.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">קבל %1$s</string>
+    <string name="upgrade_screen_benefits_title">יתרונות השדרוג</string>
+    <string name="upgrade_screen_thanks_toast">אתה הכי טוב! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro עדיין פעיל. ממתין ל-Google Play לאישור מחדש של הרכישה שלך, כל תכונות Pro נשארות פתוחות בינתיים.</string>
+    <string name="upgrade_screen_restore_body">שחזור מבקש מ-Google Play לבדוק מחדש את הרכישות של האפליקציה הזו עבור החשבון הנוכחי. זה לא יוצר רכישה חדשה.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">הבדיקה עם Google Play לא הסתיימה בזמן, ולכן סטטוס הרכישה שלך עדיין לא ידוע. שום דבר לא השתנה בחשבונך.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot לא יכול להתחבר ל-Google Play. האם Google Play מותקן ומעודכן? האם חשבון Google שלך מחובר? נסה לנקות את המטמון של אפליקציית Google Play ולאתחל את המכשיר שלך.</string>
+    <string name="upgrades_gplay_billing_error_label">בעיה ב-Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">היתה בעיה עם Google Play. אנא נסה שוב מאוחר יותר או הפעל את המכשיר שלך מחדש.\n\nפרטים: %s</string>
+    <string name="upgrades_gplay_internal_error_title">שגיאת Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">אירעה שגיאה פנימית ב-Google Play. אנא נסה את הפעולות הבאות:\n\n• הפעל את המכשיר שלך מחדש\n• נקה את מטמון Google Play Store\n• נסה שוב מאוחר יותר</string>
+    <string name="upgrades_gplay_network_error_title">שגיאת חיבור</string>
+    <string name="upgrades_gplay_network_error_description">לא ניתן להתחבר ל-Google Play. אנא בדוק את חיבור האינטרנט שלך ונסה שוב.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">ההצעה לא זמינה</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play אינו מציע כעת את אפשרות השדרוג הזו. אנא נסה שוב מאוחר יותר או בדוק את Google Play Store.</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">ซื้อแล้ว</string>
     <string name="upgrades_gplay_already_owned_error">Google Play รายงานว่าคุณเป็นเจ้าของการอัปเกรดนี้แล้ว แต่ไม่สามารถคืนค่าได้ ตรวจสอบว่าคุณลงชื่อเข้าใช้ด้วยบัญชี Google ที่ใช้สำหรับการซื้อครั้งแรก จากนั้นลองใช้ \"คืนค่าการซื้อ\"</string>
     <string name="upgrade_screen_preamble">Permission Pilot ไม่มีโฆษณาและเคารพความเป็นส่วนตัวของคุณ การอัปเกรดช่วยสนับสนุนการพัฒนาอย่างต่อเนื่อง</string>
+    <string name="upgrade_screen_offers_unavailable_title">ราคาไม่พร้อมใช้งาน</string>
+    <string name="upgrade_screen_offers_unavailable_message">ราคาไม่สามารถโหลดได้ในขณะนี้ ตรวจสอบ Google Play และลองอีกครั้งในอีกสักครู่</string>
     <string name="upgrade_screen_subscription_trial_action">เริ่มทดลองใช้องค์ฟรี</string>
     <string name="upgrade_screen_subscription_action">สมัครสมาชิก</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/ปี ยกเลิกได้ตลอดเวลา</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">บัญชีหลายบัญชีอาจทำให้ Google Play สับสน การติดตั้งแอปผ่านเว็บไซต์ Google Play จะทำให้มันเชื่อมโยงกับบัญชีเฉพาะเจาะจง</string>
     <string name="upgrade_screen_restore_sync_patience_hint">การซิงค์ Google Play อาจใช้เวลาสักครู่ ลองรีบูต ล้างแคชของ Google Play Store หรือเพียงแค่รอสักครู่</string>
     <string name="upgrade_screen_restore_contact_hint">ยังติดอยู่หรือ? ติดต่อฝ่ายสนับสนุนจากอีเมลที่ใช้ซื้อ พร้อมแนบหมายเลขคำสั่งซื้อ Google Play ของคุณ</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">รับ %1$s</string>
+    <string name="upgrade_screen_benefits_title">ประโยชน์ของการอัปเกรด</string>
+    <string name="upgrade_screen_thanks_toast">คุณเป็นคนที่ดีที่สุด! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro ยังคงใช้งานอยู่ รอการยืนยันการซื้อของคุณอีกครั้งจาก Google Play ฟีเจอร์ Pro ทั้งหมดจะถูกปลดล็อคในระหว่างนี้</string>
+    <string name="upgrade_screen_restore_body">การเรียกคืนจะขอให้ Google Play ตรวจสอบการซื้อของแอปนี้สำหรับบัญชีปัจจุบันอีกครั้ง ไม่ได้เริ่มการซื้อใหม่</string>
+    <string name="upgrade_screen_restore_inconclusive_message">การตรวจสอบกับ Google Play ไม่เสร็จทันเวลา ดังนั้นสถานะการซื้อของคุณยังไม่ชัดเจน ไม่มีการเปลี่ยนแปลงใด ๆ ในบัญชีของคุณ</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ไม่สามารถเชื่อมต่อกับ Google Play ได้ Google Play ได้รับการติดตั้งและอัปเดตแล้วหรือไม่? บัญชี Google ของคุณเข้าสู่ระบบแล้วหรือไม่? ลองล้างแคชของแอป Google Play และรีบูตอุปกรณ์ของคุณ</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play เกิดปัญหา</string>
+    <string name="upgrades_gplay_billing_error_description">มีปัญหาเกิดขึ้นกับ Google Play โปรดลองอีกครั้งในภายหลังหรือรีสตาร์ทอุปกรณ์ของคุณ\n\n รายละเอียด: %s</string>
+    <string name="upgrades_gplay_internal_error_title">ข้อผิดพลาด Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">เกิดข้อผิดพลาด Google Play ภายใน โปรดลองดำเนินการต่อไปนี้:\n\n• รีสตาร์ตอุปกรณ์ของคุณ\n• ล้างแคช Google Play Store\n• ลองอีกครั้งในภายหลัง</string>
+    <string name="upgrades_gplay_network_error_title">ข้อผิดพลาดการเชื่อมต่อ</string>
+    <string name="upgrades_gplay_network_error_description">ไม่สามารถเชื่อมต่อกับ Google Play ได้ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง</string>
+    <string name="upgrades_gplay_offer_unavailable_title">ข้อเสนอไม่พร้อมใช้งาน</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play ไม่ได้เสนอตัวเลือกการอัปเกรดนี้ในขณะนี้ โปรดลองอีกครั้งในภายหลังหรือตรวจสอบ Google Play Store</string>
 </resources>

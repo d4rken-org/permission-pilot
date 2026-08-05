@@ -539,7 +539,12 @@
     <string name="upgrade_benefit_monitoring">権限監視</string>
     <string name="upgrade_benefit_support">開発者をサポート</string>
     <string name="upgrade_benefit_manifest_viewer">アプリの生のマニフェストを閲覧</string>
+    <string name="general_navigate_up_action">上へ移動</string>
+    <string name="general_progress_loading">読み込み中…</string>
     <string name="general_upgrade_action">アップグレード</string>
+    <string name="general_copy_action">コピー</string>
+    <string name="general_copied_to_clipboard_msg">クリップボードにコピーしました</string>
+    <string name="general_view_details_for_x_action">%1$sの詳細を表示</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">アップグレード状態とオプション</string>

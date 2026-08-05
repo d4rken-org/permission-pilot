@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Allerede købt</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporterer, at du allerede ejer denne opgradering, men den kunne ikke gendannes. Kontroller, at du er logget ind med den Google-konto, der blev brugt til det oprindelige køb, og prøv derefter \"Gendan køb\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot er reklamefri og respekterer dit privatliv. Opgradering støtter fortsat udvikling.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Priser ikke tilgængelige</string>
+    <string name="upgrade_screen_offers_unavailable_message">Priserne kunne ikke indlæses lige nu. Kontroller Google Play og prøv igen om lidt.</string>
     <string name="upgrade_screen_subscription_trial_action">Start gratis prøveperiode</string>
     <string name="upgrade_screen_subscription_action">Abonner</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/år, annuller når som helst</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Flere konti kan forvirre Google Play. Installation af appen via Google Play-hjemmesiden fremtvinger tilknytning til en bestemt konto.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play-synkronisering kan tage tid. Prøv at genstarte, rydde Google Play Store-cachen eller bare vent.</string>
     <string name="upgrade_screen_restore_contact_hint">Stadig fast? Kontakt support fra den e-mail, der foretog købet, og inkluder dit Google Play-ordrenummer.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Få %1$s</string>
+    <string name="upgrade_screen_benefits_title">Opgraderingsfordele</string>
+    <string name="upgrade_screen_thanks_toast">Du er den bedste! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro er stadig aktiv. Venter på, at Google Play bekræfter dit køb igen, alle Pro-funktioner forbliver låst op i mellemtiden.</string>
+    <string name="upgrade_screen_restore_body">Gendannelse beder Google Play om at kontrollere dette apps køb for den aktuelle konto igen. Det starter ikke et nyt køb.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Kontrollen med Google Play blev ikke færdig i tide, så din købsstatus er stadig ukendt. Intet er ændret på din konto.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan ikke forbinde til Google Play. Er Google Play installeret og opdateret? Er din Google-konto logget ind? Prøv at rydde cachen i Google Play-appen og genstarte din enhed.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play Problem</string>
+    <string name="upgrades_gplay_billing_error_description">Der opstod et problem med Google Play. Prøv igen senere eller genstart din enhed.\n\nDetaljer: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play-fejl</string>
+    <string name="upgrades_gplay_internal_error_description">Internt Google Play-fejl opstod. Prøv venligst følgende:\n\n• Genstart din enhed\n• Ryd Google Play Store-cachen\n• Prøv igen senere</string>
+    <string name="upgrades_gplay_network_error_title">Forbindelsesfejl</string>
+    <string name="upgrades_gplay_network_error_description">Kan ikke forbinde til Google Play. Kontroller din internetforbindelse og prøv igen.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Tilbud ikke tilgængeligt</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play tilbyder ikke aktuelt denne opgraderingsmulighed. Prøv igen senere eller kontroller Google Play Store.</string>
 </resources>

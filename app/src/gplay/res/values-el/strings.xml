@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Ήδη αγορασμένο</string>
     <string name="upgrades_gplay_already_owned_error">Το Google Play αναφέρει ότι έχετε ήδη αυτήν την αναβάθμιση, αλλά δεν ήταν δυνατό να επαναφερθεί. Βεβαιωθείτε ότι είστε συνδεδεμένοι με τον λογαριασμό Google που χρησιμοποιήθηκε για την αρχική αγορά, στη συνέχεια δοκιμάστε «Επαναφορά αγοράς».</string>
     <string name="upgrade_screen_preamble">Το Permission Pilot είναι χωρίς διαφημίσεις και σέβεται την ιδιωτικότητά σας. Η αναβάθμιση υποστηρίζει τη συνεχή ανάπτυξη.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Τιμές μη διαθέσιμες</string>
+    <string name="upgrade_screen_offers_unavailable_message">Οι τιμές δεν μπορούσαν να φορτωθούν αυτή τη στιγμή. Ελέγξτε το Google Play και δοκιμάστε ξανά σε λίγο.</string>
     <string name="upgrade_screen_subscription_trial_action">Έναρξη δωρεάν δοκιμής</string>
     <string name="upgrade_screen_subscription_action">Εγγραφή</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/χρόνο, ακύρωση ανά πάσα στιγμή</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Πολλοί λογαριασμοί μπορεί να μπερδέψουν το Google Play. Η εγκατάσταση της εφαρμογής μέσω του ιστοτόπου Google Play την αναγκάζει να συσχετίζεται με έναν συγκεκριμένο λογαριασμό.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Ο συγχρονισμός του Google Play ενδέχεται να πάρει χρόνο. Δοκιμάστε να κάνετε επανεκκίνηση, να καθαρίσετε την προσωρινή μνήμη του Google Play Store ή απλώς να περιμένετε.</string>
     <string name="upgrade_screen_restore_contact_hint">Ακόμα κολλημένοι; Επικοινωνήστε με την υποστήριξη από το email που έκανε την αγορά και συμπεριλάβετε τον αριθμό παραγγελίας του Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Αποκτήστε %1$s</string>
+    <string name="upgrade_screen_benefits_title">Πλεονεκτήματα αναβάθμισης</string>
+    <string name="upgrade_screen_thanks_toast">Είστε οι καλύτεροι! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Το Pro είναι ακόμα ενεργό. Αναμονή ώστε το Google Play να επιβεβαιώσει ξανά την αγορά σας, όλες οι δυνατότητες Pro παραμένουν ξεκλείδωτες προς το παρόν.</string>
+    <string name="upgrade_screen_restore_body">Η επαναφορά ζητά από το Google Play να ελέγξει ξανά τις αγορές αυτής της εφαρμογής για τον τρέχοντα λογαριασμό. Δεν ξεκινά νέα αγορά.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Ο έλεγχος με το Google Play δεν ολοκληρώθηκε εγκαίρως, οπότε η κατάσταση αγοράς σας είναι ακόμα άγνωστη. Τίποτα δεν έχει αλλάξει στο λογαριασμό σας.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Η εφαρμογή Permission Pilot δεν μπορεί να συνδεθεί με το Google Play. Είναι εγκατεστημένο και ενημερωμένο το Google Play; Είναι συνδεδεμένος ο λογαριασμός σας Google; Δοκιμάστε να καθαρίσετε την προσωρινή μνήμη cache της εφαρμογής Google Play και να επανεκκινήσετε τη συσκευή σας.</string>
+    <string name="upgrades_gplay_billing_error_label">Πρόβλημα Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Παρουσιάστηκε κάποιο πρόβλημα με το Google Play. Δοκιμάστε ξανά αργότερα ή επανεκκινήστε τη συσκευή σας.\n\nΛεπτομέρειες: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Σφάλμα Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Παρουσιάστηκε εσωτερικό σφάλμα του Google Play. Δοκιμάστε τα εξής:\n\n• Επανεκκινήστε τη συσκευή σας\n• Καθαρίστε την προσωρινή μνήμη του Google Play Store\n• Δοκιμάστε ξανά αργότερα</string>
+    <string name="upgrades_gplay_network_error_title">Σφάλμα σύνδεσης</string>
+    <string name="upgrades_gplay_network_error_description">Αδυναμία σύνδεσης με το Google Play. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο και δοκιμάστε ξανά.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Προσφορά μη διαθέσιμη</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Το Google Play δεν προσφέρει αυτή την επιλογή αναβάθμισης αυτή τη στιγμή. Δοκιμάστε ξανά αργότερα ή ελέγξτε το Google Play Store.</string>
 </resources>

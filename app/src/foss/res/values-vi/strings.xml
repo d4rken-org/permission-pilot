@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Ủng hộ lại</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot được phát triển công khai. Hãy xem xét một chương trình tài trợ định kỳ để giúp duy trì nó.</string>
     <string name="upgrade_screen_recurring_action">Mở GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Hỗ trợ Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Lợi ích nâng cấp</string>
+    <string name="upgrade_screen_how_title">Làm thế nào để giúp đỡ</string>
+    <string name="upgrade_screen_how_body">Trở thành người bảo trợ và tài trợ phát triển! Nhấp vào nút bên dưới để kích hoạt tất cả các tính năng bổ sung và mở hồ sơ Nhà tài trợ GitHub của tôi.</string>
+    <string name="upgrade_screen_thanks_toast">Cảm ơn bạn đã hỗ trợ phát triển mã nguồn mở ❤️</string>
 </resources>

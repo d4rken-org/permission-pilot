@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Már megvásárolt</string>
     <string name="upgrades_gplay_already_owned_error">A Google Play azt jelenti, hogy már rendelkezel ezzel a frissítéssel, de nem sikerült helyreállítani. Ellenőrizd, hogy bejelentkeztél-e azzal a Google-fiókkal, amelyet az eredeti vásárláshoz használtál, majd próbáld meg a \"Vásárlás helyreállítása\" lehetőséget.</string>
     <string name="upgrade_screen_preamble">A Permission Pilot reklámmentes és tiszteletben tartja az adatvédelmed. A frissítés támogatja a további fejlesztést.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Az árak nem érhetők el</string>
+    <string name="upgrade_screen_offers_unavailable_message">Az árak most nem töltöttek be. Ellenőrizd a Google Play-t, és próbálkozz később.</string>
     <string name="upgrade_screen_subscription_trial_action">Ingyenes próba indítása</string>
     <string name="upgrade_screen_subscription_action">Iratkozz fel</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/év, bármikor lemondható</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Több fiók összezavarhatja a Google Play-t. Az alkalmazás Google Play webhelyről történő telepítése azt kényszeríti, hogy egy adott fiókkal társuljon.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">A Google Play szinkronizálása eltarthat egy ideig. Próbálj meg újraindítani, töröld a Google Play Store gyorsítótárát, vagy egyszerűen csak várakozz.</string>
     <string name="upgrade_screen_restore_contact_hint">Még mindig elakadt? Lépj kapcsolatba a támogatással a vásárlást végzett e-mail címről, és add meg a Google Play megrendelési számot.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Szerezd meg a %1$s</string>
+    <string name="upgrade_screen_benefits_title">Frissítés előnyei</string>
+    <string name="upgrade_screen_thanks_toast">Te vagy a legjobb! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">A Pro még aktív. Várakozunk, amíg a Google Play megerősíti a vásárlásod – addig az összes Pro funkció feloldva marad.</string>
+    <string name="upgrade_screen_restore_body">A visszaállítás felkéri a Google Play-t, hogy ellenőrizze az alkalmazás vásárlásait az aktuális fióknál. Nem indít új vásárlást.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Az ellenőrzés a Google Play-vel nem fejeződött be időben, így a vásárlási állapot még mindig ismeretlen. A fiókod nem változott.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">A Permission Pilot nem tud csatlakozni a Google Playhez. Telepített és naprakész a Google Play? Be vagy jelentkezve Google-fiókkal? Próbáld meg törölni a Google Play alkalmazás gyorsítótárát és indítsd újra az eszközt.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play probléma</string>
+    <string name="upgrades_gplay_billing_error_description">Hiba lépett fel a Google Play-vel. Próbálkozz később, vagy indítsd újra az eszközt.\n\nRészletek: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play hiba</string>
+    <string name="upgrades_gplay_internal_error_description">A Google Play belső hibája felmerült. Próbáld meg az alábbiak közül:\n\n\u2022 Indítsd újra az eszközt\n\u2022 Töröld a Google Play Store gyorsítótárát\n\u2022 Próbálkozz később</string>
+    <string name="upgrades_gplay_network_error_title">Csatlakozási hiba</string>
+    <string name="upgrades_gplay_network_error_description">Nem sikerült csatlakozni a Google Playhez. Ellenőrizd az internetkapcsolatod, és próbálkozz újra.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Az ajánlat nem érhető el</string>
+    <string name="upgrades_gplay_offer_unavailable_description">A Google Play jelenleg nem kínálja ezt a frissítési lehetőséget. Próbálkozz később, vagy ellenőrizd a Google Play Store-t.</string>
 </resources>

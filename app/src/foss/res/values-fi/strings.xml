@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Tue uudelleen</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot kehitetään avoimesti. Harkitse toistuvaa tukea sen jatkuvuuden turvaamiseksi.</string>
     <string name="upgrade_screen_recurring_action">Avaa GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Tue Permission Pilotia</string>
+    <string name="upgrade_screen_why_title">Päivityksen edut</string>
+    <string name="upgrade_screen_how_title">Kuinka auttaa</string>
+    <string name="upgrade_screen_how_body">Ryhdy tukijaksi ja sponsoroi kehitystä! Napauta alla olevaa painiketta aktivoidaksesi kaikki lisäominaisuudet ja avataksesi GitHub Sponsors -profiilini.</string>
+    <string name="upgrade_screen_thanks_toast">Kiitos avoimen lähdekoodin kehityksen tukemisesta ❤️</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">已購買</string>
     <string name="upgrades_gplay_already_owned_error">Google Play 報告您已擁有此升級，但無法復原。請檢查您是否使用原始購買所用的 Google 帳戶登入，然後嘗試「復原購買」。</string>
     <string name="upgrade_screen_preamble">Permission Pilot 無廣告且尊重您的隱私。升級可支持持續開發。</string>
+    <string name="upgrade_screen_offers_unavailable_title">價格無法取得</string>
+    <string name="upgrade_screen_offers_unavailable_message">目前無法載入價格。請查看 Google Play 並稍後重試。</string>
     <string name="upgrade_screen_subscription_trial_action">開始免費試用</string>
     <string name="upgrade_screen_subscription_action">訂閱</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/年，隨時可取消</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">多個帳戶可能會導致 Google Play 混亂。透過 Google Play 網站安裝應用程式會強制將其與特定帳戶關聯。</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play 同步可能需要一段時間。請嘗試重新啟動、清除 Google Play Store 快取或耐心等候。</string>
     <string name="upgrade_screen_restore_contact_hint">仍未解決？請使用進行購買的電子郵件帳戶聯絡支援，並提供您的 Google Play 訂單編號。</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">取得 %1$s</string>
+    <string name="upgrade_screen_benefits_title">升級權益</string>
+    <string name="upgrade_screen_thanks_toast">您是最棒的！❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro 仍在有效狀態。等待 Google Play 重新確認您的購買，同時所有 Pro 功能保持解鎖狀態。</string>
+    <string name="upgrade_screen_restore_body">還原會要求 Google Play 重新檢查該應用程式在目前帳戶的購買。這不會發起新的購買。</string>
+    <string name="upgrade_screen_restore_inconclusive_message">與 Google Play 的檢查未能及時完成，因此您的購買狀態仍不明。您帳戶中未有任何變更。</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot 無法連線至 Google Play。請確認 Google Play 已安裝且為最新版本，同時確保已經登入 Google 帳戶。您可以嘗試清除 Google Play 應用程式的快取或重新啟動您的裝置以修正此問題。</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play 問題</string>
+    <string name="upgrades_gplay_billing_error_description">Google Play 發生問題。請稍後再試一次或重新啟動您的裝置。\n\n詳細資訊：%s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play 錯誤</string>
+    <string name="upgrades_gplay_internal_error_description">發生 Google Play 內部錯誤。請嘗試以下操作：\n\n• 重新啟動您的裝置\n• 清除 Google Play 商店快取\n• 稍後重試</string>
+    <string name="upgrades_gplay_network_error_title">連線錯誤</string>
+    <string name="upgrades_gplay_network_error_description">無法連線至 Google Play。請檢查您的網際網路連線並重試。</string>
+    <string name="upgrades_gplay_offer_unavailable_title">優惠無法取得</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play 目前未提供此升級選項。請稍後重試或查看 Google Play 商店。</string>
 </resources>
