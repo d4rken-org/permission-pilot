@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">Supervisión de permisos</string>
     <string name="upgrade_benefit_support">Apoya al desarrollador</string>
     <string name="upgrade_benefit_manifest_viewer">Explorar manifiestos de apps sin procesar</string>
+    <string name="general_navigate_up_action">Navegar arriba</string>
+    <string name="general_progress_loading">Cargando…</string>
     <string name="general_upgrade_action">Actualizar</string>
+    <string name="general_copy_action">Copiar</string>
+    <string name="general_copied_to_clipboard_msg">Copiado en el portapapeles</string>
+    <string name="general_view_details_for_x_action">Ver detalles de %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Estado de actualización y opciones</string>

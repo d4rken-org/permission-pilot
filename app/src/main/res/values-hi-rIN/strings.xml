@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">अनुमति निगरानी</string>
     <string name="upgrade_benefit_support">डेवलपर का समर्थन करें</string>
     <string name="upgrade_benefit_manifest_viewer">कच्चे ऐप मेनिफेस्ट ब्राउज़ करें</string>
+    <string name="general_navigate_up_action">ऊपर जाएँ</string>
+    <string name="general_progress_loading">लोड हो रहा है…</string>
     <string name="general_upgrade_action">उन्नत करें</string>
+    <string name="general_copy_action">कॉपी करें</string>
+    <string name="general_copied_to_clipboard_msg">क्लिपबोर्ड पर प्रतिलिपि बनाई गई</string>
+    <string name="general_view_details_for_x_action">%1$s के लिए विवरण देखें</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">अपग्रेड की स्थिति और विकल्प</string>

@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Támogass újra</string>
     <string name="upgrade_screen_recurring_body">A Permission Pilot nyílt forráskódban fejlesztik. Fontold meg az ismétlődő szponzorálást a fenntartásának segítésére.</string>
     <string name="upgrade_screen_recurring_action">GitHub Sponsors megnyitása</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Támogasd a Permission Pilot-ot</string>
+    <string name="upgrade_screen_why_title">Frissítés előnyei</string>
+    <string name="upgrade_screen_how_title">Hogyan lehet segíteni</string>
+    <string name="upgrade_screen_how_body">Legyen patron támogató és szponzorálja a fejlesztést! Kattintson az alábbi gombra az összes extra funkció aktiválásához és a GitHub Sponsors profilom megnyitásához.</string>
+    <string name="upgrade_screen_thanks_toast">Köszönjük, hogy támogatod a nyílt forráskódú fejlesztést ❤️</string>
 </resources>

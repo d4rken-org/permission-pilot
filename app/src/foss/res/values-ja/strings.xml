@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">もう一度サポートする</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot はオープンな形で開発されています。継続的なスポンサーシップをご検討ください。</string>
     <string name="upgrade_screen_recurring_action">GitHub スポンサーを開く</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Permission Pilot をサポート</string>
+    <string name="upgrade_screen_why_title">アップグレードの利点</string>
+    <string name="upgrade_screen_how_title">協力するには</string>
+    <string name="upgrade_screen_how_body">パトロンとスポンサーの開発になりましょう！下のボタンをタップすると、すべての追加機能が有効になり、GitHub Sponsors プロファイルを開きます。</string>
+    <string name="upgrade_screen_thanks_toast">オープンソースでの開発に協力してくれてありがとうございます ❤️</string>
 </resources>

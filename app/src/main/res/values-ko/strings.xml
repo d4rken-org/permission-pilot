@@ -539,7 +539,12 @@
     <string name="upgrade_benefit_monitoring">권한 모니터링</string>
     <string name="upgrade_benefit_support">개발자 지원하기</string>
     <string name="upgrade_benefit_manifest_viewer">원시 앱 매니페스트 탐색</string>
+    <string name="general_navigate_up_action">위로 이동</string>
+    <string name="general_progress_loading">불러오는 중…</string>
     <string name="general_upgrade_action">업그레이드</string>
+    <string name="general_copy_action">복사</string>
+    <string name="general_copied_to_clipboard_msg">클립보드로 복사됨</string>
+    <string name="general_view_details_for_x_action">%1$s의 세부정보 보기</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">업그레이드 상태 및 옵션</string>

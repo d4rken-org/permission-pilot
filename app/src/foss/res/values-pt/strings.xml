@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Apoie novamente</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot é desenvolvido de forma aberta. Considere um patrocínio recorrente para ajudar a sustentá-lo.</string>
     <string name="upgrade_screen_recurring_action">Abrir GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Apoiar Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Benefícios da atualização</string>
+    <string name="upgrade_screen_how_title">Como ajudar</string>
+    <string name="upgrade_screen_how_body">Torne-se patrono e apoie o desenvolvimento! Toque no botão abaixo para ativar todas as funcionalidades adicionais e abrir o meu perfil no GitHub Sponsors.</string>
+    <string name="upgrade_screen_thanks_toast">Obrigado por apoiar o desenvolvimento de código aberto ❤️</string>
 </resources>

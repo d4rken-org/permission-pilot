@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">Jogosultság-figyelelés</string>
     <string name="upgrade_benefit_support">Támogasd a fejlesztőt</string>
     <string name="upgrade_benefit_manifest_viewer">Nyers alkalmazás-manifestek böngészése</string>
+    <string name="general_navigate_up_action">Vissza</string>
+    <string name="general_progress_loading">Betöltés…</string>
     <string name="general_upgrade_action">Frissítés</string>
+    <string name="general_copy_action">Másolás</string>
+    <string name="general_copied_to_clipboard_msg">Vágólapra másolva</string>
+    <string name="general_view_details_for_x_action">Tekintsd meg a részleteket: %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Frissítés állapota és lehetőségei</string>

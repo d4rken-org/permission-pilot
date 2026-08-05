@@ -608,7 +608,12 @@
     <string name="upgrade_benefit_monitoring">Мониторинг разрешений</string>
     <string name="upgrade_benefit_support">Поддержать разработчика</string>
     <string name="upgrade_benefit_manifest_viewer">Просмотр разрых манифестов приложений</string>
+    <string name="general_navigate_up_action">Перейти вверх</string>
+    <string name="general_progress_loading">Загрузка…</string>
     <string name="general_upgrade_action">Обновить</string>
+    <string name="general_copy_action">Копировать</string>
+    <string name="general_copied_to_clipboard_msg">Скопировано в буфер</string>
+    <string name="general_view_details_for_x_action">Просмотреть сведения о %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус и параметры обновления</string>

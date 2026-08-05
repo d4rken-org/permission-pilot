@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Ondersteun weer</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot word in die openheid ontwikkel. Oorweeg \'n herhalende borgskap om dit te help volhou.</string>
     <string name="upgrade_screen_recurring_action">Maak GitHub Sponsors oop</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Ondersteun Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Opgraadvoordele</string>
+    <string name="upgrade_screen_how_title">Hoe om te help</string>
+    <string name="upgrade_screen_how_body">Word \'n beskermheer en borg ontwikkeling! Tik die knoppie hieronder om alle ekstra funksies te aktiveer en my GitHub Sponsors profiel oop te maak.</string>
+    <string name="upgrade_screen_thanks_toast">Dankie dat jy oopbron ontwikkeling ondersteun ❤️</string>
 </resources>

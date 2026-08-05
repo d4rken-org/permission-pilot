@@ -539,7 +539,12 @@
     <string name="upgrade_benefit_monitoring">การตรวจจับสิทธิ์</string>
     <string name="upgrade_benefit_support">สนับสนุนนักพัฒนา</string>
     <string name="upgrade_benefit_manifest_viewer">ดู Manifest ดิบของแอป</string>
+    <string name="general_navigate_up_action">ไปขึ้น</string>
+    <string name="general_progress_loading">กำลังโหลด…</string>
     <string name="general_upgrade_action">อัปเกรด</string>
+    <string name="general_copy_action">คัดลอก</string>
+    <string name="general_copied_to_clipboard_msg">คัดลอกไปยังคลิปบอร์ด</string>
+    <string name="general_view_details_for_x_action">ดูรายละเอียดสำหรับ %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">สถานะการอัปเกรดและตัวเลือก</string>

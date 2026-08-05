@@ -608,7 +608,12 @@
     <string name="upgrade_benefit_monitoring">ניטור הרשאות</string>
     <string name="upgrade_benefit_support">תמוך במפתח</string>
     <string name="upgrade_benefit_manifest_viewer">עיון במניפסטים גולמיים של אפליקציות</string>
+    <string name="general_navigate_up_action">עלה</string>
+    <string name="general_progress_loading">טוען…</string>
     <string name="general_upgrade_action">שדרוג</string>
+    <string name="general_copy_action">העתקה</string>
+    <string name="general_copied_to_clipboard_msg">הועתק ללוח</string>
+    <string name="general_view_details_for_x_action">הצג פרטים עבור %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">סטטוס השדרוג ואפשרויות</string>

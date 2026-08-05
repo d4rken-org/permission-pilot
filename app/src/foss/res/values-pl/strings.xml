@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Ponowne wsparcie</string>
     <string name="upgrade_screen_recurring_body">Pilot Uprawnień jest rozwijany w sposób otwarty. Rozważ stałe wspieranie, aby go utrzymać.</string>
     <string name="upgrade_screen_recurring_action">Otwórz GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Wesprzyj Pilot Uprawnień</string>
+    <string name="upgrade_screen_why_title">Korzyści z uaktualnienia</string>
+    <string name="upgrade_screen_how_title">Jak pomóc</string>
+    <string name="upgrade_screen_how_body">Zostań patronem i wspieraj rozwój! Dotknij przycisku poniżej, aby aktywować wszystkie dodatkowe funkcje i otworzyć mój profil GitHub Sponsors.</string>
+    <string name="upgrade_screen_thanks_toast">Dziękuję za wsparcie rozwoju oprogramowania otwartego źródłowego ❤️</string>
 </resources>

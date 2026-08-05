@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Ya adquirido</string>
     <string name="upgrades_gplay_already_owned_error">Google Play reporta que ya tienes esta actualización, pero no se pudo restaurar. Verifica que hayas iniciado sesión con la cuenta de Google utilizada para la compra original y luego intenta «Restaurar compra».</string>
     <string name="upgrade_screen_preamble">Permission Pilot no tiene anuncios y respeta tu privacidad. Actualizar apoya el desarrollo continuo.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Precios no disponibles</string>
+    <string name="upgrade_screen_offers_unavailable_message">Los precios no se pudieron cargar en este momento. Consulta Google Play e intenta de nuevo en un momento.</string>
     <string name="upgrade_screen_subscription_trial_action">Iniciar el período de prueba gratuita</string>
     <string name="upgrade_screen_subscription_action">Suscríbete</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/año, cancela en cualquier momento</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Múltiples cuentas pueden confundir a Google Play. Instalar la aplicación a través del sitio web de Google Play la obliga a asociarse con una cuenta específica.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">La sincronización con Google Play puede tardar un tiempo. Intenta reiniciar, borrar la caché de Google Play Store o simplemente esperar.</string>
     <string name="upgrade_screen_restore_contact_hint">¿Aún atascado? Contacta con soporte desde el correo electrónico que realizó la compra e incluye tu número de pedido de Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Obtener %1$s</string>
+    <string name="upgrade_screen_benefits_title">Beneficios de la mejora</string>
+    <string name="upgrade_screen_thanks_toast">¡Eres el mejor! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro sigue activo. Esperando que Google Play reconfirme tu compra; todas las funciones Pro permanecen desbloqueadas mientras tanto.</string>
+    <string name="upgrade_screen_restore_body">Restaurar solicita a Google Play que recompruebe las compras de esta aplicación en la cuenta actual. No inicia una nueva compra.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">La comprobación con Google Play no se completó a tiempo, por lo que tu estado de compra sigue siendo desconocido. Nada ha cambiado en tu cuenta.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot no puede conectarse a Google Play. ¿Está Google Play instalado y actualizado? ¿Has iniciado sesión con tu cuenta de Google? Prueba a borrar la caché de la aplicación Google Play y reinicia tu dispositivo.</string>
+    <string name="upgrades_gplay_billing_error_label">Problema con Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Hubo un problema con la Google Play. Inténtalo de nuevo más tarde o reinicia tu dispositivo.\n\nDetalles: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Error de Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Se produjo un error interno de Google Play. Intenta lo siguiente:\n\n• Reinicia tu dispositivo\n• Borra la caché de Google Play Store\n• Intenta más tarde</string>
+    <string name="upgrades_gplay_network_error_title">Error de conexión</string>
+    <string name="upgrades_gplay_network_error_description">No se puede conectar a Google Play. Comprueba tu conexión a Internet e intenta de nuevo.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Oferta no disponible</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play actualmente no está ofreciendo esta opción de mejora. Intenta de nuevo más tarde o consulta la Google Play Store.</string>
 </resources>

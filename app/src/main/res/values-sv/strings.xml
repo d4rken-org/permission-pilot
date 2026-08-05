@@ -562,7 +562,12 @@
     <string name="upgrade_benefit_monitoring">Övervakning av behörigheter</string>
     <string name="upgrade_benefit_support">Stöd utvecklaren</string>
     <string name="upgrade_benefit_manifest_viewer">Bläddra i råa appmanifest</string>
+    <string name="general_navigate_up_action">Navigera upp</string>
+    <string name="general_progress_loading">Läser in…</string>
     <string name="general_upgrade_action">Uppgradera</string>
+    <string name="general_copy_action">Kopiera</string>
+    <string name="general_copied_to_clipboard_msg">Kopierat till urklipp</string>
+    <string name="general_view_details_for_x_action">Visa detaljer för %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Uppgraderingsstatus och alternativ</string>

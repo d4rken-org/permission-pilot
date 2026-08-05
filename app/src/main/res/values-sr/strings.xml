@@ -585,7 +585,12 @@
     <string name="upgrade_benefit_monitoring">Надзор дозвола</string>
     <string name="upgrade_benefit_support">Подржите програмера</string>
     <string name="upgrade_benefit_manifest_viewer">Прегледајте сирове манифесте апликација</string>
+    <string name="general_navigate_up_action">Иди нагоре</string>
+    <string name="general_progress_loading">Учитавање…</string>
     <string name="general_upgrade_action">Надогради</string>
+    <string name="general_copy_action">Копирај</string>
+    <string name="general_copied_to_clipboard_msg">Копирано у исечак</string>
+    <string name="general_view_details_for_x_action">Погледај детаље за %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус унапређења и опције</string>

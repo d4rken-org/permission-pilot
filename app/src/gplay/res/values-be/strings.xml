@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Ужо куплена</string>
     <string name="upgrades_gplay_already_owned_error">Google Play паведамляе, што вы ўжо валодаеце гэтым абнаўленнем, але яго не ўдалося аднавіць. Праверце, што вы ўвайшлі ў акаўнт Google, выкарыстаны для арыгінальнай пакупкі, а затым паспрабуйце «Аднавіць пакупку».</string>
     <string name="upgrade_screen_preamble">Permission Pilot не мае рэкламы і паважае вашу прыватнасць. Абнаўленне падтрымлівае далейшую распрацоўку.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Цаны недаступныя</string>
+    <string name="upgrade_screen_offers_unavailable_message">Цаны не змаглі загрузіцца зараз. Праверце Google Play і паспрабуйце пазней.</string>
     <string name="upgrade_screen_subscription_trial_action">Пачаць бясплатны пробны перыяд</string>
     <string name="upgrade_screen_subscription_action">Падпісацца</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/год, можна скасаваць у любы час</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Некалькі акаўнтаў могуць заблытаць Google Play. Усталяванне праграмы праз вэб-сайт Google Play прывязвае яе да пэўнага акаўнта.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Сінхранізацыя Google Play можа заняць пэўны час. Паспрабуйце перазагрузіцца, ачысціць кэш Google Play Store або проста пачакаць.</string>
     <string name="upgrade_screen_restore_contact_hint">Усё яшчэ не атрымліваецца? Звяжыцеся з падтрымкай з электроннай пошты, якую выкарыстоўвалі для пакупкі, і ўкажыце нумар замовы Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Атрымаць %1$s</string>
+    <string name="upgrade_screen_benefits_title">Перавагі абнаўлення</string>
+    <string name="upgrade_screen_thanks_toast">Вы найлепшы! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro па-ранейшаму актыўны. Чакаем пацвярджэння Google Play вашай пакупкі, усе функцыі Pro застаюцца разблакіраванымі.</string>
+    <string name="upgrade_screen_restore_body">Аднаўленне просіць Google Play яшчэ раз праверыць пакупкі гэтай праграмы для цяперашняга ўліковага запісу. Гэта не пачынае новую пакупку.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Праверка Google Play не паспела завершыцца, таму статус вашай пакупкі ўсё яшчэ невядомы. Нічога не змянілася ў вашым уліковым запісе.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не можа падключыцца да Google Play. Ці ўсталяваны і абноўлены Google Play? Вы ўвайшлі ў свой уліковы запіс Google? Паспрабуйце ачысціць кэш праграмы Google Play і перазагрузіць прыладу.</string>
+    <string name="upgrades_gplay_billing_error_label">Праблема з Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Узнікла праблема з Google Play. Паўтарыце спробу пазней або перазагрузіце прыладу.\n\nПадрабязнасці: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Памылка Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Адбылася ўнутраная памылка Google Play. Паспрабуйце наступнае:\n\n• Перазагрузіце вашу прыладу\n• Ачысціце кэш Google Play Store\n• Паспрабуйце пазней</string>
+    <string name="upgrades_gplay_network_error_title">Памылка падключэння</string>
+    <string name="upgrades_gplay_network_error_description">Не атрымалася падключыцца да Google Play. Праверце ваша інтэрнэт-злучэнне і паспрабуйце яшчэ раз.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Прапанова недаступна</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play зараз не прапаноўвае гэты варыянт абнаўлення. Паспрабуйце яшчэ раз пазней ці праверце Google Play Store.</string>
 </resources>

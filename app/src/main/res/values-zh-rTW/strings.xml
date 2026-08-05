@@ -539,7 +539,12 @@
     <string name="upgrade_benefit_monitoring">權限監控</string>
     <string name="upgrade_benefit_support">支持開發者</string>
     <string name="upgrade_benefit_manifest_viewer">瀏覽原始應用程式清單</string>
+    <string name="general_navigate_up_action">向上導覽</string>
+    <string name="general_progress_loading">正在載入…</string>
     <string name="general_upgrade_action">升級</string>
+    <string name="general_copy_action">複製</string>
+    <string name="general_copied_to_clipboard_msg">已複製到剪貼簿</string>
+    <string name="general_view_details_for_x_action">檢視 %1$s 的詳細資訊</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">升級狀態與選項</string>

@@ -539,7 +539,12 @@
     <string name="upgrade_benefit_monitoring">Giám sát quyền</string>
     <string name="upgrade_benefit_support">Hỗ trợ nhà phát triển</string>
     <string name="upgrade_benefit_manifest_viewer">Duyệt manifest thô của ứng dụng</string>
+    <string name="general_navigate_up_action">Quay lại</string>
+    <string name="general_progress_loading">Đang tải…</string>
     <string name="general_upgrade_action">Nâng cấp</string>
+    <string name="general_copy_action">Sao chép</string>
+    <string name="general_copied_to_clipboard_msg">Chép vào bộ nhớ tạm</string>
+    <string name="general_view_details_for_x_action">Xem chi tiết về %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Trạng thái nâng cấp và tùy chọn</string>

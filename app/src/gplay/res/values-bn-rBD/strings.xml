@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">ইতিমধ্যে ক্রয় করা হয়েছে</string>
     <string name="upgrades_gplay_already_owned_error">গুগল প্লে রিপোর্ট করে যে আপনি ইতিমধ্যে এই আপগ্রেডের মালিক, কিন্তু এটি পুনরুদ্ধার করা যায়নি। যাচাই করুন যে আপনি মূল ক্রয়ের জন্য ব্যবহৃত গুগল অ্যাকাউন্টে সাইন ইন করেছেন, তারপর \"ক্রয় পুনরুদ্ধার করুন\" চেষ্টা করুন।</string>
     <string name="upgrade_screen_preamble">Permission Pilot বিজ্ঞাপনমুক্ত এবং আপনার গোপনীয়তাকে সম্মান করে। আপগ্রেড করা চলমান ডিভেলপমেন্টকে সমর্থন করে।</string>
+    <string name="upgrade_screen_offers_unavailable_title">মূল্য উপলব্ধ নয়</string>
+    <string name="upgrade_screen_offers_unavailable_message">মূল্য এখন লোড করা যায়নি। Google Play চেক করুন এবং একটু পরে আবার চেষ্টা করুন।</string>
     <string name="upgrade_screen_subscription_trial_action">বিনামূল্যের ট্রায়াল শুরু করুন</string>
     <string name="upgrade_screen_subscription_action">সাবস্ক্রাইব করুন</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/বছর, যেকোনো সময় বাতিল করুন</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">একাধিক অ্যাকাউন্ট গুগল প্লেকে বিভ্রান্ত করতে পারে। গুগল প্লে ওয়েবসাইটের মাধ্যমে অ্যাপটি ইনস্টল করা এটিকে একটি নির্দিষ্ট অ্যাকাউন্টের সাথে যুক্ত করতে বাধ্য করে।</string>
     <string name="upgrade_screen_restore_sync_patience_hint">গুগল প্লে সিঙ্ক্রোনাইজেশন কিছু সময় লাগতে পারে। পুনরায় বুট করার চেষ্টা করুন, গুগল প্লে স্টোর ক্যাশ পরিষ্কার করুন, অথবা শুধুমাত্র অপেক্ষা করুন।</string>
     <string name="upgrade_screen_restore_contact_hint">এখনও আটকে আছেন? ক্রয় করা ইমেল থেকে সহায়তার যোগাযোগ করুন এবং আপনার গুগল প্লে অর্ডার নম্বর অন্তর্ভুক্ত করুন।</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$s পান</string>
+    <string name="upgrade_screen_benefits_title">আপগ্রেড সুবিধা</string>
+    <string name="upgrade_screen_thanks_toast">আপনি সেরা! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro এখনও সক্রিয়। Google Play আপনার ক্রয় পুনরায় নিশ্চিত করার জন্য অপেক্ষা করছে, এই মধ্যে সমস্ত Pro বৈশিষ্ট্য আনলক থাকবে।</string>
+    <string name="upgrade_screen_restore_body">পুনরুদ্ধার করলে Google Play কে বর্তমান অ্যাকাউন্টের জন্য এই অ্যাপের ক্রয় পুনরায় পরীক্ষা করার জন্য অনুরোধ করা হয়। এটি নতুন ক্রয় শুরু করে না।</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Play এর সাথে পরীক্ষা সময়মতো শেষ হয়নি, তাই আপনার ক্রয় স্থিতি এখনও অজানা। আপনার অ্যাকাউন্টে কিছুই পরিবর্তন হয়নি।</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play এর সাথে সংযোগ করতে পারছে না। Google Play কি ইনস্টল এবং আপ টু ডেট? আপনার Google অ্যাকাউন্ট লগ ইন আছে? Google Play অ্যাপের ক্যাশ সাফ করে এবং আপনার ডিভাইস রিবুট করে চেষ্টা করুন।</string>
+    <string name="upgrades_gplay_billing_error_label">গুগল প্লে সমস্যা</string>
+    <string name="upgrades_gplay_billing_error_description">Google Play তে সমস্যা হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন অথবা আপনার ডিভাইসটি পুনরায় চালু করুন।\n\nবিস্তারিত: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play ত্রুটি</string>
+    <string name="upgrades_gplay_internal_error_description">একটি অভ্যন্তরীণ Google Play ত্রুটি ঘটেছে। অনুগ্রহ করে নিম্নলিখিত চেষ্টা করুন:\n\n• আপনার ডিভাইস পুনরায় চালু করুন\n• Google Play Store ক্যাশ সাফ করুন\n• পরে আবার চেষ্টা করুন</string>
+    <string name="upgrades_gplay_network_error_title">সংযোগ ত্রুটি</string>
+    <string name="upgrades_gplay_network_error_description">Google Play এ সংযোগ করতে অক্ষম। অনুগ্রহ করে আপনার ইন্টারনেট সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
+    <string name="upgrades_gplay_offer_unavailable_title">অফার উপলব্ধ নয়</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play বর্তমানে এই আপগ্রেড বিকল্প অফার করছে না। অনুগ্রহ করে পরে আবার চেষ্টা করুন বা Google Play Store পরীক্ষা করুন।</string>
 </resources>

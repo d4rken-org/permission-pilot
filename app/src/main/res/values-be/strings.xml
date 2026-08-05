@@ -608,7 +608,12 @@
     <string name="upgrade_benefit_monitoring">Маніторынг дазволаў</string>
     <string name="upgrade_benefit_support">Падтрымаць разпрацоўшчыка</string>
     <string name="upgrade_benefit_manifest_viewer">Прагляд зыходных маніфестаў праграм</string>
+    <string name="general_navigate_up_action">Перайсці вверх</string>
+    <string name="general_progress_loading">Загрузка…</string>
     <string name="general_upgrade_action">Абнавіць</string>
+    <string name="general_copy_action">Скапіраваць</string>
+    <string name="general_copied_to_clipboard_msg">Скапіявана ў буфер абмену</string>
+    <string name="general_view_details_for_x_action">Прагледзець подробнасці %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус абнаўлення і варыянты</string>

@@ -17,4 +17,9 @@
     <string name="upgrade_screen_recurring_title">Soutenir à nouveau</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot est développé en open source. Envisagez un parrainage récurrent pour aider à le maintenir.</string>
     <string name="upgrade_screen_recurring_action">Ouvrir GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Soutenir Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Avantages de la mise à niveau</string>
+    <string name="upgrade_screen_how_title">Comment aider</string>
+    <string name="upgrade_screen_thanks_toast">Merci de soutenir le développement des logiciels libres ❤️</string>
 </resources>

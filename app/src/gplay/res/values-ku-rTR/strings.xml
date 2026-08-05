@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Jixwe Kirî</string>
     <string name="upgrades_gplay_already_owned_error">Google Play raportê dike ku tu vê bulaşê jixwe di xwe de heye, lê nikare were gerandin. Kontrol bike ku tu bê nava ketî bi hesabê Google ya ku ji bo kirina yekem hatiye bikaranîn, û paşê \"Beşdarkirina Venîştin\" biceribîne.</string>
     <string name="upgrade_screen_preamble">Permission Pilot بێ رێکلامەیە و نھێنیتکەت پھابوو دەکات. بەرزترکردن پشتگیریکردنی گەشەپێکردنی دەوامەیە.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Bihayên ne berdest in</string>
+    <string name="upgrade_screen_offers_unavailable_message">Bihayên îro nikarin barkirin. Google Play kontrol bike û dûv re hewl bide.</string>
     <string name="upgrade_screen_subscription_trial_action">دەستپێککردنی تەستی بەژیوانی</string>
     <string name="upgrade_screen_subscription_action">بوونهەڵبەست</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/sal, hûndirim bê gerd</string>
@@ -61,4 +63,28 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Gelek hesab dikarin Google Play-ê têkev bikin. Stkirina sepê ji rûpela malê ya Google Play bê bicih dike ku ew bi hesabeke diyarkirî re têkilî bibe.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Hemdamîya Google Play dikare demek bigire. Biceribînin ku sîstema nû bikiriş, dîskerê Google Play Store paqij bikiriş, an jî bê derewî sekinê.</string>
     <string name="upgrade_screen_restore_contact_hint">Hîn jî tê êşkirtin? Piştiranê ji e-nameyê ya ku kirînê kiribe bikişîne û jimara fermangeha Google Play-ê ya te cih bikiriş.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$s wergir</string>
+    <string name="upgrade_screen_benefits_title">Sûdên pêşbirkî</string>
+    <string name="upgrade_screen_thanks_toast">Tu ên çêtirîn! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro hîn çalak e. Tê bendewarekirin ku Google Play kirîdanî were pejirandin. Hemû taybetmendiyên Pro ne girtî ne.</string>
+    <string name="upgrade_screen_restore_body">Vegerandine ji Google Play dixwaze ku kirîdanên vê sepanê ji bo hesabê niha were kontrol kirin. Ew kirîdarî nû dest pê nakin.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Kontrola Google Play ne qediya. Status kirîdanê te ne tê zanîn. Tiştek li ser hesaba te ne hat guhertin.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot nikare bi Google Play re peyivîn. Google Play sazkirî û nûce ye? Hesabê Google têketî ye? Cache Google Play paqij bike û cihazê vegerandinê.</string>
+    <string name="upgrades_gplay_billing_error_label">Pirsgirêka Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Pirsgirêk bi Google Play re derket. Paşê hewl bide an cihazê vegerandinê.
+
+Hûrguş: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Hejmarkirina Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Çalakiya hundirî Google Play derket. Vir hewl bidin:
+
+• Cihazê vegerandinê
+• Cache Google Play paqij bike
+• Paşê hewl bide</string>
+    <string name="upgrades_gplay_network_error_title">Hejmarkirina girêdanê</string>
+    <string name="upgrades_gplay_network_error_description">Nikare bi Google Play re girê bidin. Girêdana internetê kontrol bike û hewl bide.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Peşniyaz ne berdest e</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play niha vê opsiyonê pêşkêş nake. Paşê hewl bide an Google Play Store kontrol bike.</string>
 </resources>

@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Đã mua</string>
     <string name="upgrades_gplay_already_owned_error">Google Play báo cáo rằng bạn đã sở hữu nâng cấp này, nhưng không thể khôi phục được. Kiểm tra rằng bạn đã đăng nhập bằng tài khoản Google được sử dụng để mua hàng ban đầu, sau đó hãy thử \"Khôi phục mua hàng\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot không có quảng cáo và tôn trọng quyền riêng tư của bạn. Việc nâng cấp ủng hộ quá trình phát triển liên tục.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Giá không có sẵn</string>
+    <string name="upgrade_screen_offers_unavailable_message">Không thể tải giá lúc này. Kiểm tra Google Play và thử lại trong giây lát.</string>
     <string name="upgrade_screen_subscription_trial_action">Bắt đầu dùng thử miễn phí</string>
     <string name="upgrade_screen_subscription_action">Đăng ký</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/năm, hủy bất cứ lúc nào</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Nhiều tài khoản có thể làm Google Play nhầm lẫn. Cài đặt ứng dụng từ trang web Google Play sẽ buộc nó liên kết với một tài khoản cụ thể.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Đồng bộ hóa Google Play có thể mất một lúc. Hãy thử khởi động lại, xóa bộ nhớ đệm Google Play Store hoặc chỉ chờ đợi.</string>
     <string name="upgrade_screen_restore_contact_hint">Vẫn gặp vấn đề? Liên hệ hỗ trợ từ email đã thực hiện mua hàng và kèm theo số đơn hàng Google Play của bạn.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Nhận %1$s</string>
+    <string name="upgrade_screen_benefits_title">Lợi ích nâng cấp</string>
+    <string name="upgrade_screen_thanks_toast">Bạn là tuyệt nhất! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro vẫn còn hoạt động. Chờ Google Play xác nhận lại lần nữa, tất cả các tính năng Pro vẫn được mở khóa trong thời gian này.</string>
+    <string name="upgrade_screen_restore_body">Khôi phục yêu cầu Google Play kiểm tra lại các mua hàng của ứng dụng này cho tài khoản hiện tại. Nó không bắt đầu mua hàng mới.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Kiểm tra với Google Play không hoàn thành kịp thời, vì vậy trạng thái mua hàng của bạn vẫn còn chưa xác định. Không có gì thay đổi trên tài khoản của bạn.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot không thể kết nối với Google Play. Google Play đã được cài đặt và cập nhật chưa? Tài khoản Google của bạn đã đăng nhập chưa? Hãy thử xóa bộ nhớ đệm của ứng dụng Google Play và khởi động lại thiết bị của bạn.</string>
+    <string name="upgrades_gplay_billing_error_label">Sự cố Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Đã xảy ra sự cố với Google Play. Vui lòng thử lại sau hoặc khởi động lại thiết bị của bạn.\n\nChi tiết: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Lỗi Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Đã xảy ra lỗi nội bộ của Google Play. Vui lòng thử những điều sau:\n\n• Khởi động lại thiết bị của bạn\n• Xóa bộ nhớ cache của Google Play Store\n• Thử lại sau</string>
+    <string name="upgrades_gplay_network_error_title">Lỗi kết nối</string>
+    <string name="upgrades_gplay_network_error_description">Không thể kết nối với Google Play. Vui lòng kiểm tra kết nối internet của bạn và thử lại.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Ưu đãi không có sẵn</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play hiện không cung cấp tùy chọn nâng cấp này. Vui lòng thử lại sau hoặc kiểm tra Google Play Store.</string>
 </resources>

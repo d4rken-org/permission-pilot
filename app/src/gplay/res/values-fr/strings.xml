@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Déjà acheté</string>
     <string name="upgrades_gplay_already_owned_error">Google Play indique que vous possédez déjà cette mise à niveau, mais elle n’a pas pu être restaurée. Vérifiez que vous êtes connecté au compte Google utilisé pour l’achat initial, puis essayez « Restaurer l’achat ».</string>
     <string name="upgrade_screen_preamble">Permission Pilot est sans publicité et respecte votre vie privée. La mise à niveau soutient le développement continu.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Prix indisponibles</string>
+    <string name="upgrade_screen_offers_unavailable_message">Les prix n\'ont pas pu être chargés pour le moment. Vérifiez Google Play et réessayez dans un instant.</string>
     <string name="upgrade_screen_subscription_trial_action">Commencer l’essai gratuit</string>
     <string name="upgrade_screen_subscription_action">M’abonner</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/an, annulation à tout moment</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Plusieurs comptes peuvent perturber Google Play. Installer l’appli via le site Web de Google Play force son association avec un compte spécifique.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">La synchronisation Google Play peut prendre du temps. Essayez de redémarrer votre appareil, de vider le cache de Google Play Store ou simplement d’attendre.</string>
     <string name="upgrade_screen_restore_contact_hint">Toujours bloqué ? Contactez le support depuis l’adresse e-mail qui a effectué l’achat et incluez votre numéro de commande Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Obtenir %1$s</string>
+    <string name="upgrade_screen_benefits_title">Avantages de la mise à niveau</string>
+    <string name="upgrade_screen_thanks_toast">Vous êtes formidable ! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro est toujours actif. En attente de confirmation de Google Play pour votre achat, toutes les fonctionnalités Pro restent déverrouillées en attendant.</string>
+    <string name="upgrade_screen_restore_body">La restauration demande à Google Play de revérifier les achats de cette appli pour le compte actuel. Cela ne démarre pas un nouvel achat.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">La vérification avec Google Play n\'a pas pu se terminer à temps, votre statut d\'achat reste donc inconnu. Rien n\'a changé sur votre compte.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ne peut pas se connecter à Google Play. L\'appli Google Play est-elle installée et à jour ? Votre compte Google est-il connecté ? Essayez de vider le cache de l\'appli Google Play et de redémarrer votre appareil.</string>
+    <string name="upgrades_gplay_billing_error_label">Problème avec Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Un problème est survenu avec Google Play. Réessayez ultérieurement ou redémarrer votre appareil.\n\nDétails : %s</string>
+    <string name="upgrades_gplay_internal_error_title">Erreur Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Une erreur interne Google Play est survenue. Essayez de :\n\n• Redémarrer votre appareil\n• Vider le cache du magasin Google Play\n• Réessayer plus tard</string>
+    <string name="upgrades_gplay_network_error_title">Erreur de connexion</string>
+    <string name="upgrades_gplay_network_error_description">Impossible de se connecter à Google Play. Vérifiez votre connexion à Internet et réessayez.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Offre indisponible</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play n\'offre pas actuellement cette option de mise à niveau. Réessayez plus tard ou consultez le Google Play Store.</string>
 </resources>

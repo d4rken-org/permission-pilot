@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">تم شراؤه بالفعل</string>
     <string name="upgrades_gplay_already_owned_error">يفيد Google Play بأنك تمتلك هذه الترقية بالفعل، لكن لم يتمكن من استعادتها. تحقق من أنك مسجل الدخول بحساب Google الذي استخدمته في الشراء الأصلي، ثم جرّب \"استعادة الشراء\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot خالي من الإعلانات ويحترم خصوصيتك. الترقية تدعم استمرار التطوير.</string>
+    <string name="upgrade_screen_offers_unavailable_title">الأسعار غير متاحة</string>
+    <string name="upgrade_screen_offers_unavailable_message">لم يتمكن من تحميل الأسعار حالياً. تحقق من Google Play وحاول مرة أخرى لاحقاً.</string>
     <string name="upgrade_screen_subscription_trial_action">ابدأ الإصدار التجريبي المجاني</string>
     <string name="upgrade_screen_subscription_action">اشتراك</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/سنة، إلغاء في أي وقت</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">قد تسبب حسابات متعددة التباسًا في Google Play. يؤدي تثبيت التطبيق من موقع Google Play على الويب إلى ربطه بحساب معين.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">قد تستغرق مزامنة Google Play بعض الوقت. جرب إعادة تشغيل الجهاز أو مسح ذاكرة التخزين المؤقتة لمتجر Google Play أو ببساطة الانتظار.</string>
     <string name="upgrade_screen_restore_contact_hint">لا تزال عالقًا؟ تواصل مع الدعم من البريد الإلكتروني الذي استخدمته للشراء وأرفق رقم طلب Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">احصل على %1$s</string>
+    <string name="upgrade_screen_benefits_title">فوائد الترقية</string>
+    <string name="upgrade_screen_thanks_toast">أنت الأفضل! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">الإصدار Pro لا يزال نشطاً. جاري انتظار Google Play لإعادة تأكيد شرائك، تظل جميع ميزات Pro مفتوحة في غضون ذلك.</string>
+    <string name="upgrade_screen_restore_body">تطلب الاستعادة من Google Play إعادة فحص عمليات شراء هذا التطبيق للحساب الحالي. لا تبدأ عملية شراء جديدة.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">لم ينتهِ الفحص مع Google Play في الوقت المحدد، لذلك حالة شرائك لا تزال غير معروفة. لم يتغير شيء على حسابك.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">يتعذر على Permission Pilot الاتصال بـ Google Play. هل تم تثبيت Google Play وتحديثه؟ هل تم تسجيل الدخول إلى حسابك في Google؟ حاول مسح ذاكرة التخزين المؤقت لتطبيق Google Play وإعادة تشغيل جهازك.</string>
+    <string name="upgrades_gplay_billing_error_label">هناك مشكلة مع المتجر التطبيقات Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">واجهنا مشكلة مع Google Play، المرجو المحاولة ثانية لاحقا أو إعادة تشغيل جهازك. \n\nالتفاصيل: %s</string>
+    <string name="upgrades_gplay_internal_error_title">خطأ في Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">حدث خطأ داخلي في Google Play. يرجى تجربة ما يلي:\n\n• أعد تشغيل جهازك\n• امسح ذاكرة التخزين المؤقت لمتجر Google Play\n• حاول لاحقاً</string>
+    <string name="upgrades_gplay_network_error_title">خطأ في الاتصال</string>
+    <string name="upgrades_gplay_network_error_description">غير قادر على الاتصال بـ Google Play. يرجى التحقق من اتصالك بالإنترنت وحاول مرة أخرى.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">العرض غير متاح</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play حالياً لا يقدم خيار الترقية هذا. يرجى محاولة لاحقاً أو التحقق من متجر Google Play.</string>
 </resources>

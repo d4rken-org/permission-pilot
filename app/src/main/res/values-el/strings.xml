@@ -562,7 +562,11 @@
     <string name="upgrade_benefit_monitoring">Παρακολούθηση αδειών</string>
     <string name="upgrade_benefit_support">Υποστήριξη του δημιουργού</string>
     <string name="upgrade_benefit_manifest_viewer">Περιήγηση σε raw manifests εφαρμογών</string>
+    <string name="general_progress_loading">Φόρτωση…</string>
     <string name="general_upgrade_action">Αναβάθμιση</string>
+    <string name="general_copy_action">Αντιγραφή</string>
+    <string name="general_copied_to_clipboard_msg">Αντιγράφηκε στο πρόχειρο</string>
+    <string name="general_view_details_for_x_action">Προβολή λεπτομερειών για %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Κατάσταση αναβάθμισης και επιλογές</string>

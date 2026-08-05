@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">पहले से खरीदा गया</string>
     <string name="upgrades_gplay_already_owned_error">Google Play की रिपोर्ट है कि आप पहले से इस अपग्रेड के मालिक हैं, लेकिन इसे पुनः स्थापित नहीं किया जा सका। जांचें कि आप मूल खरीद के लिए उपयोग किए गए Google खाते से साइन इन हैं, फिर \"खरीद को पुनः स्थापित करें\" की कोशिश करें।</string>
     <string name="upgrade_screen_preamble">Permission Pilot विज्ञापन-मुक्त है और आपकी गोपनीयता का सम्मान करता है। अपग्रेड करना निरंतर विकास का समर्थन करता है।</string>
+    <string name="upgrade_screen_offers_unavailable_title">कीमतें उपलब्ध नहीं हैं</string>
+    <string name="upgrade_screen_offers_unavailable_message">कीमतें अभी लोड नहीं हो सकीं। Google Play देखें और कुछ समय में फिर से कोशिश करें।</string>
     <string name="upgrade_screen_subscription_trial_action">निशुल्क प्रयोग प्रारंभ करें</string>
     <string name="upgrade_screen_subscription_action">सदस्यता लें</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/वर्ष, कभी भी रद्द करें</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">कई खाते Google Play को भ्रमित कर सकते हैं। Google Play वेबसाइट के माध्यम से ऐप इंस्टॉल करने से यह एक विशिष्ट खाते के साथ जुड़ने के लिए बाध्य होता है।</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play सिंक्रोनाइजेशन में समय लग सकता है। रीबूट करने, Google Play Store कैश साफ़ करने, या बस प्रतीक्षा करने का प्रयास करें।</string>
     <string name="upgrade_screen_restore_contact_hint">अभी भी फंसे हुए हैं? खरीद करने वाले ईमेल से समर्थन से संपर्क करें और अपनी Google Play ऑर्डर संख्या शामिल करें।</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">%1$s प्राप्त करें</string>
+    <string name="upgrade_screen_benefits_title">अपग्रेड लाभ</string>
+    <string name="upgrade_screen_thanks_toast">आप सर्वश्रेष्ठ हैं! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro अभी भी सक्रिय है। Google Play से आपकी खरीदारी की पुष्टि करने की प्रतीक्षा में, इस बीच सभी Pro सुविधाएं अनलॉक रहती हैं।</string>
+    <string name="upgrade_screen_restore_body">पुनर्स्थापन Google Play को इस ऐप की खरीदारी को वर्तमान खाते के लिए दोबारा जांचने के लिए कहता है। यह कोई नई खरीदारी शुरू नहीं करता है।</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Google Play के साथ जांच समय पर पूरी नहीं हुई, इसलिए आपकी खरीदारी की स्थिति अभी भी अज्ञात है। आपके खाते पर कुछ भी नहीं बदला है।</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play से कनेक्ट नहीं हो सकता। क्या Google Play इंस्टॉल और अप-टू-डेट है? क्या आपका Google खाता लॉग इन है? Google Play ऐप का कैश साफ़ करने और अपने डिवाइस को रीबूट करने का प्रयास करें।</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play समस्या</string>
+    <string name="upgrades_gplay_billing_error_description">Google Play में समस्या थी। कृपया बाद में फिर से कोशिश करें या अपने डिवाइस को पुनः शुरू करें।\n\nविवरण: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play त्रुटि</string>
+    <string name="upgrades_gplay_internal_error_description">एक आंतरिक Google Play त्रुटि हुई। कृपया निम्नलिखित प्रयास करें:\n\n• अपने डिवाइस को पुनः शुरू करें\n• Google Play Store कैश साफ़ करें\n• बाद में फिर से कोशिश करें</string>
+    <string name="upgrades_gplay_network_error_title">कनेक्शन त्रुटि</string>
+    <string name="upgrades_gplay_network_error_description">Google Play से कनेक्ट करने में असमर्थ। कृपया अपना इंटरनेट कनेक्शन जांचें और फिर से कोशिश करें।</string>
+    <string name="upgrades_gplay_offer_unavailable_title">ऑफ़र उपलब्ध नहीं</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play वर्तमान में यह अपग्रेड विकल्प प्रदान नहीं कर रहा है। कृपया बाद में फिर से कोशिश करें या Google Play Store देखें।</string>
 </resources>

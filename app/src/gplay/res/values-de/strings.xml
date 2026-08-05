@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Bereits gekauft</string>
     <string name="upgrades_gplay_already_owned_error">Google Play meldet, dass Sie dieses Upgrade bereits besitzen, es konnte jedoch nicht wiederhergestellt werden. Stellen Sie sicher, dass Sie mit dem Google-Konto angemeldet sind, das für den ursprünglichen Kauf verwendet wurde, und versuchen Sie dann, den Kauf wiederherzustellen.</string>
     <string name="upgrade_screen_preamble">Permission Pilot ist werbefrei und respektiert deine Privatsphäre. Ein Upgrade unterstützt die weitere Entwicklung.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Preise nicht verfügbar</string>
+    <string name="upgrade_screen_offers_unavailable_message">Die Preise konnten gerade nicht geladen werden. Überprüfe Google Play und versuche es gleich noch einmal.</string>
     <string name="upgrade_screen_subscription_trial_action">Kostenlos testen</string>
     <string name="upgrade_screen_subscription_action">Abonnieren</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/Jahr, jederzeit kündbar</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Mehrere Konten können Google Play durcheinanderbringen. Die Installation der App über die Google Play-Website erzwingt die Zuordnung zu einem bestimmten Konto.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Die Google Play-Synchronisierung kann eine Weile dauern. Versuchen Sie, das Gerät neu zu starten, den Google Play Store-Cache zu löschen oder einfach zu warten.</string>
     <string name="upgrade_screen_restore_contact_hint">Immer noch nicht weiter? Kontaktiere den Support von der E-Mail-Adresse aus, mit der der Kauf getätigt wurde, und gib deine Google-Play-Bestellnummer an.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Hol dir %1$s</string>
+    <string name="upgrade_screen_benefits_title">Vorteile des Upgrades</string>
+    <string name="upgrade_screen_thanks_toast">Du bist der Beste! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro ist weiterhin aktiv. Es wird darauf gewartet, dass Google Play deinen Kauf erneut bestätigt. Alle Pro-Funktionen bleiben in der Zwischenzeit freigeschaltet.</string>
+    <string name="upgrade_screen_restore_body">Das Wiederherstellen veranlasst Google Play dazu, die Käufe dieser App für das aktuelle Konto erneut zu überprüfen. Dadurch wird kein neuer Kauf gestartet.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Die Überprüfung mit Google Play wurde nicht rechtzeitig abgeschlossen, daher ist dein Kaufstatus weiterhin unbekannt. An deinem Konto wurde nichts geändert.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kann keine Verbindung zu Google Play herstellen. Ist Google Play installiert und auf dem neuesten Stand? Bist du mit deinem Google-Konto angemeldet? Versuche, den Cache der Google Play-App zu leeren und dein Gerät neu zu starten.</string>
+    <string name="upgrades_gplay_billing_error_label">Google Play Problem</string>
+    <string name="upgrades_gplay_billing_error_description">Es gab ein Problem mit Google Play. Bitte versuche es später erneut oder starte dein Gerät neu.\n\nDetails: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Google Play Fehler</string>
+    <string name="upgrades_gplay_internal_error_description">Ein interner Fehler bei Google Play ist aufgetreten. Bitte versuche Folgendes:\n\n• Starte dein Gerät neu\n• Leere den Cache des Google Play Stores\n• Versuche es später erneut</string>
+    <string name="upgrades_gplay_network_error_title">Verbindungsfehler</string>
+    <string name="upgrades_gplay_network_error_description">Verbindung zu Google Play nicht möglich. Bitte überprüfe Deine Internetverbindung und versuche es erneut.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Angebot nicht verfügbar</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play bietet diese Upgrade-Option derzeit nicht an. Bitte versuche es später noch einmal oder überprüfe den Google Play Store.</string>
 </resources>

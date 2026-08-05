@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Deja cumpărat</string>
     <string name="upgrades_gplay_already_owned_error">Google Play raportează că deja deții acest upgrade, dar nu a putut fi restaurat. Verifică că ești conectat cu contul Google folosit pentru achiziția originală, apoi încearcă „Restaurează achiziția”.</string>
     <string name="upgrade_screen_preamble">Permission Pilot este fără reclame şi îți respectă confidențialitatea. Actualizarea sprijină dezvoltarea continuă.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Prețuri indisponibile</string>
+    <string name="upgrade_screen_offers_unavailable_message">Prețurile nu au putut fi încărcate acum. Verificați Google Play și încercați din nou într-un moment.</string>
     <string name="upgrade_screen_subscription_trial_action">Începe încercarea gratuită</string>
     <string name="upgrade_screen_subscription_action">Abonează-te</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/an, anulează oricând</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Conturi multiple pot confunda Google Play. Instalarea aplicației prin site-ul Google Play o forțează să se asocieze cu un cont specific.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Sincronizarea Google Play poate dura ceva timp. Încearcă să repornești, să ștergi memoria cache a Google Play Store sau pur și simplu să aștepți.</string>
     <string name="upgrade_screen_restore_contact_hint">Încă blocat? Contactează asistența din e-mailul care a realizat achiziția și include numărul comenzii Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Obțineți %1$s</string>
+    <string name="upgrade_screen_benefits_title">Beneficiile upgrade-ului</string>
+    <string name="upgrade_screen_thanks_toast">Ești cel mai bun! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro este încă activ. Se așteaptă ca Google Play să confirme din nou achiziția dvs., toate caracteristicile Pro rămân deblochate în același timp.</string>
+    <string name="upgrade_screen_restore_body">Restaurarea cere Google Play să revizuiască achizițiile acestei aplicații pentru contul actual. Nu pornește o nouă achiziție.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Verificarea cu Google Play nu s-a încheiat la timp, deci starea achiziției dvs. este încă necunoscută. Nimic nu s-a schimbat pe contul dvs.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot nu se poate conecta la Google Play. Google Play este instalat și actualizat? Este conectat contul dvs. Google? Încercați să curățați memoria cache a aplicației Google Play și reporniți dispozitivul.</string>
+    <string name="upgrades_gplay_billing_error_label">Problemă din partea Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">A fost o problemă cu Google Play. Vă rugăm să încercați din nou mai târziu sau să reporniți dispozitivul.\n\nDetalii: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Eroare Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">O eroare internă Google Play a apărut. Vă rugăm să încercați următoarele:\n\n• Reporniți dispozitivul\n• Curățați memoria cache a Google Play Store\n• Încercați din nou mai târziu</string>
+    <string name="upgrades_gplay_network_error_title">Eroare de conexiune</string>
+    <string name="upgrades_gplay_network_error_description">Nu se poate conecta la Google Play. Vă rugăm să verificați conexiunea dvs. la internet și încercați din nou.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Ofertă indisponibilă</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Google Play nu oferă în prezent această opțiune de upgrade. Vă rugăm să încercați din nou mai târziu sau să verificați Google Play Store.</string>
 </resources>

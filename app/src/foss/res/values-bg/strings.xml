@@ -17,4 +17,10 @@
     <string name="upgrade_screen_recurring_title">Подкрепете отново</string>
     <string name="upgrade_screen_recurring_body">Permission Pilot е разработен открито. Помислете за периодична спонсорска подкрепа, за да помогнете за неговото развитие.</string>
     <string name="upgrade_screen_recurring_action">Отворете GitHub Sponsors</string>
+    <!-- Support pitch -->
+    <string name="upgrade_screen_title">Подкрепете Permission Pilot</string>
+    <string name="upgrade_screen_why_title">Предимства на надстройката</string>
+    <string name="upgrade_screen_how_title">Как да помогнете</string>
+    <string name="upgrade_screen_how_body">Станете покровител и спонсорирайте разработката! Докоснете бутона по-долу, за да активирате всички допълнителни функции и да отворите моя GitHub Sponsors профил.</string>
+    <string name="upgrade_screen_thanks_toast">Благодаря ви, че подкрепяте разработката с отворен код ❤️</string>
 </resources>

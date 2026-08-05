@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Ja ho heu comprat</string>
     <string name="upgrades_gplay_already_owned_error">El Google Play indica que ja teniu aquesta actualització, però no s\'ha pogut restaurar. Comproveu que heu iniciat sessió amb el compte de Google que vau utilitzar per a la compra original i proveu «Restaura la compra».</string>
     <string name="upgrade_screen_preamble">El Permission Pilot no té anuncis i respecta la teva privadesa. L\'actualització permet el desenvolupament continu.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Preus no disponibles</string>
+    <string name="upgrade_screen_offers_unavailable_message">No s\'han pogut carregar els preus ara mateix. Consulteu el Google Play i torneu-ho a provar en uns moments.</string>
     <string name="upgrade_screen_subscription_trial_action">Inicia la prova gratuïta</string>
     <string name="upgrade_screen_subscription_action">Subscripció</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/any, cancel·leu en qualsevol moment</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Tenir diversos comptes pot generar confusió al Google Play. La instal·lació de l\'aplicació a través del lloc web del Google Play obliga a associar-lo amb un compte específic.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">La sincronització del Google Play pot trigar una estona. Proveu de reiniciar, esborreu la memòria cau del Google Play o simplement espereu.</string>
     <string name="upgrade_screen_restore_contact_hint">Encara teniu problemes? Contacteu amb l\'assistència des del correu amb què heu fet la compra i incloeu el número de comanda del Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Obtingueu %1$s</string>
+    <string name="upgrade_screen_benefits_title">Beneficis de la millora</string>
+    <string name="upgrade_screen_thanks_toast">Sou el millor! \ufe0f</string>
+    <string name="upgrade_screen_grace_body_short">El Pro encara està actiu. Mentrestant, estem esperant que el Google Play torni a confirmar la compra; totes les funcions Pro romandran desbloquejades.</string>
+    <string name="upgrade_screen_restore_body">La restauració sol·licita al Google Play que comprovi de nou les compres d\'aquesta aplicació per al compte actual. No inicia cap compra nova.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">La comprovació amb el Google Play no ha acabat a temps, així que l\'estat de la vostra compra segueix sent desconegut. Res ha canviat al vostre compte.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">El Permission Pilot no es pot connectar al Google Play. El Google Play està instal·lat i actualitzat? Heu iniciat la sessió al vostre compte de Google? Proveu d\'esborrar la memòria cau de l\'aplicació Google Play i reinicieu el dispositiu.</string>
+    <string name="upgrades_gplay_billing_error_label">Problema del Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">S\'ha produït un problema amb el Google Play. Torneu-ho a provar més tard o reinicieu el dispositiu.\n\nDetalls: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Error del Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">S\'ha produït un error intern del Google Play. Proveu el següent:\n\n\u2022 Reinicieu el dispositiu\n\u2022 Esborreu la memòria cau del Google Play Store\n\u2022 Torneu-ho a provar més tard</string>
+    <string name="upgrades_gplay_network_error_title">Error de connexió</string>
+    <string name="upgrades_gplay_network_error_description">No es pot connectar al Google Play. Comproveu la connexió a Internet i torneu-ho a provar.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Oferta no disponible</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Actualment, el Google Play no ofereix aquesta opció d\'actualització. Torneu-ho a provar més tard o consulteu el Google Play Store.</string>
 </resources>

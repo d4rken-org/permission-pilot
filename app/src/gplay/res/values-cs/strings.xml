@@ -5,6 +5,8 @@
     <string name="upgrades_gplay_already_owned_title">Již zakoupeno</string>
     <string name="upgrades_gplay_already_owned_error">Služba Google Play hlásí, že již máte tento upgrade, ale nelze jej obnovit. Zkontrolujte, zda jste přihlášeni pomocí účtu Google, který jste použili pro původní nákup, a poté zkuste „Obnovit nákup“.</string>
     <string name="upgrade_screen_preamble">Permission Pilot je bez reklam a respektuje vaše soukromí. Upgrade podporuje další vývoj.</string>
+    <string name="upgrade_screen_offers_unavailable_title">Ceny nejsou dostupné</string>
+    <string name="upgrade_screen_offers_unavailable_message">Ceny se momentálně nepodařilo načíst. Podívejte se na Google Play a zkuste to za chvíli znovu.</string>
     <string name="upgrade_screen_subscription_trial_action">Spustit zkušební verzi</string>
     <string name="upgrade_screen_subscription_action">Předplatit</string>
     <string name="upgrade_screen_subscription_action_hint_yearly">%s/rok, zrušit kdykoliv</string>
@@ -61,4 +63,22 @@
     <string name="upgrade_screen_restore_multiaccount_hint">Více účtů může zmást Google Play. Instalace aplikace přes webové stránky Google Play vynucuje její přidružení ke konkrétnímu účtu.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Synchronizace Obchodu Play může chvíli trvat. Zkuste restartovat, vymazat mezipaměť Google Play nebo prostě počkat.</string>
     <string name="upgrade_screen_restore_contact_hint">Stále máte problém? Kontaktujte podporu z e-mailu, který provedl nákup, a připojte vaše číslo objednávky Google Play.</string>
+    <!-- Screen title shown while Pro is not active -->
+    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
+    <string name="upgrade_screen_title_template">Získat %1$s</string>
+    <string name="upgrade_screen_benefits_title">Výhody upgradu</string>
+    <string name="upgrade_screen_thanks_toast">Jste nejlepší! ❤️</string>
+    <string name="upgrade_screen_grace_body_short">Pro je stále aktivní. Čekám na Google Play, aby znovu potvrdil váš nákup, všechny funkce Pro zůstávají mezitím odemčeny.</string>
+    <string name="upgrade_screen_restore_body">Obnovení požádá Google Play, aby znovu zkontroloval nákupy této aplikace pro aktuální účet. Nezačíná nový nákup.</string>
+    <string name="upgrade_screen_restore_inconclusive_message">Kontrola s Obchodem Google Play nebyla dokončena včas, takže stav nákupu zůstává neznámý. Na vašem účtu se nic nezměnilo.</string>
+    <!-- Billing error descriptions -->
+    <string name="upgrades_gplay_unavailable_error_description">Permission Pilot se nemůže připojit k Obchodu Google Play. Je Obchod Google Play nainstalován a aktualizován? Jste přihlášeni k účtu Google? Zkuste vymazat mezipaměť Obchodu Google Play a restartovat zařízení.</string>
+    <string name="upgrades_gplay_billing_error_label">Problém s Google Play</string>
+    <string name="upgrades_gplay_billing_error_description">Došlo k problému s Google Play. Zkuste to prosím znovu později nebo restartujte zařízení.\n\nPodrobnosti: %s</string>
+    <string name="upgrades_gplay_internal_error_title">Chyba Google Play</string>
+    <string name="upgrades_gplay_internal_error_description">Došlo k interní chybě Google Play. Zkuste následující kroky:\n\n• Restartujte zařízení\n• Vyčistěte mezipaměť obchodu Google Play\n• Zkuste to znovu později</string>
+    <string name="upgrades_gplay_network_error_title">Chyba připojení</string>
+    <string name="upgrades_gplay_network_error_description">Nelze se připojit k Google Play. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
+    <string name="upgrades_gplay_offer_unavailable_title">Nabídka není dostupná</string>
+    <string name="upgrades_gplay_offer_unavailable_description">Obchod Google Play momentálně nenabízí tuto možnost upgradu. Zkuste to prosím později nebo zkontrolujte Obchod Google Play.</string>
 </resources>

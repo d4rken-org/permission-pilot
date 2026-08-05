@@ -562,7 +562,11 @@
     <string name="upgrade_benefit_monitoring">Toestemmingsbewaking</string>
     <string name="upgrade_benefit_support">Ondersteun de ontwikkelaar</string>
     <string name="upgrade_benefit_manifest_viewer">Bekijk onbewerkte app-manifesten</string>
+    <string name="general_navigate_up_action">Navigeer omhoog</string>
+    <string name="general_progress_loading">Bezig met laden…</string>
     <string name="general_upgrade_action">Upgraden</string>
+    <string name="general_copy_action">Kopiëren</string>
+    <string name="general_view_details_for_x_action">Details weergeven voor %1$s</string>
     <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Upgradestatus en opties</string>
