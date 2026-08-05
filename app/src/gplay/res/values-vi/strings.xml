@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Kiểm tra với Google Play không hoàn thành kịp thời, vì vậy trạng thái mua hàng của bạn vẫn còn chưa xác định. Không có gì thay đổi trên tài khoản của bạn.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot không thể kết nối với Google Play. Google Play đã được cài đặt và cập nhật chưa? Tài khoản Google của bạn đã đăng nhập chưa? Hãy thử xóa bộ nhớ đệm của ứng dụng Google Play và khởi động lại thiết bị của bạn.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Không thể mở Google Play. Nó có thể bị thiếu, bị vô hiệu hóa hoặc bị hạn chế trên thiết bị này.</string>
     <string name="upgrades_gplay_billing_error_label">Sự cố Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Đã xảy ra sự cố với Google Play. Vui lòng thử lại sau hoặc khởi động lại thiết bị của bạn.\n\nChi tiết: %s</string>
     <string name="upgrades_gplay_internal_error_title">Lỗi Google Play</string>

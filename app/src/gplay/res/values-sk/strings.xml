@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Kontrola v Google Play neskončila včas, takže váš stav nákupu je stále neznámy. Na vašom účte sa nič nezmenilo.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot sa nemôže pripojiť k službe Google Play. Je Google Play nainštalovaný a aktuálny? Je váš účet Google prihlásený? Skúste vymazať vyrovnávaciu pamäť aplikácie Google Play a reštartujte zariadenie.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Nepodarilo sa otvoriť Google Play. Aplikácia chýba, je vypnutá alebo obmedzená na tomto zariadení.</string>
     <string name="upgrades_gplay_billing_error_label">Problém s Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Vyskytol sa problém so službou Google Play. Skúste to znova neskôr alebo reštartujte zariadenie.\n\nPodrobnosti: %s</string>
     <string name="upgrades_gplay_internal_error_title">Chyba Google Play</string>

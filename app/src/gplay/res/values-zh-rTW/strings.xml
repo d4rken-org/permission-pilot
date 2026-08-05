@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">與 Google Play 的檢查未能及時完成，因此您的購買狀態仍不明。您帳戶中未有任何變更。</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot 無法連線至 Google Play。請確認 Google Play 已安裝且為最新版本，同時確保已經登入 Google 帳戶。您可以嘗試清除 Google Play 應用程式的快取或重新啟動您的裝置以修正此問題。</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">無法開啟 Google Play。此應用可能未安裝、已停用或在此設備上受到限制。</string>
     <string name="upgrades_gplay_billing_error_label">Google Play 問題</string>
     <string name="upgrades_gplay_billing_error_description">Google Play 發生問題。請稍後再試一次或重新啟動您的裝置。\n\n詳細資訊：%s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play 錯誤</string>

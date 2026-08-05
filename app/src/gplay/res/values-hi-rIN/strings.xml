@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Google Play के साथ जांच समय पर पूरी नहीं हुई, इसलिए आपकी खरीदारी की स्थिति अभी भी अज्ञात है। आपके खाते पर कुछ भी नहीं बदला है।</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play से कनेक्ट नहीं हो सकता। क्या Google Play इंस्टॉल और अप-टू-डेट है? क्या आपका Google खाता लॉग इन है? Google Play ऐप का कैश साफ़ करने और अपने डिवाइस को रीबूट करने का प्रयास करें।</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play नहीं खुल सका। यह इस डिवाइस पर गायब, अक्षम या प्रतिबंधित हो सकता है।</string>
     <string name="upgrades_gplay_billing_error_label">Google Play समस्या</string>
     <string name="upgrades_gplay_billing_error_description">Google Play में समस्या थी। कृपया बाद में फिर से कोशिश करें या अपने डिवाइस को पुनः शुरू करें।\n\nविवरण: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play त्रुटि</string>

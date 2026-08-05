@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Google Play -tarkistus ei valmistunut ajoissa, joten ostotilastasi on edelleen tuntematon. Tilillä ei ole muuttunut mitään.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ei voi yhdistää Google Playhin. Onko Google Play asennettu ja ajan tasalla? Onko Google-tilisi kirjautunut sisään? Kokeile tyhjentää Google Play -sovelluksen välimuisti ja käynnistä laitteesi uudelleen.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Playta ei voitu avata. Se saattaa puuttua, olla poistettu käytöstä tai rajoitettu tällä laitteella.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play -vika</string>
     <string name="upgrades_gplay_billing_error_description">Google Playssa oli ongelma. Yritäthän myöhemmin uudelleen tai käynnistäthän laite uudelleen.\n\nYksityiskohdat: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play -vika</string>

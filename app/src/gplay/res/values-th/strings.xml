@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">การตรวจสอบกับ Google Play ไม่เสร็จทันเวลา ดังนั้นสถานะการซื้อของคุณยังไม่ชัดเจน ไม่มีการเปลี่ยนแปลงใด ๆ ในบัญชีของคุณ</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ไม่สามารถเชื่อมต่อกับ Google Play ได้ Google Play ได้รับการติดตั้งและอัปเดตแล้วหรือไม่? บัญชี Google ของคุณเข้าสู่ระบบแล้วหรือไม่? ลองล้างแคชของแอป Google Play และรีบูตอุปกรณ์ของคุณ</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">ไม่สามารถเปิด Google Play ได้ อาจจะหายไป ปิดใช้งาน หรือถูกจำกัดบนอุปกรณ์นี้</string>
     <string name="upgrades_gplay_billing_error_label">Google Play เกิดปัญหา</string>
     <string name="upgrades_gplay_billing_error_description">มีปัญหาเกิดขึ้นกับ Google Play โปรดลองอีกครั้งในภายหลังหรือรีสตาร์ทอุปกรณ์ของคุณ\n\n รายละเอียด: %s</string>
     <string name="upgrades_gplay_internal_error_title">ข้อผิดพลาด Google Play</string>

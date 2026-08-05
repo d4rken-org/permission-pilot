@@ -20,6 +20,7 @@
     <!-- Support pitch -->
     <string name="upgrade_screen_title">دعم Permission Pilot</string>
     <string name="upgrade_screen_why_title">فوائد الترقية</string>
+    <string name="upgrade_screen_how_title">كيف أساعدك</string>
     <string name="upgrade_screen_how_body">كن داعما وراعيا للتطوير! انقر على الزر أدناه لتفعيل جميع الميزات الإضافية وفتح ملفي الخاص برعاة GitHub.</string>
     <string name="upgrade_screen_thanks_toast">شكراً على دعمك لتطوير المصادر المفتوحة ❤️</string>
 </resources>

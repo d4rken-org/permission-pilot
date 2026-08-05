@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Provjera s Google Playem nije završena na vrijeme, pa je status vaše kupnje i dalje nepoznat. Ništa se nije promijenilo na vašem računu.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot se ne može povezati s Google Playem. Je li Google Play instaliran i ažuriran? Jeste li prijavljeni na svoj Google račun? Pokušajte očistiti predmemoriju Google Play aplikacije i ponovno pokrenuti uređaj.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Nije bilo moguće otvoriti Google Play. Možda nedostaje, onemogućena je ili ograničena na ovom uređaju.</string>
     <string name="upgrades_gplay_billing_error_label">Greška Google Playa</string>
     <string name="upgrades_gplay_billing_error_description">Došlo je do problema s Google Playom. Pokušajte ponovno kasnije ili ponovno pokrenite uređaj.\n\nDetalji: %s</string>
     <string name="upgrades_gplay_internal_error_title">Greška Google Playa</string>

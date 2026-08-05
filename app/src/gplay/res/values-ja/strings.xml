@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Google Playとのチェックが時間内に完了しなかったため、購入ステータスはまだ不明です。アカウントには何も変更されていません。</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot は Google Play に接続できません。Google Playはインストールされており、最新の状態ですか？ あなたのGoogleアカウントはログインしていますか？ Google Playアプリのキャッシュをクリアしてデバイスを再起動してみてください。</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Playを開けませんでした。このデバイスにインストールされていないか、無効にされているか、制限されている可能性があります。</string>
     <string name="upgrades_gplay_billing_error_label">アプリ内購入の問題</string>
     <string name="upgrades_gplay_billing_error_description">Google Playで問題が発生しました。後でもう一度試すか、デバイスを再起動してください。\n\n詳細: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play エラー</string>
