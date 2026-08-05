@@ -19,11 +19,13 @@ import io.mockk.verify
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.withTimeoutOrNull
+import kotlinx.serialization.SerializationException
 import org.junit.jupiter.api.Test
 import testhelper.BaseTest
 import testhelper.coroutine.runTest2
@@ -246,6 +248,30 @@ class GplayReviewToolTest : BaseTest() {
         verify(exactly = 0) { manager.launchReviewFlow(any(), any()) }
         coVerify(exactly = 0) { lastDismissedMock.value(any()) }
         coVerify(exactly = 0) { reviewedAtMock.value(any()) }
+    }
+
+    @Test fun `a settings read that throws does not take the app down`() = runTest2 {
+        // A stored timestamp that can't be decoded (see ReviewSettingsTest) surfaces as a throwing
+        // settings flow. Without a catch upstream of the shares it would kill the sharing coroutine
+        // on AppScope, which has no exception handler, and never reach any collector.
+        val corrupt = mockk<DataStoreValue<Instant?>>(relaxed = true).apply {
+            every { flow } returns flow { throw SerializationException("undecodable timestamp") }
+        }
+        every { settings.lastDismissed } returns corrupt
+        every { settings.reviewedAt } returns rwSetting(null)
+        val upgradeInfo = mockk<UpgradeRepo.Info>()
+        every { upgradeInfo.upgradedAt } returns Instant.now().minus(Duration.ofDays(30))
+        every { upgradeRepo.upgradeInfo } returns flowOf(upgradeInfo)
+        val tool = GplayReviewTool(
+            appScope = backgroundScope,
+            settings = settings,
+            manager = manager,
+            upgradeRepo = upgradeRepo,
+        )
+
+        tool.computedState() shouldBe ReviewTool.State()
+
+        verify(exactly = 0) { manager.requestReviewFlow() }
     }
 
     @Test fun `cancellation during the probe is not swallowed into the retry path`() = runTest2 {
