@@ -256,6 +256,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Serialization.core}")
 
     "gplayImplementation"("com.android.billingclient:billing:8.3.0")
+    "gplayImplementation"("com.google.android.play:review:2.0.2")
+    "gplayImplementation"("com.google.android.play:review-ktx:2.0.2")
 
     // Support libs
     implementation("androidx.core:core-ktx:1.13.1")
