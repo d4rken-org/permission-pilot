@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Die kontrole met Google Play het nie betyds voltooi nie, dus is jou aankoupstatus nog steeds onbekend. Niks het op jou rekening verander nie.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan nie aan Google Play koppel nie. Is Google Play geïnstalleer en opgedateer? Is jou Google-rekening aangemeld? Probeer om die kas van die Google Play-toepassing skoon te maak en jou toestel herlaai.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Kon nie Google Play oopmaak nie. Dit kan ontbreek, uitgeskakeld of beperk wees op hierdie toestel.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play-probleem</string>
     <string name="upgrades_gplay_billing_error_description">Daar was \'n probleem met Google Play. Probeer asseblief later weer of herstart jou toestel.\n\nBesonderhede: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play-fout</string>

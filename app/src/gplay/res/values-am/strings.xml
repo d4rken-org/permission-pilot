@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Google Play ጋር ያለው ማረጋገጫ በጊዜ አልተጠናቀቀም፣ ስለሆነም የእርስዎ የግዥ ሁኔታ አሁንም ያልታወቀ ነው። በእርስዎ መለያ ላይ ምንም ነገር አልተወለጠም።</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ከGoogle Play ጋር መገናኘት አይችልም። Google Play ተጭኖ እና ወቅታዊ ነው? የGoogle መለያዎ ገብቷል? የGoogle Play መተግበሪያ መሸጎጫ ማጥራት እና መሳሪያዎን እንደገና ማስጀመር ይሞክሩ።</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play ን መክፈት አልተቻለም። በዚህ መሳሪያ ላይ ሊጠፋ፣ ሊዘጋ ወይም ሊገደብ ይችላል።</string>
     <string name="upgrades_gplay_billing_error_label">Google Play ችግር</string>
     <string name="upgrades_gplay_billing_error_description">Google Play ጋር ችግር ተፈጠረ። ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ ወይም መሳሪያዎን እንደገና ያስጀምሩ።\n\nዝርዝር: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play ስህተት</string>

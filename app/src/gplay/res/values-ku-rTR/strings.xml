@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Kontrola Google Play ne qediya. Status kirîdanê te ne tê zanîn. Tiştek li ser hesaba te ne hat guhertin.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot nikare bi Google Play re peyivîn. Google Play sazkirî û nûce ye? Hesabê Google têketî ye? Cache Google Play paqij bike û cihazê vegerandinê.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play neyê vekirin. Dibe ku ew tune be, neçalak kirî be an jî li ser vê cîhazbankî sînordarkî be.</string>
     <string name="upgrades_gplay_billing_error_label">Pirsgirêka Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Pirsgirêk bi Google Play re derket. Paşê hewl bide an cihazê vegerandinê.
 

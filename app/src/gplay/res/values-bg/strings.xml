@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Проверката с Google Play не завърши навреме, затова състоянието на вашата покупка остава неизвестно. Нищо не се е променило по вашия акаунт.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не може да се свърже с Google Play. Инсталиран ли е Google Play и актуален ли е? Влязъл ли е вашият Google акаунт? Опитайте да изчистите кеша на приложението Google Play и да рестартирате устройството си.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Не успях да отворя Google Play. Възможно е да е отсъстващо, деактивирано или ограничено на това устройство.</string>
     <string name="upgrades_gplay_billing_error_label">Проблем с Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Възникна проблем с Google Play. Опитайте отново по-късно или рестартирайте устройството си.\n\nПодробности: %s</string>
     <string name="upgrades_gplay_internal_error_title">Грешка на Google Play</string>

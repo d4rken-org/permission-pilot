@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Die Überprüfung mit Google Play wurde nicht rechtzeitig abgeschlossen, daher ist dein Kaufstatus weiterhin unbekannt. An deinem Konto wurde nichts geändert.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kann keine Verbindung zu Google Play herstellen. Ist Google Play installiert und auf dem neuesten Stand? Bist du mit deinem Google-Konto angemeldet? Versuche, den Cache der Google Play-App zu leeren und dein Gerät neu zu starten.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play konnte nicht geöffnet werden. Es ist möglicherweise nicht installiert, deaktiviert oder auf diesem Gerät eingeschränkt.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play Problem</string>
     <string name="upgrades_gplay_billing_error_description">Es gab ein Problem mit Google Play. Bitte versuche es später erneut oder starte dein Gerät neu.\n\nDetails: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play Fehler</string>

@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Google Play ilə yoxlama vaxtında bitmədi, buna görə də alış statusunuz hələ də naməlumdur. Hesabınızda heç bir şey dəyişməyib.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play-ə qoşula bilmir. Google Play quraşdırılıb və yenilənib? Google hesabınız daxil olub? Google Play tətbiqinin keşini təmizləməyi və cihazınızı yenidən başlatmagı sınayın.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Google Play açıla bilmədi. Bu cihazda yoxdur, deaktiv və ya məhdudlaşdırılmış ola bilər.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play Problemi</string>
     <string name="upgrades_gplay_billing_error_description">Google Play ilə problem yarandı. Xahiş edirik bir az sonra yenidən cəhd edin və ya cihazınızı yenidən başladın.\n\nDetallar: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play xətası</string>

@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">הבדיקה עם Google Play לא הסתיימה בזמן, ולכן סטטוס הרכישה שלך עדיין לא ידוע. שום דבר לא השתנה בחשבונך.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot לא יכול להתחבר ל-Google Play. האם Google Play מותקן ומעודכן? האם חשבון Google שלך מחובר? נסה לנקות את המטמון של אפליקציית Google Play ולאתחל את המכשיר שלך.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">לא ניתן לפתוח את Google Play. ייתכן שהוא חסר, מכובה או מוגבל במכשיר זה.</string>
     <string name="upgrades_gplay_billing_error_label">בעיה ב-Google Play</string>
     <string name="upgrades_gplay_billing_error_description">היתה בעיה עם Google Play. אנא נסה שוב מאוחר יותר או הפעל את המכשיר שלך מחדש.\n\nפרטים: %s</string>
     <string name="upgrades_gplay_internal_error_title">שגיאת Google Play</string>

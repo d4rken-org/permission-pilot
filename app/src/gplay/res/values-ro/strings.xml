@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Verificarea cu Google Play nu s-a încheiat la timp, deci starea achiziției dvs. este încă necunoscută. Nimic nu s-a schimbat pe contul dvs.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot nu se poate conecta la Google Play. Google Play este instalat și actualizat? Este conectat contul dvs. Google? Încercați să curățați memoria cache a aplicației Google Play și reporniți dispozitivul.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Nu s-a putut deschide Google Play. Ar putea să lipsească, să fie dezactivat sau restricționat pe acest dispozitiv.</string>
     <string name="upgrades_gplay_billing_error_label">Problemă din partea Google Play</string>
     <string name="upgrades_gplay_billing_error_description">A fost o problemă cu Google Play. Vă rugăm să încercați din nou mai târziu sau să reporniți dispozitivul.\n\nDetalii: %s</string>
     <string name="upgrades_gplay_internal_error_title">Eroare Google Play</string>

@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Праверка Google Play не паспела завершыцца, таму статус вашай пакупкі ўсё яшчэ невядомы. Нічога не змянілася ў вашым уліковым запісе.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не можа падключыцца да Google Play. Ці ўсталяваны і абноўлены Google Play? Вы ўвайшлі ў свой уліковы запіс Google? Паспрабуйце ачысціць кэш праграмы Google Play і перазагрузіць прыладу.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Не удалося адкрыць Google Play. Магчыма, яна адсутнічае, адключана або абмежавана на гэтым прыладзе.</string>
     <string name="upgrades_gplay_billing_error_label">Праблема з Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Узнікла праблема з Google Play. Паўтарыце спробу пазней або перазагрузіце прыладу.\n\nПадрабязнасці: %s</string>
     <string name="upgrades_gplay_internal_error_title">Памылка Google Play</string>

@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">لم ينتهِ الفحص مع Google Play في الوقت المحدد، لذلك حالة شرائك لا تزال غير معروفة. لم يتغير شيء على حسابك.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">يتعذر على Permission Pilot الاتصال بـ Google Play. هل تم تثبيت Google Play وتحديثه؟ هل تم تسجيل الدخول إلى حسابك في Google؟ حاول مسح ذاكرة التخزين المؤقت لتطبيق Google Play وإعادة تشغيل جهازك.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">لم يتمكن من فتح Google Play. قد يكون التطبيق غير موجود أو معطل أو محظور على هذا الجهاز.</string>
     <string name="upgrades_gplay_billing_error_label">هناك مشكلة مع المتجر التطبيقات Google Play</string>
     <string name="upgrades_gplay_billing_error_description">واجهنا مشكلة مع Google Play، المرجو المحاولة ثانية لاحقا أو إعادة تشغيل جهازك. \n\nالتفاصيل: %s</string>
     <string name="upgrades_gplay_internal_error_title">خطأ في Google Play</string>

@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Kontrola s Obchodem Google Play nebyla dokončena včas, takže stav nákupu zůstává neznámý. Na vašem účtu se nic nezměnilo.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot se nemůže připojit k Obchodu Google Play. Je Obchod Google Play nainstalován a aktualizován? Jste přihlášeni k účtu Google? Zkuste vymazat mezipaměť Obchodu Google Play a restartovat zařízení.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Nešlo otevřít Obchod Play. Možná chybí, je zakázán nebo omezený v tomto zařízení.</string>
     <string name="upgrades_gplay_billing_error_label">Problém s Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Došlo k problému s Google Play. Zkuste to prosím znovu později nebo restartujte zařízení.\n\nPodrobnosti: %s</string>
     <string name="upgrades_gplay_internal_error_title">Chyba Google Play</string>

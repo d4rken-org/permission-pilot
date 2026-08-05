@@ -73,6 +73,8 @@
     <string name="upgrade_screen_restore_inconclusive_message">Kontrollen med Google Play blev ikke færdig i tide, så din købsstatus er stadig ukendt. Intet er ændret på din konto.</string>
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan ikke forbinde til Google Play. Er Google Play installeret og opdateret? Er din Google-konto logget ind? Prøv at rydde cachen i Google Play-appen og genstarte din enhed.</string>
+    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
+    <string name="upgrades_gplay_not_installed_message">Kunne ikke åbne Google Play. Det kan være manglende, deaktiveret eller begrænset på denne enhed.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play Problem</string>
     <string name="upgrades_gplay_billing_error_description">Der opstod et problem med Google Play. Prøv igen senere eller genstart din enhed.\n\nDetaljer: %s</string>
     <string name="upgrades_gplay_internal_error_title">Google Play-fejl</string>
