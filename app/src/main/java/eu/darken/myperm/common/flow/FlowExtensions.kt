@@ -7,6 +7,7 @@ import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.error.hasCause
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlin.time.Duration
 
@@ -48,6 +49,13 @@ internal fun <T> Flow<T>.withPrevious(): Flow<Pair<T?, T>> = this
         it as Pair<T?, T>
     }
 
+
+fun <T> Flow<T>.throttleLatest(delayMillis: Long): Flow<T> = this
+    .conflate()
+    .transform {
+        emit(it)
+        delay(delayMillis)
+    }
 
 fun <T> Flow<T>.onError(block: suspend (Throwable) -> Unit) = this.catch {
     block(it)
