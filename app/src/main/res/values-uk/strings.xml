@@ -813,4 +813,7 @@
         <item quantity="other">Безкоштовна версія обмежена %d елементами та форматом Markdown. Оновіть для необмеженого експорту та всіх форматів.</item>
     </plurals>
     <string name="export_upgrade_action">Оновити</string>
+    <string name="review_app_body">Хочеш залишити відгук для Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Огляд</string>
+    <string name="review_app_dismiss_action">Можливо пізніше</string>
 </resources>

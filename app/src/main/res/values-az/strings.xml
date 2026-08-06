@@ -741,4 +741,7 @@
         <item quantity="other">Pulsuz versiya %d elementlə və Markdown formatı ilə məhdudlaşır. Limitsiz ixrac və bütün formatlar üçün yüksəldin.</item>
     </plurals>
     <string name="export_upgrade_action">Yüksəlt</string>
+    <string name="review_app_body">Permission Pilot\'a bir rəy yazmaq istər misin? ❤️</string>
+    <string name="review_app_review_action">Baxış</string>
+    <string name="review_app_dismiss_action">Bəlkə sonra</string>
 </resources>

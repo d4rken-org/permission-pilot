@@ -741,4 +741,7 @@
         <item quantity="other">Ücretsiz sürüm %d öğeyle ve Markdown formatıyla sınırlıdır. Sınırsız dışa aktarma ve tüm formatlar için yükseltin.</item>
     </plurals>
     <string name="export_upgrade_action">Yükselt</string>
+    <string name="review_app_body">Permission Pilot\'u değerlendirmek ister misin? ❤️</string>
+    <string name="review_app_review_action">Değerlendir</string>
+    <string name="review_app_dismiss_action">Belki daha sonra</string>
 </resources>

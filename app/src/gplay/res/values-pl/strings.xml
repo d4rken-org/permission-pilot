@@ -74,7 +74,7 @@
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Pilot uprawnień nie może połączyć się z Google Play. Czy Google Play jest zainstalowany i aktualny? Czy Twoje konto Google jest zalogowane? Spróbuj wyczyścić pamięć podręczną aplikacji Google Play i zrestartować urządzenie.</string>
     <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
-    <string name="upgrades_gplay_not_installed_message">Nie można otworzyć Google Play. Aplikacja może być niedostępna, wyłączona lub ograniczona na tym urządzeniu.</string>
+    <string name="upgrades_gplay_not_installed_message">Nie można otworzyć Sklepu Google Play. Aplikacja może być niedostępna, wyłączona lub ograniczona na tym urządzeniu.</string>
     <string name="upgrades_gplay_billing_error_label">Problem z Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Wystąpił problem z Google Play. Spróbuj ponownie później lub zrestartuj urządzenie.\n\nSzczegóły: %s</string>
     <string name="upgrades_gplay_internal_error_title">Błąd Google Play</string>

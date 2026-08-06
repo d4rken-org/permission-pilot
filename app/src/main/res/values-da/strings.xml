@@ -741,4 +741,7 @@
         <item quantity="other">Gratisversionen er begrænset til %d elementer og Markdown-format. Opgrader for ubegrænsede eksporter og alle formater.</item>
     </plurals>
     <string name="export_upgrade_action">Opgrader</string>
+    <string name="review_app_body">Vil du gerne give Permission Pilot en anmeldelse? ❤️</string>
+    <string name="review_app_review_action">Bedøm</string>
+    <string name="review_app_dismiss_action">Måske senere</string>
 </resources>

@@ -885,4 +885,7 @@
         <item quantity="other">النسخة المجانية محدودة بـ %d عنصر وتنسيق Markdown. قم بالترقية للحصول على صادرات غير محدودة وجميع التنسيقات.</item>
     </plurals>
     <string name="export_upgrade_action">ترقية</string>
+    <string name="review_app_body">هل تود ترك تقييم لـ Permission Pilot؟ ❤️</string>
+    <string name="review_app_review_action">مراجعة</string>
+    <string name="review_app_dismiss_action">ربما لاحقًا</string>
 </resources>

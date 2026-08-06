@@ -21,5 +21,6 @@
     <string name="upgrade_screen_title">Soutenir Permission Pilot</string>
     <string name="upgrade_screen_why_title">Avantages de la mise à niveau</string>
     <string name="upgrade_screen_how_title">Comment aider</string>
+    <string name="upgrade_screen_how_body">Devenez mécène et soutenez le développement. Touchez le bouton ci-dessous pour activer toutes les fonctions supplémentaires et ouvrir mon profil GitHub Sponsors.</string>
     <string name="upgrade_screen_thanks_toast">Merci de soutenir le développement des logiciels libres ❤️</string>
 </resources>

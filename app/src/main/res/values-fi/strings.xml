@@ -741,4 +741,7 @@
         <item quantity="other">Ilmainen versio on rajoitettu %d kohteeseen ja Markdown-muotoon. Päivitä rajoittamattomiin vienteihin ja kaikkiin muotoihin.</item>
     </plurals>
     <string name="export_upgrade_action">Päivitä</string>
+    <string name="review_app_body">Haluaisitko jättää arvostelun Permission Pilotille? ❤️</string>
+    <string name="review_app_review_action">Arvostele</string>
+    <string name="review_app_dismiss_action">Ehkä myöhemmin</string>
 </resources>

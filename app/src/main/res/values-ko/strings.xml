@@ -705,4 +705,7 @@
         <item quantity="other">무료 버전은 %d개 항목과 Markdown 형식으로 제한됩니다. 무제한 내보내기 및 모든 형식을 위해 업그레이드하세요.</item>
     </plurals>
     <string name="export_upgrade_action">업그레이드</string>
+    <string name="review_app_body">Permission Pilot에 리뷰를 남겨주시겠어요? ❤️</string>
+    <string name="review_app_review_action">리뷰</string>
+    <string name="review_app_dismiss_action">다음에 해요</string>
 </resources>

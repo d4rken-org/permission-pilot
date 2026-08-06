@@ -705,4 +705,7 @@
         <item quantity="other">免費版限制為 %d 個項目和 Markdown 格式。升級可享無限匯出及所有格式。</item>
     </plurals>
     <string name="export_upgrade_action">升級</string>
+    <string name="review_app_body">你想為 Permission Pilot 留下評論嗎？❤️</string>
+    <string name="review_app_review_action">評論</string>
+    <string name="review_app_dismiss_action">稍後再說</string>
 </resources>

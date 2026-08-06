@@ -777,4 +777,7 @@
         <item quantity="other">Бесплатна верзија је ограничена на %d ставки и Markdown формат. Надоградите за неограничен извоз и све формате.</item>
     </plurals>
     <string name="export_upgrade_action">Надогради</string>
+    <string name="review_app_body">Желиш ли да оставиш преглед за Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Оцени</string>
+    <string name="review_app_dismiss_action">Можда касније</string>
 </resources>

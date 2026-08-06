@@ -741,4 +741,7 @@
         <item quantity="other">Guhertoya belaş bi %d babetan û formata Markdown sînordar e. Ji bo hinardekirin bê sînor û hemû formatan nûve bikin.</item>
     </plurals>
     <string name="export_upgrade_action">Jortir biçin</string>
+    <string name="review_app_body">Tu dixwazî Permission Pilot-ê nirxandî? ❤️</string>
+    <string name="review_app_review_action">Nirxandin</string>
+    <string name="review_app_dismiss_action">Dibe ku paşê</string>
 </resources>

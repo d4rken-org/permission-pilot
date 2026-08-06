@@ -741,4 +741,7 @@
         <item quantity="other">ነፃ ስሪት ወደ %d ንጥሎች እና Markdown ቅርጸት ብቻ የተወሰነ ነው። ያልተወሰነ ወደ ውጭ መላክ እና ሁሉም ቅርጸቶች ለማግኘት ያሻሽሉ።</item>
     </plurals>
     <string name="export_upgrade_action">አሻሽል</string>
+    <string name="review_app_body">Permission Pilot ላይ ገምገም ሊተወት ይፈልጋሉ? ❤️</string>
+    <string name="review_app_review_action">ግምገማ</string>
+    <string name="review_app_dismiss_action">ምናልባት በኋላ</string>
 </resources>

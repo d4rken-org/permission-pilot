@@ -741,4 +741,7 @@
         <item quantity="other">Gratis weergawe is beperk tot %d items en Markdown-formaat. Gradeer op vir onbeperkte uitvoere en alle formate.</item>
     </plurals>
     <string name="export_upgrade_action">Opgradeer</string>
+    <string name="review_app_body">Wil jy Permission Pilot \'n resensie gee? ❤️</string>
+    <string name="review_app_review_action">Hersien</string>
+    <string name="review_app_dismiss_action">Miskien later</string>
 </resources>

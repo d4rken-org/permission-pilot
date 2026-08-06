@@ -741,4 +741,7 @@
         <item quantity="other">La versió gratuïta està limitada a %d elements i al format Markdown. Actualitzeu per a exportacions il·limitades i tots els formats.</item>
     </plurals>
     <string name="export_upgrade_action">Millora</string>
+    <string name="review_app_body">T\'agradaria deixar una ressenya de Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Revisió</string>
+    <string name="review_app_dismiss_action">Potser més tard</string>
 </resources>
