@@ -246,6 +246,52 @@ class WatcherDiffRunnerTest : BaseTest() {
     }
 
     @Test
+    fun `new install counts already granted permissions as gained`() = runTest {
+        setupSinglePairChain(
+            oldPkgs = emptyList(),
+            newPkgs = listOf(pkg("snap-new", "com.new.app")),
+            newPermsRequested = listOf(
+                perm("snap-new", "com.new.app", "android.permission.INTERNET", "GRANTED"),
+                perm("snap-new", "com.new.app", "android.permission.ACCESS_NETWORK_STATE", "GRANTED"),
+                perm("snap-new", "com.new.app", "android.permission.POST_NOTIFICATIONS", "DENIED"),
+            ),
+        )
+
+        createRunner().processNewSnapshots() shouldBe 1
+
+        // gainedCount is what "Only notify on permissions gained" gates on — zero here silently
+        // dropped the notification for every newly installed app
+        val notified = slot<PermissionDiff>()
+        coVerify { watcherNotifications.postChangeNotification(any(), any(), any(), capture(notified)) }
+        notified.captured.gainedCount shouldBe 2
+        notified.captured.lostCount shouldBe 0
+
+        val stored = slot<PermissionChangeEntity>()
+        coVerify { changeDao.insert(capture(stored)) }
+        json.decodeFromString<PermissionDiff>(stored.captured.changesJson).gainedCount shouldBe 2
+    }
+
+    @Test
+    fun `new install with only denied permissions counts no gain`() = runTest {
+        setupSinglePairChain(
+            oldPkgs = emptyList(),
+            newPkgs = listOf(pkg("snap-new", "com.new.app")),
+            newPermsRequested = listOf(
+                perm("snap-new", "com.new.app", "android.permission.CAMERA", "DENIED"),
+                perm("snap-new", "com.new.app", "android.permission.POST_NOTIFICATIONS", "DENIED"),
+            ),
+            newPermsDeclared = listOf(declaredPerm("snap-new", "com.new.app", "com.new.app.MY_PERM")),
+        )
+
+        createRunner().processNewSnapshots() shouldBe 1
+
+        val notified = slot<PermissionDiff>()
+        coVerify { watcherNotifications.postChangeNotification(any(), any(), any(), capture(notified)) }
+        notified.captured.addedPermissions.size shouldBe 2
+        notified.captured.gainedCount shouldBe 0
+    }
+
+    @Test
     fun `update with permission changes creates UPDATE report`() = runTest {
         setupSinglePairChain(
             oldPkgs = listOf(pkg("snap-old", "com.existing.app")),
