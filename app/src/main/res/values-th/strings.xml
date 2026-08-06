@@ -705,4 +705,7 @@
         <item quantity="other">เวอร์ชันฟรีจำกัดที่ %d รายการและรูปแบบ Markdown อัปเกรดเพื่อส่งออกไม่จำกัดและรูปแบบทั้งหมด</item>
     </plurals>
     <string name="export_upgrade_action">อัปเกรด</string>
+    <string name="review_app_body">คุณอยากให้รีวิว Permission Pilot ไหม? ❤️</string>
+    <string name="review_app_review_action">รีวิว</string>
+    <string name="review_app_dismiss_action">อาจในคราวหน้า</string>
 </resources>

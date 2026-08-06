@@ -813,4 +813,7 @@
         <item quantity="other">Darmowa wersja jest ograniczona do %d elementu i formatu Markdown. Uaktualnij, aby uzyskać nieograniczone eksporty i wszystkie formaty.</item>
     </plurals>
     <string name="export_upgrade_action">Uaktualnij</string>
+    <string name="review_app_body">Wystawisz opinię dla Pilot Uprawnień? ❤️</string>
+    <string name="review_app_review_action">Oceń</string>
+    <string name="review_app_dismiss_action">Może później</string>
 </resources>

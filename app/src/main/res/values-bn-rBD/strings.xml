@@ -741,4 +741,7 @@
         <item quantity="other">বিনামূল্যে সংস্করণ %d আইটেমে এবং Markdown ফরম্যাটে সীমাবদ্ধ। সীমাহীন এক্সপোর্ট এবং সব ফরম্যাটের জন্য আপগ্রেড করুন।</item>
     </plurals>
     <string name="export_upgrade_action">আপগ্রেড করুন</string>
+    <string name="review_app_body">আপনি কি Permission Pilot কে একটি রিভিউ দিতে চান? ❤️</string>
+    <string name="review_app_review_action">পর্যালোচনা করুন</string>
+    <string name="review_app_dismiss_action">হয়তো পরে</string>
 </resources>

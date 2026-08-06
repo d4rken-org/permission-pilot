@@ -562,6 +562,7 @@
     <string name="upgrade_benefit_monitoring">Παρακολούθηση αδειών</string>
     <string name="upgrade_benefit_support">Υποστήριξη του δημιουργού</string>
     <string name="upgrade_benefit_manifest_viewer">Περιήγηση σε raw manifests εφαρμογών</string>
+    <string name="general_navigate_up_action">Πάνω</string>
     <string name="general_progress_loading">Φόρτωση…</string>
     <string name="general_upgrade_action">Αναβάθμιση</string>
     <string name="general_copy_action">Αντιγραφή</string>
@@ -740,4 +741,7 @@
         <item quantity="other">Η δωρεάν έκδοση περιορίζεται σε %d στοιχεία και μορφή Markdown. Αναβαθμίστε για απεριόριστες εξαγωγές και όλες τις μορφές.</item>
     </plurals>
     <string name="export_upgrade_action">Αναβάθμιση</string>
+    <string name="review_app_body">Θα ήθελες να αφήσεις μια κριτική στο Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Αξιολόγηση</string>
+    <string name="review_app_dismiss_action">Ίσως αργότερα</string>
 </resources>

@@ -777,4 +777,7 @@
         <item quantity="other">Versiunea gratuită este limitată la %d de elemente și formatul Markdown. Treceți la versiunea premium pentru exportări nelimitate și toate formatele.</item>
     </plurals>
     <string name="export_upgrade_action">Actualizează</string>
+    <string name="review_app_body">Ai vrea să lași Permission Pilot o recenzie? ❤️</string>
+    <string name="review_app_review_action">Recenzie</string>
+    <string name="review_app_dismiss_action">Poate mai târziu</string>
 </resources>

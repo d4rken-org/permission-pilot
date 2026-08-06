@@ -742,4 +742,7 @@
         <item quantity="other">La version gratuite est limitée à %d éléments et au format Markdown. Passez à la version supérieure pour des exportations illimitées et tous les formats.</item>
     </plurals>
     <string name="export_upgrade_action">Passer Pro</string>
+    <string name="review_app_body">Aimerais-tu laisser un avis pour Permission Pilot ? ❤️</string>
+    <string name="review_app_review_action">Évaluation</string>
+    <string name="review_app_dismiss_action">Plus tard, peut-être</string>
 </resources>

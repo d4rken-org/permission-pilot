@@ -813,4 +813,7 @@
         <item quantity="other">Bezplatná verze je omezena na %d položek a formát Markdown. Upgradujte pro neomezený export a všechny formáty.</item>
     </plurals>
     <string name="export_upgrade_action">Upgradovat</string>
+    <string name="review_app_body">Chceš napsat recenzi na Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Ohodnotit</string>
+    <string name="review_app_dismiss_action">Možná později</string>
 </resources>

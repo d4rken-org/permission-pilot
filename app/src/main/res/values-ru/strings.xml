@@ -813,4 +813,7 @@
         <item quantity="other">Бесплатная версия ограничена %d элементами и форматом Markdown. Перейдите на полную версию для неограниченного экспорта и всех форматов.</item>
     </plurals>
     <string name="export_upgrade_action">Обновить</string>
+    <string name="review_app_body">Хочешь оставить отзыв Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">Отзыв</string>
+    <string name="review_app_dismiss_action">Возможно, позже</string>
 </resources>

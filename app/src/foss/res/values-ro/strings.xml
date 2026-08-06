@@ -21,5 +21,6 @@
     <string name="upgrade_screen_title">Susțineți Permission Pilot</string>
     <string name="upgrade_screen_why_title">Beneficiile upgrade-ului</string>
     <string name="upgrade_screen_how_title">Cum să ajuți</string>
+    <string name="upgrade_screen_how_body">Devino patron și sponsorizează dezvoltarea! Apasă butonul de mai jos pentru a activa toate caracteristicile suplimentare și deschide profilul meu GitHub Sponsors.</string>
     <string name="upgrade_screen_thanks_toast">Mulțumim pentru susținerea dezvoltării open-source ❤️</string>
 </resources>

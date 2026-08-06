@@ -74,7 +74,7 @@
     <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">El Permission Pilot no es pot connectar al Google Play. El Google Play està instal·lat i actualitzat? Heu iniciat la sessió al vostre compte de Google? Proveu d\'esborrar la memòria cau de l\'aplicació Google Play i reinicieu el dispositiu.</string>
     <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
-    <string name="upgrades_gplay_not_installed_message">No s\'ha pogut obrir Google Play. Pot ser que manqui, estigui desactivat o restringit en aquest dispositiu.</string>
+    <string name="upgrades_gplay_not_installed_message">No s\'ha pogut obrir el Google Play. Pot ser que no estigui disponible, estigui desactivat o restringit en aquest dispositiu.</string>
     <string name="upgrades_gplay_billing_error_label">Problema del Google Play</string>
     <string name="upgrades_gplay_billing_error_description">S\'ha produït un problema amb el Google Play. Torneu-ho a provar més tard o reinicieu el dispositiu.\n\nDetalls: %s</string>
     <string name="upgrades_gplay_internal_error_title">Error del Google Play</string>

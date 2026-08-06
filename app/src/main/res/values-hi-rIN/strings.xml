@@ -741,4 +741,7 @@
         <item quantity="other">निःशुल्क संस्करण %d आइटम और Markdown फ़ॉर्मेट तक सीमित है। असीमित निर्यात और सभी फ़ॉर्मेट के लिए अपग्रेड करें।</item>
     </plurals>
     <string name="export_upgrade_action">उन्नत करें</string>
+    <string name="review_app_body">क्या आप Permission Pilot को एक समीक्षा देना चाहेंगे? ❤️</string>
+    <string name="review_app_review_action">समीक्षा करें</string>
+    <string name="review_app_dismiss_action">शायद बाद में</string>
 </resources>

@@ -813,4 +813,7 @@
         <item quantity="other">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
     </plurals>
     <string name="export_upgrade_action">שדרוג</string>
+    <string name="review_app_body">רוצה להשאיר ביקורת ל-Permission Pilot? ❤️</string>
+    <string name="review_app_review_action">סקירה</string>
+    <string name="review_app_dismiss_action">אולי מאוחר יותר</string>
 </resources>

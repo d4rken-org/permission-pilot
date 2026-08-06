@@ -741,4 +741,7 @@
         <item quantity="other">Az ingyenes verzió %d elemre és Markdown formátumra korlátozott. Frissítsen a korlátlan exportálásért és az összes formátumért.</item>
     </plurals>
     <string name="export_upgrade_action">Frissítés</string>
+    <string name="review_app_body">Szeretnél-e értékelést írni a Permission Pilotnak? ❤️</string>
+    <string name="review_app_review_action">Értékelés</string>
+    <string name="review_app_dismiss_action">Talán később</string>
 </resources>

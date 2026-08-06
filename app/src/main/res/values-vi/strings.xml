@@ -705,4 +705,7 @@
         <item quantity="other">Phiên bản miễn phí bị giới hạn ở %d mục và định dạng Markdown. Nâng cấp để xuất không giới hạn và tất cả các định dạng.</item>
     </plurals>
     <string name="export_upgrade_action">Nâng cấp</string>
+    <string name="review_app_body">Bạn có muốn đánh giá Permission Pilot không? ❤️</string>
+    <string name="review_app_review_action">Đánh giá</string>
+    <string name="review_app_dismiss_action">Để sau</string>
 </resources>
