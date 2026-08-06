@@ -198,9 +198,15 @@ class WatcherDiffRunner @Inject constructor(
                     eventType = WatcherEventType.INSTALL
                     val requested = newPermsAll.requested[key] ?: emptyList()
                     val declared = newPermsAll.declared[key] ?: emptyList()
-                    diff = PermissionDiff(
-                        addedPermissions = requested.map { it.permissionId },
-                        addedDeclared = declared.map { it.permissionId },
+                    // Diffed against an empty baseline so gainedCount reflects the permissions the
+                    // app already holds on arrival, not just the ones it declares
+                    diff = snapshotDiffer.diff(
+                        previousPerms = emptyList(),
+                        previousDeclared = emptyList(),
+                        currentPerms = requested.map {
+                            SnapshotDiffer.CurrentPermission(it.permissionId, UsesPermission.Status.valueOf(it.status))
+                        },
+                        currentDeclared = declared.map { it.permissionId },
                     )
                 }
                 oldPkg != null && newPkg == null -> {
