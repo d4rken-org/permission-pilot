@@ -12,6 +12,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,6 +32,13 @@ internal fun ReviewCard(
     reviewEnabled: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
+    // The card only disappears with the next state emission, so the tap targets need a latch. It is
+    // asymmetric on purpose: the harmful orderings are a dismiss after a review (which overwrites
+    // the review bookkeeping with a snooze) and a review after a dismiss. A repeated review tap is
+    // harmless, the tool's single-flight lock absorbs it, and blocking it here would leave a dead
+    // card whenever a Play request fails and nothing gets persisted.
+    var dismissLocked by rememberSaveable { mutableStateOf(false) }
+    var fullyLatched by rememberSaveable { mutableStateOf(false) }
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -56,12 +67,26 @@ internal fun ReviewCard(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
-                TextButton(onClick = onDismiss) {
+                TextButton(
+                    onClick = {
+                        if (!fullyLatched && !dismissLocked) {
+                            dismissLocked = true
+                            fullyLatched = true
+                            onDismiss()
+                        }
+                    },
+                    enabled = !fullyLatched && !dismissLocked,
+                ) {
                     Text(text = stringResource(R.string.review_app_dismiss_action))
                 }
                 Button(
-                    onClick = onReview,
-                    enabled = reviewEnabled,
+                    onClick = {
+                        if (!fullyLatched && reviewEnabled) {
+                            dismissLocked = true
+                            onReview()
+                        }
+                    },
+                    enabled = reviewEnabled && !fullyLatched,
                 ) {
                     Text(text = stringResource(R.string.review_app_review_action))
                 }
