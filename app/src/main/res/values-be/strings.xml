@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Дазвол Пілот</string>
+    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
+         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
+    <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Дапамога</string>
     <string name="general_error_label">Памылка</string>
     <string name="general_load_error_title">Не ўдалося загрузіць дадзеныя</string>
