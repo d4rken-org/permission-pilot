@@ -91,22 +91,20 @@ internal object UpgradeScreenTags {
     const val HERO = "upgrade_hero"
 }
 
-// The branded app title: a name plus the flavor's tier qualifier ("Pro" / "FOSS"), arranged by the
-// translated template so word order and punctuation belong to the language rather than to this
+// The branded app title: app_name plus the flavor's tier qualifier ("Pro" / "FOSS"), arranged by
+// the translated template so word order and punctuation belong to the language rather than to this
 // code. The qualifier is highlighted in the upgraded color while Pro is active.
 //
-// [nameRes] is the caller's choice of brand source, and the two callers deliberately differ: the
-// dashboard and settings pass app_name (translated in every locale), the upgrade screen passes
-// upgrade_title_prefix. The two are not locale-equivalent (es: "Piloto de los permisos" vs
-// "Permission Pilot"), so the dashboard must not borrow the prefix — its title would switch
-// LANGUAGE the moment the entitlement landed.
+// app_name is the single brand source for every surface — dashboard, settings row and upgrade
+// screen. There is deliberately no way to pass a different one: the screens used to draw from two
+// separately translated copies of the brand, and the copies drifted, so the surfaces named the same
+// tier differently in any locale that translated one but not the other.
 @Composable
 internal fun brandTitle(
-    @StringRes nameRes: Int,
     includeQualifier: Boolean,
     highlightQualifier: Boolean,
 ): AnnotatedString {
-    val name = AnnotatedString(stringResource(nameRes))
+    val name = AnnotatedString(stringResource(R.string.app_name))
     if (!includeQualifier) return name
 
     val highlight = MaterialTheme.colorScheme.tertiary
@@ -129,14 +127,13 @@ internal fun brandTitle(
 // Same composition for call sites that need a plain String (the settings components take String,
 // not AnnotatedString). Routed through brandTitle so the two forms cannot drift apart.
 @Composable
-internal fun brandTitleText(@StringRes nameRes: Int, includeQualifier: Boolean): String =
-    brandTitle(nameRes = nameRes, includeQualifier = includeQualifier, highlightQualifier = false).text
+internal fun brandTitleText(includeQualifier: Boolean): String =
+    brandTitle(includeQualifier = includeQualifier, highlightQualifier = false).text
 
 // Composed app title with the flavor suffix highlighted in the upgraded color while Pro is
 // active — the same treatment the dashboard title gives itself for supporters.
 @Composable
 internal fun upgradeScreenTitle(upgraded: Boolean): AnnotatedString = brandTitle(
-    nameRes = R.string.upgrade_title_prefix,
     // Unconditional: this title names the flavor even when the screen shows the free state.
     includeQualifier = true,
     highlightQualifier = upgraded,

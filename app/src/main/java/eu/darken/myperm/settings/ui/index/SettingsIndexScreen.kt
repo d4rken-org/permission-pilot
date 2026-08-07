@@ -100,7 +100,7 @@ fun SettingsIndexScreen(
             SettingsBaseItem(
                 // Composed from the same parts as the dashboard title rather than from a second,
                 // separately translated copy of the brand — the two used to drift apart.
-                title = brandTitleText(nameRes = R.string.app_name, includeQualifier = true),
+                title = brandTitleText(includeQualifier = true),
                 subtitle = stringResource(R.string.settings_upgrade_description),
                 icon = Icons.TwoTone.Stars,
                 onClick = onUpgradeStatus,

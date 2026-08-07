@@ -21,7 +21,7 @@ import org.junit.Test
 import org.robolectric.annotation.Config
 import testhelpers.compose.BaseComposeRobolectricTest
 import testhelpers.compose.brandQualifier
-import testhelpers.compose.brandTitleFor
+import testhelpers.compose.expectedBrandTitle
 import testhelpers.compose.shouldHighlightOnlyQualifier
 
 /**
@@ -43,7 +43,7 @@ class OverviewScreenTitleTest : BaseComposeRobolectricTest() {
     // Derived from the resolved template, never spelled as "$appName $suffix": arrangement is the
     // translator's, so a locale that reorders or repunctuates is intended behaviour, not a failure.
     private val brandedTitle: String
-        get() = context.brandTitleFor(R.string.app_name)
+        get() = context.expectedBrandTitle
 
     private fun proInfo(): UpgradeRepo.Info = mockk<UpgradeRepo.Info>(relaxed = true).also {
         every { it.isPro } returns true
@@ -153,12 +153,10 @@ class OverviewScreenTitleTest : BaseComposeRobolectricTest() {
     fun `the branded title keeps the locale's app name`() {
         showState(proInfo())
 
-        // "Piloto de los permisos …", not the upgrade screen's untranslated "Permission Pilot":
-        // gaining Pro must not switch the dashboard title's language.
+        // Gaining Pro must not switch the title's language: the brand stays "Piloto de los
+        // permisos", never the untranslated "Permission Pilot".
         appName shouldBe "Piloto de los permisos"
         composeRule.onAllNodesWithText(brandedTitle).assertCountEquals(1)
-        composeRule.onAllNodesWithText(
-            context.brandTitleFor(R.string.upgrade_title_prefix)
-        ).assertCountEquals(0)
+        composeRule.onAllNodesWithText("Permission Pilot $suffix").assertCountEquals(0)
     }
 }

@@ -25,9 +25,10 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
+import org.robolectric.annotation.Config
 import testhelpers.compose.BaseComposeRobolectricTest
 import testhelpers.compose.brandQualifier
-import testhelpers.compose.brandTitleFor
+import testhelpers.compose.expectedBrandTitle
 import testhelpers.compose.shouldHighlightOnlyQualifier
 
 class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
@@ -38,7 +39,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
     // The composed brand the screen renders for owners and grace users ("Permission Pilot Pro" in
     // English). Derived from the resolved template, so a locale that reorders it still passes.
     private val appNameWithPostfix: String
-        get() = context.brandTitleFor(R.string.upgrade_title_prefix)
+        get() = context.expectedBrandTitle
 
     private fun appNameWithPostfixedHeroBody(bodyRes: Int): String = context.getString(
         bodyRes,
@@ -414,7 +415,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_SUBSCRIPTION).assertCountEquals(0)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_sub_renewing_body)).assertCountEquals(1)
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
         // The congrats hero names the variant.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_OWNED_HERO).assertCountEquals(1)
         composeRule.onAllNodesWithText(appNameWithPostfixedHeroBody(R.string.upgrade_screen_owned_hero_sub_body))
@@ -522,7 +523,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         // must not undercut the calm quiet stage with its own restore CTA.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_RESTORE).assertCountEquals(0)
         // Grace users are still Pro: neutral status title, not the acquisition pitch title.
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
         // A young episode is treated as a blip: calm status only — no offers, no sales pitch.
         // The offers return with the aged (diagnostics) stage.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_SUBSCRIPTION).assertCountEquals(0)
@@ -691,6 +692,57 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onNodeWithText(context.getString(R.string.contact_support_label)).performClick()
         composeRule.runOnIdle { supportTaps shouldBe 1 }
     }
+}
+
+/**
+ * The upgrade screen draws its brand from the same `app_name` the dashboard and settings row use.
+ * It used to have its own less-translated copy, so in these locales it showed the English brand
+ * while the dashboard showed the localized one — in Arabic that produced a mixed-language title,
+ * an English brand beside an Arabic qualifier. Pinned in locales that translate `app_name`, because
+ * in English every candidate source resolves to the same text and proves nothing.
+ */
+class GplayUpgradeScreenBrandTitleTest : BaseComposeRobolectricTest() {
+
+    private val context: Context
+        get() = ApplicationProvider.getApplicationContext()
+
+    private fun showScreen() {
+        composeRule.setContent {
+            PreviewWrapper {
+                UpgradeScreen(
+                    uiState = GplayUpgradeUiState.Loaded(
+                        subscriptionAction = SubscriptionAction.UNAVAILABLE,
+                        subscriptionEnabled = false,
+                        subscriptionPrice = null,
+                        iapEnabled = false,
+                        iapPrice = "$24.99",
+                        ownership = Ownership(hasIap = true),
+                        busy = null,
+                    ),
+                )
+            }
+        }
+    }
+
+    private fun assertBrandAgrees() {
+        check(context.getString(R.string.app_name) != "Permission Pilot") {
+            "app_name is untranslated here, the assertion proves nothing"
+        }
+        showScreen()
+
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
+        composeRule.onAllNodesWithText(
+            "Permission Pilot ${context.getString(R.string.upgrade_title_suffix)}"
+        ).assertCountEquals(0)
+    }
+
+    @Test
+    @Config(qualifiers = "es")
+    fun `the upgrade screen title matches the dashboard brand in spanish`() = assertBrandAgrees()
+
+    @Test
+    @Config(qualifiers = "ar")
+    fun `the upgrade screen title matches the dashboard brand in arabic`() = assertBrandAgrees()
 }
 
 private fun ComposeContentTestRule.setUpgradeContent(
