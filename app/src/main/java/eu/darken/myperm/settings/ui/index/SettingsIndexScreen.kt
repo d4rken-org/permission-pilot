@@ -32,6 +32,7 @@ import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.settings.SettingsBaseItem
 import eu.darken.myperm.common.settings.SettingsCategoryHeader
 import eu.darken.myperm.common.settings.SettingsDivider
+import eu.darken.myperm.common.upgrade.ui.brandTitleText
 
 @Composable
 fun SettingsIndexScreenHost() {
@@ -97,7 +98,9 @@ fun SettingsIndexScreen(
             SettingsCategoryHeader(text = stringResource(R.string.settings_category_other_label))
 
             SettingsBaseItem(
-                title = stringResource(R.string.settings_upgrade_status_title),
+                // Composed from the same parts as the dashboard title rather than from a second,
+                // separately translated copy of the brand — the two used to drift apart.
+                title = brandTitleText(nameRes = R.string.app_name, includeQualifier = true),
                 subtitle = stringResource(R.string.settings_upgrade_description),
                 icon = Icons.TwoTone.Stars,
                 onClick = onUpgradeStatus,

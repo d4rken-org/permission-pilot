@@ -20,6 +20,9 @@ import io.mockk.mockk
 import org.junit.Test
 import org.robolectric.annotation.Config
 import testhelpers.compose.BaseComposeRobolectricTest
+import testhelpers.compose.brandQualifier
+import testhelpers.compose.brandTitleFor
+import testhelpers.compose.shouldHighlightOnlyQualifier
 
 /**
  * The dashboard titles itself with the branded app name while Pro is active. Composed from
@@ -35,10 +38,12 @@ class OverviewScreenTitleTest : BaseComposeRobolectricTest() {
         get() = context.getString(R.string.app_name)
 
     private val suffix: String
-        get() = context.getString(R.string.upgrade_title_suffix)
+        get() = context.brandQualifier
 
+    // Derived from the resolved template, never spelled as "$appName $suffix": arrangement is the
+    // translator's, so a locale that reorders or repunctuates is intended behaviour, not a failure.
     private val brandedTitle: String
-        get() = "$appName $suffix"
+        get() = context.brandTitleFor(R.string.app_name)
 
     private fun proInfo(): UpgradeRepo.Info = mockk<UpgradeRepo.Info>(relaxed = true).also {
         every { it.isPro } returns true
@@ -95,13 +100,7 @@ class OverviewScreenTitleTest : BaseComposeRobolectricTest() {
             .single()
 
         rendered.text shouldBe brandedTitle
-        rendered.spanStyles.size shouldBe 1
-        val span = rendered.spanStyles.single()
-        span.item.color shouldBe expectedTertiary
-        rendered.text.substring(span.start, span.end) shouldBe suffix
-        // Pins the range rather than just its content: only one candidate position exists.
-        rendered.text.indexOf(suffix) shouldBe span.start
-        rendered.text.lastIndexOf(suffix) shouldBe span.start
+        rendered.shouldHighlightOnlyQualifier(suffix, expectedTertiary)
     }
 
     @Test
@@ -159,7 +158,7 @@ class OverviewScreenTitleTest : BaseComposeRobolectricTest() {
         appName shouldBe "Piloto de los permisos"
         composeRule.onAllNodesWithText(brandedTitle).assertCountEquals(1)
         composeRule.onAllNodesWithText(
-            "${context.getString(R.string.upgrade_title_prefix)} $suffix"
+            context.brandTitleFor(R.string.upgrade_title_prefix)
         ).assertCountEquals(0)
     }
 }

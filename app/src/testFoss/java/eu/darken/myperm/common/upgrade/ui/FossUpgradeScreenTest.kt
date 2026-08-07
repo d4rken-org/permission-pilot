@@ -16,6 +16,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import testhelpers.compose.BaseComposeRobolectricTest
+import testhelpers.compose.brandTitleFor
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -70,7 +71,7 @@ class FossUpgradeScreenTest : BaseComposeRobolectricTest() {
             UpgradeScreen(view = FossUpgradeView.STATUS_FREE)
         }
 
-        composeRule.onAllNodesWithText("${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}").assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_STATUS_FREE).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_SHOW_OPTIONS).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_SPONSOR).assertCountEquals(0)
@@ -105,7 +106,7 @@ class FossUpgradeScreenTest : BaseComposeRobolectricTest() {
             UpgradeScreen(view = FossUpgradeView.STATUS_UPGRADED, supporterSince = since)
         }
 
-        composeRule.onAllNodesWithText("${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}").assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_STATUS_UPGRADED).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_status_upgraded_body))
             .assertCountEquals(1)

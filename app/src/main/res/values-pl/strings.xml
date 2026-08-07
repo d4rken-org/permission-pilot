@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name">Pilot Uprawnień </string>
+    <string name="app_name">Pilot Uprawnień</string>
     <string name="label_help">Pomoc</string>
     <string name="general_error_label">Błąd</string>
     <string name="general_load_error_title">Nie można załadować danych</string>

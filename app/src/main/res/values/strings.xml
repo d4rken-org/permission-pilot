@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
+    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
+         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
+    <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Help</string>
 
     <string name="general_error_label">Error</string>
