@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">ดูเหมือนว่าคุณได้อัปเกรดเป็น Pro บนอุปกรณ์นี้มาแล้ว คืนค่าการซื้อของคุณเพื่อปลดล็อคอีกครั้ง</string>
     <string name="upgrade_screen_options_description">สมาชิกภาพจะต่ออายุโดยอัตโนมัติ คุณยกเลิกได้เมื่อใดก็ได้</string>
     <string name="upgrade_title_suffix">โปร</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">คุณเป็น Pro — ขอบคุณ!</string>
     <string name="upgrade_screen_owned_hero_iap_body">การซื้อ Pro ครั้งเดียวของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมดเป็นการถาวร</string>

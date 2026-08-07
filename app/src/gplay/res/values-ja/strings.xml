@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">以前このデバイスで Pro にアップグレードしたようです。購入を復元して Pro をもう一度ロック解除してください。</string>
     <string name="upgrade_screen_options_description">サブスクリプションは自動更新されます。いつでもキャンセルできます。</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Pro のご利用ありがとうございます！</string>
     <string name="upgrade_screen_owned_hero_iap_body">Pro のワンタイム購入により、すべての Pro 機能が永久にロック解除されます。</string>

@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Vypadá to, že jste již dříve upgradovali na Pro na tomto zařízení. Obnovte svůj nákup a odemkněte jej znovu.</string>
     <string name="upgrade_screen_options_description">Předplatné se obnovuje automaticky. Můžete je kdykoliv zrušit.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Jste Pro — děkujeme!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Váš jednorázový nákup Pro odemyká každou funkci Pro navždy.</string>

@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">স্পনসর হন</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors খুলবে</string>
     <string name="upgrade_foss_sponsor_returned_early">দয়া করে স্পনসর পেজটি দেখুন!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">বিনামূল্যে সংস্করণ</string>
     <string name="upgrade_screen_status_free_body">আপনি বিনামূল্যের, ওপেন-সোর্স বিল্ড ব্যবহার করছেন। প্রো বৈশিষ্ট্যগুলি আনলক করতে উন্নয়নকে সমর্থন করুন।</string>

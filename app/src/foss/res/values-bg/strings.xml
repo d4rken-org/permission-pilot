@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">Станете спонсор</string>
     <string name="upgrade_foss_sponsor_subtitle">Отваря GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">Моля, отделете момент да разгледате страницата на спонсорите!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">Безплатна версия</string>
     <string name="upgrade_screen_status_free_body">Използвате безплатната версия с отворен код. Подкрепете разработката, за да отключите Pro функциите.</string>

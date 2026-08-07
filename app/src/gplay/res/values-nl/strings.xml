@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Het lijkt erop dat je op dit apparaat eerder naar Pro bent geüpgraded. Herstel je aankoop om het opnieuw in te schakelen.</string>
     <string name="upgrade_screen_options_description">Abonnementen verlengen automatisch. Je kunt op elk moment opzeggen.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Je bent Pro — dank je wel!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Je eenmalige Pro-aankoop ontgrendelt elk Pro-onderdeel voor altijd.</string>

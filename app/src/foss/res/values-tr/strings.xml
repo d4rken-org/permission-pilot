@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">Sponsor Ol</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors\'u açar</string>
     <string name="upgrade_foss_sponsor_returned_early">Lütfen bir dakikanızı ayırıp sponsor sayfasına göz atın!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">Ücretsiz sürüm</string>
     <string name="upgrade_screen_status_free_body">Ücretsiz, açık kaynaklı sürümü kullanıyorsunuz. Pro özelliklerinin kilidini açmak için geliştirmeyi destekleyin.</string>

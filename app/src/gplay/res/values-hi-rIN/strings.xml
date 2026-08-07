@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">ऐसा लगता है कि आप इस डिवाइस पर पहले Pro पर अपग्रेड कर चुके हैं। इसे फिर से अनलॉक करने के लिए अपनी खरीद को पुनः स्थापित करें।</string>
     <string name="upgrade_screen_options_description">सदस्यता स्वचालित रूप से नवीनीकृत होती है। आप कभी भी रद्द कर सकते हैं।</string>
     <string name="upgrade_title_suffix">प्रो</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">आप Pro हैं — धन्यवाद!</string>
     <string name="upgrade_screen_owned_hero_iap_body">आपकी एक बार की Pro खरीद हमेशा के लिए हर Pro सुविधा को अनलॉक करती है।</string>

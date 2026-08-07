@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Näyttää siltä, että olet päivittänyt Pro-versioon tällä laitteella aiemmin. Palauta ostoksesi avataksesi sen uudelleen.</string>
     <string name="upgrade_screen_options_description">Tilaukset uusiutuvat automaattisesti. Voit peruuttaa milloin tahansa.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Olet Pro – kiitos!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Kertaluonteinen Pro-ostos avaa kaikki Pro-ominaisuudet ikuisesti.</string>

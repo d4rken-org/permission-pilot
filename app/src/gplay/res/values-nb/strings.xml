@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Det ser ut til at du oppgraderte til Pro på denne enheten før. Gjenopprett kjøpet ditt for å låse det opp igjen.</string>
     <string name="upgrade_screen_options_description">Abonnementer fornyes automatisk. Du kan avbryte når som helst.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Du er Pro – takk!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ditt engangs Pro-kjøp låser opp hver Pro-funksjon, for alltid.</string>

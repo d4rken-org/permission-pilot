@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Es sieht so aus, als hättest du auf diesem Gerät schon einmal ein Upgrade auf Pro durchgeführt. Stelle deinen Kauf wieder her, um es erneut freizuschalten.</string>
     <string name="upgrade_screen_options_description">Abonnements verlängern sich automatisch. Du kannst jederzeit kündigen.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Sie haben Pro – vielen Dank!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ihr einmaliger Pro-Kauf entsperrt alle Pro-Funktionen für immer.</string>

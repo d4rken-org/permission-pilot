@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">成為贊助者</string>
     <string name="upgrade_foss_sponsor_subtitle">開啟 GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">請花一點時間查看贊助頁面！</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">免費版本</string>
     <string name="upgrade_screen_status_free_body">您正在使用免費的開源版本。請支持開發以解鎖 Pro 功能。</string>

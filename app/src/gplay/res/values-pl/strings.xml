@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Wygląda na to, że na tym urządzeniu dokonałeś już wcześniej aktualizacji do wersji Pro. Przywróć zakup, aby ją ponownie odblokować.</string>
     <string name="upgrade_screen_options_description">Subskrypcje odnawiają się automatycznie. Możesz anulować w dowolnym momencie.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Pilot Uprawnień Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Jesteś Pro - dziękuję!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Twój jednorazowy zakup Pro odblokowuje każdą funkcję Pro na zawsze.</string>

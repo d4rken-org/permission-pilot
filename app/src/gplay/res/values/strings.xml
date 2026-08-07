@@ -20,8 +20,6 @@
     <string name="upgrade_screen_options_description">Subscriptions renew automatically. You can cancel anytime.</string>
     <string name="upgrade_title_suffix">Pro</string>
 
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
 
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">You\'re Pro — thank you!</string>

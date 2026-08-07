@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">看起来您之前在此设备上升级到 Pro。恢复您的购买以再次解锁。</string>
     <string name="upgrade_screen_options_description">订阅自动续费，可随时取消。</string>
     <string name="upgrade_title_suffix">专业版</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">您是 Pro 用户，感谢您！</string>
     <string name="upgrade_screen_owned_hero_iap_body">您的一次性 Pro 购买永久解锁所有 Pro 功能。</string>

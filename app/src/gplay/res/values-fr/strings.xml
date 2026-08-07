@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Il semble que vous ayez déjà fait la mise à niveau vers Pro sur cet appareil. Restaurez votre achat pour le déverrouiller à nouveau.</string>
     <string name="upgrade_screen_options_description">Les abonnements se renouvellent automatiquement. Vous pouvez annuler à tout moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Vous êtes Pro — merci !</string>
     <string name="upgrade_screen_owned_hero_iap_body">Votre achat Pro unique déverrouille toutes les fonctionnalités Pro, pour toujours.</string>

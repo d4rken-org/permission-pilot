@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">Trở thành nhà tài trợ</string>
     <string name="upgrade_foss_sponsor_subtitle">Mở GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">Vui lòng dành chút thời gian ghé thăm trang nhà tài trợ!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">Phiên bản miễn phí</string>
     <string name="upgrade_screen_status_free_body">Bạn đang dùng phiên bản miễn phí, mã nguồn mở. Hỗ trợ phát triển để mở khóa tính năng Pro.</string>

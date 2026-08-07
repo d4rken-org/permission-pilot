@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">เป็นผู้สนับสนุน</string>
     <string name="upgrade_foss_sponsor_subtitle">เปิด GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">โปรดใช้เวลาสักครู่เช็คหน้าผู้สนับสนุน!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">เวอร์ชันฟรี</string>
     <string name="upgrade_screen_status_free_body">คุณใช้บิลด์ฟรีและโอเพนซอร์ส สนับสนุนการพัฒนาเพื่อปลดล็อคฟีเจอร์ Pro</string>

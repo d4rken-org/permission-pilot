@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">이 기기에서 이전에 Pro로 업그레이드했던 것 같습니다. 구매를 복구하여 Pro를 다시 사용하세요.</string>
     <string name="upgrade_screen_options_description">구독은 자동으로 갱신됩니다. 언제든지 취소할 수 있습니다.</string>
     <string name="upgrade_title_suffix">프로</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Pro 이용 중이시네요 — 감사합니다!</string>
     <string name="upgrade_screen_owned_hero_iap_body">일회성 Pro 구매로 모든 Pro 기능을 영원히 사용할 수 있습니다.</string>

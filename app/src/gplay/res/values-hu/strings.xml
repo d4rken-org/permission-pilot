@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Úgy tűnik, korábban már Pro-ra frissítettél ezen az eszközön. Állítsd vissza a vásárlást, hogy újra feloldhasd.</string>
     <string name="upgrade_screen_options_description">Az előfizetések automatikusan megújulnak. Bármikor lemondhatod.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Pro vagy – köszönjük!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Az egyszeri Pro vásárlásod minden Pro funkciót feloldja, örökre.</string>

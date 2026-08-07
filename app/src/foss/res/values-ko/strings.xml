@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">스폰서 되기</string>
     <string name="upgrade_foss_sponsor_subtitle">GitHub Sponsors 열기</string>
     <string name="upgrade_foss_sponsor_returned_early">스폰서 페이지를 일찍 확인해 주세요!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">무료 버전</string>
     <string name="upgrade_screen_status_free_body">무료 오픈소스 빌드를 사용 중입니다. 개발을 지원하여 Pro 기능을 잠금 해제하세요.</string>

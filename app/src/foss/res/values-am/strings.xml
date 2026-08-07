@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">የግል አስነሯ</string>
     <string name="upgrade_foss_sponsor_subtitle">የ GitHub Sponsors ይዘርቹ</string>
     <string name="upgrade_foss_sponsor_returned_early">የግል ቃኩልን አክበ ለመከፈት የጓል ደቁወቢ።</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">ነጻ ስሪት</string>
     <string name="upgrade_screen_status_free_body">የነጻ፣ ከተመረቀ ምንጭ ግንባታ እየተጠቀሙ ነው። Pro ባህሪያትን ለመክፈት ልማትን ይደግፉ።</string>
