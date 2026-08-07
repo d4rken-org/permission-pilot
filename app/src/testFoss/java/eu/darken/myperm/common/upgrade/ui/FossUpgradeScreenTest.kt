@@ -15,8 +15,9 @@ import eu.darken.myperm.common.compose.PreviewWrapper
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.robolectric.annotation.Config
 import testhelpers.compose.BaseComposeRobolectricTest
-import testhelpers.compose.brandTitleFor
+import testhelpers.compose.expectedBrandTitle
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -71,7 +72,7 @@ class FossUpgradeScreenTest : BaseComposeRobolectricTest() {
             UpgradeScreen(view = FossUpgradeView.STATUS_FREE)
         }
 
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_STATUS_FREE).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_SHOW_OPTIONS).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_SPONSOR).assertCountEquals(0)
@@ -106,7 +107,7 @@ class FossUpgradeScreenTest : BaseComposeRobolectricTest() {
             UpgradeScreen(view = FossUpgradeView.STATUS_UPGRADED, supporterSince = since)
         }
 
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.FOSS_STATUS_UPGRADED).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_status_upgraded_body))
             .assertCountEquals(1)
@@ -160,6 +161,52 @@ class FossUpgradeScreenTest : BaseComposeRobolectricTest() {
             assertTrue(clicked)
             assertFalse(armed)
         }
+    }
+}
+
+/**
+ * The upgrade screen draws its brand from the same `app_name` the dashboard and settings row use.
+ * It used to have its own less-translated copy, so in these locales it showed the English brand
+ * while the dashboard showed the localized one. Pinned in a locale that translates `app_name`,
+ * because in English every candidate source resolves to the same text and proves nothing.
+ */
+class FossUpgradeScreenBrandTitleTest : BaseComposeRobolectricTest() {
+
+    private val context: Context
+        get() = ApplicationProvider.getApplicationContext()
+
+    private fun showScreen() {
+        composeRule.setContent {
+            PreviewWrapper { UpgradeScreen(view = FossUpgradeView.STATUS_FREE) }
+        }
+    }
+
+    @Test
+    @Config(qualifiers = "es")
+    fun `the upgrade screen title matches the dashboard brand in spanish`() {
+        check(context.getString(R.string.app_name) != "Permission Pilot") {
+            "app_name is untranslated here, the assertion proves nothing"
+        }
+        showScreen()
+
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
+        composeRule.onAllNodesWithText(
+            "Permission Pilot ${context.getString(R.string.upgrade_title_suffix)}"
+        ).assertCountEquals(0)
+    }
+
+    @Test
+    @Config(qualifiers = "ar")
+    fun `the upgrade screen title matches the dashboard brand in arabic`() {
+        check(context.getString(R.string.app_name) != "Permission Pilot") {
+            "app_name is untranslated here, the assertion proves nothing"
+        }
+        showScreen()
+
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
+        composeRule.onAllNodesWithText(
+            "Permission Pilot ${context.getString(R.string.upgrade_title_suffix)}"
+        ).assertCountEquals(0)
     }
 }
 

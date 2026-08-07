@@ -9,7 +9,7 @@ import eu.darken.myperm.common.compose.PreviewWrapper
 import org.junit.Test
 import org.robolectric.annotation.Config
 import testhelpers.compose.BaseComposeRobolectricTest
-import testhelpers.compose.brandTitleFor
+import testhelpers.compose.expectedBrandTitle
 
 /**
  * The settings entry names the same tier the dashboard does. It used to carry its own hardcoded
@@ -42,7 +42,7 @@ class SettingsIndexBrandTitleTest : BaseComposeRobolectricTest() {
     fun `the upgrade row carries the same composed brand as the dashboard`() {
         showScreen()
 
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.app_name)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
     }
 
     @Test
@@ -52,7 +52,7 @@ class SettingsIndexBrandTitleTest : BaseComposeRobolectricTest() {
 
         // Was "Permission Pilot Pro" here while the dashboard said "Piloto de los permisos Pro".
         requireLocalizedAppName()
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.app_name)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
     }
 
     @Test
@@ -61,7 +61,7 @@ class SettingsIndexBrandTitleTest : BaseComposeRobolectricTest() {
         showScreen()
 
         requireLocalizedAppName()
-        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.app_name)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
     }
 
     // Guards the guard: if app_name ever stopped being translated in these locales the assertions

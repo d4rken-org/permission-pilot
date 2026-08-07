@@ -101,13 +101,10 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
 }
 
 // The dashboard brands itself for supporters: the localized app name plus the flavor's upgrade
-// suffix ("Pro" on gplay, "FOSS" on the FOSS build) in the upgraded color. Composed from app_name,
-// NOT from the upgrade screen's title prefix: the two are not locale-equivalent (es: "Piloto de los
-// permisos" vs "Permission Pilot"), so reusing the prefix would switch the title's LANGUAGE the
-// moment the entitlement lands.
+// suffix ("Pro" on gplay, "FOSS" on the FOSS build) in the upgraded color. Shares one brand source
+// with the settings row and the upgrade screen, so the three cannot name the same tier differently.
 @Composable
 private fun dashboardTitle(pro: Boolean): AnnotatedString = brandTitle(
-    nameRes = R.string.app_name,
     includeQualifier = pro,
     highlightQualifier = pro,
 )

@@ -13,11 +13,12 @@ import io.kotest.matchers.shouldBe
  * assert only the invariants — the qualifier appears exactly once, and the highlight covers
  * exactly it, wherever the template put it.
  */
-fun Context.brandTitleFor(nameRes: Int): String = getString(
-    R.string.app_name_upgraded_template,
-    getString(nameRes),
-    getString(R.string.upgrade_title_suffix),
-)
+val Context.expectedBrandTitle: String
+    get() = getString(
+        R.string.app_name_upgraded_template,
+        getString(R.string.app_name),
+        getString(R.string.upgrade_title_suffix),
+    )
 
 /** The flavor's tier qualifier — "Pro" on gplay, "FOSS" on the FOSS build. */
 val Context.brandQualifier: String
