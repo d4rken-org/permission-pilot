@@ -58,8 +58,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.activity.compose.LocalActivity
@@ -75,6 +73,7 @@ import eu.darken.myperm.common.compose.Preview2
 import eu.darken.myperm.common.compose.PreviewWrapper
 import eu.darken.myperm.common.error.ErrorEventHandler
 import eu.darken.myperm.common.navigation.NavigationEventHandler
+import eu.darken.myperm.common.upgrade.ui.brandTitle
 import eu.darken.myperm.main.ui.overview.OverviewViewModel.SummaryCategory
 
 @Composable
@@ -107,18 +106,11 @@ fun OverviewScreenHost(vm: OverviewViewModel = hiltViewModel()) {
 // permisos" vs "Permission Pilot"), so reusing the prefix would switch the title's LANGUAGE the
 // moment the entitlement lands.
 @Composable
-private fun proBrandTitle(): AnnotatedString {
-    val highlight = MaterialTheme.colorScheme.tertiary
-    val appName = stringResource(R.string.app_name)
-    val suffix = stringResource(R.string.upgrade_title_suffix)
-    return buildAnnotatedString {
-        append(appName)
-        append(" ")
-        pushStyle(SpanStyle(color = highlight))
-        append(suffix)
-        pop()
-    }
-}
+private fun dashboardTitle(pro: Boolean): AnnotatedString = brandTitle(
+    nameRes = R.string.app_name,
+    includeQualifier = pro,
+    highlightQualifier = pro,
+)
 
 @Composable
 fun OverviewScreen(
@@ -158,14 +150,14 @@ fun OverviewScreen(
                     Column {
                         if (state.upgradeInfo?.isPro == true) {
                             Text(
-                                text = proBrandTitle(),
+                                text = dashboardTitle(pro = true),
                                 // The branded title is longer than the plain one: at narrow widths
                                 // or large font it would wrap over the version line below it.
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )
                         } else {
-                            Text(text = stringResource(R.string.app_name))
+                            Text(text = dashboardTitle(pro = false))
                         }
                         Text(
                             text = state.versionDesc,

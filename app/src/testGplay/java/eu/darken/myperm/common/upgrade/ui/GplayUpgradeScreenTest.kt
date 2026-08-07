@@ -26,15 +26,19 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
 import testhelpers.compose.BaseComposeRobolectricTest
+import testhelpers.compose.brandQualifier
+import testhelpers.compose.brandTitleFor
+import testhelpers.compose.shouldHighlightOnlyQualifier
 
 class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
 
     private val context: Context
         get() = ApplicationProvider.getApplicationContext()
 
-    // "Permission Pilot Pro" — the composed brand the screen renders for owners and grace users.
+    // The composed brand the screen renders for owners and grace users ("Permission Pilot Pro" in
+    // English). Derived from the resolved template, so a locale that reorders it still passes.
     private val appNameWithPostfix: String
-        get() = "${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}"
+        get() = context.brandTitleFor(R.string.upgrade_title_prefix)
 
     private fun appNameWithPostfixedHeroBody(bodyRes: Int): String = context.getString(
         bodyRes,
@@ -79,16 +83,8 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
             .fetchSemanticsNode()
             .config[SemanticsProperties.Text]
             .single()
-        val suffix = context.getString(R.string.upgrade_title_suffix)
-
         rendered.text shouldBe acquisitionTitle
-        rendered.spanStyles.size shouldBe 1
-        val span = rendered.spanStyles.single()
-        span.item.color shouldBe expectedTertiary
-        rendered.text.substring(span.start, span.end) shouldBe suffix
-        // Pins the range rather than just its content: only one candidate position exists.
-        rendered.text.indexOf(suffix) shouldBe span.start
-        rendered.text.lastIndexOf(suffix) shouldBe span.start
+        rendered.shouldHighlightOnlyQualifier(context.brandQualifier, expectedTertiary)
     }
 
     @Test
@@ -418,7 +414,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_SUBSCRIPTION).assertCountEquals(0)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_sub_renewing_body)).assertCountEquals(1)
-        composeRule.onAllNodesWithText("${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}").assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
         // The congrats hero names the variant.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_OWNED_HERO).assertCountEquals(1)
         composeRule.onAllNodesWithText(appNameWithPostfixedHeroBody(R.string.upgrade_screen_owned_hero_sub_body))
@@ -526,7 +522,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         // must not undercut the calm quiet stage with its own restore CTA.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_RESTORE).assertCountEquals(0)
         // Grace users are still Pro: neutral status title, not the acquisition pitch title.
-        composeRule.onAllNodesWithText("${context.getString(R.string.upgrade_title_prefix)} ${context.getString(R.string.upgrade_title_suffix)}").assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.brandTitleFor(R.string.upgrade_title_prefix)).assertCountEquals(1)
         // A young episode is treated as a blip: calm status only — no offers, no sales pitch.
         // The offers return with the aged (diagnostics) stage.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_SUBSCRIPTION).assertCountEquals(0)

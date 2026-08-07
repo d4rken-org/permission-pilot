@@ -91,30 +91,66 @@ internal object UpgradeScreenTags {
     const val HERO = "upgrade_hero"
 }
 
+// The branded app title: a name plus the flavor's tier qualifier ("Pro" / "FOSS"), arranged by the
+// translated template so word order and punctuation belong to the language rather than to this
+// code. The qualifier is highlighted in the upgraded color while Pro is active.
+//
+// [nameRes] is the caller's choice of brand source, and the two callers deliberately differ: the
+// dashboard and settings pass app_name (translated in every locale), the upgrade screen passes
+// upgrade_title_prefix. The two are not locale-equivalent (es: "Piloto de los permisos" vs
+// "Permission Pilot"), so the dashboard must not borrow the prefix — its title would switch
+// LANGUAGE the moment the entitlement landed.
+@Composable
+internal fun brandTitle(
+    @StringRes nameRes: Int,
+    includeQualifier: Boolean,
+    highlightQualifier: Boolean,
+): AnnotatedString {
+    val name = AnnotatedString(stringResource(nameRes))
+    if (!includeQualifier) return name
+
+    val highlight = MaterialTheme.colorScheme.tertiary
+    val qualifier = buildAnnotatedString {
+        if (highlightQualifier) pushStyle(SpanStyle(color = highlight))
+        append(stringResource(R.string.upgrade_title_suffix))
+        if (highlightQualifier) pop()
+    }
+    return spliceTitleTemplate(
+        formatted = stringResource(
+            R.string.app_name_upgraded_template,
+            BRAND_TITLE_MARKER,
+            BRAND_QUALIFIER_MARKER,
+        ),
+        name = name,
+        qualifier = qualifier,
+    )
+}
+
+// Same composition for call sites that need a plain String (the settings components take String,
+// not AnnotatedString). Routed through brandTitle so the two forms cannot drift apart.
+@Composable
+internal fun brandTitleText(@StringRes nameRes: Int, includeQualifier: Boolean): String =
+    brandTitle(nameRes = nameRes, includeQualifier = includeQualifier, highlightQualifier = false).text
+
 // Composed app title with the flavor suffix highlighted in the upgraded color while Pro is
 // active — the same treatment the dashboard title gives itself for supporters.
 @Composable
-internal fun upgradeScreenTitle(upgraded: Boolean): AnnotatedString {
-    // PP already ships the title as a translated prefix + flavor-overridden suffix pair, which is
-    // exactly the shape the canonical highlight needs. Note the dashboard composes the same
-    // highlight from app_name instead of this prefix — deliberate: only app_name is translated in
-    // every locale, so the dashboard title keeps its language when the entitlement lands.
-    val highlight = MaterialTheme.colorScheme.tertiary
-    val prefix = stringResource(R.string.upgrade_title_prefix)
-    val suffix = stringResource(R.string.upgrade_title_suffix)
-    return buildAnnotatedString {
-        append(prefix)
-        append(" ")
-        if (upgraded) pushStyle(SpanStyle(color = highlight))
-        append(suffix)
-        if (upgraded) pop()
-    }
-}
+internal fun upgradeScreenTitle(upgraded: Boolean): AnnotatedString = brandTitle(
+    nameRes = R.string.upgrade_title_prefix,
+    // Unconditional: this title names the flavor even when the screen shows the free state.
+    includeQualifier = true,
+    highlightQualifier = upgraded,
+)
 
 // Marker char for brand-title splicing: formatted into the translated pattern via the normal
 // Android format path (so %1$s vs %s, argument reordering, and %% all behave), then replaced
 // with the styled brand. U+FFFC (object replacement) cannot occur in a real translation.
 internal const val BRAND_TITLE_MARKER = "￼"
+
+// The title template's second slot. U+FFF9 (interlinear annotation anchor) is likewise absent from
+// real translations, and being distinct from BRAND_TITLE_MARKER is what lets the splice tell the
+// two slots apart after the formatter has reordered them.
+internal const val BRAND_QUALIFIER_MARKER = "￹"
 
 internal fun spliceBrandTitle(formatted: String, brand: AnnotatedString): AnnotatedString = buildAnnotatedString {
     var rest = formatted
@@ -132,6 +168,45 @@ internal fun spliceBrandTitle(formatted: String, brand: AnnotatedString): Annota
         // Defensive: a translation that lost its placeholder still shows the brand.
         append(" ")
         append(brand)
+    }
+}
+
+// Splices the two title slots into an already-formatted template. Stricter than spliceBrandTitle on
+// purpose: that one splices a brand into a *sentence*, where a repeated marker is a legitimate (if
+// odd) translation. A *title* template has exactly two slots, so anything else is damage — and once
+// a slot is missing or doubled the template can no longer tell us the intended order or
+// punctuation, which is the whole reason it exists. So a broken template is discarded whole and the
+// default title is rebuilt from the parts; patching it up piecewise would emit a title no
+// translator wrote.
+internal fun spliceTitleTemplate(
+    formatted: String,
+    name: AnnotatedString,
+    qualifier: AnnotatedString,
+): AnnotatedString {
+    val slots = listOf(
+        BRAND_TITLE_MARKER to name,
+        BRAND_QUALIFIER_MARKER to qualifier,
+    ).map { (marker, value) -> Triple(formatted.indexOf(marker), marker, value) }
+
+    val intact = slots.all { (index, marker, _) ->
+        index >= 0 && formatted.indexOf(marker, index + marker.length) < 0
+    }
+    if (!intact) {
+        return buildAnnotatedString {
+            append(name)
+            append(" ")
+            append(qualifier)
+        }
+    }
+
+    return buildAnnotatedString {
+        var cursor = 0
+        slots.sortedBy { it.first }.forEach { (index, marker, value) ->
+            append(formatted.substring(cursor, index))
+            append(value)
+            cursor = index + marker.length
+        }
+        append(formatted.substring(cursor))
     }
 }
 
