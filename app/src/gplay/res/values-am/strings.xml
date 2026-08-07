@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">በዚህ መሣሪያ ላይ በፊት Pro ገዝተዋል ይመስላል። ዳግም ለመክፈት ግዢዎን ወደ ነበር ሆኑ።</string>
     <string name="upgrade_screen_options_description">ኰይዘቶች በርስ ይተያያኳሉ። በአንደም መቀሰል ይቻላሉ።</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Pro ነዎ — አመሰግናለሁ!</string>
     <string name="upgrade_screen_owned_hero_iap_body">የአንድ ጊዜ Pro ግዢ ሁሉንም Pro ባህሪ ለዘላለም ይከፍታል።</string>

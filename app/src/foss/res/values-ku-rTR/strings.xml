@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">بوونهەڵبەستكەری بھە</string>
     <string name="upgrade_foss_sponsor_subtitle">کرانەوەی GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">تکایە کاتێک لەبەر دووری بخوێنەوە بۆ پەڕەی سپۆنسەرەکان!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">Guhertoya azad</string>
     <string name="upgrade_screen_status_free_body">Tu guhertoya azad û open-source ya bikar tînî. Pêşve tînana vê sepê piştgirî bike ji bo der kirina taybetmendiyên Pro.</string>

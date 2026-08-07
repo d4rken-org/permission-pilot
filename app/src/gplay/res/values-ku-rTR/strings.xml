@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Xuya dike ku tu berê li vî amûrî veguhastî Pro. Beşdarkirina xwe venîştin da ku cara dî vê vekin.</string>
     <string name="upgrade_screen_options_description">بوونهەڵبەستەکان بە خۆدیکەوە نوێكردرەوەن. دەتوانیت ھەر کاتیک لاببکەیت.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Tu Pro yî — spas!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Kirîna Pro-ya yek-car hemû taybetmendiyên Pro derxîne, sedemzî.</string>

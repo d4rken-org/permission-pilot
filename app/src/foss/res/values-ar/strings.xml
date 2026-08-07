@@ -4,8 +4,6 @@
     <string name="upgrade_foss_sponsor_action">كن راعياً</string>
     <string name="upgrade_foss_sponsor_subtitle">يفتح GitHub Sponsors</string>
     <string name="upgrade_foss_sponsor_returned_early">يُرجى تخصيص لحظة للاطلاع على صفحة الراعيين!</string>
-    <!-- Settings entry title (FOSS flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot FOSS</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">النسخة المجانية</string>
     <string name="upgrade_screen_status_free_body">أنت تستخدم الإصدار المجاني مفتوح المصدر. ادعم التطوير لفتح ميزات Pro.</string>

@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Изгледа да сте раније купили Pro на овом уређају. Вратите куповину да откључате Pro.</string>
     <string name="upgrade_screen_options_description">Претплате се аутоматски обнављају. Можете отказати када хоћете.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Ви сте Pro — хвала!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ваша једнократна куповина Pro откључава све Pro функције заувек.</string>

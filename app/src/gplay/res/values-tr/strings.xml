@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Bu cihazda daha önce Pro\'ya yükseltme yaptığınız görülüyor. Satın almayı geri yükleyin ve kilidi açın.</string>
     <string name="upgrade_screen_options_description">Abonelikler otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Pro\'sunuz — teşekkür ederiz!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Bir defaya mahsus Pro satın alımınız tüm Pro özelliklerini sonsuza kadar açar.</string>

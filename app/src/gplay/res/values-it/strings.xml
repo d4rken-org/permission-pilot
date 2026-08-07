@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Sembra che tu abbia già acquistato Pro su questo dispositivo. Ripristina il tuo acquisto per sbloccarlo di nuovo.</string>
     <string name="upgrade_screen_options_description">Gli abbonamenti si rinnovano automaticamente. Puoi annullare in qualsiasi momento.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Sei Pro — grazie!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Il tuo acquisto unico di Pro sblocca ogni funzione Pro, per sempre.</string>

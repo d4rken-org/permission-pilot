@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">يبدو أنك ترقيت إلى Pro على هذا الجهاز من قبل. استعد شراءك لفتح قفله مرة أخرى.</string>
     <string name="upgrade_screen_options_description">تتجدد الاشتراكات تلقائياً. يمكنك الإلغاء في أي وقت.</string>
     <string name="upgrade_title_suffix">احترافي</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">أنت Pro الآن - شكراً لك!</string>
     <string name="upgrade_screen_owned_hero_iap_body">شراء Pro لمرة واحدة يفتح كل ميزة Pro إلى الأبد.</string>

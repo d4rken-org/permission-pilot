@@ -18,8 +18,6 @@
     <string name="upgrade_screen_restore_banner_body">Se pare că ai cumpărat versiunea Pro pe acest dispozitiv anterior. Restaurează achiziția pentru a o debloca din nou.</string>
     <string name="upgrade_screen_options_description">Abonamentele se reînnoiesc automat. Poți anula oricând.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Settings entry title (Play flavor) -->
-    <string name="settings_upgrade_status_title">Permission Pilot Pro</string>
     <!-- Ownership / status -->
     <string name="upgrade_screen_owned_hero_title">Ești Pro — mulțumim!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Achiziția ta Pro de o singură dată deblochează fiecare caracteristică Pro, pentru totdeauna.</string>
