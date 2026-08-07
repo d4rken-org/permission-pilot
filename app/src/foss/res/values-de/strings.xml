@@ -6,14 +6,14 @@
     <string name="upgrade_foss_sponsor_returned_early">Bitte nimm dir einen Moment, um die Sponsor-Seite zu besuchen!</string>
     <!-- Free status -->
     <string name="upgrade_screen_status_free_title">Kostenlose Version</string>
-    <string name="upgrade_screen_status_free_body">Sie verwenden den kostenlosen Open-Source-Build. Unterstützen Sie die Entwicklung, um die Pro-Funktionen freizuschalten.</string>
+    <string name="upgrade_screen_status_free_body">Du verwendest den kostenlosen Open-Source-Build. Unterstütz die Entwicklung, um die Pro-Funktionen freizuschalten.</string>
     <string name="upgrade_screen_status_free_action">Sponsor werden</string>
     <!-- Supporter status -->
-    <string name="upgrade_screen_status_upgraded_title">Vielen Dank für Ihre Unterstützung!</string>
-    <string name="upgrade_screen_status_upgraded_body">Sie haben alle Pro-Funktionen freigeschaltet. Ihre Unterstützung hält Permission Pilot kostenlos und Open-Source.</string>
+    <string name="upgrade_screen_status_upgraded_title">Vielen Dank für deine Unterstützung!</string>
+    <string name="upgrade_screen_status_upgraded_body">Du hast alle Pro-Funktionen freigeschaltet. Deine Unterstützung hält Permission Pilot kostenlos und Open-Source.</string>
     <string name="upgrade_screen_supporter_since">Unterstützer seit %1$s</string>
     <string name="upgrade_screen_recurring_title">Erneut unterstützen</string>
-    <string name="upgrade_screen_recurring_body">Permission Pilot wird offen entwickelt. Ziehen Sie ein wiederkehrendes Sponsoring in Betracht, um es zu unterstützen.</string>
+    <string name="upgrade_screen_recurring_body">Permission Pilot wird offen entwickelt. Ziehe ein wiederkehrendes Sponsoring in Betracht, um es zu unterstützen.</string>
     <string name="upgrade_screen_recurring_action">GitHub Sponsors öffnen</string>
     <!-- Support pitch -->
     <string name="upgrade_screen_title">Permission Pilot unterstützen</string>
