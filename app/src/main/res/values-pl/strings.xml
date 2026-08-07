@@ -617,7 +617,6 @@
     <string name="general_copy_action">Kopiuj</string>
     <string name="general_copied_to_clipboard_msg">Skopiowano do schowka</string>
     <string name="general_view_details_for_x_action">Wyświetl szczegóły dla %1$s</string>
-    <string name="upgrade_title_prefix">Pilot Uprawnień</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Status i opcje aktualizacji</string>
     <!-- Permission Watcher -->

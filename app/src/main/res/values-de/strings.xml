@@ -571,7 +571,6 @@
     <string name="general_copy_action">Kopieren</string>
     <string name="general_copied_to_clipboard_msg">In die Zwischenablage kopiert</string>
     <string name="general_view_details_for_x_action">Details für %1$s anzeigen</string>
-    <string name="upgrade_title_prefix">Permission Pilot</string>
     <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Upgrade-Status und Optionen</string>
     <!-- Permission Watcher -->
