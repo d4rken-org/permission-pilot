@@ -224,7 +224,6 @@
         <item quantity="other">%d sağlayıcı sorgusu</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Tüm yüklü uygulamaları keşfedebilir</string>
     <string name="apps_details_manifest_hint_excessive">Birçok belirli uygulama arar</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifesto Görüntülleyici</string>

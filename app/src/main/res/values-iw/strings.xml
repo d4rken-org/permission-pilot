@@ -242,7 +242,6 @@
         <item quantity="other">%d שאילותות ספק</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">יכול לגלות את כל האפליקציות המותקנות</string>
     <string name="apps_details_manifest_hint_excessive">בודק אפליקציות ספציפיות רבות</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">צופה במניפסט</string>

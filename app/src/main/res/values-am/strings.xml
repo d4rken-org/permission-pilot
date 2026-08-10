@@ -224,7 +224,6 @@
         <item quantity="other">%d የአቅራቢ ጥያቄዎች</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">ሁሉም የተጫኑ መተግበሪያዎችን ማግኘት ይችላል</string>
     <string name="apps_details_manifest_hint_excessive">ለመተግበሪያዎች ካለደ኉ እየ቙ቱን ይነጋባል</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ማኒፌስት ጨያይ</string>

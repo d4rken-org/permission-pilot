@@ -224,7 +224,6 @@
         <item quantity="other">%d consultas de proveedor</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Puede detectar todas las apps instaladas</string>
     <string name="apps_details_manifest_hint_excessive">Comprueba muchas apps específicas</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visor de manifiestos</string>

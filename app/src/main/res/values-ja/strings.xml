@@ -215,7 +215,6 @@
         <item quantity="other">%d 件のプロバイダクエリ</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">インストール済みのすべてのアプリを検出できる</string>
     <string name="apps_details_manifest_hint_excessive">多くの特定のアプリを確認する</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">マニフェストビューア</string>

@@ -243,7 +243,7 @@
     </plurals>
 
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Can discover all installed apps</string>
+    <string name="apps_details_manifest_hint_main_query">Can discover most launchable apps</string>
     <string name="apps_details_manifest_hint_excessive">Checks for many specific apps</string>
 
     <!-- Manifest viewer -->

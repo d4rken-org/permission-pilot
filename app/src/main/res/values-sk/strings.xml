@@ -242,7 +242,6 @@
         <item quantity="other">%d dopytov na poskytovateľov</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Môže objaviť všetky nainštalované aplikácie</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétnych aplikácií</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prehľadáč manifestov</string>

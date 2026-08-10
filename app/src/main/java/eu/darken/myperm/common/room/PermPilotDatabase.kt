@@ -1,5 +1,6 @@
 package eu.darken.myperm.common.room
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -37,8 +38,11 @@ import eu.darken.myperm.watcher.core.WatcherEventType
         PendingSnapshotEventEntity::class,
         ManifestHintEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2),
+    ],
 )
 abstract class PermPilotDatabase : RoomDatabase() {
     abstract fun snapshotDao(): SnapshotDao

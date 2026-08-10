@@ -224,7 +224,6 @@
         <item quantity="other">%d заявки за доставчик</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Може да открие всички инсталирани приложения</string>
     <string name="apps_details_manifest_hint_excessive">Проверява за много конкретни приложения</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Преглед на манифеста</string>

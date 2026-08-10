@@ -242,7 +242,6 @@
         <item quantity="other">%d zapytań o dostawcę</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Może wykryć wszystkie zainstalowane aplikacje</string>
     <string name="apps_details_manifest_hint_excessive">Sprawdza wiele konkretnych aplikacji</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Przeglądarka manifestu</string>

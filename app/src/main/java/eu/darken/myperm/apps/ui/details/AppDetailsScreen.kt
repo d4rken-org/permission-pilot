@@ -569,7 +569,7 @@ private fun ManifestCard(
                     // Hints below: bullet-pointed findings
                     if (state.hasActionMainQuery) {
                         Text(
-                            text = "\u2022 ${stringResource(R.string.apps_details_manifest_hint_action_main)}",
+                            text = "\u2022 ${stringResource(R.string.apps_details_manifest_hint_main_query)}",
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.tertiary,
                         )
