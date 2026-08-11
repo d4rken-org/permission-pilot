@@ -76,7 +76,7 @@
     <string name="upgrades_gplay_billing_error_label">Problem z Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Wystąpił problem z Google Play. Spróbuj ponownie później lub zrestartuj urządzenie.\n\nSzczegóły: %s</string>
     <string name="upgrades_gplay_internal_error_title">Błąd Google Play</string>
-    <string name="upgrades_gplay_internal_error_description">Wystąpił wewnętrzny błąd Google Play. Spróbuj następujących czynności:\n\n• Zrestartuj urządzenie\n• Wyczyść pamięć podręczną Sklepu Google Play\n• Spróbuj ponownie później</string>
+    <string name="upgrades_gplay_internal_error_description">Wystąpił wewnętrzny błąd Sklepu Google Play. Spróbuj następujących czynności:\n\n• Zrestartuj urządzenie\n• Wyczyść pamięć podręczną Sklepu Google Play\n• Spróbuj ponownie później</string>
     <string name="upgrades_gplay_network_error_title">Błąd połączenia</string>
     <string name="upgrades_gplay_network_error_description">Nie udało się połączyć się z Google Play. Sprawdź swoje połączenie internetowe i spróbuj ponownie.</string>
     <string name="upgrades_gplay_offer_unavailable_title">Oferta niedostępna</string>

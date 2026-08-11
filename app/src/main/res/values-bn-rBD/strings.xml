@@ -224,6 +224,7 @@
         <item quantity="other">%d টি প্রোভাইডার কোয়েরি</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">বেশিরভাগ চালু করা যায় এমন অ্যাপ আবিষ্কার করতে পারে</string>
     <string name="apps_details_manifest_hint_excessive">অনেক নির্দিষ্ট অ্যাপ খোঁজে</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ম্যানিফেস্ট ভিউয়ার</string>

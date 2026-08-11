@@ -224,6 +224,7 @@
         <item quantity="other">%d Anbieterabfragen</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Kann die meisten startbaren Apps finden</string>
     <string name="apps_details_manifest_hint_excessive">Prüft auf viele spezifische Apps</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest-Viewer</string>

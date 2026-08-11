@@ -215,6 +215,7 @@
         <item quantity="other">%d 个提供者查询</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">可发现大多数可启动的应用</string>
     <string name="apps_details_manifest_hint_excessive">检查多个特定应用</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">清单查看器</string>

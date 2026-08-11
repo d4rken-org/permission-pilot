@@ -260,6 +260,7 @@
         <item quantity="other">%d استعلام مزود</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">يمكن اكتشاف معظم التطبيقات القابلة للتشغيل</string>
     <string name="apps_details_manifest_hint_excessive">يتحقق من وجود تطبيقات محددة كثيرة</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">عارض البيان</string>

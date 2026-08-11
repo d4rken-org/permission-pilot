@@ -233,6 +233,7 @@
         <item quantity="other">%d de interogări furnizor</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Poate descoperi cele mai multe aplicații lansabile</string>
     <string name="apps_details_manifest_hint_excessive">Verifică multe aplicații specifice</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Vizualizator de manifest</string>

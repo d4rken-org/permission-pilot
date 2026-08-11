@@ -224,6 +224,7 @@
         <item quantity="other">%d requêtes de fournisseurs</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Peut découvrir la plupart des applis pouvant être lancées</string>
     <string name="apps_details_manifest_hint_excessive">Vérifie de nombreuses applis spécifiques</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visionneuse de manifeste</string>
