@@ -126,14 +126,6 @@ android {
     }
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
-    packaging {
-        resources {
-            // mockk-agent-android and checkerframework both ship a MANIFEST.MF java resource,
-            // which fails the androidTest resource merge. Jar manifests are never needed at runtime.
-            excludes += "MANIFEST.MF"
-        }
-    }
-
     namespace = "eu.darken.myperm"
 
     ksp {
@@ -229,7 +221,6 @@ dependencies {
     implementation("androidx.room:room-runtime:${Versions.Room.core}")
     implementation("androidx.room:room-ktx:${Versions.Room.core}")
     ksp("androidx.room:room-compiler:${Versions.Room.core}")
-    androidTestImplementation("androidx.room:room-testing:${Versions.Room.core}")
 
     implementation("androidx.work:work-runtime-ktx:${Versions.Work.core}")
     implementation("androidx.hilt:hilt-work:${Versions.HiltX.core}")
@@ -288,7 +279,7 @@ dependencies {
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
-    testImplementation("androidx.test:core-ktx:1.5.0")
+    testImplementation("androidx.test:core-ktx:1.4.0")
 
     testImplementation("io.mockk:mockk:1.14.9")
     androidTestImplementation("io.mockk:mockk-android:1.14.9")
@@ -312,17 +303,17 @@ dependencies {
 
     testImplementation("android.arch.core:core-testing:1.1.1")
     androidTestImplementation("android.arch.core:core-testing:1.1.1")
-    debugImplementation("androidx.test:core-ktx:1.5.0")
+    debugImplementation("androidx.test:core-ktx:1.4.0")
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 
-    androidTestImplementation("androidx.test:runner:1.5.0")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.0")
-    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.5.0")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.4.0")
+    androidTestImplementation("androidx.test.espresso.idling:idling-concurrent:3.4.0")
 
     // Compose Preview Screenshot Testing
     "screenshotTestImplementation"(platform("androidx.compose:compose-bom:${Versions.Compose.bom}"))
