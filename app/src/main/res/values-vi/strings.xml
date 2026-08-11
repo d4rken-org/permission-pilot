@@ -215,6 +215,7 @@
         <item quantity="other">%d truy vấn nhà cung cấp</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Có thể khám phá hầu hết các ứng dụng</string>
     <string name="apps_details_manifest_hint_excessive">Kiểm tra nhiều ứng dụng cụ thể</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Trình xem Manifest</string>

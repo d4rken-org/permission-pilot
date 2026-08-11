@@ -215,6 +215,7 @@
         <item quantity="other">%d개의 프로바이더 쿼리</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">대부분의 실행 가능한 앱을 찾을 수 있어요</string>
     <string name="apps_details_manifest_hint_excessive">많은 특정 앱을 확인합니다</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">매니페스트 뷰어</string>

@@ -233,6 +233,7 @@
         <item quantity="other">%d upita pružatelja</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Može otkriti većinu pokretljivih aplikacija</string>
     <string name="apps_details_manifest_hint_excessive">Provjerava mnoge određene aplikacije</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Preglednik manifesta</string>

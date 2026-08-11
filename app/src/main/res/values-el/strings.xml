@@ -224,6 +224,7 @@
         <item quantity="other">%d ερωτήματα παρόχου</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">Μπορεί να ανακαλύψει τις περισσότερες εκκινήσιμες εφαρμογές</string>
     <string name="apps_details_manifest_hint_excessive">Ελέγχει για πολλές συγκεκριμένες εφαρμογές</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Προβολή Manifest</string>

@@ -224,6 +224,7 @@
         <item quantity="other">%d प्रोवाइडर क्वेरीज़</item>
     </plurals>
     <!-- Manifest hint flags -->
+    <string name="apps_details_manifest_hint_main_query">अधिकांश लॉन्च योग्य ऐप्स खोज सकते हैं</string>
     <string name="apps_details_manifest_hint_excessive">कई विशिष्ट ऐप्स की जाँच करता है</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">मेनिफेस्ट व्यूअर</string>
