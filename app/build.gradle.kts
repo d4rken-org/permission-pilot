@@ -119,6 +119,12 @@ android {
         getByName("test") {
             java.srcDir("$projectDir/src/testShared/java")
         }
+        // Room schema JSONs as debug-only assets: Robolectric unit tests read assets from the
+        // app's merged assets (see test_config.properties), so the migration test can only find
+        // the schemas there. Debug APKs carry ~40KB of schema JSON; beta/release are unaffected.
+        getByName("debug") {
+            assets.srcDirs(files("$projectDir/schemas"))
+        }
         getByName("androidTest") {
             java.srcDir("$projectDir/src/testShared/java")
             assets.srcDirs(files("$projectDir/schemas"))
@@ -221,6 +227,7 @@ dependencies {
     implementation("androidx.room:room-runtime:${Versions.Room.core}")
     implementation("androidx.room:room-ktx:${Versions.Room.core}")
     ksp("androidx.room:room-compiler:${Versions.Room.core}")
+    testImplementation("androidx.room:room-testing:${Versions.Room.core}")
 
     implementation("androidx.work:work-runtime-ktx:${Versions.Work.core}")
     implementation("androidx.hilt:hilt-work:${Versions.HiltX.core}")
