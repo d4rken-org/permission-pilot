@@ -224,7 +224,6 @@
         <item quantity="other">%d leverandørforespørsler</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Kan oppdage alle installerte apper</string>
     <string name="apps_details_manifest_hint_excessive">Sjekker etter mange spesifikke apper</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestvisning</string>

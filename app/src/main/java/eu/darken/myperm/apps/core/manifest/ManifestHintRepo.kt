@@ -39,8 +39,15 @@ class ManifestHintRepo @Inject constructor(
 
     private val priorityQueue = ConcurrentLinkedQueue<String>()
 
+    // Rows from an older scanner version were computed under different semantics — hide them
+    // from consumers (they'd show known-invalid flags) but keep them in the DB so runScan()
+    // can detect and re-scan them.
     val hints: StateFlow<Map<Pkg.Name, ManifestHintEntity>> = manifestHintDao.observeAll()
-        .map { list -> list.associateBy { it.pkgName } }
+        .map { list ->
+            list
+                .filter { it.scannerVersion == ManifestHintScanner.SCANNER_VERSION }
+                .associateBy { it.pkgName }
+        }
         .stateIn(appScope, SharingStarted.Eagerly, emptyMap())
 
     fun enqueueHintScan() {
@@ -84,7 +91,11 @@ class ManifestHintRepo @Inject constructor(
 
             val lastUpdateTime = nextApp.updatedAt?.toEpochMilli() ?: 0L
             val existing = existingByPkg[nextApp.pkgName]
-            if (existing != null && existing.versionCode == nextApp.versionCode && existing.lastUpdateTime == lastUpdateTime) {
+            if (existing != null &&
+                existing.versionCode == nextApp.versionCode &&
+                existing.lastUpdateTime == lastUpdateTime &&
+                existing.scannerVersion == ManifestHintScanner.SCANNER_VERSION
+            ) {
                 scanned++
                 _scanProgress.value = ScanProgress(total, scanned)
                 continue
@@ -107,6 +118,7 @@ class ManifestHintRepo @Inject constructor(
                             intentQueryCount = flags.intentQueryCount,
                             providerQueryCount = flags.providerQueryCount,
                             scannedAt = System.currentTimeMillis(),
+                            scannerVersion = ManifestHintScanner.SCANNER_VERSION,
                         )
                     )
 
@@ -138,8 +150,9 @@ class ManifestHintRepo @Inject constructor(
                 is QueriesOutcome.Failure -> {
                     log(TAG, WARN) { "Failure outcome for ${nextApp.pkgName}: ${outcome.error}" }
                     counts.failure++
-                    // `existing` here is always a stale-version hint — the current-version
-                    // shortcut at the top of the loop would have skipped this app otherwise.
+                    // `existing` here is always stale — for an older app version or an older
+                    // scanner version, else the shortcut at the top of the loop would have
+                    // skipped this app.
                     // Showing flags from a different version of the app is wrong regardless of
                     // whether the failure is transient, so delete the stale entry.
                     if (existing != null) {

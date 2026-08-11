@@ -242,7 +242,6 @@
         <item quantity="other">%d запытаў правайдара</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Можа выяўляць усе ўсталяваныя праграмы</string>
     <string name="apps_details_manifest_hint_excessive">Правярае наяўнасць многіх канкрэтных праграм</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Праглядальнік маніфесту</string>

@@ -224,7 +224,6 @@
         <item quantity="other">%d provideropvragen</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Kan alle geïnstalleerde apps ontdekken</string>
     <string name="apps_details_manifest_hint_excessive">Controleert op veel specifieke apps</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest-viewer</string>

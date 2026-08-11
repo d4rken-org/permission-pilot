@@ -224,7 +224,6 @@
         <item quantity="other">%d tarjoajakyselyt</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Voi havaita kaikki asennetut sovellukset</string>
     <string name="apps_details_manifest_hint_excessive">Tarkistaa monia tiettyjä sovelluksia</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestin katseluohjelma</string>

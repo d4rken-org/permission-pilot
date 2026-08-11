@@ -242,7 +242,6 @@
         <item quantity="other">%d dotazů na poskytovatele</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Může zjistit všechny nainstalované aplikace</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétních aplikací</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prohlížeč manifestu</string>

@@ -224,7 +224,6 @@
         <item quantity="other">%d leverantörsförfrågningar</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Kan upptäcka alla installerade appar</string>
     <string name="apps_details_manifest_hint_excessive">Söker efter många specifika appar</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestvisare</string>

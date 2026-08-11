@@ -215,7 +215,6 @@
         <item quantity="other">%d 個提供者查詢</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">可探索所有已安裝的應用程式</string>
     <string name="apps_details_manifest_hint_excessive">檢查多個特定應用程式</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">清單檢視器</string>

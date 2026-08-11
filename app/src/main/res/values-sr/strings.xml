@@ -233,7 +233,6 @@
         <item quantity="other">%d упита добављача</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Може да открије све инсталиране апликације</string>
     <string name="apps_details_manifest_hint_excessive">Проверава много одређених апликација</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Прегледач манифеста</string>

@@ -224,7 +224,6 @@
         <item quantity="other">%d lêpisîrsînên pêşkêşker</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Dikare hemû sepanên sazkirî bibîne</string>
     <string name="apps_details_manifest_hint_excessive">Ji bo gelek sepanên taybetî kontrol dike</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Nêrînerê Manîfestoyê</string>

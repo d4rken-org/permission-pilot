@@ -9,6 +9,7 @@ import eu.darken.myperm.apps.core.features.InternetAccess
 import eu.darken.myperm.common.room.dao.ManifestHintDao
 import eu.darken.myperm.common.room.entity.PkgType
 import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.shouldBe
 import io.mockk.Runs
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -105,6 +106,54 @@ class ManifestHintRepoTest : BaseTest() {
 
         coVerify(atLeast = 1) { manifestHintDao.upsertHints(any()) }
         coVerify(exactly = 0) { manifestHintDao.deleteByPkgName(any()) }
+    }
+
+    @Test
+    fun `outdated scanner version triggers rescan despite matching app version`() = runTest2(autoCancel = true) {
+        val pkgName = Pkg.Name("com.rescan")
+        val outdatedHint = ManifestHintEntity(
+            pkgName = pkgName,
+            versionCode = 1L,
+            lastUpdateTime = 1_000L,
+            hasActionMainQuery = true,
+            packageQueryCount = 0,
+            intentQueryCount = 1,
+            providerQueryCount = 0,
+            scannedAt = 0L,
+            scannerVersion = ManifestHintScanner.SCANNER_VERSION - 1,
+        )
+        coEvery { manifestHintDao.getAll() } returns listOf(outdatedHint)
+        coEvery { manifestRepo.getQueriesFor(pkgName) } returns QueriesOutcome.Success(QueriesInfo())
+        val upserted = mutableListOf<List<ManifestHintEntity>>()
+        coEvery { manifestHintDao.upsertHints(capture(upserted)) } just Runs
+
+        // Same versionCode and lastUpdateTime as the cached hint — only the scanner version differs.
+        buildRepo().runScan(listOf(appInfo("com.rescan")))
+
+        val rescanned = upserted.flatten().single { it.pkgName == pkgName }
+        rescanned.scannerVersion shouldBe ManifestHintScanner.SCANNER_VERSION
+    }
+
+    @Test
+    fun `current scanner version with matching app version is skipped`() = runTest2(autoCancel = true) {
+        val pkgName = Pkg.Name("com.skip")
+        val currentHint = ManifestHintEntity(
+            pkgName = pkgName,
+            versionCode = 1L,
+            lastUpdateTime = 1_000L,
+            hasActionMainQuery = false,
+            packageQueryCount = 0,
+            intentQueryCount = 0,
+            providerQueryCount = 0,
+            scannedAt = 0L,
+            scannerVersion = ManifestHintScanner.SCANNER_VERSION,
+        )
+        coEvery { manifestHintDao.getAll() } returns listOf(currentHint)
+
+        buildRepo().runScan(listOf(appInfo("com.skip")))
+
+        coVerify(exactly = 0) { manifestRepo.getQueriesFor(any()) }
+        coVerify(exactly = 0) { manifestHintDao.upsertHints(any()) }
     }
 
     @Test

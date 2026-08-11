@@ -224,7 +224,6 @@
         <item quantity="other">%d provayder sorğusu</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Quraşdırılmış bütün tətbiqləri kəşf edə bilir</string>
     <string name="apps_details_manifest_hint_excessive">Bir çox xüsusi tətbiqi axtarır</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifesta Baxışı</string>

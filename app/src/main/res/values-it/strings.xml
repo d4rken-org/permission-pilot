@@ -224,7 +224,6 @@
         <item quantity="other">%d query sui provider</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">Può rilevare tutte le app installate</string>
     <string name="apps_details_manifest_hint_excessive">Verifica la presenza di molte app specifiche</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visualizzatore manifest</string>

@@ -215,7 +215,6 @@
         <item quantity="other">การค้นหา Provider %d รายการ</item>
     </plurals>
     <!-- Manifest hint flags -->
-    <string name="apps_details_manifest_hint_action_main">สามารถค้นพบแอปที่ติดตั้งทั้งหมดได้</string>
     <string name="apps_details_manifest_hint_excessive">ตรวจสอบแอปเฉพาะจำนวนมาก</string>
     <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ตัวดู Manifest</string>

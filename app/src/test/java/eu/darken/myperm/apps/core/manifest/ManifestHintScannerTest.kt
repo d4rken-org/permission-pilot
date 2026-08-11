@@ -77,6 +77,107 @@ class ManifestHintScannerTest : BaseTest() {
     }
 
     @Test
+    fun `ACTION_MAIN with LAUNCHER category is detected`() {
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("android.intent.action.MAIN"),
+                    categories = listOf("android.intent.category.LAUNCHER"),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe true
+    }
+
+    @Test
+    fun `ACTION_MAIN with non-launcher category is not flagged`() {
+        // Discord ships MAIN + APP_CONTACTS — that only matches contacts apps, not "most apps".
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("android.intent.action.MAIN"),
+                    categories = listOf("android.intent.category.APP_CONTACTS"),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe false
+    }
+
+    @Test
+    fun `ACTION_MAIN with LAUNCHER plus extra category is not flagged`() {
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("android.intent.action.MAIN"),
+                    categories = listOf(
+                        "android.intent.category.LAUNCHER",
+                        "android.intent.category.DEFAULT",
+                    ),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe false
+    }
+
+    @Test
+    fun `ACTION_MAIN with data spec is not flagged`() {
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("android.intent.action.MAIN"),
+                    dataSpecs = listOf("mimeType=image/jpeg"),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe false
+    }
+
+    @Test
+    fun `ACTION_MAIN with host-only data spec is still flagged`() {
+        // The platform only builds the query's data URI when a scheme or mimeType is present —
+        // a host alone is dropped and the query still matches data-less launcher filters.
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("android.intent.action.MAIN"),
+                    dataSpecs = listOf("host=example.com"),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe true
+    }
+
+    @Test
+    fun `wildcard action is detected`() {
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(actions = listOf("*")),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe true
+    }
+
+    @Test
+    fun `wildcard action with data spec is not flagged`() {
+        val info = QueriesInfo(
+            intentQueries = listOf(
+                QueriesInfo.IntentQuery(
+                    actions = listOf("*"),
+                    dataSpecs = listOf("scheme=https"),
+                ),
+            ),
+        )
+
+        scanner.evaluate(info).hasActionMainQuery shouldBe false
+    }
+
+    @Test
     fun `non-ACTION_MAIN intents do not trigger flag`() {
         val info = QueriesInfo(
             intentQueries = listOf(
