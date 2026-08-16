@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Veguherîn bo kirîna yek-car</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play tenê hesaba we ya niha kontrol dike. Beşdareya yekcarî ji peymanê we cuda ye.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Peymanê we hîn jî çalak e û nabe nûkirî. Pêşî ew di Google Play da betal bikin.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Peymanê we bi Google Play piştrast nekirî. Ji kerema xwe dîsa hewl bide.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Beşdareya we tê piştraskirin</string>
     <string name="upgrade_screen_grace_body">Em li bendî ne ku Google Play beşdareya Pro ya we dîsa piştrast bike. Ev bi awayekî xweser çareserî dibe.</string>

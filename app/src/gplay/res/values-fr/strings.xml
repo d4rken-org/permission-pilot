@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Passer à un achat unique</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play vérifie uniquement le compte auquel vous êtes actuellement connecté. L’achat unique est distinct de votre abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Votre abonnement est toujours actif et se renouvelle. Annulez-le d’abord dans Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Impossible de vérifier votre abonnement auprès de Google Play. Veuillez réessayer.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Confirmation de votre achat</string>
     <string name="upgrade_screen_grace_body">En attente que Google Play confirme à nouveau votre achat Pro. Cela se résout généralement automatiquement.</string>

@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Siirry kertamaksuun</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play tarkistaa vain tilin, johon olet tällä hetkellä kirjautunut. Kertaosto on erillinen tilauspalvelustasi.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Tilauspalvelusi on vielä aktiivinen ja uusiutuu. Peruuta se ensin Google Playsta.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Tilauspalvelusi tarkistaminen Google Playsta epäonnistui. Yritä uudelleen.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Vahvistetaan ostoasi</string>
     <string name="upgrade_screen_grace_body">Odotetaan Google Playta vahvistamaan uudelleen Pro-ostoasi. Tämä yleensä ratkeaa itsestään.</string>

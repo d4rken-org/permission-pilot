@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Prejsť na jednorazový nákup</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontroluje iba účet, s ktorým ste momentálne prihlásení. Jednorazový nákup je nezávislý od vášho predplatného.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Vaše predplatné je stále aktívne a obnovuje sa. Zrušte ho najskôr v Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nepodarilo sa overiť vaše predplatné v Google Play. Skúste znova prosím.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Potvrdzovanie vášho nákupu</string>
     <string name="upgrade_screen_grace_body">Čakáme, kým Google Play znovu potvrdí váš nákup Pro. Zvyčajne sa to vyrieši automaticky.</string>

@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Växla till ett engångsköp</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontrollerar bara kontot du är inloggad på. Engångsköpet är separat från din prenumeration.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Din prenumeration är fortfarande aktiv och förnyas. Avbryt den i Google Play först.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Kunde inte verifiera din prenumeration med Google Play. Försök igen.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bekräftar ditt köp</string>
     <string name="upgrade_screen_grace_body">Väntar på att Google Play ska ombekräfta ditt Pro-köp. Det löser sig vanligtvis själv.</string>

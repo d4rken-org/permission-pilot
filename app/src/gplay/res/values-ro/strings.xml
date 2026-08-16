@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Treci la o achiziție unică</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play verifică doar contul cu care ești conectat în acest moment. Achiziția unică este separată de abonamentul tău.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonamentul tău este încă activ și se reînnoiește. Anulează-l mai întâi în Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nu am putut verifica abonamentul tău cu Google Play. Te rog să încerci din nou.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Se confirmă achiziția ta</string>
     <string name="upgrade_screen_grace_body">Se așteaptă ca Google Play să reconfirme achiziția Pro. De obicei se rezolvă de la sine.</string>

@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Prebacite se na jednokratnu kupnju</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play provjerava samo račun na koji ste trenutno prijavljeni. Jednokratna kupnja je odvojena od vaše pretplate.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Vaša pretplata je i dalje aktivna i obnavlja se. Trebate je prvo otkazati na Google Playu.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nije moguće provjeriti vašu pretplatu s Google Playom. Pokušajte ponovno.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Potvrda vaše kupnje</string>
     <string name="upgrade_screen_grace_body">Čeka se da Google Play ponovno potvrdi vašu Pro kupnju. Obično se to razriješi samo od sebe.</string>

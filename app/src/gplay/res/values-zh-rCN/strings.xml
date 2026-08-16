@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">切换为一次性购买</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play 只会检查您当前登录的账户。一次性购买与您的订阅是分开的。</string>
     <string name="upgrade_screen_sub_still_renewing_message">您的订阅仍然有效且将继续续期。请先在 Google Play 中取消。</string>
-    <string name="upgrade_screen_sub_check_failed_message">无法与 Google Play 验证您的订阅。请重试。</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">正在确认您的购买</string>
     <string name="upgrade_screen_grace_body">正在等待 Google Play 重新确认您的 Pro 购买。这通常会自动解决。</string>

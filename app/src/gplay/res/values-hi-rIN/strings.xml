@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">एक बार की खरीदारी पर स्विच करें</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play केवल उस खाते की जांच करता है जिसमें आप वर्तमान में साइन इन हैं। एक बार की खरीदारी आपकी सदस्यता से अलग है।</string>
     <string name="upgrade_screen_sub_still_renewing_message">आपकी सदस्यता अभी भी सक्रिय है और नवीनीकृत हो रही है। पहले इसे Google Play में रद्द करें।</string>
-    <string name="upgrade_screen_sub_check_failed_message">Google Play के साथ आपकी सदस्यता को सत्यापित नहीं किया जा सका। कृपया पुनः प्रयास करें।</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">आपकी खरीदारी की पुष्टि की जा रही है</string>
     <string name="upgrade_screen_grace_body">Google Play को आपकी Pro खरीदारी को फिर से पुष्टि करने की प्रतीक्षा है। यह आमतौर पर अपने आप ठीक हो जाता है।</string>

@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Tek seferlik satın almaya geç</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play yalnızca şu anda oturum açtığınız hesabı kontrol eder. Tek seferlik satın alma, aboneliğinizden ayrıdır.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Aboneliğiniz hala aktif ve yenileniyor. Önce Google Play\'de iptal edin.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Aboneliğiniz Google Play ile doğrulanamadı. Lütfen tekrar deneyin.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Satın alımınız doğrulanıyor</string>
     <string name="upgrade_screen_grace_body">Google Play\'in Pro satın alımınızı yeniden doğrulaması bekleniyor. Bu genellikle kendi başına çözülür.</string>

@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Skift til engangsudgift</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontrollerer kun den konto, du er logget ind på. Engangsbetalingen er adskilt fra dit abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Dit abonnement er stadig aktivt og fornyes. Annuller det først i Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Kunne ikke bekræfte dit abonnement med Google Play. Prøv igen.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bekræfter dit køb</string>
     <string name="upgrade_screen_grace_body">Venter på, at Google Play skal bekræfte dit Pro-køb igen. Dette løses normalt af sig selv.</string>

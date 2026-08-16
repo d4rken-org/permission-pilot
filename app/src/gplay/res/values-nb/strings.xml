@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Bytt til engangskjøp</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play sjekker bare kontoen du er logget inn på. Engangskjøpet er atskilt fra abonnementet ditt.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonnementet ditt er fortsatt aktivt og fornyes. Avbryt det i Google Play først.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Kunne ikke bekrefte abonnementet ditt med Google Play. Vennligst prøv igjen.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bekrefter kjøpet ditt</string>
     <string name="upgrade_screen_grace_body">Venter på at Google Play skal bekrefte Pro-kjøpet ditt på nytt. Dette løser seg vanligvis av seg selv.</string>

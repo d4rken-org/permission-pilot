@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Canvieu a una compra única</string>
     <string name="upgrade_screen_limitation_disclosure">El Google Play només comprova el compte en el qual esteu actualment connectats. La compra única és independent de la vostra subscripció.</string>
     <string name="upgrade_screen_sub_still_renewing_message">La vostra subscripció segueix activa i es renova. Cancel·leu-la primer al Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">No s\'ha pogut verificar la vostra subscripció amb el Google Play. Torneu-ho a provar.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">S\'està confirmant la vostra compra</string>
     <string name="upgrade_screen_grace_body">S\'està esperant que el Google Play confirmi novament la vostra compra del Pro. Això normalment es resol per si sol.</string>

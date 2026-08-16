@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Zum einmaligen Kauf wechseln</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play überprüft nur das Konto, mit dem du gerade angemeldet bist. Der Einmalkauf ist unabhängig von deinem Abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Dein Abonnement ist noch aktiv und wird erneuert. Kündige es zuerst in Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Dein Abonnement konnte nicht bei Google Play überprüft werden. Bitte versuche es noch einmal.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Dein Kauf wird bestätigt</string>
     <string name="upgrade_screen_grace_body">Warten auf erneute Bestätigung deines Pro-Kaufs durch Google Play. Dies löst sich normalerweise von selbst.</string>

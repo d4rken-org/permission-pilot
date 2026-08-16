@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">ワンタイム購入に切り替える</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play は、現在サインインしているアカウントのみをチェックします。一度限りの購入はサブスクリプションとは別です。</string>
     <string name="upgrade_screen_sub_still_renewing_message">ご契約はまだ有効で更新されています。まず Google Play でキャンセルしてください。</string>
-    <string name="upgrade_screen_sub_check_failed_message">Google Play でご契約を確認できませんでした。もう一度お試しください。</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">購入を確認中</string>
     <string name="upgrade_screen_grace_body">Google Play が Pro 購入を再確認するのを待っています。これは通常自動的に解決します。</string>

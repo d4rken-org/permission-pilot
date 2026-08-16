@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Μετάβαση σε μια εφάπαξ αγορά</string>
     <string name="upgrade_screen_limitation_disclosure">Το Google Play ελέγχει μόνο το λογαριασμό στον οποίο είστε συνδεδεμένοι. Η εφάπαξ αγορά είναι ξεχωριστή από τη συνδρομή σας.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Η συνδρομή σας είναι ακόμα ενεργή και ανανεώνεται. Ακυρώστε την πρώτα στο Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Δεν ήταν δυνατή η επαλήθευση της συνδρομής σας με το Google Play. Δοκιμάστε ξανά.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Επιβεβαίωση της αγοράς σας</string>
     <string name="upgrade_screen_grace_body">Αναμονή για το Google Play να επιβεβαιώσει ξανά την αγορά Pro σας. Συνήθως επιλύεται αυτόματα.</string>

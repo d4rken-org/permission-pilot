@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">التبديل إلى الشراء لمرة واحدة</string>
     <string name="upgrade_screen_limitation_disclosure">يتحقق Google Play فقط من الحساب الذي تم تسجيل الدخول إليه حالياً. الشراء لمرة واحدة منفصل عن اشتراكك.</string>
     <string name="upgrade_screen_sub_still_renewing_message">اشتراكك لا يزال نشطاً ويتم تجديده. قم بإلغائه في Google Play أولاً.</string>
-    <string name="upgrade_screen_sub_check_failed_message">تعذر التحقق من اشتراكك مع Google Play. يرجى المحاولة مجدداً.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">جاري تأكيد عملية الشراء</string>
     <string name="upgrade_screen_grace_body">جاري انتظار Google Play لإعادة تأكيد شراء Pro الخاص بك. عادة ما يتم حل هذا تلقائياً.</string>

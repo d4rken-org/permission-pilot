@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Chuyển sang mua một lần</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play chỉ kiểm tra tài khoản bạn đang đăng nhập. Lần mua một lần này riêng biệt từ gói đăng ký của bạn.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Gói đăng ký của bạn vẫn còn hoạt động và đang tự động gia hạn. Hãy hủy nó trong Google Play trước.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Không thể xác minh gói đăng ký của bạn với Google Play. Vui lòng thử lại.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Đang xác nhận lần mua của bạn</string>
     <string name="upgrade_screen_grace_body">Đang chờ Google Play xác nhận lại lần mua Pro của bạn. Điều này thường tự động giải quyết.</string>

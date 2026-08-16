@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">עבור לרכישה חד-פעמית</string>
     <string name="upgrade_screen_limitation_disclosure">גוגל פליי בודקת רק את החשבון שאתה כרגע מחובר אליו. הרכישה החד-פעמית נפרדת מהמנוי שלך.</string>
     <string name="upgrade_screen_sub_still_renewing_message">המנוי שלך עדיין פעיל ומתחדש. בטל אותו בגוגל פליי קודם.</string>
-    <string name="upgrade_screen_sub_check_failed_message">לא הצלחנו לאמת את המנוי שלך עם גוגל פליי. אנא נסה שוב.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">מאשרים את הרכישה שלך</string>
     <string name="upgrade_screen_grace_body">ממתינים לאישור חוזר מגוגל פליי לרכישת ה-Pro שלך. זה בדרך כלל נפתר מעצמו.</string>

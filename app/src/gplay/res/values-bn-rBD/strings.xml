@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">একবার ক্রয়ে স্যুইচ করুন</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play শুধুমাত্র আপনি যে অ্যাকাউন্টে সাইন ইন করেছেন তা চেক করে। এককালীন ক্রয় আপনার সাবস্ক্রিপশন থেকে আলাদা।</string>
     <string name="upgrade_screen_sub_still_renewing_message">আপনার সাবস্ক্রিপশন এখনও সক্রিয় এবং পুনর্নবীকরণ হচ্ছে। প্রথমে Google Play-এ এটি বাতিল করুন।</string>
-    <string name="upgrade_screen_sub_check_failed_message">Google Play-এর সাথে আপনার সাবস্ক্রিপশন যাচাই করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">আপনার ক্রয় নিশ্চিত করছি</string>
     <string name="upgrade_screen_grace_body">Google Play আপনার Pro ক্রয় পুনরায় নিশ্চিত করার অপেক্ষা করছি। এটি সাধারণত নিজে থেকেই সমাধান হয়।</string>

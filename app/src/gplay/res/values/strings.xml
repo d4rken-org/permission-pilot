@@ -44,7 +44,12 @@
     <string name="upgrade_screen_owned_iap_locked_note">To switch to the one-time purchase, first cancel your subscription in Google Play. This offer unlocks once it\'s set not to renew.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play only checks the account you\'re currently signed in with. The one-time purchase is separate from your subscription.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Your subscription is still active and renewing. Cancel it in Google Play first.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Couldn\'t verify your subscription with Google Play. Please try again.</string>
+    <string name="upgrade_screen_purchase_check_failed_message">Couldn\'t verify your purchases with Google Play. Please try again.</string>
+
+    <!-- Pending payment (Play is still processing) -->
+    <string name="upgrade_screen_pending_card_title">Payment pending</string>
+    <string name="upgrade_screen_pending_card_body">Google Play is still processing your payment. Pro unlocks automatically once it goes through. Some payment methods can take a while. There\'s nothing else you need to do.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play found a purchase with a pending payment and is still processing it. Pro unlocks automatically once the payment goes through.</string>
 
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Confirming your purchase</string>

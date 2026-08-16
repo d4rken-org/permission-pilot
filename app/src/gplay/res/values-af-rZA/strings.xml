@@ -31,7 +31,6 @@
     <string name="upgrade_screen_switch_title">Omskakel na \'n eenmalige aankoop</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontroleer slegs die rekening waarmee u tans aangemeld is. Die eenmalige aankoop is afsonderlik van u abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">U abonnement is steeds aktief en vernuwe. Kanselleer dit eers in Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Kon nie u abonnement met Google Play verifieer nie. Probeer asseblief weer.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bevestig u aankoop</string>
     <string name="upgrade_screen_grace_body">Wag vir Google Play om u Pro-aankoop weer te bevestig. Dit los gewoonlik vanself op.</string>
