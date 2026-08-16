@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Падпіскі аўтаматычна абнаўляюцца. Вы можаце адмяніць іх у любы час.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Вы маеце Pro — дзякуй!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ваша аднаразовая пакупка Pro адкрывае ўсе функцыі Pro назаўжды.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Ваша падпіска адкрывае ўсе функцыі Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Ваша падпіска</string>

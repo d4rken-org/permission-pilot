@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">订阅自动续费，可随时取消。</string>
     <string name="upgrade_title_suffix">专业版</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">您是 Pro 用户，感谢您！</string>
     <string name="upgrade_screen_owned_hero_iap_body">您的一次性 Pro 购买永久解锁所有 Pro 功能。</string>
     <string name="upgrade_screen_owned_hero_sub_body">您的订阅解锁所有 Pro 功能。</string>
     <string name="upgrade_screen_owned_sub_title">您的订阅</string>

@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Abonnements verlängern sich automatisch. Du kannst jederzeit kündigen.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Du hast Pro – vielen Dank!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Dein einmaliger Pro-Kauf entsperrt alle Pro-Funktionen für immer.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Dein Abonnement entsperrt alle Pro-Funktionen.</string>
     <string name="upgrade_screen_owned_sub_title">Dein Abonnement</string>

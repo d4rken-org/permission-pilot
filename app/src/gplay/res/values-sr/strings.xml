@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Претплате се аутоматски обнављају. Можете отказати када хоћете.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Ви сте Pro — хвала!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ваша једнократна куповина Pro откључава све Pro функције заувек.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Ваша претплата откључава сваку Pro функцију.</string>
     <string name="upgrade_screen_owned_sub_title">Ваша претплата</string>

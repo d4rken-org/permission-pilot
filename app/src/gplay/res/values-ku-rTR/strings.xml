@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">بوونهەڵبەستەکان بە خۆدیکەوە نوێكردرەوەن. دەتوانیت ھەر کاتیک لاببکەیت.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Tu Pro yî — spas!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Kirîna Pro-ya yek-car hemû taybetmendiyên Pro derxîne, sedemzî.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Aboneya te hemû taybetmendiyên Pro derxîne.</string>
     <string name="upgrade_screen_owned_sub_title">Aboneya te</string>

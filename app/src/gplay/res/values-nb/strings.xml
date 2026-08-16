@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Abonnementer fornyes automatisk. Du kan avbryte når som helst.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Du er Pro – takk!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ditt engangs Pro-kjøp låser opp hver Pro-funksjon, for alltid.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Abonnementet ditt låser opp alle Pro-funksjoner.</string>
     <string name="upgrade_screen_owned_sub_title">Abonnementet ditt</string>

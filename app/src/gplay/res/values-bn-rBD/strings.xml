@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">সাবস্ক্রিপশন স্বয়ংক্রিয়ভাবে নবায়ন হয়। যেকোনো সময় বাতিল করতে পারেন।</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">আপনি Pro ব্যবহারকারী — ধন্যবাদ!</string>
     <string name="upgrade_screen_owned_hero_iap_body">আপনার একবারের Pro ক্রয় প্রতিটি Pro বৈশিষ্ট্য চিরকালের জন্য আনলক করে।</string>
     <string name="upgrade_screen_owned_hero_sub_body">আপনার সাবস্ক্রিপশন প্রতিটি প্রো বৈশিষ্ট্য আনলক করে।</string>
     <string name="upgrade_screen_owned_sub_title">আপনার সাবস্ক্রিপশন</string>

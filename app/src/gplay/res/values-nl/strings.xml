@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Abonnementen verlengen automatisch. Je kunt op elk moment opzeggen.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Je bent Pro — dank je wel!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Je eenmalige Pro-aankoop ontgrendelt elk Pro-onderdeel voor altijd.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Je abonnement ontgrendelt elk Pro-onderdeel.</string>
     <string name="upgrade_screen_owned_sub_title">Je abonnement</string>

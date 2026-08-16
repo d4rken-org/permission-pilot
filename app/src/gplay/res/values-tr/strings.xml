@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Abonelikler otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Pro\'sunuz — teşekkür ederiz!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Bir defaya mahsus Pro satın alımınız tüm Pro özelliklerini sonsuza kadar açar.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Aboneliğiniz tüm Pro özelliklerini açar.</string>
     <string name="upgrade_screen_owned_sub_title">Aboneliğiniz</string>

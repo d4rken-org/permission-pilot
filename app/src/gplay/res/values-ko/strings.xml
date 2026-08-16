@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">구독은 자동으로 갱신됩니다. 언제든지 취소할 수 있습니다.</string>
     <string name="upgrade_title_suffix">프로</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Pro 이용 중이시네요 — 감사합니다!</string>
     <string name="upgrade_screen_owned_hero_iap_body">일회성 Pro 구매로 모든 Pro 기능을 영원히 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_hero_sub_body">구독하면 모든 Pro 기능을 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_sub_title">구독</string>

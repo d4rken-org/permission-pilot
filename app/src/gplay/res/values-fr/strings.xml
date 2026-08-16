@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Les abonnements se renouvellent automatiquement. Vous pouvez annuler à tout moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Vous êtes Pro — merci !</string>
     <string name="upgrade_screen_owned_hero_iap_body">Votre achat Pro unique déverrouille toutes les fonctionnalités Pro, pour toujours.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Votre abonnement déverrouille toutes les fonctionnalités Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Votre abonnement</string>

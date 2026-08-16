@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">تتجدد الاشتراكات تلقائياً. يمكنك الإلغاء في أي وقت.</string>
     <string name="upgrade_title_suffix">احترافي</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">أنت Pro الآن - شكراً لك!</string>
     <string name="upgrade_screen_owned_hero_iap_body">شراء Pro لمرة واحدة يفتح كل ميزة Pro إلى الأبد.</string>
     <string name="upgrade_screen_owned_hero_sub_body">اشتراكك يفتح كل ميزة Pro.</string>
     <string name="upgrade_screen_owned_sub_title">اشتراكك</string>

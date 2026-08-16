@@ -22,7 +22,12 @@
 
 
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">You\'re Pro — thank you!</string>
+    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
+         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
+         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
+         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
+         which told the user they *were* the tier instead of that they own it. -->
+    <string name="upgrade_screen_owned_hero_brand_title">You have %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Your one-time Pro purchase unlocks every Pro feature, forever.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Your subscription unlocks every Pro feature.</string>
     <string name="upgrade_screen_owned_sub_title">Your subscription</string>

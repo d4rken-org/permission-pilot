@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">สมาชิกภาพจะต่ออายุโดยอัตโนมัติ คุณยกเลิกได้เมื่อใดก็ได้</string>
     <string name="upgrade_title_suffix">โปร</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">คุณเป็น Pro — ขอบคุณ!</string>
     <string name="upgrade_screen_owned_hero_iap_body">การซื้อ Pro ครั้งเดียวของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมดเป็นการถาวร</string>
     <string name="upgrade_screen_owned_hero_sub_body">การสมัครสมาชิกของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมด</string>
     <string name="upgrade_screen_owned_sub_title">การสมัครสมาชิกของคุณ</string>

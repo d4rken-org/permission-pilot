@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Les subscripcions es renoven automàticament. Podeu cancel·lar-les en qualsevol moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Sou Pro, gràcies!</string>
     <string name="upgrade_screen_owned_hero_iap_body">La vostra compra única desbloqueja totes les funcions de Pro, per sempre.</string>
     <string name="upgrade_screen_owned_hero_sub_body">La vostra subscripció desbloqueja totes les funcions de Pro.</string>
     <string name="upgrade_screen_owned_sub_title">La vostra subscripció</string>

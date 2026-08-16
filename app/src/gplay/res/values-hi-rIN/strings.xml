@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">सदस्यता स्वचालित रूप से नवीनीकृत होती है। आप कभी भी रद्द कर सकते हैं।</string>
     <string name="upgrade_title_suffix">प्रो</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">आप Pro हैं — धन्यवाद!</string>
     <string name="upgrade_screen_owned_hero_iap_body">आपकी एक बार की Pro खरीद हमेशा के लिए हर Pro सुविधा को अनलॉक करती है।</string>
     <string name="upgrade_screen_owned_hero_sub_body">आपकी सदस्यता हर Pro सुविधा को अनलॉक करती है।</string>
     <string name="upgrade_screen_owned_sub_title">आपकी सदस्यता</string>

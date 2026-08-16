@@ -158,14 +158,20 @@ private fun UpgradeOwnedHero(
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
-                    text = stringResource(R.string.upgrade_screen_owned_hero_title),
+                    // The tier is named by the shared brand composition, so the title follows
+                    // app_name and the translated title template instead of spelling "Pro" itself.
+                    text = stringResource(
+                        R.string.upgrade_screen_owned_hero_brand_title,
+                        brandTitleText(includeQualifier = true),
+                    ),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold,
                 )
                 Text(
                     // The permanent purchase is the meaningful one when both are owned.
-                    // PP's body strings name the app inline (no format arg) — they are among the
-                    // shared ids whose translations must stay untouched.
+                    // Neither body takes a format argument, and both keep the ids PP shipped before
+                    // the billing convergence (04b10e3) so their existing translations still apply
+                    // — renaming them would cost 39 locales.
                     text = stringResource(
                         if (ownership.hasIap) R.string.upgrade_screen_owned_hero_iap_body
                         else R.string.upgrade_screen_owned_hero_sub_body,

@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Pretplate se automatski obnavljaju. Možete otkazati u bilo koje vrijeme.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Sada ste Pro — hvala!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Vaša jednokratna Pro kupnja otključava sve Pro značajke zauvijek.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Vaša pretplata otključava sve Pro značajke.</string>
     <string name="upgrade_screen_owned_sub_title">Vaša pretplata</string>

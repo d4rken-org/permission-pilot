@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Οι συνδρομές ανανεώνονται αυτόματα. Μπορείτε να ακυρώσετε ανά πάσα στιγμή.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Είστε Pro — ευχαριστούμε!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Η ενιαία αγορά Pro ξεκλειδώνει κάθε λειτουργία Pro, για πάντα.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Η συνδρομή σας ξεκλειδώνει κάθε λειτουργία Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Η συνδρομή σας</string>

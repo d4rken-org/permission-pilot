@@ -19,7 +19,6 @@
     <string name="upgrade_screen_options_description">Đăng ký sẽ tự động gia hạn. Bạn có thể hủy bất kỳ lúc nào.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Bạn là Pro — cảm ơn bạn!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Mua hàng Pro một lần của bạn mở khóa mọi tính năng Pro, mãi mãi.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Gói đăng ký của bạn mở khóa mọi tính năng Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Gói đăng ký của bạn</string>
