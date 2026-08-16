@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Om naar de eenmalige aankoop over te schakelen, annuleer je abonnement eerst in Google Play. Dit aanbod wordt beschikbaar zodra je abonnement niet meer vernieuwt.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play controleert alleen het account waarbij je momenteel bent aangemeld. De eenmalige aankoop is gescheiden van je abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Je abonnement is nog steeds actief en vernieuwt. Annuleer het eerst in Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Je abonnement kon niet met Google Play worden geverifieerd. Probeer het opnieuw.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Je aankoop bevestigen</string>
     <string name="upgrade_screen_grace_body">Wachten tot Google Play je Pro-aankoop opnieuw bevestigt. Dit lost meestal vanzelf op.</string>

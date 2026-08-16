@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Per passare all\'acquisto Pro una tantum, prima cancella il tuo abbonamento in Google Play. L\'offerta si sblocca quando il tuo abbonamento non si rinnova.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play controlla solo l’account con cui sei attualmente connesso. L’acquisto unico è separato dal tuo abbonamento.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Il tuo abbonamento è ancora attivo e si sta rinnovando. Annullalo prima in Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Impossibile verificare il tuo abbonamento con Google Play. Riprova.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Conferma in corso</string>
     <string name="upgrade_screen_grace_body">In attesa che Google Play confermi di nuovo il tuo acquisto Pro. Di solito si risolve da solo.</string>

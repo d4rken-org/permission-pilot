@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Para mudar para a compra permanente, cancele sua assinatura no Google Play primeiro. Esta oferta é desbloqueada quando sua assinatura estiver configurada para não renovar.</string>
     <string name="upgrade_screen_limitation_disclosure">O Google Play verifica apenas a conta com a qual você está conectado. A compra única é separada de sua assinatura.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Sua assinatura ainda está ativa e se renovando. Cancele-a no Google Play primeiro.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Não foi possível verificar sua assinatura no Google Play. Tente novamente.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Confirmando sua compra</string>
     <string name="upgrade_screen_grace_body">Aguardando o Google Play reconfirmar sua compra Pro. Isso geralmente se resolve sozinho.</string>

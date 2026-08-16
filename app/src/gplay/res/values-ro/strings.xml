@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Pentru a trece la achiziția cu plată unică, anulează mai întâi abonamentul din Google Play. Această ofertă se deblochează după ce abonamentul e setat să nu se mai reînnoiască.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play verifică doar contul cu care ești conectat în acest moment. Achiziția unică este separată de abonamentul tău.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonamentul tău este încă activ și se reînnoiește. Anulează-l mai întâi în Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nu am putut verifica abonamentul tău cu Google Play. Te rog să încerci din nou.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Se confirmă achiziția ta</string>
     <string name="upgrade_screen_grace_body">Se așteaptă ca Google Play să reconfirme achiziția Pro. De obicei se rezolvă de la sine.</string>

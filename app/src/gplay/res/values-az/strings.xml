@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Bir dəfəlik alışa keçmək üçün əvvəlcə Google Play-da abonəmenti ləğv edin. Bu təklif yenilənməmək üçün təyin edildikdən sonra açılır.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play yalnız indi daxil olduğunuz hesabı yoxlayır. Birdəfəlik satın alma abunəlikdən ayrıdır.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Sizin abunəlik hələ də aktivdir və yenilənir. Əvvəlcə Google Play-də ləğv edin.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Sizin abunəlik Google Play ilə təsdiqlənə bilmədi. Lütfən yenidən cəhd edin.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Alışınız təsdiqlənir</string>
     <string name="upgrade_screen_grace_body">Google Play sizin Pro alışınızı yenidən təsdiqləməsi gözlənilir. Bu adətən öz-özünə həll olur.</string>

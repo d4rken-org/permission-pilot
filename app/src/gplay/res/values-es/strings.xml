@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Para cambiar a la compra de pago único, primero cancela tu suscripción en Google Play. Esta oferta se desbloqueará una vez que esté configurada para no renovarse.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play solo verifica la cuenta en la que actualmente has iniciado sesión. La compra única es independiente de tu suscripción.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Tu suscripción sigue activa y se está renovando. Cancélala en Google Play primero.</string>
-    <string name="upgrade_screen_sub_check_failed_message">No se pudo verificar tu suscripción con Google Play. Por favor, intenta de nuevo.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Confirmando tu compra</string>
     <string name="upgrade_screen_grace_body">Esperando que Google Play reconfirme tu compra Pro. Esto generalmente se resuelve por sí solo.</string>

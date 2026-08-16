@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Az egyszeri vásárlásra való átálláshoz először mondd le az előfizetésedet a Google Playen. Ez az ajánlat akkor válik elérhetővé, ha az előfizetés már nem fog megújulni.</string>
     <string name="upgrade_screen_limitation_disclosure">A Google Play csak az aktuálisan bejelentkeztetett fiókot ellenőrzi. Az egyszeri vásárlás és az előfizetésed egymástól függetlenek.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Az előfizetésed továbbra is aktív és megújul. Előbb szüntesd meg azt a Google Play-ben.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nem sikerült ellenőrizni az előfizetésed a Google Play-ben. Kérjük, próbáld újra.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Vásárlás megerősítése</string>
     <string name="upgrade_screen_grace_body">Arra várakozunk, hogy a Google Play újra megerősítse a Pro vásárlásod. Ez általában magától megoldódik.</string>

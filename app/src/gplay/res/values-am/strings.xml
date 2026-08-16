@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">ወደ ነጠላ ግዢ ለመቀየር፣ በመጀመሪያ ደንበኝነቱን በGoogle Play ውስጥ መሰረዝ ያስፈልጋል። ደንበኝነቱ እንዳይታደስ ከተደረገ በኋላ ይህ አማራጭ ይከፈታል።</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play በሚገቡበት ሂሳብዎ ብቻ ይከታተላል። አንድ ጊዜ ያለው ገዥ ከእርስዎ ምዝገባ ተለይቶ ነው።</string>
     <string name="upgrade_screen_sub_still_renewing_message">የእርስዎ ምዝገባ አሁንም ንቁ እና ይታደሳል። በGoogle Play ውስጥ በመጀመሪያ ይሰርዙት።</string>
-    <string name="upgrade_screen_sub_check_failed_message">የእርስዎን ምዝገባ በGoogle Play ሊያረጋገ አልቻለም። እንደገና ይሞክሩ።</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">የእርስዎን ገዥ በማረጋገጥ ላይ ነው</string>
     <string name="upgrade_screen_grace_body">Google Play የእርስዎን Pro ገዥ ለማረጋገጥ ጠብቋ ነው። ይህ ብዙውን ጊዜ በራሱ ይፈታል።</string>

@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Чтобы переключиться на одноразовое приобретение, сначала отмени подписку в Google Play. Это предложение разблокируется, когда подписка перестанет продлеваться.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверяет только аккаунт, в который вы сейчас вошли. Единоразовая покупка отделена от вашей подписки.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша подписка по-прежнему активна и продлевается. Сначала отмените ее в Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Не удалось проверить вашу подписку в Google Play. Пожалуйста, попробуйте еще раз.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Подтверждение покупки</string>
     <string name="upgrade_screen_grace_body">Ожидание подтверждения вашей покупки Pro в Google Play. Обычно это разрешается автоматически.</string>

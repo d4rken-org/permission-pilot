@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Aby przejść na zakup jednorazowy, najpierw anuluj subskrypcję w Sklepie Google Play. Oferta zostanie odblokowana po ustawieniu opcji nie odnawiaj.</string>
     <string name="upgrade_screen_limitation_disclosure">Sklep Google Play sprawdza tylko konto, na którym jesteś aktualnie zalogowany. Jednorazowy zakup jest niezależny od subskrypcji.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Twoja subskrypcja jest nadal aktywna i odnawia się. Anuluj ją najpierw w Sklepie Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Nie udało się zweryfikować twojej subskrypcji w Sklepie Google Play. Spróbuj ponownie.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Potwierdzanie twojego zakupu</string>
     <string name="upgrade_screen_grace_body">Oczekiwanie na ponowne potwierdzenie zakupu wersji Pro przez Sklepie Google Play. Zazwyczaj problem rozwiązuje się samoistnie.</string>

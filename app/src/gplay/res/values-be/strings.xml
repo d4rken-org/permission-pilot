@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Каб перайсці на аднаразовую пакупку, спачатку скасуй сваю падпіску ў Google Play. Гэтая прапанова разблакуецца, калі падпіска будзе наладжана не працягвацца.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play правярае толькі акаўнт, у які вы зараз увайшлі. Адзінаразовая пакупка не звязана з вашай падпіскай.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша падпіска ўсё яшчэ актыўная і аднаўляецца. Спачатку скасуйце яе ў Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Не ўдалося праверыць вашу падпіску ў Google Play. Калі ласка, паспрабуйце яшчэ раз.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Пацвярджэнне вашай пакупкі</string>
     <string name="upgrade_screen_grace_body">Мы чакаем паўторнага пацвярджэння вашай пакупкі Pro ад Google Play. Звычайна гэта вырашаецца самастойна.</string>

@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">Щоб перейти на постійну покупку, спочатку скасуй підписку в Google Play. Ця пропозиція буде доступна, як тільки встановиш, щоб не продовжувати.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play перевіряє лише обліковий запис, в якому ви зараз увійшли. Разова покупка відокремлена від вашої підписки.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша підписка все ще активна і поновлюється. Спочатку скасуйте її в Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Не вдалося перевірити вашу підписку в Google Play. Будь ласка, спробуйте ще раз.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Підтвердження вашої покупки</string>
     <string name="upgrade_screen_grace_body">Очікування повторного підтвердження вашої Pro покупки в Google Play. Зазвичай це розв\'язується само собою.</string>

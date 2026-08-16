@@ -40,7 +40,6 @@
     <string name="upgrade_screen_owned_iap_locked_note">За да преминеш към еднократната покупка, първо отмени абонамента си в Google Play. Това предложение се отключва, когато абонаментът е зададен да не се подновява.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверява само акаунта, в който сте вписани в момента. Еднократната покупка е отделна от абонамента ви.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Абонаментът ви все още е активен и се подновява. Първо го отменете в Google Play.</string>
-    <string name="upgrade_screen_sub_check_failed_message">Не можахме да потвърдим абонамента ви с Google Play. Моля, опитайте отново.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Потвърждаване на покупката ви</string>
     <string name="upgrade_screen_grace_body">Изчакване на Google Play да потвърди отново Pro покупката ви. Обикновено това се разрешава автоматично.</string>
