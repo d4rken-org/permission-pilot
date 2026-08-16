@@ -19,16 +19,25 @@
     <string name="upgrade_screen_options_description">Абонаментите се поднавят автоматично. Можете да откажете по всяко време.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
+    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
+         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
+         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
+         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
+         which told the user they *were* the tier instead of that they own it. -->
+    <string name="upgrade_screen_owned_hero_brand_title">Имаш %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Вашата еднократна Pro покупка отключва всяка Pro функция, завинаги.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Вашият абонамент отключва всички Pro функции.</string>
     <string name="upgrade_screen_owned_sub_title">Вашият абонамент</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Вашият абонамент е активен и се подновява автоматично.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Вашият абонамент е настроен да изтече и няма да се подновява. Ще задържите Pro, докато не завърши.</string>
+    <string name="upgrade_screen_owned_both_renewing_warning">Имаш еднократното Pro надстройване и също имаш активен абонамент. Не е нужно да имаш и двете: отмени абонамента в Google Play, за да избегнеш допълнителни разходи.</string>
     <string name="upgrade_screen_manage_subscription_action">Управление на абонамента</string>
     <string name="upgrade_screen_owned_iap_title">Доживотен Pro</string>
     <string name="upgrade_screen_owned_iap_body">Притежавате еднократната Pro надстройка. Без абонамент, без подновявания.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Преминете към еднократна покупка</string>
+    <string name="upgrade_screen_owned_iap_purchase_note">Абонаментът ти няма да се подновява, така че можеш да преминеш към постоянната еднократна Pro покупка сега.</string>
+    <string name="upgrade_screen_owned_iap_locked_note">За да преминеш към еднократната покупка, първо отмени абонамента си в Google Play. Това предложение се отключва, когато абонаментът е зададен да не се подновява.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверява само акаунта, в който сте вписани в момента. Еднократната покупка е отделна от абонамента ви.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Абонаментът ви все още е активен и се подновява. Първо го отменете в Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Не можахме да потвърдим абонамента ви с Google Play. Моля, опитайте отново.</string>

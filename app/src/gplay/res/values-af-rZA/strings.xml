@@ -19,16 +19,25 @@
     <string name="upgrade_screen_options_description">Intekeninge vernuwe outomaties. Jy kan enige tyd kanselleer.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
+    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
+         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
+         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
+         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
+         which told the user they *were* the tier instead of that they own it. -->
+    <string name="upgrade_screen_owned_hero_brand_title">Jy het %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">U eenmalige Pro-aankoop ontsluit alle Pro-funksies, voorgoed.</string>
     <string name="upgrade_screen_owned_hero_sub_body">U abonnement ontsluit alle Pro-funksies.</string>
     <string name="upgrade_screen_owned_sub_title">U abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">U abonnement is aktief en word outomaties vernuwe.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">U abonnement sal verval en word nie vernuwe nie. U behou Pro totdat dit afloop.</string>
+    <string name="upgrade_screen_owned_both_renewing_warning">Jy het die eenmalige Pro-opgradering en ook \'n aktiewe intekening. Jy benodig nie albei nie — kanselleer die intekening in Google Play om verdere heffings te vermy.</string>
     <string name="upgrade_screen_manage_subscription_action">Bestuur abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Lewenslange Pro</string>
     <string name="upgrade_screen_owned_iap_body">U het die eenmalige Pro-opgradering. Geen abonnement, geen vernuewings nie.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Omskakel na \'n eenmalige aankoop</string>
+    <string name="upgrade_screen_owned_iap_purchase_note">Jou intekening sal nie vernieu nie, so jy kan nou oorskakel na die permanente eenmalige Pro-aankoop.</string>
+    <string name="upgrade_screen_owned_iap_locked_note">Om na die eenmalige aankoop oor te skakel, kanselleer eers jou intekening in Google Play. Hierdie aanbieding ontsluit sodra dit op \'nie te vernieu\' gestel word.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontroleer slegs die rekening waarmee u tans aangemeld is. Die eenmalige aankoop is afsonderlik van u abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">U abonnement is steeds aktief en vernuwe. Kanselleer dit eers in Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Kon nie u abonnement met Google Play verifieer nie. Probeer asseblief weer.</string>

@@ -19,16 +19,25 @@
     <string name="upgrade_screen_options_description">Les abonnements se renouvellent automatiquement. Vous pouvez annuler à tout moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
+    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
+         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
+         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
+         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
+         which told the user they *were* the tier instead of that they own it. -->
+    <string name="upgrade_screen_owned_hero_brand_title">Tu as %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Votre achat Pro unique déverrouille toutes les fonctionnalités Pro, pour toujours.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Votre abonnement déverrouille toutes les fonctionnalités Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Votre abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Votre abonnement est actif et se renouvelle automatiquement.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Votre abonnement est configuré pour expirer et ne se renouvellera pas. Vous conserverez Pro jusqu’à sa fin.</string>
+    <string name="upgrade_screen_owned_both_renewing_warning">Tu as l\'upgrade Pro permanent et aussi un abonnement actif. Tu n\'as pas besoin des deux — annule l\'abonnement sur Google Play pour éviter des frais supplémentaires.</string>
     <string name="upgrade_screen_manage_subscription_action">Gérer l’abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Pro à vie</string>
     <string name="upgrade_screen_owned_iap_body">Vous possédez l’achat unique Pro. Pas d’abonnement, pas de renouvellements.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Passer à un achat unique</string>
+    <string name="upgrade_screen_owned_iap_purchase_note">Ton abonnement ne se renouvellera pas, tu peux donc passer à l\'achat Pro permanent maintenant.</string>
+    <string name="upgrade_screen_owned_iap_locked_note">Pour passer à l\'achat Pro permanent, annule d\'abord ton abonnement sur Google Play. Cette offre se déverrouille une fois qu\'il est paramétré pour ne pas se renouveler.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play vérifie uniquement le compte auquel vous êtes actuellement connecté. L’achat unique est distinct de votre abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Votre abonnement est toujours actif et se renouvelle. Annulez-le d’abord dans Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Impossible de vérifier votre abonnement auprès de Google Play. Veuillez réessayer.</string>
