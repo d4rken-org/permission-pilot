@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Абонаментите се поднавят автоматично. Можете да откажете по всяко време.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Вие сте Pro — благодаря!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Вашата еднократна Pro покупка отключва всяка Pro функция, завинаги.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Вашият абонамент отключва всички Pro функции.</string>
     <string name="upgrade_screen_owned_sub_title">Вашият абонамент</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Вашият абонамент е активен и се подновява автоматично.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Вашият абонамент е настроен да изтече и няма да се подновява. Ще задържите Pro, докато не завърши.</string>
-    <string name="upgrade_screen_owned_both_warning">Притежавате еднократната Pro надстройка и имате активен абонамент. Не се нуждаете от двете — отменете абонамента в Google Play, за да избегнете допълнителни разходи.</string>
     <string name="upgrade_screen_manage_subscription_action">Управление на абонамента</string>
     <string name="upgrade_screen_owned_iap_title">Доживотен Pro</string>
     <string name="upgrade_screen_owned_iap_body">Притежавате еднократната Pro надстройка. Без абонамент, без подновявания.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Преминете към еднократна покупка</string>
-    <string name="upgrade_screen_switch_purchase_note">Вашият абонамент няма да се подновява, така че можете да преминете към постоянната еднократна Pro покупка сега.</string>
-    <string name="upgrade_screen_switch_locked_note">За да преминете към еднократната покупка, първо отменете абонамента си в Google Play. Това предложение се отключва, след като е зададено да не се подновява.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверява само акаунта, в който сте вписани в момента. Еднократната покупка е отделна от абонамента ви.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Абонаментът ви все още е активен и се подновява. Първо го отменете в Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Не можахме да потвърдим абонамента ви с Google Play. Моля, опитайте отново.</string>

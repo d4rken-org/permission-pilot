@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Abonnementer fornyes automatisk. Du kan annullere når som helst.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Du er Pro – tak!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Dit engangs Pro-køb låser op for alle Pro-funktioner, for evigt.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Dit abonnement låser alle Pro-funktioner op.</string>
     <string name="upgrade_screen_owned_sub_title">Dit abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Dit abonnement er aktivt og fornyes automatisk.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Dit abonnement er indstillet til at udløbe og fornyes ikke. Du beholder Pro, indtil det slutter.</string>
-    <string name="upgrade_screen_owned_both_warning">Du ejer Pro-opgraderingen til engangsudgift og har også et aktivt abonnement. Du behøver ikke begge dele — annuller abonnementet i Google Play for at undgå yderligere gebyrer.</string>
     <string name="upgrade_screen_manage_subscription_action">Administrer abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Livstids Pro</string>
     <string name="upgrade_screen_owned_iap_body">Du ejer Pro-opgraderingen til engangsudgift. Intet abonnement, ingen fornyelser.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Skift til engangsudgift</string>
-    <string name="upgrade_screen_switch_purchase_note">Dit abonnement fornyes ikke, så du kan skifte til det permanente engangs-Pro-køb nu.</string>
-    <string name="upgrade_screen_switch_locked_note">Hvis du vil skifte til engangsbetalingen, skal du først annullere dit abonnement i Google Play. Dette tilbud bliver tilgængeligt, når det er indstillet til ikke at forny.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontrollerer kun den konto, du er logget ind på. Engangsbetalingen er adskilt fra dit abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Dit abonnement er stadig aktivt og fornyes. Annuller det først i Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Kunne ikke bekræfte dit abonnement med Google Play. Prøv igen.</string>

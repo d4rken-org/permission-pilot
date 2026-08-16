@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Gli abbonamenti si rinnovano automaticamente. Puoi annullare in qualsiasi momento.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Sei Pro — grazie!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Il tuo acquisto unico di Pro sblocca ogni funzione Pro, per sempre.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Il tuo abbonamento sblocca ogni funzione Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Il tuo abbonamento</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Il tuo abbonamento è attivo e si rinnova automaticamente.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Il tuo abbonamento è impostato per scadere e non si rinnoverà. Manterrai Pro fino al termine.</string>
-    <string name="upgrade_screen_owned_both_warning">Possiedi l’acquisto unico di Pro e hai anche un abbonamento attivo. Non hai bisogno di entrambi — annulla l’abbonamento in Google Play per evitare ulteriori addebiti.</string>
     <string name="upgrade_screen_manage_subscription_action">Gestisci abbonamento</string>
     <string name="upgrade_screen_owned_iap_title">Pro a vita</string>
     <string name="upgrade_screen_owned_iap_body">Possiedi l’acquisto unico di Pro. Nessun abbonamento, nessun rinnovo.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Passa a un acquisto unico</string>
-    <string name="upgrade_screen_switch_purchase_note">Il tuo abbonamento non si rinnoverà, quindi ora puoi passare all’acquisto unico permanente di Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Per passare all’acquisto unico, annulla prima il tuo abbonamento in Google Play. Questa offerta si sblocca una volta impostato per non rinnovarsi.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play controlla solo l’account con cui sei attualmente connesso. L’acquisto unico è separato dal tuo abbonamento.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Il tuo abbonamento è ancora attivo e si sta rinnovando. Annullalo prima in Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Impossibile verificare il tuo abbonamento con Google Play. Riprova.</string>

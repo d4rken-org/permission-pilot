@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Subskrypcje odnawiają się automatycznie. Możesz anulować w dowolnym momencie.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Jesteś Pro - dziękuję!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Twój jednorazowy zakup Pro odblokowuje każdą funkcję Pro na zawsze.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Twoja subskrypcja odblokowuje każdą funkcję Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Twoja subskrypcja</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Twoja subskrypcja jest aktywna i odnawia się automatycznie.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Twoja subskrypcja wygasa i nie będzie odnawiana. Pro będzie przechowywany do czasu jej zakończenia.</string>
-    <string name="upgrade_screen_owned_both_warning">Posiadasz jednorazową aktualizację Pro, a także aktywną subskrypcję. Nie potrzebujesz obu opcji — anuluj subskrypcję w Sklepie Google Play, aby uniknąć dodatkowych opłat.</string>
     <string name="upgrade_screen_manage_subscription_action">Zarządzaj subskrypcją</string>
     <string name="upgrade_screen_owned_iap_title">Dożywotni Pro</string>
     <string name="upgrade_screen_owned_iap_body">Jesteś właścicielem jednorazowej aktualizacji do wersji Pro. Bez subskrypcji i odnawiania.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Przełącz na jednorazowy zakup</string>
-    <string name="upgrade_screen_switch_purchase_note">Twoja subskrypcja nie zostanie odnowiona, więc możesz już teraz dokonać jednorazowego zakupu wersji Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Aby przejść na zakup jednorazowy, najpierw anuluj subskrypcję w Sklepie Google Play. Oferta zostanie odblokowana po ustawieniu opcji nie odnawiaj.</string>
     <string name="upgrade_screen_limitation_disclosure">Sklep Google Play sprawdza tylko konto, na którym jesteś aktualnie zalogowany. Jednorazowy zakup jest niezależny od subskrypcji.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Twoja subskrypcja jest nadal aktywna i odnawia się. Anuluj ją najpierw w Sklepie Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Nie udało się zweryfikować twojej subskrypcji w Sklepie Google Play. Spróbuj ponownie.</string>

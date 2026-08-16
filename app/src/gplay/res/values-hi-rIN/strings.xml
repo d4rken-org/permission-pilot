@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">सदस्यता स्वचालित रूप से नवीनीकृत होती है। आप कभी भी रद्द कर सकते हैं।</string>
     <string name="upgrade_title_suffix">प्रो</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">आप Pro हैं — धन्यवाद!</string>
     <string name="upgrade_screen_owned_hero_iap_body">आपकी एक बार की Pro खरीद हमेशा के लिए हर Pro सुविधा को अनलॉक करती है।</string>
     <string name="upgrade_screen_owned_hero_sub_body">आपकी सदस्यता हर Pro सुविधा को अनलॉक करती है।</string>
     <string name="upgrade_screen_owned_sub_title">आपकी सदस्यता</string>
     <string name="upgrade_screen_owned_sub_renewing_body">आपकी सदस्यता सक्रिय है और स्वचालित रूप से नवीनीकृत होती है।</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">आपकी सदस्यता समाप्त होने के लिए सेट है और नवीनीकृत नहीं होगी। आप इसके समाप्त होने तक Pro को रखेंगे।</string>
-    <string name="upgrade_screen_owned_both_warning">आप एक बार की Pro अपग्रेड के मालिक हैं और एक सक्रिय सदस्यता भी रखते हैं। आपको दोनों की आवश्यकता नहीं है — आगे के शुल्क से बचने के लिए Google Play में सदस्यता को रद्द करें।</string>
     <string name="upgrade_screen_manage_subscription_action">सदस्यता प्रबंधित करें</string>
     <string name="upgrade_screen_owned_iap_title">आजीवन Pro</string>
     <string name="upgrade_screen_owned_iap_body">आप एक बार की Pro अपग्रेड के मालिक हैं। कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">एक बार की खरीदारी पर स्विच करें</string>
-    <string name="upgrade_screen_switch_purchase_note">आपकी सदस्यता नवीनीकृत नहीं होगी, इसलिए आप अब स्थायी एक बार की Pro खरीदारी पर जा सकते हैं।</string>
-    <string name="upgrade_screen_switch_locked_note">एक बार की खरीदारी पर स्विच करने के लिए, पहले Google Play में अपनी सदस्यता को रद्द करें। यह ऑफर तब अनलॉक हो जाता है जब इसे नवीनीकृत न करने के लिए सेट किया जाता है।</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play केवल उस खाते की जांच करता है जिसमें आप वर्तमान में साइन इन हैं। एक बार की खरीदारी आपकी सदस्यता से अलग है।</string>
     <string name="upgrade_screen_sub_still_renewing_message">आपकी सदस्यता अभी भी सक्रिय है और नवीनीकृत हो रही है। पहले इसे Google Play में रद्द करें।</string>
     <string name="upgrade_screen_sub_check_failed_message">Google Play के साथ आपकी सदस्यता को सत्यापित नहीं किया जा सका। कृपया पुनः प्रयास करें।</string>

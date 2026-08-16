@@ -41,11 +41,6 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
     private val appNameWithPostfix: String
         get() = context.expectedBrandTitle
 
-    private fun appNameWithPostfixedHeroBody(bodyRes: Int): String = context.getString(
-        bodyRes,
-        appNameWithPostfix,
-    )
-
     // What the acquisition top bar must render: the translated pitch pattern with the composed
     // brand formatted into it.
     private val acquisitionTitle: String
@@ -402,6 +397,26 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
             busy = busy,
         )
 
+    // What the owned hero must render: its own outer string with the composed brand formatted in.
+    // Both halves are resolved, never spelled out, so a locale that reorders either the sentence or
+    // the title template still describes the same render.
+    private val ownedHeroTitle: String
+        get() = context.getString(R.string.upgrade_screen_owned_hero_brand_title, appNameWithPostfix)
+
+    @Test
+    fun `the owned hero titles ownership of the composed brand`() {
+        composeRule.setUpgradeContent {
+            UpgradeScreen(uiState = ownedState(Ownership(hasIap = true)))
+        }
+
+        composeRule.onAllNodesWithText(ownedHeroTitle).assertCountEquals(1)
+        // The expectation itself must stay a composition, not a coincidence: if the outer string
+        // ever loses its placeholder the assertion above would still pass against a title that
+        // names no tier at all.
+        ownedHeroTitle.contains(context.getString(R.string.app_name)) shouldBe true
+        ownedHeroTitle.contains(context.brandQualifier) shouldBe true
+    }
+
     @Test
     fun `renewing subscription owner sees a locked one-time offer and management`() {
         var iapClicks = 0
@@ -418,10 +433,11 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithText(context.expectedBrandTitle).assertCountEquals(1)
         // The congrats hero names the variant.
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_OWNED_HERO).assertCountEquals(1)
-        composeRule.onAllNodesWithText(appNameWithPostfixedHeroBody(R.string.upgrade_screen_owned_hero_sub_body))
+        composeRule.onAllNodesWithText(ownedHeroTitle).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_hero_sub_body))
             .assertCountEquals(1)
         // The switch path is a visible LOCKED offer: present, disabled, with the unlock condition.
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_locked_note)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_locked_note)).assertCountEquals(1)
         composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_IAP).assertIsNotEnabled()
         composeRule.runOnIdle { check(iapClicks == 0) { "locked offer must not be clickable" } }
         // No acquisition upsell copy anywhere on the ownership screen.
@@ -448,9 +464,9 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
 
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_sub_not_renewing_body)).assertCountEquals(1)
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_purchase_note)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_purchase_note)).assertCountEquals(1)
         // The offer is unlocked — the locked-state note must be gone.
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_locked_note)).assertCountEquals(0)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_locked_note)).assertCountEquals(0)
         composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_IAP).performScrollTo().performClick()
         composeRule.runOnIdle { check(iapClicks == 1) { "expected 1 iap click, got $iapClicks" } }
     }
@@ -467,9 +483,9 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(0)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_body)).assertCountEquals(1)
         // The hero names the permanent purchase as the unlock, never the subscription variant.
-        composeRule.onAllNodesWithText(appNameWithPostfixedHeroBody(R.string.upgrade_screen_owned_hero_iap_body))
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_hero_iap_body))
             .assertCountEquals(1)
-        composeRule.onAllNodesWithText(appNameWithPostfixedHeroBody(R.string.upgrade_screen_owned_hero_sub_body))
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_hero_sub_body))
             .assertCountEquals(0)
         // Owners get their mascot from the congrats hero only — the acquisition hero card and its
         // preamble must stay away entirely.
@@ -488,7 +504,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
             )
         }
 
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_both_warning)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_both_renewing_warning)).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_IAP).assertCountEquals(0)
     }

@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Οι συνδρομές ανανεώνονται αυτόματα. Μπορείτε να ακυρώσετε ανά πάσα στιγμή.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Είστε Pro — ευχαριστούμε!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Η ενιαία αγορά Pro ξεκλειδώνει κάθε λειτουργία Pro, για πάντα.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Η συνδρομή σας ξεκλειδώνει κάθε λειτουργία Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Η συνδρομή σας</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Η συνδρομή σας είναι ενεργή και ανανεώνεται αυτόματα.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Η συνδρομή σας έχει οριστεί να λήξει και δεν θα ανανεωθεί. Θα διατηρήσετε το Pro μέχρι να τελειώσει.</string>
-    <string name="upgrade_screen_owned_both_warning">Διαθέτετε την εφάπαξ αναβάθμιση Pro και έχετε επίσης ενεργή συνδρομή. Δεν χρειάζεστε και τα δύο — ακυρώστε τη συνδρομή στο Google Play για να αποφύγετε περαιτέρω χρεώσεις.</string>
     <string name="upgrade_screen_manage_subscription_action">Διαχείριση συνδρομής</string>
     <string name="upgrade_screen_owned_iap_title">Ισόβιο Pro</string>
     <string name="upgrade_screen_owned_iap_body">Διαθέτετε την εφάπαξ αναβάθμιση Pro. Χωρίς συνδρομή, χωρίς ανανεώσεις.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Μετάβαση σε μια εφάπαξ αγορά</string>
-    <string name="upgrade_screen_switch_purchase_note">Η συνδρομή σας δεν θα ανανεωθεί, έτσι μπορείτε να μεταβείτε στη μόνιμη εφάπαξ αγορά Pro τώρα.</string>
-    <string name="upgrade_screen_switch_locked_note">Για να μεταβείτε στην εφάπαξ αγορά, ακυρώστε πρώτα τη συνδρομή σας στο Google Play. Αυτή η προσφορά ξεκλειδώνεται όταν οριστεί να μην ανανεωθεί.</string>
     <string name="upgrade_screen_limitation_disclosure">Το Google Play ελέγχει μόνο το λογαριασμό στον οποίο είστε συνδεδεμένοι. Η εφάπαξ αγορά είναι ξεχωριστή από τη συνδρομή σας.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Η συνδρομή σας είναι ακόμα ενεργή και ανανεώνεται. Ακυρώστε την πρώτα στο Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Δεν ήταν δυνατή η επαλήθευση της συνδρομής σας με το Google Play. Δοκιμάστε ξανά.</string>

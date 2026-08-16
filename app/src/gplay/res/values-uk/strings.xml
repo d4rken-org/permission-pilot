@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Підписки поновлюються автоматично. Скасувати можна будь-коли.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Ви маєте Pro — дякуємо!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ваша одноразова покупка Pro розблокує всі функції Pro навічно.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Ваша підписка розблокує всі функції Pro.</string>
     <string name="upgrade_screen_owned_sub_title">Ваша підписка</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Ваша підписка активна і автоматично поновлюється.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша підписка припиниться й не поновиться. Ви матимете Pro до її закінчення.</string>
-    <string name="upgrade_screen_owned_both_warning">Ви маєте одноразове оновлення Pro і також активну підписку. Вам не потрібні обидва — скасуйте підписку в Google Play, щоб уникнути подальших платежів.</string>
     <string name="upgrade_screen_manage_subscription_action">Керування підпискою</string>
     <string name="upgrade_screen_owned_iap_title">Безстрокове Pro</string>
     <string name="upgrade_screen_owned_iap_body">Ви маєте одноразове оновлення Pro. Без підписки, без поновлень.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Перейти на одноразову покупку</string>
-    <string name="upgrade_screen_switch_purchase_note">Ваша підписка не поновиться, тому зараз ви можете перейти на постійну одноразову покупку Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Щоб перейти на одноразову покупку, спочатку скасуйте підписку в Google Play. Пропозиція розблокується, коли буде припинено поновлення.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play перевіряє лише обліковий запис, в якому ви зараз увійшли. Разова покупка відокремлена від вашої підписки.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша підписка все ще активна і поновлюється. Спочатку скасуйте її в Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Не вдалося перевірити вашу підписку в Google Play. Будь ласка, спробуйте ще раз.</string>

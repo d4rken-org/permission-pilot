@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">구독은 자동으로 갱신됩니다. 언제든지 취소할 수 있습니다.</string>
     <string name="upgrade_title_suffix">프로</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Pro 이용 중이시네요 — 감사합니다!</string>
     <string name="upgrade_screen_owned_hero_iap_body">일회성 Pro 구매로 모든 Pro 기능을 영원히 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_hero_sub_body">구독하면 모든 Pro 기능을 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_sub_title">구독</string>
     <string name="upgrade_screen_owned_sub_renewing_body">구독이 활성화되어 있으며 자동으로 갱신됩니다.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">구독이 만료되도록 설정되어 있으며 갱신되지 않습니다. 만료될 때까지 Pro를 계속 사용할 수 있습니다.</string>
-    <string name="upgrade_screen_owned_both_warning">일회성 Pro 업그레이드를 소유했으면서 동시에 활성 구독도 있습니다. 둘 다 필요하지 않습니다 — 추가 요금을 피하려면 Google Play에서 구독을 취소하세요.</string>
     <string name="upgrade_screen_manage_subscription_action">구독 관리</string>
     <string name="upgrade_screen_owned_iap_title">평생 Pro</string>
     <string name="upgrade_screen_owned_iap_body">일회성 Pro 업그레이드를 소유했습니다. 구독 없음, 갱신 없음.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">일회성 구매로 전환</string>
-    <string name="upgrade_screen_switch_purchase_note">구독이 갱신되지 않으므로 이제 영구적인 일회성 Pro 구매로 이동할 수 있습니다.</string>
-    <string name="upgrade_screen_switch_locked_note">일회 구매로 전환하려면 먼저 Google Play에서 구독을 취소하세요. 자동 갱신하지 않도록 설정하면 이 오퍼가 활성화됩니다.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play는 현재 로그인한 계정만 확인합니다. 일회 구매는 구독과 별개입니다.</string>
     <string name="upgrade_screen_sub_still_renewing_message">구독이 아직 활성 상태이며 갱신 중입니다. 먼저 Google Play에서 취소하세요.</string>
     <string name="upgrade_screen_sub_check_failed_message">Google Play에서 구독을 확인할 수 없습니다. 다시 시도하세요.</string>

@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Les subscripcions es renoven automàticament. Podeu cancel·lar-les en qualsevol moment.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Sou Pro, gràcies!</string>
     <string name="upgrade_screen_owned_hero_iap_body">La vostra compra única desbloqueja totes les funcions de Pro, per sempre.</string>
     <string name="upgrade_screen_owned_hero_sub_body">La vostra subscripció desbloqueja totes les funcions de Pro.</string>
     <string name="upgrade_screen_owned_sub_title">La vostra subscripció</string>
     <string name="upgrade_screen_owned_sub_renewing_body">La vostra subscripció està activa i es renova automàticament.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">La vostra subscripció està configurada per caducar i no es renovarà. Mantindreu el Pro fins que finalitzi.</string>
-    <string name="upgrade_screen_owned_both_warning">Teniu l\'actualització única al Pro i també una subscripció activa. No necessites totes dues coses: cancel·leu la subscripció al Google Play per evitar càrrecs addicionals.</string>
     <string name="upgrade_screen_manage_subscription_action">Gestiona la subscripció</string>
     <string name="upgrade_screen_owned_iap_title">Pro de per vida</string>
     <string name="upgrade_screen_owned_iap_body">Teniu l\'actualització Pro única. Sense subscripcions, sense renovacions.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Canvieu a una compra única</string>
-    <string name="upgrade_screen_switch_purchase_note">La vostra subscripció no es renovarà, així que ara podeu canviar a la compra permanent única per al Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Per canviar a la compra única, primer cancel·leu la vostra subscripció al Google Play. Aquesta oferta es desbloqueja un cop està configurada per no renovar-se.</string>
     <string name="upgrade_screen_limitation_disclosure">El Google Play només comprova el compte en el qual esteu actualment connectats. La compra única és independent de la vostra subscripció.</string>
     <string name="upgrade_screen_sub_still_renewing_message">La vostra subscripció segueix activa i es renova. Cancel·leu-la primer al Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">No s\'ha pogut verificar la vostra subscripció amb el Google Play. Torneu-ho a provar.</string>

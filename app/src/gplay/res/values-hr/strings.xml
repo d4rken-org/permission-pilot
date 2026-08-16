@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Pretplate se automatski obnavljaju. Možete otkazati u bilo koje vrijeme.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Sada ste Pro — hvala!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Vaša jednokratna Pro kupnja otključava sve Pro značajke zauvijek.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Vaša pretplata otključava sve Pro značajke.</string>
     <string name="upgrade_screen_owned_sub_title">Vaša pretplata</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Vaša pretplata je aktivna i obnavlja se automatski.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Vaša pretplata je postavljena da ističe i neće se obnoviti. Zadržat ćete Pro dok ne istekne.</string>
-    <string name="upgrade_screen_owned_both_warning">Posjedujete jednokratnu Pro nadogradnju i također imate aktivnu pretplatu. Ne trebate oboje — otkažite pretplatu u Google Playu kako biste izbjegli daljnje naknade.</string>
     <string name="upgrade_screen_manage_subscription_action">Upravljajte pretplatom</string>
     <string name="upgrade_screen_owned_iap_title">Doživotni Pro</string>
     <string name="upgrade_screen_owned_iap_body">Posjedujete jednokratnu Pro nadogradnju. Bez pretplate, bez obnove.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Prebacite se na jednokratnu kupnju</string>
-    <string name="upgrade_screen_switch_purchase_note">Vaša pretplata se neće obnoviti, pa sada možete prijeći na trajnu jednokratnu Pro kupnju.</string>
-    <string name="upgrade_screen_switch_locked_note">Za prebacivanje na jednokratnu kupnju, prvo trebate otkazati pretplatu na Google Playu. Ova ponuda se otključava nakon što je postavljena da se ne obnovi.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play provjerava samo račun na koji ste trenutno prijavljeni. Jednokratna kupnja je odvojena od vaše pretplate.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Vaša pretplata je i dalje aktivna i obnavlja se. Trebate je prvo otkazati na Google Playu.</string>
     <string name="upgrade_screen_sub_check_failed_message">Nije moguće provjeriti vašu pretplatu s Google Playom. Pokušajte ponovno.</string>

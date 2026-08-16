@@ -19,20 +19,16 @@
     <string name="upgrade_screen_options_description">Abonnementer fornyes automatisk. Du kan avbryte når som helst.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
-    <string name="upgrade_screen_owned_hero_title">Du er Pro – takk!</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ditt engangs Pro-kjøp låser opp hver Pro-funksjon, for alltid.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Abonnementet ditt låser opp alle Pro-funksjoner.</string>
     <string name="upgrade_screen_owned_sub_title">Abonnementet ditt</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Abonnementet ditt er aktivt og fornyes automatisk.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Abonnementet ditt er satt til å utløpe og vil ikke fornyes. Du beholder Pro til det utløper.</string>
-    <string name="upgrade_screen_owned_both_warning">Du eier engangs Pro-oppgraderingen og har også et aktivt abonnement. Du trenger ikke begge deler – avbryt abonnementet i Google Play for å unngå ytterligere kostnader.</string>
     <string name="upgrade_screen_manage_subscription_action">Administrer abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Livstids Pro</string>
     <string name="upgrade_screen_owned_iap_body">Du eier engangs Pro-oppgraderingen. Ingen abonnement, ingen fornyelser.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Bytt til engangskjøp</string>
-    <string name="upgrade_screen_switch_purchase_note">Abonnementet ditt vil ikke fornyes, så du kan gå over til det permanente engangs Pro-kjøpet nå.</string>
-    <string name="upgrade_screen_switch_locked_note">For å bytte til engangskjøp, må du først avbryte abonnementet ditt i Google Play. Dette tilbudet låses opp når det er satt til ikke å fornyes.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play sjekker bare kontoen du er logget inn på. Engangskjøpet er atskilt fra abonnementet ditt.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonnementet ditt er fortsatt aktivt og fornyes. Avbryt det i Google Play først.</string>
     <string name="upgrade_screen_sub_check_failed_message">Kunne ikke bekrefte abonnementet ditt med Google Play. Vennligst prøv igjen.</string>
