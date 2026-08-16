@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Din prenumeration</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Din prenumeration är aktiv och förnyas automatiskt.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Din prenumeration är inställd på att upphöra och kommer inte att förnyas. Du behåller Pro tills den slutar.</string>
-    <string name="upgrade_screen_owned_both_warning">Du äger engångsuppgraderingen till Pro och har också en aktiv prenumeration. Du behöver inte båda – avsluta prenumerationen i Google Play för att undvika ytterligare debiteringar.</string>
     <string name="upgrade_screen_manage_subscription_action">Hantera prenumeration</string>
     <string name="upgrade_screen_owned_iap_title">Pro på livstid</string>
     <string name="upgrade_screen_owned_iap_body">Du äger engångsuppgraderingen till Pro. Ingen prenumeration, inga förnyelser.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Växla till ett engångsköp</string>
-    <string name="upgrade_screen_switch_purchase_note">Din prenumeration kommer inte att förnyas, så du kan byta till det permanenta engångsköpet av Pro nu.</string>
-    <string name="upgrade_screen_switch_locked_note">För att byta till engångsköpet måste du först avbryta din prenumeration i Google Play. Det här erbjudandet aktiveras när det är inställt på att inte förnyas.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontrollerar bara kontot du är inloggad på. Engångsköpet är separat från din prenumeration.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Din prenumeration är fortfarande aktiv och förnyas. Avbryt den i Google Play först.</string>
     <string name="upgrade_screen_sub_check_failed_message">Kunde inte verifiera din prenumeration med Google Play. Försök igen.</string>

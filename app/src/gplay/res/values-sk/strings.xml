@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Vaše predplatné</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Vaše predplatné je aktívne a automaticky sa obnovuje.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Vaše predplatné vypršia a nebude sa obnovovať. Budete mať Pro až do jeho konca.</string>
-    <string name="upgrade_screen_owned_both_warning">Vlastníte jednorazový upgrade Pro a máte aj aktívne predplatné. Nepotrebujete oboje – zrušte predplatné v Google Play, aby ste sa vyhli ďalším poplatkom.</string>
     <string name="upgrade_screen_manage_subscription_action">Spravovať predplatné</string>
     <string name="upgrade_screen_owned_iap_title">Doživotný Pro</string>
     <string name="upgrade_screen_owned_iap_body">Vlastníte jednorazový upgrade Pro. Žiadne predplatné, žiadne obnovy.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Prejsť na jednorazový nákup</string>
-    <string name="upgrade_screen_switch_purchase_note">Vaše predplatné sa neobnoví, takže teraz môžete prejsť na trvalý jednorazový nákup Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Ak chcete prejsť na jednorazový nákup, najskôr zrušte svoje predplatné v Google Play. Táto ponuka sa odomkne, keď nastavíte predplatné, aby sa neobnovalo.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play kontroluje iba účet, s ktorým ste momentálne prihlásení. Jednorazový nákup je nezávislý od vášho predplatného.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Vaše predplatné je stále aktívne a obnovuje sa. Zrušte ho najskôr v Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Nepodarilo sa overiť vaše predplatné v Google Play. Skúste znova prosím.</string>

@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">ሰዋስክ</string>
     <string name="upgrade_screen_owned_sub_renewing_body">ሰዋስክ ንቁ ነው እና ራሱ በራሱ ይታደሳል።</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">ሰዋስክ ለመጨረስ ተዘጋጅቷል እና አይታደስም። እስከሚያልቅ ድረስ ፕሮ ይኖርዎታል።</string>
-    <string name="upgrade_screen_owned_both_warning">ለአንድ ጊዜ ፕሮ ማሻሻያ ይዞታል እንዲሁም ንቁ ሰዋስ አለዎት። ሁለቱን ስለማያስፈልግዎ — ተጨማሪ ክፍያ ለማስወገድ በGoogle Play ሰዋስን ይሰርዙ።</string>
     <string name="upgrade_screen_manage_subscription_action">ሰዋስን ያስተዳድሩ</string>
     <string name="upgrade_screen_owned_iap_title">ለዘላለም ፕሮ</string>
     <string name="upgrade_screen_owned_iap_body">ለአንድ ጊዜ ፕሮ ማሻሻያ ይዞታል። ሰዋስ የለም፣ ምንም ታደሳ አይደለም።</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">ወደ አንድ ጊዜ ግዢ ይቀይሩ</string>
-    <string name="upgrade_screen_switch_purchase_note">ሰዋስክ አይታደስም፣ ስለዚህ አሁን ወደ ዘላለም ለአንድ ጊዜ ፕሮ ግዢ መዋወር ይችላሉ።</string>
-    <string name="upgrade_screen_switch_locked_note">ወደ አንድ ጊዜ ያለው ገዥ ለመቀየር በመጀመሪያ Google Play ላይ የእርስዎን ምዝገባ ይሰርዙ። ይህ አማራጭ አቁም ሲተገበር ይክፈታል።</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play በሚገቡበት ሂሳብዎ ብቻ ይከታተላል። አንድ ጊዜ ያለው ገዥ ከእርስዎ ምዝገባ ተለይቶ ነው።</string>
     <string name="upgrade_screen_sub_still_renewing_message">የእርስዎ ምዝገባ አሁንም ንቁ እና ይታደሳል። በGoogle Play ውስጥ በመጀመሪያ ይሰርዙት።</string>
     <string name="upgrade_screen_sub_check_failed_message">የእርስዎን ምዝገባ በGoogle Play ሊያረጋገ አልቻለም። እንደገና ይሞክሩ።</string>

@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Tu suscripción</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Tu suscripción está activa y se renueva automáticamente.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Tu suscripción está configurada para expirar y no se renovará. Mantendrás Pro hasta que finalice.</string>
-    <string name="upgrade_screen_owned_both_warning">Posees la actualización única de Pro y también tienes una suscripción activa. No necesitas ambas: cancela la suscripción en Google Play para evitar cargos adicionales.</string>
     <string name="upgrade_screen_manage_subscription_action">Gestionar suscripción</string>
     <string name="upgrade_screen_owned_iap_title">Pro de por vida</string>
     <string name="upgrade_screen_owned_iap_body">Posees la actualización única de Pro. Sin suscripción, sin renovaciones.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Cambiar a una compra única</string>
-    <string name="upgrade_screen_switch_purchase_note">Tu suscripción no se renovará, por lo que ahora puedes cambiar a la compra Pro única y permanente.</string>
-    <string name="upgrade_screen_switch_locked_note">Para cambiar a la compra única, primero cancela tu suscripción en Google Play. Esta oferta se desbloquea una vez que esté configurada para no renovarse.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play solo verifica la cuenta en la que actualmente has iniciado sesión. La compra única es independiente de tu suscripción.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Tu suscripción sigue activa y se está renovando. Cancélala en Google Play primero.</string>
     <string name="upgrade_screen_sub_check_failed_message">No se pudo verificar tu suscripción con Google Play. Por favor, intenta de nuevo.</string>

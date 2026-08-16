@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Aboneya te</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Aboneya te çalak e û bi otomatîk nû dibe.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Aboneya te sazkirî ye da ku qede bibe û nû nabibe. Tu Pro-yî heta qedandîna wê bihûnîne.</string>
-    <string name="upgrade_screen_owned_both_warning">Tu pêbazirandina Pro-ya yek-car heye û tu jî aboneyeke çalak heye. Tu hewce nikare her du — aboneya di Google Play de betal bike da ku xercên zêde nabe.</string>
     <string name="upgrade_screen_manage_subscription_action">Aboneya birêve bike</string>
     <string name="upgrade_screen_owned_iap_title">Pro-ya sedemzî</string>
     <string name="upgrade_screen_owned_iap_body">Tu pêbazirandina Pro-ya yek-car heye. Aboneya tune, nû kirin tune.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Veguherîn bo kirîna yek-car</string>
-    <string name="upgrade_screen_switch_purchase_note">Peymanê we nabe nûkirî, lewra we niha dikarin biçin beşdareya Pro ya demdemî ya yekcarî.</string>
-    <string name="upgrade_screen_switch_locked_note">Ji bo ku biçin beşdareya yekcarî, pêşî peymanê we di Google Play da betal bikin. Ev pêşkêş açilî dibe dema peymanê we nabe nûkirî.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play tenê hesaba we ya niha kontrol dike. Beşdareya yekcarî ji peymanê we cuda ye.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Peymanê we hîn jî çalak e û nabe nûkirî. Pêşî ew di Google Play da betal bikin.</string>
     <string name="upgrade_screen_sub_check_failed_message">Peymanê we bi Google Play piştrast nekirî. Ji kerema xwe dîsa hewl bide.</string>

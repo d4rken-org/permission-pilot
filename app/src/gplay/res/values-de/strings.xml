@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Dein Abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Dein Abonnement ist aktiv und wird automatisch verlängert.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Dein Abonnement läuft aus und wird nicht verlängert. Du behältst Pro bis zum Ende.</string>
-    <string name="upgrade_screen_owned_both_warning">Du besitzt das einmalige Pro-Upgrade und hast auch ein aktives Abonnement. Du brauchst nicht beides – kündige das Abonnement in Google Play, um weitere Gebühren zu vermeiden.</string>
     <string name="upgrade_screen_manage_subscription_action">Abo verwalten</string>
     <string name="upgrade_screen_owned_iap_title">Pro für immer</string>
     <string name="upgrade_screen_owned_iap_body">Du besitzt das einmalige Pro-Upgrade. Kein Abonnement, keine Verlängerungen.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Zum einmaligen Kauf wechseln</string>
-    <string name="upgrade_screen_switch_purchase_note">Dein Abonnement wird nicht verlängert, daher kannst du jetzt zum permanenten einmaligen Pro-Kauf wechseln.</string>
-    <string name="upgrade_screen_switch_locked_note">Um zum einmaligen Kauf zu wechseln, kündige zunächst dein Abonnement in Google Play. Dieses Angebot wird freigegeben, sobald es nicht mehr verlängert wird.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play überprüft nur das Konto, mit dem du gerade angemeldet bist. Der Einmalkauf ist unabhängig von deinem Abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Dein Abonnement ist noch aktiv und wird erneuert. Kündige es zuerst in Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Dein Abonnement konnte nicht bei Google Play überprüft werden. Bitte versuche es noch einmal.</string>

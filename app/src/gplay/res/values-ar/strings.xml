@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">اشتراكك</string>
     <string name="upgrade_screen_owned_sub_renewing_body">اشتراكك نشط ويتم تجديده تلقائياً.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">تم ضبط اشتراكك للانتهاء ولن يتم تجديده. ستحتفظ بـ Pro حتى ينتهي.</string>
-    <string name="upgrade_screen_owned_both_warning">أنت تمتلك ترقية Pro لمرة واحدة وأيضاً لديك اشتراك نشط. أنت لا تحتاج إلى كليهما — ألغِ الاشتراك في Google Play لتجنب رسوم إضافية.</string>
     <string name="upgrade_screen_manage_subscription_action">إدارة الاشتراك</string>
     <string name="upgrade_screen_owned_iap_title">Pro مدى الحياة</string>
     <string name="upgrade_screen_owned_iap_body">أنت تمتلك ترقية Pro لمرة واحدة. لا اشتراك، لا تجديدات.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">التبديل إلى الشراء لمرة واحدة</string>
-    <string name="upgrade_screen_switch_purchase_note">لن يتم تجديد اشتراكك، لذا يمكنك الآن الانتقال إلى شراء Pro لمرة واحدة دائم.</string>
-    <string name="upgrade_screen_switch_locked_note">للتبديل إلى الشراء لمرة واحدة، قم أولاً بإلغاء اشتراكك في Google Play. يصبح هذا العرض متاحاً عندما يتم إيقاف التجديد التلقائي.</string>
     <string name="upgrade_screen_limitation_disclosure">يتحقق Google Play فقط من الحساب الذي تم تسجيل الدخول إليه حالياً. الشراء لمرة واحدة منفصل عن اشتراكك.</string>
     <string name="upgrade_screen_sub_still_renewing_message">اشتراكك لا يزال نشطاً ويتم تجديده. قم بإلغائه في Google Play أولاً.</string>
     <string name="upgrade_screen_sub_check_failed_message">تعذر التحقق من اشتراكك مع Google Play. يرجى المحاولة مجدداً.</string>

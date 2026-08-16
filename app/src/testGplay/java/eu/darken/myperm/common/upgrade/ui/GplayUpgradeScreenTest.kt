@@ -437,7 +437,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_hero_sub_body))
             .assertCountEquals(1)
         // The switch path is a visible LOCKED offer: present, disabled, with the unlock condition.
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_locked_note)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_locked_note)).assertCountEquals(1)
         composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_IAP).assertIsNotEnabled()
         composeRule.runOnIdle { check(iapClicks == 0) { "locked offer must not be clickable" } }
         // No acquisition upsell copy anywhere on the ownership screen.
@@ -464,9 +464,9 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
 
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_sub_not_renewing_body)).assertCountEquals(1)
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_purchase_note)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_purchase_note)).assertCountEquals(1)
         // The offer is unlocked — the locked-state note must be gone.
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_switch_locked_note)).assertCountEquals(0)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_iap_locked_note)).assertCountEquals(0)
         composeRule.onNodeWithTag(UpgradeScreenTags.GPLAY_IAP).performScrollTo().performClick()
         composeRule.runOnIdle { check(iapClicks == 1) { "expected 1 iap click, got $iapClicks" } }
     }
@@ -504,7 +504,7 @@ class GplayUpgradeScreenTest : BaseComposeRobolectricTest() {
             )
         }
 
-        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_both_warning)).assertCountEquals(1)
+        composeRule.onAllNodesWithText(context.getString(R.string.upgrade_screen_owned_both_renewing_warning)).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_MANAGE_SUB).assertCountEquals(1)
         composeRule.onAllNodesWithTag(UpgradeScreenTags.GPLAY_IAP).assertCountEquals(0)
     }

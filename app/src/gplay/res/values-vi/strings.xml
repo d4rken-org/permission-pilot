@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Gói đăng ký của bạn</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Gói đăng ký của bạn đang hoạt động và tự động gia hạn.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Gói đăng ký của bạn được đặt để hết hạn và sẽ không gia hạn. Bạn sẽ giữ Pro cho đến khi nó kết thúc.</string>
-    <string name="upgrade_screen_owned_both_warning">Bạn sở hữu nâng cấp Pro một lần và cũng có gói đăng ký đang hoạt động. Bạn không cần cả hai — hủy gói đăng ký trong Google Play để tránh các khoản phí tiếp theo.</string>
     <string name="upgrade_screen_manage_subscription_action">Quản lý gói đăng ký</string>
     <string name="upgrade_screen_owned_iap_title">Pro Trọn đời</string>
     <string name="upgrade_screen_owned_iap_body">Bạn sở hữu nâng cấp Pro một lần. Không có gói đăng ký, không có gia hạn.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Chuyển sang mua một lần</string>
-    <string name="upgrade_screen_switch_purchase_note">Gói đăng ký của bạn sẽ không tự động gia hạn, vì vậy bạn có thể chuyển sang lần mua Pro vĩnh viễn ngay bây giờ.</string>
-    <string name="upgrade_screen_switch_locked_note">Để chuyển sang lần mua một lần, trước tiên hãy hủy gói đăng ký của bạn trong Google Play. Ưu đãi này sẽ được mở khóa khi bạn đặt để không tự động gia hạn.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play chỉ kiểm tra tài khoản bạn đang đăng nhập. Lần mua một lần này riêng biệt từ gói đăng ký của bạn.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Gói đăng ký của bạn vẫn còn hoạt động và đang tự động gia hạn. Hãy hủy nó trong Google Play trước.</string>
     <string name="upgrade_screen_sub_check_failed_message">Không thể xác minh gói đăng ký của bạn với Google Play. Vui lòng thử lại.</string>

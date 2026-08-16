@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">การสมัครสมาชิกของคุณ</string>
     <string name="upgrade_screen_owned_sub_renewing_body">การสมัครสมาชิกของคุณยังใช้งานอยู่ และต่ออายุโดยอัตโนมัติ</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">การสมัครสมาชิกของคุณจะหมดอายุและจะไม่ต่ออายุ คุณจะยังคงใช้ Pro จนกว่าจะสิ้นสุด</string>
-    <string name="upgrade_screen_owned_both_warning">คุณมี Pro upgrade แบบครั้งเดียว และมีการสมัครสมาชิกที่ยังใช้งานอยู่ คุณไม่ต้องใช้ทั้งสอง — ยกเลิกการสมัครสมาชิกใน Google Play เพื่อหลีกเลี่ยงค่าใช้จ่ายเพิ่มเติม</string>
     <string name="upgrade_screen_manage_subscription_action">จัดการการสมัครสมาชิก</string>
     <string name="upgrade_screen_owned_iap_title">Lifetime Pro</string>
     <string name="upgrade_screen_owned_iap_body">คุณมี Pro upgrade แบบครั้งเดียว ไม่มีการสมัครสมาชิก ไม่มีการต่ออายุ</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">เปลี่ยนไปซื้อแบบครั้งเดียว</string>
-    <string name="upgrade_screen_switch_purchase_note">การสมัครสมาชิกของคุณจะไม่ต่ออายุ ดังนั้นตอนนี้คุณสามารถเปลี่ยนไปซื้อ Pro แบบครั้งเดียวได้</string>
-    <string name="upgrade_screen_switch_locked_note">หากต้องการสลับไปใช้การซื้อแบบครั้งเดียว ให้ยกเลิกการสมัครสมาชิกของคุณใน Google Play ก่อน ข้อเสนอนี้จะปลดล็อกเมื่อคุณตั้งค่าให้ไม่ต่ออายุ</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play จะตรวจสอบเฉพาะบัญชีที่คุณลงชื่อเข้าสู่ระบบอยู่เท่านั้น การซื้อแบบครั้งเดียวจะแยกต่างหากจากการสมัครสมาชิกของคุณ</string>
     <string name="upgrade_screen_sub_still_renewing_message">การสมัครสมาชิกของคุณยังคงใช้งานและต่ออายุอยู่ ให้ยกเลิกใน Google Play ก่อน</string>
     <string name="upgrade_screen_sub_check_failed_message">ไม่สามารถยืนยันการสมัครสมาชิกของคุณกับ Google Play ได้ โปรดลองอีกครั้ง</string>

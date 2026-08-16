@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Votre abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Votre abonnement est actif et se renouvelle automatiquement.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Votre abonnement est configuré pour expirer et ne se renouvellera pas. Vous conserverez Pro jusqu’à sa fin.</string>
-    <string name="upgrade_screen_owned_both_warning">Vous possédez l’achat unique Pro et vous avez également un abonnement actif. Vous n’avez pas besoin des deux — annulez l’abonnement dans Google Play pour éviter des frais supplémentaires.</string>
     <string name="upgrade_screen_manage_subscription_action">Gérer l’abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Pro à vie</string>
     <string name="upgrade_screen_owned_iap_body">Vous possédez l’achat unique Pro. Pas d’abonnement, pas de renouvellements.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Passer à un achat unique</string>
-    <string name="upgrade_screen_switch_purchase_note">Votre abonnement ne se renouvellera pas, vous pouvez donc passer à l’achat Pro permanent et unique dès maintenant.</string>
-    <string name="upgrade_screen_switch_locked_note">Pour passer à l’achat unique, annulez d’abord votre abonnement dans Google Play. Cette offre se déverrouille une fois l’abonnement défini pour ne pas se renouveler.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play vérifie uniquement le compte auquel vous êtes actuellement connecté. L’achat unique est distinct de votre abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Votre abonnement est toujours actif et se renouvelle. Annulez-le d’abord dans Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Impossible de vérifier votre abonnement auprès de Google Play. Veuillez réessayer.</string>

@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Ваша подписка</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Ваша подписка активна и автоматически продлевается.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша подписка истечет и не будет продлеваться. Вы сохраняете Pro до конца.</string>
-    <string name="upgrade_screen_owned_both_warning">Вы имеете единоразовое обновление Pro и активную подписку. Вам не нужны обе — отмените подписку в Google Play, чтобы избежать дополнительных платежей.</string>
     <string name="upgrade_screen_manage_subscription_action">Управлять подпиской</string>
     <string name="upgrade_screen_owned_iap_title">Pro на всю жизнь</string>
     <string name="upgrade_screen_owned_iap_body">У вас есть единоразовое обновление Pro. Без подписки, без продлений.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Переключиться на единоразовую покупку</string>
-    <string name="upgrade_screen_switch_purchase_note">Ваша подписка не будет продлеваться, поэтому вы можете перейти на постоянное единоразовое обновление Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Чтобы переключиться на единоразовую покупку, сначала отмените подписку в Google Play. Это предложение станет доступным, когда вы отключите автоматическое продление.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверяет только аккаунт, в который вы сейчас вошли. Единоразовая покупка отделена от вашей подписки.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша подписка по-прежнему активна и продлевается. Сначала отмените ее в Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Не удалось проверить вашу подписку в Google Play. Пожалуйста, попробуйте еще раз.</string>

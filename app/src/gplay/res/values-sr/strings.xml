@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Ваша претплата</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Ваша претплата је активна и аутоматски се обнавља.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша претплата је подешена да истекне и неће се обновити. Задржаћете Pro док се не заврши.</string>
-    <string name="upgrade_screen_owned_both_warning">Поседујете једнократно Pro ажурирање и такође имате активну претплату. Не требају вам обе — откажите претплату у Google Play како бисте избегли даље трошкове.</string>
     <string name="upgrade_screen_manage_subscription_action">Управљај претплатом</string>
     <string name="upgrade_screen_owned_iap_title">Доживотни Pro</string>
     <string name="upgrade_screen_owned_iap_body">Поседујете једнократно Pro ажурирање. Без претплате, без обнављања.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Пређите на једнократну куповину</string>
-    <string name="upgrade_screen_switch_purchase_note">Ваша претплата се неће обновити, па сада можете прећи на трајно једнократно Pro куповање.</string>
-    <string name="upgrade_screen_switch_locked_note">Да бисте прешли на једнократну куповину, прво откажите своју претплату у Google Play. Та понуда ће бити доступна када је претплата подешена да се не обнови.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play проверава само налог са којим сте пријављени. Једнократна куповина је одвојена од ваше претплате.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша претплата је још активна и обнавља се. Прво је откажите у Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Провера ваше претплате са Google Play није успела. Покушајте поново.</string>

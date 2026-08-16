@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Je abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Je abonnement is actief en vernieuwt zich automatisch.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Je abonnement verloopt binnenkort en wordt niet vernieuwd. Je behoudt Pro totdat het afloopt.</string>
-    <string name="upgrade_screen_owned_both_warning">Je bezit de eenmalige Pro-upgrade en hebt ook een actief abonnement. Je hebt niet beide nodig — annuleer het abonnement in Google Play om verdere kosten te voorkomen.</string>
     <string name="upgrade_screen_manage_subscription_action">Abonnement beheren</string>
     <string name="upgrade_screen_owned_iap_title">Pro voor altijd</string>
     <string name="upgrade_screen_owned_iap_body">Je bezit de eenmalige Pro-upgrade. Geen abonnement, geen verlengingen.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Schakel over naar eenmalige aankoop</string>
-    <string name="upgrade_screen_switch_purchase_note">Je abonnement wordt niet vernieuwd, dus je kunt nu overstappen naar de permanente eenmalige Pro-aankoop.</string>
-    <string name="upgrade_screen_switch_locked_note">Om over te schakelen naar de eenmalige aankoop, annuleer je abonnement eerst in Google Play. Deze aanbieding wordt beschikbaar zodra het is ingesteld om niet te verlengen.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play controleert alleen het account waarbij je momenteel bent aangemeld. De eenmalige aankoop is gescheiden van je abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Je abonnement is nog steeds actief en vernieuwt. Annuleer het eerst in Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Je abonnement kon niet met Google Play worden geverifieerd. Probeer het opnieuw.</string>

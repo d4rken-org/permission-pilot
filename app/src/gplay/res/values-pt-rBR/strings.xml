@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Sua assinatura</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Sua assinatura está ativa e renova automaticamente.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Sua assinatura está marcada para expirar e não será renovada. Você manterá o Pro até que expire.</string>
-    <string name="upgrade_screen_owned_both_warning">Você possui a atualização Pro única e também tem uma assinatura ativa. Você não precisa de ambas — cancele a assinatura no Google Play para evitar cobranças futuras.</string>
     <string name="upgrade_screen_manage_subscription_action">Gerenciar assinatura</string>
     <string name="upgrade_screen_owned_iap_title">Pro Vitalício</string>
     <string name="upgrade_screen_owned_iap_body">Você possui a atualização Pro única. Sem assinatura, sem renovações.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Mudar para uma compra única</string>
-    <string name="upgrade_screen_switch_purchase_note">Sua assinatura não será renovada, então você pode mudar para a compra Pro única permanente agora.</string>
-    <string name="upgrade_screen_switch_locked_note">Para mudar para a compra única, primeiro cancele sua assinatura no Google Play. Esta oferta será desbloqueada quando estiver definida para não renovar.</string>
     <string name="upgrade_screen_limitation_disclosure">O Google Play verifica apenas a conta com a qual você está conectado. A compra única é separada de sua assinatura.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Sua assinatura ainda está ativa e se renovando. Cancele-a no Google Play primeiro.</string>
     <string name="upgrade_screen_sub_check_failed_message">Não foi possível verificar sua assinatura no Google Play. Tente novamente.</string>

@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">המנוי שלך</string>
     <string name="upgrade_screen_owned_sub_renewing_body">המנוי שלך פעיל ומתחדש באופן אוטומטי.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">המנוי שלך מוגדר לפוג ולא יתחדש. תוכל להשתמש ב-Pro עד שיסתיים.</string>
-    <string name="upgrade_screen_owned_both_warning">יש לך שדרוג Pro חד-פעמי ויש לך גם מנוי פעיל. אתה לא צריך את שניהם — בטל את המנוי בגוגל פליי כדי להימנע מחיובים נוספים.</string>
     <string name="upgrade_screen_manage_subscription_action">ניהול המנוי</string>
     <string name="upgrade_screen_owned_iap_title">Pro לכל החיים</string>
     <string name="upgrade_screen_owned_iap_body">יש לך שדרוג Pro חד-פעמי. אין מנוי, אין התחדשויות.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">עבור לרכישה חד-פעמית</string>
-    <string name="upgrade_screen_switch_purchase_note">המנוי שלך לא יתחדש, כך שתוכל לעבור לרכישה קבועה של Pro עכשיו.</string>
-    <string name="upgrade_screen_switch_locked_note">כדי לעבור לרכישה חד-פעמית, ראשית בטל את המנוי שלך בגוגל פליי. ההצעה הזו נפתחת ברגע שהוגדרה לא להתחדש.</string>
     <string name="upgrade_screen_limitation_disclosure">גוגל פליי בודקת רק את החשבון שאתה כרגע מחובר אליו. הרכישה החד-פעמית נפרדת מהמנוי שלך.</string>
     <string name="upgrade_screen_sub_still_renewing_message">המנוי שלך עדיין פעיל ומתחדש. בטל אותו בגוגל פליי קודם.</string>
     <string name="upgrade_screen_sub_check_failed_message">לא הצלחנו לאמת את המנוי שלך עם גוגל פליי. אנא נסה שוב.</string>

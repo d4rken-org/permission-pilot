@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">ご契約</string>
     <string name="upgrade_screen_owned_sub_renewing_body">ご契約は有効で、自動更新されます。</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">ご契約は更新しないように設定されており、終了予定です。Pro は終了までご利用いただけます。</string>
-    <string name="upgrade_screen_owned_both_warning">一度限りの Pro アップグレードとアクティブなサブスクリプションの両方をお持ちです。両方は必要ありません。さらなる料金を避けるため、Google Play でご契約をキャンセルしてください。</string>
     <string name="upgrade_screen_manage_subscription_action">ご契約を管理</string>
     <string name="upgrade_screen_owned_iap_title">生涯 Pro</string>
     <string name="upgrade_screen_owned_iap_body">一度限りの Pro アップグレードをお持ちです。サブスクリプションはなく、更新もありません。</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">ワンタイム購入に切り替える</string>
-    <string name="upgrade_screen_switch_purchase_note">ご契約は更新されないため、今すぐ永続的なワンタイム Pro 購入に切り替えることができます。</string>
-    <string name="upgrade_screen_switch_locked_note">ワンタイム購入に切り替えるには、まず Google Play でご契約をキャンセルしてください。このオファーは、更新しないように設定されるとロック解除されます。</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play は、現在サインインしているアカウントのみをチェックします。一度限りの購入はサブスクリプションとは別です。</string>
     <string name="upgrade_screen_sub_still_renewing_message">ご契約はまだ有効で更新されています。まず Google Play でキャンセルしてください。</string>
     <string name="upgrade_screen_sub_check_failed_message">Google Play でご契約を確認できませんでした。もう一度お試しください。</string>

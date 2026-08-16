@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Abonamentul tău</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Abonamentul tău este activ și se reînoiește automat.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Abonamentul tău este setat să expire și nu se va reînnoi. Vei continua să ai acces la Pro până la expirare.</string>
-    <string name="upgrade_screen_owned_both_warning">Deții achiziția Pro de o singură dată și de asemenea ai un abonament activ. Nu ai nevoie de ambele — anulează abonamentul din Google Play pentru a evita cheltuielile suplimentare.</string>
     <string name="upgrade_screen_manage_subscription_action">Gestionează abonamentul</string>
     <string name="upgrade_screen_owned_iap_title">Pro pe viață</string>
     <string name="upgrade_screen_owned_iap_body">Deții achiziția Pro de o singură dată. Fără abonament, fără reînnouiri.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Treci la o achiziție unică</string>
-    <string name="upgrade_screen_switch_purchase_note">Abonamentul tău nu se va reînnoi, deci poți trece acum la achiziția Pro unică și permanentă.</string>
-    <string name="upgrade_screen_switch_locked_note">Pentru a trece la achiziția unică, anulează mai întâi abonamentul tău în Google Play. Această ofertă se deblochează odată ce este setată să nu se reînnoiască.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play verifică doar contul cu care ești conectat în acest moment. Achiziția unică este separată de abonamentul tău.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonamentul tău este încă activ și se reînnoiește. Anulează-l mai întâi în Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Nu am putut verifica abonamentul tău cu Google Play. Te rog să încerci din nou.</string>

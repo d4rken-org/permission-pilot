@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">您的訂閱</string>
     <string name="upgrade_screen_owned_sub_renewing_body">您的訂閱處於有效狀態，將自動更新。</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">您的訂閱設定為過期且不會更新。在訂閱結束前，您將保持 Pro 狀態。</string>
-    <string name="upgrade_screen_owned_both_warning">您同時擁有一次性 Pro 升級和有效訂閱。您不需要兩者——取消 Google Play 中的訂閱以避免進一步扣費。</string>
     <string name="upgrade_screen_manage_subscription_action">管理訂閱</string>
     <string name="upgrade_screen_owned_iap_title">終身 Pro</string>
     <string name="upgrade_screen_owned_iap_body">您擁有一次性 Pro 升級。無需訂閱，無需更新。</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">切換為一次性購買</string>
-    <string name="upgrade_screen_switch_purchase_note">您的訂閱不會更新，因此您現在可以轉換為永久一次性 Pro 購買。</string>
-    <string name="upgrade_screen_switch_locked_note">若要切換到一次性購買，請先在 Google Play 中取消訂閱。將訂閱設為不自動續約後，此優惠即會解鎖。</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play 只會檢查您目前登入的帳戶。一次性購買與您的訂閱是分開的。</string>
     <string name="upgrade_screen_sub_still_renewing_message">您的訂閱仍處於活動狀態且正在續約。請先在 Google Play 中取消訂閱。</string>
     <string name="upgrade_screen_sub_check_failed_message">無法透過 Google Play 驗證您的訂閱。請重試。</string>

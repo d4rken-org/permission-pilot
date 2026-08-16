@@ -24,14 +24,11 @@
     <string name="upgrade_screen_owned_sub_title">Ваша падпіска</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Ваша падпіска актыўная і аднаўляецца аўтаматычна.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Ваша падпіска не будзе адноўлена і хутка скончыцца. Вы будзеце карыстацца Pro да яе заканчэння.</string>
-    <string name="upgrade_screen_owned_both_warning">Вы маеце аднаразовую пакупку Pro, а таксама актыўную падпіску. Вам не патрэбны абодва варыянты — адмяніце падпіску ў Google Play, каб пазбегнуць далейшых спагнанняў.</string>
     <string name="upgrade_screen_manage_subscription_action">Кіраваць падпіскай</string>
     <string name="upgrade_screen_owned_iap_title">Pro назаўжды</string>
     <string name="upgrade_screen_owned_iap_body">Вы маеце аднаразовую пакупку Pro. Без падпіскі, без аднаўленняў.</string>
     <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_switch_title">Перайсці на адзінаразовую пакупку</string>
-    <string name="upgrade_screen_switch_purchase_note">Ваша падпіска не будзе аднаўляцца, таму вы можаце цяпер перайсці на сталую адзінаразовую пакупку Pro.</string>
-    <string name="upgrade_screen_switch_locked_note">Каб перайсці на адзінаразовую пакупку, спачатку скасуйце вашу падпіску ў Google Play. Гэтая прапанова разблакуецца, калі падпіска будзе наладжана не аднаўляцца.</string>
     <string name="upgrade_screen_limitation_disclosure">Google Play правярае толькі акаўнт, у які вы зараз увайшлі. Адзінаразовая пакупка не звязана з вашай падпіскай.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша падпіска ўсё яшчэ актыўная і аднаўляецца. Спачатку скасуйце яе ў Google Play.</string>
     <string name="upgrade_screen_sub_check_failed_message">Не ўдалося праверыць вашу падпіску ў Google Play. Калі ласка, паспрабуйце яшчэ раз.</string>
