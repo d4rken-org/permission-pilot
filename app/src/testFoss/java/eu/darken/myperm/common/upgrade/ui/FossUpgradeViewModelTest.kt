@@ -126,14 +126,22 @@ class FossUpgradeViewModelTest : BaseTest() {
     @Test
     fun `only the upgraded status carries a supporter-since date`() = runTest2(context = testDispatcher) {
         // The pitch and the free status have no supporter date to show; carrying a stale one would
-        // let it leak into a view that must not claim an upgrade.
-        val vm = buildVm(repo = mockRepo(MutableStateFlow(upgradedInfo())))
+        // let it leak into a view that must not claim an upgrade. A supporter reaches the upgraded
+        // status on every route now, so the free user on the same route is what proves the null case.
+        val upgradedVm = buildVm(repo = mockRepo(MutableStateFlow(upgradedInfo())))
+        val upgradedState = async { upgradedVm.state.first { it != null }!! }
+        upgradedVm.bindRoute(Nav.Main.Upgrade(forced = true))
 
-        val state = async { vm.state.first { it != null }!! }
-        vm.bindRoute(Nav.Main.Upgrade(forced = true))
+        val freeVm = buildVm()
+        val freeState = async { freeVm.state.first { it != null }!! }
+        freeVm.bindRoute(Nav.Main.Upgrade(forced = true))
         advanceUntilIdle()
 
-        state.await() shouldBe UpgradeViewModel.State(
+        upgradedState.await() shouldBe UpgradeViewModel.State(
+            view = FossUpgradeView.STATUS_UPGRADED,
+            supporterSince = Instant.EPOCH,
+        )
+        freeState.await() shouldBe UpgradeViewModel.State(
             view = FossUpgradeView.PITCH,
             supporterSince = null,
         )
@@ -205,6 +213,35 @@ class FossUpgradeViewModelTest : BaseTest() {
         advanceUntilIdle()
 
         upgradedView.await().view shouldBe FossUpgradeView.STATUS_UPGRADED
+    }
+
+    @Test
+    fun `forced route lands on the upgraded status when the sponsor flow completes`() = runTest2(
+        context = testDispatcher,
+    ) {
+        // Forced routes (Pro-locked settings entry) deliberately don't auto-close, so the screen is
+        // still up when the unlock lands — it must flip to the supporter status instead of keeping
+        // the sales pitch, which reads as "sponsoring didn't work".
+        val info = MutableStateFlow(UpgradeRepoFoss.Info())
+        val vm = buildVm(repo = mockRepo(info))
+
+        val navEvents = mutableListOf<NavEvent>()
+        val collector = launch(start = CoroutineStart.UNDISPATCHED) { vm.navEvents.collect { navEvents.add(it) } }
+
+        val pitchView = async { vm.state.first { it != null }!! }
+        vm.bindRoute(Nav.Main.Upgrade(forced = true))
+        advanceUntilIdle()
+        pitchView.await().view shouldBe FossUpgradeView.PITCH
+
+        val upgradedView = async { vm.state.first { it?.view == FossUpgradeView.STATUS_UPGRADED }!! }
+        info.value = upgradedInfo()
+        advanceUntilIdle()
+
+        upgradedView.await().view shouldBe FossUpgradeView.STATUS_UPGRADED
+        // The don't-auto-close semantics of forced routes are unchanged — status, not navigation,
+        // is what acknowledges the upgrade here.
+        navEvents.shouldBeEmpty()
+        collector.cancel()
     }
 
     @Test
