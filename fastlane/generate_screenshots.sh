@@ -60,7 +60,7 @@ ALL_LOCALES=(
     "nb:no-NO"
     "pl:pl-PL"
     "pt-rBR:pt-BR"
-    "pt:pt-PT"
+    "pt-rPT:pt-PT"
     "ro:ro"
     "ru:ru-RU"
     "sk:sk"
