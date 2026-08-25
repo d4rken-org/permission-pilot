@@ -64,7 +64,7 @@ If you like the app, consider:
 
 ## Screenshots
 
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_overview_light.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_apps_list.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_app_details.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_permissions_list.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_permission_details.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_watcher.png" width="100"> 
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_overview_light.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_watcher.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_apps_list.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4_app_details.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5_permissions_list.png" width="100"> <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6_permission_details.png" width="100"> 
 
 ## License
 

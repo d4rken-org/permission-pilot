@@ -171,22 +171,22 @@ internal fun WatcherDashboardContent() = PreviewWrapper {
 @Composable
 private fun PreviewOverviewLight() = OverviewLightContent()
 
-@Preview(name = "2 - Apps List", locale = "en", device = DS, showSystemUi = true)
+@Preview(name = "2 - Watcher", locale = "en", device = DS, showSystemUi = true)
+@Composable
+private fun PreviewWatcher() = WatcherDashboardContent()
+
+@Preview(name = "3 - Apps List", locale = "en", device = DS, showSystemUi = true)
 @Composable
 private fun PreviewAppsList() = AppsListContent()
 
-@Preview(name = "3 - App Details", locale = "en", device = DS, showSystemUi = true)
+@Preview(name = "4 - App Details", locale = "en", device = DS, showSystemUi = true)
 @Composable
 private fun PreviewAppDetails() = AppDetailsContent()
 
-@Preview(name = "4 - Permissions List", locale = "en", device = DS, showSystemUi = true)
+@Preview(name = "5 - Permissions List", locale = "en", device = DS, showSystemUi = true)
 @Composable
 private fun PreviewPermissionsList() = PermissionsListContent()
 
-@Preview(name = "5 - Permission Details", locale = "en", device = DS, showSystemUi = true)
+@Preview(name = "6 - Permission Details", locale = "en", device = DS, showSystemUi = true)
 @Composable
 private fun PreviewPermissionDetails() = PermissionDetailsContent()
-
-@Preview(name = "6 - Watcher", locale = "en", device = DS, showSystemUi = true)
-@Composable
-private fun PreviewWatcher() = WatcherDashboardContent()
