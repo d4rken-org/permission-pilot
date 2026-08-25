@@ -33,7 +33,7 @@ Loaded only when touching matching files (`paths:` frontmatter):
 ## Skills
 
 Multi-step procedures in `.claude/skills/`. The body loads only when invoked:
-- `/screenshots` — Play Store screenshot regeneration, smoke-locale tracking, and upload
+- `/screenshots` — Play Store screenshot regeneration, en-US-only git tracking, and upload
 - `/release` — Version bumping and release tagging
 
 Read `testing.md` before deciding whether or how to add tests — a path trigger only fires once a matching file is actually read, so it won't have loaded while you're still deciding.
