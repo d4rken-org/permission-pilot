@@ -154,19 +154,6 @@ internal object WatcherDashboardPreviewData {
                 gainedCount = 2,
             ),
             WatcherReportItem(
-                id = 12,
-                packageName = Pkg.Name("com.reddit.frontpage"),
-                appLabel = "Reddit",
-                versionName = "2025.01.1",
-                previousVersionName = "2024.52.0",
-                eventType = WatcherEventType.UPDATE,
-                detectedAt = 1_735_725_900_000L, // 2025-01-01 10:05 UTC
-                isSeen = true,
-                hasAddedPermissions = false,
-                hasLostPermissions = true,
-                lostCount = 1,
-            ),
-            WatcherReportItem(
                 id = 13,
                 packageName = Pkg.Name("com.duckduckgo.mobile.android"),
                 appLabel = "DuckDuckGo",
@@ -180,7 +167,7 @@ internal object WatcherDashboardPreviewData {
             ),
         ),
         hasUnseen = true,
-        totalReportCount = 13,
+        totalReportCount = 12,
         lockedReportCount = 0,
     )
 }
