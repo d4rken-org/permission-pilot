@@ -35,7 +35,7 @@ internal const val DS = "spec:width=1080px,height=2400px,dpi=428"
 @Preview(locale = "nb", name = "no-NO", device = DS)
 @Preview(locale = "pl", name = "pl-PL", device = DS)
 @Preview(locale = "pt-rBR", name = "pt-BR", device = DS)
-@Preview(locale = "pt", name = "pt-PT", device = DS)
+@Preview(locale = "pt-rPT", name = "pt-PT", device = DS)
 @Preview(locale = "ro", name = "ro", device = DS)
 @Preview(locale = "ru", name = "ru-RU", device = DS)
 @Preview(locale = "sk", name = "sk", device = DS)
