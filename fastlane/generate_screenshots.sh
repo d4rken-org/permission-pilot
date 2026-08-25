@@ -10,7 +10,7 @@ export TZ=UTC
 #
 # Usage:
 #   ./fastlane/generate_screenshots.sh          # Full run (all locales, ~20 batches)
-#   ./fastlane/generate_screenshots.sh --smoke   # Smoke test (6 locales, 1 batch)
+#   ./fastlane/generate_screenshots.sh --smoke   # Smoke test (6 locales, 3 batches)
 #   ./fastlane/generate_screenshots.sh --batch-size 10  # Custom batch size
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,13 +21,12 @@ REF_DIR="$PROJECT_DIR/app/src/screenshotTestGplayDebug/reference"
 # Default batch size — 2 locales × 6 composables = 12 renders per batch.
 # Kept small to avoid layoutlib OOM (leaks ~10MB per rendered image at 1080p).
 BATCH_SIZE=2
-BATCH_SIZE_EXPLICIT=false
 SMOKE=false
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --smoke) SMOKE=true; shift ;;
-        --batch-size) BATCH_SIZE="$2"; BATCH_SIZE_EXPLICIT=true; shift 2 ;;
+        --batch-size) BATCH_SIZE="$2"; shift 2 ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -86,9 +85,6 @@ SMOKE_LOCALES=(
 
 if $SMOKE; then
     LOCALES=("${SMOKE_LOCALES[@]}")
-    if ! $BATCH_SIZE_EXPLICIT; then
-        BATCH_SIZE=${#LOCALES[@]}  # Single batch for smoke unless overridden
-    fi
 else
     LOCALES=("${ALL_LOCALES[@]}")
 fi
