@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Rendered screenshots contain formatted timestamps read from the JVM default
+# timezone, so pin it to keep output independent of the generating host.
+export TZ=UTC
+
 # Generates localized Play Store screenshots in batches to work around
 # layoutlib ImagePoolImpl memory leak (accumulates rendered images without release).
 #
@@ -30,7 +34,7 @@ done
 
 # Each entry: "android_locale:fastlane_name"
 ALL_LOCALES=(
-    "af:af"
+    "af-ZA:af"
     "am:am"
     "ar:ar"
     "az:az-AZ"

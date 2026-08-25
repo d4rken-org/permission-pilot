@@ -8,7 +8,7 @@ internal const val DS = "spec:width=1080px,height=2400px,dpi=428"
  * Multi-preview annotation generating one preview per Play Store-supported locale (light mode).
  * Each [name] is the fastlane metadata directory name for direct use in the copy script.
  */
-@Preview(locale = "af", name = "af", device = DS)
+@Preview(locale = "af-ZA", name = "af", device = DS)
 @Preview(locale = "am", name = "am", device = DS)
 @Preview(locale = "ar", name = "ar", device = DS)
 @Preview(locale = "az", name = "az-AZ", device = DS)
