@@ -47,12 +47,17 @@ The `.gitignore` rule (lines following `app/src/screenshotTest*/reference/`) ign
    ```
    The lane invokes `remove_unsupported_languages.sh` first, which deletes `ckb-IR` and `ku-TR` translation dirs (and harmlessly errors on the other 14 absent dirs in its list).
 
-5. **Restore** working tree post-upload:
+   `fastlane/Appfile` is gitignored (`.gitignore` line 15) and holds the `json_key_file(...)` path to the Play service-account key, so it is absent in a fresh clone and in every git worktree. Without it `supply` falls back to Google Application Default Credentials and fails with `Google::Auth::InitializationError — Your credentials were not found.`, which points at Google auth instead of at the missing file. Copy it in from the main checkout first (run from the repo root); it stays gitignored, so it cannot be committed by accident:
+   ```bash
+   cp <main-checkout>/fastlane/Appfile fastlane/Appfile
+   ```
+
+5. **Restore** working tree (run this even if the upload FAILED):
    ```bash
    git clean -fdX fastlane/metadata/android      # removes only ignored files (the 38 non-en-US screenshot sets)
    git checkout -- fastlane/metadata/android/ckb-IR fastlane/metadata/android/ku-TR
    ```
-   `git clean -fdX` removes only gitignored files, so tracked screenshots, translations, and listing assets are untouched. The `git checkout` restores the two translation dirs the lane deleted.
+   `git clean -fdX` removes only gitignored files, so tracked screenshots, translations, and listing assets are untouched. The `git checkout` restores the two translation dirs the lane deleted. That deletion happens before `supply` runs, so a failed upload leaves those tracked dirs deleted too.
 
 ## After the first en-US-only upload
 
