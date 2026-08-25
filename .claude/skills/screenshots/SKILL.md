@@ -1,7 +1,7 @@
 ---
 name: screenshots
-description: Play Store screenshot pipeline — regenerate localized screenshots, copy them into fastlane metadata, and upload to Play Store. Covers the smoke-only git tracking split and the post-upload working-tree restore.
-when_to_use: When regenerating, refreshing, or uploading Play Store screenshots, when smoke-locale PNGs need re-rendering after a UI change, or when working in fastlane/ or app/src/screenshotTest*/.
+description: Play Store screenshot pipeline — regenerate localized screenshots, copy them into fastlane metadata, and upload to Play Store. Covers the en-US-only git tracking and the post-upload working-tree restore.
+when_to_use: When regenerating, refreshing, or uploading Play Store screenshots, when the en-US PNGs need re-rendering after a UI change, or when working in fastlane/ or app/src/screenshotTest*/.
 effort: low
 ---
 
@@ -9,16 +9,16 @@ effort: low
 
 ## What's tracked in git
 
-- **Smoke locales (6)** — `en-US`, `de-DE`, `ja-JP`, `ar`, `zh-CN`, `pt-BR`. PNGs under `fastlane/metadata/android/<locale>/images/phoneScreenshots/` are committed for these locales only.
-- **Other 33 locales** — gitignored. Generated on demand for upload, not committed.
+- **en-US only (6 PNGs)** — `fastlane/metadata/android/en-US/images/phoneScreenshots/`. This is the set the README gallery links to.
+- **The other 38 locales** — gitignored. Generated on demand for upload, not committed.
 
-The `.gitignore` rule (lines following `app/src/screenshotTest*/reference/`) ignores all phone screenshots and `!`-includes only the 6 smoke locales. The smoke set matches `SMOKE_LOCALES` in `fastlane/generate_screenshots.sh`.
+The `.gitignore` rule (lines following `app/src/screenshotTest*/reference/`) ignores all phone screenshots and `!`-includes only `en-US`.
 
-The `--smoke` mode of `generate_screenshots.sh` is also useful for fast UI iteration on representative LTR/RTL/CJK locales without rendering all 39.
+`generate_screenshots.sh --smoke` renders 6 locales (`en-US`, `de-DE`, `ja-JP`, `ar`, `zh-CN`, `pt-BR`) covering LTR, RTL, and CJK. It is a rendering-iteration aid for checking layout under different scripts — it has nothing to do with what git tracks. Of its output, only the `en-US` set is committable; the other five land as ignored files.
 
-## Why smoke-only
+## Why en-US only
 
-- **Reviewable diffs** — a screenshot refresh that only touches 6 × 6 = 36 PNGs is reviewable; 234 PNGs is not.
+- **Reviewable diffs** — a screenshot refresh that touches 6 PNGs is reviewable; 234 PNGs is not.
 - **Repo size** — keeps binary churn out of git history.
 - **Fastlane behavior** — `supply` skips locales with no local screenshot files, so unpushed locales keep whatever Play Store currently has. This is current Fastlane uploader behavior, not a Play Store guarantee.
 
@@ -34,7 +34,7 @@ The `--smoke` mode of `generate_screenshots.sh` is also useful for fast UI itera
    ```bash
    ./fastlane/copy_screenshots.sh --clean
    ```
-   Output: `fastlane/metadata/android/<locale>/images/phoneScreenshots/*.png` for all 39 locales.
+   Output: `fastlane/metadata/android/<locale>/images/phoneScreenshots/*.png` for all 39 locales. Exits non-zero on an unknown composable name or an incomplete locale.
 
 3. **Verify** count before upload:
    ```bash
@@ -49,20 +49,20 @@ The `--smoke` mode of `generate_screenshots.sh` is also useful for fast UI itera
 
 5. **Restore** working tree post-upload:
    ```bash
-   git clean -fdX fastlane/metadata/android      # removes only ignored files (the 33 non-smoke screenshot sets)
+   git clean -fdX fastlane/metadata/android      # removes only ignored files (the 38 non-en-US screenshot sets)
    git checkout -- fastlane/metadata/android/ckb-IR fastlane/metadata/android/ku-TR
    ```
    `git clean -fdX` removes only gitignored files, so tracked screenshots, translations, and listing assets are untouched. The `git checkout` restores the two translation dirs the lane deleted.
 
-## After the first smoke-only upload
+## After the first en-US-only upload
 
-Spot-check at least one **non-smoke** locale (e.g. `fr-FR`) in Play Console → Store listing → that locale, and confirm screenshots are still present. This validates the "Fastlane skips locales with no local files" assumption against current Play Store behavior. If non-smoke locales lose their screenshots, the workflow needs adjustment (e.g. always upload the full 39 set, or revert the gitignore split).
+Spot-check at least one **non-en-US** locale (e.g. `fr-FR`) in Play Console → Store listing → that locale, and confirm screenshots are still present. This validates the "Fastlane skips locales with no local files" assumption against current Play Store behavior. If other locales lose their screenshots, the workflow needs adjustment (e.g. always upload the full 39 set, or revert the gitignore split).
 
-## When smoke screenshots change
+## When screenshots change
 
-Re-rendering the 6 smoke locales is part of the normal `--smoke` test loop:
+Re-render across scripts while iterating, then copy:
 ```bash
 ./fastlane/generate_screenshots.sh --smoke
 ./fastlane/copy_screenshots.sh --clean
 ```
-Resulting changes to the 6 smoke locale PNGs go into a normal commit (typically `Apps:` / `Permissions:` / `General:` depending on what UI changed).
+Only the `en-US` set ends up in the commit (typically `Apps:` / `Permissions:` / `General:` depending on what UI changed); the other five renders stay ignored and can be dropped with `git clean -fdX fastlane/metadata/android`.
