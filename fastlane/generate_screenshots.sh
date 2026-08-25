@@ -34,13 +34,13 @@ done
 
 # Each entry: "android_locale:fastlane_name"
 ALL_LOCALES=(
-    "af-ZA:af"
+    "af-rZA:af"
     "am:am"
     "ar:ar"
     "az:az-AZ"
     "be:be"
     "bg:bg"
-    "bn-BD:bn-BD"
+    "bn-rBD:bn-BD"
     "ca:ca"
     "cs:cs-CZ"
     "da:da-DK"
@@ -50,7 +50,7 @@ ALL_LOCALES=(
     "es:es-ES"
     "fi:fi-FI"
     "fr:fr-FR"
-    "hi-IN:hi-IN"
+    "hi-rIN:hi-IN"
     "hr:hr"
     "hu:hu-HU"
     "it:it-IT"
@@ -60,7 +60,7 @@ ALL_LOCALES=(
     "nl:nl-NL"
     "nb:no-NO"
     "pl:pl-PL"
-    "pt-BR:pt-BR"
+    "pt-rBR:pt-BR"
     "pt:pt-PT"
     "ro:ro"
     "ru:ru-RU"
@@ -71,8 +71,8 @@ ALL_LOCALES=(
     "tr:tr-TR"
     "uk:uk"
     "vi:vi"
-    "zh-CN:zh-CN"
-    "zh-TW:zh-TW"
+    "zh-rCN:zh-CN"
+    "zh-rTW:zh-TW"
 )
 
 SMOKE_LOCALES=(
@@ -80,8 +80,8 @@ SMOKE_LOCALES=(
     "de:de-DE"
     "ja:ja-JP"
     "ar:ar"
-    "zh-CN:zh-CN"
-    "pt-BR:pt-BR"
+    "zh-rCN:zh-CN"
+    "pt-rBR:pt-BR"
 )
 
 if $SMOKE; then
