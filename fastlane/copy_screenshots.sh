@@ -115,3 +115,9 @@ if (( INCOMPLETE == 0 )); then
 else
     echo "  $INCOMPLETE locale(s) have incomplete screenshot sets."
 fi
+
+if (( ERRORS > 0 || INCOMPLETE > 0 )); then
+    echo ""
+    echo "FAILED: $ERRORS unknown function name(s), $INCOMPLETE incomplete locale(s)."
+    exit 1
+fi
