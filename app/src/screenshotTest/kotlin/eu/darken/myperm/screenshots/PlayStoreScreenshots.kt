@@ -12,6 +12,11 @@ fun OverviewLight() = OverviewLightContent()
 @PreviewTest
 @PlayStoreLocales
 @Composable
+fun WatcherDashboard() = WatcherDashboardContent()
+
+@PreviewTest
+@PlayStoreLocales
+@Composable
 fun AppsList() = AppsListContent()
 
 @PreviewTest
@@ -28,8 +33,3 @@ fun PermissionsList() = PermissionsListContent()
 @PlayStoreLocales
 @Composable
 fun PermissionDetails() = PermissionDetailsContent()
-
-@PreviewTest
-@PlayStoreLocales
-@Composable
-fun WatcherDashboard() = WatcherDashboardContent()
