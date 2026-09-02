@@ -7,7 +7,6 @@
 
     <string name="general_error_label">Error</string>
     <string name="general_load_error_title">Couldn\'t load data</string>
-    <string name="general_load_error_hint">Something went wrong while scanning your installed apps.</string>
     <string name="general_refresh_error_hint">Refresh failed.</string>
     <string name="general_retry_action">Retry</string>
 
@@ -15,8 +14,6 @@
     <string name="general_done_action">Done</string>
     <string name="general_open_action">Open</string>
     <string name="general_continue_action">Continue</string>
-
-    <string name="general_no_action">No</string>
 
     <string name="debug_debuglog_record_action">Record</string>
 
@@ -28,7 +25,6 @@
     <string name="general_settings_label">General</string>
     <string name="general_settings_desc">General tweaks that affect the whole app.</string>
     <string name="general_settings_scan_speed_label">Scan speed</string>
-    <string name="general_settings_scan_speed_desc">Controls parallel operations when scanning apps. Higher values are faster but may cause crashes on some devices.</string>
     <string name="general_settings_scan_speed_auto">Auto (recommended)</string>
     <string name="general_settings_scan_speed_1">1 (safest)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -43,7 +39,6 @@
     <string name="settings_privacy_policy_desc">Handling data responsibly.</string>
 
     <string name="settings_support_label">Support</string>
-    <string name="documentation_label">Documentation</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">A place to hang out in and ask questions.</string>
     <string name="issue_tracker_label">Issue tracker</string>
@@ -55,12 +50,7 @@
     <string name="acks_crowdin_desc">For supporting translation of open-source projects.</string>
     <string name="permissions_page_label">Permissions</string>
     <string name="apps_page_label">Apps</string>
-    <string name="app_type_system_label">System App</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Unknown permission. It is requested by this app, but no other app declares it.</string>
-    <string name="permissions_unknown_description">Unknown permission. It is requested by apps, but not declared anywhere.</string>
     <string name="permissions_app_type_declaring_description">Permission is created by this app.</string>
-    <string name="permissions_app_type_requesting_description">App requests the permission.</string>
 
     <string name="general_filter_action">Filter</string>
     <string name="general_cancel_action">Cancel</string>
@@ -79,19 +69,6 @@
     <string name="apps_sort_install_date_label">Install date</string>
     <string name="apps_sort_update_date_label">Last updated</string>
 
-    <string name="general_sort_action">Sort</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d of %2$d granted.</item>
-        <item quantity="other">%1$d of %2$d granted.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d permission requested.</item>
-        <item quantity="other">%1$d permissions requested.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Declares %1$d permission.</item>
-        <item quantity="other">Declares %1$d permissions.</item>
-    </plurals>
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Information not available</string>
     <string name="apps_details_open_settings_error">Could not open app settings for this profile</string>
@@ -119,7 +96,6 @@
     <string name="permissions_sort_apps_requested_label">Number of requested apps</string>
     <string name="permissions_search_list_hint">Search permissions</string>
     <string name="apps_search_list_hint">Search apps</string>
-    <string name="permissions_details_protection_label">Protection level</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Dangerous</string>
     <string name="permissions_protection_type_signature_label">Signature</string>
@@ -144,7 +120,6 @@
         <item>Reading the fine print</item>
     </string-array>
     <string name="apps_app_details_label">App Details</string>
-    <string name="apps_details_shareduserid_label">Apps with Shared User ID</string>
     <string name="apps_details_siblings_label">Siblings</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -165,14 +140,10 @@
     <string name="general_collapse_all_action">Collapse all</string>
     <string name="general_more_options_action">More options</string>
     <string name="apps_details_twins_label">Clones</string>
-    <string name="apps_details_twins_descriptions">Installed in other user profile(s).</string>
-    <string name="install_date_label">Install date</string>
     <string name="apps_filter_sharedid_label">Shared User ID</string>
     <string name="apps_filter_multipleprofiles_label">Has clones</string>
     <string name="support_debuglog_label">Debug log</string>
     <string name="support_debuglog_desc">Record everything the app is doing into a text file that you can share.</string>
-    <string name="updated_at_x">Last updated: %s</string>
-    <string name="installed_at_x">First installed: %s</string>
     <string name="apps_sort_install_source_label">Install source</string>
     <string name="permissions_action_none_msg">No action available for this permission</string>
     <string name="permissions_details_open_settings_action">Open system settings</string>
@@ -198,12 +169,6 @@
     <string name="apps_filter_sort_action">Filter &amp; Sort</string>
     <string name="apps_help_tag_icons_title">Permission chips</string>
     <string name="apps_help_tag_icons_description">Chips show which sensitive permission categories an app has been granted</string>
-    <string name="apps_details_description_restrictions_caveat_description">This app is installed in another user profile. Permissions granted can be determined only for apps installed in the currently Active Profile, due to Android restrictions.</string>
-    <string name="apps_details_description_uninstalled_caveat">This app has been uninstalled but its data has been retained. Permission states cannot be determined for uninstalled apps.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d permission requested.</item>
-        <item quantity="other">%d permissions requested.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d of %2$d permissions granted.</item>
         <item quantity="other">%1$d of %2$d permissions granted.</item>
@@ -227,8 +192,6 @@
         <item quantity="other">%d manifests left to analyze\u2026</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Nothing unusual detected</string>
-    <string name="apps_details_manifest_unavailable">Manifest not accessible</string>
-    <string name="apps_details_manifest_error">Could not read manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d package query</item>
         <item quantity="other">%d package queries</item>
@@ -250,10 +213,6 @@
     <string name="apps_manifest_viewer_label">Manifest Viewer</string>
     <string name="apps_manifest_viewer_search_hint">Search in manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Unknown error loading manifest.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d match</item>
-        <item quantity="other">%d matches</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d of %2$d</string>
     <string name="apps_manifest_section_uses_permission">Uses Permission</string>
     <string name="apps_manifest_section_permission">Permission</string>
@@ -293,14 +252,6 @@
         <item quantity="one">%d system app</item>
         <item quantity="other">%d system apps</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">User Apps: Granted to %1$d out of %2$d.</item>
-        <item quantity="other">User Apps: Granted to %1$d out of %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">System Apps: Granted to %1$d out of %2$d.</item>
-        <item quantity="other">System Apps: Granted to %1$d out of %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d app in other user profiles also requests this permission.</item>
         <item quantity="other">%d apps in other user profiles also request this permission.</item>
@@ -310,7 +261,6 @@
         <item quantity="other">%d uninstalled apps with retained data also request this permission.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps installed in other user profiles are excluded from the computation above due to Android restrictions.</string>
-    <string name="permissions_details_empty_filter_message">No apps match current filters. Tap the filter icon to adjust.</string>
 
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Runtime</string>
@@ -411,8 +361,6 @@
     <string name="permission_loader_usage_stats_description">Allows apps to collect statistics about data loader usage on the device.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Access</string>
     <string name="permission_premium_sms_services_description">Allows apps to use premium text message services. This will cost you money.</string>
-    <string name="permission_unlimited_data_access_label">Unlimited Data Access</string>
-    <string name="permission_unlimited_data_access_description">Allows apps access to unrestricted data. Apps can consume data even when Data Saver is ON.</string>
     <string name="permission_group_calendar_label">Calendar</string>
     <string name="permission_group_calendar_description"><![CDATA[Calendar related permissions, e.g. view & edit entries.]]></string>
     <string name="permission_group_files_label">Files and Media</string>
@@ -433,8 +381,6 @@
     <string name="permission_group_contacts_description">"Reading and writing contacts."</string>
     <string name="permission_group_apps_label">Apps</string>
     <string name="permission_group_apps_description">Special Access permissions requiring explicit user consent.</string>
-    <string name="permission_group_battery_label">Battery</string>
-    <string name="permission_group_battery_description">Battery related permissions.</string>
     <string name="permission_group_camera_label">Camera</string>
     <string name="permission_group_camera_description">Camera related permissions.</string>
     <string name="permission_group_audio_label">Microphone</string>
@@ -445,12 +391,8 @@
     <string name="permission_legacy_storage_label">Legacy Storage</string>
     <string name="permission_legacy_storage_description">Allows apps to access external storage without scoped storage restrictions. This was the default behavior before Android 10. Apps with this access can read and write files anywhere on shared storage.</string>
     <string name="settings_page_label">Settings</string>
-    <string name="overview_summary_title_label">Summary</string>
     <string name="permissions_details_declaring_apps_label">Declaring apps</string>
     <string name="permissions_details_requesting_apps_label">Requesting apps</string>
-    <string name="overview_device_android_version_label">Android version</string>
-    <string name="overview_device_name_label">Device</string>
-    <string name="overview_device_android_patch_label">Patch level</string>
     <string name="overview_summary_apps_active_profile_label">Apps in Active Profile</string>
     <string name="overview_summary_apps_other_profile_label">Apps in Managed User Profile(s), excluding Clones</string>
     <string name="overview_summary_apps_sideloaded_label">Apps manually installed from external sources</string>
@@ -499,7 +441,6 @@
     <string name="support_debuglog_session_delete_title">Delete debug log?</string>
     <string name="support_debuglog_session_delete_message">This debug log will be permanently deleted.</string>
     <string name="support_debuglog_sessions_empty">No debug logs</string>
-    <string name="support_debuglog_session_invalid">Invalid session</string>
     <string name="support_debuglog_session_recording">Recording…</string>
     <string name="support_debuglog_session_compressing">Compressing…</string>
     <string name="support_debuglog_failed_empty_log">Empty log file</string>
@@ -511,7 +452,6 @@
     <string name="support_contact_sent_title">Message sent?</string>
     <string name="support_contact_sent_message">If you sent the email, this session can be cleaned up.</string>
     <string name="general_close_action">Close</string>
-    <string name="debug_debuglog_screen_delete_action">Delete</string>
 
     <!-- Contact form -->
     <string name="contact_support_label">Contact Support</string>
@@ -541,9 +481,6 @@
     <string name="contact_no_email_app">No email app found on this device.</string>
     <string name="contact_welcome_message">I read every message myself and do my best to reply. Since I handle development, bug fixes, and support on my own, it can take a little time. Thanks for your patience.</string>
     <string name="contact_footer_message">Your message will be sent via email. Device and setup information is attached automatically. You can attach screenshots or a video to the email. Please write in English if possible.</string>
-
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Keep</string>
 
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Debug Log</string>
@@ -636,22 +573,17 @@
     <string name="watcher_scope_label">Watch scope</string>
     <string name="watcher_scope_all">All apps</string>
     <string name="watcher_scope_non_system">Non-system apps only</string>
-    <string name="watcher_reports_label">Permission change reports</string>
     <string name="watcher_reports_empty">No permission changes detected yet</string>
     <string name="watcher_report_detail_label">Change Report</string>
     <string name="watcher_diff_added_permissions">New permissions</string>
     <string name="watcher_diff_removed_permissions">Removed permissions</string>
     <string name="watcher_diff_grant_changes">Grant changes</string>
-    <string name="watcher_diff_added_declared">New declared permissions</string>
-    <string name="watcher_diff_removed_declared">Removed declared permissions</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Installed</string>
     <string name="watcher_event_update">Updated</string>
     <string name="watcher_event_removed">Removed</string>
     <string name="watcher_event_grant_change">Permission changed</string>
     <string name="watcher_mark_all_seen">Mark all as seen</string>
     <string name="watcher_notification_action_mark_seen">Mark seen</string>
-    <string name="watcher_notification_action_delete">Delete</string>
     <string name="watcher_notification_body_added">Added: %s</string>
     <string name="watcher_notification_body_removed">Removed: %s</string>
     <string name="watcher_notification_body_grant_changed">Grant changed: %s</string>
@@ -685,10 +617,6 @@
     <string name="watcher_detail_version_code_label">Code</string>
     <string name="watcher_detail_installer_label">Install source</string>
     <string name="watcher_detail_installer_unknown">Unknown</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Permissions (%d)</item>
-        <item quantity="other">Permissions (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Last known permissions (%d)</item>
         <item quantity="other">Last known permissions (%d)</item>
@@ -773,14 +701,12 @@
     <string name="export_perm_granted_only_label">Granted apps only</string>
     <string name="export_perm_include_summary_label">Include summary counts</string>
     <string name="export_preview_label">Preview</string>
-    <string name="export_preview_label_of">Preview (%1$d of %2$d)</string>
     <string name="export_action_label">Export</string>
     <string name="export_progress_label">Exporting…</string>
     <string name="export_success_message">Export complete</string>
     <string name="export_error_message">Export failed</string>
     <string name="export_share_action">Share</string>
     <string name="export_open_action">Open</string>
-    <string name="export_done_action">Done</string>
     <string name="export_retry_action">Retry</string>
     <string name="export_summary_filename">File</string>
     <string name="export_summary_size">Size</string>

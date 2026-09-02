@@ -7,14 +7,12 @@
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Error</string>
     <string name="general_load_error_title">No s\'han pogut carregar les dades</string>
-    <string name="general_load_error_hint">S\'ha produït un error en escanejar les aplicacions instal·lades.</string>
     <string name="general_refresh_error_hint">L\'actualització ha fallat.</string>
     <string name="general_retry_action">Reintenta</string>
     <string name="general_share_action">Comparteix</string>
     <string name="general_done_action">Fet</string>
     <string name="general_open_action">Obre</string>
     <string name="general_continue_action">Continua</string>
-    <string name="general_no_action">No</string>
     <string name="debug_debuglog_record_action">Enregistra</string>
     <string name="settings_category_other_label">Altres</string>
     <string name="settings_category_gethelp_label">Obtén ajuda</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">General</string>
     <string name="general_settings_desc">Retocs generals que afecten a tota l\'aplicació.</string>
     <string name="general_settings_scan_speed_label">Velocitat d\'escaneig</string>
-    <string name="general_settings_scan_speed_desc">Controla les operacions paral·leles en escanejar les aplicacions. Els valors més alts són més ràpids, però poden causar errors en alguns dispositius.</string>
     <string name="general_settings_scan_speed_auto">Automàtic (recomanat)</string>
     <string name="general_settings_scan_speed_1">1 (més segur)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Política de privadesa</string>
     <string name="settings_privacy_policy_desc">Gestió responsable de dades.</string>
     <string name="settings_support_label">Suport</string>
-    <string name="documentation_label">Documentació</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Un lloc on passar l\'estona i fer preguntes.</string>
     <string name="issue_tracker_label">Seguiment d\'incidències</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Per donar suport a la traducció de projectes de codi obert.</string>
     <string name="permissions_page_label">Permisos</string>
     <string name="apps_page_label">Aplicacions</string>
-    <string name="app_type_system_label">Aplicació del sistema</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Permís desconegut. Aquesta aplicació ho sol·licita, però cap altra aplicació ho declara.</string>
-    <string name="permissions_unknown_description">Permís desconegut. Aquestes aplicacions ho sol·liciten, però cap altra aplicació ho declara.</string>
     <string name="permissions_app_type_declaring_description">Permís creat per aquesta aplicació.</string>
-    <string name="permissions_app_type_requesting_description">L\'aplicació sol·licita el permís.</string>
     <string name="general_filter_action">Filtra</string>
     <string name="general_cancel_action">Cancel·la</string>
     <string name="apps_filter_userapps_label">Aplicacions d\'usuari</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Nom de l\'aplicació</string>
     <string name="apps_sort_install_date_label">Data d\'instal·lació</string>
     <string name="apps_sort_update_date_label">Última actualització</string>
-    <string name="general_sort_action">Ordena</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d de %2$d concedit.</item>
-        <item quantity="other">%1$d de %2$d concedits.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d permís sol·licitat.</item>
-        <item quantity="other">%1$d permisos sol·licitats.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Declara %1$d permís.</item>
-        <item quantity="other">Declara %1$d permisos.</item>
-    </plurals>
     <string name="apps_details_installer_label">Origen de la instal·lació</string>
     <string name="apps_details_installer_unknown_label">Informació no disponible</string>
     <string name="apps_details_open_settings_error">No s\'han pogut obrir els paràmetres de l\'aplicació per a aquest perfil</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Nombre d\'aplicacions sol·licitades</string>
     <string name="permissions_search_list_hint">Cerca permisos</string>
     <string name="apps_search_list_hint">Cerca aplicacions</string>
-    <string name="permissions_details_protection_label">Nivell de protecció</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Perillós</string>
     <string name="permissions_protection_type_signature_label">Signatura</string>
@@ -127,7 +104,6 @@
         <item>Llegint la lletra petita</item>
     </string-array>
     <string name="apps_app_details_label">Detalls de l\'aplicació</string>
-    <string name="apps_details_shareduserid_label">Aplicacions amb ID d\'usuari compartit</string>
     <string name="apps_details_siblings_label">Germans</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Col·lapsa-ho tot</string>
     <string name="general_more_options_action">Més opcions</string>
     <string name="apps_details_twins_label">Clons</string>
-    <string name="apps_details_twins_descriptions">Instal·lades en altres perfils d\'usuari.</string>
-    <string name="install_date_label">Data d\'instal·lació</string>
     <string name="apps_filter_sharedid_label">ID d\'usuari compartit</string>
     <string name="apps_filter_multipleprofiles_label">Té clons</string>
     <string name="support_debuglog_label">Registre de depuració</string>
     <string name="support_debuglog_desc">Grava tot el que fa l\'aplicació en un fitxer de text que podeu compartir.</string>
-    <string name="updated_at_x">Última actualització: %s</string>
-    <string name="installed_at_x">Primera instal·lació: %s</string>
     <string name="apps_sort_install_source_label">Origen de la instal·lació</string>
     <string name="permissions_action_none_msg">Cap acció disponible per aquest permís</string>
     <string name="permissions_details_open_settings_action">Obre la configuració del sistema</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filtre i ordenació</string>
     <string name="apps_help_tag_icons_title">Xips de permisos</string>
     <string name="apps_help_tag_icons_description">Els xips mostren quines categories de permisos sensibles s\'han concedit a una aplicació</string>
-    <string name="apps_details_description_restrictions_caveat_description">Aquesta aplicació està instal·lada en un altre perfil d\'usuari. Els permisos concedits només es poden determinar per a aplicacions instal·lades en el perfil actualment actiu, a causa de les restriccions d\'Android.</string>
-    <string name="apps_details_description_uninstalled_caveat">Aquesta aplicació s\'ha desinstal·lat però les seves dades s\'han conservat. No es pot determinar l\'estat dels permisos per a aplicacions desinstal·lades.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d permís sol·licitat.</item>
-        <item quantity="other">%d permisos sol·licitats.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d de %2$d permís concedit.</item>
         <item quantity="other">%1$d de %2$d permisos concedits.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifests restants per analitzar…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">No s’ha detectat res inusual</string>
-    <string name="apps_details_manifest_unavailable">Manifest no accessible</string>
-    <string name="apps_details_manifest_error">No s’ha pogut llegir el manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d consulta de paquet</item>
         <item quantity="other">%d consultes de paquets</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Visualitzador del manifest</string>
     <string name="apps_manifest_viewer_search_hint">Cerca al manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Error desconegut en carregar el manifest.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d coincidència</item>
-        <item quantity="other">%d coincidències</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d de %2$d</string>
     <string name="apps_manifest_section_uses_permission">Usa el permís</string>
     <string name="apps_manifest_section_permission">Permís</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d aplicació del sistema</item>
         <item quantity="other">%d aplicacions del sistema</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Aplicacions d\'usuari: concedit a %1$d de %2$d.</item>
-        <item quantity="other">Aplicacions d\'usuari: concedit a %1$d de %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Aplicacions del sistema: concedit a %1$d de %2$d.</item>
-        <item quantity="other">Aplicacions del sistema: concedit a %1$d de %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d aplicació en altres perfils d\'usuari també sol·licita aquest permís.</item>
         <item quantity="other">%d aplicacions en altres perfils d\'usuari també sol·liciten aquest permís.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d aplicacions desinstal·lades amb dades conservades també sol·liciten aquest permís.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Les aplicacions instal·lades en altres perfils d\'usuari s\'exclouen del càlcul anterior a causa de les restriccions d\'Android.</string>
-    <string name="permissions_details_empty_filter_message">Cap aplicació coincideix amb els filtres actuals. Toqueu la icona de filtre per ajustar-lo.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Temps d\'execució</string>
     <string name="permissions_tag_install_time_label">A la instal·lació</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Permet a les aplicacions recollir estadístiques sobre l\'ús de carregadors de dades al dispositiu.</string>
     <string name="permission_premium_sms_services_label">Accés als SMS prèmium</string>
     <string name="permission_premium_sms_services_description">Permet a les aplicacions utilitzar serveis de missatges de text prèmium. Això us costarà diners.</string>
-    <string name="permission_unlimited_data_access_label">Accés il·limitat a dades</string>
-    <string name="permission_unlimited_data_access_description">Permet a les aplicacions accedir a dades sense restricció. Les aplicacions poden consumir dades fins i tot quan l\'estalviador de dades està activat.</string>
     <string name="permission_group_calendar_label">Calendari</string>
     <string name="permission_group_calendar_description"><![CDATA[Permisos relacionats amb el calendari, p. ex. veure i editar entrades.]]></string>
     <string name="permission_group_files_label">Fitxers i contingut multimèdia</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Llegir i escriure contactes."</string>
     <string name="permission_group_apps_label">Aplicacions</string>
     <string name="permission_group_apps_description">Permisos d\'accés especial que requereixen consentiment explícit de l\'usuari.</string>
-    <string name="permission_group_battery_label">Bateria</string>
-    <string name="permission_group_battery_description">Permisos relacionats amb la bateria.</string>
     <string name="permission_group_camera_label">Càmera</string>
     <string name="permission_group_camera_description">Permisos relacionats amb la càmera.</string>
     <string name="permission_group_audio_label">Micròfon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Emmagatzematge heretat</string>
     <string name="permission_legacy_storage_description">Permet a les aplicacions accedir a l\'emmagatzematge extern sense restriccions d\'emmagatzematge delimitat. Aquest era el comportament per defecte abans d\'Android 10. Les aplicacions amb aquest accés poden llegir i escriure fitxers a qualsevol lloc de l\'emmagatzematge compartit.</string>
     <string name="settings_page_label">Configuració</string>
-    <string name="overview_summary_title_label">Resum</string>
     <string name="permissions_details_declaring_apps_label">Aplicacions declarants</string>
     <string name="permissions_details_requesting_apps_label">Aplicacions sol·licitants</string>
-    <string name="overview_device_android_version_label">Versió d\'Android</string>
-    <string name="overview_device_name_label">Dispositiu</string>
-    <string name="overview_device_android_patch_label">Nivell de pegat</string>
     <string name="overview_summary_apps_active_profile_label">Aplicacions en perfil actiu</string>
     <string name="overview_summary_apps_other_profile_label">Aplicacions en perfils d\'usuari gestionats, excloent clons</string>
     <string name="overview_summary_apps_sideloaded_label">Aplicacions instal·lades manualment des de fonts externes</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Voleu suprimir el registre de depuració?</string>
     <string name="support_debuglog_session_delete_message">Aquest registre de depuració se suprimrirà permanentment.</string>
     <string name="support_debuglog_sessions_empty">Sense registres de depuració</string>
-    <string name="support_debuglog_session_invalid">Sessió no vàlida</string>
     <string name="support_debuglog_session_recording">S\'està enregistrant…</string>
     <string name="support_debuglog_session_compressing">S\'està comprimint…</string>
     <string name="support_debuglog_failed_empty_log">Fitxer de registre buit</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">S\'ha enviat el missatge?</string>
     <string name="support_contact_sent_message">Si heu enviat el correu, aquesta sessió es pot netejar.</string>
     <string name="general_close_action">Tanca</string>
-    <string name="debug_debuglog_screen_delete_action">Suprimeix</string>
     <!-- Contact form -->
     <string name="contact_support_label">Contacta amb el suport</string>
     <string name="contact_category_label">Categoria</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">No s\'ha trobat cap aplicació de correu en aquest dispositiu.</string>
     <string name="contact_welcome_message">Llegeixo tots els missatges personalment i faig tot el possible per respondre. Com que gestiono el desenvolupament, la correcció d\'errors i el suport per compte propi, pot trigar una mica. Gràcies per la vostra paciència.</string>
     <string name="contact_footer_message">El vostre missatge s\'enviarà per correu. La informació del dispositiu i la configuració s\'adjunta automàticament. Podeu adjuntar captures de pantalla o un vídeo al correu. Si és possible, escriviu-ho en anglès.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Mantén</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Registre de depuració</string>
     <string name="debug_debuglog_screen_subtitle">Exporta informació de depuració per a la resolució de problemes</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Àmbit del vigilant</string>
     <string name="watcher_scope_all">Totes les aplicacions</string>
     <string name="watcher_scope_non_system">Només aplicacions que no siguin del sistema</string>
-    <string name="watcher_reports_label">Informes de canvis de permisos</string>
     <string name="watcher_reports_empty">Encara no s\'han detectat canvis de permisos</string>
     <string name="watcher_report_detail_label">Informe de canvis</string>
     <string name="watcher_diff_added_permissions">Nous permisos</string>
     <string name="watcher_diff_removed_permissions">Permisos eliminats</string>
     <string name="watcher_diff_grant_changes">Canvis de concessió</string>
-    <string name="watcher_diff_added_declared">Nous permisos declarats</string>
-    <string name="watcher_diff_removed_declared">Permisos declarats eliminats</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Instal·lat</string>
     <string name="watcher_event_update">Actualitzat</string>
     <string name="watcher_event_removed">Eliminat</string>
     <string name="watcher_event_grant_change">Permís canviat</string>
     <string name="watcher_mark_all_seen">Marca-ho tot com a llegit</string>
     <string name="watcher_notification_action_mark_seen">Marca com a llegit</string>
-    <string name="watcher_notification_action_delete">Suprimeix</string>
     <string name="watcher_notification_body_added">Afegit: %s</string>
     <string name="watcher_notification_body_removed">Eliminat: %s</string>
     <string name="watcher_notification_body_grant_changed">Concessió canviada: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Codi</string>
     <string name="watcher_detail_installer_label">Origen de la instal·lació</string>
     <string name="watcher_detail_installer_unknown">Desconegut</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Permís (%d)</item>
-        <item quantity="other">Permisos (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Darrer permís conegut (%d)</item>
         <item quantity="other">Darrers permisos coneguts (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Només aplicacions amb permís concedit</string>
     <string name="export_perm_include_summary_label">Inclou recomptes de resum</string>
     <string name="export_preview_label">Vista prèvia</string>
-    <string name="export_preview_label_of">Vista prèvia (%1$d de %2$d)</string>
     <string name="export_action_label">Exporta</string>
     <string name="export_progress_label">S’està exportant…</string>
     <string name="export_success_message">Exportació completada</string>
     <string name="export_error_message">Exportació fallida</string>
     <string name="export_share_action">Comparteix</string>
     <string name="export_open_action">Obre</string>
-    <string name="export_done_action">Fet</string>
     <string name="export_retry_action">Reintenta</string>
     <string name="export_summary_filename">Fitxer</string>
     <string name="export_summary_size">Mida</string>

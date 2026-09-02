@@ -7,14 +7,12 @@
     <string name="label_help">Дапамога</string>
     <string name="general_error_label">Памылка</string>
     <string name="general_load_error_title">Не ўдалося загрузіць дадзеныя</string>
-    <string name="general_load_error_hint">Нешта пайшло не так пры сканаванні ўстаноўленых прыкладанняў.</string>
     <string name="general_refresh_error_hint">Абнаўленне не ўдалося.</string>
     <string name="general_retry_action">Паўтарыць</string>
     <string name="general_share_action">Падзяліцца</string>
     <string name="general_done_action">Гатова</string>
     <string name="general_open_action">Адкрыць</string>
     <string name="general_continue_action">Працягнуць</string>
-    <string name="general_no_action">Не</string>
     <string name="debug_debuglog_record_action">Запіс</string>
     <string name="settings_category_other_label">Іншае</string>
     <string name="settings_category_gethelp_label">Атрымаць дапамогу</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Агульныя</string>
     <string name="general_settings_desc">Агульныя налады, якія закранаюць усе праграмы.</string>
     <string name="general_settings_scan_speed_label">Хуткасць сканавання</string>
-    <string name="general_settings_scan_speed_desc">Кіруе паралельнымі аперацыямі пры сканаванні праграм. Вышэйшыя значэнні даюць большую хуткасць, але могуць выклікаць збоі на некаторых прыладах.</string>
     <string name="general_settings_scan_speed_auto">Аўта (рэкамендуецца)</string>
     <string name="general_settings_scan_speed_1">1 (найбяспечней)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Палітыка прыватнасці</string>
     <string name="settings_privacy_policy_desc">Адказнае стаўленне да дадзеных.</string>
     <string name="settings_support_label">Падтрымка</string>
-    <string name="documentation_label">Дакументацыя</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Месца для пытанняў і размоў.</string>
     <string name="issue_tracker_label">Адсочванне памылак</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">За падтрымку перакладу праектаў з адкрытым зыходным кодам.</string>
     <string name="permissions_page_label">Дазволы</string>
     <string name="apps_page_label">Праграмы</string>
-    <string name="app_type_system_label">Сістэмная праграма</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Невядомы дазвол. Гэтая праграма яго патрабуе, але ніводная іншая яго не вызначае.</string>
-    <string name="permissions_unknown_description">Невядомы дазвол. Яго патрабуюць праграмы, але ён нідзе не прапісаны.</string>
     <string name="permissions_app_type_declaring_description">Дазвол створаны гэтым дадаткам.</string>
-    <string name="permissions_app_type_requesting_description">Праграма патрабуе гэты дазвол.</string>
     <string name="general_filter_action">Фільтраваць</string>
     <string name="general_cancel_action">Скасаваць</string>
     <string name="apps_filter_userapps_label">Праграмы карыстальніка</string>
@@ -67,25 +58,6 @@
     <string name="apps_sort_app_name_label">Назва праграмы</string>
     <string name="apps_sort_install_date_label">Дата ўсталёўкі</string>
     <string name="apps_sort_update_date_label">Апошняе абнаўленне</string>
-    <string name="general_sort_action">Сартаваць</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d з %2$d выдадзены.</item>
-        <item quantity="few">%1$d з %2$d выдадзены.</item>
-        <item quantity="many">%1$d з %2$d выдадзены.</item>
-        <item quantity="other">%1$d з %2$d выдадзены.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d дазвол запытаны.</item>
-        <item quantity="few">%1$d дазволы запытаны.</item>
-        <item quantity="many">%1$d дазволаў запытана.</item>
-        <item quantity="other">%1$d дазволаў запытана.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Аб\'яўляе %1$d дазвол.</item>
-        <item quantity="few">Аб\'яўляе %1$d дазволы.</item>
-        <item quantity="many">Аб\'яўляе %1$d дазволаў.</item>
-        <item quantity="other">Аб\'яўляе %1$d дазволаў.</item>
-    </plurals>
     <string name="apps_details_installer_label">Крыніца ўсталявання</string>
     <string name="apps_details_installer_unknown_label">Інфармацыя недаступная</string>
     <string name="apps_details_open_settings_error">Не ўдалося адкрыць налады праграмы для гэтага профілю</string>
@@ -108,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Колькасць запытаных праграм</string>
     <string name="permissions_search_list_hint">Шукаць дазволы</string>
     <string name="apps_search_list_hint">Шукаць праграмы</string>
-    <string name="permissions_details_protection_label">Узровень абароны</string>
     <string name="permissions_protection_type_normal_label">Звычайны</string>
     <string name="permissions_protection_type_dangerous_label">Небяспечны</string>
     <string name="permissions_protection_type_signature_label">Падпісаны</string>
@@ -133,7 +104,6 @@
         <item>Чытаю дробны шрыфт</item>
     </string-array>
     <string name="apps_app_details_label">Падрабязнасці праграмы</string>
-    <string name="apps_details_shareduserid_label">Праграмы з агульным UID</string>
     <string name="apps_details_siblings_label">Блізкія праграмы</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -154,14 +124,10 @@
     <string name="general_collapse_all_action">Згарнуць усё</string>
     <string name="general_more_options_action">Дадатковыя параметры</string>
     <string name="apps_details_twins_label">Клоны</string>
-    <string name="apps_details_twins_descriptions">Усталявана ў іншых профілях карыстальніка(ў).</string>
-    <string name="install_date_label">Дата ўсталявання</string>
     <string name="apps_filter_sharedid_label">Агульны UID</string>
     <string name="apps_filter_multipleprofiles_label">Мае клоны</string>
     <string name="support_debuglog_label">Журнал адладкі</string>
     <string name="support_debuglog_desc">Запісвайце ўсе дзеянні праграмы ў тэкставы файл, якім можна падзяліцца.</string>
-    <string name="updated_at_x">Апошняе абнаўленне: %s</string>
-    <string name="installed_at_x">Першае ўсталяванне: %s</string>
     <string name="apps_sort_install_source_label">Крыніца ўсталявання</string>
     <string name="permissions_action_none_msg">Дзеянні для гэтага дазволу не даступныя</string>
     <string name="permissions_details_open_settings_action">Адкрыць сістэмныя налады</string>
@@ -187,14 +153,6 @@
     <string name="apps_filter_sort_action">Фільтр і сартаванне</string>
     <string name="apps_help_tag_icons_title">Чыпы дазволаў</string>
     <string name="apps_help_tag_icons_description">Чыпы паказваюць, якія катэгорыі адчувальных дазволаў былі выдадзены праграме</string>
-    <string name="apps_details_description_restrictions_caveat_description">Гэтая праграма ўсталяваная ў іншым профілі карыстальніка. Дазволы могуць быць вызначаны толькі для праграм у актыўным профілі праз абмежаванні Android.</string>
-    <string name="apps_details_description_uninstalled_caveat">Гэтая праграма была выдалена, але яе дадзеныя захаваны. Стан дазволаў не можа быць вызначаны для выдаленых праграм.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d дазвол запытаны.</item>
-        <item quantity="few">%d дазволы запытаны.</item>
-        <item quantity="many">%d дазволаў запытана.</item>
-        <item quantity="other">%d дазволаў запытана.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d з %2$d дазволаў выдадзены.</item>
         <item quantity="few">%1$d з %2$d дазволаў выдадзены.</item>
@@ -221,8 +179,6 @@
         <item quantity="other">%d маніфестаў засталося прааналізаваць…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Нічога незвычайнага не выяўлена</string>
-    <string name="apps_details_manifest_unavailable">Маніфест недаступны</string>
-    <string name="apps_details_manifest_error">Не ўдалося прачытаць маніфест</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d запыт пакета</item>
         <item quantity="few">%d запыты пакета</item>
@@ -248,12 +204,6 @@
     <string name="apps_manifest_viewer_label">Праглядальнік маніфесту</string>
     <string name="apps_manifest_viewer_search_hint">Пошук ў маніфесце</string>
     <string name="apps_manifest_viewer_error_unknown">Невядомая памылка пры загрузцы маніфеста.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d супадзенне</item>
-        <item quantity="few">%d супадзенні</item>
-        <item quantity="many">%d супадзенняў</item>
-        <item quantity="other">%d супадзенняў</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d з %2$d</string>
     <string name="apps_manifest_section_uses_permission">Выкарыстоўвае дазвол</string>
     <string name="apps_manifest_section_permission">Дазвол</string>
@@ -302,18 +252,6 @@
         <item quantity="many">%d сістэмныя праграмы</item>
         <item quantity="other">%d сістэмныя праграмы</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Карыстальніцкія праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="few">Карыстальніцкія праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="many">Карыстальніцкія праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="other">Карыстальніцкія праграмы: выдадзены %1$d з %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Сістэмныя праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="few">Сістэмныя праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="many">Сістэмныя праграмы: выдадзены %1$d з %2$d.</item>
-        <item quantity="other">Сістэмныя праграмы: выдадзены %1$d з %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d праграма ў іншых профілях карыстальніка таксама запытвае гэты дазвол.</item>
         <item quantity="few">%d праграмы ў іншых профілях карыстальніка таксама запытваюць гэты дазвол.</item>
@@ -327,7 +265,6 @@
         <item quantity="other">%d выдаленых праграм з захаванымі данымі таксама запытваюць гэты дазвол.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Праграмы, усталяваныя ў іншых профілях карыстальніка, выключаныя з падліку праз абмежаванні Android.</string>
-    <string name="permissions_details_empty_filter_message">Няма праграм, якія адпавядаюць бягучым фільтрам. Націсніце на значок фільтра для налады.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Выканання</string>
     <string name="permissions_tag_install_time_label">Падчас ўсталявання</string>
@@ -425,8 +362,6 @@
     <string name="permission_loader_usage_stats_description">Дазваляе праграмам збіраць статыстыку аб выкарыстанні загрузчыка дадзеных на прыладзе.</string>
     <string name="permission_premium_sms_services_label">Доступ да прэміум-СМС</string>
     <string name="permission_premium_sms_services_description">Дазваляе праграмам выкарыстоўваць прэміум-СМС. Гэта каштуе грошаў.</string>
-    <string name="permission_unlimited_data_access_label">Неабмежаваны доступ да дадзеных</string>
-    <string name="permission_unlimited_data_access_description">Дазваляе праграмам неабмежаваны доступ да інтэрнэту нават пры ўключаным Data Saver.</string>
     <string name="permission_group_calendar_label">Каляндар</string>
     <string name="permission_group_calendar_description"><![CDATA[Дазволы, звязаныя з календаром: прагляд і рэдакцыя календара.]]></string>
     <string name="permission_group_files_label">Файлы і медыя</string>
@@ -447,8 +382,6 @@
     <string name="permission_group_contacts_description">"Чытанне і запіс кантактаў."</string>
     <string name="permission_group_apps_label">Праграмы</string>
     <string name="permission_group_apps_description">Асаблівыя дазволы, патрабуюць згоды карыстальніка.</string>
-    <string name="permission_group_battery_label">Батарэя</string>
-    <string name="permission_group_battery_description">Дазволы, звязаныя з батарэяй.</string>
     <string name="permission_group_camera_label">Камера</string>
     <string name="permission_group_camera_description">Дазволы для камеры.</string>
     <string name="permission_group_audio_label">Мікрафон</string>
@@ -459,12 +392,8 @@
     <string name="permission_legacy_storage_label">Устарэлае сховішча</string>
     <string name="permission_legacy_storage_description">Дазваляе праграмам атрымліваць доступ да знешняга сховішча без абмежаванняў абмежаванага сховішча. Гэта былі паводзіны па змаўчанні да Android 10. Праграмы з такім доступам могуць чытаць і запісваць файлы ўсюды ў агульным сховішчы.</string>
     <string name="settings_page_label">Налады</string>
-    <string name="overview_summary_title_label">Зводка</string>
     <string name="permissions_details_declaring_apps_label">Праграмы-абьяўльнікі</string>
     <string name="permissions_details_requesting_apps_label">Праграмы-запытвальнікі</string>
-    <string name="overview_device_android_version_label">Версія Android</string>
-    <string name="overview_device_name_label">Прылада</string>
-    <string name="overview_device_android_patch_label">Роўнень патча</string>
     <string name="overview_summary_apps_active_profile_label">Праграмы ў актыўным профілі</string>
     <string name="overview_summary_apps_other_profile_label">Праграмы ў іншых профілях, акрамя клонаў</string>
     <string name="overview_summary_apps_sideloaded_label">Праграмы, ўручную ўсталяваныя з знешніх крыніц</string>
@@ -514,7 +443,6 @@
     <string name="support_debuglog_session_delete_title">Выдаліць журнал адладкі?</string>
     <string name="support_debuglog_session_delete_message">Гэты журнал адладкі будзе выдалены назаўсёды.</string>
     <string name="support_debuglog_sessions_empty">Няма журналаў адладкі</string>
-    <string name="support_debuglog_session_invalid">Несапраўдная сесія</string>
     <string name="support_debuglog_session_recording">Запіс…</string>
     <string name="support_debuglog_session_compressing">Сціск…</string>
     <string name="support_debuglog_failed_empty_log">Пусты файл журнала</string>
@@ -526,7 +454,6 @@
     <string name="support_contact_sent_title">Паведамленне адпраўлена?</string>
     <string name="support_contact_sent_message">Калі вы адправілі электронны ліст, гэту сесію можна ачысціць.</string>
     <string name="general_close_action">Закрыць</string>
-    <string name="debug_debuglog_screen_delete_action">Выдаліць</string>
     <!-- Contact form -->
     <string name="contact_support_label">Звязацца за службай падтрымкі</string>
     <string name="contact_category_label">Катэгорыя</string>
@@ -557,8 +484,6 @@
     <string name="contact_no_email_app">На гэтай прыладзе не знойдзена праграма электроннай пошты.</string>
     <string name="contact_welcome_message">Я чытаю кожнае паведамленне асабіста і стараюся адказваць. Паколькі я займаюся разпрацоўкай, выпраўленнем памылак і падтрымкай самастойна, гэта можа заняць некалькі часу. Дзякуй за вашу цярплівасць.</string>
     <string name="contact_footer_message">Ваша паведамленне будзе адпраўлена па электроннай пошцы. Інфармацыя аб прыладзе і канфігурацыі далучаецца аўтаматычна. Вы можаце далучыць скрыншоты або відэа да ліста. Калі ласка, пішыце па-англійску, калі гэта магчыма.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Захаваць</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Журналы адладкі</string>
     <string name="debug_debuglog_screen_subtitle">Экспарт інфармацыі адладкі для ўстаранення непаладак</string>
@@ -646,22 +571,17 @@
     <string name="watcher_scope_label">Вобласць назірання</string>
     <string name="watcher_scope_all">Усе праграмы</string>
     <string name="watcher_scope_non_system">Толькі несістэмныя праграмы</string>
-    <string name="watcher_reports_label">Справаздачы аб зменах дазволаў</string>
     <string name="watcher_reports_empty">Змены дазволаў яшчэ не выяўлены</string>
     <string name="watcher_report_detail_label">Справаздача аб зменах</string>
     <string name="watcher_diff_added_permissions">Новыя дазволы</string>
     <string name="watcher_diff_removed_permissions">Выдаленыя дазволы</string>
     <string name="watcher_diff_grant_changes">Змены выдачы</string>
-    <string name="watcher_diff_added_declared">Новыя абьяўленыя дазволы</string>
-    <string name="watcher_diff_removed_declared">Выдаленыя абьяўленыя дазволы</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Усталявана</string>
     <string name="watcher_event_update">Абноўлена</string>
     <string name="watcher_event_removed">Выдалена</string>
     <string name="watcher_event_grant_change">Дазвол зменены</string>
     <string name="watcher_mark_all_seen">Адзначыць усё як убачанае</string>
     <string name="watcher_notification_action_mark_seen">Адзначыць убачаным</string>
-    <string name="watcher_notification_action_delete">Выдаліць</string>
     <string name="watcher_notification_body_added">Дадана: %s</string>
     <string name="watcher_notification_body_removed">Выдалена: %s</string>
     <string name="watcher_notification_body_grant_changed">Выдача зменена: %s</string>
@@ -700,12 +620,6 @@
     <string name="watcher_detail_version_code_label">Код</string>
     <string name="watcher_detail_installer_label">Крыніца ўсталявання</string>
     <string name="watcher_detail_installer_unknown">Невядома</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Дазволы (%d)</item>
-        <item quantity="few">Дазволы (%d)</item>
-        <item quantity="many">Дазволы (%d)</item>
-        <item quantity="other">Дазволы (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Апошнія вядомыя дазволы (%d)</item>
         <item quantity="few">Апошнія вядомыя дазволы (%d)</item>
@@ -796,14 +710,12 @@
     <string name="export_perm_granted_only_label">Толькі праграмы з прадастаўленым дазволам</string>
     <string name="export_perm_include_summary_label">Уключыць агульную статыстыку</string>
     <string name="export_preview_label">Папярэдні прагляд</string>
-    <string name="export_preview_label_of">Папярэдні прагляд (%1$d з %2$d)</string>
     <string name="export_action_label">Экспарт</string>
     <string name="export_progress_label">Экспартаванне…</string>
     <string name="export_success_message">Экспарт завершаны</string>
     <string name="export_error_message">Памылка экспарту</string>
     <string name="export_share_action">Падзяліцца</string>
     <string name="export_open_action">Адчынены</string>
-    <string name="export_done_action">Выканана</string>
     <string name="export_retry_action">Паўтарыць</string>
     <string name="export_summary_filename">Файл</string>
     <string name="export_summary_size">Памер</string>

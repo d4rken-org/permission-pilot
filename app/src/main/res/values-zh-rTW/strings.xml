@@ -7,14 +7,12 @@
     <string name="label_help">幫助</string>
     <string name="general_error_label">錯誤</string>
     <string name="general_load_error_title">無法載入資料</string>
-    <string name="general_load_error_hint">掃描已安裝應用程式時發生錯誤。</string>
     <string name="general_refresh_error_hint">重新整理失敗。</string>
     <string name="general_retry_action">重試</string>
     <string name="general_share_action">分享</string>
     <string name="general_done_action">完成</string>
     <string name="general_open_action">打開</string>
     <string name="general_continue_action">繼續</string>
-    <string name="general_no_action">否</string>
     <string name="debug_debuglog_record_action">錄製</string>
     <string name="settings_category_other_label">其他</string>
     <string name="settings_category_gethelp_label">獲取說明</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">一般</string>
     <string name="general_settings_desc">此應用程式的全域設定</string>
     <string name="general_settings_scan_speed_label">掃描速度</string>
-    <string name="general_settings_scan_speed_desc">控制掃描應用程式時的平行作業數量。較高的值速度更快，但可能在某些裝置上導致當機。</string>
     <string name="general_settings_scan_speed_auto">自動（建議）</string>
     <string name="general_settings_scan_speed_1">1（最安全）</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">隱私政策</string>
     <string name="settings_privacy_policy_desc">謹慎地處理數據。</string>
     <string name="settings_support_label">支持</string>
-    <string name="documentation_label">說明文件</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">一個交流和提問的地方。</string>
     <string name="issue_tracker_label">問題追蹤器</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">感謝支援開源專案的翻譯。</string>
     <string name="permissions_page_label">權限</string>
     <string name="apps_page_label">應用程式</string>
-    <string name="app_type_system_label">系統應用程式</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">未知權限。該應用程式請求該權限，但沒有其他應用程式聲明它。</string>
-    <string name="permissions_unknown_description">未知權限。應用程式請求該權限，但沒有在任何地方聲明。</string>
     <string name="permissions_app_type_declaring_description">該應用程式建立了該權限。</string>
-    <string name="permissions_app_type_requesting_description">應用程式請求了該權限。</string>
     <string name="general_filter_action">篩選</string>
     <string name="general_cancel_action">取消</string>
     <string name="apps_filter_userapps_label">使用者應用程式</string>
@@ -67,16 +58,6 @@
     <string name="apps_sort_app_name_label">應用程式名稱</string>
     <string name="apps_sort_install_date_label">安裝日期</string>
     <string name="apps_sort_update_date_label">上次更新</string>
-    <string name="general_sort_action">排序</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="other">已授予 %1$d／%2$d 項。</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="other">已請求 %1$d 項權限。</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="other">宣告了 %1$d 項權限。</item>
-    </plurals>
     <string name="apps_details_installer_label">安裝來源</string>
     <string name="apps_details_installer_unknown_label">缺少資訊</string>
     <string name="apps_details_open_settings_error">無法開啟此設定檔的應用程式設定</string>
@@ -99,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">請求的應用程式數量</string>
     <string name="permissions_search_list_hint">搜尋權限</string>
     <string name="apps_search_list_hint">搜尋應用程式</string>
-    <string name="permissions_details_protection_label">保護級別</string>
     <string name="permissions_protection_type_normal_label">普通</string>
     <string name="permissions_protection_type_dangerous_label">危險</string>
     <string name="permissions_protection_type_signature_label">簽名</string>
@@ -124,7 +104,6 @@
         <item>閱讀細字</item>
     </string-array>
     <string name="apps_app_details_label">應用程式詳情</string>
-    <string name="apps_details_shareduserid_label">具有共享使用者 ID 的應用程式</string>
     <string name="apps_details_siblings_label">兄弟應用程式</string>
     <string name="apps_known_installer_gplay_label">Google Play 商店</string>
     <string name="apps_known_installer_vivo_label">Vivo 應用程式市場</string>
@@ -145,14 +124,10 @@
     <string name="general_collapse_all_action">全部收合</string>
     <string name="general_more_options_action">更多選項</string>
     <string name="apps_details_twins_label">克隆應用程式</string>
-    <string name="apps_details_twins_descriptions">從其他使用者設定檔案中安裝。</string>
-    <string name="install_date_label">安裝日期</string>
     <string name="apps_filter_sharedid_label">共享使用者 ID</string>
     <string name="apps_filter_multipleprofiles_label">有複製品</string>
     <string name="support_debuglog_label">除錯日誌</string>
     <string name="support_debuglog_desc">將應用程式的所有操作記錄到一個純文字檔中以供分享。</string>
-    <string name="updated_at_x">上次更新：%s</string>
-    <string name="installed_at_x">首次安裝：%s</string>
     <string name="apps_sort_install_source_label">安裝來源</string>
     <string name="permissions_action_none_msg">沒有可用於此權限的操作</string>
     <string name="permissions_details_open_settings_action">開啟系統設定</string>
@@ -178,11 +153,6 @@
     <string name="apps_filter_sort_action">篩選與排序</string>
     <string name="apps_help_tag_icons_title">權限標籤</string>
     <string name="apps_help_tag_icons_description">標籤顯示應用程式已獲授予哪些敏感權限類別</string>
-    <string name="apps_details_description_restrictions_caveat_description">此應用程式因為由其他使用者安裝而無無法偵測在目前設定檔之應用程式的權限。</string>
-    <string name="apps_details_description_uninstalled_caveat">此應用程式已解除安裝，但資料仍被保留。已解除安裝的應用程式無法判斷其權限狀態。</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="other">已請求 %d 項權限。</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="other">已授予 %1$d／%2$d 項權限。</item>
     </plurals>
@@ -203,8 +173,6 @@
         <item quantity="other">剩餘 %d 個清單待分析…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">未偵測到異常</string>
-    <string name="apps_details_manifest_unavailable">清單無法存取</string>
-    <string name="apps_details_manifest_error">無法讀取清單</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="other">%d 個套件查詢</item>
     </plurals>
@@ -221,9 +189,6 @@
     <string name="apps_manifest_viewer_label">清單檢視器</string>
     <string name="apps_manifest_viewer_search_hint">在清單中搜尋</string>
     <string name="apps_manifest_viewer_error_unknown">載入資訊清單時發生未知錯誤。</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="other">%d 個符合項目</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d / %2$d</string>
     <string name="apps_manifest_section_uses_permission">使用權限</string>
     <string name="apps_manifest_section_permission">權限</string>
@@ -257,12 +222,6 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d 個系統應用程式</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="other">一般應用程式：已授予 %1$d／%2$d 個。</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="other">系統應用程式：已授予 %1$d／%2$d 個。</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="other">其他使用者設定檔中有 %d 個應用程式也請求此權限。</item>
     </plurals>
@@ -270,7 +229,6 @@
         <item quantity="other">另有 %d 個已保留資料的已卸載應用程式也請求此權限。</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">由於 Android 限制，上述計算不包括安裝在其他使用者設定檔案中的應用程式。</string>
-    <string name="permissions_details_empty_filter_message">沒有應用程式符合目前篩選條件。點擊篩選圖示進行調整。</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">執行如期</string>
     <string name="permissions_tag_install_time_label">安裝時</string>
@@ -365,8 +323,6 @@
     <string name="permission_loader_usage_stats_description">允許應用程式收集有關裝置上資料載入器使用情況的統計資訊。</string>
     <string name="permission_premium_sms_services_label">SMS 服務取用</string>
     <string name="permission_premium_sms_services_description">允許應用程式使用 SMS 服務。這將收取一些費用。</string>
-    <string name="permission_unlimited_data_access_label">無限數據取用</string>
-    <string name="permission_unlimited_data_access_description">允許應用程式使用無限制的流量。即使數據節省功能已開啟時仍不受限制。</string>
     <string name="permission_group_calendar_label">日曆</string>
     <string name="permission_group_calendar_description"><![CDATA[與日曆相關的權限，例如查看和編輯項目。]]></string>
     <string name="permission_group_files_label">檔案和媒體</string>
@@ -387,8 +343,6 @@
     <string name="permission_group_contacts_description">"讀取和寫入聯絡人。"</string>
     <string name="permission_group_apps_label">應用程式</string>
     <string name="permission_group_apps_description">需要使用者同意的特殊權限。</string>
-    <string name="permission_group_battery_label">電池</string>
-    <string name="permission_group_battery_description">與電池相關的權限。</string>
     <string name="permission_group_camera_label">相機</string>
     <string name="permission_group_camera_description">與相機相關的權限。</string>
     <string name="permission_group_audio_label">麥克風</string>
@@ -399,12 +353,8 @@
     <string name="permission_legacy_storage_label">舊式儲存空間</string>
     <string name="permission_legacy_storage_description">允許應用程式在沒有分區儲存限制的情況下存取外部儲存空間。這是 Android 10 之前的預設行為。有此存取權限的應用程式可在共用儲存空間上的任何位置讀寫檔案。</string>
     <string name="settings_page_label">設定</string>
-    <string name="overview_summary_title_label">摘要</string>
     <string name="permissions_details_declaring_apps_label">宣告應用程式</string>
     <string name="permissions_details_requesting_apps_label">請求應用程式</string>
-    <string name="overview_device_android_version_label">Android 版本</string>
-    <string name="overview_device_name_label">設備</string>
-    <string name="overview_device_android_patch_label">補丁級別</string>
     <string name="overview_summary_apps_active_profile_label">活動設定檔案中的應用程式數量</string>
     <string name="overview_summary_apps_other_profile_label">受管使用者設定檔案中的應用程式數量（不包括克隆）</string>
     <string name="overview_summary_apps_sideloaded_label">從外部來源手動安裝的應用程式</string>
@@ -451,7 +401,6 @@
     <string name="support_debuglog_session_delete_title">刪除除錯記錄？</string>
     <string name="support_debuglog_session_delete_message">此除錯記錄將永久刪除。</string>
     <string name="support_debuglog_sessions_empty">沒有除錯記錄</string>
-    <string name="support_debuglog_session_invalid">不有效的工作階段</string>
     <string name="support_debuglog_session_recording">錄製中…</string>
     <string name="support_debuglog_session_compressing">壓縮中…</string>
     <string name="support_debuglog_failed_empty_log">記錄檔案為空</string>
@@ -463,7 +412,6 @@
     <string name="support_contact_sent_title">訊息已發送？</string>
     <string name="support_contact_sent_message">如果您已發送電子郵件，可以清理此工作階段。</string>
     <string name="general_close_action">關閉</string>
-    <string name="debug_debuglog_screen_delete_action">刪除</string>
     <!-- Contact form -->
     <string name="contact_support_label">聯絡支援</string>
     <string name="contact_category_label">類別</string>
@@ -491,8 +439,6 @@
     <string name="contact_no_email_app">此裝置上找不到電子郵件應用程式。</string>
     <string name="contact_welcome_message">我親自閱讀每一封訊息，盡力回覆。由於我獨自負責開發、修復錯誤和支援，可能需要一些時間。感謝您的耐心等待。</string>
     <string name="contact_footer_message">您的訊息將透過電子郵件發送。裝置和設定資訊將自動附上。您可以在電子郵件中附加截圖或影片。如可能請用英文撰寫。</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">保留</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">偵錯記錄</string>
     <string name="debug_debuglog_screen_subtitle">匯出除錯資訊以便發現關點</string>
@@ -571,22 +517,17 @@
     <string name="watcher_scope_label">監控範圍</string>
     <string name="watcher_scope_all">所有應用程式</string>
     <string name="watcher_scope_non_system">僅非系統應用程式</string>
-    <string name="watcher_reports_label">權限變更報告</string>
     <string name="watcher_reports_empty">尚未偵測到權限變更</string>
     <string name="watcher_report_detail_label">變更報告</string>
     <string name="watcher_diff_added_permissions">新權限</string>
     <string name="watcher_diff_removed_permissions">已移除權限</string>
     <string name="watcher_diff_grant_changes">授予變更</string>
-    <string name="watcher_diff_added_declared">新宣告的權限</string>
-    <string name="watcher_diff_removed_declared">已移除宣告的權限</string>
-    <string name="watcher_diff_grant_change_detail">%1$s：%2$s → %3$s</string>
     <string name="watcher_event_install">已安裝</string>
     <string name="watcher_event_update">已更新</string>
     <string name="watcher_event_removed">已移除</string>
     <string name="watcher_event_grant_change">權限已變更</string>
     <string name="watcher_mark_all_seen">全部標記為已看</string>
     <string name="watcher_notification_action_mark_seen">標記為已看</string>
-    <string name="watcher_notification_action_delete">刪除</string>
     <string name="watcher_notification_body_added">新增：%s</string>
     <string name="watcher_notification_body_removed">移除：%s</string>
     <string name="watcher_notification_body_grant_changed">授予已變更：%s</string>
@@ -616,9 +557,6 @@
     <string name="watcher_detail_version_code_label">程式碼</string>
     <string name="watcher_detail_installer_label">安裝來源</string>
     <string name="watcher_detail_installer_unknown">未知</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="other">權限（%d）</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="other">最後已知權限（%d）</item>
     </plurals>
@@ -691,14 +629,12 @@
     <string name="export_perm_granted_only_label">僅限已授予的應用程式</string>
     <string name="export_perm_include_summary_label">包含摘要計數</string>
     <string name="export_preview_label">預覽</string>
-    <string name="export_preview_label_of">預覽（%1$d / %2$d）</string>
     <string name="export_action_label">匯出</string>
     <string name="export_progress_label">匯出中…</string>
     <string name="export_success_message">匯出完成</string>
     <string name="export_error_message">匯出失敗</string>
     <string name="export_share_action">分享</string>
     <string name="export_open_action">已開啟</string>
-    <string name="export_done_action">完成</string>
     <string name="export_retry_action">重試</string>
     <string name="export_summary_filename">檔案</string>
     <string name="export_summary_size">大小</string>

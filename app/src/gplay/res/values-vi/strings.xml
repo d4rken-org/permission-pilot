@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Dịch vụ Google Play không khả dụng.</string>
-    <string name="upgrades_no_purchases_found_check_account">Không tìm thấy giao dịch mua nào. Bạn có đang sử dụng đúng tài khoản không?</string>
     <string name="upgrades_gplay_already_owned_title">Đã mua</string>
     <string name="upgrades_gplay_already_owned_error">Google Play báo cáo rằng bạn đã sở hữu nâng cấp này, nhưng không thể khôi phục được. Kiểm tra rằng bạn đã đăng nhập bằng tài khoản Google được sử dụng để mua hàng ban đầu, sau đó hãy thử \"Khôi phục mua hàng\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot không có quảng cáo và tôn trọng quyền riêng tư của bạn. Việc nâng cấp ủng hộ quá trình phát triển liên tục.</string>
@@ -9,14 +8,10 @@
     <string name="upgrade_screen_offers_unavailable_message">Không thể tải giá lúc này. Kiểm tra Google Play và thử lại trong giây lát.</string>
     <string name="upgrade_screen_subscription_trial_action">Bắt đầu dùng thử miễn phí</string>
     <string name="upgrade_screen_subscription_action">Đăng ký</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/năm, hủy bất cứ lúc nào</string>
     <string name="upgrade_screen_iap_action">Thanh toán một lần</string>
-    <string name="upgrade_screen_iap_action_hint">Mua một lần với giá %s</string>
     <string name="upgrade_screen_restore_purchase_action">Khôi phục thanh toán</string>
-    <string name="upgrade_screen_restore_purchase_message">Không tìm thấy giao dịch mua nào. Hãy kiểm tra xem bạn đã đăng nhập bằng tài khoản Google đúng chưa.</string>
     <string name="upgrade_screen_restore_banner_title">Đã mua Pro rồi?</string>
     <string name="upgrade_screen_restore_banner_body">Có vẻ như bạn đã nâng cấp lên Pro trên thiết bị này trước đó. Khôi phục mua hàng của bạn để mở khóa lại.</string>
-    <string name="upgrade_screen_options_description">Đăng ký sẽ tự động gia hạn. Bạn có thể hủy bất kỳ lúc nào.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
     <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
@@ -27,7 +22,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">Bạn đang sở hữu %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Mua hàng Pro một lần của bạn mở khóa mọi tính năng Pro, mãi mãi.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Gói đăng ký của bạn mở khóa mọi tính năng Pro.</string>
-    <string name="upgrade_screen_owned_sub_title">Gói đăng ký của bạn</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Gói đăng ký của bạn đang hoạt động và tự động gia hạn.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Gói đăng ký của bạn được đặt để hết hạn và sẽ không gia hạn. Bạn sẽ giữ Pro cho đến khi nó kết thúc.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">Bạn đã sở hữu bản nâng cấp Pro trả một lần và cũng có gói đăng ký đang hoạt động. Bạn không cần cả hai — hãy hủy gói đăng ký trong Google Play để tránh bị tính phí thêm.</string>
@@ -35,20 +29,16 @@
     <string name="upgrade_screen_owned_iap_title">Pro Trọn đời</string>
     <string name="upgrade_screen_owned_iap_body">Bạn sở hữu nâng cấp Pro một lần. Không có gói đăng ký, không có gia hạn.</string>
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">Chuyển sang mua một lần</string>
     <string name="upgrade_screen_owned_iap_purchase_note">Gói đăng ký của bạn sẽ không gia hạn, vì vậy bạn có thể chuyển sang mua Pro trả một lần vĩnh viễn ngay bây giờ.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Để chuyển sang mua trả một lần, trước tiên hãy hủy gói đăng ký trong Google Play. Ưu đãi này sẽ mở khóa khi gói đăng ký được đặt không gia hạn.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play chỉ kiểm tra tài khoản bạn đang đăng nhập. Lần mua một lần này riêng biệt từ gói đăng ký của bạn.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Gói đăng ký của bạn vẫn còn hoạt động và đang tự động gia hạn. Hãy hủy nó trong Google Play trước.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Đang xác nhận lần mua của bạn</string>
     <string name="upgrade_screen_grace_body">Đang chờ Google Play xác nhận lại lần mua Pro của bạn. Điều này thường tự động giải quyết.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">Chúng tôi vẫn không thể xác nhận lại lần mua Pro của bạn với Google Play. Nếu điều này tiếp tục xảy ra, hãy thử khôi phục lần mua của bạn hoặc liên hệ với bộ phận hỗ trợ.</string>
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Trạng thái có vẻ không đúng?</string>
     <string name="upgrade_screen_restore_status_body">Nếu bạn đã mua Pro nhưng nó không hiển thị, hãy chạy kiểm tra trực tiếp với Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Mua hàng đã được khôi phục.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">Hãy đảm bảo bạn đã đăng nhập bằng tài khoản Google mà bạn đã sử dụng để mua hàng. Kiểm tra trực tiếp với Google Play vừa chạy.</string>
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Tùy chọn nâng cấp</string>
     <string name="upgrade_screen_offers_body">Các tính năng giống nhau, chỉ là các mô hình định giá khác nhau.</string>

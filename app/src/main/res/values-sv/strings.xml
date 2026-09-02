@@ -7,14 +7,12 @@
     <string name="label_help">Hjälp</string>
     <string name="general_error_label">Fel</string>
     <string name="general_load_error_title">Kunde inte läsa in data</string>
-    <string name="general_load_error_hint">Något gick fel vid skanning av installerade appar.</string>
     <string name="general_refresh_error_hint">Uppdatering misslyckades.</string>
     <string name="general_retry_action">Försök igen</string>
     <string name="general_share_action">Dela</string>
     <string name="general_done_action">Klar</string>
     <string name="general_open_action">Öppna</string>
     <string name="general_continue_action">Fortsätt</string>
-    <string name="general_no_action">Nej</string>
     <string name="debug_debuglog_record_action">Spela in</string>
     <string name="settings_category_other_label">Övrigt</string>
     <string name="settings_category_gethelp_label">Få hjälp</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Allmänt</string>
     <string name="general_settings_desc">Allmänna inställningar som påverkar hela appen.</string>
     <string name="general_settings_scan_speed_label">Skanningshastighet</string>
-    <string name="general_settings_scan_speed_desc">Styr parallella operationer vid skanning av appar. Högre värden är snabbare men kan orsaka krascher på vissa enheter.</string>
     <string name="general_settings_scan_speed_auto">Automatisk (rekommenderas)</string>
     <string name="general_settings_scan_speed_1">1 (säkrast)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Integritetspolicy</string>
     <string name="settings_privacy_policy_desc">Ansvarsfull hantering av data.</string>
     <string name="settings_support_label">Support</string>
-    <string name="documentation_label">Dokumentation</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">En plats att hänga på och ställa frågor.</string>
     <string name="issue_tracker_label">Problemhanterare</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">För stödet av öppen källkod-projekts översättning.</string>
     <string name="permissions_page_label">Behörigheter</string>
     <string name="apps_page_label">Appar</string>
-    <string name="app_type_system_label">Systemapp</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Okänd behörighet. Den begärs av denna app, men ingen annan app deklarerar den.</string>
-    <string name="permissions_unknown_description">Okänd behörighet. Den begärs av appar, men deklareras inte någonstans.</string>
     <string name="permissions_app_type_declaring_description">Behörighet skapas av denna app.</string>
-    <string name="permissions_app_type_requesting_description">App begär behörigheten.</string>
     <string name="general_filter_action">Filtrera</string>
     <string name="general_cancel_action">Avbryt</string>
     <string name="apps_filter_userapps_label">Användarappar</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Appnamn</string>
     <string name="apps_sort_install_date_label">Installationsdatum</string>
     <string name="apps_sort_update_date_label">Senast uppdaterad</string>
-    <string name="general_sort_action">Sortera</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d av %2$d beviljad.</item>
-        <item quantity="other">%1$d av %2$d beviljade.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d behörighet begärd.</item>
-        <item quantity="other">%1$d behörigheter begärda.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Deklarerar %1$d behörighet.</item>
-        <item quantity="other">Deklarerar %1$d behörigheter.</item>
-    </plurals>
     <string name="apps_details_installer_label">Installationskälla</string>
     <string name="apps_details_installer_unknown_label">Information inte tillgänglig</string>
     <string name="apps_details_open_settings_error">Kunde inte öppna appinställningar för den här profilen</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Antal begärda appar</string>
     <string name="permissions_search_list_hint">Sök behörigheter</string>
     <string name="apps_search_list_hint">Sök appar</string>
-    <string name="permissions_details_protection_label">Skyddsnivå</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Farlig</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
@@ -127,7 +104,6 @@
         <item>Läser det finstilta</item>
     </string-array>
     <string name="apps_app_details_label">Appdetaljer</string>
-    <string name="apps_details_shareduserid_label">Appar med delat användar-ID</string>
     <string name="apps_details_siblings_label">Syskon</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Fäll ihop alla</string>
     <string name="general_more_options_action">Fler alternativ</string>
     <string name="apps_details_twins_label">Kloner</string>
-    <string name="apps_details_twins_descriptions">Installerade i andra användarprofiler.</string>
-    <string name="install_date_label">Installationsdatum</string>
     <string name="apps_filter_sharedid_label">Delat användar-ID</string>
     <string name="apps_filter_multipleprofiles_label">Har kloner</string>
     <string name="support_debuglog_label">Felsökningslogg</string>
     <string name="support_debuglog_desc">Spela in allt appen gör i en textfil som du kan dela.</string>
-    <string name="updated_at_x">Senast uppdaterad: %s</string>
-    <string name="installed_at_x">Först installerad: %s</string>
     <string name="apps_sort_install_source_label">Installationskälla</string>
     <string name="permissions_action_none_msg">Ingen åtgärd tillgänglig för denna behörighet</string>
     <string name="permissions_details_open_settings_action">Öppna systeminställningar</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filtrera &amp; sortera</string>
     <string name="apps_help_tag_icons_title">Behörighetschips</string>
     <string name="apps_help_tag_icons_description">Chips visar vilka känsliga behörighetskategorier som en app har beviljats</string>
-    <string name="apps_details_description_restrictions_caveat_description">Denna app är installerad i en annan användarprofil. Beviljade behörigheter kan endast bestämmas för appar installerade i den för närvarande aktiva profilen, på grund av Android-begränsningar.</string>
-    <string name="apps_details_description_uninstalled_caveat">Denna app har avinstallerats men dess data har behållits. Behörighetsstatus kan inte fastställas för avinstallerade appar.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d behörighet begärd.</item>
-        <item quantity="other">%d behörigheter begärda.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d av %2$d behörighet beviljad.</item>
         <item quantity="other">%1$d av %2$d behörigheter beviljade.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifest kvar att analysera…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Inget ovanligt upptäckt</string>
-    <string name="apps_details_manifest_unavailable">Manifest inte tillgängligt</string>
-    <string name="apps_details_manifest_error">Kunde inte läsa manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d paketförfrågan</item>
         <item quantity="other">%d paketförfrågningar</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifestvisare</string>
     <string name="apps_manifest_viewer_search_hint">Sök i manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Okänt fel vid inläsning av manifestet.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d träff</item>
-        <item quantity="other">%d träffar</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d av %2$d</string>
     <string name="apps_manifest_section_uses_permission">Använder behörighet</string>
     <string name="apps_manifest_section_permission">Behörighet</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d systemapp</item>
         <item quantity="other">%d systemappar</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Användarappar: Beviljad till %1$d av %2$d.</item>
-        <item quantity="other">Användarappar: Beviljad till %1$d av %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Systemappar: Beviljad till %1$d av %2$d.</item>
-        <item quantity="other">Systemappar: Beviljad till %1$d av %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d app i andra användarprofiler begär också den här behörigheten.</item>
         <item quantity="other">%d appar i andra användarprofiler begär också den här behörigheten.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d avinstallerade appar med kvarstående data begär också den här behörigheten.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Appar installerade i andra användarprofiler utesluts från beräkningen ovan på grund av Android-begränsningar.</string>
-    <string name="permissions_details_empty_filter_message">Inga appar matchar aktuella filter. Tryck på filterikonen för att justera.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Körtid</string>
     <string name="permissions_tag_install_time_label">Vid installation</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Låter appar samla in statistik om användning av dataladdare på enheten.</string>
     <string name="permission_premium_sms_services_label">Premium SMS-tillgång</string>
     <string name="permission_premium_sms_services_description">Låter appar använda premium textmeddelandetjänster. Detta kommer att kosta dig pengar.</string>
-    <string name="permission_unlimited_data_access_label">Obegränsad datatillgång</string>
-    <string name="permission_unlimited_data_access_description">Låter appar komma åt obegränsad data. Appar kan förbruka data även när Datasparare är PÅ.</string>
     <string name="permission_group_calendar_label">Kalender</string>
     <string name="permission_group_calendar_description"><![CDATA[Kalenderrelaterade behörigheter, t.ex. visa & redigera poster.]]></string>
     <string name="permission_group_files_label">Filer och media</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Läsa och skriva kontakter."</string>
     <string name="permission_group_apps_label">Appar</string>
     <string name="permission_group_apps_description">Specialåtkomstbehörigheter som kräver uttryckligt användarmedgivande.</string>
-    <string name="permission_group_battery_label">Batteri</string>
-    <string name="permission_group_battery_description">Batterirelaterade behörigheter.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kamerarelaterade behörigheter.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Gammal lagring</string>
     <string name="permission_legacy_storage_description">Tillåter appar att komma åt extern lagring utan begränsningar för inramad lagring. Det var standardbeteendet före Android 10. Appar med den här åtkomsten kan läsa och skriva filer var som helst på delad lagring.</string>
     <string name="settings_page_label">Inställningar</string>
-    <string name="overview_summary_title_label">Sammanfattning</string>
     <string name="permissions_details_declaring_apps_label">Deklarerande appar</string>
     <string name="permissions_details_requesting_apps_label">Begärande appar</string>
-    <string name="overview_device_android_version_label">Android-version</string>
-    <string name="overview_device_name_label">Enhet</string>
-    <string name="overview_device_android_patch_label">Patchnivå</string>
     <string name="overview_summary_apps_active_profile_label">Appar i aktiv profil</string>
     <string name="overview_summary_apps_other_profile_label">Appar i hanterade användarprofiler, exklusive kloner</string>
     <string name="overview_summary_apps_sideloaded_label">Appar manuellt installerade från externa källor</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Ta bort felsökningslogg?</string>
     <string name="support_debuglog_session_delete_message">Den här felsökningsloggen tas bort permanent.</string>
     <string name="support_debuglog_sessions_empty">Inga felsökningsloggar</string>
-    <string name="support_debuglog_session_invalid">Ogiltig session</string>
     <string name="support_debuglog_session_recording">Spelar in…</string>
     <string name="support_debuglog_session_compressing">Komprimerar…</string>
     <string name="support_debuglog_failed_empty_log">Tom loggfil</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Meddelande skickat?</string>
     <string name="support_contact_sent_message">Om du skickade e-postmeddelandet kan den här sessionen rensas upp.</string>
     <string name="general_close_action">Stäng</string>
-    <string name="debug_debuglog_screen_delete_action">Radera</string>
     <!-- Contact form -->
     <string name="contact_support_label">Kontakta support</string>
     <string name="contact_category_label">Kategori</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Ingen e-postapp hittades på den här enheten.</string>
     <string name="contact_welcome_message">Jag läser varje meddelande själv och gör mitt bästa för att svara. Eftersom jag hanterar utveckling, felrättningar och support på egen hand kan det ta lite tid. Tack för tålamodet.</string>
     <string name="contact_footer_message">Ditt meddelande skickas via e-post. Enhets- och konfigurationsinformation bifogas automatiskt. Du kan bifoga skärmdumpar eller en video till e-postmeddelandet. Skriv gärna på engelska om möjligt.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Behåll</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Felsökningslogg</string>
     <string name="debug_debuglog_screen_subtitle">Exportera felsökningsinformation för felsökning</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Bevakningsomfång</string>
     <string name="watcher_scope_all">Alla appar</string>
     <string name="watcher_scope_non_system">Bara appar som inte är systemappar</string>
-    <string name="watcher_reports_label">Behörighetsändringsrapporter</string>
     <string name="watcher_reports_empty">Inga behörighetsändringar har identifierats än</string>
     <string name="watcher_report_detail_label">Ändringsrapport</string>
     <string name="watcher_diff_added_permissions">Nya behörigheter</string>
     <string name="watcher_diff_removed_permissions">Borttagna behörigheter</string>
     <string name="watcher_diff_grant_changes">Beviljandeändringar</string>
-    <string name="watcher_diff_added_declared">Nya deklarerade behörigheter</string>
-    <string name="watcher_diff_removed_declared">Borttagna deklarerade behörigheter</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Installerad</string>
     <string name="watcher_event_update">Uppdaterad</string>
     <string name="watcher_event_removed">Borttagen</string>
     <string name="watcher_event_grant_change">Behörighet ändrad</string>
     <string name="watcher_mark_all_seen">Markera alla som sedda</string>
     <string name="watcher_notification_action_mark_seen">Markera som sedd</string>
-    <string name="watcher_notification_action_delete">Radera</string>
     <string name="watcher_notification_body_added">Tillagd: %s</string>
     <string name="watcher_notification_body_removed">Borttagen: %s</string>
     <string name="watcher_notification_body_grant_changed">Beviljande ändrat: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Kod</string>
     <string name="watcher_detail_installer_label">Installationskälla</string>
     <string name="watcher_detail_installer_unknown">Okänd</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Behörighet (%d)</item>
-        <item quantity="other">Behörigheter (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Senast känd behörighet (%d)</item>
         <item quantity="other">Senast kända behörigheter (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Endast beviljade appar</string>
     <string name="export_perm_include_summary_label">Inkludera sammanfattningsantal</string>
     <string name="export_preview_label">Förhandsvisning</string>
-    <string name="export_preview_label_of">Förhandsvisning (%1$d av %2$d)</string>
     <string name="export_action_label">Exportera</string>
     <string name="export_progress_label">Exporterar…</string>
     <string name="export_success_message">Export klar</string>
     <string name="export_error_message">Export misslyckades</string>
     <string name="export_share_action">Dela med sig</string>
     <string name="export_open_action">Öppen</string>
-    <string name="export_done_action">Klar</string>
     <string name="export_retry_action">Försök igen</string>
     <string name="export_summary_filename">Fil</string>
     <string name="export_summary_size">Storlek</string>

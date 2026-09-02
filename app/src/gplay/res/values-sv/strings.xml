@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-tjänster är inte tillgängliga.</string>
-    <string name="upgrades_no_purchases_found_check_account">Inga köp hittades. Använder du rätt konto?</string>
     <string name="upgrades_gplay_already_owned_title">Redan köpt</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporterar att du redan äger denna uppgradering, men den kunde inte återställas. Kontrollera att du är inloggad med Google-kontot som användes för det ursprungliga köpet och försök sedan med \"Återställ köp\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot är reklamfri och respekterar din integritet. Att uppgradera stödjer fortsatt utveckling.</string>
@@ -9,14 +8,10 @@
     <string name="upgrade_screen_offers_unavailable_message">Priserna kunde inte läsas in just nu. Kontrollera Google Play och försök igen om en stund.</string>
     <string name="upgrade_screen_subscription_trial_action">Starta gratis prov</string>
     <string name="upgrade_screen_subscription_action">Prenumerera</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/år, avbryt när som helst</string>
     <string name="upgrade_screen_iap_action">Engångsköp</string>
-    <string name="upgrade_screen_iap_action_hint">Engångsingång av %s</string>
     <string name="upgrade_screen_restore_purchase_action">Återställ köp</string>
-    <string name="upgrade_screen_restore_purchase_message">Inga köp hittades. Kontrollera att du är inloggad med rätt Google-konto.</string>
     <string name="upgrade_screen_restore_banner_title">Redan köpt Pro?</string>
     <string name="upgrade_screen_restore_banner_body">Det verkar som om du redan uppgraderade till Pro på den här enheten tidigare. Återställ ditt köp för att låsa upp det igen.</string>
-    <string name="upgrade_screen_options_description">Prenumerationer förnyas automatiskt. Du kan avsluta när som helst.</string>
     <string name="upgrade_title_suffix">Expert</string>
     <!-- Ownership / status -->
     <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
@@ -27,7 +22,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">Du har %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ditt engångköp av Pro låser upp alla Pro-funktioner för alltid.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Din prenumeration låser upp alla Pro-funktioner.</string>
-    <string name="upgrade_screen_owned_sub_title">Din prenumeration</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Din prenumeration är aktiv och förnyas automatiskt.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Din prenumeration är inställd på att upphöra och kommer inte att förnyas. Du behåller Pro tills den slutar.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">Du äger Pro-engångsuppgraderingen och har också en aktiv prenumeration. Du behöver inte båda — avbryt prenumerationen i Google Play för att undvika ytterligare avgifter.</string>
@@ -35,20 +29,16 @@
     <string name="upgrade_screen_owned_iap_title">Pro på livstid</string>
     <string name="upgrade_screen_owned_iap_body">Du äger engångsuppgraderingen till Pro. Ingen prenumeration, inga förnyelser.</string>
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">Växla till ett engångsköp</string>
     <string name="upgrade_screen_owned_iap_purchase_note">Din prenumeration förnyar sig inte längre, så du kan nu byta till det permanenta Pro-engångsköpet.</string>
     <string name="upgrade_screen_owned_iap_locked_note">För att byta till engångsköpet måste du först avbryta din prenumeration i Google Play. Erbjudandet blir tillgängligt när den är inställd på att inte förnya.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play kontrollerar bara kontot du är inloggad på. Engångsköpet är separat från din prenumeration.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Din prenumeration är fortfarande aktiv och förnyas. Avbryt den i Google Play först.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bekräftar ditt köp</string>
     <string name="upgrade_screen_grace_body">Väntar på att Google Play ska ombekräfta ditt Pro-köp. Det löser sig vanligtvis själv.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">Vi kan fortfarande inte ombekräfta ditt Pro-köp med Google Play. Om detta fortsätter att hända kan du försöka återställa ditt köp eller kontakta support.</string>
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Status ser fel ut?</string>
     <string name="upgrade_screen_restore_status_body">Om du har köpt Pro men det inte visas kan du köra en direktkontroll mot Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Köp återställt.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">Kontrollera att du är inloggad med Google-kontot du använt för köp. En direktkontroll mot Google Play har just körts.</string>
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Uppgraderingsalternativ</string>
     <string name="upgrade_screen_offers_body">Samma funktioner, bara olika prismodeller.</string>

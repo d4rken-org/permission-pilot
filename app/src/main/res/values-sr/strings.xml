@@ -7,14 +7,12 @@
     <string name="label_help">Помоћ</string>
     <string name="general_error_label">Грешка</string>
     <string name="general_load_error_title">Није могло учитати податке</string>
-    <string name="general_load_error_hint">Нешто је пошло наопако приликом скенирања ваших инсталираних апликација.</string>
     <string name="general_refresh_error_hint">Освежавање није успело.</string>
     <string name="general_retry_action">Покушај поново</string>
     <string name="general_share_action">Подели</string>
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Отвори</string>
     <string name="general_continue_action">Настави</string>
-    <string name="general_no_action">Не</string>
     <string name="debug_debuglog_record_action">Снимање</string>
     <string name="settings_category_other_label">Остало</string>
     <string name="settings_category_gethelp_label">Добијте помоћ</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Опште</string>
     <string name="general_settings_desc">Општа подешавања која утичу на целу апликацију.</string>
     <string name="general_settings_scan_speed_label">Брзина скенирања</string>
-    <string name="general_settings_scan_speed_desc">Контролише паралелне операције приликом скенирања апликација. Веће вредности су брже, али могу изазвати рушење на неким уређајима.</string>
     <string name="general_settings_scan_speed_auto">Аутоматски (препоручено)</string>
     <string name="general_settings_scan_speed_1">1 (најбезбедније)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Политика приватности</string>
     <string name="settings_privacy_policy_desc">Одговорно поступање са подацима.</string>
     <string name="settings_support_label">Подршка</string>
-    <string name="documentation_label">Документација</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Место за дружење и постављање питања.</string>
     <string name="issue_tracker_label">Пратилац грешака</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">За подршку превода пројеката отвореног кода.</string>
     <string name="permissions_page_label">Дозволе</string>
     <string name="apps_page_label">Апликације</string>
-    <string name="app_type_system_label">Системска апликација</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Непозната дозвола. Захтева је ова апликација, али је ниједна друга апликација не декларише.</string>
-    <string name="permissions_unknown_description">Непозната дозвола. Захтевају је апликације, али није декларисана нигде.</string>
     <string name="permissions_app_type_declaring_description">Дозволу је креирала ова апликација.</string>
-    <string name="permissions_app_type_requesting_description">Апликација захтева ову дозволу.</string>
     <string name="general_filter_action">Филтрирај</string>
     <string name="general_cancel_action">Откажи</string>
     <string name="apps_filter_userapps_label">Корисничке апликације</string>
@@ -67,22 +58,6 @@
     <string name="apps_sort_app_name_label">Назив апликације</string>
     <string name="apps_sort_install_date_label">Датум инсталације</string>
     <string name="apps_sort_update_date_label">Последње ажурирање</string>
-    <string name="general_sort_action">Сортирај</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d од %2$d одобрено.</item>
-        <item quantity="few">%1$d од %2$d одобрено.</item>
-        <item quantity="other">%1$d од %2$d одобрено.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d дозвола захтевана.</item>
-        <item quantity="few">%1$d дозволе захтеване.</item>
-        <item quantity="other">%1$d дозвола захтевано.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Декларише %1$d дозволу.</item>
-        <item quantity="few">Декларише %1$d дозволе.</item>
-        <item quantity="other">Декларише %1$d дозвола.</item>
-    </plurals>
     <string name="apps_details_installer_label">Извор инсталације</string>
     <string name="apps_details_installer_unknown_label">Информација није доступна</string>
     <string name="apps_details_open_settings_error">Није могуће отворити подешавања апликације за овај профил</string>
@@ -105,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Број затражених апликација</string>
     <string name="permissions_search_list_hint">Претражи дозволе</string>
     <string name="apps_search_list_hint">Претражи апликације</string>
-    <string name="permissions_details_protection_label">Ниво заштите</string>
     <string name="permissions_protection_type_normal_label">Нормалан</string>
     <string name="permissions_protection_type_dangerous_label">Опасан</string>
     <string name="permissions_protection_type_signature_label">Потпис</string>
@@ -130,7 +104,6 @@
         <item>Читање ситног текста</item>
     </string-array>
     <string name="apps_app_details_label">Детаљи апликације</string>
-    <string name="apps_details_shareduserid_label">Апликације са дељеним корисничким ID-ом</string>
     <string name="apps_details_siblings_label">Сродне апликације</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -151,14 +124,10 @@
     <string name="general_collapse_all_action">Скупи све</string>
     <string name="general_more_options_action">Више опција</string>
     <string name="apps_details_twins_label">Клонови</string>
-    <string name="apps_details_twins_descriptions">Инсталирано у другом корисничком профилу/профилима.</string>
-    <string name="install_date_label">Датум инсталације</string>
     <string name="apps_filter_sharedid_label">Дељени кориснички ID</string>
     <string name="apps_filter_multipleprofiles_label">Има клонове</string>
     <string name="support_debuglog_label">Дневник за отклањање грешака</string>
     <string name="support_debuglog_desc">Снимите све што апликација ради у текстуалну датотеку коју можете поделити.</string>
-    <string name="updated_at_x">Последње ажурирање: %s</string>
-    <string name="installed_at_x">Прва инсталација: %s</string>
     <string name="apps_sort_install_source_label">Извор инсталације</string>
     <string name="permissions_action_none_msg">Нема доступне акције за ову дозволу</string>
     <string name="permissions_details_open_settings_action">Отвори системска подешавања</string>
@@ -184,13 +153,6 @@
     <string name="apps_filter_sort_action">Филтер &amp; Сортирање</string>
     <string name="apps_help_tag_icons_title">Ознаке дозвола</string>
     <string name="apps_help_tag_icons_description">Ознаке приказују категорије осетљивих дозвола које су додељене апликацији</string>
-    <string name="apps_details_description_restrictions_caveat_description">Ова апликација је инсталирана у другом корисничком профилу. Одобрене дозволе се могу утврдити само за апликације инсталиране у тренутно активном профилу, због ограничења Андроида.</string>
-    <string name="apps_details_description_uninstalled_caveat">Ова апликација је деинсталирана али су њени подаци задржани. Стања дозвола не могу се утврдити за деинсталиране апликације.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d дозвола захтевана.</item>
-        <item quantity="few">%d дозволе захтеване.</item>
-        <item quantity="other">%d дозвола захтевано.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d од %2$d дозвола одобрено.</item>
         <item quantity="few">%1$d од %2$d дозволе одобрено.</item>
@@ -215,8 +177,6 @@
         <item quantity="other">%d манифеста преостало за анализу…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Ништа необично није откривено</string>
-    <string name="apps_details_manifest_unavailable">Манифест није доступан</string>
-    <string name="apps_details_manifest_error">Није могуће прочитати манифест</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d упит пакета</item>
         <item quantity="few">%d упита пакета</item>
@@ -239,11 +199,6 @@
     <string name="apps_manifest_viewer_label">Прегледач манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Претражите манифест</string>
     <string name="apps_manifest_viewer_error_unknown">Непозната грешка приликом учитавања манифеста.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d подударање</item>
-        <item quantity="few">%d подударања</item>
-        <item quantity="other">%d подударања</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d од %2$d</string>
     <string name="apps_manifest_section_uses_permission">Користи дозволу</string>
     <string name="apps_manifest_section_permission">Дозвола</string>
@@ -287,16 +242,6 @@
         <item quantity="few">%d системских апликација</item>
         <item quantity="other">%d системских апликација</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Корисничке апликације: Одобрено %1$d од %2$d.</item>
-        <item quantity="few">Корисничке апликације: Одобрено %1$d од %2$d.</item>
-        <item quantity="other">Корисничке апликације: Одобрено %1$d од %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Системске апликације: Одобрено %1$d од %2$d.</item>
-        <item quantity="few">Системске апликације: Одобрено %1$d од %2$d.</item>
-        <item quantity="other">Системске апликације: Одобрено %1$d од %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d апликација у другим корисничким профилима такође захтева ову дозволу.</item>
         <item quantity="few">%d апликације у другим корисничким профилима такође захтевају ову дозволу.</item>
@@ -308,7 +253,6 @@
         <item quantity="other">%d деинсталираних апликација са сачуваним подацима такође захтева ову дозволу.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Апликације инсталиране у другим корисничким профилима су искључене из горњег прорачуна због ограничења Андроида.</string>
-    <string name="permissions_details_empty_filter_message">Ниједна апликација не одговара тренутним филтерима. Додирните икону филтера да прилагодите.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Извршавање</string>
     <string name="permissions_tag_install_time_label">Време инсталације</string>
@@ -405,8 +349,6 @@
     <string name="permission_loader_usage_stats_description">Дозвољава апликацијама да прикупљају статистику о коришћењу учитавача података на уређају.</string>
     <string name="permission_premium_sms_services_label">Приступ премијум СМС-у</string>
     <string name="permission_premium_sms_services_description">Дозвољава апликацијама да користе премијум СМС услуге. Ово ће вас коштати новца.</string>
-    <string name="permission_unlimited_data_access_label">Неограничен приступ подацима</string>
-    <string name="permission_unlimited_data_access_description">Дозвољава апликацијама приступ неограниченим подацима. Апликације могу трошити податке чак и када је Уштеда података укључена.</string>
     <string name="permission_group_calendar_label">Календар</string>
     <string name="permission_group_calendar_description"><![CDATA[Дозволе везане за календар, нпр. преглед и уређивање ставки.]]></string>
     <string name="permission_group_files_label">Датотеке и медији</string>
@@ -427,8 +369,6 @@
     <string name="permission_group_contacts_description">"Читање и писање контаката."</string>
     <string name="permission_group_apps_label">Апликације</string>
     <string name="permission_group_apps_description">Дозволе за посебан приступ које захтевају изричиту сагласност корисника.</string>
-    <string name="permission_group_battery_label">Батерија</string>
-    <string name="permission_group_battery_description">Дозволе везане за батерију.</string>
     <string name="permission_group_camera_label">Камера</string>
     <string name="permission_group_camera_description">Дозволе везане за камеру.</string>
     <string name="permission_group_audio_label">Микрофон</string>
@@ -439,12 +379,8 @@
     <string name="permission_legacy_storage_label">Старо складиште</string>
     <string name="permission_legacy_storage_description">Омогућава апликацијама приступ екстерном складишту без ограничења обима. Ово је биоподразумевано понашање пре Андроида 10. Апликације са овим приступом могу читати и писати фајлове било где у дељењом складишту.</string>
     <string name="settings_page_label">Подешавања</string>
-    <string name="overview_summary_title_label">Резиме</string>
     <string name="permissions_details_declaring_apps_label">Апликације које декларишу</string>
     <string name="permissions_details_requesting_apps_label">Апликације које затражују</string>
-    <string name="overview_device_android_version_label">Верзија Андроида</string>
-    <string name="overview_device_name_label">Уређај</string>
-    <string name="overview_device_android_patch_label">Ниво закрпе</string>
     <string name="overview_summary_apps_active_profile_label">Апликације у активном профилу</string>
     <string name="overview_summary_apps_other_profile_label">Апликације у управљаном корисничком профилу/профилима, без клонова</string>
     <string name="overview_summary_apps_sideloaded_label">Апликације ручно инсталиране из спољашњих извора</string>
@@ -493,7 +429,6 @@
     <string name="support_debuglog_session_delete_title">Избрисати дебаг дневник?</string>
     <string name="support_debuglog_session_delete_message">Овај дебаг дневник ће бити трајно избрисан.</string>
     <string name="support_debuglog_sessions_empty">Нема дебаг дневника</string>
-    <string name="support_debuglog_session_invalid">Неважећа сесија</string>
     <string name="support_debuglog_session_recording">Снимање…</string>
     <string name="support_debuglog_session_compressing">Компресија…</string>
     <string name="support_debuglog_failed_empty_log">Празан фајл дневника</string>
@@ -505,7 +440,6 @@
     <string name="support_contact_sent_title">Порука је послата?</string>
     <string name="support_contact_sent_message">Ако сте послали е-пошту, ова сесија може бити очишћена.</string>
     <string name="general_close_action">Затвори</string>
-    <string name="debug_debuglog_screen_delete_action">Обриши</string>
     <!-- Contact form -->
     <string name="contact_support_label">Контактирајте подршку</string>
     <string name="contact_category_label">Категорија</string>
@@ -535,8 +469,6 @@
     <string name="contact_no_email_app">Ниједна апликација за е-пошту није понађена на овом уређају.</string>
     <string name="contact_welcome_message">Сам лично читам сваку поруку и трудим се да одговорим. Пошто сам задужен за развој, поправке грешака и подршку, може проћи нешто времена. Хвала на стрпљењу.</string>
     <string name="contact_footer_message">Ваша порука ће бити послата путем е-поште. Информације о уређају и подешавањима се додају аутоматски. Можете приложити снимке или видео. Ако је могуће, пишите на енглеском.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Задржи</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Дебаг дневник</string>
     <string name="debug_debuglog_screen_subtitle">Извезите дебаг информације за отклањање грешака</string>
@@ -621,22 +553,17 @@
     <string name="watcher_scope_label">Опсег надзора</string>
     <string name="watcher_scope_all">Све апликације</string>
     <string name="watcher_scope_non_system">Само несистемске апликације</string>
-    <string name="watcher_reports_label">Извештаји о променама дозвола</string>
     <string name="watcher_reports_empty">Још нису откривене промене дозвола</string>
     <string name="watcher_report_detail_label">Извештај о променама</string>
     <string name="watcher_diff_added_permissions">Нове дозволе</string>
     <string name="watcher_diff_removed_permissions">Уклоњене дозволе</string>
     <string name="watcher_diff_grant_changes">Промене одобравања</string>
-    <string name="watcher_diff_added_declared">Ново декларисане дозволе</string>
-    <string name="watcher_diff_removed_declared">Уклоњене декларисане дозволе</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Инсталирано</string>
     <string name="watcher_event_update">Ажурирано</string>
     <string name="watcher_event_removed">Уклоњено</string>
     <string name="watcher_event_grant_change">Дозвола промењена</string>
     <string name="watcher_mark_all_seen">Означи све као виђено</string>
     <string name="watcher_notification_action_mark_seen">Означи као виђено</string>
-    <string name="watcher_notification_action_delete">Обриши</string>
     <string name="watcher_notification_body_added">Додато: %s</string>
     <string name="watcher_notification_body_removed">Уклоњено: %s</string>
     <string name="watcher_notification_body_grant_changed">Одобравање промењено: %s</string>
@@ -672,11 +599,6 @@
     <string name="watcher_detail_version_code_label">Код</string>
     <string name="watcher_detail_installer_label">Извор инсталације</string>
     <string name="watcher_detail_installer_unknown">Непознато</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Дозволе (%d)</item>
-        <item quantity="few">Дозволе (%d)</item>
-        <item quantity="other">Дозволе (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Последње познате дозволе (%d)</item>
         <item quantity="few">Последње познате дозволе (%d)</item>
@@ -761,14 +683,12 @@
     <string name="export_perm_granted_only_label">Само одобрене апликације</string>
     <string name="export_perm_include_summary_label">Укључи збирне бројеве</string>
     <string name="export_preview_label">Преглед</string>
-    <string name="export_preview_label_of">Преглед (%1$d од %2$d)</string>
     <string name="export_action_label">Извези</string>
     <string name="export_progress_label">Извоз у току…</string>
     <string name="export_success_message">Извоз завршен</string>
     <string name="export_error_message">Извоз неуспешан</string>
     <string name="export_share_action">Подели</string>
     <string name="export_open_action">Отворено</string>
-    <string name="export_done_action">Готово</string>
     <string name="export_retry_action">Покушај поново</string>
     <string name="export_summary_filename">Фајл</string>
     <string name="export_summary_size">Величина</string>

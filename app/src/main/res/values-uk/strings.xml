@@ -7,14 +7,12 @@
     <string name="label_help">Допомога</string>
     <string name="general_error_label">Помилка</string>
     <string name="general_load_error_title">Не вдалося завантажити дані</string>
-    <string name="general_load_error_hint">Щось пішло не так під час сканування встановлених додатків.</string>
     <string name="general_refresh_error_hint">Оновлення не вдалося.</string>
     <string name="general_retry_action">Повторити</string>
     <string name="general_share_action">Поділитися</string>
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Відкрити</string>
     <string name="general_continue_action">Продовжити</string>
-    <string name="general_no_action">Ні</string>
     <string name="debug_debuglog_record_action">Запис</string>
     <string name="settings_category_other_label">Інше</string>
     <string name="settings_category_gethelp_label">Отримати допомогу</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Загальні</string>
     <string name="general_settings_desc">Загальні налаштування, що впливають на всю програму.</string>
     <string name="general_settings_scan_speed_label">Швидкість сканування</string>
-    <string name="general_settings_scan_speed_desc">Керує паралельними операціями під час сканування програм. Вищі значення пришвидшують роботу, але можуть призводити до збоїв на деяких пристроях.</string>
     <string name="general_settings_scan_speed_auto">Авто (рекомендовано)</string>
     <string name="general_settings_scan_speed_1">1 (найбезпечніший)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Політика конфіденційності</string>
     <string name="settings_privacy_policy_desc">Відповідальне поводження з даними.</string>
     <string name="settings_support_label">Підтримка</string>
-    <string name="documentation_label">Документація</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Місце для спілкування та запитань.</string>
     <string name="issue_tracker_label">Відстеження проблем</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">За підтримку перекладу проектів з відкритим кодом.</string>
     <string name="permissions_page_label">Дозволи</string>
     <string name="apps_page_label">Програми</string>
-    <string name="app_type_system_label">Системна програма</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Невідомий дозвіл. Він запитується цією програмою, але жодна інша програма не оголошує його.</string>
-    <string name="permissions_unknown_description">Невідомий дозвіл. Він запитується програмами, але не оголошений ніде.</string>
     <string name="permissions_app_type_declaring_description">Дозвіл створюється цією програмою.</string>
-    <string name="permissions_app_type_requesting_description">Програма запитує дозвіл.</string>
     <string name="general_filter_action">Фільтрувати</string>
     <string name="general_cancel_action">Скасувати</string>
     <string name="apps_filter_userapps_label">Користувацькі програми</string>
@@ -67,25 +58,6 @@
     <string name="apps_sort_app_name_label">Назва програми</string>
     <string name="apps_sort_install_date_label">Дата встановлення</string>
     <string name="apps_sort_update_date_label">Останнє оновлення</string>
-    <string name="general_sort_action">Сортувати</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d з %2$d надано.</item>
-        <item quantity="few">%1$d з %2$d надано.</item>
-        <item quantity="many">%1$d з %2$d надано.</item>
-        <item quantity="other">%1$d з %2$d надано.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d дозвіл запитано.</item>
-        <item quantity="few">%1$d дозволи запитано.</item>
-        <item quantity="many">%1$d дозволів запитано.</item>
-        <item quantity="other">%1$d дозволу запитано.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Оголошено %1$d дозвіл.</item>
-        <item quantity="few">Оголошено %1$d дозволи.</item>
-        <item quantity="many">Оголошено %1$d дозволів.</item>
-        <item quantity="other">Оголошено %1$d дозволу.</item>
-    </plurals>
     <string name="apps_details_installer_label">Джерело встановлення</string>
     <string name="apps_details_installer_unknown_label">Інформація недоступна</string>
     <string name="apps_details_open_settings_error">Не вдалося відкрити налаштування програми для цього профілю</string>
@@ -108,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Кількість програм, що запитують</string>
     <string name="permissions_search_list_hint">Пошук дозволів</string>
     <string name="apps_search_list_hint">Пошук програм</string>
-    <string name="permissions_details_protection_label">Рівень захисту</string>
     <string name="permissions_protection_type_normal_label">Звичайний</string>
     <string name="permissions_protection_type_dangerous_label">Небезпечний</string>
     <string name="permissions_protection_type_signature_label">Підпис</string>
@@ -133,7 +104,6 @@
         <item>Читаємо дрібний друк</item>
     </string-array>
     <string name="apps_app_details_label">Деталі програми</string>
-    <string name="apps_details_shareduserid_label">Програми зі спільним ID користувача</string>
     <string name="apps_details_siblings_label">Сестринські</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -154,14 +124,10 @@
     <string name="general_collapse_all_action">Згорнути все</string>
     <string name="general_more_options_action">Додаткові параметри</string>
     <string name="apps_details_twins_label">Клони</string>
-    <string name="apps_details_twins_descriptions">Встановлено в інших профілях користувачів.</string>
-    <string name="install_date_label">Дата встановлення</string>
     <string name="apps_filter_sharedid_label">Спільний ID користувача</string>
     <string name="apps_filter_multipleprofiles_label">Має клони</string>
     <string name="support_debuglog_label">Журнал налагодження</string>
     <string name="support_debuglog_desc">Записує все, що робить програма, у текстовий файл, яким ви можете поділитися.</string>
-    <string name="updated_at_x">Останнє оновлення: %s</string>
-    <string name="installed_at_x">Вперше встановлено: %s</string>
     <string name="apps_sort_install_source_label">Джерело встановлення</string>
     <string name="permissions_action_none_msg">Немає доступних дій для цього дозволу</string>
     <string name="permissions_details_open_settings_action">Відкрити системні налаштування</string>
@@ -187,14 +153,6 @@
     <string name="apps_filter_sort_action">Фільтр та сортування</string>
     <string name="apps_help_tag_icons_title">Мітки дозволів</string>
     <string name="apps_help_tag_icons_description">Мітки показують, до яких чутливих категорій дозволів надано доступ застосунку</string>
-    <string name="apps_details_description_restrictions_caveat_description">Ця програма встановлена в іншому профілі користувача. Надані дозволи можна визначити лише для програм, встановлених у наразі активному профілі, через обмеження Android.</string>
-    <string name="apps_details_description_uninstalled_caveat">Цю програму було видалено, але її дані збережено. Стан дозволів неможливо визначити для видалених програм.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d дозвіл запитано.</item>
-        <item quantity="few">%d дозволи запитано.</item>
-        <item quantity="many">%d дозволів запитано.</item>
-        <item quantity="other">%d дозволу запитано.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d з %2$d дозволів надано.</item>
         <item quantity="few">%1$d з %2$d дозволів надано.</item>
@@ -221,8 +179,6 @@
         <item quantity="other">%d маніфестів залишилося для аналізу…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Нічого незвичайного не виявлено</string>
-    <string name="apps_details_manifest_unavailable">Маніфест недоступний</string>
-    <string name="apps_details_manifest_error">Не вдалося прочитати маніфест</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d запит пакунка</item>
         <item quantity="few">%d запити пакунка</item>
@@ -248,12 +204,6 @@
     <string name="apps_manifest_viewer_label">Переглядач маніфесту</string>
     <string name="apps_manifest_viewer_search_hint">Пошук у маніфесті</string>
     <string name="apps_manifest_viewer_error_unknown">Невідома помилка при завантаженні маніфесту.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d збіг</item>
-        <item quantity="few">%d збіги</item>
-        <item quantity="many">%d збігів</item>
-        <item quantity="other">%d збігів</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d з %2$d</string>
     <string name="apps_manifest_section_uses_permission">Використовує дозвіл</string>
     <string name="apps_manifest_section_permission">Дозвіл</string>
@@ -302,18 +252,6 @@
         <item quantity="many">%d системних програм</item>
         <item quantity="other">%d системних програм</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Користувацькі застосунки: надано %1$d з %2$d.</item>
-        <item quantity="few">Користувацькі застосунки: надано %1$d з %2$d.</item>
-        <item quantity="many">Користувацькі застосунки: надано %1$d з %2$d.</item>
-        <item quantity="other">Користувацькі застосунки: надано %1$d з %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Системні застосунки: надано %1$d з %2$d.</item>
-        <item quantity="few">Системні застосунки: надано %1$d з %2$d.</item>
-        <item quantity="many">Системні застосунки: надано %1$d з %2$d.</item>
-        <item quantity="other">Системні застосунки: надано %1$d з %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d програма в інших профілях користувача також запитує цей дозвіл.</item>
         <item quantity="few">%d програми в інших профілях користувача також запитують цей дозвіл.</item>
@@ -327,7 +265,6 @@
         <item quantity="other">%d видалених програм зі збереженими даними також запитують цей дозвіл.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Програми, встановлені в інших профілях користувачів, виключені з розрахунку вище через обмеження Android.</string>
-    <string name="permissions_details_empty_filter_message">Немає програм, що відповідають поточним фільтрам. Натисніть на значок фільтра для налаштування.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Час виконання</string>
     <string name="permissions_tag_install_time_label">Під час встановлення</string>
@@ -425,8 +362,6 @@
     <string name="permission_loader_usage_stats_description">Дозволяє програмам збирати статистику про використання завантажувача даних на пристрої.</string>
     <string name="permission_premium_sms_services_label">Доступ до преміум SMS</string>
     <string name="permission_premium_sms_services_description">Дозволяє програмам використовувати преміум послуги текстових повідомлень. Це коштуватиме вам грошей.</string>
-    <string name="permission_unlimited_data_access_label">Необмежений доступ до даних</string>
-    <string name="permission_unlimited_data_access_description">Дозволяє програмам доступ до необмежених даних. Програми можуть споживати дані навіть коли Заощадження даних увімкнено.</string>
     <string name="permission_group_calendar_label">Календар</string>
     <string name="permission_group_calendar_description"><![CDATA[Дозволи, пов\'язані з календарем, наприклад, перегляд і редагування записів.]]></string>
     <string name="permission_group_files_label">Файли та медіа</string>
@@ -447,8 +382,6 @@
     <string name="permission_group_contacts_description">"Читання та запис контактів."</string>
     <string name="permission_group_apps_label">Програми</string>
     <string name="permission_group_apps_description">Дозволи спеціального доступу, що вимагають явної згоди користувача.</string>
-    <string name="permission_group_battery_label">Батарея</string>
-    <string name="permission_group_battery_description">Дозволи, пов\'язані з батареєю.</string>
     <string name="permission_group_camera_label">Камера</string>
     <string name="permission_group_camera_description">Дозволи, пов\'язані з камерою.</string>
     <string name="permission_group_audio_label">Мікрофон</string>
@@ -459,12 +392,8 @@
     <string name="permission_legacy_storage_label">Застаріле сховище</string>
     <string name="permission_legacy_storage_description">Дозволяє програмам отримувати доступ до зовнішнього сховища без обмежень сховища з областю видимості. Це була поведінка за замовчуванням до Android 10. Програми з таким доступом можуть читати і записувати файли будь-де на спільному сховищі.</string>
     <string name="settings_page_label">Налаштування</string>
-    <string name="overview_summary_title_label">Зведення</string>
     <string name="permissions_details_declaring_apps_label">Програми, що оголошують</string>
     <string name="permissions_details_requesting_apps_label">Програми, що запитують</string>
-    <string name="overview_device_android_version_label">Версія Android</string>
-    <string name="overview_device_name_label">Пристрій</string>
-    <string name="overview_device_android_patch_label">Рівень патча</string>
     <string name="overview_summary_apps_active_profile_label">Програми в активному профілі</string>
     <string name="overview_summary_apps_other_profile_label">Програми в керованих профілях користувачів, виключаючи клони</string>
     <string name="overview_summary_apps_sideloaded_label">Застосунки, встановлені вручну із зовнішніх джерел</string>
@@ -514,7 +443,6 @@
     <string name="support_debuglog_session_delete_title">Видалити журнал налагодження?</string>
     <string name="support_debuglog_session_delete_message">Цей журнал налагодження буде назавжди видалено.</string>
     <string name="support_debuglog_sessions_empty">Немає журналів налагодження</string>
-    <string name="support_debuglog_session_invalid">Недійсний сеанс</string>
     <string name="support_debuglog_session_recording">Записується…</string>
     <string name="support_debuglog_session_compressing">Стиснення…</string>
     <string name="support_debuglog_failed_empty_log">Порожній файл журналу</string>
@@ -526,7 +454,6 @@
     <string name="support_contact_sent_title">Повідомлення надіслано?</string>
     <string name="support_contact_sent_message">Якщо ви надіслали електронний лист, цей сеанс можна очистити.</string>
     <string name="general_close_action">Закрити</string>
-    <string name="debug_debuglog_screen_delete_action">Видалити</string>
     <!-- Contact form -->
     <string name="contact_support_label">Зв’язатися з підтримкою</string>
     <string name="contact_category_label">Категорія</string>
@@ -557,8 +484,6 @@
     <string name="contact_no_email_app">На цьому пристрої не знайдено жодного додатка електронної пошти.</string>
     <string name="contact_welcome_message">Я особисто читаю кожне повідомлення і намагаюсь відповісти. Оскільки я самостійно займаюсь розробкою, виправленням помилок і підтримкою, це може зайняти деякий час. Дякую за розуміння.</string>
     <string name="contact_footer_message">Ваше повідомлення буде надіслано електронною поштою. Інформація про пристрій і налаштування додається автоматично. До електронного листа можна додати знімки або відео. Будь ласка, пишіть англійською мовою, якщо можливо.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Зберегти</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Журнал налагодження</string>
     <string name="debug_debuglog_screen_subtitle">Експортувати інформацію налагодження для усунення неполадок</string>
@@ -646,22 +571,17 @@
     <string name="watcher_scope_label">Область спостереження</string>
     <string name="watcher_scope_all">Усі програми</string>
     <string name="watcher_scope_non_system">Тільки несистемні програми</string>
-    <string name="watcher_reports_label">Звіти про зміни дозволів</string>
     <string name="watcher_reports_empty">Змін дозволів ще не виявлено</string>
     <string name="watcher_report_detail_label">Звіт про зміни</string>
     <string name="watcher_diff_added_permissions">Нові дозволи</string>
     <string name="watcher_diff_removed_permissions">Видалені дозволи</string>
     <string name="watcher_diff_grant_changes">Зміни надання</string>
-    <string name="watcher_diff_added_declared">Нові оголошені дозволи</string>
-    <string name="watcher_diff_removed_declared">Видалені оголошені дозволи</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Встановлено</string>
     <string name="watcher_event_update">Оновлено</string>
     <string name="watcher_event_removed">Видалено</string>
     <string name="watcher_event_grant_change">Дозвіл змінено</string>
     <string name="watcher_mark_all_seen">Позначити все як переглянуте</string>
     <string name="watcher_notification_action_mark_seen">Позначити як переглянуте</string>
-    <string name="watcher_notification_action_delete">Видалити</string>
     <string name="watcher_notification_body_added">Додано: %s</string>
     <string name="watcher_notification_body_removed">Видалено: %s</string>
     <string name="watcher_notification_body_grant_changed">Надання змінено: %s</string>
@@ -700,12 +620,6 @@
     <string name="watcher_detail_version_code_label">Код</string>
     <string name="watcher_detail_installer_label">Джерело встановлення</string>
     <string name="watcher_detail_installer_unknown">Невідомо</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Дозволи (%d)</item>
-        <item quantity="few">Дозволи (%d)</item>
-        <item quantity="many">Дозволи (%d)</item>
-        <item quantity="other">Дозволи (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Останні відомі дозволи (%d)</item>
         <item quantity="few">Останні відомі дозволи (%d)</item>
@@ -796,14 +710,12 @@
     <string name="export_perm_granted_only_label">Тільки додатки з наданим дозволом</string>
     <string name="export_perm_include_summary_label">Включити зведену статистику</string>
     <string name="export_preview_label">Попередній перегляд</string>
-    <string name="export_preview_label_of">Попередній перегляд (%1$d з %2$d)</string>
     <string name="export_action_label">Експорт</string>
     <string name="export_progress_label">Експортується…</string>
     <string name="export_success_message">Експорт завершено</string>
     <string name="export_error_message">Помилка експорту</string>
     <string name="export_share_action">Поділитися</string>
     <string name="export_open_action">Відкрито</string>
-    <string name="export_done_action">Готово</string>
     <string name="export_retry_action">Повторити</string>
     <string name="export_summary_filename">Файл</string>
     <string name="export_summary_size">Розмір</string>

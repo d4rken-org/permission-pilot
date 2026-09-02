@@ -7,14 +7,12 @@
     <string name="label_help">সাহায্য</string>
     <string name="general_error_label">ত্রুটি</string>
     <string name="general_load_error_title">ডেটা লোড করা যায়নি</string>
-    <string name="general_load_error_hint">আপনার ইনস্টল করা অ্যাপগুলি স্ক্যান করার সময় কিছু ত্রুটি হয়েছে।</string>
     <string name="general_refresh_error_hint">রিফ্রেশ ব্যর্থ হয়েছে।</string>
     <string name="general_retry_action">পুনরায় চেষ্টা করুন</string>
     <string name="general_share_action">শেয়ার</string>
     <string name="general_done_action">সম্পন্ন</string>
     <string name="general_open_action">খুলুন</string>
     <string name="general_continue_action">চালিয়ে যান</string>
-    <string name="general_no_action">না</string>
     <string name="debug_debuglog_record_action">রেকর্ড</string>
     <string name="settings_category_other_label">অন্যান্য</string>
     <string name="settings_category_gethelp_label">সাহায্য নিন</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">সাধারণ</string>
     <string name="general_settings_desc">সাধারণ টুইক যা পুরো অ্যাপকে প্রভাবিত করে।</string>
     <string name="general_settings_scan_speed_label">স্ক্যান গতি</string>
-    <string name="general_settings_scan_speed_desc">অ্যাপ স্ক্যান করার সময় সমান্তরাল ক্রিয়াকলাপ নিয়ন্ত্রণ করে। উচ্চ মান দ্রুততর কিন্তু কিছু ডিভাইসে ক্র্যাশ ঘটাতে পারে।</string>
     <string name="general_settings_scan_speed_auto">স্বয়ংক্রিয় (প্রস্তাবিত)</string>
     <string name="general_settings_scan_speed_1">১ (সবচেয়ে নিরাপদ)</string>
     <string name="general_settings_scan_speed_2">২</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">গোপনীয়তা নীতি</string>
     <string name="settings_privacy_policy_desc">দায়িত্বশীলভাবে ডেটা পরিচালনা।</string>
     <string name="settings_support_label">সহায়তা</string>
-    <string name="documentation_label">ডকুমেন্টেশন</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">আড্ডা দেওয়ার এবং প্রশ্ন জিজ্ঞাসা করার জায়গা।</string>
     <string name="issue_tracker_label">সমস্যা ট্র্যাকার</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">ওপেন-সোর্স প্রকল্পগুলোর অনুবাদ সমর্থন করার জন্য।</string>
     <string name="permissions_page_label">অনুমতি</string>
     <string name="apps_page_label">অ্যাপস</string>
-    <string name="app_type_system_label">সিস্টেম অ্যাপ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">অজানা অনুমতি। এটি এই অ্যাপ দ্বারা অনুরোধ করা হয়েছে, কিন্তু অন্য কোনো অ্যাপ এটি ঘোষণা করে না।</string>
-    <string name="permissions_unknown_description">অজানা অনুমতি। এটি অ্যাপগুলি দ্বারা অনুরোধ করা হয়েছে, কিন্তু কোথাও ঘোষণা করা হয়নি।</string>
     <string name="permissions_app_type_declaring_description">অনুমতি এই অ্যাপ দ্বারা তৈরি।</string>
-    <string name="permissions_app_type_requesting_description">অ্যাপ অনুমতি অনুরোধ করে।</string>
     <string name="general_filter_action">ফিল্টার</string>
     <string name="general_cancel_action">বাতিল</string>
     <string name="apps_filter_userapps_label">ব্যবহারকারী অ্যাপস</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">অ্যাপের নাম</string>
     <string name="apps_sort_install_date_label">ইনস্টলের তারিখ</string>
     <string name="apps_sort_update_date_label">সর্বশেষ আপডেট</string>
-    <string name="general_sort_action">সাজান</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%2$d-এর মধ্যে %1$d টি মঞ্জুর করা হয়েছে।</item>
-        <item quantity="other">%2$d-এর মধ্যে %1$d টি মঞ্জুর করা হয়েছে।</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d টি অনুমতি চাওয়া হয়েছে।</item>
-        <item quantity="other">%1$d টি অনুমতি চাওয়া হয়েছে।</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">%1$d টি অনুমতি ঘোষণা করা হয়েছে।</item>
-        <item quantity="other">%1$d টি অনুমতি ঘোষণা করা হয়েছে।</item>
-    </plurals>
     <string name="apps_details_installer_label">ইনস্টল উৎস</string>
     <string name="apps_details_installer_unknown_label">তথ্য উপলব্ধ নেই</string>
     <string name="apps_details_open_settings_error">এই প্রোফাইলের জন্য অ্যাপ সেটিংস খুলতে পারেনি</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">অনুরোধিত অ্যাপের সংখ্যা</string>
     <string name="permissions_search_list_hint">অনুমতি খুঁজুন</string>
     <string name="apps_search_list_hint">অ্যাপস খুঁজুন</string>
-    <string name="permissions_details_protection_label">সুরক্ষা স্তর</string>
     <string name="permissions_protection_type_normal_label">সাধারণ</string>
     <string name="permissions_protection_type_dangerous_label">বিপজ্জনক</string>
     <string name="permissions_protection_type_signature_label">স্বাক্ষর</string>
@@ -127,7 +104,6 @@
         <item>সূক্ষ্ম শর্তাবলী পড়া হচ্ছে</item>
     </string-array>
     <string name="apps_app_details_label">অ্যাপের বিবরণ</string>
-    <string name="apps_details_shareduserid_label">শেয়ার করা ব্যবহারকারী ID সহ অ্যাপস</string>
     <string name="apps_details_siblings_label">ভাইবোন</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">সব সংকুচিত করুন</string>
     <string name="general_more_options_action">আরো বিকল্প</string>
     <string name="apps_details_twins_label">ক্লোন</string>
-    <string name="apps_details_twins_descriptions">অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা।</string>
-    <string name="install_date_label">ইনস্টলের তারিখ</string>
     <string name="apps_filter_sharedid_label">শেয়ার করা ব্যবহারকারী ID</string>
     <string name="apps_filter_multipleprofiles_label">ক্লোন আছে</string>
     <string name="support_debuglog_label">ডিবাগ লগ</string>
     <string name="support_debuglog_desc">অ্যাপ যা করছে সব কিছু একটি টেক্সট ফাইলে রেকর্ড করুন যা আপনি শেয়ার করতে পারেন।</string>
-    <string name="updated_at_x">সর্বশেষ আপডেট: %s</string>
-    <string name="installed_at_x">প্রথম ইনস্টল: %s</string>
     <string name="apps_sort_install_source_label">ইনস্টল উৎস</string>
     <string name="permissions_action_none_msg">এই অনুমতির জন্য কোনো কার্যক্রম উপলব্ধ নেই</string>
     <string name="permissions_details_open_settings_action">সিস্টেম সেটিংস খুলুন</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">ফিল্টার ও সাজান</string>
     <string name="apps_help_tag_icons_title">অনুমতি চিপ</string>
     <string name="apps_help_tag_icons_description">চিপগুলো দেখায় যে একটি অ্যাপকে কোন সংবেদনশীল অনুমতি বিভাগগুলো মঞ্জুর করা হয়েছে</string>
-    <string name="apps_details_description_restrictions_caveat_description">এই অ্যাপটি অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা। Android সীমাবদ্ধতার কারণে বর্তমানে সক্রিয় প্রোফাইলে ইনস্টল করা অ্যাপগুলির জন্য শুধুমাত্র প্রদত্ত অনুমতি নির্ধারণ করা যেতে পারে।</string>
-    <string name="apps_details_description_uninstalled_caveat">এই অ্যাপটি আনইনস্টল করা হয়েছে কিন্তু এর ডেটা রক্ষিত আছে। আনইনস্টল করা অ্যাপগুলির জন্য অনুমতির অবস্থা নির্ধারণ করা যায় না।</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d টি অনুমতি চাওয়া হয়েছে।</item>
-        <item quantity="other">%d টি অনুমতি চাওয়া হয়েছে।</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%2$d-এর মধ্যে %1$d টি অনুমতি মঞ্জুর করা হয়েছে।</item>
         <item quantity="other">%2$d-এর মধ্যে %1$d টি অনুমতি মঞ্জুর করা হয়েছে।</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d টি ম্যানিফেস্ট বিশ্লেষণের জন্য বাকি…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">কোনো অস্বাভাবিক কিছু শনাক্ত হয়নি</string>
-    <string name="apps_details_manifest_unavailable">ম্যানিফেস্ট অ্যাক্সেসযোগ্য নয়</string>
-    <string name="apps_details_manifest_error">ম্যানিফেস্ট পড়া যায়নি</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d টি প্যাকেজ কোয়েরি</item>
         <item quantity="other">%d টি প্যাকেজ কোয়েরি</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">ম্যানিফেস্ট ভিউয়ার</string>
     <string name="apps_manifest_viewer_search_hint">ম্যানিফেস্টে অনুসন্ধান করুন</string>
     <string name="apps_manifest_viewer_error_unknown">ম্যানিফেস্ট লোড করার সময় অজানা ত্রুটি।</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d টি মিল</item>
-        <item quantity="other">%d টি মিল</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%2$d এর মধ্যে %1$d</string>
     <string name="apps_manifest_section_uses_permission">অনুমতি ব্যবহার করে</string>
     <string name="apps_manifest_section_permission">অনুমতি</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d সিস্টেম অ্যাপ</item>
         <item quantity="other">%d সিস্টেম অ্যাপ</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">ব্যবহারকারীর অ্যাপ: %2$d-এর মধ্যে %1$d টিকে মঞ্জুর করা হয়েছে।</item>
-        <item quantity="other">ব্যবহারকারীর অ্যাপ: %2$d-এর মধ্যে %1$d টিকে মঞ্জুর করা হয়েছে।</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">সিস্টেম অ্যাপ: %2$d-এর মধ্যে %1$d টিকে মঞ্জুর করা হয়েছে।</item>
-        <item quantity="other">সিস্টেম অ্যাপ: %2$d-এর মধ্যে %1$d টিকে মঞ্জুর করা হয়েছে।</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">অন্য ব্যবহারকারী প্রোফাইলের %dটি অ্যাপও এই অনুমতি অনুরোধ করে।</item>
         <item quantity="other">অন্য ব্যবহারকারী প্রোফাইলের %dটি অ্যাপও এই অনুমতি অনুরোধ করে।</item>
@@ -289,7 +241,6 @@
         <item quantity="other">ডেটা সংরক্ষিত রেখে আনইনস্টল করা %dটি অ্যাপও এই অনুমতি অনুরোধ করে।</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android সীমাবদ্ধতার কারণে অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা অ্যাপগুলি উপরের গণনা থেকে বাদ দেওয়া হয়েছে।</string>
-    <string name="permissions_details_empty_filter_message">বর্তমান ফিল্টারের সাথে কোনো অ্যাপ মেলে না। সামঞ্জস্য করতে ফিল্টার আইকনে ট্যাপ করুন।</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">রানটাইম</string>
     <string name="permissions_tag_install_time_label">ইনস্টল-কালীন</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">অ্যাপগুলিকে ডিভাইসে ডেটা লোডার ব্যবহার সম্পর্কে পরিসংখ্যান সংগ্রহ করার অনুমতি দেয়।</string>
     <string name="permission_premium_sms_services_label">প্রিমিয়াম SMS অ্যাক্সেস</string>
     <string name="permission_premium_sms_services_description">অ্যাপগুলিকে প্রিমিয়াম টেক্সট বার্তা সেবা ব্যবহার করার অনুমতি দেয়। এটি আপনার অর্থ খরচ করবে।</string>
-    <string name="permission_unlimited_data_access_label">সীমাহীন ডেটা অ্যাক্সেস</string>
-    <string name="permission_unlimited_data_access_description">অ্যাপগুলিকে অসীমিত ডেটা অ্যাক্সেস করার অনুমতি দেয়। ডেটা সেভার চালু থাকলেও অ্যাপগুলি ডেটা ব্যবহার করতে পারে।</string>
     <string name="permission_group_calendar_label">ক্যালেন্ডার</string>
     <string name="permission_group_calendar_description"><![CDATA[ক্যালেন্ডার সম্পর্কিত অনুমতি, যেমন এন্ট্রি দেখা এবং সম্পাদনা।]]></string>
     <string name="permission_group_files_label">ফাইল এবং মিডিয়া</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"যোগাযোগ পড়া এবং লেখা।"</string>
     <string name="permission_group_apps_label">অ্যাপস</string>
     <string name="permission_group_apps_description">বিশেষ অ্যাক্সেস অনুমতি যা স্পষ্ট ব্যবহারকারীর সম্মতি প্রয়োজন।</string>
-    <string name="permission_group_battery_label">ব্যাটারি</string>
-    <string name="permission_group_battery_description">ব্যাটারি সম্পর্কিত অনুমতি।</string>
     <string name="permission_group_camera_label">ক্যামেরা</string>
     <string name="permission_group_camera_description">ক্যামেরা সম্পর্কিত অনুমতি।</string>
     <string name="permission_group_audio_label">মাইক্রোফোন</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">লেগাসি স্টোরেজ</string>
     <string name="permission_legacy_storage_description">অ্যাপগুলোকে স্কোপড স্টোরেজ বিধিনিষেধ ছাড়াই এক্স্টার্নাল স্টোরেজ ব্যবহার করতে দেয়। এটি অ্যান্ড্রয়েড ১০-এর আগে ডিফল্ট আচরণ ছিল। এই প্রবেশসম্পন্ন অ্যাপ শেয়ার্ড স্টোরেজের যেকোনো জায়গায় ফাইল পড়তে ও লিখতে পারে।</string>
     <string name="settings_page_label">সেটিংস</string>
-    <string name="overview_summary_title_label">সারসংক্ষেপ</string>
     <string name="permissions_details_declaring_apps_label">ডিক্লারকারী অ্যাপ</string>
     <string name="permissions_details_requesting_apps_label">অনুরোধকারী অ্যাপ</string>
-    <string name="overview_device_android_version_label">Android সংস্করণ</string>
-    <string name="overview_device_name_label">ডিভাইস</string>
-    <string name="overview_device_android_patch_label">প্যাচ স্তর</string>
     <string name="overview_summary_apps_active_profile_label">সক্রিয় প্রোফাইলে অ্যাপস</string>
     <string name="overview_summary_apps_other_profile_label">পরিচালিত ব্যবহারকারী প্রোফাইলে অ্যাপস, ক্লোন বাদে</string>
     <string name="overview_summary_apps_sideloaded_label">বাহ্যিক উৎস থেকে ম্যানুয়ালি ইনস্টল করা অ্যাপ</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">ডিবাগ লগ মুছে দিবেন?</string>
     <string name="support_debuglog_session_delete_message">এই ডিবাগ লগ স্থায়ীভাবে মুছে যাবে।</string>
     <string name="support_debuglog_sessions_empty">কোনো ডিবাগ লগ নেই</string>
-    <string name="support_debuglog_session_invalid">অবৈধ সেশন</string>
     <string name="support_debuglog_session_recording">রেকর্ড হচ্ছে…</string>
     <string name="support_debuglog_session_compressing">সংস্কুচিত হচ্ছে…</string>
     <string name="support_debuglog_failed_empty_log">খালি লগ ফাইল</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">বার্তা পাঠানো হয়েছে?</string>
     <string name="support_contact_sent_message">যদি আপনি ইমেইল পাঠিয়ে থাকেন, তাহলে এই সেশনটি পরিষ্কার করা যাবে।</string>
     <string name="general_close_action">বন্ধ করুন</string>
-    <string name="debug_debuglog_screen_delete_action">মুছে ফেলুন</string>
     <!-- Contact form -->
     <string name="contact_support_label">সাপোর্টের সাথে যোগাযোগ করুন</string>
     <string name="contact_category_label">বিভাগ</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">এই ডিভাইসে কোনো ইমেইল অ্যাপ পাওয়া যায়নি।</string>
     <string name="contact_welcome_message">আমি সব বার্তা নিজেই পড়ি এবং যথাসাধ্য উত্তর দেওয়ার চেষ্টা করি। যেহেতু আমি নিজেই ডিভেলপমেন্ট, বাগ ফিক্স এবং সাপোর্ট সামলাই, অল্প সময় লাগতে পারে। আপনার ধৈর্যের জন্য ধন্যবাদ।</string>
     <string name="contact_footer_message">আপনার বার্তা ইমেইলের মাধ্যমে পাঠানো হবে। ডিভাইস তথ্য স্বয়ংক্রিয়ভাবে যুক্ত হয়। ইমেইলে স্ক্রিনশট বা ভিডিও সংযুক্ত করতে পারেন। সম্ভব হলে ইংরেজিতে লিখুন।</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">রাখুন</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">ডিবাগ লগ</string>
     <string name="debug_debuglog_screen_subtitle">সমস্যা সমাধানের জন্য ডিবাগ তথ্য রপ্তানি করুন</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">নজরদারির পরিসর</string>
     <string name="watcher_scope_all">সব অ্যাপ</string>
     <string name="watcher_scope_non_system">শুধু নন-সিস্টেম অ্যাপ</string>
-    <string name="watcher_reports_label">অনুমতি পরিবর্তন রিপোর্ট</string>
     <string name="watcher_reports_empty">এখনো কোনো অনুমতি পরিবর্তন শনাক্ত হয়নি</string>
     <string name="watcher_report_detail_label">পরিবর্তন রিপোর্ট</string>
     <string name="watcher_diff_added_permissions">নতুন অনুমতি</string>
     <string name="watcher_diff_removed_permissions">সরানো অনুমতি</string>
     <string name="watcher_diff_grant_changes">মান্যতা পরিবর্তন</string>
-    <string name="watcher_diff_added_declared">নতুন ঘোষিত অনুমতি</string>
-    <string name="watcher_diff_removed_declared">সরানো ঘোষিত অনুমতি</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">ইনস্টল হয়েছে</string>
     <string name="watcher_event_update">আপডেট হয়েছে</string>
     <string name="watcher_event_removed">সরানো হয়েছে</string>
     <string name="watcher_event_grant_change">অনুমতি পরিবর্তিত</string>
     <string name="watcher_mark_all_seen">সব দেখা হয়েছে চিহ্নিত করুন</string>
     <string name="watcher_notification_action_mark_seen">দেখা হয়েছে চিহ্নিত করুন</string>
-    <string name="watcher_notification_action_delete">মুছে ফেলুন</string>
     <string name="watcher_notification_body_added">যোগ হয়েছে: %s</string>
     <string name="watcher_notification_body_removed">সরানো হয়েছে: %s</string>
     <string name="watcher_notification_body_grant_changed">মান্যতা বদলা হয়েছে: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">কোড</string>
     <string name="watcher_detail_installer_label">ইনস্টল উৎস</string>
     <string name="watcher_detail_installer_unknown">অজানা</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">অনুমতি (%d)</item>
-        <item quantity="other">অনুমতি (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">শেষ জানা অনুমতি (%d)</item>
         <item quantity="other">শেষ জানা অনুমতি (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">শুধুমাত্র মঞ্জুর করা অ্যাপ</string>
     <string name="export_perm_include_summary_label">সারাংশ গণনা অন্তর্ভুক্ত করুন</string>
     <string name="export_preview_label">প্রিভিউ</string>
-    <string name="export_preview_label_of">প্রিভিউ (%1$d এর মধ্যে %2$d)</string>
     <string name="export_action_label">এক্সপোর্ট</string>
     <string name="export_progress_label">এক্সপোর্ট করা হচ্ছে…</string>
     <string name="export_success_message">এক্সপোর্ট সম্পন্ন</string>
     <string name="export_error_message">এক্সপোর্ট ব্যর্থ হয়েছে</string>
     <string name="export_share_action">ভাগাভাগি করুন</string>
     <string name="export_open_action">খোলা</string>
-    <string name="export_done_action">সম্পন্ন হয়েছে</string>
     <string name="export_retry_action">পুনরায় চেষ্টা করুন</string>
     <string name="export_summary_filename">ফাইল</string>
     <string name="export_summary_size">আকার</string>

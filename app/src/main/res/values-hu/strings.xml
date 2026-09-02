@@ -7,14 +7,12 @@
     <string name="label_help">Segitseg</string>
     <string name="general_error_label">Hiba</string>
     <string name="general_load_error_title">Nem sikerült az adatok betöltése</string>
-    <string name="general_load_error_hint">Valami hiba történt az alkalmazások vizsgálata közben.</string>
     <string name="general_refresh_error_hint">A frissítés sikertelen.</string>
     <string name="general_retry_action">Újra</string>
     <string name="general_share_action">Megosztas</string>
     <string name="general_done_action">Kesz</string>
     <string name="general_open_action">Megnyitas</string>
     <string name="general_continue_action">Folytatas</string>
-    <string name="general_no_action">Nem</string>
     <string name="debug_debuglog_record_action">Rögzítés</string>
     <string name="settings_category_other_label">Egyeb</string>
     <string name="settings_category_gethelp_label">Segítség kérése</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Altalanos</string>
     <string name="general_settings_desc">Altalanos beallitasok, amelyek az egesz alkalmazast erintik.</string>
     <string name="general_settings_scan_speed_label">Beolvasási sebesség</string>
-    <string name="general_settings_scan_speed_desc">Az alkalmazások beolvasásakor párhuzamos műveleteket vezérel. A magasabb értékek gyorsabbak, de egyes eszközökön összeomlásokat okozhatnak.</string>
     <string name="general_settings_scan_speed_auto">Automatikus (ajánlott)</string>
     <string name="general_settings_scan_speed_1">1 (legbiztonságosabb)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Adatvedelmi iranyelvek</string>
     <string name="settings_privacy_policy_desc">Felelos adatkezeles.</string>
     <string name="settings_support_label">Tamogatas</string>
-    <string name="documentation_label">Dokumentacio</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Egy hely, ahol eltolthetsz idot es kerdeseket tehetsz fel.</string>
     <string name="issue_tracker_label">Hibakoveto</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">A nyílt forráskódú projektek fordításának támogatásáért.</string>
     <string name="permissions_page_label">Engedelyek</string>
     <string name="apps_page_label">Alkalmazasok</string>
-    <string name="app_type_system_label">Rendszeralkalmazas</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Ismeretlen engedely. Ezt az alkalmazas keri, de egyetlen masik alkalmazas sem deklaralja.</string>
-    <string name="permissions_unknown_description">Ismeretlen engedely. Alkalmazasok kerik, de sehol nincs deklaralva.</string>
     <string name="permissions_app_type_declaring_description">Az engedelyt ez az alkalmazas hozta letre.</string>
-    <string name="permissions_app_type_requesting_description">Az alkalmazas keri az engedelyt.</string>
     <string name="general_filter_action">Szures</string>
     <string name="general_cancel_action">Megse</string>
     <string name="apps_filter_userapps_label">Felhasznaloi alkalmazasok</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Alkalmazas neve</string>
     <string name="apps_sort_install_date_label">Telepites datuma</string>
     <string name="apps_sort_update_date_label">Utolso frissites</string>
-    <string name="general_sort_action">Rendezes</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d / %2$d megadva.</item>
-        <item quantity="other">%1$d / %2$d megadva.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d engedély kérve.</item>
-        <item quantity="other">%1$d engedély kérve.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">%1$d engedélyt deklarál.</item>
-        <item quantity="other">%1$d engedélyt deklarál.</item>
-    </plurals>
     <string name="apps_details_installer_label">Telepitesi forras</string>
     <string name="apps_details_installer_unknown_label">Informacio nem elerheto</string>
     <string name="apps_details_open_settings_error">Nem sikerült megnyitni az alkalmazás beállításait ehhez a profilhoz</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Kérő alkalmazások száma</string>
     <string name="permissions_search_list_hint">Engedelyek keresese</string>
     <string name="apps_search_list_hint">Alkalmazasok keresese</string>
-    <string name="permissions_details_protection_label">Vedelmi szint</string>
     <string name="permissions_protection_type_normal_label">Normál</string>
     <string name="permissions_protection_type_dangerous_label">Veszelyes</string>
     <string name="permissions_protection_type_signature_label">Alairas</string>
@@ -127,7 +104,6 @@
         <item>Az apró betűs részt olvassa</item>
     </string-array>
     <string name="apps_app_details_label">Alkalmazas reszletei</string>
-    <string name="apps_details_shareduserid_label">Megosztott felhasznaloi azonositoju alkalmazasok</string>
     <string name="apps_details_siblings_label">Testverek</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Osszes osszecsuklasa</string>
     <string name="general_more_options_action">Tobb lehetoseg</string>
     <string name="apps_details_twins_label">Klonok</string>
-    <string name="apps_details_twins_descriptions">Mas felhasznaloi profilokban telepitve.</string>
-    <string name="install_date_label">Telepites datuma</string>
     <string name="apps_filter_sharedid_label">Megosztott felhasznaloi azonosito</string>
     <string name="apps_filter_multipleprofiles_label">Van klón</string>
     <string name="support_debuglog_label">Hibakereso naplo</string>
     <string name="support_debuglog_desc">Rogzitsd az alkalmazas minden tevekenyseg egy szoveges fajlba, amelyet megoszthatsz.</string>
-    <string name="updated_at_x">Utolso frissites: %s</string>
-    <string name="installed_at_x">Eloszor telepitve: %s</string>
     <string name="apps_sort_install_source_label">Telepitesi forras</string>
     <string name="permissions_action_none_msg">Ehhez az engedelyhez nem erheto el muvelet</string>
     <string name="permissions_details_open_settings_action">Rendszerbeállítások megnyitása</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Szűrés és rendezés</string>
     <string name="apps_help_tag_icons_title">Engedélychipek</string>
     <string name="apps_help_tag_icons_description">A chipek megmutatják, hogy az alkalmazásnak milyen érzékeny engedélycsoportok lettek engedélyezve</string>
-    <string name="apps_details_description_restrictions_caveat_description">Ez az alkalmazas egy masik felhasznaloi profilban van telepitve. A megadott engedelyek csak az aktiv profilban telepitett alkalmazasoknal hatarozhatok meg az Android korlatozasai miatt.</string>
-    <string name="apps_details_description_uninstalled_caveat">Ez az alkalmazas el lett tavolitva, de az adatai megmaradtak. Az eltavolitott alkalmazasok engedelyallapotai nem hatarozhatok meg.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d engedély kérve.</item>
-        <item quantity="other">%d engedély kérve.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d / %2$d engedély megadva.</item>
         <item quantity="other">%1$d / %2$d engedély megadva.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifest vár elemzésre…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Nem található semmi rendhagyó</string>
-    <string name="apps_details_manifest_unavailable">A manifest nem elérhető</string>
-    <string name="apps_details_manifest_error">Nem sikerült beolvasni a manifestet</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d csomag lekérdezés</item>
         <item quantity="other">%d csomag lekérdezés</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifest-néző</string>
     <string name="apps_manifest_viewer_search_hint">Keresés a manifestben</string>
     <string name="apps_manifest_viewer_error_unknown">Az alkalmazásjegyzék betöltése során ismeretlen hiba történt.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d találat</item>
-        <item quantity="other">%d találat</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d / %2$d</string>
     <string name="apps_manifest_section_uses_permission">Engedély használata</string>
     <string name="apps_manifest_section_permission">Engedély</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d rendszeralkalmazas</item>
         <item quantity="other">%d rendszeralkalmazas</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Felhasználói alkalmazások: %1$d / %2$d számára megadva.</item>
-        <item quantity="other">Felhasználói alkalmazások: %1$d / %2$d számára megadva.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Rendszeralkalmazások: %1$d / %2$d számára megadva.</item>
-        <item quantity="other">Rendszeralkalmazások: %1$d / %2$d számára megadva.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d alkalmazás más felhasználói profilokban szintén kéri ezt a jogosultságot.</item>
         <item quantity="other">%d alkalmazás más felhasználói profilokban szintén kéri ezt a jogosultságot.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d eltávolított alkalmazás megőrzött adatokkal szintén kéri ezt a jogosultságot.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">A mas felhasznaloi profilokban telepitett alkalmazasok ki vannak zarva a fenti szamitasbol az Android korlatozasai miatt.</string>
-    <string name="permissions_details_empty_filter_message">Egyetlen alkalmazas sem felel meg a jelenlegi szuroknek. Koppints a szuro ikonra a modositashoz.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Futtatható</string>
     <string name="permissions_tag_install_time_label">Telepítési idő</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Lehetove teszi az alkalmazasok szamara statisztikak gyujteset az adatbetolto hasznalarol az eszkozon.</string>
     <string name="permission_premium_sms_services_label">Premium SMS hozzaferes</string>
     <string name="permission_premium_sms_services_description">Lehetove teszi az alkalmazasok szamara premium szoveges uzenetszolgaltatasok hasznalatat. Ez penzbe kerul.</string>
-    <string name="permission_unlimited_data_access_label">Korlatlan adat-hozzaferes</string>
-    <string name="permission_unlimited_data_access_description">Lehetove teszi az alkalmazasok szamara a korlatlan adatokhoz valo hozzaferest. Az alkalmazasok adatokat fogyaszthatnak meg akkor is, ha az Adattakarekos mod be van kapcsolva.</string>
     <string name="permission_group_calendar_label">Naptar</string>
     <string name="permission_group_calendar_description"><![CDATA[Naptarral kapcsolatos engedelyek, pl. bejegyzesek megtekintese es szerkesztese.]]></string>
     <string name="permission_group_files_label">Fajlok es media</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Nevjegyek olvasasa es irasa."</string>
     <string name="permission_group_apps_label">Alkalmazasok</string>
     <string name="permission_group_apps_description">Specialis hozzaferesi engedelyek, amelyek kifejezett felhasznaloi beleegyezest igenyelnek.</string>
-    <string name="permission_group_battery_label">Akkumulator</string>
-    <string name="permission_group_battery_description">Akkumulatorral kapcsolatos engedelyek.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kameraval kapcsolatos engedelyek.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Régi tároló</string>
     <string name="permission_legacy_storage_description">Az alkalmazásoknak hozzéférést biztosít a külső tárolóhoz hatókörölt tárolási korlátozások nélkül. Ez volt az alapértelmezett viselkedés az Android 10 előtt. Az ilyen hozzéféréssel rendelkező alkalmazások bárhol olvashatnak és írhatnak fájlokat a megosztott tárolón.</string>
     <string name="settings_page_label">Beállítások</string>
-    <string name="overview_summary_title_label">Összefoglaló</string>
     <string name="permissions_details_declaring_apps_label">Deklaráló alkalmazások</string>
     <string name="permissions_details_requesting_apps_label">Kérő alkalmazások</string>
-    <string name="overview_device_android_version_label">Android verzio</string>
-    <string name="overview_device_name_label">Eszkoz</string>
-    <string name="overview_device_android_patch_label">Javitasi szint</string>
     <string name="overview_summary_apps_active_profile_label">Alkalmazasok az aktiv profilban</string>
     <string name="overview_summary_apps_other_profile_label">Alkalmazasok kezelt felhasznaloi profilokban, klonok nelkul</string>
     <string name="overview_summary_apps_sideloaded_label">Külső forrásból kézzel telepített alkalmazások</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Törli a hibakeresési naplót?</string>
     <string name="support_debuglog_session_delete_message">Ez a hibakeresési napló véglegesen törölve lesz.</string>
     <string name="support_debuglog_sessions_empty">Nincsenek hibakeresési naplók</string>
-    <string name="support_debuglog_session_invalid">Érvénytelen munkamenet</string>
     <string name="support_debuglog_session_recording">Rögzítés…</string>
     <string name="support_debuglog_session_compressing">Tömörítés…</string>
     <string name="support_debuglog_failed_empty_log">Üres naplófájl</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Elküldted az üzenetet?</string>
     <string name="support_contact_sent_message">Ha elküldted az e-mailt, ez a munkamenet megtisztítható.</string>
     <string name="general_close_action">Bezár</string>
-    <string name="debug_debuglog_screen_delete_action">Törlés</string>
     <!-- Contact form -->
     <string name="contact_support_label">Kapcsolatfelvétel a támogatással</string>
     <string name="contact_category_label">Kategória</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Nem található e-mail alkalmazás ezen az eszközön.</string>
     <string name="contact_welcome_message">Minden üzenetet magam olvasok el és megpróbálok válaszolni. Mivel a fejlesztést, hibajavitást és támogatást egymagemnek intézem, kisé időt vehet igénybe. Köszönet a türelmedert.</string>
     <string name="contact_footer_message">Az üzeneted e-mailben kerül elküldésre. Az eszköz- és beállítási információk automatikusan mellékelve vannak. Képeket vagy videót is csatolhatsz az e-mailhez. Ha lehet, angolul írj.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Megőrzés</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Hibakeresési napló</string>
     <string name="debug_debuglog_screen_subtitle">Hibakeresési információk exportálása hibakereséshez</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Figyelesi hatókör</string>
     <string name="watcher_scope_all">Minden alkalmazás</string>
     <string name="watcher_scope_non_system">Csak nem rendszer-alkalmazások</string>
-    <string name="watcher_reports_label">Jogosultságváltozás jelentések</string>
     <string name="watcher_reports_empty">Még nem észleltek jogosultságváltozásokat</string>
     <string name="watcher_report_detail_label">Változásjelentés</string>
     <string name="watcher_diff_added_permissions">Új jogosultságok</string>
     <string name="watcher_diff_removed_permissions">Eltávolított jogosultságok</string>
     <string name="watcher_diff_grant_changes">Engedélyzési változások</string>
-    <string name="watcher_diff_added_declared">Új deklarált jogosultságok</string>
-    <string name="watcher_diff_removed_declared">Eltávolított deklarált jogosultságok</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Telepítve</string>
     <string name="watcher_event_update">Frissítve</string>
     <string name="watcher_event_removed">Eltávolítva</string>
     <string name="watcher_event_grant_change">Jogosultság megváltozott</string>
     <string name="watcher_mark_all_seen">Összes megjelolése megnézettként</string>
     <string name="watcher_notification_action_mark_seen">Megnézettként jelölés</string>
-    <string name="watcher_notification_action_delete">Törlés</string>
     <string name="watcher_notification_body_added">Hozzáadva: %s</string>
     <string name="watcher_notification_body_removed">Eltávolítva: %s</string>
     <string name="watcher_notification_body_grant_changed">Engedély megváltozott: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Kód</string>
     <string name="watcher_detail_installer_label">Telepítés forrása</string>
     <string name="watcher_detail_installer_unknown">Ismeretlen</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Jogosultság (%d)</item>
-        <item quantity="other">Jogosultságok (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Utoljára ismert jogosultság (%d)</item>
         <item quantity="other">Utoljára ismert jogosultságok (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Csak megadott alkalmazások</string>
     <string name="export_perm_include_summary_label">Összefoglaló számok beleértése</string>
     <string name="export_preview_label">Előnézet</string>
-    <string name="export_preview_label_of">Előnézet (%1$d / %2$d)</string>
     <string name="export_action_label">Exportálás</string>
     <string name="export_progress_label">Exportálás…</string>
     <string name="export_success_message">Exportálás kész</string>
     <string name="export_error_message">Exportálás sikertelen</string>
     <string name="export_share_action">Megosztás</string>
     <string name="export_open_action">Nyitva</string>
-    <string name="export_done_action">Kész</string>
     <string name="export_retry_action">Ismétlés</string>
     <string name="export_summary_filename">Fájl</string>
     <string name="export_summary_size">Méret</string>
