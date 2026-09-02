@@ -1,0 +1,5 @@
+Opravy chýb a drobné vylepšenia, aby si videl, čo tvoje aplikácie robia.
+
+Čo sa v tejto verzii zmenilo: myperm.darken.eu/changelog
+
+Po aktualizácii sa niečo pokazilo alebo správa divne? Daj mi vedieť cez Nastavenia > Podpora. Je to projekt jedného človeka, takže odpovede môžu chvíľu trvať, ale každé hlásenie si prečítam.

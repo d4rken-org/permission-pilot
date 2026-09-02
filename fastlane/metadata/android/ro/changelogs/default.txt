@@ -1,0 +1,5 @@
+Corectări de erori și mici îmbunătățiri, ca să vezi ce fac aplicațiile tale.
+
+Ce s-a schimbat în această versiune: myperm.darken.eu/changelog
+
+S-a stricat ceva sau se comportă ciudat după actualizare? Spune-mi din Setări > Suport. Este un proiect al unei singure persoane, așa că răspunsurile pot întârzia puțin, dar fiecare sesizare este citită.

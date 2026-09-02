@@ -1,0 +1,5 @@
+Ispravci grešaka i male promjene, da vidiš što tvoje aplikacije rade.
+
+Što se promijenilo u ovoj verziji: myperm.darken.eu/changelog
+
+Nešto se pokvarilo ili se čudno ponaša nakon ažuriranja? Javi mi preko Postavke > Podrška. Ovo je projekt jedne osobe pa odgovori mogu potrajati, ali svaka prijava se pročita.

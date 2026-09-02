@@ -1,5 +1,5 @@
-🐛 Foutoplossings, 🚀 werkverrigtingsverbeterings, dalk selfs ✨ nuwe kenmerke.
+Foutoplossings en klein verbeterings, sodat jy kan sien wat jou programme aanvang.
 
-Veranderingslog: https://myperm.darken.eu/changelog
+Wat het in hierdie weergawe verander: myperm.darken.eu/changelog
 
-FYI: Dis net ek hier — dankie vir jou begrip as antwoorde soms bietjie langer neem. ¯\_(ツ)_/¯
+Iets stukkend of vreemd na die opdatering? Sê vir my via Instellings > Ondersteuning. Dit is 'n eenmanprojek, so antwoorde kan 'n rukkie neem, maar elke verslag word gelees.

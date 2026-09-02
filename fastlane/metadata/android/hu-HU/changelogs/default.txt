@@ -1,0 +1,5 @@
+Hibajavítások és apró fejlesztések, hogy lásd, mit művelnek az alkalmazásaid.
+
+Mi változott ebben a verzióban: myperm.darken.eu/changelog
+
+Elromlott vagy furcsán viselkedik valami a frissítés után? Szólj a Beállítások > Támogatás menüpontban. Ez egy egyszemélyes projekt, a válasz így eltarthat egy ideig, de minden bejelentést elolvasok.

@@ -1,0 +1,5 @@
+Feilrettinger og små forbedringer, så du ser hva appene dine driver med.
+
+Hva som ble endret i denne versjonen: myperm.darken.eu/changelog
+
+Har noe blitt ødelagt eller oppfører seg rart etter oppdateringen? Si fra via Innstillinger > Støtte. Dette er et enmannsprosjekt, så svar kan ta litt tid, men alle henvendelser blir lest.

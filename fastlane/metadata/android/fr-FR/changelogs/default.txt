@@ -1,0 +1,5 @@
+Corrections de bugs et petites améliorations, pour que tu voies ce que tes applis fabriquent.
+
+Ce qui a changé dans cette version : myperm.darken.eu/changelog
+
+Quelque chose s’est cassé ou se comporte bizarrement après la mise à jour ? Dis-le-moi via Paramètres > Assistance. C’est un projet d’une seule personne, les réponses peuvent donc prendre un peu de temps, mais chaque signalement est lu.

@@ -1,7 +1,5 @@
-mystic-permissions/fastlane/metadata/android/az/changelogs/default.txt
-```
-🐛 Problemlərin aradan qaldırılması, 🚀 performans təkmilləşdirmələri və bəlkə də ✨ yeni funksiyalar.
+Xəta düzəlişləri və kiçik yaxşılaşdırmalar, beləcə tətbiqlərinin nə etdiyini görə bilərsən.
 
-Dəyişikliklər: https://myperm.darken.eu/changelog
+Bu versiyada nə dəyişdi: myperm.darken.eu/changelog
 
-Məlumat üçün: Burada yalnız mənəm — əgər cavablar bir az geciksə, başa düşdüyünüzə görə təşəkkür edirəm. ¯\_(ツ)_/¯
+Yeniləmədən sonra nəsə sındı ya da qəribə davranır? Mənə Parametrlər > Dəstək vasitəsilə bildir. Bu, bir nəfərlik layihədir, ona görə cavablar bir az gecikə bilər, amma hər bildiriş oxunur.

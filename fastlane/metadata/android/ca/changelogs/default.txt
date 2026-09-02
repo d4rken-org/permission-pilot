@@ -1,5 +1,5 @@
-🐛 Correccions d'errors, 🚀 millores de rendiment, potser fins i tot ✨ noves funcions.
+Correccions d’errors i petites millores, perquè puguis veure què fan les teves aplicacions.
 
-Registre de canvis: https://myperm.darken.eu/changelog
+Què ha canviat en aquesta versió: myperm.darken.eu/changelog
 
-Per a la vostra informació: només hi sóc jo; gràcies per entendre si les respostes triguen una mica. ¯\\_(ツ)_/¯
+Alguna cosa s’ha trencat o es comporta de manera estranya després d’actualitzar? Digue’m-ho a Configuració > Suport. És un projecte d’una sola persona, així que les respostes poden trigar una mica, però tots els informes es llegeixen.
