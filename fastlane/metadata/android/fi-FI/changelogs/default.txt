@@ -1,0 +1,5 @@
+Bugikorjauksia ja pieniä parannuksia, jotta näet mitä sovelluksesi puuhaavat.
+
+Mikä muuttui tässä versiossa: myperm.darken.eu/changelog
+
+Menikö jokin rikki tai käyttäytyykö outoa päivityksen jälkeen? Kerro minulle kohdasta Asetukset > Tuki. Tämä on yhden ihmisen projekti, joten vastaukset voivat kestää hetken, mutta jokainen ilmoitus luetaan.

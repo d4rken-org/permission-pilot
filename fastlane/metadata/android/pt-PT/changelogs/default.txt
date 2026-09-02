@@ -1,0 +1,5 @@
+Correções de erros e pequenas melhorias, para veres o que as tuas aplicações andam a fazer.
+
+O que mudou nesta versão: myperm.darken.eu/changelog
+
+Alguma coisa avariou ou comporta-se de forma estranha depois da atualização? Diz-me em Definições > Suporte. É um projeto de uma só pessoa, por isso as respostas podem demorar um pouco, mas todos os relatos são lidos.

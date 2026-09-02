@@ -1,0 +1,5 @@
+Bugfixes en kleine verbeteringen, zodat je ziet wat je apps uitspoken.
+
+Wat er in deze versie is veranderd: myperm.darken.eu/changelog
+
+Is er na de update iets stuk of gedraagt het zich vreemd? Laat het me weten via Instellingen > Ondersteuning. Dit is een eenmansproject, dus antwoorden kunnen even duren, maar elke melding wordt gelezen.

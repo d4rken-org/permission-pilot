@@ -1,0 +1,5 @@
+Buggfixar och små förbättringar, så att du ser vad dina appar håller på med.
+
+Vad som ändrades i den här versionen: myperm.darken.eu/changelog
+
+Gick något sönder eller beter sig konstigt efter uppdateringen? Hör av dig via Inställningar > Support. Det här är ett enmansprojekt, så svar kan dröja lite, men varje rapport blir läst.

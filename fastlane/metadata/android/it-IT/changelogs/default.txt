@@ -1,0 +1,5 @@
+Correzioni di bug e piccoli miglioramenti, così vedi cosa combinano le tue app.
+
+Cosa è cambiato in questa versione: myperm.darken.eu/changelog
+
+Qualcosa si è rotto o si comporta in modo strano dopo l’aggiornamento? Scrivimi da Impostazioni > Supporto. È un progetto di una persona sola, quindi le risposte possono tardare un po’, ma ogni segnalazione viene letta.

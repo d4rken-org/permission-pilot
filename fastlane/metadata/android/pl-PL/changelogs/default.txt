@@ -1,0 +1,5 @@
+Poprawki błędów i drobne ulepszenia, żebyś widział, co kombinują twoje aplikacje.
+
+Co się zmieniło w tej wersji: myperm.darken.eu/changelog
+
+Coś się zepsuło albo dziwnie zachowuje po aktualizacji? Napisz do mnie przez Ustawienia > Wsparcie. To projekt jednej osoby, więc odpowiedź może chwilę potrwać, ale każde zgłoszenie jest czytane.

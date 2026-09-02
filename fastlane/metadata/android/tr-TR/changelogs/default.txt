@@ -1,0 +1,5 @@
+Hata düzeltmeleri ve küçük iyileştirmeler, böylece uygulamalarının neler yaptığını görebilirsin.
+
+Bu sürümde neler değişti: myperm.darken.eu/changelog
+
+Güncellemeden sonra bir şey bozulduysa ya da tuhaf davranıyorsa Ayarlar > Destek üzerinden bana bildir. Bu tek kişilik bir proje, bu yüzden yanıtlar biraz gecikebilir ama her bildirim okunuyor.

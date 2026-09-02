@@ -1,0 +1,5 @@
+Sửa lỗi và cải thiện nhỏ, để bạn thấy được các ứng dụng của mình đang làm gì.
+
+Thay đổi trong phiên bản này: myperm.darken.eu/changelog
+
+Có gì hỏng hoặc hoạt động lạ sau khi cập nhật? Hãy báo cho tôi qua Cài đặt > Hỗ trợ. Đây là dự án của một người, nên phản hồi có thể hơi chậm, nhưng mọi báo cáo đều được đọc.

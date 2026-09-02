@@ -1,5 +1,5 @@
-🐛 Opravy chyb, 🚀 zvýšení výkonu, možná i ✨ nové funkce.
+Opravy chyb a drobná vylepšení, abys viděl, co tvoje aplikace dělají.
 
-Seznam změn: https://myperm.darken.eu/changelog
+Co se v této verzi změnilo: myperm.darken.eu/changelog
 
-Pro informaci: Jsem tu sám – děkuji za pochopení, pokud odpovědi chvíli potrvají. ¯\_(ツ)_/¯
+Něco se po aktualizaci rozbilo nebo se chová divně? Dej mi vědět přes Nastavení > Podpora. Je to projekt jednoho člověka, takže odpovědi můžou chvíli trvat, ale každé hlášení si přečtu.

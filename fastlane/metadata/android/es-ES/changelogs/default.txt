@@ -1,5 +1,5 @@
-🐛 Correcciones de errores, 🚀 mejoras de rendimiento, e incluso ✨ nuevas características.
+Corrección de errores y pequeñas mejoras, para que veas qué se traen entre manos tus aplicaciones.
 
-Changelog: https://myperm.darken.eu/changelog
+Qué ha cambiado en esta versión: myperm.darken.eu/changelog
 
-FYI: Solo estoy yo aquí — gracias por tu comprensión si las respuestas tardan un poco. ¯\_(ツ)_/¯
+¿Algo se ha roto o se comporta raro tras actualizar? Cuéntamelo en Ajustes > Soporte. Es un proyecto de una sola persona, así que las respuestas pueden tardar un poco, pero leo todos los informes.

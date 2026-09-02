@@ -1,0 +1,5 @@
+Fehlerbehebungen und kleine Verbesserungen, damit du siehst, was deine Apps so treiben.
+
+Was sich in dieser Version geändert hat: myperm.darken.eu/changelog
+
+Nach dem Update etwas kaputt oder seltsam? Sag mir Bescheid über Einstellungen > Support. Das hier ist ein Ein-Personen-Projekt, Antworten dauern also manchmal etwas, aber jede Meldung wird gelesen.
