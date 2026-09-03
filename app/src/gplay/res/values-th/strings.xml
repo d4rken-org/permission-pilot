@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">ซื้อ Pro ไปแล้วหรือ?</string>
     <string name="upgrade_screen_restore_banner_body">ดูเหมือนว่าคุณได้อัปเกรดเป็น Pro บนอุปกรณ์นี้มาแล้ว คืนค่าการซื้อของคุณเพื่อปลดล็อคอีกครั้ง</string>
     <string name="upgrade_title_suffix">โปร</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">คุณมี %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">การซื้อ Pro ครั้งเดียวของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมดเป็นการถาวร</string>
     <string name="upgrade_screen_owned_hero_sub_body">การสมัครสมาชิกของคุณปลดล็อคฟีเจอร์ Pro ทั้งหมด</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">จัดการการสมัครสมาชิก</string>
     <string name="upgrade_screen_owned_iap_title">Lifetime Pro</string>
     <string name="upgrade_screen_owned_iap_body">คุณมี Pro upgrade แบบครั้งเดียว ไม่มีการสมัครสมาชิก ไม่มีการต่ออายุ</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">การสมัครสมาชิกของคุณจะไม่ต่ออายุ ดังนั้นคุณสามารถเปลี่ยนเป็นการซื้อ Pro ถาวรได้แล้ว</string>
     <string name="upgrade_screen_owned_iap_locked_note">เพื่อเปลี่ยนไปเป็นการซื้อแบบครั้งเดียว ให้ยกเลิกการสมัครสมาชิกใน Google Play ก่อน ข้อเสนอนี้จะปลดล็อกเมื่อตั้งให้ไม่ต่ออายุแล้ว</string>
     <string name="upgrade_screen_sub_still_renewing_message">การสมัครสมาชิกของคุณยังคงใช้งานและต่ออายุอยู่ ให้ยกเลิกใน Google Play ก่อน</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">ไม่สามารถยืนยันการซื้อของคุณกับ Google Play ได้ โปรดลองอีกครั้ง</string>
+    <string name="upgrade_screen_pending_card_title">รอการชำระเงิน</string>
+    <string name="upgrade_screen_pending_card_body">Google Play ยังคงประมวลผลการชำระเงินของคุณอยู่ Pro จะปลดล็อกโดยอัตโนมัติเมื่อการชำระเงินเสร็จสิ้น วิธีการชำระเงินบางวิธีอาจใช้เวลาค่อนข้างนาน ไม่มีสิ่งอื่นที่คุณต้องทำ</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play พบการซื้อที่มีการชำระเงินค้างอยู่และยังคงประมวลผลอยู่ Pro จะปลดล็อกโดยอัตโนมัติเมื่อการชำระเงินเสร็จสิ้น</string>
     <string name="upgrade_screen_grace_title">กำลังยืนยันการซื้อของคุณ</string>
     <string name="upgrade_screen_grace_body">กำลังรอให้ Google Play ยืนยันการซื้อ Pro ของคุณอีกครั้ง ปกติจะแก้ไขได้เอง</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">สถานะดูผิดปกติหรือ</string>
     <string name="upgrade_screen_restore_status_body">หากคุณซื้อ Pro แล้วแต่ยังไม่ปรากฏ ให้ตรวจสอบแบบสดกับ Google Play</string>
     <string name="upgrade_screen_restore_success_message">การซื้อได้รับการกู้คืนแล้ว</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">ตัวเลือกอัปเกรด</string>
     <string name="upgrade_screen_offers_body">คุณสมบัติเดียวกัน เพียงแค่แบบจ่ายเงินต่างกัน</string>
     <string name="upgrade_screen_offers_or">หรือ</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">ต่ออายุทุกปี คุณสามารถยกเลิกได้ตลอดเวลาใน Google Play</string>
     <string name="upgrade_screen_iap_offer_title">ซื้อครั้งเดียว</string>
     <string name="upgrade_screen_iap_offer_body">ชำระเงินครั้งเดียว ไม่มีการต่ออายุ</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">การสมัครสมาชิกยังคงใช้งานอยู่</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play เพิ่งได้รับการตรวจสอบ แต่ไม่สามารถยืนยันการซื้อ Pro สำหรับบัญชีที่แอปนี้ใช้</string>
     <string name="upgrade_screen_restore_multiaccount_hint">บัญชีหลายบัญชีอาจทำให้ Google Play สับสน การติดตั้งแอปผ่านเว็บไซต์ Google Play จะทำให้มันเชื่อมโยงกับบัญชีเฉพาะเจาะจง</string>
     <string name="upgrade_screen_restore_sync_patience_hint">การซิงค์ Google Play อาจใช้เวลาสักครู่ ลองรีบูต ล้างแคชของ Google Play Store หรือเพียงแค่รอสักครู่</string>
     <string name="upgrade_screen_restore_contact_hint">ยังติดอยู่หรือ? ติดต่อฝ่ายสนับสนุนจากอีเมลที่ใช้ซื้อ พร้อมแนบหมายเลขคำสั่งซื้อ Google Play ของคุณ</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">รับ %1$s</string>
     <string name="upgrade_screen_benefits_title">ประโยชน์ของการอัปเกรด</string>
     <string name="upgrade_screen_thanks_toast">คุณเป็นคนที่ดีที่สุด! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro ยังคงใช้งานอยู่ รอการยืนยันการซื้อของคุณอีกครั้งจาก Google Play ฟีเจอร์ Pro ทั้งหมดจะถูกปลดล็อคในระหว่างนี้</string>
     <string name="upgrade_screen_restore_body">การเรียกคืนจะขอให้ Google Play ตรวจสอบการซื้อของแอปนี้สำหรับบัญชีปัจจุบันอีกครั้ง ไม่ได้เริ่มการซื้อใหม่</string>
     <string name="upgrade_screen_restore_inconclusive_message">การตรวจสอบกับ Google Play ไม่เสร็จทันเวลา ดังนั้นสถานะการซื้อของคุณยังไม่ชัดเจน ไม่มีการเปลี่ยนแปลงใด ๆ ในบัญชีของคุณ</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ไม่สามารถเชื่อมต่อกับ Google Play ได้ Google Play ได้รับการติดตั้งและอัปเดตแล้วหรือไม่? บัญชี Google ของคุณเข้าสู่ระบบแล้วหรือไม่? ลองล้างแคชของแอป Google Play และรีบูตอุปกรณ์ของคุณ</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">ไม่สามารถเปิด Google Play ได้ อาจจะหายไป ปิดใช้งาน หรือถูกจำกัดบนอุปกรณ์นี้</string>
     <string name="upgrades_gplay_billing_error_label">Google Play เกิดปัญหา</string>
     <string name="upgrades_gplay_billing_error_description">มีปัญหาเกิดขึ้นกับ Google Play โปรดลองอีกครั้งในภายหลังหรือรีสตาร์ทอุปกรณ์ของคุณ\n\n รายละเอียด: %s</string>

@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">पहले से Pro खरीदा?</string>
     <string name="upgrade_screen_restore_banner_body">ऐसा लगता है कि आप इस डिवाइस पर पहले Pro पर अपग्रेड कर चुके हैं। इसे फिर से अनलॉक करने के लिए अपनी खरीद को पुनः स्थापित करें।</string>
     <string name="upgrade_title_suffix">प्रो</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">आपके पास %1$s है</string>
     <string name="upgrade_screen_owned_hero_iap_body">आपकी एक बार की Pro खरीद हमेशा के लिए हर Pro सुविधा को अनलॉक करती है।</string>
     <string name="upgrade_screen_owned_hero_sub_body">आपकी सदस्यता हर Pro सुविधा को अनलॉक करती है।</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">सदस्यता प्रबंधित करें</string>
     <string name="upgrade_screen_owned_iap_title">आजीवन Pro</string>
     <string name="upgrade_screen_owned_iap_body">आप एक बार की Pro अपग्रेड के मालिक हैं। कोई सदस्यता नहीं, कोई नवीनीकरण नहीं।</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">आपकी सदस्यता नवीकृत नहीं होगी, इसलिए आप अब स्थायी एक बार की Pro खरीद पर जा सकते हैं।</string>
     <string name="upgrade_screen_owned_iap_locked_note">एक बार की खरीद पर स्विच करने के लिए, पहले Google Play में अपनी सदस्यता को रद्द करें। यह ऑफ़र तब अनलॉक हो जाता है जब इसे नवीकृत न होने के लिए सेट किया जाता है।</string>
     <string name="upgrade_screen_sub_still_renewing_message">आपकी सदस्यता अभी भी सक्रिय है और नवीनीकृत हो रही है। पहले इसे Google Play में रद्द करें।</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Google Play से आपकी खरीदारी सत्यापित नहीं हो सकी। कृपया फिर से कोशिश करें।</string>
+    <string name="upgrade_screen_pending_card_title">भुगतान लंबित</string>
+    <string name="upgrade_screen_pending_card_body">Google Play अभी भी आपके भुगतान को प्रोसेस कर रहा है। भुगतान पूरा होते ही Pro अपने आप अनलॉक हो जाएगा। कुछ भुगतान तरीकों में थोड़ा समय लग सकता है। आपको और कुछ करने की ज़रूरत नहीं है।</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play को एक ऐसी खरीदारी मिली है जिसका भुगतान लंबित है और वह अभी भी इसे प्रोसेस कर रहा है। भुगतान पूरा होते ही Pro अपने आप अनलॉक हो जाएगा।</string>
     <string name="upgrade_screen_grace_title">आपकी खरीदारी की पुष्टि की जा रही है</string>
     <string name="upgrade_screen_grace_body">Google Play को आपकी Pro खरीदारी को फिर से पुष्टि करने की प्रतीक्षा है। यह आमतौर पर अपने आप ठीक हो जाता है।</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">स्थिति गलत लग रही है?</string>
     <string name="upgrade_screen_restore_status_body">अगर आपने Pro खरीदा है लेकिन वह दिख नहीं रहा है, तो Google Play के साथ एक लाइव जांच चलाएं।</string>
     <string name="upgrade_screen_restore_success_message">क्रय बहाल किया गया।</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">अपग्रेड विकल्प</string>
     <string name="upgrade_screen_offers_body">समान विशेषताएं, बस विभिन्न मूल्य निर्धारण मॉडल।</string>
     <string name="upgrade_screen_offers_or">या</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">हर साल नवीनीकृत होता है। Google Play में कभी भी रद्द करें।</string>
     <string name="upgrade_screen_iap_offer_title">एक बार खरीदें</string>
     <string name="upgrade_screen_iap_offer_body">एक भुगतान, कोई नवीनीकरण नहीं।</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">सदस्यता अभी भी सक्रिय है</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play की अभी जांच की गई, लेकिन इस ऐप के लिए उपयोग किए जा रहे खाते के लिए कोई Pro खरीद की पुष्टि नहीं की जा सकी।</string>
     <string name="upgrade_screen_restore_multiaccount_hint">कई खाते Google Play को भ्रमित कर सकते हैं। Google Play वेबसाइट के माध्यम से ऐप इंस्टॉल करने से यह एक विशिष्ट खाते के साथ जुड़ने के लिए बाध्य होता है।</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play सिंक्रोनाइजेशन में समय लग सकता है। रीबूट करने, Google Play Store कैश साफ़ करने, या बस प्रतीक्षा करने का प्रयास करें।</string>
     <string name="upgrade_screen_restore_contact_hint">अभी भी फंसे हुए हैं? खरीद करने वाले ईमेल से समर्थन से संपर्क करें और अपनी Google Play ऑर्डर संख्या शामिल करें।</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$s प्राप्त करें</string>
     <string name="upgrade_screen_benefits_title">अपग्रेड लाभ</string>
     <string name="upgrade_screen_thanks_toast">आप सर्वश्रेष्ठ हैं! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro अभी भी सक्रिय है। Google Play से आपकी खरीदारी की पुष्टि करने की प्रतीक्षा में, इस बीच सभी Pro सुविधाएं अनलॉक रहती हैं।</string>
     <string name="upgrade_screen_restore_body">पुनर्स्थापन Google Play को इस ऐप की खरीदारी को वर्तमान खाते के लिए दोबारा जांचने के लिए कहता है। यह कोई नई खरीदारी शुरू नहीं करता है।</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Play के साथ जांच समय पर पूरी नहीं हुई, इसलिए आपकी खरीदारी की स्थिति अभी भी अज्ञात है। आपके खाते पर कुछ भी नहीं बदला है।</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play से कनेक्ट नहीं हो सकता। क्या Google Play इंस्टॉल और अप-टू-डेट है? क्या आपका Google खाता लॉग इन है? Google Play ऐप का कैश साफ़ करने और अपने डिवाइस को रीबूट करने का प्रयास करें।</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Play नहीं खुल सका। यह इस डिवाइस पर गायब, अक्षम या प्रतिबंधित हो सकता है।</string>
     <string name="upgrades_gplay_billing_error_label">Google Play समस्या</string>
     <string name="upgrades_gplay_billing_error_description">Google Play में समस्या थी। कृपया बाद में फिर से कोशिश करें या अपने डिवाइस को पुनः शुरू करें।\n\nविवरण: %s</string>

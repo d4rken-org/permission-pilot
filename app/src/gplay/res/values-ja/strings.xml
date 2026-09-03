@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Pro をすでに購入しましたか？</string>
     <string name="upgrade_screen_restore_banner_body">以前このデバイスで Pro にアップグレードしたようです。購入を復元して Pro をもう一度ロック解除してください。</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">%1$s をお持ちです</string>
     <string name="upgrade_screen_owned_hero_iap_body">Pro のワンタイム購入により、すべての Pro 機能が永久にロック解除されます。</string>
     <string name="upgrade_screen_owned_hero_sub_body">ご契約により、すべての Pro 機能がロック解除されます。</string>
@@ -28,18 +22,15 @@
     <string name="upgrade_screen_manage_subscription_action">ご契約を管理</string>
     <string name="upgrade_screen_owned_iap_title">生涯 Pro</string>
     <string name="upgrade_screen_owned_iap_body">一度限りの Pro アップグレードをお持ちです。サブスクリプションはなく、更新もありません。</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">サブスクリプションは更新されないため、今すぐ永久ライセンスの買い切りPro購入に切り替えられます。</string>
     <string name="upgrade_screen_owned_iap_locked_note">買い切り購入に切り替えるには、まずGoogle Playでサブスクリプションを解約してください。更新しない設定にすると、この特典が利用できるようになります。</string>
     <string name="upgrade_screen_sub_still_renewing_message">ご契約はまだ有効で更新されています。まず Google Play でキャンセルしてください。</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_pending_card_title">支払い処理中</string>
     <string name="upgrade_screen_grace_title">購入を確認中</string>
     <string name="upgrade_screen_grace_body">Google Play が Pro 購入を再確認するのを待っています。これは通常自動的に解決します。</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">ステータスが間違っていますか？</string>
     <string name="upgrade_screen_restore_status_body">Pro を購入しているのに表示されない場合は、Google Play に対してライブチェックを実行してください。</string>
     <string name="upgrade_screen_restore_success_message">購入が復元されました。</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">アップグレードオプション</string>
     <string name="upgrade_screen_offers_body">同じ機能ですが、価格設定モデルが異なります。</string>
     <string name="upgrade_screen_offers_or">または</string>
@@ -48,24 +39,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">毎年更新されます。Google Play でいつでもキャンセルできます。</string>
     <string name="upgrade_screen_iap_offer_title">1 回購入</string>
     <string name="upgrade_screen_iap_offer_body">1 回の支払い、更新なし。</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">サブスクリプションはまだ有効です</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play を確認しましたが、このアプリが使用しているアカウントで Pro 購入を確認できませんでした。</string>
     <string name="upgrade_screen_restore_multiaccount_hint">複数のアカウントは Google Play を混乱させる可能性があります。Google Play ウェブサイトからアプリをインストールすれば、特定のアカウントに関連付けられます。</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play の同期には時間がかかる場合があります。再起動するか、Google Play ストアのキャッシュをクリアするか、しばらく待ってみてください。</string>
     <string name="upgrade_screen_restore_contact_hint">まだお困りですか？購入に使用したメールアドレスからサポートに連絡し、Google Play の注文番号を含めてください。</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$sを取得する</string>
     <string name="upgrade_screen_benefits_title">アップグレードの利点</string>
     <string name="upgrade_screen_thanks_toast">あなたは最高です！ ❤️</string>
     <string name="upgrade_screen_grace_body_short">Proはまだアクティブです。Google Playがあなたの購入を再確認するのを待っています。その間、すべてのPro機能はロック解除されたままです。</string>
     <string name="upgrade_screen_restore_body">復元するとGoogle Playに現在のアカウントのこのアプリの購入を再確認するよう求めます。新しい購入は開始しません。</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Playとのチェックが時間内に完了しなかったため、購入ステータスはまだ不明です。アカウントには何も変更されていません。</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot は Google Play に接続できません。Google Playはインストールされており、最新の状態ですか？ あなたのGoogleアカウントはログインしていますか？ Google Playアプリのキャッシュをクリアしてデバイスを再起動してみてください。</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Playを開けませんでした。このデバイスにインストールされていないか、無効にされているか、制限されている可能性があります。</string>
     <string name="upgrades_gplay_billing_error_label">アプリ内購入の問題</string>
     <string name="upgrades_gplay_billing_error_description">Google Playで問題が発生しました。後でもう一度試すか、デバイスを再起動してください。\n\n詳細: %s</string>

@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Allerede kjøpt Pro?</string>
     <string name="upgrade_screen_restore_banner_body">Det ser ut til at du oppgraderte til Pro på denne enheten før. Gjenopprett kjøpet ditt for å låse det opp igjen.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Du har %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ditt engangs Pro-kjøp låser opp hver Pro-funksjon, for alltid.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Abonnementet ditt låser opp alle Pro-funksjoner.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Administrer abonnement</string>
     <string name="upgrade_screen_owned_iap_title">Livstids Pro</string>
     <string name="upgrade_screen_owned_iap_body">Du eier engangs Pro-oppgraderingen. Ingen abonnement, ingen fornyelser.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Abonnementet ditt fornyes ikke, så du kan bytte til det permanente engangskjøpet av Pro nå.</string>
     <string name="upgrade_screen_owned_iap_locked_note">For å bytte til engangskjøpet må du først si opp abonnementet i Google Play. Dette tilbudet låses opp når det er satt til å ikke fornyes.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Abonnementet ditt er fortsatt aktivt og fornyes. Avbryt det i Google Play først.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Kunne ikke bekrefte kjøpene dine med Google Play. Prøv igjen.</string>
+    <string name="upgrade_screen_pending_card_title">Betaling venter</string>
+    <string name="upgrade_screen_pending_card_body">Google Play behandler fortsatt betalingen din. Pro låses opp automatisk når betalingen er gjennomført. Enkelte betalingsmetoder kan ta litt tid. Du trenger ikke å gjøre noe mer.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play fant et kjøp med en ventende betaling og behandler det fortsatt. Pro låses opp automatisk når betalingen er gjennomført.</string>
     <string name="upgrade_screen_grace_title">Bekrefter kjøpet ditt</string>
     <string name="upgrade_screen_grace_body">Venter på at Google Play skal bekrefte Pro-kjøpet ditt på nytt. Dette løser seg vanligvis av seg selv.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Ser statusen feil ut?</string>
     <string name="upgrade_screen_restore_status_body">Hvis du har kjøpt Pro, men det vises ikke, kjør en live-kontroll mot Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Kjøp gjenopprettet.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Oppgraderingsalternativer</string>
     <string name="upgrade_screen_offers_body">De samme funksjonene, bare ulike prismodeller.</string>
     <string name="upgrade_screen_offers_or">eller</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Fornyes årlig. Avbryt når som helst i Google Play.</string>
     <string name="upgrade_screen_iap_offer_title">Kjøp en gang</string>
     <string name="upgrade_screen_iap_offer_body">En betaling, ingen fornyelser.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Abonnement er fortsatt aktivt</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play ble nettopp sjekket, men ingen Pro-kjøp kunne bekreftes for kontoen som brukes for denne appen.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Flere kontoer kan forvirre Google Play. Installering av appen gjennom Google Play-nettstedet tvinger appen til å knyttes til en bestemt konto.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play-synkronisering kan ta en stund. Prøv å starte på nytt, tøm Google Play Store-cachen, eller bare vent.</string>
     <string name="upgrade_screen_restore_contact_hint">Fortsatt fast? Kontakt kundestøtte fra e-posten som gjorde kjøpet og ta med ditt Google Play-ordrenummer.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Hent %1$s</string>
     <string name="upgrade_screen_benefits_title">Oppgraderingsfordeler</string>
     <string name="upgrade_screen_thanks_toast">Du er den beste! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro er fortsatt aktiv. Venter på at Google Play skal bekrefte kjøpet ditt på nytt, alle Pro-funksjoner forblir aktive inntil videre.</string>
     <string name="upgrade_screen_restore_body">Gjenoppretting ber Google Play om å sjekke denne appens kjøp på nytt for gjeldende konto. Den starter ikke et nytt kjøp.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Sjekken med Google Play ble ikke ferdig i tide, så kjøpsstatusen din er fortsatt ukjent. Ingenting har endret seg på kontoen din.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot kan ikke koble til Google Play. Er Google Play installert og oppdatert? Er Google-kontoen din logget inn? Prøv å tømme hurtigbufferen til Google Play-appen, og start enheten på nytt.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Kunne ikke åpne Google Play. Det kan være manglende, deaktivert eller begrenset på denne enheten.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play problem</string>
     <string name="upgrades_gplay_billing_error_description">Det oppstod et problem med Google Play. Prøv igjen senere eller start enheten på nytt.\n\nDetaljer: %s</string>

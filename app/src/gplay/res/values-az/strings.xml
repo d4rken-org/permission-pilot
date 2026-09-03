@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Artıq Pro satın aldınız?</string>
     <string name="upgrade_screen_restore_banner_body">Görünür ki, siz bu cihazda əvvəllər Pro-ya yüksəltdiniz. Bunu yenidən aktivləşdirmək üçün satın almağı bərpa edin.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Sizin %1$s var</string>
     <string name="upgrade_screen_owned_hero_iap_body">Sizin tek seferlik Pro alımı hər Pro xüsusiyyətini əbədi açır.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Sizin abonelik hər Pro xüsusiyyətini açır.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Aboneliyi idarə edin</string>
     <string name="upgrade_screen_owned_iap_title">Ömürlük Pro</string>
     <string name="upgrade_screen_owned_iap_body">Sizin tek seferlik Pro yüksəltməsi var. Abonelik yoxdur, yenilənmə yoxdur.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Sizin abonəmentiniz yenilənməyəcəkdir, buna görə də siz indi daimi bir dəfəlik Pro alışına keçə bilərsiniz.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Bir dəfəlik alışa keçmək üçün əvvəlcə Google Play-da abonəmenti ləğv edin. Bu təklif yenilənməmək üçün təyin edildikdən sonra açılır.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Sizin abunəlik hələ də aktivdir və yenilənir. Əvvəlcə Google Play-də ləğv edin.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Alışlarınız Google Play ilə doğrulanamadı. Lütfən yenidən cəhd edin.</string>
+    <string name="upgrade_screen_pending_card_title">Ödəniş Gözləyir</string>
+    <string name="upgrade_screen_pending_card_body">Google Play ödənişinizi hələ də emal edir. Pro ödəniş qəbul edildikdən sonra avtomatik olaraq açılacaq. Bəzi ödəniş üsulları daha uzun vaxt ala bilər. Başqa heç nə etmənizə ehtiyac yoxdur.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play ödənişi gözləmədə olan satınalma tapıb və hələ də onu emal edir. Pro ödəniş qəbul edildikdən sonra avtomatik olaraq açılacaq.</string>
     <string name="upgrade_screen_grace_title">Alışınız təsdiqlənir</string>
     <string name="upgrade_screen_grace_body">Google Play sizin Pro alışınızı yenidən təsdiqləməsi gözlənilir. Bu adətən öz-özünə həll olur.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Vəziyyət səhv görünürmü?</string>
     <string name="upgrade_screen_restore_status_body">Pro satın aldığınızı ancaq görünmürsə, Google Play-da canlı yoxlama aparın.</string>
     <string name="upgrade_screen_restore_success_message">Satın alma bərpa edildi.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Yüksəltmə seçimləri</string>
     <string name="upgrade_screen_offers_body">Eyni xüsusiyyətlər, sadəcə fərqli qiymət modelləri.</string>
     <string name="upgrade_screen_offers_or">və ya</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Hər il yenilənir. Google Play-də istənilən vaxt ləğv edin.</string>
     <string name="upgrade_screen_iap_offer_title">Bir dəfəlik</string>
     <string name="upgrade_screen_iap_offer_body">Bir ödəniş, yeniləmə yoxdur.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Abunəlik hələ də fəaldır</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play yeni yoxlanılmış, lakin bu tətbiq üçün istifadə olunan hesab üçün Pro satınalması təsdiq edilə bilmədi.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Çoxlu hesablar Google Play-i çaşdıra bilər. Tətbiqini Google Play veb saytı vasitəsilə quraşdırmaq onu müəyyən hesabla əlaqələndirməyi məcbur edir.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play sinxronlaşdırması vaxt ala bilər. Yenidən başlatmağı, Google Play Store keşini təmizləməyi və ya sadəcə gözləməyi sınayın.</string>
     <string name="upgrade_screen_restore_contact_hint">Hələ də problem yaşayırsınız? Satınalmaq üçün istifadə olunan e-poçt ünvanından dəstəyə müraciət edin və Google Play sifariş nömrənizi əlavə edin.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$s-i əldə edin</string>
     <string name="upgrade_screen_benefits_title">Yüksəltmə üstünlükləri</string>
     <string name="upgrade_screen_thanks_toast">Siz ən yaxşısınız! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro hələ də fəaldir. Google Play alışınızı yenidən təsdiq etməsi üçün gözləyirik. Bu müddətdə bütün Pro xüsusiyyətləri açıq qalır.</string>
     <string name="upgrade_screen_restore_body">Bərpaya sal Google Play-in bu tətbiqin cari hesab üçün alışlarını yenidən yoxlamasını xahiş edir. Bu yeni alış başlatmır.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Play ilə yoxlama vaxtında bitmədi, buna görə də alış statusunuz hələ də naməlumdur. Hesabınızda heç bir şey dəyişməyib.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot Google Play-ə qoşula bilmir. Google Play quraşdırılıb və yenilənib? Google hesabınız daxil olub? Google Play tətbiqinin keşini təmizləməyi və cihazınızı yenidən başlatmagı sınayın.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Play açıla bilmədi. Bu cihazda yoxdur, deaktiv və ya məhdudlaşdırılmış ola bilər.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play Problemi</string>
     <string name="upgrades_gplay_billing_error_description">Google Play ilə problem yarandı. Xahiş edirik bir az sonra yenidən cəhd edin və ya cihazınızı yenidən başladın.\n\nDetallar: %s</string>

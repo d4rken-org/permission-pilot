@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">هل اشتريت Pro بالفعل؟</string>
     <string name="upgrade_screen_restore_banner_body">يبدو أنك ترقيت إلى Pro على هذا الجهاز من قبل. استعد شراءك لفتح قفله مرة أخرى.</string>
     <string name="upgrade_title_suffix">احترافي</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">لديك %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">شراء Pro لمرة واحدة يفتح كل ميزة Pro إلى الأبد.</string>
     <string name="upgrade_screen_owned_hero_sub_body">اشتراكك يفتح كل ميزة Pro.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">إدارة الاشتراك</string>
     <string name="upgrade_screen_owned_iap_title">Pro مدى الحياة</string>
     <string name="upgrade_screen_owned_iap_body">أنت تمتلك ترقية Pro لمرة واحدة. لا اشتراك، لا تجديدات.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">لن يتجدد اشتراكك، لذا يمكنك الانتقال الآن إلى شراء Pro الدائم لمرة واحدة.</string>
     <string name="upgrade_screen_owned_iap_locked_note">للتبديل إلى الشراء لمرة واحدة، يجب إلغاء الاشتراك أولاً في Google Play. يُفتح هذا العرض بمجرد ضبط الاشتراك على عدم التجديد.</string>
     <string name="upgrade_screen_sub_still_renewing_message">اشتراكك لا يزال نشطاً ويتم تجديده. قم بإلغائه في Google Play أولاً.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">تعذّر التحقق من مشترياتك عبر جوجل بلاي. يُرجى المحاولة مرة أخرى.</string>
+    <string name="upgrade_screen_pending_card_title">الدُّفعة قيد الانتظار</string>
+    <string name="upgrade_screen_pending_card_body">لا يزال جوجل بلاي يعالج دُفعتك. سيتمّ تفعيل النسخة الاحترافية تلقائيًّا بمجرّد إتمام الدفع. قد تستغرق بعض طرق الدفع بعض الوقت. لا يلزمك فعل أيّ شيءٍ آخر.</string>
+    <string name="upgrade_screen_pending_dialog_message">عثر جوجل بلاي على عملية اشتراء ذي دُفعة مُعلَّقة، ولا يزال يعمل على معالجتها. سيتمّ تفعيل النسخة الاحترافية تلقائيًّا بمجرّد إتمام عملية الدفع.</string>
     <string name="upgrade_screen_grace_title">جاري تأكيد عملية الشراء</string>
     <string name="upgrade_screen_grace_body">جاري انتظار Google Play لإعادة تأكيد شراء Pro الخاص بك. عادة ما يتم حل هذا تلقائياً.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">هل تبدو الحالة خاطئة؟</string>
     <string name="upgrade_screen_restore_status_body">إذا اشتريت Pro لكنه لا يظهر، قم بإجراء فحص مباشر مقابل Google Play.</string>
     <string name="upgrade_screen_restore_success_message">تم استعادة عملية الشراء.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">خيارات الترقية</string>
     <string name="upgrade_screen_offers_body">نفس الميزات، فقط نماذج تسعير مختلفة.</string>
     <string name="upgrade_screen_offers_or">أو</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">يتجدد سنويًا. يمكنك الإلغاء في أي وقت من خلال Google Play.</string>
     <string name="upgrade_screen_iap_offer_title">شراء مرة واحدة</string>
     <string name="upgrade_screen_iap_offer_body">دفعة واحدة، بدون تجديدات.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">الاشتراك لا يزال نشطًا</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">تم التحقق من Google Play للتو، لكن تعذر تأكيد شراء Pro للحساب المستخدم.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">قد تسبب حسابات متعددة التباسًا في Google Play. يؤدي تثبيت التطبيق من موقع Google Play على الويب إلى ربطه بحساب معين.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">قد تستغرق مزامنة Google Play بعض الوقت. جرب إعادة تشغيل الجهاز أو مسح ذاكرة التخزين المؤقتة لمتجر Google Play أو ببساطة الانتظار.</string>
     <string name="upgrade_screen_restore_contact_hint">لا تزال عالقًا؟ تواصل مع الدعم من البريد الإلكتروني الذي استخدمته للشراء وأرفق رقم طلب Google Play.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">احصل على %1$s</string>
     <string name="upgrade_screen_benefits_title">فوائد الترقية</string>
     <string name="upgrade_screen_thanks_toast">أنت الأفضل! ❤️</string>
     <string name="upgrade_screen_grace_body_short">الإصدار Pro لا يزال نشطاً. جاري انتظار Google Play لإعادة تأكيد شرائك، تظل جميع ميزات Pro مفتوحة في غضون ذلك.</string>
     <string name="upgrade_screen_restore_body">تطلب الاستعادة من Google Play إعادة فحص عمليات شراء هذا التطبيق للحساب الحالي. لا تبدأ عملية شراء جديدة.</string>
     <string name="upgrade_screen_restore_inconclusive_message">لم ينتهِ الفحص مع Google Play في الوقت المحدد، لذلك حالة شرائك لا تزال غير معروفة. لم يتغير شيء على حسابك.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">يتعذر على Permission Pilot الاتصال بـ Google Play. هل تم تثبيت Google Play وتحديثه؟ هل تم تسجيل الدخول إلى حسابك في Google؟ حاول مسح ذاكرة التخزين المؤقت لتطبيق Google Play وإعادة تشغيل جهازك.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">لم يتمكن من فتح Google Play. قد يكون التطبيق غير موجود أو معطل أو محظور على هذا الجهاز.</string>
     <string name="upgrades_gplay_billing_error_label">هناك مشكلة مع المتجر التطبيقات Google Play</string>
     <string name="upgrades_gplay_billing_error_description">واجهنا مشكلة مع Google Play، المرجو المحاولة ثانية لاحقا أو إعادة تشغيل جهازك. \n\nالتفاصيل: %s</string>

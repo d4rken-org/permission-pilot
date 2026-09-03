@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">ቀድሞ Pro ገዝተዋል?</string>
     <string name="upgrade_screen_restore_banner_body">በዚህ መሣሪያ ላይ በፊት Pro ገዝተዋል ይመስላል። ዳግም ለመክፈት ግዢዎን ወደ ነበር ሆኑ።</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">የ%1$s ባለቤት</string>
     <string name="upgrade_screen_owned_hero_iap_body">የአንድ ጊዜ Pro ግዢ ሁሉንም Pro ባህሪ ለዘላለም ይከፍታል።</string>
     <string name="upgrade_screen_owned_hero_sub_body">ሰዋስክ ሁሉም ፕሮ ባህሪ ይከፍታል።</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">ሰዋስን ያስተዳድሩ</string>
     <string name="upgrade_screen_owned_iap_title">ለዘላለም ፕሮ</string>
     <string name="upgrade_screen_owned_iap_body">ለአንድ ጊዜ ፕሮ ማሻሻያ ይዞታል። ሰዋስ የለም፣ ምንም ታደሳ አይደለም።</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">ደንበኝነቱ አይታደስም፣ ስለዚህ አሁን ወደ ቋሚው የPro ነጠላ ግዢ መሸጋገር ይቻላል።</string>
     <string name="upgrade_screen_owned_iap_locked_note">ወደ ነጠላ ግዢ ለመቀየር፣ በመጀመሪያ ደንበኝነቱን በGoogle Play ውስጥ መሰረዝ ያስፈልጋል። ደንበኝነቱ እንዳይታደስ ከተደረገ በኋላ ይህ አማራጭ ይከፈታል።</string>
     <string name="upgrade_screen_sub_still_renewing_message">የእርስዎ ምዝገባ አሁንም ንቁ እና ይታደሳል። በGoogle Play ውስጥ በመጀመሪያ ይሰርዙት።</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">ግዢዎችን ከGoogle Play ጋር ማረጋገጥ አልተቻለም። እባክዎ እንደገና ይሞክሩ።</string>
+    <string name="upgrade_screen_pending_card_title">ክፍያ በመጠባበቅ ላይ</string>
+    <string name="upgrade_screen_pending_card_body">Google Play ክፍያዎን በማካሄድ ላይ ነው። ክፍያው ከተጠናቀቀ በኋላ Pro በራስ-ሰር ይከፈታል። አንዳንድ የክፍያ ዘዴዎች ረዘም ያለ ጊዜ ሊወስዱ ይችላሉ። ሌላ ማድረግ ያለብዎት ነገር የለም።</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play በመጠባበቅ ላይ ያለ ክፍያ የያዘ ግዢ አግኝቷል እና እያካሄደው ነው። ክፍያው ከተጠናቀቀ በኋላ Pro በራስ-ሰር ይከፈታል።</string>
     <string name="upgrade_screen_grace_title">የእርስዎን ገዥ በማረጋገጥ ላይ ነው</string>
     <string name="upgrade_screen_grace_body">Google Play የእርስዎን Pro ገዥ ለማረጋገጥ ጠብቋ ነው። ይህ ብዙውን ጊዜ በራሱ ይፈታል።</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">ሁኔታው ትክክል አይመስልም?</string>
     <string name="upgrade_screen_restore_status_body">Pro ገዥ ወደሩ ነገር ግን ይታይ ካልሆነ Google Play ላይ አሁን ምርመራ ያሂዱ።</string>
     <string name="upgrade_screen_restore_success_message">ገዥ ወደነበረበት መልስ ተደረገ።</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">የማሻሻያ አማራጮች</string>
     <string name="upgrade_screen_offers_body">ተመሳሳይ ባህሪያት፤ የተለየ የዋጋ ሞዴል ብቻ።</string>
     <string name="upgrade_screen_offers_or">ወይም</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">ዓመታዊ ይታጀብራል። በማንኛውም ጊዜ Google Play ውስጥ ይሰርዙ።</string>
     <string name="upgrade_screen_iap_offer_title">አንድ ጊዜ ይገዙ</string>
     <string name="upgrade_screen_iap_offer_body">አንድ ክፍያ፤ ምንም ማታጀብር የለም።</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">ምዝገባ አሁንም ንቁ ነው።</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play አሁን ተረጋገጧል፣ ግን ይህ መተግበሪያ ለሚጠቀሙት መለያ ምንም Pro ግዢ ማረጋገጥ አልተቻለም።</string>
     <string name="upgrade_screen_restore_multiaccount_hint">ብዙ መለያዎች Google Play ማምታታት ይችላሉ። መተግበሪያውን በGoogle Play ድርጣቢያ በኩል መጫን ከተወሰነ መለያ ጋር ግንኙነትን ያስገድዳል።</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play ሲምሪዝሽን ጊዜ ሊወስድ ይችላል። እንደገና ማስጀመር፣ Google Play Store መሸጎጫ ማጥራት ወይም ብቻ መጠበቅ ይሞክሩ።</string>
     <string name="upgrade_screen_restore_contact_hint">አሁንም ተጣበቀ? ግዢውን ያደረገውን ኢሜይል በመጠቀም ድጋፋን ያገናኙ እና የGoogle Play ትዕዛዝ ቁጥር ያካትቱ።</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$s ያግኙ</string>
     <string name="upgrade_screen_benefits_title">የማሻሻያ ጥቅሞች</string>
     <string name="upgrade_screen_thanks_toast">እርስዎ ምርጥ ነዎት! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro አሁንም ንቁ ነው። Google Play ለእርስዎ ግዥ እንደገና ለማረጋገጥ ጠብቁ፣ ሁሉም Pro ባህሪዎች ለወቅቱ ተከፍተው ይሆናሉ።</string>
     <string name="upgrade_screen_restore_body">ወደ ልክ መመለስ Google Play ይህን መተግባሪያ ግዥዎችን ለአሁኑ መለያ እንደገና ይመልከታል። አዲስ ግዥ አይጀምርም።</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Play ጋር ያለው ማረጋገጫ በጊዜ አልተጠናቀቀም፣ ስለሆነም የእርስዎ የግዥ ሁኔታ አሁንም ያልታወቀ ነው። በእርስዎ መለያ ላይ ምንም ነገር አልተወለጠም።</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ከGoogle Play ጋር መገናኘት አይችልም። Google Play ተጭኖ እና ወቅታዊ ነው? የGoogle መለያዎ ገብቷል? የGoogle Play መተግበሪያ መሸጎጫ ማጥራት እና መሳሪያዎን እንደገና ማስጀመር ይሞክሩ።</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Play ን መክፈት አልተቻለም። በዚህ መሳሪያ ላይ ሊጠፋ፣ ሊዘጋ ወይም ሊገደብ ይችላል።</string>
     <string name="upgrades_gplay_billing_error_label">Google Play ችግር</string>
     <string name="upgrades_gplay_billing_error_description">Google Play ጋር ችግር ተፈጠረ። ከጥቂት ደቂቃዎች በኋላ እንደገና ይሞክሩ ወይም መሳሪያዎን እንደገና ያስጀምሩ።\n\nዝርዝር: %s</string>

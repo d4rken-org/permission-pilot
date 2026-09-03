@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">עזרה</string>
     <string name="general_error_label">שגיאה</string>
@@ -156,7 +154,6 @@
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d מתוך %2$d הרשאות הוענקו.</item>
         <item quantity="two">%1$d מתוך %2$d הרשאות הוענקו.</item>
-        <item quantity="many">%1$d מתוך %2$d הרשאות הוענקו.</item>
         <item quantity="other">%1$d מתוך %2$d הרשאות הוענקו.</item>
     </plurals>
     <string name="apps_details_empty_filter_message">אין הרשאות התואמות את המסננים הנוכחיים. הקש על סמל המסנן כדי להתאים.</string>
@@ -168,39 +165,32 @@
     <string name="apps_details_perm_help_special">מיוחד — דורש הפעלת מתג בהגדרות המערכת.</string>
     <string name="apps_details_perm_help_install">התקנה — ניתנת אוטומטית בעת התקנת האפליקציה. אין צורך בפעולה מצד המשתמש.</string>
     <string name="apps_details_perm_help_declared">הסמל ⚠ משמעו שהרשאה זו נוצרת על ידי האפליקציה עצמה, ולא הרשאה סטנדרטית של אנדרואיד.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">מניפסט אפליקציה</string>
     <string name="apps_details_manifest_queued">בתור לניתוח…</string>
     <string name="apps_details_manifest_loading">מנתח מניפסט…</string>
     <plurals name="apps_details_manifest_loading_progress">
         <item quantity="one">נותר %d מניפסט לניתוח…</item>
         <item quantity="two">%d מניפסטים נותרו לניתוח…</item>
-        <item quantity="many">%d מניפסטים נותרו לניתוח…</item>
         <item quantity="other">נותרו %d מניפסטים לניתוח…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">לא נמצא דבר חריג</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d שאילתת חבילה</item>
         <item quantity="two">%d שאילותות חבילה</item>
-        <item quantity="many">%d שאילותות חבילה</item>
         <item quantity="other">%d שאילותות חבילה</item>
     </plurals>
     <plurals name="apps_details_manifest_intents">
         <item quantity="one">%d שאילתת כוונה</item>
         <item quantity="two">%d שאילותות כוונה</item>
-        <item quantity="many">%d שאילותות כוונה</item>
         <item quantity="other">%d שאילותות כוונה</item>
     </plurals>
     <plurals name="apps_details_manifest_providers">
         <item quantity="one">%d שאילתת ספק</item>
         <item quantity="two">%d שאילותות ספק</item>
-        <item quantity="many">%d שאילותות ספק</item>
         <item quantity="other">%d שאילותות ספק</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">יכול לגלות רוב האפליקציות הניתנות להפעלה</string>
     <string name="apps_details_manifest_hint_excessive">בודק אפליקציות ספציפיות רבות</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">צופה במניפסט</string>
     <string name="apps_manifest_viewer_search_hint">חיפוש במניפסט</string>
     <string name="apps_manifest_viewer_error_unknown">שגיאה לא ידועה בטעינת מניפסט.</string>
@@ -225,66 +215,53 @@
     <plurals name="generic_x_items_label">
         <item quantity="one">פריט %s</item>
         <item quantity="two">%s פריטים</item>
-        <item quantity="many">%s פריטים</item>
         <item quantity="other">%s פריטים</item>
     </plurals>
     <plurals name="generic_x_groups_label">
         <item quantity="one">קבוצה %s</item>
         <item quantity="two">%s קבוצות</item>
-        <item quantity="many">%s קבוצות</item>
         <item quantity="other">%s קבוצות</item>
     </plurals>
     <plurals name="generic_x_apps_label">
         <item quantity="one">אפליקציה %d</item>
         <item quantity="two">%d אפליקציות</item>
-        <item quantity="many">%d אפליקציות</item>
         <item quantity="other">%d אפליקציות</item>
     </plurals>
     <plurals name="generic_x_apps_user_label">
         <item quantity="one">אפליקציית משתמש %d</item>
         <item quantity="two">%d אפליקציות משתמש</item>
-        <item quantity="many">%d אפליקציות משתמש</item>
         <item quantity="other">%d אפליקציות משתמש</item>
     </plurals>
     <plurals name="generic_x_apps_system_label">
         <item quantity="one">אפליקציית מערכת %d</item>
         <item quantity="two">%d אפליקציות מערכת</item>
-        <item quantity="many">%d אפליקציות מערכת</item>
         <item quantity="other">%d אפליקציות מערכת</item>
     </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d אפליקציה בפרופילי משתמש אחרים מבקשת גם היא הרשאה זו.</item>
         <item quantity="two">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
-        <item quantity="many">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
         <item quantity="other">%d אפליקציות בפרופילי משתמש אחרים מבקשות גם הן הרשאה זו.</item>
     </plurals>
     <plurals name="permissions_details_count_uninstalled_apps">
         <item quantity="one">%d אפליקציה שהוסרה עם נתונים שנשמרו מבקשת גם היא הרשאה זו.</item>
         <item quantity="two">%d אפליקציות שהוסרו עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
-        <item quantity="many">%d אפליקציות שהוסרו עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
         <item quantity="other">%d אפליקציות מוסרות עם נתונים שנשמרו מבקשות גם הן הרשאה זו.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">אפליקציות המותקנות בפרופילי משתמש אחרים אינן נכללות בחישוב שלמעלה בשל מגבלות Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">זמן ריצה</string>
     <string name="permissions_tag_install_time_label">בעת התקנה</string>
     <string name="permissions_tag_special_access_label">גישה מיוחדת</string>
     <string name="permissions_tag_documented_label">מתועד</string>
     <string name="permissions_tag_notable_label">בולט</string>
     <string name="permissions_tag_non_standard_label">לא-סטנדרטי</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">בשימוש</string>
     <string name="permissions_status_unknown_label">לא ידוע</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">מערכת</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d נוסף</item>
         <item quantity="two">+%d נוספים</item>
-        <item quantity="many">+%d נוספים</item>
         <item quantity="other">+%d נוספים</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">מדדי הרשאות</string>
     <string name="permissions_details_help_section_protection">סוג הגנה</string>
     <string name="permissions_details_help_dangerous">מסוכן — דורש אישור מפורש של המשתמש בזמן ריצה. יכול לגשת לנתונים רגישים או תכונות המכשיר.</string>
@@ -430,11 +407,9 @@
     <string name="debug_debuglog_short_recording_message">יומן ניפוי שגיאות צריך לתפוס את הבעיה בזמן שהיא מתרחשת. נתחיל את ההקלטה, שחזור על הבעיה, אז עצור את ההקלטה.</string>
     <string name="debug_debuglog_short_recording_continue">המשך בהקלטה</string>
     <string name="debug_debuglog_short_recording_stop">עצור בכל זאת</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">יומן באגים %1$d אחד (%2$s)</item>
         <item quantity="two">%1$d יומני ניפוי שגיאות (%2$s)</item>
-        <item quantity="many">%1$d יומני ניפוי שגיאות (%2$s)</item>
         <item quantity="other">%1$d יומני באגים (%2$s)</item>
     </plurals>
     <string name="support_debuglog_clear_title">נקה יומני ניפוי שגיאות?</string>
@@ -454,7 +429,6 @@
     <string name="support_contact_sent_title">ההודעה נשלחה?</string>
     <string name="support_contact_sent_message">אם שלחת את הדואל, ניתן לנקות סשיה זו.</string>
     <string name="general_close_action">סגור</string>
-    <!-- Contact form -->
     <string name="contact_support_label">צור קשר עם תמיכה</string>
     <string name="contact_category_label">קטגוריה</string>
     <string name="contact_category_question_label">שאלה</string>
@@ -469,7 +443,6 @@
     <plurals name="contact_word_count">
         <item quantity="one">%1$d / %2$d מילה</item>
         <item quantity="two">%1$d / %2$d מילים</item>
-        <item quantity="many">%1$d / %2$d מילים</item>
         <item quantity="other">%1$d / %2$d מילים</item>
     </plurals>
     <string name="contact_send_action">פתח אפליקציית דואל</string>
@@ -484,7 +457,6 @@
     <string name="contact_no_email_app">לא נמצאה אפליקציית דואל במכשיר זה.</string>
     <string name="contact_welcome_message">אני קורא כל הודעה בעצמי ועושה כמיטב להשיב. מכיוון שאני מטפל בפיתוח, תיקוני באגים ותמיכה לבד, ייתכן שייקח קצת זמן. תודה על הסבלנותך.</string>
     <string name="contact_footer_message">ההודעה שלך תישלח בדואל. פרטי המכשיר וההגדרות מצורפים אוטומטית. ניתן לצרף צילומי מסך או סרטון לדואל. אנא כתוב באנגלית אם אפשר.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">יומן ניפוי שגיאות</string>
     <string name="debug_debuglog_screen_subtitle">ייצוא מידע ניפוי שגיאות לפתרון בעיות</string>
     <string name="debug_debuglog_screen_sensitive_title">מידע רגיש</string>
@@ -494,16 +466,13 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="one">קובץ %1$d מוכן (%2$s)</item>
         <item quantity="two">%1$d קבצים מוכנים (%2$s)</item>
-        <item quantity="many">%1$d קבצים מוכנים (%2$s)</item>
         <item quantity="other">%1$d קבצים מוכנים (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dד\' %2$dש\'</string>
     <string name="debug_debuglog_screen_duration_s">%1$dש\'</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">שאלה</string>
     <string name="contact_email_tag_feature">תכונה</string>
     <string name="contact_email_tag_bug">באג</string>
@@ -512,7 +481,6 @@
     <string name="onboarding_body1">אפליקציה זו עוזרת לך לנווט באפליקציות מותקנות ולגלות הרשאות.</string>
     <string name="onboarding_body2">Permission Pilot אוסף מידע על אפליקציות מותקנות כדי לאפשר רישום האפליקציות שלך והצלבת ההרשאות שלהן בעת שימוש באפליקציה זו.</string>
     <string name="onboarding_body3">ל-Permission Pilot אין פרסומות והיא מעבדת נתונים באופן מקומי בלבד.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">עיצוב</string>
     <string name="ui_theme_mode_system_label">מערכת</string>
     <string name="ui_theme_mode_dark_label">כהה</string>
@@ -529,7 +497,6 @@
     <string name="ui_theme_color_disabled_subtitle">משתמש בצבעי טפט הרקע</string>
     <string name="upgrade_required_subtitle">שדרג כדי לפתוח</string>
     <string name="settings_category_appearance_label">מראה</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">התאמאישית עיצוב</string>
     <string name="upgrade_benefit_filtering">סינון מתקדם</string>
     <string name="upgrade_benefit_export">ייצוא נתונים באצוות</string>
@@ -542,9 +509,7 @@
     <string name="general_copy_action">העתקה</string>
     <string name="general_copied_to_clipboard_msg">הועתק ללוח</string>
     <string name="general_view_details_for_x_action">הצג פרטים עבור %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">סטטוס השדרוג ואפשרויות</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">צופה</string>
     <string name="watcher_dashboard_feature_title">צופה הרשאות</string>
     <string name="watcher_dashboard_feature_description">קבל התראה כאשר עדכון אפליקציה מוסיף הרשאות חדשות או משנה את הקיימות. צופה הרשאות בודק את האפליקציות שלך לאחר כל עדכון ויוצר דוח אם משהו השתנה.</string>
@@ -555,13 +520,11 @@
     <plurals name="watcher_notification_new_permissions">
         <item quantity="one">%1$s קיבלה הרשאה חדשה אחת (%2$d).</item>
         <item quantity="two">%1$s קיבלה %2$d הרשאות חדשות.</item>
-        <item quantity="many">%1$s קיבלה %2$d הרשאות חדשות.</item>
         <item quantity="other">%1$s קיבלה %2$d הרשאות חדשות.</item>
     </plurals>
     <plurals name="watcher_notification_changed_permissions">
         <item quantity="one">%1$s: %2$d הרשאה השתנתה</item>
         <item quantity="two">%1$s: %2$d הרשאות השתנו</item>
-        <item quantity="many">%1$s: %2$d הרשאות השתנו</item>
         <item quantity="other">%1$s: %2$d הרשאות השתנו</item>
     </plurals>
     <string name="watcher_settings_label">צופה הרשאות</string>
@@ -588,7 +551,6 @@
     <plurals name="watcher_notification_summary_title">
         <item quantity="one">אפליקציה %d שינתה הרשאות</item>
         <item quantity="two">%d אפליקציות שינו הרשאות</item>
-        <item quantity="many">%d אפליקציות שינו הרשאות</item>
         <item quantity="other">%d אפליקציות שינו הרשאות</item>
     </plurals>
     <string name="watcher_settings_notifications_label">הצג התראות</string>
@@ -599,7 +561,6 @@
     <plurals name="watcher_settings_retention_days">
         <item quantity="one">%d יום</item>
         <item quantity="two">%d ימים</item>
-        <item quantity="many">%d ימים</item>
         <item quantity="other">%d ימים</item>
     </plurals>
     <string name="watcher_settings_clear_reports_label">נקה כל הדוחות</string>
@@ -608,7 +569,6 @@
     <plurals name="watcher_settings_report_count">
         <item quantity="one">דוח %d</item>
         <item quantity="two">%d דוחות</item>
-        <item quantity="many">%d דוחות</item>
         <item quantity="other">%d דוחות</item>
     </plurals>
     <string name="watcher_notification_permission_title">התראות אינן זמינות</string>
@@ -623,7 +583,6 @@
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">הרשאות ידועות אחרונות (%d)</item>
         <item quantity="two">הרשאות אחרונות ידועות (%d)</item>
-        <item quantity="many">הרשאות אחרונות ידועות (%d)</item>
         <item quantity="other">הרשאות ידועות אחרונות (%d)</item>
     </plurals>
     <string name="watcher_detail_new_perms_subtitle">הרשאות אלו נוספו עם גרסה זו של האפליקציה.</string>
@@ -639,7 +598,6 @@
     <plurals name="watcher_settings_polling_interval">
         <item quantity="one">כל %d שעה</item>
         <item quantity="two">כל %d שעות</item>
-        <item quantity="many">כל %d שעות</item>
         <item quantity="other">כל %d שעות</item>
     </plurals>
     <string name="watcher_refresh_scanning">סורק אפליקציות…</string>
@@ -657,7 +615,6 @@
     <plurals name="watcher_upgrade_card_title">
         <item quantity="one">עוד %d דוח</item>
         <item quantity="two">%d דוחות נוספים</item>
-        <item quantity="many">%d דוחות נוספים</item>
         <item quantity="other">עוד %d דוחות</item>
     </plurals>
     <string name="watcher_upgrade_card_body">שדרג כדי לצפות בכל הדוחות, פרטים ולקבל התראות</string>
@@ -670,27 +627,22 @@
     <string name="snapshot_sync_channel_name">סנכרון תמונתי מצב</string>
     <string name="snapshot_sync_channel_description">סנכרון נתוני אפליקציה ברקע</string>
     <string name="snapshot_sync_notification_title">מסנכרן נתוני אפליקציה…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">בחר הכל</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d נבחר</item>
         <item quantity="two">%d נבחרו</item>
-        <item quantity="many">%d נבחרו</item>
         <item quantity="other">%d נבחרו</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">ייצוא פרטי אפליקציה</string>
     <string name="export_permission_info_action">ייצוא פרטי הרשאה</string>
     <plurals name="export_title_apps">
         <item quantity="one">ייצוא %d אפליקציה</item>
         <item quantity="two">ייצוא %d אפליקציות</item>
-        <item quantity="many">ייצוא %d אפליקציות</item>
         <item quantity="other">ייצוא %d אפליקציות</item>
     </plurals>
     <plurals name="export_title_permissions">
         <item quantity="one">ייצוא %d הרשאה</item>
         <item quantity="two">ייצוא %d הרשאות</item>
-        <item quantity="many">ייצוא %d הרשאות</item>
         <item quantity="other">ייצוא %d הרשאות</item>
     </plurals>
     <string name="export_app_info_title">ייצוא פרטי אפליקציה</string>
@@ -723,7 +675,6 @@
     <plurals name="export_free_limit_message">
         <item quantity="one">הגרסה החינמית מוגבלת ל‑%d פריט ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
         <item quantity="two">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
-        <item quantity="many">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
         <item quantity="other">הגרסה החינמית מוגבלת ל‑%d פריטים ולפורמט Markdown. שדרג לייצוא ללא הגבלה ולכל הפורמטים.</item>
     </plurals>
     <string name="export_upgrade_action">שדרוג</string>
