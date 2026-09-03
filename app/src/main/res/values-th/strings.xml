@@ -7,14 +7,12 @@
     <string name="label_help">ช่วยเหลือ</string>
     <string name="general_error_label">ข้อผิดพลาด</string>
     <string name="general_load_error_title">ไม่สามารถโหลดข้อมูล</string>
-    <string name="general_load_error_hint">เกิดข้อผิดพลาดขณะสแกนแอปที่ติดตั้งของคุณ</string>
     <string name="general_refresh_error_hint">การรีเฟรชล้มเหลว</string>
     <string name="general_retry_action">ลองอีกครั้ง</string>
     <string name="general_share_action">แชร์</string>
     <string name="general_done_action">เสร็จสิ้น</string>
     <string name="general_open_action">เปิด</string>
     <string name="general_continue_action">ดำเนินการต่อ</string>
-    <string name="general_no_action">ไม่</string>
     <string name="debug_debuglog_record_action">บันทึก</string>
     <string name="settings_category_other_label">อื่นๆ</string>
     <string name="settings_category_gethelp_label">รับความช่วยเหลือ</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">ทั่วไป</string>
     <string name="general_settings_desc">การตั้งค่าทั่วไปที่ส่งผลต่อแอปทั้งหมด</string>
     <string name="general_settings_scan_speed_label">ความเร็วการสแกน</string>
-    <string name="general_settings_scan_speed_desc">ควบคุมการทำงานพร้อมกันเมื่อสแกนแอป ค่าที่สูงขึ้นจะเร็วกว่าแต่อาจทำให้เกิดการขัดข้องบนอุปกรณ์บางเครื่อง</string>
     <string name="general_settings_scan_speed_auto">อัตโนมัติ (แนะนำ)</string>
     <string name="general_settings_scan_speed_1">1 (ปลอดภัยที่สุด)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">นโยบายความเป็นส่วนตัว</string>
     <string name="settings_privacy_policy_desc">การจัดการข้อมูลอย่างรับผิดชอบ</string>
     <string name="settings_support_label">การสนับสนุน</string>
-    <string name="documentation_label">เอกสารประกอบ</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">สถานที่สำหรับพูดคุยและถามคำถาม</string>
     <string name="issue_tracker_label">ตัวติดตามปัญหา</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">สำหรับการสนับสนุนการแปลโปรเจกต์ออเพนซอร์ส</string>
     <string name="permissions_page_label">สิทธิ์</string>
     <string name="apps_page_label">แอป</string>
-    <string name="app_type_system_label">แอประบบ</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">สิทธิ์ที่ไม่รู้จัก ถูกร้องขอโดยแอปนี้ แต่ไม่มีแอปอื่นประกาศไว้</string>
-    <string name="permissions_unknown_description">สิทธิ์ที่ไม่รู้จัก ถูกร้องขอโดยแอป แต่ไม่มีการประกาศไว้ที่ไหน</string>
     <string name="permissions_app_type_declaring_description">สิทธิ์ถูกสร้างโดยแอปนี้</string>
-    <string name="permissions_app_type_requesting_description">แอปร้องขอสิทธิ์</string>
     <string name="general_filter_action">กรอง</string>
     <string name="general_cancel_action">ยกเลิก</string>
     <string name="apps_filter_userapps_label">แอปผู้ใช้</string>
@@ -67,16 +58,6 @@
     <string name="apps_sort_app_name_label">ชื่อแอป</string>
     <string name="apps_sort_install_date_label">วันที่ติดตั้ง</string>
     <string name="apps_sort_update_date_label">อัปเดตล่าสุด</string>
-    <string name="general_sort_action">เรียงลำดับ</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="other">%1$d จาก %2$d ได้รับอนุญาต</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="other">ขอสิทธิ์ %1$d รายการ</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="other">ประกาศสิทธิ์ %1$d รายการ</item>
-    </plurals>
     <string name="apps_details_installer_label">แหล่งที่มาของการติดตั้ง</string>
     <string name="apps_details_installer_unknown_label">ข้อมูลไม่พร้อมใช้งาน</string>
     <string name="apps_details_open_settings_error">ไม่สามารถเปิดการตั้งค่าแอปสำหรับโปรไฟล์นี้ได้</string>
@@ -99,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">จำนวนแอปที่ร้องขอ</string>
     <string name="permissions_search_list_hint">ค้นหาสิทธิ์</string>
     <string name="apps_search_list_hint">ค้นหาแอป</string>
-    <string name="permissions_details_protection_label">ระดับการป้องกัน</string>
     <string name="permissions_protection_type_normal_label">ปกติ</string>
     <string name="permissions_protection_type_dangerous_label">อันตราย</string>
     <string name="permissions_protection_type_signature_label">ลายเซ็น</string>
@@ -124,7 +104,6 @@
         <item>อ่านเนื้อหาฟอนต์เล็ก</item>
     </string-array>
     <string name="apps_app_details_label">รายละเอียดแอป</string>
-    <string name="apps_details_shareduserid_label">แอปที่มี User ID ร่วมกัน</string>
     <string name="apps_details_siblings_label">พี่น้อง</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -145,14 +124,10 @@
     <string name="general_collapse_all_action">ยุบทั้งหมด</string>
     <string name="general_more_options_action">ตัวเลือกเพิ่มเติม</string>
     <string name="apps_details_twins_label">โคลน</string>
-    <string name="apps_details_twins_descriptions">ติดตั้งในโปรไฟล์ผู้ใช้อื่น</string>
-    <string name="install_date_label">วันที่ติดตั้ง</string>
     <string name="apps_filter_sharedid_label">User ID ร่วมกัน</string>
     <string name="apps_filter_multipleprofiles_label">มีโคลน</string>
     <string name="support_debuglog_label">บันทึกดีบัก</string>
     <string name="support_debuglog_desc">บันทึกทุกสิ่งที่แอปทำในไฟล์ข้อความที่คุณสามารถแชร์ได้</string>
-    <string name="updated_at_x">อัปเดตล่าสุด: %s</string>
-    <string name="installed_at_x">ติดตั้งครั้งแรก: %s</string>
     <string name="apps_sort_install_source_label">แหล่งที่มาของการติดตั้ง</string>
     <string name="permissions_action_none_msg">ไม่มีการดำเนินการสำหรับสิทธิ์นี้</string>
     <string name="permissions_details_open_settings_action">เปิดการตั้งค่าระบบ</string>
@@ -178,11 +153,6 @@
     <string name="apps_filter_sort_action">ตัวกรอง &amp; จัดเรียง</string>
     <string name="apps_help_tag_icons_title">ชิปสิทธิ์</string>
     <string name="apps_help_tag_icons_description">ชิปแสดงหมวดหมู่สิทธิ์ที่ละเอียดอ่อนซึ่งแอปได้รับ</string>
-    <string name="apps_details_description_restrictions_caveat_description">แอปนี้ติดตั้งในโปรไฟล์ผู้ใช้อื่น สิทธิ์ที่ได้รับสามารถกำหนดได้เฉพาะแอปที่ติดตั้งในโปรไฟล์ที่ใช้งานอยู่ในปัจจุบัน เนื่องจากข้อจำกัดของ Android</string>
-    <string name="apps_details_description_uninstalled_caveat">แอปนี้ถูกถอนการติดตั้งแล้ว แต่ยังคงเก็บข้อมูลไว้ ไม่สามารถระบุสถานะสิทธิ์ได้สำหรับแอปที่ถูกถอนการติดตั้ง</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="other">ขอสิทธิ์ %d รายการ</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="other">ได้รับอนุญาต %1$d จาก %2$d สิทธิ์</item>
     </plurals>
@@ -203,8 +173,6 @@
         <item quantity="other">เหลือ %d Manifest ที่ต้องวิเคราะห์…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">ไม่พบสิ่งผิดปกติ</string>
-    <string name="apps_details_manifest_unavailable">ไม่สามารถเข้าถึง Manifest ได้</string>
-    <string name="apps_details_manifest_error">ไม่สามารถอ่าน Manifest ได้</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="other">การค้นหาแพ็กเกจ %d รายการ</item>
     </plurals>
@@ -221,9 +189,6 @@
     <string name="apps_manifest_viewer_label">ตัวดู Manifest</string>
     <string name="apps_manifest_viewer_search_hint">ค้นหาใน Manifest</string>
     <string name="apps_manifest_viewer_error_unknown">เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุขณะโหลด Manifest</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="other">%d รายการที่ตรงกัน</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d จาก %2$d</string>
     <string name="apps_manifest_section_uses_permission">ใช้สิทธิ์</string>
     <string name="apps_manifest_section_permission">สิทธิ์</string>
@@ -257,12 +222,6 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d แอประบบ</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="other">แอปของผู้ใช้: ได้รับอนุญาต %1$d จาก %2$d</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="other">แอประบบ: ได้รับอนุญาต %1$d จาก %2$d</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="other">%d แอปในโปรไฟล์ผู้ใช้อื่นก็ร้องขอสิทธิ์นี้ด้วย</item>
     </plurals>
@@ -270,7 +229,6 @@
         <item quantity="other">%d แอปที่ถอนการติดตั้งแล้วแต่ยังเก็บข้อมูลไว้ก็ร้องขอสิทธิ์นี้ด้วย</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">แอปที่ติดตั้งในโปรไฟล์ผู้ใช้อื่นถูกยกเว้นจากการคำนวณข้างต้นเนื่องจากข้อจำกัดของ Android</string>
-    <string name="permissions_details_empty_filter_message">ไม่มีแอปที่ตรงกับตัวกรองปัจจุบัน แตะไอคอนตัวกรองเพื่อปรับ</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">รันไทม์</string>
     <string name="permissions_tag_install_time_label">เวลาติดตั้ง</string>
@@ -365,8 +323,6 @@
     <string name="permission_loader_usage_stats_description">อนุญาตให้แอปรวบรวมสถิติเกี่ยวกับการใช้ตัวโหลดข้อมูลบนอุปกรณ์</string>
     <string name="permission_premium_sms_services_label">การเข้าถึง SMS พรีเมียม</string>
     <string name="permission_premium_sms_services_description">อนุญาตให้แอปใช้บริการข้อความพรีเมียม สิ่งนี้จะทำให้คุณเสียเงิน</string>
-    <string name="permission_unlimited_data_access_label">การเข้าถึงข้อมูลไม่จำกัด</string>
-    <string name="permission_unlimited_data_access_description">อนุญาตให้แอปเข้าถึงข้อมูลไม่จำกัด แอปสามารถใช้ข้อมูลได้แม้ขณะที่เปิดโหมดประหยัดข้อมูล</string>
     <string name="permission_group_calendar_label">ปฏิทิน</string>
     <string name="permission_group_calendar_description"><![CDATA[สิทธิ์ที่เกี่ยวข้องกับปฏิทิน เช่น ดูและแก้ไขรายการ]]></string>
     <string name="permission_group_files_label">ไฟล์และสื่อ</string>
@@ -387,8 +343,6 @@
     <string name="permission_group_contacts_description">"อ่านและเขียนรายชื่อติดต่อ"</string>
     <string name="permission_group_apps_label">แอป</string>
     <string name="permission_group_apps_description">สิทธิ์การเข้าถึงพิเศษที่ต้องการความยินยอมอย่างชัดเจนจากผู้ใช้</string>
-    <string name="permission_group_battery_label">แบตเตอรี่</string>
-    <string name="permission_group_battery_description">สิทธิ์ที่เกี่ยวข้องกับแบตเตอรี่</string>
     <string name="permission_group_camera_label">กล้อง</string>
     <string name="permission_group_camera_description">สิทธิ์ที่เกี่ยวข้องกับกล้อง</string>
     <string name="permission_group_audio_label">ไมโครโฟน</string>
@@ -399,12 +353,8 @@
     <string name="permission_legacy_storage_label">พื้นที่จัดเก็บเดิม</string>
     <string name="permission_legacy_storage_description">อนุญาตให้แอปเข้าถึงพื้นที่จัดเก็บภายนอกโดยไม่มีข้อจำกัดพื้นที่จัดเก็บ นี่คือพฤติกรรมเริ่มต้นก่อน Android 10 แอปที่มีสิทธิ์เข้าถึงนี้สามารถอ่านและเขียนไฟล์ทุกแห่งในพื้นที่ที่ใช้ร่วมกันได้</string>
     <string name="settings_page_label">การตั้งค่า</string>
-    <string name="overview_summary_title_label">สรุป</string>
     <string name="permissions_details_declaring_apps_label">แอปที่ประกาศ</string>
     <string name="permissions_details_requesting_apps_label">แอปที่ร้องขอ</string>
-    <string name="overview_device_android_version_label">เวอร์ชัน Android</string>
-    <string name="overview_device_name_label">อุปกรณ์</string>
-    <string name="overview_device_android_patch_label">ระดับแพตช์</string>
     <string name="overview_summary_apps_active_profile_label">แอปในโปรไฟล์ที่ใช้งาน</string>
     <string name="overview_summary_apps_other_profile_label">แอปในโปรไฟล์ผู้ใช้ที่จัดการ ไม่รวมโคลน</string>
     <string name="overview_summary_apps_sideloaded_label">แอปที่ติดตั้งด้วยตนเองจากแหล่งภายนอก</string>
@@ -451,7 +401,6 @@
     <string name="support_debuglog_session_delete_title">ลบล็อกดีบัก?</string>
     <string name="support_debuglog_session_delete_message">ล็อกดีบักนี้จะถูกลบอย่างถาวร</string>
     <string name="support_debuglog_sessions_empty">ไม่มีล็อกดีบัก</string>
-    <string name="support_debuglog_session_invalid">เซสชั่นไม่ถูกต้อง</string>
     <string name="support_debuglog_session_recording">กำลังบันทึก…</string>
     <string name="support_debuglog_session_compressing">กำลังบีบอัด…</string>
     <string name="support_debuglog_failed_empty_log">ไฟล์ล็อกว่างเปล่า</string>
@@ -463,7 +412,6 @@
     <string name="support_contact_sent_title">ส่งข้อความแล้ว?</string>
     <string name="support_contact_sent_message">หากส่งอีเมลแล้ว เซสชันนี้สามารถล้างข้อมูลได้</string>
     <string name="general_close_action">ปิด</string>
-    <string name="debug_debuglog_screen_delete_action">ลบ</string>
     <!-- Contact form -->
     <string name="contact_support_label">ติดต่อฝ่ายสนับสนุน</string>
     <string name="contact_category_label">หมวดหมู่</string>
@@ -491,8 +439,6 @@
     <string name="contact_no_email_app">ไม่พบแอปอีเมลบนเครื่องนี้</string>
     <string name="contact_welcome_message">ผมอ่านข้อความทุกข้อความด้วยตัวเองและพยายามตอบกลับเสมอ เนื่องจากผมดูแลการพัฒนา แก้บัก และให้ความช่วยเหลือด้วยตัวเอง อาจใช้เวลานิดหน่อย ขอบคุณความอดทนของคุณ</string>
     <string name="contact_footer_message">ข้อความของคุณจะถูกส่งทางอีเมล แนบข้อมูลอุปกรณ์และการตั้งค่าถูกแนบโดยอัตโนมัติ คุณสามารถแนบภาพหน้าจอหรือวิดีโอในอีเมลได้ โปรดเขียนเป็นภาษาอังกฤษหากเป็นไปได้</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">เก็บไว้</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">บันทึกดีบัก</string>
     <string name="debug_debuglog_screen_subtitle">ส่งออกข้อมูลดีบักสำหรับการแก้ไขปัญหา</string>
@@ -571,22 +517,17 @@
     <string name="watcher_scope_label">ขอบเขตการตรวจจับ</string>
     <string name="watcher_scope_all">แอปทั้งหมด</string>
     <string name="watcher_scope_non_system">เฉพาะแอปที่ไม่ใช่ระบบ</string>
-    <string name="watcher_reports_label">รายงานการเปลี่ยนแปลงสิทธิ์</string>
     <string name="watcher_reports_empty">ยังไม่พบการเปลี่ยนแปลงสิทธิ์ใดๆ</string>
     <string name="watcher_report_detail_label">รายงานการเปลี่ยนแปลง</string>
     <string name="watcher_diff_added_permissions">สิทธิ์ใหม่</string>
     <string name="watcher_diff_removed_permissions">สิทธิ์ที่ถูกลบออก</string>
     <string name="watcher_diff_grant_changes">การเปลี่ยนแปลงการอนุญาต</string>
-    <string name="watcher_diff_added_declared">สิทธิ์ที่ประกาศใหม่</string>
-    <string name="watcher_diff_removed_declared">สิทธิ์ที่ประกาศปิดแล้ว</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">ติดตั้ง</string>
     <string name="watcher_event_update">อัปเดตแล้ว</string>
     <string name="watcher_event_removed">ถอนการติดตั้ง</string>
     <string name="watcher_event_grant_change">สิทธิ์เปลี่ยนแปลง</string>
     <string name="watcher_mark_all_seen">ทำเครื่องหมายทั้งหมดว่าเห็นแล้ว</string>
     <string name="watcher_notification_action_mark_seen">ทำเครื่องหมายว่าเห็นแล้ว</string>
-    <string name="watcher_notification_action_delete">ลบ</string>
     <string name="watcher_notification_body_added">เพิ่ม: %s</string>
     <string name="watcher_notification_body_removed">ลบออก: %s</string>
     <string name="watcher_notification_body_grant_changed">การอนุญาตเปลี่ยน: %s</string>
@@ -616,9 +557,6 @@
     <string name="watcher_detail_version_code_label">โค้ด</string>
     <string name="watcher_detail_installer_label">แหล่งติดตั้ง</string>
     <string name="watcher_detail_installer_unknown">ไม่ทราบ</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="other">สิทธิ์ (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="other">สิทธิ์ล่าสุดที่รู้จัก (%d)</item>
     </plurals>
@@ -691,14 +629,12 @@
     <string name="export_perm_granted_only_label">เฉพาะแอพที่ได้รับการอนุญาต</string>
     <string name="export_perm_include_summary_label">รวมจำนวนสรุป</string>
     <string name="export_preview_label">ตัวอย่าง</string>
-    <string name="export_preview_label_of">ตัวอย่าง (%1$d จาก %2$d)</string>
     <string name="export_action_label">ส่งออก</string>
     <string name="export_progress_label">กำลังส่งออก…</string>
     <string name="export_success_message">ส่งออกเสร็จสมบูรณ์</string>
     <string name="export_error_message">การส่งออกล้มเหลว</string>
     <string name="export_share_action">แชร์</string>
     <string name="export_open_action">เปิด</string>
-    <string name="export_done_action">เสร็จสิ้น</string>
     <string name="export_retry_action">ลองใหม่</string>
     <string name="export_summary_filename">ไฟล์</string>
     <string name="export_summary_size">ขนาด</string>

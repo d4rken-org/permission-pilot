@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play 서비스를 사용할 수 없습니다.</string>
-    <string name="upgrades_no_purchases_found_check_account">구매 내역을 찾을 수 없습니다. 올바른 계정을 사용하고 있습니까?</string>
     <string name="upgrades_gplay_already_owned_title">이미 구매됨</string>
     <string name="upgrades_gplay_already_owned_error">Google Play에서 이미 이 업그레이드를 소유하고 있다고 표시되지만 복구할 수 없습니다. 원래 구매에 사용한 Google 계정으로 로그인했는지 확인한 후 \'구매 복구\'를 시도하세요.</string>
     <string name="upgrade_screen_preamble">Permission Pilot은 광고가 없고 개인 정보를 존중합니다. 업그레이드는 지속적인 개발을 지원합니다.</string>
@@ -9,14 +8,10 @@
     <string name="upgrade_screen_offers_unavailable_message">지금은 가격을 불러올 수 없습니다. Google Play를 확인하고 잠시 후 다시 시도해 주세요.</string>
     <string name="upgrade_screen_subscription_trial_action">무료 체험 시작</string>
     <string name="upgrade_screen_subscription_action">구독하기</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/년, 언제든 취소 가능</string>
     <string name="upgrade_screen_iap_action">영구적 구매</string>
-    <string name="upgrade_screen_iap_action_hint">%s 일회성 구매</string>
     <string name="upgrade_screen_restore_purchase_action">구매 복원</string>
-    <string name="upgrade_screen_restore_purchase_message">구매 내역이 없습니다. 올바른 Google 계정으로 로그인되어 있는지 확인하세요.</string>
     <string name="upgrade_screen_restore_banner_title">이미 Pro를 구매했나요?</string>
     <string name="upgrade_screen_restore_banner_body">이 기기에서 이전에 Pro로 업그레이드했던 것 같습니다. 구매를 복구하여 Pro를 다시 사용하세요.</string>
-    <string name="upgrade_screen_options_description">구독은 자동으로 갱신됩니다. 언제든지 취소할 수 있습니다.</string>
     <string name="upgrade_title_suffix">프로</string>
     <!-- Ownership / status -->
     <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
@@ -27,7 +22,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">%1$s를 소유했습니다</string>
     <string name="upgrade_screen_owned_hero_iap_body">일회성 Pro 구매로 모든 Pro 기능을 영원히 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_hero_sub_body">구독하면 모든 Pro 기능을 사용할 수 있습니다.</string>
-    <string name="upgrade_screen_owned_sub_title">구독</string>
     <string name="upgrade_screen_owned_sub_renewing_body">구독이 활성화되어 있으며 자동으로 갱신됩니다.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">구독이 만료되도록 설정되어 있으며 갱신되지 않습니다. 만료될 때까지 Pro를 계속 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">일회 결제 Pro와 활성 구독을 동시에 소유하고 있습니다. 둘 다 필요하지 않습니다 — Google Play에서 구독을 취소하여 추가 요금을 피하세요.</string>
@@ -35,20 +29,16 @@
     <string name="upgrade_screen_owned_iap_title">평생 Pro</string>
     <string name="upgrade_screen_owned_iap_body">일회성 Pro 업그레이드를 소유했습니다. 구독 없음, 갱신 없음.</string>
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">일회성 구매로 전환</string>
     <string name="upgrade_screen_owned_iap_purchase_note">구독이 갱신되지 않으므로, 이제 일회 결제 Pro로 전환할 수 있습니다.</string>
     <string name="upgrade_screen_owned_iap_locked_note">일회 결제 Pro로 전환하려면 먼저 Google Play에서 구독을 취소하세요. 구독이 갱신되지 않도록 설정되면 이 제안이 활성화됩니다.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play는 현재 로그인한 계정만 확인합니다. 일회 구매는 구독과 별개입니다.</string>
     <string name="upgrade_screen_sub_still_renewing_message">구독이 아직 활성 상태이며 갱신 중입니다. 먼저 Google Play에서 취소하세요.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">구매 확인 중</string>
     <string name="upgrade_screen_grace_body">Google Play에서 Pro 구매를 다시 확인할 때까지 기다리는 중입니다. 일반적으로 자동으로 해결됩니다.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">Google Play에서 Pro 구매를 여전히 다시 확인할 수 없습니다. 계속 발생하면 구매 복구를 시도하거나 지원팀에 문의하세요.</string>
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">상태가 잘못된 것 같나요?</string>
     <string name="upgrade_screen_restore_status_body">Pro를 구매했지만 표시되지 않는다면 Google Play에 대해 실시간 확인을 실행하세요.</string>
     <string name="upgrade_screen_restore_success_message">구매가 복구되었습니다.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">구매에 사용한 Google 계정으로 로그인했는지 확인하세요. Google Play에 대한 실시간 확인이 방금 완료되었습니다.</string>
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">업그레이드 옵션</string>
     <string name="upgrade_screen_offers_body">동일한 기능, 다른 가격 모델만 있습니다.</string>

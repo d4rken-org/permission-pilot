@@ -7,14 +7,12 @@
     <string name="label_help">Nápověda</string>
     <string name="general_error_label">Chyba</string>
     <string name="general_load_error_title">Nepodařilo se načíst data</string>
-    <string name="general_load_error_hint">Při skenování nainstalovaných aplikací došlo k chybě.</string>
     <string name="general_refresh_error_hint">Obnovení se nezdařilo.</string>
     <string name="general_retry_action">Opakovat</string>
     <string name="general_share_action">Sdílet</string>
     <string name="general_done_action">Hotovo</string>
     <string name="general_open_action">Otevřít</string>
     <string name="general_continue_action">Pokračovat</string>
-    <string name="general_no_action">Ne</string>
     <string name="debug_debuglog_record_action">Zaznamenat</string>
     <string name="settings_category_other_label">Další</string>
     <string name="settings_category_gethelp_label">Získat pomoc</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Obecné</string>
     <string name="general_settings_desc">Obecná vylepšení, která ovlivňují celou aplikaci</string>
     <string name="general_settings_scan_speed_label">Rychlost skenování</string>
-    <string name="general_settings_scan_speed_desc">Řídí paralelní operace při skenování aplikací. Vyšší hodnoty znamenají vyšší rychlost, ale na některých zařízeních mohou způsobit selhání.</string>
     <string name="general_settings_scan_speed_auto">Automaticky (doporučeno)</string>
     <string name="general_settings_scan_speed_1">1 (nejbezpečnější)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Zásady ochrany osobních údajů</string>
     <string name="settings_privacy_policy_desc">Zodpovědné nakládání s daty.</string>
     <string name="settings_support_label">Podpora</string>
-    <string name="documentation_label">Dokumentace</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Místo, kde se můžete scházet a klást otázky.</string>
     <string name="issue_tracker_label">Sledování problémů</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Za podporu překladu open-source projektů.</string>
     <string name="permissions_page_label">Oprávnění</string>
     <string name="apps_page_label">Aplikace</string>
-    <string name="app_type_system_label">Systémové aplikace</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Neznámé oprávnění. Tato aplikace jej požaduje, ale žádná jiná aplikace jej nedeklaruje.</string>
-    <string name="permissions_unknown_description">Neznámé oprávnění. Aplikace jej vyžaduje, ale nikde jej nedeklaruje.</string>
     <string name="permissions_app_type_declaring_description">Oprávnění je vytvořeno touto aplikací.</string>
-    <string name="permissions_app_type_requesting_description">Aplikace žádá o oprávnění.</string>
     <string name="general_filter_action">Filtrovat</string>
     <string name="general_cancel_action">Zrušit</string>
     <string name="apps_filter_userapps_label">Uživatelské aplikace</string>
@@ -67,25 +58,6 @@
     <string name="apps_sort_app_name_label">Název aplikace</string>
     <string name="apps_sort_install_date_label">Datum instalace</string>
     <string name="apps_sort_update_date_label">Poslední aktualizace</string>
-    <string name="general_sort_action">Třídit</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">Uděleno %1$d z %2$d.</item>
-        <item quantity="few">Uděleno %1$d ze %2$d.</item>
-        <item quantity="many">Uděleno %1$d z %2$d.</item>
-        <item quantity="other">Uděleno %1$d z %2$d.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">Požadováno %1$d oprávnění.</item>
-        <item quantity="few">Požadována %1$d oprávnění.</item>
-        <item quantity="many">Požadováno %1$d oprávnění.</item>
-        <item quantity="other">Požadováno %1$d oprávnění.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Deklaruje %1$d oprávnění.</item>
-        <item quantity="few">Deklaruje %1$d oprávnění.</item>
-        <item quantity="many">Deklaruje %1$d oprávnění.</item>
-        <item quantity="other">Deklaruje %1$d oprávnění.</item>
-    </plurals>
     <string name="apps_details_installer_label">Zdroj instalace</string>
     <string name="apps_details_installer_unknown_label">Informace nejsou k dispozici</string>
     <string name="apps_details_open_settings_error">Nelze otevřít nastavení aplikace pro tento profil</string>
@@ -108,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Počet požadovaných aplikací</string>
     <string name="permissions_search_list_hint">Vyhledat oprávnění</string>
     <string name="apps_search_list_hint">Vyhledat aplikace</string>
-    <string name="permissions_details_protection_label">Úroveň ochrany</string>
     <string name="permissions_protection_type_normal_label">Normální</string>
     <string name="permissions_protection_type_dangerous_label">Nebezpečná</string>
     <string name="permissions_protection_type_signature_label">Podpis</string>
@@ -133,7 +104,6 @@
         <item>Čtu drobné písmo</item>
     </string-array>
     <string name="apps_app_details_label">Detaily aplikace</string>
-    <string name="apps_details_shareduserid_label">Aplikace se sdíleným ID uživatele</string>
     <string name="apps_details_siblings_label">Podobné</string>
     <string name="apps_known_installer_gplay_label">Obchod Google Play</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -154,14 +124,10 @@
     <string name="general_collapse_all_action">Sbalit vše</string>
     <string name="general_more_options_action">Další možnosti</string>
     <string name="apps_details_twins_label">Klony</string>
-    <string name="apps_details_twins_descriptions">Nainstalováno v jiných uživatelských profilech.</string>
-    <string name="install_date_label">Datum instalace</string>
     <string name="apps_filter_sharedid_label">Sdílené ID uživatele</string>
     <string name="apps_filter_multipleprofiles_label">Má klony</string>
     <string name="support_debuglog_label">Log ladění</string>
     <string name="support_debuglog_desc">Zaznamenávejte vše, co aplikace dělá do textového souboru, který můžete sdílet.</string>
-    <string name="updated_at_x">Poslední aktualizace: %s</string>
-    <string name="installed_at_x">První instalace: %s</string>
     <string name="apps_sort_install_source_label">Zdroj instalace</string>
     <string name="permissions_action_none_msg">Pro toto oprávnění není k dispozici žádná akce</string>
     <string name="permissions_details_open_settings_action">Otevřít nastavení systému</string>
@@ -187,14 +153,6 @@
     <string name="apps_filter_sort_action">Filtrovat a seřadit</string>
     <string name="apps_help_tag_icons_title">Čipy oprávnění</string>
     <string name="apps_help_tag_icons_description">Čipy zobrazují, které citlivé kategorie oprávnění byly aplikaci uděleny</string>
-    <string name="apps_details_description_restrictions_caveat_description">Tato aplikace je nainstalována v jiném uživatelském profilu. Udělená oprávnění lze kvůli omezením systému Android určit pouze pro aplikace nainstalované v aktuálně aktivním profilu.</string>
-    <string name="apps_details_description_uninstalled_caveat">Tato aplikace byla odinstalována, ale její data byla zachována. U odinstalovaných aplikací nelze zjistit stav oprávnění.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">Požadováno %d oprávnění.</item>
-        <item quantity="few">Požadována %d oprávnění.</item>
-        <item quantity="many">Požadováno %d oprávnění.</item>
-        <item quantity="other">Požadováno %d oprávnění.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">Uděleno %1$d z %2$d oprávnění.</item>
         <item quantity="few">Udělena %1$d z %2$d oprávnění.</item>
@@ -221,8 +179,6 @@
         <item quantity="other">%d manifestů zbývá k analýze\u2026</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Nezjištěno nic neobvyklého</string>
-    <string name="apps_details_manifest_unavailable">Manifest není přístupný</string>
-    <string name="apps_details_manifest_error">Manifest nebylo možné přečíst</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d dotaz na balíček</item>
         <item quantity="few">%d dotazy na balíček</item>
@@ -248,12 +204,6 @@
     <string name="apps_manifest_viewer_label">Prohlížeč manifestu</string>
     <string name="apps_manifest_viewer_search_hint">Hledat v manifestu</string>
     <string name="apps_manifest_viewer_error_unknown">Neznámá chyba při načítání manifestu.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d shoda</item>
-        <item quantity="few">%d shody</item>
-        <item quantity="many">%d shod</item>
-        <item quantity="other">%d shod</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d z %2$d</string>
     <string name="apps_manifest_section_uses_permission">Používá oprávnění</string>
     <string name="apps_manifest_section_permission">Oprávnění</string>
@@ -302,18 +252,6 @@
         <item quantity="many">%d systémových aplikací</item>
         <item quantity="other">%d systémových aplikací</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Uživatelské aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="few">Uživatelské aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="many">Uživatelské aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="other">Uživatelské aplikace: uděleno %1$d z %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Systémové aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="few">Systémové aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="many">Systémové aplikace: uděleno %1$d z %2$d.</item>
-        <item quantity="other">Systémové aplikace: uděleno %1$d z %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d aplikace v jiných uživatelských profilech také požaduje toto oprávnění.</item>
         <item quantity="few">%d aplikace v jiných uživatelských profilech také požadují toto oprávnění.</item>
@@ -327,7 +265,6 @@
         <item quantity="other">%d odinstalovaných aplikací se zachovanými daty také požaduje toto oprávnění.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikace nainstalované v jiných uživatelských profilech jsou z výše uvedených výpočtů vyloučeny kvůli omezením systému Android.</string>
-    <string name="permissions_details_empty_filter_message">Žádné aplikace neodpovídají aktuálním filtrům. Klepněte na ikonu filtru pro úpravu.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Doba spuštění</string>
     <string name="permissions_tag_install_time_label">Čas instalace</string>
@@ -425,8 +362,6 @@
     <string name="permission_loader_usage_stats_description">Umožňuje aplikacím shromažďovat statistiky o používání datových zavaděčů na zařízení.</string>
     <string name="permission_premium_sms_services_label">Přístup k prémiovým SMS</string>
     <string name="permission_premium_sms_services_description">Umožňuje aplikacím používat služby prémiových textových zpráv. To vás bude stát peníze.</string>
-    <string name="permission_unlimited_data_access_label">Neomezený přístup k datům</string>
-    <string name="permission_unlimited_data_access_description">Umožňuje aplikacím neomezený přístup k datům. Aplikace mohou spotřebovávat data, i když je zapnutý Spořič dat.</string>
     <string name="permission_group_calendar_label">Kalendář</string>
     <string name="permission_group_calendar_description"><![CDATA[Oprávnění související s kalendářem, např. zobrazení a úprava záznamů.]]></string>
     <string name="permission_group_files_label">Soubory a média</string>
@@ -447,8 +382,6 @@
     <string name="permission_group_contacts_description">"Čtení a zápis kontaktů."</string>
     <string name="permission_group_apps_label">Aplikace</string>
     <string name="permission_group_apps_description">Zvláštní oprávnění přístupu vyžadující výslovný souhlas uživatele.</string>
-    <string name="permission_group_battery_label">Baterie</string>
-    <string name="permission_group_battery_description">Oprávnění související s baterií.</string>
     <string name="permission_group_camera_label">Fotoaparát</string>
     <string name="permission_group_camera_description">Oprávnění související s fotoaparátem.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -459,12 +392,8 @@
     <string name="permission_legacy_storage_label">Starší úložiště</string>
     <string name="permission_legacy_storage_description">Umožňuje aplikacím přístup k externímu úložišti bez omezení daných rozsahem úložiště. Toto bylo výchozí chování před verzí Android 10. Aplikace s tímto přístupem mohou číst a zapisovat soubory kdekoli ve sdíleném úložišti.</string>
     <string name="settings_page_label">Nastavení</string>
-    <string name="overview_summary_title_label">Shrnutí</string>
     <string name="permissions_details_declaring_apps_label">Deklarující aplikace</string>
     <string name="permissions_details_requesting_apps_label">Požadující aplikace</string>
-    <string name="overview_device_android_version_label">Verze Androidu</string>
-    <string name="overview_device_name_label">Zařízení</string>
-    <string name="overview_device_android_patch_label">Úroveň záplaty</string>
     <string name="overview_summary_apps_active_profile_label">Aplikace v aktivním profilu</string>
     <string name="overview_summary_apps_other_profile_label">Aplikace ve spravovaných uživatelských profilech kromě klonů</string>
     <string name="overview_summary_apps_sideloaded_label">Aplikace ručně nainstalované z externích zdrojů</string>
@@ -514,7 +443,6 @@
     <string name="support_debuglog_session_delete_title">Smazat log ladění?</string>
     <string name="support_debuglog_session_delete_message">Tento log ladění bude trvale smazán.</string>
     <string name="support_debuglog_sessions_empty">Žádné logy ladění</string>
-    <string name="support_debuglog_session_invalid">Neplatná relace</string>
     <string name="support_debuglog_session_recording">Zaznamenávání…</string>
     <string name="support_debuglog_session_compressing">Komprimování…</string>
     <string name="support_debuglog_failed_empty_log">Prázdný log soubor</string>
@@ -526,7 +454,6 @@
     <string name="support_contact_sent_title">Zpráva byla odeslána?</string>
     <string name="support_contact_sent_message">Pokud jste odeslali e-mail, tuto relaci lze vyčistit.</string>
     <string name="general_close_action">Zavřít</string>
-    <string name="debug_debuglog_screen_delete_action">Smazat</string>
     <!-- Contact form -->
     <string name="contact_support_label">Kontaktovat podporu</string>
     <string name="contact_category_label">Kategorie</string>
@@ -557,8 +484,6 @@
     <string name="contact_no_email_app">V tomto zařízení nebyla nalezena žádná e-mailová aplikace.</string>
     <string name="contact_welcome_message">Všechny zprávy čtu sám a snažím se na ně co nejlépe odpovídat. Jelikož se sám starám o vývoj, opravy chyb a podporu, může to chvíli trvat. Děkuji za vaši trpělivost.</string>
     <string name="contact_footer_message">Vaše zpráva bude odeslána e-mailem. Informace o zařízení a nastavení jsou přiloženy automaticky. K e-mailu můžete přiložit snímky obrazovky nebo video. Prosím, pište pokud možno anglicky.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Ponechat</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Log ladění</string>
     <string name="debug_debuglog_screen_subtitle">Exportovat ladicí informace pro řešení problémů</string>
@@ -646,22 +571,17 @@
     <string name="watcher_scope_label">Rozsah sledování</string>
     <string name="watcher_scope_all">Všechny aplikace</string>
     <string name="watcher_scope_non_system">Pouze nesystémové aplikace</string>
-    <string name="watcher_reports_label">Zprávy o změnách oprávnění</string>
     <string name="watcher_reports_empty">Zatím nebyly detekovány žádné změny oprávnění</string>
     <string name="watcher_report_detail_label">Zpráva o změně</string>
     <string name="watcher_diff_added_permissions">Nová oprávnění</string>
     <string name="watcher_diff_removed_permissions">Odebraná oprávnění</string>
     <string name="watcher_diff_grant_changes">Změny udělení</string>
-    <string name="watcher_diff_added_declared">Nově deklarovaná oprávnění</string>
-    <string name="watcher_diff_removed_declared">Odebraná deklarovaná oprávnění</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Nainstalováno</string>
     <string name="watcher_event_update">Aktualizováno</string>
     <string name="watcher_event_removed">Odebráno</string>
     <string name="watcher_event_grant_change">Oprávnění změněno</string>
     <string name="watcher_mark_all_seen">Označit vše jako zobrazené</string>
     <string name="watcher_notification_action_mark_seen">Označit jako zobrazené</string>
-    <string name="watcher_notification_action_delete">Smazat</string>
     <string name="watcher_notification_body_added">Přidáno: %s</string>
     <string name="watcher_notification_body_removed">Odebráno: %s</string>
     <string name="watcher_notification_body_grant_changed">Udělení změněno: %s</string>
@@ -700,12 +620,6 @@
     <string name="watcher_detail_version_code_label">Kód</string>
     <string name="watcher_detail_installer_label">Zdroj instalace</string>
     <string name="watcher_detail_installer_unknown">Neznámý</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Oprávnění (%d)</item>
-        <item quantity="few">Oprávnění (%d)</item>
-        <item quantity="many">Oprávnění (%d)</item>
-        <item quantity="other">Oprávnění (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Poslední známá oprávnění (%d)</item>
         <item quantity="few">Poslední známá oprávnění (%d)</item>
@@ -796,14 +710,12 @@
     <string name="export_perm_granted_only_label">Pouze udělené aplikace</string>
     <string name="export_perm_include_summary_label">Zahrnout souhrnné počty</string>
     <string name="export_preview_label">Náhled</string>
-    <string name="export_preview_label_of">Náhled (%1$d z %2$d)</string>
     <string name="export_action_label">Exportovat</string>
     <string name="export_progress_label">Exportování…</string>
     <string name="export_success_message">Export dokončen</string>
     <string name="export_error_message">Export selhal</string>
     <string name="export_share_action">Sdílet</string>
     <string name="export_open_action">Otevřít</string>
-    <string name="export_done_action">Hotovo</string>
     <string name="export_retry_action">Opakovat</string>
     <string name="export_summary_filename">Soubor</string>
     <string name="export_summary_size">Velikost</string>

@@ -7,14 +7,12 @@
     <string name="label_help">Hjelp</string>
     <string name="general_error_label">Feil</string>
     <string name="general_load_error_title">Kunne ikke laste data</string>
-    <string name="general_load_error_hint">Noe gikk galt under scanning av installerte apper.</string>
     <string name="general_refresh_error_hint">Oppdatering mislyktes.</string>
     <string name="general_retry_action">Prøv igjen</string>
     <string name="general_share_action">Del</string>
     <string name="general_done_action">Ferdig</string>
     <string name="general_open_action">Åpne</string>
     <string name="general_continue_action">Fortsett</string>
-    <string name="general_no_action">Nei</string>
     <string name="debug_debuglog_record_action">Opptak</string>
     <string name="settings_category_other_label">Andre</string>
     <string name="settings_category_gethelp_label">Få hjelp</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Generelt</string>
     <string name="general_settings_desc">Generelle innstillinger som påvirker hele appen.</string>
     <string name="general_settings_scan_speed_label">Skannehastighet</string>
-    <string name="general_settings_scan_speed_desc">Styrer parallelle operasjoner ved skanning av apper. Høyere verdier er raskere, men kan forårsake krasj på noen enheter.</string>
     <string name="general_settings_scan_speed_auto">Auto (anbefalt)</string>
     <string name="general_settings_scan_speed_1">1 (sikreste)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Personvernpolicy</string>
     <string name="settings_privacy_policy_desc">Ansvarlig håndtering av data.</string>
     <string name="settings_support_label">Støtte</string>
-    <string name="documentation_label">Dokumentasjon</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Et sted å henge og stille spørsmål.</string>
     <string name="issue_tracker_label">Problemsporing</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">For å støtte oversettelse av åpen kildekode-prosjekter.</string>
     <string name="permissions_page_label">Tillatelser</string>
     <string name="apps_page_label">Apper</string>
-    <string name="app_type_system_label">Systemapp</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Ukjent tillatelse. Den forespørres av denne appen, men ingen annen app erklærer den.</string>
-    <string name="permissions_unknown_description">Ukjent tillatelse. Den forespørres av apper, men er ikke erklært noe sted.</string>
     <string name="permissions_app_type_declaring_description">Tillatelse opprettes av denne appen.</string>
-    <string name="permissions_app_type_requesting_description">App ber om tillatelsen.</string>
     <string name="general_filter_action">Filtrer</string>
     <string name="general_cancel_action">Avbryt</string>
     <string name="apps_filter_userapps_label">Brukerapper</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Appnavn</string>
     <string name="apps_sort_install_date_label">Installasjonsdato</string>
     <string name="apps_sort_update_date_label">Sist oppdatert</string>
-    <string name="general_sort_action">Sorter</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d av %2$d innvilget.</item>
-        <item quantity="other">%1$d av %2$d innvilget.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d tillatelse forespørt.</item>
-        <item quantity="other">%1$d tillatelser forespørt.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Erklærer %1$d tillatelse.</item>
-        <item quantity="other">Erklærer %1$d tillatelser.</item>
-    </plurals>
     <string name="apps_details_installer_label">Installasjonskilde</string>
     <string name="apps_details_installer_unknown_label">Informasjon ikke tilgjengelig</string>
     <string name="apps_details_open_settings_error">Kunne ikke åpne appinnstillinger for denne profilen</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Antall forespørte apper</string>
     <string name="permissions_search_list_hint">Søk tillatelser</string>
     <string name="apps_search_list_hint">Søk apper</string>
-    <string name="permissions_details_protection_label">Beskyttelsesnivå</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Farlig</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
@@ -127,7 +104,6 @@
         <item>Leser det med liten skrift</item>
     </string-array>
     <string name="apps_app_details_label">Appdetaljer</string>
-    <string name="apps_details_shareduserid_label">Apper med delt bruker-ID</string>
     <string name="apps_details_siblings_label">Søsken</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Skjul alle</string>
     <string name="general_more_options_action">Flere alternativer</string>
     <string name="apps_details_twins_label">Kloner</string>
-    <string name="apps_details_twins_descriptions">Installert i andre brukerprofiler.</string>
-    <string name="install_date_label">Installasjonsdato</string>
     <string name="apps_filter_sharedid_label">Delt bruker-ID</string>
     <string name="apps_filter_multipleprofiles_label">Har kloner</string>
     <string name="support_debuglog_label">Debug-logg</string>
     <string name="support_debuglog_desc">Spill inn alt appen gjør i en tekstfil som du kan dele.</string>
-    <string name="updated_at_x">Sist oppdatert: %s</string>
-    <string name="installed_at_x">Først installert: %s</string>
     <string name="apps_sort_install_source_label">Installasjonskilde</string>
     <string name="permissions_action_none_msg">Ingen handling tilgjengelig for denne tillatelsen</string>
     <string name="permissions_details_open_settings_action">Åpne systeminstillinger</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filtrer og sorter</string>
     <string name="apps_help_tag_icons_title">Tillatelsessjetong</string>
     <string name="apps_help_tag_icons_description">Sjetongene viser hvilke sensitive tillatelseskategorier en app er innvilget</string>
-    <string name="apps_details_description_restrictions_caveat_description">Denne appen er installert i en annen brukerprofil. Innvilgede tillatelser kan kun bestemmes for apper installert i den for øyeblikket aktive profilen, på grunn av Android-begrensninger.</string>
-    <string name="apps_details_description_uninstalled_caveat">Denne appen er avinstallert, men dataene er beholdt. Tillatelsesstatus kan ikke fastslås for avinstallerte apper.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d tillatelse forespørt.</item>
-        <item quantity="other">%d tillatelser forespørt.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d av %2$d tillatelser innvilget.</item>
         <item quantity="other">%1$d av %2$d tillatelser innvilget.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifester gjienstår å analysere…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Ingenting uvanlig oppdaget</string>
-    <string name="apps_details_manifest_unavailable">Manifest ikke tilgjengelig</string>
-    <string name="apps_details_manifest_error">Kunne ikke lese manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d pakkeforespørsel</item>
         <item quantity="other">%d pakkeforespørsler</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifestvisning</string>
     <string name="apps_manifest_viewer_search_hint">Søk i manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Ukjent feil under innlasting av manifest.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d treff</item>
-        <item quantity="other">%d treff</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d av %2$d</string>
     <string name="apps_manifest_section_uses_permission">Bruker tillatelse</string>
     <string name="apps_manifest_section_permission">Tillatelse</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d systemapp</item>
         <item quantity="other">%d systemapper</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Brukerapper: Innvilget til %1$d av %2$d.</item>
-        <item quantity="other">Brukerapper: Innvilget til %1$d av %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Systemapper: Innvilget til %1$d av %2$d.</item>
-        <item quantity="other">Systemapper: Innvilget til %1$d av %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d app i andre brukerprofiler ber også om denne tillatelsen.</item>
         <item quantity="other">%d apper i andre brukerprofiler ber også om denne tillatelsen.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d avinstallerte apper med beholdte data ber også om denne tillatelsen.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apper installert i andre brukerprofiler er ekskludert fra beregningen ovenfor på grunn av Android-begrensninger.</string>
-    <string name="permissions_details_empty_filter_message">Ingen apper samsvarer med gjeldende filtre. Trykk på filterikonet for å justere.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Kjøretid</string>
     <string name="permissions_tag_install_time_label">Installasjonstid</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Lar apper samle inn statistikk om bruk av datalastere på enheten.</string>
     <string name="permission_premium_sms_services_label">Premium SMS-tilgang</string>
     <string name="permission_premium_sms_services_description">Lar apper bruke premium tekstmeldingstjenester. Dette vil koste deg penger.</string>
-    <string name="permission_unlimited_data_access_label">Ubegrenset datatilgang</string>
-    <string name="permission_unlimited_data_access_description">Lar apper få tilgang til ubegrenset data. Apper kan forbruke data selv når Datasparer er PÅ.</string>
     <string name="permission_group_calendar_label">Kalender</string>
     <string name="permission_group_calendar_description"><![CDATA[Kalenderrelaterte tillatelser, f.eks. vis & rediger oppføringer.]]></string>
     <string name="permission_group_files_label">Filer og media</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Lese og skrive kontakter."</string>
     <string name="permission_group_apps_label">Apper</string>
     <string name="permission_group_apps_description">Spesialtilgangstillatelser som krever eksplisitt brukersamtykke.</string>
-    <string name="permission_group_battery_label">Batteri</string>
-    <string name="permission_group_battery_description">Batterirelaterte tillatelser.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kamerarelaterte tillatelser.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Eldre lagring</string>
     <string name="permission_legacy_storage_description">Lar apper få tilgang til ekstern lagring uten omfangsbegrensede lagringsrestriksjoner. Dette var standardadferd før Android 10. Apper med denne tilgangen kan lese og skrive filer hvor som helst på delt lagring.</string>
     <string name="settings_page_label">Innstillinger</string>
-    <string name="overview_summary_title_label">Sammendrag</string>
     <string name="permissions_details_declaring_apps_label">Erklærende apper</string>
     <string name="permissions_details_requesting_apps_label">Forespørrende apper</string>
-    <string name="overview_device_android_version_label">Android-versjon</string>
-    <string name="overview_device_name_label">Enhet</string>
-    <string name="overview_device_android_patch_label">Patch-nivå</string>
     <string name="overview_summary_apps_active_profile_label">Apper i aktiv profil</string>
     <string name="overview_summary_apps_other_profile_label">Apper i administrerte brukerprofiler, ekskludert kloner</string>
     <string name="overview_summary_apps_sideloaded_label">Apper manuelt installert fra eksterne kilder</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Slette feilsøkingslogg?</string>
     <string name="support_debuglog_session_delete_message">Denne feilsøkingsloggen vil bli permanent slettet.</string>
     <string name="support_debuglog_sessions_empty">Ingen feilsøkingslogger</string>
-    <string name="support_debuglog_session_invalid">Ugyldig økt</string>
     <string name="support_debuglog_session_recording">Tar opp…</string>
     <string name="support_debuglog_session_compressing">Komprimerer…</string>
     <string name="support_debuglog_failed_empty_log">Tom loggfil</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Melding sendt?</string>
     <string name="support_contact_sent_message">Hvis du sendte e-posten, kan denne økten ryddes opp.</string>
     <string name="general_close_action">Lukk</string>
-    <string name="debug_debuglog_screen_delete_action">Slett</string>
     <!-- Contact form -->
     <string name="contact_support_label">Kontakt support</string>
     <string name="contact_category_label">Kategori</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Ingen e-postapp funnet på denne enheten.</string>
     <string name="contact_welcome_message">Jeg leser hver melding selv og gjør mitt beste for å svare. Siden jeg håndterer utvikling, feilrettinger og support på egen hånd, kan det ta litt tid. Takk for tålmodigheten.</string>
     <string name="contact_footer_message">Meldingen din vil bli sendt via e-post. Enhets- og oppsettsinformasjon legges ved automatisk. Du kan legge til skjermbilder eller en video i e-posten. Vennligst skriv på engelsk om mulig.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Behold</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Feilsøkingslogg</string>
     <string name="debug_debuglog_screen_subtitle">Eksporter feilsøkingsinformasjon for feilsøking</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Overvakningsomfang</string>
     <string name="watcher_scope_all">Alle apper</string>
     <string name="watcher_scope_non_system">Bare ikke-systemapper</string>
-    <string name="watcher_reports_label">Tillatelsesendring-rapporter</string>
     <string name="watcher_reports_empty">Ingen tillatelsesendringer oppdaget ennå</string>
     <string name="watcher_report_detail_label">Endringsrapport</string>
     <string name="watcher_diff_added_permissions">Nye tillatelser</string>
     <string name="watcher_diff_removed_permissions">Fjernede tillatelser</string>
     <string name="watcher_diff_grant_changes">Innvilgelsesendringer</string>
-    <string name="watcher_diff_added_declared">Nye erklærte tillatelser</string>
-    <string name="watcher_diff_removed_declared">Fjernede erklærte tillatelser</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Installert</string>
     <string name="watcher_event_update">Oppdatert</string>
     <string name="watcher_event_removed">Fjernet</string>
     <string name="watcher_event_grant_change">Tillatelse endret</string>
     <string name="watcher_mark_all_seen">Merk alle som sett</string>
     <string name="watcher_notification_action_mark_seen">Merk som sett</string>
-    <string name="watcher_notification_action_delete">Slett</string>
     <string name="watcher_notification_body_added">Lagt til: %s</string>
     <string name="watcher_notification_body_removed">Fjernet: %s</string>
     <string name="watcher_notification_body_grant_changed">Innvilgelse endret: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Kode</string>
     <string name="watcher_detail_installer_label">Installasjonskilde</string>
     <string name="watcher_detail_installer_unknown">Ukjent</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Tillatelse (%d)</item>
-        <item quantity="other">Tillatelser (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Siste kjente tillatelse (%d)</item>
         <item quantity="other">Siste kjente tillatelser (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Kun innvilgede apper</string>
     <string name="export_perm_include_summary_label">Inkluder oppsummeringstall</string>
     <string name="export_preview_label">Forhåndsvisning</string>
-    <string name="export_preview_label_of">Forhåndsvisning (%1$d av %2$d)</string>
     <string name="export_action_label">Eksporter</string>
     <string name="export_progress_label">Eksporterer…</string>
     <string name="export_success_message">Eksport fullført</string>
     <string name="export_error_message">Eksport mislyktes</string>
     <string name="export_share_action">Del</string>
     <string name="export_open_action">Åpen</string>
-    <string name="export_done_action">Ferdig</string>
     <string name="export_retry_action">Prøv igjen</string>
     <string name="export_summary_filename">Fil</string>
     <string name="export_summary_size">Størrelse</string>

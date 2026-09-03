@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play services are unavailable.</string>
-    <string name="upgrades_no_purchases_found_check_account">No purchases found. Are you using the right account?</string>
     <string name="upgrades_gplay_already_owned_title">Already purchased</string>
     <string name="upgrades_gplay_already_owned_error">Google Play reports that you already own this upgrade, but it could not be restored. Check that you are signed in with the Google account used for the original purchase, then try “Restore purchase”.</string>
 
@@ -10,14 +9,10 @@
     <string name="upgrade_screen_offers_unavailable_message">Prices couldn\'t be loaded right now. Check Google Play and try again in a moment.</string>
     <string name="upgrade_screen_subscription_trial_action">Start free trial</string>
     <string name="upgrade_screen_subscription_action">Subscribe</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/year, cancel anytime</string>
     <string name="upgrade_screen_iap_action">One-time purchase</string>
-    <string name="upgrade_screen_iap_action_hint">One-time purchase of %s</string>
     <string name="upgrade_screen_restore_purchase_action">Restore purchase</string>
-    <string name="upgrade_screen_restore_purchase_message">No purchases found. Check that you are signed in with the correct Google account.</string>
     <string name="upgrade_screen_restore_banner_title">Already bought Pro?</string>
     <string name="upgrade_screen_restore_banner_body">It looks like you upgraded to Pro on this device before. Restore your purchase to unlock it again.</string>
-    <string name="upgrade_screen_options_description">Subscriptions renew automatically. You can cancel anytime.</string>
     <string name="upgrade_title_suffix">Pro</string>
 
 
@@ -30,7 +25,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">You have %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Your one-time Pro purchase unlocks every Pro feature, forever.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Your subscription unlocks every Pro feature.</string>
-    <string name="upgrade_screen_owned_sub_title">Your subscription</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Your subscription is active and renews automatically.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Your subscription is set to expire and won\'t renew. You\'ll keep Pro until it ends.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">You own the one-time Pro upgrade and also have an active subscription. You don\'t need both — cancel the subscription in Google Play to avoid further charges.</string>
@@ -39,10 +33,8 @@
     <string name="upgrade_screen_owned_iap_body">You own the one-time Pro upgrade. No subscription, no renewals.</string>
 
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">Switch to a one-time purchase</string>
     <string name="upgrade_screen_owned_iap_purchase_note">Your subscription won\'t renew, so you can move to the permanent one-time Pro purchase now.</string>
     <string name="upgrade_screen_owned_iap_locked_note">To switch to the one-time purchase, first cancel your subscription in Google Play. This offer unlocks once it\'s set not to renew.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play only checks the account you\'re currently signed in with. The one-time purchase is separate from your subscription.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Your subscription is still active and renewing. Cancel it in Google Play first.</string>
     <string name="upgrade_screen_purchase_check_failed_message">Couldn\'t verify your purchases with Google Play. Please try again.</string>
 
@@ -54,13 +46,11 @@
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Confirming your purchase</string>
     <string name="upgrade_screen_grace_body">Waiting for Google Play to re-confirm your Pro purchase. This usually resolves on its own.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">We still can\'t re-confirm your Pro purchase with Google Play. If this keeps happening, try restoring your purchase or contact support.</string>
 
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Status looks wrong?</string>
     <string name="upgrade_screen_restore_status_body">If you\'ve purchased Pro but it isn\'t showing, run a live check against Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Purchase restored.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">Make sure you\'re signed in with the Google account you used to purchase. A live check against Google Play just ran.</string>
 
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Upgrade options</string>

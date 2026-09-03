@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play hizmetleri kullanılamıyor.</string>
-    <string name="upgrades_no_purchases_found_check_account">Satın alma bulunamadı. Doğru hesabı mı kullanıyorsunuz?</string>
     <string name="upgrades_gplay_already_owned_title">Zaten satın alındı</string>
     <string name="upgrades_gplay_already_owned_error">Google Play, bu yükseltmeye zaten sahip olduğunuzu belirtiyor, ancak geri yüklenemedi. Orijinal satın alma işlemi için kullanılan Google hesabıyla oturum açmış olduğunuzdan emin olun, ardından \"Satın almayı geri yükle\" seçeneğini deneyin.</string>
     <string name="upgrade_screen_preamble">Permission Pilot reklamsız ve gizliliğinize saygı gösteriyor. Yükseltme yapılması, sürekli geliştirmeyi destekler.</string>
@@ -9,14 +8,10 @@
     <string name="upgrade_screen_offers_unavailable_message">Fiyatlar şu anda yüklenemedi. Google Play\'i kontrol edin ve bir süre sonra tekrar deneyin.</string>
     <string name="upgrade_screen_subscription_trial_action">Ücretsiz deneme süresini başlatın</string>
     <string name="upgrade_screen_subscription_action">Abone ol</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/yıl, istediğiniz zaman iptal edebilirsiniz</string>
     <string name="upgrade_screen_iap_action">Tek seferlik satın alma</string>
-    <string name="upgrade_screen_iap_action_hint">%s tek seferlik satın alma</string>
     <string name="upgrade_screen_restore_purchase_action">Satın almayı geri yükle</string>
-    <string name="upgrade_screen_restore_purchase_message">Satın alma bulunamadı. Doğru Google hesabıyla giriş yaptığınızdan emin olun.</string>
     <string name="upgrade_screen_restore_banner_title">Zaten Pro satın aldınız mı?</string>
     <string name="upgrade_screen_restore_banner_body">Bu cihazda daha önce Pro\'ya yükseltme yaptığınız görülüyor. Satın almayı geri yükleyin ve kilidi açın.</string>
-    <string name="upgrade_screen_options_description">Abonelikler otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
     <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
@@ -27,7 +22,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">Sende %1$s var</string>
     <string name="upgrade_screen_owned_hero_iap_body">Bir defaya mahsus Pro satın alımınız tüm Pro özelliklerini sonsuza kadar açar.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Aboneliğiniz tüm Pro özelliklerini açar.</string>
-    <string name="upgrade_screen_owned_sub_title">Aboneliğiniz</string>
     <string name="upgrade_screen_owned_sub_renewing_body">Aboneliğiniz etkin ve otomatik olarak yenileniyor.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">Aboneliğiniz süresi dolmak üzere ve yenilenmeyecektir. Pro\'yu süresi bitene kadar kullanabileceksiniz.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">Tek seferlik Pro yükseltmesine sahipsin ve aynı zamanda aktif bir aboneliğin de var. İkisine birden ihtiyacın yok; ek ücretlendirmeyi önlemek için Google Play\'den aboneliğini iptal et.</string>
@@ -35,20 +29,16 @@
     <string name="upgrade_screen_owned_iap_title">Ömür Boyu Pro</string>
     <string name="upgrade_screen_owned_iap_body">Bir defaya mahsus Pro yükseltmesine sahipsiniz. Abonelik yok, yenileme yok.</string>
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">Tek seferlik satın almaya geç</string>
     <string name="upgrade_screen_owned_iap_purchase_note">Aboneliğin yenilenmeyecek, bu yüzden artık kalıcı tek seferlik Pro satın alımına geçebilirsin.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Tek seferlik satın alıma geçmek için önce Google Play\'den aboneliğini iptal et. Bu teklif, abonelik yenilenmeyecek şekilde ayarlandığında açılır.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play yalnızca şu anda oturum açtığınız hesabı kontrol eder. Tek seferlik satın alma, aboneliğinizden ayrıdır.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Aboneliğiniz hala aktif ve yenileniyor. Önce Google Play\'de iptal edin.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Satın alımınız doğrulanıyor</string>
     <string name="upgrade_screen_grace_body">Google Play\'in Pro satın alımınızı yeniden doğrulaması bekleniyor. Bu genellikle kendi başına çözülür.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">Pro satın alımınızı Google Play ile yeniden doğrulayamıyoruz. Bu sorun devam ederse, satın alımınızı geri yüklemeyi deneyin veya destek ekibi ile iletişime geçin.</string>
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Durum yanlış mı görünüyor?</string>
     <string name="upgrade_screen_restore_status_body">Eğer Pro satın aldıysanız ancak gösterilmiyorsa, Google Play\'de canlı bir kontrol çalıştırın.</string>
     <string name="upgrade_screen_restore_success_message">Satın alma geri yüklendi.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">Satın almak için kullandığınız Google hesabıyla oturum açtığınızdan emin olun. Google Play\'de canlı bir kontrol yeni yapıldı.</string>
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Yükseltme seçenekleri</string>
     <string name="upgrade_screen_offers_body">Aynı özellikler, farklı fiyatlandırma modelleri.</string>

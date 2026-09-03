@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="upgrades_gplay_unavailable_error">Google Play-dienste is nie beskikbaar nie.</string>
-    <string name="upgrades_no_purchases_found_check_account">Geen aankope gevind nie. Gebruik jy die regte rekening?</string>
     <string name="upgrades_gplay_already_owned_title">Reeds gekoop</string>
     <string name="upgrades_gplay_already_owned_error">Google Play rapporteer dat u reeds hierdie opgradering besit, maar dit kon nie herstel word nie. Kyk dat u aangemeld is met die Google-rekening wat vir die oorspronklike aankoop gebruik is, en probeer dan \"Aankoop herstel\".</string>
     <string name="upgrade_screen_preamble">Permission Pilot is sonder advertensies en respekteer jou privaatheid. Opgradering ondersteun voortgesette ontwikkeling.</string>
@@ -9,14 +8,10 @@
     <string name="upgrade_screen_offers_unavailable_message">Pryse kon nou nie gelaai word nie. Kontroleer Google Play en probeer oor \'n oomblik weer.</string>
     <string name="upgrade_screen_subscription_trial_action">Begin gratis proeftydperk</string>
     <string name="upgrade_screen_subscription_action">Teken in</string>
-    <string name="upgrade_screen_subscription_action_hint_yearly">%s/jaar, kanselleer enige tyd</string>
     <string name="upgrade_screen_iap_action">Eenmalige aankoop</string>
-    <string name="upgrade_screen_iap_action_hint">Eenmalige aankoop van %s</string>
     <string name="upgrade_screen_restore_purchase_action">Herstel aankoop</string>
-    <string name="upgrade_screen_restore_purchase_message">Geen aankope gevind nie. Maak seker jy is met die korrekte Google-rekening aangemeld.</string>
     <string name="upgrade_screen_restore_banner_title">Reeds Pro gekoop?</string>
     <string name="upgrade_screen_restore_banner_body">Dit lyk asof u hierdie toestel reeds na Pro opgegradering gedoen het. Herstel u aankoop om dit weer te ontgrendel.</string>
-    <string name="upgrade_screen_options_description">Intekeninge vernuwe outomaties. Jy kan enige tyd kanselleer.</string>
     <string name="upgrade_title_suffix">Pro</string>
     <!-- Ownership / status -->
     <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
@@ -27,7 +22,6 @@
     <string name="upgrade_screen_owned_hero_brand_title">Jy het %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">U eenmalige Pro-aankoop ontsluit alle Pro-funksies, voorgoed.</string>
     <string name="upgrade_screen_owned_hero_sub_body">U abonnement ontsluit alle Pro-funksies.</string>
-    <string name="upgrade_screen_owned_sub_title">U abonnement</string>
     <string name="upgrade_screen_owned_sub_renewing_body">U abonnement is aktief en word outomaties vernuwe.</string>
     <string name="upgrade_screen_owned_sub_not_renewing_body">U abonnement sal verval en word nie vernuwe nie. U behou Pro totdat dit afloop.</string>
     <string name="upgrade_screen_owned_both_renewing_warning">Jy het die eenmalige Pro-opgradering en ook \'n aktiewe intekening. Jy benodig nie albei nie — kanselleer die intekening in Google Play om verdere heffings te vermy.</string>
@@ -35,20 +29,16 @@
     <string name="upgrade_screen_owned_iap_title">Lewenslange Pro</string>
     <string name="upgrade_screen_owned_iap_body">U het die eenmalige Pro-opgradering. Geen abonnement, geen vernuewings nie.</string>
     <!-- Switch subscription -> one-time purchase -->
-    <string name="upgrade_screen_switch_title">Omskakel na \'n eenmalige aankoop</string>
     <string name="upgrade_screen_owned_iap_purchase_note">Jou intekening sal nie vernieu nie, so jy kan nou oorskakel na die permanente eenmalige Pro-aankoop.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Om na die eenmalige aankoop oor te skakel, kanselleer eers jou intekening in Google Play. Hierdie aanbieding ontsluit sodra dit op \'nie te vernieu\' gestel word.</string>
-    <string name="upgrade_screen_limitation_disclosure">Google Play kontroleer slegs die rekening waarmee u tans aangemeld is. Die eenmalige aankoop is afsonderlik van u abonnement.</string>
     <string name="upgrade_screen_sub_still_renewing_message">U abonnement is steeds aktief en vernuwe. Kanselleer dit eers in Google Play.</string>
     <!-- Grace (waiting for Play to re-confirm) -->
     <string name="upgrade_screen_grace_title">Bevestig u aankoop</string>
     <string name="upgrade_screen_grace_body">Wag vir Google Play om u Pro-aankoop weer te bevestig. Dit los gewoonlik vanself op.</string>
-    <string name="upgrade_screen_grace_diagnostics_body">Ons kan u Pro-aankoop nog steeds nie met Google Play weer bevestig nie. As dit aanhou gebeur, probeer u aankoop herstel of kontak ondersteuning.</string>
     <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Lyk die status verkeerd?</string>
     <string name="upgrade_screen_restore_status_body">As u Pro gekoop het maar dit wys nie, voer \'n lewendige kontrole teen Google Play uit.</string>
     <string name="upgrade_screen_restore_success_message">Aankoop herstel.</string>
-    <string name="upgrade_screen_restore_webinstall_hint">Maak seker u is aangemeld met die Google-rekening wat u vir die aankoop gebruik het. \'n Lewendige kontrole teen Google Play het pas plaasgevind.</string>
     <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Opgradering-opsies</string>
     <string name="upgrade_screen_offers_body">Dieselfde funksies, net verskillende prysmodelle.</string>

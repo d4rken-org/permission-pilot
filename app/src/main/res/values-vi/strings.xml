@@ -7,14 +7,12 @@
     <string name="label_help">Trợ giúp</string>
     <string name="general_error_label">Lỗi</string>
     <string name="general_load_error_title">Không thể tải dữ liệu</string>
-    <string name="general_load_error_hint">Đã xảy ra lỗi khi quét các ứng dụng đã cài đặt của bạn.</string>
     <string name="general_refresh_error_hint">Làm mới thất bại.</string>
     <string name="general_retry_action">Thử lại</string>
     <string name="general_share_action">Chia sẻ</string>
     <string name="general_done_action">Xong</string>
     <string name="general_open_action">Mở</string>
     <string name="general_continue_action">Tiếp tục</string>
-    <string name="general_no_action">Không</string>
     <string name="debug_debuglog_record_action">Ghi</string>
     <string name="settings_category_other_label">Khác</string>
     <string name="settings_category_gethelp_label">Nhận trợ giúp</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Chung</string>
     <string name="general_settings_desc">Cài đặt chung ảnh hưởng đến toàn bộ ứng dụng.</string>
     <string name="general_settings_scan_speed_label">Tốc độ quét</string>
-    <string name="general_settings_scan_speed_desc">Kiểm soát các thao tác song song khi quét ứng dụng. Giá trị cao hơn sẽ nhanh hơn nhưng có thể gây ra sự cố trên một số thiết bị.</string>
     <string name="general_settings_scan_speed_auto">Tự động (được khuyến nghị)</string>
     <string name="general_settings_scan_speed_1">1 (an toàn nhất)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Chính sách bảo mật</string>
     <string name="settings_privacy_policy_desc">Xử lý dữ liệu có trách nhiệm.</string>
     <string name="settings_support_label">Hỗ trợ</string>
-    <string name="documentation_label">Tài liệu</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Nơi để trò chuyện và đặt câu hỏi.</string>
     <string name="issue_tracker_label">Theo dõi vấn đề</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Vì đã hỗ trợ dịch các dự án mã nguồn mở.</string>
     <string name="permissions_page_label">Quyền</string>
     <string name="apps_page_label">Ứng dụng</string>
-    <string name="app_type_system_label">Ứng dụng hệ thống</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Quyền không xác định. Nó được yêu cầu bởi ứng dụng này, nhưng không có ứng dụng nào khác khai báo nó.</string>
-    <string name="permissions_unknown_description">Quyền không xác định. Nó được yêu cầu bởi các ứng dụng, nhưng không được khai báo ở đâu cả.</string>
     <string name="permissions_app_type_declaring_description">Quyền được tạo bởi ứng dụng này.</string>
-    <string name="permissions_app_type_requesting_description">Ứng dụng yêu cầu quyền.</string>
     <string name="general_filter_action">Lọc</string>
     <string name="general_cancel_action">Hủy</string>
     <string name="apps_filter_userapps_label">Ứng dụng người dùng</string>
@@ -67,16 +58,6 @@
     <string name="apps_sort_app_name_label">Tên ứng dụng</string>
     <string name="apps_sort_install_date_label">Ngày cài đặt</string>
     <string name="apps_sort_update_date_label">Cập nhật lần cuối</string>
-    <string name="general_sort_action">Sắp xếp</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="other">%1$d trong số %2$d đã được cấp.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="other">%1$d quyền được yêu cầu.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="other">Khai báo %1$d quyền.</item>
-    </plurals>
     <string name="apps_details_installer_label">Nguồn cài đặt</string>
     <string name="apps_details_installer_unknown_label">Thông tin không có sẵn</string>
     <string name="apps_details_open_settings_error">Không thể mở cài đặt ứng dụng cho hồ sơ này</string>
@@ -99,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Số lượng ứng dụng yêu cầu</string>
     <string name="permissions_search_list_hint">Tìm quyền</string>
     <string name="apps_search_list_hint">Tìm ứng dụng</string>
-    <string name="permissions_details_protection_label">Mức độ bảo vệ</string>
     <string name="permissions_protection_type_normal_label">Bình thường</string>
     <string name="permissions_protection_type_dangerous_label">Nguy hiểm</string>
     <string name="permissions_protection_type_signature_label">Chữ ký</string>
@@ -124,7 +104,6 @@
         <item>Đang đọc chữ nhỏ</item>
     </string-array>
     <string name="apps_app_details_label">Chi tiết ứng dụng</string>
-    <string name="apps_details_shareduserid_label">Ứng dụng có ID người dùng chung</string>
     <string name="apps_details_siblings_label">Anh chị em</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -145,14 +124,10 @@
     <string name="general_collapse_all_action">Thu gọn tất cả</string>
     <string name="general_more_options_action">Thêm tùy chọn</string>
     <string name="apps_details_twins_label">Bản sao</string>
-    <string name="apps_details_twins_descriptions">Được cài đặt trong các hồ sơ người dùng khác.</string>
-    <string name="install_date_label">Ngày cài đặt</string>
     <string name="apps_filter_sharedid_label">ID người dùng chung</string>
     <string name="apps_filter_multipleprofiles_label">Có bản sao</string>
     <string name="support_debuglog_label">Nhật ký gỡ lỗi</string>
     <string name="support_debuglog_desc">Ghi lại mọi thứ ứng dụng làm vào tệp văn bản mà bạn có thể chia sẻ.</string>
-    <string name="updated_at_x">Cập nhật lần cuối: %s</string>
-    <string name="installed_at_x">Cài đặt lần đầu: %s</string>
     <string name="apps_sort_install_source_label">Nguồn cài đặt</string>
     <string name="permissions_action_none_msg">Không có hành động nào khả dụng cho quyền này</string>
     <string name="permissions_details_open_settings_action">Mở cài đặt hệ thống</string>
@@ -178,11 +153,6 @@
     <string name="apps_filter_sort_action">Lọc &amp; Sắp xếp</string>
     <string name="apps_help_tag_icons_title">Chip quyền</string>
     <string name="apps_help_tag_icons_description">Chip hiển thị các danh mục quyền nhạy cảm mà ứng dụng đã được cấp</string>
-    <string name="apps_details_description_restrictions_caveat_description">Ứng dụng này được cài đặt trong hồ sơ người dùng khác. Quyền đã cấp chỉ có thể được xác định cho các ứng dụng được cài đặt trong hồ sơ hiện đang hoạt động, do hạn chế của Android.</string>
-    <string name="apps_details_description_uninstalled_caveat">Ứng dụng này đã bị gỡ cài đặt nhưng dữ liệu của nó vẫn được giữ lại. Không thể xác định trạng thái quyền cho các ứng dụng đã gỡ cài đặt.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="other">%d quyền được yêu cầu.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="other">%1$d trong số %2$d quyền được cấp.</item>
     </plurals>
@@ -203,8 +173,6 @@
         <item quantity="other">%d manifest còn lại cần phân tích…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Không phát hiện gì bất thường</string>
-    <string name="apps_details_manifest_unavailable">Không thể truy cập manifest</string>
-    <string name="apps_details_manifest_error">Không thể đọc manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="other">%d truy vấn gói</item>
     </plurals>
@@ -221,9 +189,6 @@
     <string name="apps_manifest_viewer_label">Trình xem Manifest</string>
     <string name="apps_manifest_viewer_search_hint">Tìm kiếm trong manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Lỗi không rõ khi tải tệp kê khai.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="other">%d kết quả</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d của %2$d</string>
     <string name="apps_manifest_section_uses_permission">Sử dụng quyền</string>
     <string name="apps_manifest_section_permission">Quyền</string>
@@ -257,12 +222,6 @@
     <plurals name="generic_x_apps_system_label">
         <item quantity="other">%d ứng dụng hệ thống</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="other">Ứng dụng người dùng: Đã cấp cho %1$d trong số %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="other">Ứng dụng hệ thống: Đã cấp cho %1$d trong số %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="other">%d ứng dụng trong các hồ sơ người dùng khác cũng yêu cầu quyền này.</item>
     </plurals>
@@ -270,7 +229,6 @@
         <item quantity="other">%d ứng dụng đã gỡ cài đặt có dữ liệu được lưu lại cũng yêu cầu quyền này.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Ứng dụng được cài đặt trong các hồ sơ người dùng khác bị loại trừ khỏi tính toán trên do hạn chế của Android.</string>
-    <string name="permissions_details_empty_filter_message">Không có ứng dụng nào khớp với bộ lọc hiện tại. Nhấn vào biểu tượng bộ lọc để điều chỉnh.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Thời gian chạy</string>
     <string name="permissions_tag_install_time_label">Thời điểm cài đặt</string>
@@ -365,8 +323,6 @@
     <string name="permission_loader_usage_stats_description">Cho phép ứng dụng thu thập thống kê về việc sử dụng trình tải dữ liệu trên thiết bị.</string>
     <string name="permission_premium_sms_services_label">Truy cập SMS cao cấp</string>
     <string name="permission_premium_sms_services_description">Cho phép ứng dụng sử dụng dịch vụ tin nhắn văn bản cao cấp. Điều này sẽ tốn tiền của bạn.</string>
-    <string name="permission_unlimited_data_access_label">Truy cập dữ liệu không giới hạn</string>
-    <string name="permission_unlimited_data_access_description">Cho phép ứng dụng truy cập dữ liệu không hạn chế. Ứng dụng có thể tiêu thụ dữ liệu ngay cả khi Tiết kiệm dữ liệu đang BẬT.</string>
     <string name="permission_group_calendar_label">Lịch</string>
     <string name="permission_group_calendar_description"><![CDATA[Quyền liên quan đến lịch, ví dụ: xem & chỉnh sửa mục.]]></string>
     <string name="permission_group_files_label">Tệp và phương tiện</string>
@@ -387,8 +343,6 @@
     <string name="permission_group_contacts_description">"Đọc và viết liên hệ."</string>
     <string name="permission_group_apps_label">Ứng dụng</string>
     <string name="permission_group_apps_description">Quyền truy cập đặc biệt yêu cầu sự đồng ý rõ ràng của người dùng.</string>
-    <string name="permission_group_battery_label">Pin</string>
-    <string name="permission_group_battery_description">Quyền liên quan đến pin.</string>
     <string name="permission_group_camera_label">Camera</string>
     <string name="permission_group_camera_description">Quyền liên quan đến camera.</string>
     <string name="permission_group_audio_label">Micrô</string>
@@ -399,12 +353,8 @@
     <string name="permission_legacy_storage_label">Bộ nhớ ngoài cũ</string>
     <string name="permission_legacy_storage_description">Cho phép ứng dụng truy cập bộ nhớ ngoài mà không có hạn chế lưu trữ theo phạm vi. Đây là hành vi mặc định trước Android 10. Các ứng dụng có quyền truy cập này có thể đọc và ghi tệp ở bất kỳ đâu trên bộ nhớ chia sẻ.</string>
     <string name="settings_page_label">Cài đặt</string>
-    <string name="overview_summary_title_label">Tóm tắt</string>
     <string name="permissions_details_declaring_apps_label">Ứng dụng khai báo</string>
     <string name="permissions_details_requesting_apps_label">Ứng dụng yêu cầu</string>
-    <string name="overview_device_android_version_label">Phiên bản Android</string>
-    <string name="overview_device_name_label">Thiết bị</string>
-    <string name="overview_device_android_patch_label">Mức độ bản vá</string>
     <string name="overview_summary_apps_active_profile_label">Ứng dụng trong hồ sơ hoạt động</string>
     <string name="overview_summary_apps_other_profile_label">Ứng dụng trong hồ sơ người dùng được quản lý, không bao gồm bản sao</string>
     <string name="overview_summary_apps_sideloaded_label">Ứng dụng được cài đặt thủ công từ các nguồn bên ngoài</string>
@@ -451,7 +401,6 @@
     <string name="support_debuglog_session_delete_title">Xóa nhật ký gỡ lỗi?</string>
     <string name="support_debuglog_session_delete_message">Nhật ký gỡ lỗi này sẽ bị xóa vĩnh viễn.</string>
     <string name="support_debuglog_sessions_empty">Không có nhật ký gỡ lỗi</string>
-    <string name="support_debuglog_session_invalid">Phiên không hợp lệ</string>
     <string name="support_debuglog_session_recording">Đang ghi…</string>
     <string name="support_debuglog_session_compressing">Đang nén…</string>
     <string name="support_debuglog_failed_empty_log">Tệp nhật ký trống</string>
@@ -463,7 +412,6 @@
     <string name="support_contact_sent_title">Đã gửi tin nhắn?</string>
     <string name="support_contact_sent_message">Nếu bạn đã gửi email, phiên này có thể được dọn sạch.</string>
     <string name="general_close_action">Đóng</string>
-    <string name="debug_debuglog_screen_delete_action">Xoá</string>
     <!-- Contact form -->
     <string name="contact_support_label">Liên hệ hỗ trợ</string>
     <string name="contact_category_label">Danh mục</string>
@@ -491,8 +439,6 @@
     <string name="contact_no_email_app">Không tìm thấy ứng dụng email nào trên thiết bị này.</string>
     <string name="contact_welcome_message">Tôi tự đọc mọi tin nhắn và cố gắng trả lời. Vì tôi tự xử lý việc phát triển, sửa lỗi và hỗ trợ, việc này có thể mất một chút thời gian. Cảm ơn sự kiên nhẫn của bạn.</string>
     <string name="contact_footer_message">Tin nhắn của bạn sẽ được gửi qua email. Thông tin về thiết bị và cài đặt được đính kèm tự động. Bạn có thể đính kèm ảnh chụp màn hình hoặc video vào email. Vui lòng viết bằng tiếng Anh nếu có thể.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Giữ lại</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Nhật ký gỡ lỗi</string>
     <string name="debug_debuglog_screen_subtitle">Xuất thông tin gỡ lỗi để khắc phục sự cố</string>
@@ -571,22 +517,17 @@
     <string name="watcher_scope_label">Phạm vi theo dõi</string>
     <string name="watcher_scope_all">Tất cả ứng dụng</string>
     <string name="watcher_scope_non_system">Chỉ ứng dụng không phải hệ thống</string>
-    <string name="watcher_reports_label">Báo cáo thay đổi quyền</string>
     <string name="watcher_reports_empty">Chưa phát hiện thay đổi quyền nào</string>
     <string name="watcher_report_detail_label">Báo cáo thay đổi</string>
     <string name="watcher_diff_added_permissions">Quyền mới</string>
     <string name="watcher_diff_removed_permissions">Quyền đã xóa</string>
     <string name="watcher_diff_grant_changes">Thay đổi cấp quyền</string>
-    <string name="watcher_diff_added_declared">Quyền khai báo mới</string>
-    <string name="watcher_diff_removed_declared">Quyền khai báo đã xóa</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Đã cài đặt</string>
     <string name="watcher_event_update">Đã cập nhật</string>
     <string name="watcher_event_removed">Đã xóa</string>
     <string name="watcher_event_grant_change">Quyền đã thay đổi</string>
     <string name="watcher_mark_all_seen">Đánh dấu tất cả là đã xem</string>
     <string name="watcher_notification_action_mark_seen">Đánh dấu đã xem</string>
-    <string name="watcher_notification_action_delete">Xoá</string>
     <string name="watcher_notification_body_added">Đã thêm: %s</string>
     <string name="watcher_notification_body_removed">Đã xóa: %s</string>
     <string name="watcher_notification_body_grant_changed">Thay đổi cấp quyền: %s</string>
@@ -616,9 +557,6 @@
     <string name="watcher_detail_version_code_label">Mã</string>
     <string name="watcher_detail_installer_label">Nguồn cài đặt</string>
     <string name="watcher_detail_installer_unknown">Không xác định</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="other">Quyền (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="other">Quyền đã biết cuối cùng (%d)</item>
     </plurals>
@@ -691,14 +629,12 @@
     <string name="export_perm_granted_only_label">Chỉ ứng dụng được cấp quyền</string>
     <string name="export_perm_include_summary_label">Bao gồm số lượng tóm tắt</string>
     <string name="export_preview_label">Xem trước</string>
-    <string name="export_preview_label_of">Xem trước (%1$d / %2$d)</string>
     <string name="export_action_label">Xuất</string>
     <string name="export_progress_label">Đang xuất…</string>
     <string name="export_success_message">Xuất hoàn tất</string>
     <string name="export_error_message">Xuất thất bại</string>
     <string name="export_share_action">Chia sẻ</string>
     <string name="export_open_action">Mở</string>
-    <string name="export_done_action">Xong</string>
     <string name="export_retry_action">Thử lại</string>
     <string name="export_summary_filename">Tệp</string>
     <string name="export_summary_size">Kích thước</string>

@@ -7,14 +7,12 @@
     <string name="label_help">Kömək</string>
     <string name="general_error_label">Səhv</string>
     <string name="general_load_error_title">Məlumatlar yüklənə bilmədi</string>
-    <string name="general_load_error_hint">Yüklənmiş tətbiqləri skan etməsi zamanı bir xəta baş verdi.</string>
     <string name="general_refresh_error_hint">Yeniləmə başarısız oldu.</string>
     <string name="general_retry_action">Yenidən cəhd edin</string>
     <string name="general_share_action">Paylaş</string>
     <string name="general_done_action">Bitdi</string>
     <string name="general_open_action">Aç</string>
     <string name="general_continue_action">Davam et</string>
-    <string name="general_no_action">Xeyir</string>
     <string name="debug_debuglog_record_action">Qeyd</string>
     <string name="settings_category_other_label">Digər</string>
     <string name="settings_category_gethelp_label">Yardım al</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Ümumi</string>
     <string name="general_settings_desc">Bütün proqramı təsir edən ümumi düzəlişlər.</string>
     <string name="general_settings_scan_speed_label">Skan sürəti</string>
-    <string name="general_settings_scan_speed_desc">Tətbiqləri skan edərkən paralel əməliyyatları idarə edir. Daha yüksək dəyərlər daha sürətlidir, lakin bəzi cihazlarda çökməyə səbəb ola bilər.</string>
     <string name="general_settings_scan_speed_auto">Avtomatik (tövsiyə edilir)</string>
     <string name="general_settings_scan_speed_1">1 (ən təhlükəsiz)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Məxfilik siyasəti</string>
     <string name="settings_privacy_policy_desc">Məlumatları məsuliyyətlə idarə etmək.</string>
     <string name="settings_support_label">Dəstək</string>
-    <string name="documentation_label">Sənədlər</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Bir yerdir ki, suallar verə bilərsiniz.</string>
     <string name="issue_tracker_label">İş izləyici</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Açıq mənbəli layihələrin tərciməsini dəstəkləyirlər.</string>
     <string name="permissions_page_label">İcazələr</string>
     <string name="apps_page_label">Tətbiqlər</string>
-    <string name="app_type_system_label">Sistem Tətbiqi</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Naməlum icazədir. Bu tətbiq tərəfindən tələb olunur, lakin heç bir başqa tətbiq onu elan etmir.</string>
-    <string name="permissions_unknown_description">Naməlum icazədir. Tətbiqlər onu tələb edir, lakin heç yerdə elan olunmur.</string>
     <string name="permissions_app_type_declaring_description">Bu icazə bu tətbiq tərəfindən yaradılıb.</string>
-    <string name="permissions_app_type_requesting_description">Tətbiq icazə tələb edir.</string>
     <string name="general_filter_action">Filterlə</string>
     <string name="general_cancel_action">Ləğv et</string>
     <string name="apps_filter_userapps_label">İstifadəçi Tətbiqləri</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Tətbiq adı</string>
     <string name="apps_sort_install_date_label">Quraşdırma tarixi</string>
     <string name="apps_sort_update_date_label">Son yeniləmə</string>
-    <string name="general_sort_action">Sırala</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%2$d-dən %1$d-i verildi.</item>
-        <item quantity="other">%2$d-dən %1$d-i verildi.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d icəzə tələb olundu.</item>
-        <item quantity="other">%1$d icəzə tələb olundu.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">%1$d icəzə elan edir.</item>
-        <item quantity="other">%1$d icəzə elan edir.</item>
-    </plurals>
     <string name="apps_details_installer_label">Quraşdırma mənbəyi</string>
     <string name="apps_details_installer_unknown_label">Məlumat mövcud deyil</string>
     <string name="apps_details_open_settings_error">Bu profil üçün tətbiq parametrlərini açmaq mümkün olmadı</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Tələb etmiş tətbiqlərin sayı</string>
     <string name="permissions_search_list_hint">İcazələri axtarın</string>
     <string name="apps_search_list_hint">Tətbiqləri axtarın</string>
-    <string name="permissions_details_protection_label">Mühafizə səviyyəsi</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Təhlükəli</string>
     <string name="permissions_protection_type_signature_label">İmza</string>
@@ -127,7 +104,6 @@
         <item>Xırda xətləri oxuyuruq</item>
     </string-array>
     <string name="apps_app_details_label">Tətbiq Detalları</string>
-    <string name="apps_details_shareduserid_label">Paylaşılan İstifadəçi ID olan tətbiqlər</string>
     <string name="apps_details_siblings_label">Qardaş</string>
     <string name="apps_known_installer_gplay_label">Google Play Mağazası</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppMarket</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Hamısını yığ</string>
     <string name="general_more_options_action">Daha çox seçim</string>
     <string name="apps_details_twins_label">Eyni</string>
-    <string name="apps_details_twins_descriptions">Başqa istifadəçi profillərində quraşdırılıb.</string>
-    <string name="install_date_label">Quraşdırma tarixi</string>
     <string name="apps_filter_sharedid_label">Paylaşılan İstifadəçi ID</string>
     <string name="apps_filter_multipleprofiles_label">Klonları var</string>
     <string name="support_debuglog_label">Debug logu</string>
     <string name="support_debuglog_desc">Tətbiqin etdiyi hər şeyin qeyd-faylında toplanması, bölüşülə bilməsi mümkündür.</string>
-    <string name="updated_at_x">Son yenilə: %s</string>
-    <string name="installed_at_x">İlk quraşdırma: %s</string>
     <string name="apps_sort_install_source_label">Quraşdırma mənbəyi</string>
     <string name="permissions_action_none_msg">Bu icazə üçün hər hansı hərəkət yoxdur</string>
     <string name="permissions_details_open_settings_action">Sistem parametrlərini aç</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filtr və Sıralama</string>
     <string name="apps_help_tag_icons_title">İcazə nişanları</string>
     <string name="apps_help_tag_icons_description">Nişanlar tətbiqin hansı həssas icazə kateqoriyalarına malik olduğunu göstərir</string>
-    <string name="apps_details_description_restrictions_caveat_description">Bu tətbiq başqa bir istifadəçi profilində quraşdırılıb. Verilən icazələr yalnız Android məhdudiyyətləri səbəbindən cari Aktiv Profil üçün müəyyən edilə bilər.</string>
-    <string name="apps_details_description_uninstalled_caveat">Bu tətbiq silinib, lakin məlumatları saxlanılıb. Silinmiş tətbiqlər üçün icazə vəziyyətini müəyyən etmək mümkün deyil.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d icəzə tələb olundu.</item>
-        <item quantity="other">%d icəzə tələb olundu.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%2$d icəzədən %1$d-i verildi.</item>
         <item quantity="other">%2$d icəzədən %1$d-i verildi.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">Analiz üçün %d manifesta qaldı…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Qeyri-adi bir şey aşkar edilmədi</string>
-    <string name="apps_details_manifest_unavailable">Manifestaya giriş mümkün deyil</string>
-    <string name="apps_details_manifest_error">Manifesta oxuna bilmədi</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d paket sorğusu</item>
         <item quantity="other">%d paket sorğusu</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifesta Baxışı</string>
     <string name="apps_manifest_viewer_search_hint">Manifestada axtar</string>
     <string name="apps_manifest_viewer_error_unknown">Manifest yükləyərkən bilinməyən xəta.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d uyğun</item>
-        <item quantity="other">%d uyğun</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d / %2$d</string>
     <string name="apps_manifest_section_uses_permission">İstifadə Edilən İcazə</string>
     <string name="apps_manifest_section_permission">İcazə</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d sistem tətbiqi</item>
         <item quantity="other">%d sistem tətbiqləri</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">İstifadəçi Tətbiqləri: %2$d-dən %1$d-inə verildi.</item>
-        <item quantity="other">İstifadəçi Tətbiqləri: %2$d-dən %1$d-inə verildi.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Sistem Tətbiqləri: %2$d-dən %1$d-inə verildi.</item>
-        <item quantity="other">Sistem Tətbiqləri: %2$d-dən %1$d-inə verildi.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">Digər istifadəçi profilllərində %d tətbiq də bu icazəni tələb edir.</item>
         <item quantity="other">Digər istifadəçi profilllərində %d tətbiq də bu icazəni tələb edir.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">Məlumatları saxlanılan %d silinmiş tətbiq də bu icazəni tələb edir.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android məhdudiyyətləri səbəbindən quraşdırıldığı üçün yuxarıda göstərilən məlumatlar bəzi istifadəçi profillərindən kənardakı tətbiqləri nəzərə almır.</string>
-    <string name="permissions_details_empty_filter_message">Cari filtrlərə uyğun tətbiq yoxdur. Tənzimləmək üçün filtr simgesinə toxunun.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">İş zamanı</string>
     <string name="permissions_tag_install_time_label">Quraşdırma zamanı</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Tətbiqlərə cihazda məlumat yükləyicisinin istifadəsi haqqında statistika toplamağa icazə verir.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Xidmətləri Girişi</string>
     <string name="permission_premium_sms_services_description">Tətbiqlərə premium SMS xidmətlərindən istifadə etməyə icazə verir. Bu sizə pul başa gələ bilər.</string>
-    <string name="permission_unlimited_data_access_label">Sərhədsiz Məlumat Girişi</string>
-    <string name="permission_unlimited_data_access_description">Tətbiqlərə məhdudiyyətsiz məlumat girişi təmin edir. Verilənlər qoruyucu halında belə, tətbiqlər məlumatlardan istifadə edə bilərlər.</string>
     <string name="permission_group_calendar_label">Təqvim</string>
     <string name="permission_group_calendar_description"><![CDATA[Təqvimə aid icazələr, məsələn məlumatları baxış və düzəltmə.]]></string>
     <string name="permission_group_files_label">Fayllar və Media</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Əlaqələri oxuyun və yazın."</string>
     <string name="permission_group_apps_label">Tətbiqlər</string>
     <string name="permission_group_apps_description">Xüsusi giriş icazələri, istifadəçi dəstəsi tələb edir.</string>
-    <string name="permission_group_battery_label">Batareya</string>
-    <string name="permission_group_battery_description">Batareya ilə əlaqəli icazələr.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kamera ilə əlaqəli icazələr.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Köhnə yaddas</string>
     <string name="permission_legacy_storage_description">Tətbiqlərə çərçivələnmə olmadan xarici yaddasə giriş ə imkan verir. Bu Android 10-dan əvvəl önüaçılan dav ranış idi. Bu girişi olan tətbiqlər paylasilan yaddasşnın istənilən yerində fayl oxuya və yaza bilər.</string>
     <string name="settings_page_label">Parametrlər</string>
-    <string name="overview_summary_title_label">Xülasə</string>
     <string name="permissions_details_declaring_apps_label">Elan edən tətbiqlər</string>
     <string name="permissions_details_requesting_apps_label">Tələb edən tətbiqlər</string>
-    <string name="overview_device_android_version_label">Android versiyası</string>
-    <string name="overview_device_name_label">Cihaz</string>
-    <string name="overview_device_android_patch_label">Yaması səviyyəsi</string>
     <string name="overview_summary_apps_active_profile_label">Aktiv Tərifdə Tətbiqlər</string>
     <string name="overview_summary_apps_other_profile_label">Başqa İstifadəçi Tərifində Tətbiqlər, eyni tətbiqlər xaric</string>
     <string name="overview_summary_apps_sideloaded_label">Xârici mənbələrdən əl ilə quraşdırılmış tətbiqlər</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Sazlama jurnalı silinsin?</string>
     <string name="support_debuglog_session_delete_message">Bu sazlama jurnalı daimı olaraq silinəcək.</string>
     <string name="support_debuglog_sessions_empty">Sazlama jurnalı yoxdur</string>
-    <string name="support_debuglog_session_invalid">Etibıarsız sessiya</string>
     <string name="support_debuglog_session_recording">Qeyd edilir…</string>
     <string name="support_debuglog_session_compressing">Sıxılır…</string>
     <string name="support_debuglog_failed_empty_log">Boş jurnal faylı</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Məktüb göndərildi?</string>
     <string name="support_contact_sent_message">Əgər e-poçt göndərdinizsə, bu sessiya təmizlənə bilər.</string>
     <string name="general_close_action">Bağla</string>
-    <string name="debug_debuglog_screen_delete_action">Sil</string>
     <!-- Contact form -->
     <string name="contact_support_label">Dəstəklə müraiciət et</string>
     <string name="contact_category_label">Kateqoriya</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Bu cihazda e-poçt tətbiqi tapilmadı.</string>
     <string name="contact_welcome_message">Hər məktubu özüm oxuyuram və cav ab verməyə çalışıram. Gəlişdirmə, səhv düzəltmə və dəstəyi tək başima idarə etdiyim üçün bir az vaxt aparır. Səbriniz üçün sağ olun.</string>
     <string name="contact_footer_message">Məktubunuz e-poçt vasitəsilə göndəriləcək. Cihaz və qurasdırma məlumatı avtomatik əlavə edilir. E-poçta ekran görüntüləri və ya video əlavə edə bilərsiniz. Mümkünsə ingilscə yazin.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Saxla</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Sazlama jurnalı</string>
     <string name="debug_debuglog_screen_subtitle">Problemləri həll etmək üçün sazlama məlumatlarını ixrac edin</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Nəzarət əhatli</string>
     <string name="watcher_scope_all">Bütn tətbiqlər</string>
     <string name="watcher_scope_non_system">Yalnız sistem olmayan tətbiqlər</string>
-    <string name="watcher_reports_label">İcazə dəyişkliyi hesabatları</string>
     <string name="watcher_reports_empty">Hələ heq icazə dəyişkliyi aşkar edilməyib</string>
     <string name="watcher_report_detail_label">Dəyişklik Hesabatı</string>
     <string name="watcher_diff_added_permissions">Yeni icazələr</string>
     <string name="watcher_diff_removed_permissions">Silinmiş icazələr</string>
     <string name="watcher_diff_grant_changes">İcazə dəyişklikləri</string>
-    <string name="watcher_diff_added_declared">Yeni elan edilmiş icazələr</string>
-    <string name="watcher_diff_removed_declared">Silinmiş elan edilmiş icazələr</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Quraşdırıldı</string>
     <string name="watcher_event_update">Yəniləndi</string>
     <string name="watcher_event_removed">Silinib</string>
     <string name="watcher_event_grant_change">İcazə dəyişdi</string>
     <string name="watcher_mark_all_seen">Hamısını görünmüş kimi işarələ</string>
     <string name="watcher_notification_action_mark_seen">Görünmüş kimi işarələ</string>
-    <string name="watcher_notification_action_delete">Sil</string>
     <string name="watcher_notification_body_added">Əlavə edildi: %s</string>
     <string name="watcher_notification_body_removed">Silinib: %s</string>
     <string name="watcher_notification_body_grant_changed">İcazə dəyişdi: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Kod</string>
     <string name="watcher_detail_installer_label">Quraşdırma mənbəyi</string>
     <string name="watcher_detail_installer_unknown">Naməlum</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">İcazələr (%d)</item>
-        <item quantity="other">İcazələr (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Son məlum icazələr (%d)</item>
         <item quantity="other">Son məlum icazələr (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Yalnız icazə verilmiş tətbiqlər</string>
     <string name="export_perm_include_summary_label">Xülasə sayını daxil et</string>
     <string name="export_preview_label">Önizləmə</string>
-    <string name="export_preview_label_of">Önizləmə (%1$d / %2$d)</string>
     <string name="export_action_label">İxrac et</string>
     <string name="export_progress_label">İxrac edilir…</string>
     <string name="export_success_message">İxrac tamamlandı</string>
     <string name="export_error_message">İxrac uğursuz oldu</string>
     <string name="export_share_action">Paylaş</string>
     <string name="export_open_action">Aç</string>
-    <string name="export_done_action">Tamamlandı</string>
     <string name="export_retry_action">Yenidən cəhd et</string>
     <string name="export_summary_filename">Fayl</string>
     <string name="export_summary_size">Ölçü</string>

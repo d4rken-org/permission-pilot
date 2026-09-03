@@ -7,14 +7,12 @@
     <string name="label_help">Помощь</string>
     <string name="general_error_label">Ошибка</string>
     <string name="general_load_error_title">Не удалось загрузить данные</string>
-    <string name="general_load_error_hint">Что-то пошло не так при сканировании установленных приложений.</string>
     <string name="general_refresh_error_hint">Ошибка обновления.</string>
     <string name="general_retry_action">Повторить</string>
     <string name="general_share_action">Поделиться</string>
     <string name="general_done_action">Готово</string>
     <string name="general_open_action">Открыть</string>
     <string name="general_continue_action">Продолжить</string>
-    <string name="general_no_action">Нет</string>
     <string name="debug_debuglog_record_action">Запись</string>
     <string name="settings_category_other_label">Другое</string>
     <string name="settings_category_gethelp_label">Получить помощь</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Общее</string>
     <string name="general_settings_desc">Общие твики, влияющие на всё приложение.</string>
     <string name="general_settings_scan_speed_label">Скорость сканирования</string>
-    <string name="general_settings_scan_speed_desc">Управляет параллельными операциями при сканировании приложений. Более высокие значения работают быстрее, но могут приводить к сбоям на некоторых устройствах.</string>
     <string name="general_settings_scan_speed_auto">Авто (рекомендуется)</string>
     <string name="general_settings_scan_speed_1">1 (безопаснее всего)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Политика конфиденциальности</string>
     <string name="settings_privacy_policy_desc">Ответственность за обработку данных.</string>
     <string name="settings_support_label">Поддержка</string>
-    <string name="documentation_label">Документация</string>
     <string name="discord_label">Вопросы</string>
     <string name="discord_description">Место для тусовки и вопросов.</string>
     <string name="issue_tracker_label">Проблемы</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">За поддержку перевода проектов с открытым исходным кодом.</string>
     <string name="permissions_page_label">Разрешения</string>
     <string name="apps_page_label">Приложения</string>
-    <string name="app_type_system_label">Системное</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Неизвестное разрешение. Оно запрашивается данным приложением, но никакое другое приложение его не объявляет.</string>
-    <string name="permissions_unknown_description">Неизвестное разрешение. Оно запрашивается данным приложением, но нигде не объявляется.</string>
     <string name="permissions_app_type_declaring_description">Разрешение создано данным приложением.</string>
-    <string name="permissions_app_type_requesting_description">Приложение запрашивает разрешение.</string>
     <string name="general_filter_action">Фильтр</string>
     <string name="general_cancel_action">Отмена</string>
     <string name="apps_filter_userapps_label">Пользовательские прил.</string>
@@ -67,25 +58,6 @@
     <string name="apps_sort_app_name_label">Имя приложения</string>
     <string name="apps_sort_install_date_label">Дата установки</string>
     <string name="apps_sort_update_date_label">Последнее обновление</string>
-    <string name="general_sort_action">Сортировка</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">Предоставлено %1$d из %2$d.</item>
-        <item quantity="few">Предоставлено %1$d из %2$d.</item>
-        <item quantity="many">Предоставлено %1$d из %2$d.</item>
-        <item quantity="other">Предоставлено %1$d из %2$d.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">Запрошено %1$d разрешение.</item>
-        <item quantity="few">Запрошено %1$d разрешения.</item>
-        <item quantity="many">Запрошено %1$d разрешений.</item>
-        <item quantity="other">Запрошено %1$d разрешения.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Объявлено %1$d разрешение.</item>
-        <item quantity="few">Объявлено %1$d разрешения.</item>
-        <item quantity="many">Объявлено %1$d разрешений.</item>
-        <item quantity="other">Объявлено %1$d разрешения.</item>
-    </plurals>
     <string name="apps_details_installer_label">Источник установки</string>
     <string name="apps_details_installer_unknown_label">Информация недоступна</string>
     <string name="apps_details_open_settings_error">Не удалось открыть настройки приложения для этого профиля</string>
@@ -108,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Количество запрошенных приложений</string>
     <string name="permissions_search_list_hint">Поиск разрешений</string>
     <string name="apps_search_list_hint">Поиск приложений</string>
-    <string name="permissions_details_protection_label">Уровень защиты</string>
     <string name="permissions_protection_type_normal_label">Нормальный</string>
     <string name="permissions_protection_type_dangerous_label">Опасный</string>
     <string name="permissions_protection_type_signature_label">Подпись</string>
@@ -133,7 +104,6 @@
         <item>Читаем мелкий шрифт</item>
     </string-array>
     <string name="apps_app_details_label">Подробности приложения</string>
-    <string name="apps_details_shareduserid_label">Прил. с предоставленным ID пользователя</string>
     <string name="apps_details_siblings_label">Родственные</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -154,14 +124,10 @@
     <string name="general_collapse_all_action">Свернуть все</string>
     <string name="general_more_options_action">Дополнительные параметры</string>
     <string name="apps_details_twins_label">Клоны</string>
-    <string name="apps_details_twins_descriptions">Установлено в других профилях пользователя.</string>
-    <string name="install_date_label">Дата установки</string>
     <string name="apps_filter_sharedid_label">С ID пользователя</string>
     <string name="apps_filter_multipleprofiles_label">Есть клоны</string>
     <string name="support_debuglog_label">Журнал отладки</string>
     <string name="support_debuglog_desc">Запись всего, что делает приложение в текстовом файле для отправки.</string>
-    <string name="updated_at_x">Последнее обновление: %s</string>
-    <string name="installed_at_x">Первая установка: %s</string>
     <string name="apps_sort_install_source_label">Источник установки</string>
     <string name="permissions_action_none_msg">Нет доступных действий для разрешения</string>
     <string name="permissions_details_open_settings_action">Открыть системные настройки</string>
@@ -187,14 +153,6 @@
     <string name="apps_filter_sort_action">Фильтр и сортировка</string>
     <string name="apps_help_tag_icons_title">Метки разрешений</string>
     <string name="apps_help_tag_icons_description">Метки показывают, какие категории конфиденциальных разрешений предоставлены приложению</string>
-    <string name="apps_details_description_restrictions_caveat_description">Приложение установлено в другом профиле пользователя. Из-за ограничений Android, предоставленные разрешения могут быть определены только для приложений, установленных в текущем активном профиле.</string>
-    <string name="apps_details_description_uninstalled_caveat">Это приложение было удалено, но его данные сохранены. Состояние разрешений невозможно определить для удалённых приложений.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">Запрошено %d разрешение.</item>
-        <item quantity="few">Запрошено %d разрешения.</item>
-        <item quantity="many">Запрошено %d разрешений.</item>
-        <item quantity="other">Запрошено %d разрешения.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">Предоставлено %1$d из %2$d разрешений.</item>
         <item quantity="few">Предоставлено %1$d из %2$d разрешений.</item>
@@ -221,8 +179,6 @@
         <item quantity="other">%d манифестов осталось для анализа…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Ничего подозрительного не обнаружено</string>
-    <string name="apps_details_manifest_unavailable">Манифест недоступен</string>
-    <string name="apps_details_manifest_error">Не удалось прочитать манифест</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d запрос пакета</item>
         <item quantity="few">%d запроса пакета</item>
@@ -248,12 +204,6 @@
     <string name="apps_manifest_viewer_label">Просмотр манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Поиск в манифесте</string>
     <string name="apps_manifest_viewer_error_unknown">Неизвестная ошибка при загрузке манифеста.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d совпадение</item>
-        <item quantity="few">%d совпадения</item>
-        <item quantity="many">%d совпадений</item>
-        <item quantity="other">%d совпадений</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d из %2$d</string>
     <string name="apps_manifest_section_uses_permission">Использует разрешение</string>
     <string name="apps_manifest_section_permission">Разрешение</string>
@@ -302,18 +252,6 @@
         <item quantity="many">%d сист. прил.</item>
         <item quantity="other">%d сист. прил.</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="few">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="many">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="other">Пользовательские приложения: предоставлено %1$d из %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Системные приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="few">Системные приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="many">Системные приложения: предоставлено %1$d из %2$d.</item>
-        <item quantity="other">Системные приложения: предоставлено %1$d из %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d приложение в других пользовательских профилях также запрашивает это разрешение.</item>
         <item quantity="few">%d приложения в других пользовательских профилях также запрашивают это разрешение.</item>
@@ -327,7 +265,6 @@
         <item quantity="other">%d удалённых приложений с сохранёнными данными также запрашивают это разрешение.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, установленные в других профилях пользователя, исключаются из обработки из-за ограничений Android.</string>
-    <string name="permissions_details_empty_filter_message">Нет приложений, соответствующих текущим фильтрам. Нажмите на значок фильтра для настройки.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Режим выполнения</string>
     <string name="permissions_tag_install_time_label">Во время установки</string>
@@ -425,8 +362,6 @@
     <string name="permission_loader_usage_stats_description">Позволяет приложениям собирать статистику об использовании загрузчика данных на устройстве.</string>
     <string name="permission_premium_sms_services_label">Доступ к премиум-СМС</string>
     <string name="permission_premium_sms_services_description">Разрешение приложениям использовать службы премиум-СМС. Это может стоить денег.</string>
-    <string name="permission_unlimited_data_access_label">Неограниченный доступ к данным</string>
-    <string name="permission_unlimited_data_access_description">Разрешение приложениям неограниченного доступа к данным. Приложения могут пользоваться данными даже тогда, когда включена их защита.</string>
     <string name="permission_group_calendar_label">Календарь</string>
     <string name="permission_group_calendar_description"><![CDATA[Разрешения, относящиеся к календарю, например, просмотр и изменение записей]]></string>
     <string name="permission_group_files_label">Файлы и медиа</string>
@@ -447,8 +382,6 @@
     <string name="permission_group_contacts_description">"Чтение и запись контактов."</string>
     <string name="permission_group_apps_label">Приложения</string>
     <string name="permission_group_apps_description">Специальные разрешения доступа, требующие непосредственного согласия пользователя.</string>
-    <string name="permission_group_battery_label">Батарея</string>
-    <string name="permission_group_battery_description">Разрешения, относяшиеся к аккумулятору.</string>
     <string name="permission_group_camera_label">Камера</string>
     <string name="permission_group_camera_description">Разрешения, относяшиеся к камере.</string>
     <string name="permission_group_audio_label">Микрофон</string>
@@ -459,12 +392,8 @@
     <string name="permission_legacy_storage_label">Устаревшее хранилище</string>
     <string name="permission_legacy_storage_description">Позволяет приложениям обращаться к внешнему хранилищу без ограничений области хранения. Это было стандартным поведением до Android 10. Приложения с таким доступом могут читать и записывать файлы в любом месте общего хранилища.</string>
     <string name="settings_page_label">Настройки</string>
-    <string name="overview_summary_title_label">Сводка</string>
     <string name="permissions_details_declaring_apps_label">Объявляющие приложения</string>
     <string name="permissions_details_requesting_apps_label">Запрашивающие приложения</string>
-    <string name="overview_device_android_version_label">Версия Android</string>
-    <string name="overview_device_name_label">Устройство</string>
-    <string name="overview_device_android_patch_label">Уровень патча</string>
     <string name="overview_summary_apps_active_profile_label">Количество прил. в активном профиле</string>
     <string name="overview_summary_apps_other_profile_label">Количество прил. в управляемом профиле пользователя, за исключением клонов</string>
     <string name="overview_summary_apps_sideloaded_label">Приложения, установленные вручную из внешних источников</string>
@@ -514,7 +443,6 @@
     <string name="support_debuglog_session_delete_title">Удалить журнал отладки?</string>
     <string name="support_debuglog_session_delete_message">Этот журнал отладки будет удалён навсегда.</string>
     <string name="support_debuglog_sessions_empty">Журналов отладки нет</string>
-    <string name="support_debuglog_session_invalid">Недействительная сессия</string>
     <string name="support_debuglog_session_recording">Запись…</string>
     <string name="support_debuglog_session_compressing">Сжатие…</string>
     <string name="support_debuglog_failed_empty_log">Пустой файл журнала</string>
@@ -526,7 +454,6 @@
     <string name="support_contact_sent_title">Сообщение отправлено?</string>
     <string name="support_contact_sent_message">Если вы отправили электронное письмо, эту сессию можно завершить.</string>
     <string name="general_close_action">Закрыть</string>
-    <string name="debug_debuglog_screen_delete_action">Удалить</string>
     <!-- Contact form -->
     <string name="contact_support_label">Связаться с поддержкой</string>
     <string name="contact_category_label">Категория</string>
@@ -557,8 +484,6 @@
     <string name="contact_no_email_app">Почтовое приложение не найдено на этом устройстве.</string>
     <string name="contact_welcome_message">Я лично читаю каждое сообщение и стараюсь отвечать. Поскольку я сам занимаюсь разработкой, исправлением ошибок и поддержкой, ответ может занять немного времени. Спасибо за терпение.</string>
     <string name="contact_footer_message">Сообщение будет отправлено по электронной почте. Информация об устройстве и настройках прилагается автоматически. Вы можете прикрепить снимки экрана или видео. Пожалуйста, пишите по-английски, если возможно.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Оставить</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Журнал отладки</string>
     <string name="debug_debuglog_screen_subtitle">Экспорт отладочной информации для диагностики</string>
@@ -646,22 +571,17 @@
     <string name="watcher_scope_label">Область наблюдения</string>
     <string name="watcher_scope_all">Все приложения</string>
     <string name="watcher_scope_non_system">Только пользовательские приложения</string>
-    <string name="watcher_reports_label">Отчёты об изменении разрешений</string>
     <string name="watcher_reports_empty">Изменений разрешений ещё не обнаружено</string>
     <string name="watcher_report_detail_label">Отчёт об изменениях</string>
     <string name="watcher_diff_added_permissions">Новые разрешения</string>
     <string name="watcher_diff_removed_permissions">Удалённые разрешения</string>
     <string name="watcher_diff_grant_changes">Изменения выдачи разрешений</string>
-    <string name="watcher_diff_added_declared">Новые объявленные разрешения</string>
-    <string name="watcher_diff_removed_declared">Удалённые объявленные разрешения</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Установлено</string>
     <string name="watcher_event_update">Обновлено</string>
     <string name="watcher_event_removed">Удалено</string>
     <string name="watcher_event_grant_change">Разрешение изменено</string>
     <string name="watcher_mark_all_seen">Отметить всё как просмотренное</string>
     <string name="watcher_notification_action_mark_seen">Отметить просмотренным</string>
-    <string name="watcher_notification_action_delete">Удалить</string>
     <string name="watcher_notification_body_added">Добавлено: %s</string>
     <string name="watcher_notification_body_removed">Удалено: %s</string>
     <string name="watcher_notification_body_grant_changed">Выдача изменена: %s</string>
@@ -700,12 +620,6 @@
     <string name="watcher_detail_version_code_label">Код</string>
     <string name="watcher_detail_installer_label">Источник установки</string>
     <string name="watcher_detail_installer_unknown">Неизвестно</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Разрешения (%d)</item>
-        <item quantity="few">Разрешения (%d)</item>
-        <item quantity="many">Разрешения (%d)</item>
-        <item quantity="other">Разрешения (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Последние известные разрешения (%d)</item>
         <item quantity="few">Последние известные разрешения (%d)</item>
@@ -796,14 +710,12 @@
     <string name="export_perm_granted_only_label">Только приложения с предоставленным доступом</string>
     <string name="export_perm_include_summary_label">Включить сводные счётчики</string>
     <string name="export_preview_label">Предпросмотр</string>
-    <string name="export_preview_label_of">Предпросмотр (%1$d из %2$d)</string>
     <string name="export_action_label">Экспорт</string>
     <string name="export_progress_label">Экспорт…</string>
     <string name="export_success_message">Экспорт завершён</string>
     <string name="export_error_message">Экспорт не выполнен</string>
     <string name="export_share_action">Поделиться</string>
     <string name="export_open_action">Открыто</string>
-    <string name="export_done_action">Выполнено</string>
     <string name="export_retry_action">Повторить</string>
     <string name="export_summary_filename">Файл</string>
     <string name="export_summary_size">Размер</string>

@@ -7,14 +7,12 @@
     <string name="label_help">Hilfe</string>
     <string name="general_error_label">Fehler</string>
     <string name="general_load_error_title">Daten konnten nicht geladen werden</string>
-    <string name="general_load_error_hint">Beim Scannen deiner installierten Apps ist ein Fehler aufgetreten.</string>
     <string name="general_refresh_error_hint">Aktualisierung fehlgeschlagen.</string>
     <string name="general_retry_action">Erneut versuchen</string>
     <string name="general_share_action">Teilen</string>
     <string name="general_done_action">Fertig</string>
     <string name="general_open_action">Öffnen</string>
     <string name="general_continue_action">Fortfahren</string>
-    <string name="general_no_action">Nein</string>
     <string name="debug_debuglog_record_action">Aufzeichnen</string>
     <string name="settings_category_other_label">Sonstiges</string>
     <string name="settings_category_gethelp_label">Hilfe erhalten</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Allgemein</string>
     <string name="general_settings_desc">Allgemeine Einstellungen, die die gesamte App betreffen.</string>
     <string name="general_settings_scan_speed_label">Scan-Geschwindigkeit</string>
-    <string name="general_settings_scan_speed_desc">Steuert parallele Vorgänge beim Scannen von Apps. Höhere Werte sind schneller, können aber auf manchen Geräten zu Abstürzen führen.</string>
     <string name="general_settings_scan_speed_auto">Auto (empfohlen)</string>
     <string name="general_settings_scan_speed_1">1 (sicherste)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Datenschutzrichtlinie</string>
     <string name="settings_privacy_policy_desc">Verantwortlicher Umgang mit Daten.</string>
     <string name="settings_support_label">Support</string>
-    <string name="documentation_label">Dokumentation</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Ein Ort zum Abhängen und Fragen stellen.</string>
     <string name="issue_tracker_label">Issue-Tracker</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Für die Unterstützung bei der Übersetzung von Open-Source-Projekten.</string>
     <string name="permissions_page_label">Berechtigungen</string>
     <string name="apps_page_label">Apps</string>
-    <string name="app_type_system_label">System-App</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Unbekannte Berechtigung. Sie wird von dieser App angefordert, aber keine andere App deklariert sie.</string>
-    <string name="permissions_unknown_description">Unbekannte Berechtigung. Sie wird von Apps angefordert, aber nirgends deklariert.</string>
     <string name="permissions_app_type_declaring_description">Berechtigung wird von dieser App erstellt.</string>
-    <string name="permissions_app_type_requesting_description">App fordert die Berechtigung an.</string>
     <string name="general_filter_action">Filtern</string>
     <string name="general_cancel_action">Abbrechen</string>
     <string name="apps_filter_userapps_label">Benutzer-Apps</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">App-Name</string>
     <string name="apps_sort_install_date_label">Installationsdatum</string>
     <string name="apps_sort_update_date_label">Letzte Aktualisierung</string>
-    <string name="general_sort_action">Sortieren</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d von %2$d gewährt.</item>
-        <item quantity="other">%1$d von %2$d gewährt.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d Berechtigung angefordert.</item>
-        <item quantity="other">%1$d Berechtigungen angefordert.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Deklariert %1$d Berechtigung.</item>
-        <item quantity="other">Deklariert %1$d Berechtigungen.</item>
-    </plurals>
     <string name="apps_details_installer_label">Installationsquelle</string>
     <string name="apps_details_installer_unknown_label">Information nicht verfügbar</string>
     <string name="apps_details_open_settings_error">App-Einstellungen für dieses Profil konnten nicht geöffnet werden</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Anzahl angeforderter Apps</string>
     <string name="permissions_search_list_hint">Berechtigungen suchen</string>
     <string name="apps_search_list_hint">Apps suchen</string>
-    <string name="permissions_details_protection_label">Schutzniveau</string>
     <string name="permissions_protection_type_normal_label">Normal</string>
     <string name="permissions_protection_type_dangerous_label">Gefährlich</string>
     <string name="permissions_protection_type_signature_label">Signatur</string>
@@ -127,7 +104,6 @@
         <item>Das Kleingedruckte wird gelesen</item>
     </string-array>
     <string name="apps_app_details_label">App-Details</string>
-    <string name="apps_details_shareduserid_label">Apps mit geteilter Benutzer-ID</string>
     <string name="apps_details_siblings_label">Geschwister</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Alle einklappen</string>
     <string name="general_more_options_action">Weitere Optionen</string>
     <string name="apps_details_twins_label">Klone</string>
-    <string name="apps_details_twins_descriptions">In anderen Benutzerprofilen installiert.</string>
-    <string name="install_date_label">Installationsdatum</string>
     <string name="apps_filter_sharedid_label">Geteilte Benutzer-ID</string>
     <string name="apps_filter_multipleprofiles_label">Hat Klone</string>
     <string name="support_debuglog_label">Debug-Log</string>
     <string name="support_debuglog_desc">Alles was die App tut in eine Textdatei aufzeichnen, die du teilen kannst.</string>
-    <string name="updated_at_x">Letzte Aktualisierung: %s</string>
-    <string name="installed_at_x">Erstmals installiert: %s</string>
     <string name="apps_sort_install_source_label">Installationsquelle</string>
     <string name="permissions_action_none_msg">Keine Aktion für diese Berechtigung verfügbar</string>
     <string name="permissions_details_open_settings_action">Systemeinstellungen öffnen</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filter &amp; Sortierung</string>
     <string name="apps_help_tag_icons_title">Berechtigungs-Chips</string>
     <string name="apps_help_tag_icons_description">Chips zeigen, welche sensiblen Berechtigungskategorien einer App gewährt wurden</string>
-    <string name="apps_details_description_restrictions_caveat_description">Diese App ist in einem anderen Benutzerprofil installiert. Gewährte Berechtigungen können nur für Apps bestimmt werden, die im aktuell aktiven Profil installiert sind, aufgrund von Android-Einschränkungen.</string>
-    <string name="apps_details_description_uninstalled_caveat">Diese App wurde deinstalliert, aber ihre Daten wurden beibehalten. Berechtigungsstatus kann für deinstallierte Apps nicht ermittelt werden.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d Berechtigung angefordert.</item>
-        <item quantity="other">%d Berechtigungen angefordert.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d von %2$d Berechtigungen gewährt.</item>
         <item quantity="other">%1$d von %2$d Berechtigungen gewährt.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d Manifeste verbleiben zur Analyse…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Nichts Ungewöhnliches erkannt</string>
-    <string name="apps_details_manifest_unavailable">Manifest nicht zugänglich</string>
-    <string name="apps_details_manifest_error">Manifest konnte nicht gelesen werden</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d Paketabfrage</item>
         <item quantity="other">%d Paketabfragen</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifest-Viewer</string>
     <string name="apps_manifest_viewer_search_hint">Im Manifest suchen</string>
     <string name="apps_manifest_viewer_error_unknown">Unbekannter Fehler beim Laden des Manifests.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d Treffer</item>
-        <item quantity="other">%d Treffer</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d von %2$d</string>
     <string name="apps_manifest_section_uses_permission">Verwendete Berechtigung</string>
     <string name="apps_manifest_section_permission">Berechtigung</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d System-App</item>
         <item quantity="other">%d System-Apps</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Nutzer-Apps: Gewährt für %1$d von %2$d.</item>
-        <item quantity="other">Nutzer-Apps: Gewährt für %1$d von %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">System-Apps: Gewährt für %1$d von %2$d.</item>
-        <item quantity="other">System-Apps: Gewährt für %1$d von %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d App in anderen Benutzerprofilen fordert diese Berechtigung ebenfalls an.</item>
         <item quantity="other">%d Apps in anderen Benutzerprofilen fordern diese Berechtigung ebenfalls an.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d deinstallierte Apps mit gespeicherten Daten fordern diese Berechtigung ebenfalls an.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps, die in anderen Benutzerprofilen installiert sind, sind von der obigen Berechnung ausgeschlossen aufgrund von Android-Einschränkungen.</string>
-    <string name="permissions_details_empty_filter_message">Keine Apps entsprechen den aktuellen Filtern. Tippe auf das Filtersymbol, um sie anzupassen.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Laufzeit</string>
     <string name="permissions_tag_install_time_label">Installationszeit</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Ermöglicht Apps, Statistiken über die Nutzung von Datenladern auf dem Gerät zu sammeln.</string>
     <string name="permission_premium_sms_services_label">Premium SMS-Zugriff</string>
     <string name="permission_premium_sms_services_description">Ermöglicht Apps, Premium-Textnachrichtendienste zu nutzen. Dies wird dich Geld kosten.</string>
-    <string name="permission_unlimited_data_access_label">Unbegrenzter Datenzugriff</string>
-    <string name="permission_unlimited_data_access_description">Ermöglicht Apps den Zugriff auf unbegrenzte Daten. Apps können Daten verbrauchen, auch wenn der Datensparer eingeschaltet ist.</string>
     <string name="permission_group_calendar_label">Kalender</string>
     <string name="permission_group_calendar_description"><![CDATA[Kalender-bezogene Berechtigungen, z.B. Einträge anzeigen & bearbeiten.]]></string>
     <string name="permission_group_files_label">Dateien und Medien</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Kontakte lesen und schreiben."</string>
     <string name="permission_group_apps_label">Apps</string>
     <string name="permission_group_apps_description">Berechtigungen für besonderen Zugriff, die explizite Benutzerzustimmung erfordern.</string>
-    <string name="permission_group_battery_label">Akku</string>
-    <string name="permission_group_battery_description">Akku-bezogene Berechtigungen.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kamera-bezogene Berechtigungen.</string>
     <string name="permission_group_audio_label">Mikrofon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Legacy-Speicher</string>
     <string name="permission_legacy_storage_description">Ermöglicht Apps den Zugriff auf externen Speicher ohne Einschränkungen des Bereichsspeichers. Dies war das Standardverhalten vor Android 10. Apps mit diesem Zugriff können Dateien überall im gemeinsamen Speicher lesen und schreiben.</string>
     <string name="settings_page_label">Einstellungen</string>
-    <string name="overview_summary_title_label">Übersicht</string>
     <string name="permissions_details_declaring_apps_label">Deklarierende Apps</string>
     <string name="permissions_details_requesting_apps_label">Anfragende Apps</string>
-    <string name="overview_device_android_version_label">Android-Version</string>
-    <string name="overview_device_name_label">Gerät</string>
-    <string name="overview_device_android_patch_label">Patch-Level</string>
     <string name="overview_summary_apps_active_profile_label">Apps im aktiven Profil</string>
     <string name="overview_summary_apps_other_profile_label">Apps in verwalteten Benutzerprofilen, ohne Klone</string>
     <string name="overview_summary_apps_sideloaded_label">Apps, die manuell aus externen Quellen installiert wurden</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Debug-Log löschen?</string>
     <string name="support_debuglog_session_delete_message">Dieses Debug-Log wird dauerhaft gelöscht.</string>
     <string name="support_debuglog_sessions_empty">Keine Debug-Protokolle</string>
-    <string name="support_debuglog_session_invalid">Ungültige Sitzung</string>
     <string name="support_debuglog_session_recording">Aufnahme läuft…</string>
     <string name="support_debuglog_session_compressing">Komprimierung läuft…</string>
     <string name="support_debuglog_failed_empty_log">Leere Protokolldatei</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Nachricht gesendet?</string>
     <string name="support_contact_sent_message">Wenn du die E-Mail gesendet hast, kann diese Sitzung bereinigt werden.</string>
     <string name="general_close_action">Schließen</string>
-    <string name="debug_debuglog_screen_delete_action">Löschen</string>
     <!-- Contact form -->
     <string name="contact_support_label">Support kontaktieren</string>
     <string name="contact_category_label">Kategorie</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Keine E-Mail-App auf diesem Gerät gefunden.</string>
     <string name="contact_welcome_message">Ich lese jede Nachricht selbst und bemühe mich zu antworten. Da ich Entwicklung, Fehlerbehebung und Support alleine manage, kann es etwas dauern. Danke für deine Geduld.</string>
     <string name="contact_footer_message">Deine Nachricht wird per E-Mail gesendet. Geräte- und Einrichtungsinformationen werden automatisch angehängt. Du kannst Screenshots oder ein Video an die E-Mail anhängen. Bitte schreibe wenn möglich auf Englisch.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Behalten</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Debug-Protokoll</string>
     <string name="debug_debuglog_screen_subtitle">Debug-Informationen zur Fehlerbehebung exportieren</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Überwachungsbereich</string>
     <string name="watcher_scope_all">Alle Apps</string>
     <string name="watcher_scope_non_system">Nur Nicht-System-Apps</string>
-    <string name="watcher_reports_label">Berechtigungsänderungsberichte</string>
     <string name="watcher_reports_empty">Noch keine Berechtigungsänderungen erkannt</string>
     <string name="watcher_report_detail_label">Änderungsbericht</string>
     <string name="watcher_diff_added_permissions">Neue Berechtigungen</string>
     <string name="watcher_diff_removed_permissions">Entfernte Berechtigungen</string>
     <string name="watcher_diff_grant_changes">Gewährungsveränderungen</string>
-    <string name="watcher_diff_added_declared">Neue deklarierte Berechtigungen</string>
-    <string name="watcher_diff_removed_declared">Entfernte deklarierte Berechtigungen</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Installiert</string>
     <string name="watcher_event_update">Aktualisiert</string>
     <string name="watcher_event_removed">Entfernt</string>
     <string name="watcher_event_grant_change">Berechtigung geändert</string>
     <string name="watcher_mark_all_seen">Alle als gesehen markieren</string>
     <string name="watcher_notification_action_mark_seen">Als gesehen markieren</string>
-    <string name="watcher_notification_action_delete">Löschen</string>
     <string name="watcher_notification_body_added">Hinzugefügt: %s</string>
     <string name="watcher_notification_body_removed">Entfernt: %s</string>
     <string name="watcher_notification_body_grant_changed">Gewährung geändert: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Code</string>
     <string name="watcher_detail_installer_label">Installationsquelle</string>
     <string name="watcher_detail_installer_unknown">Unbekannt</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Berechtigung (%d)</item>
-        <item quantity="other">Berechtigungen (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Zuletzt bekannte Berechtigung (%d)</item>
         <item quantity="other">Zuletzt bekannte Berechtigungen (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Nur gewährte Apps</string>
     <string name="export_perm_include_summary_label">Zusammenfassungsanzahl einbeziehen</string>
     <string name="export_preview_label">Vorschau</string>
-    <string name="export_preview_label_of">Vorschau (%1$d von %2$d)</string>
     <string name="export_action_label">Exportieren</string>
     <string name="export_progress_label">Wird exportiert…</string>
     <string name="export_success_message">Export abgeschlossen</string>
     <string name="export_error_message">Export fehlgeschlagen</string>
     <string name="export_share_action">Teilen</string>
     <string name="export_open_action">Offen</string>
-    <string name="export_done_action">Fertig</string>
     <string name="export_retry_action">Erneut versuchen</string>
     <string name="export_summary_filename">Datei</string>
     <string name="export_summary_size">Größe</string>

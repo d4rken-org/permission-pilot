@@ -7,14 +7,12 @@
     <string name="label_help">Βοήθεια</string>
     <string name="general_error_label">Σφάλμα</string>
     <string name="general_load_error_title">Δεν ήταν δυνατό να φορτωθούν τα δεδομένα</string>
-    <string name="general_load_error_hint">Κάτι πήγε λάθος κατά τη σάρωση των εγκατεστημένων εφαρμογών σας.</string>
     <string name="general_refresh_error_hint">Η ανανέωση απέτυχε.</string>
     <string name="general_retry_action">Δοκιμάστε ξανά</string>
     <string name="general_share_action">Κοινοποίηση</string>
     <string name="general_done_action">Ολοκληρώθηκε</string>
     <string name="general_open_action">Άνοιγμα</string>
     <string name="general_continue_action">Συνέχεια</string>
-    <string name="general_no_action">Όχι</string>
     <string name="debug_debuglog_record_action">Εγγραφή</string>
     <string name="settings_category_other_label">Διάφορα</string>
     <string name="settings_category_gethelp_label">Λήψη βοήθειας</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Γενικά</string>
     <string name="general_settings_desc">Γενικές τροποποιήσεις που επηρεάζουν ολόκληρη την εφαρμογή.</string>
     <string name="general_settings_scan_speed_label">Ταχύτητα σάρωσης</string>
-    <string name="general_settings_scan_speed_desc">Ελέγχει τις παράλληλες λειτουργίες κατά τη σάρωση εφαρμογών. Οι υψηλότερες τιμές είναι ταχύτερες αλλά μπορεί να προκαλέσουν σφάλματα σε ορισμένες συσκευές.</string>
     <string name="general_settings_scan_speed_auto">Αυτόματα (προτεινόμενο)</string>
     <string name="general_settings_scan_speed_1">1 (πιο ασφαλές)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Πολιτική απορρήτου</string>
     <string name="settings_privacy_policy_desc">Χειρισμός δεδομένων με υπευθυνότητα.</string>
     <string name="settings_support_label">Υποστήριξη</string>
-    <string name="documentation_label">Οδηγίες</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">Ένα μέρος για να αράξετε και να κάνετε ερωτήσεις.</string>
     <string name="issue_tracker_label">Ιχνηλάτης θεμάτων</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Για την υποστήριξη της μετάφρασης έργων ανοικτού κώδικα.</string>
     <string name="permissions_page_label">Άδειες</string>
     <string name="apps_page_label">Εφαρμογές</string>
-    <string name="app_type_system_label">Εφαρμογές Συστήματος</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Άγνωστη άδεια. Ζητείται από αυτήν την εφαρμογή, αλλά καμία άλλη εφαρμογή δεν την έχει δηλώσει.</string>
-    <string name="permissions_unknown_description">Άγνωστη άδεια. Ζητείται από εφαρμογές, αλλά δεν δηλώνεται πουθενά.</string>
     <string name="permissions_app_type_declaring_description">Η άδεια δημιουργείται από αυτήν την εφαρμογή.</string>
-    <string name="permissions_app_type_requesting_description">Η εφαρμογή ζητά την άδεια.</string>
     <string name="general_filter_action">Φίλτρο</string>
     <string name="general_cancel_action">Ακύρωση</string>
     <string name="apps_filter_userapps_label">Εφαρμογές Χρήστη</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">Όνομα εφαρμογής</string>
     <string name="apps_sort_install_date_label">Ημερομηνία εγκατάστασης</string>
     <string name="apps_sort_update_date_label">Τελευταία ενημέρωση</string>
-    <string name="general_sort_action">Ταξινόμηση</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d από %2$d εγκρίθηκε.</item>
-        <item quantity="other">%1$d από %2$d εγκρίθηκαν.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d δικαίωμα ζητήθηκε.</item>
-        <item quantity="other">%1$d δικαιώματα ζητήθηκαν.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Δηλώνει %1$d δικαίωμα.</item>
-        <item quantity="other">Δηλώνει %1$d δικαιώματα.</item>
-    </plurals>
     <string name="apps_details_installer_label">Πηγή Εγκατάστασης</string>
     <string name="apps_details_installer_unknown_label">Μη διαθέσιμο</string>
     <string name="apps_details_open_settings_error">Δεν ήταν δυνατό το άνοιγμα ρυθμίσεων εφαρμογής για αυτό το προφίλ</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Αριθμός εφαρμογών που ζητούν</string>
     <string name="permissions_search_list_hint">Αναζήτηση Αδειών</string>
     <string name="apps_search_list_hint">Αναζήτηση εφαρμογών</string>
-    <string name="permissions_details_protection_label">Επίπεδο προστασίας</string>
     <string name="permissions_protection_type_normal_label">Κανονικό</string>
     <string name="permissions_protection_type_dangerous_label">Επικίνδυνο</string>
     <string name="permissions_protection_type_signature_label">Υπογραφή</string>
@@ -127,7 +104,6 @@
         <item>Διαβάζει τα ψιρά γράμματα</item>
     </string-array>
     <string name="apps_app_details_label">Λεπτομέρειες Εφαρμογής</string>
-    <string name="apps_details_shareduserid_label">Εφαρμογές με Κοινόχρηστο Αναγνωριστικό Χρήστη</string>
     <string name="apps_details_siblings_label">Αδέρφια</string>
     <string name="apps_known_installer_gplay_label">Google Play Store</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Σύμπτυξη όλων</string>
     <string name="general_more_options_action">Περισσότερες επιλογές</string>
     <string name="apps_details_twins_label">Κλώνοι</string>
-    <string name="apps_details_twins_descriptions">Εγκατεστημένο σε άλλα προφίλ χρήστη.</string>
-    <string name="install_date_label">Ημερομηνία εγκατάστασης</string>
     <string name="apps_filter_sharedid_label">Κοινόχρηστο Αναγνωριστικό Χρήστη</string>
     <string name="apps_filter_multipleprofiles_label">Έχει κλώνους</string>
     <string name="support_debuglog_label">Αρχείο καταγραφής εντοπισμού σφαλμάτων</string>
     <string name="support_debuglog_desc">Καταγράψτε όλα όσα κάνει η εφαρμογή σε ένα αρχείο κειμένου το οποίο μπορείτε να μοιραστείτε.</string>
-    <string name="updated_at_x">Τελευταία ενημέρωση: %s</string>
-    <string name="installed_at_x">Πρώτη εγκατάσταση: %s</string>
     <string name="apps_sort_install_source_label">Πηγή εγκατάστασης</string>
     <string name="permissions_action_none_msg">Δεν υπάρχει διαθέσιμη ενέργεια για αυτήν την άδεια</string>
     <string name="permissions_details_open_settings_action">Άνοιγμα ρυθμίσεων συστήματος</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Φίλτρο &amp; Ταξινόμηση</string>
     <string name="apps_help_tag_icons_title">Chips αδειών</string>
     <string name="apps_help_tag_icons_description">Τα chips δείχνουν ποιες κατηγορίες ευαίσθητων αδειών έχουν χορηγηθεί σε μια εφαρμογή</string>
-    <string name="apps_details_description_restrictions_caveat_description">Αυτή η εφαρμογή είναι εγκατεστημένη σε άλλο προφίλ χρήστη. Τα δικαιώματα που χορηγούνται μπορούν να καθοριστούν μόνο για εφαρμογές που είναι εγκατεστημένες στο τρέχον Ενεργό προφίλ, λόγω περιορισμών του Android.</string>
-    <string name="apps_details_description_uninstalled_caveat">Αυτή η εφαρμογή έχει απεγκατασταθεί αλλά τα δεδομένα της διατηρήθηκαν. Δεν είναι δυνατός ο προσδιορισμός της κατάστασης των αδειών για απεγκατεστημένες εφαρμογές.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d δικαίωμα ζητήθηκε.</item>
-        <item quantity="other">%d δικαιώματα ζητήθηκαν.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d από %2$d δικαιώματα εγκρίθηκαν.</item>
         <item quantity="other">%1$d από %2$d δικαιώματα εγκρίθηκαν.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifests απομένουν για ανάλυση…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Δεν εντοπίστηκε τίποτα ασυνήθιστο</string>
-    <string name="apps_details_manifest_unavailable">Το manifest δεν είναι προσβάσιμο</string>
-    <string name="apps_details_manifest_error">Δεν ήταν δυνατή η ανάγνωση του manifest</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d ερώτημα πακέτου</item>
         <item quantity="other">%d ερωτήματα πακέτου</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Προβολή Manifest</string>
     <string name="apps_manifest_viewer_search_hint">Αναζήτηση στο manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Άγνωστο σφάλμα κατά τη φόρτωση του manifest.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d αποτέλεσμα</item>
-        <item quantity="other">%d αποτελέσματα</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d από %2$d</string>
     <string name="apps_manifest_section_uses_permission">Χρησιμοποιεί Άδεια</string>
     <string name="apps_manifest_section_permission">Άδεια</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d εφαρμογή συστήματος</item>
         <item quantity="other">%d εφαρμογές συστήματος</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Εφαρμογές χρήστη: Εγκρίθηκε σε %1$d από %2$d.</item>
-        <item quantity="other">Εφαρμογές χρήστη: Εγκρίθηκε σε %1$d από %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Εφαρμογές συστήματος: Εγκρίθηκε σε %1$d από %2$d.</item>
-        <item quantity="other">Εφαρμογές συστήματος: Εγκρίθηκε σε %1$d από %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d εφαρμογή σε άλλο προφίλ χρήστη ζητά επίσης αυτήν την άδεια.</item>
         <item quantity="other">%d εφαρμογές σε άλλα προφίλ χρηστών ζητούν επίσης αυτήν την άδεια.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d απεγκατεστημένες εφαρμογές με διατηρημένα δεδομένα ζητούν επίσης αυτήν την άδεια.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Οι εφαρμογές που είναι εγκατεστημένες σε άλλα προφίλ χρηστών εξαιρούνται από τον παραπάνω υπολογισμό λόγω περιορισμών Android.</string>
-    <string name="permissions_details_empty_filter_message">Δεν υπάρχουν εφαρμογές που να ταιριάζουν με τα τρέχοντα φίλτρα. Πατήστε το εικονίδιο φίλτρου για προσαρμογή.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Χρόνος εκτέλεσης</string>
     <string name="permissions_tag_install_time_label">Κατά εγκατάσταση</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Επιτρέπει στις εφαρμογές να συλλέγουν στατιστικά στοιχεία σχετικά με τη χρήση του φορτωτή δεδομένων στη συσκευή.</string>
     <string name="permission_premium_sms_services_label">Premium Πρόσβαση SMS</string>
     <string name="permission_premium_sms_services_description">Επιτρέπει στις εφαρμογές να χρησιμοποιούν υπηρεσίες μηνυμάτων κειμένου υψηλής ποιότητας. Αυτό θα σας κοστίσει χρήματα.</string>
-    <string name="permission_unlimited_data_access_label">Απεριόριστη Πρόσβαση σε Δεδομένα</string>
-    <string name="permission_unlimited_data_access_description">Επιτρέπει στις εφαρμογές πρόσβαση σε απεριόριστα δεδομένα. Οι εφαρμογές μπορούν να καταναλώνουν δεδομένα ακόμα και όταν η Εξοικονόμηση Δεδομένων είναι Ενεργοποιημένη.</string>
     <string name="permission_group_calendar_label">Ημερολόγιο</string>
     <string name="permission_group_calendar_description"><![CDATA[Άδειες που σχετίζονται με το ημερολόγιο, π.χ. προβολή & επεξεργασία καταχωρήσεων.]]></string>
     <string name="permission_group_files_label">Αρχεία και Πολυμέσα</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Ανάγνωση και εγγραφή επαφών."</string>
     <string name="permission_group_apps_label">Εφαρμογές</string>
     <string name="permission_group_apps_description">Ειδικές άδειες Πρόσβασης που απαιτούν ρητή συναίνεση χρήστη.</string>
-    <string name="permission_group_battery_label">Μπαταρία</string>
-    <string name="permission_group_battery_description">Άδειες που σχετίζονται με την μπαταρία.</string>
     <string name="permission_group_camera_label">Κάμερα</string>
     <string name="permission_group_camera_description">Άδειες που σχετίζονται με την κάμερα.</string>
     <string name="permission_group_audio_label">Μικρόφωνο</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Κλασική Αποθήκευση</string>
     <string name="permission_legacy_storage_description">Επιτρέπει σε εφαρμογές να έχουν πρόσβαση σε εξωτερική αποθήκευση χωρίς περιορισμούς εστιασμένης αποθήκευσης. Αυτή ήταν η προεπιλεγμένη συμπεριφορά πριν από το Android 10. Εφαρμογές με αυτήν την πρόσβαση μπορούν να διαβαστούν και να γράφουν αρχεία οπουδήποτε στην κενή αποθήκευση.</string>
     <string name="settings_page_label">Ρυθμίσεις</string>
-    <string name="overview_summary_title_label">Σύνοψη</string>
     <string name="permissions_details_declaring_apps_label">Εφαρμογές που δηλώνουν</string>
     <string name="permissions_details_requesting_apps_label">Εφαρμογές που ζητούν</string>
-    <string name="overview_device_android_version_label">Έκδοση Android</string>
-    <string name="overview_device_name_label">Συσκευή</string>
-    <string name="overview_device_android_patch_label">Επίπεδο Patch</string>
     <string name="overview_summary_apps_active_profile_label">Αριθμός εφαρμογών στο Ενεργό Προφίλ</string>
     <string name="overview_summary_apps_other_profile_label">Αριθμός εφαρμογών στα Διαχειριζόμενα Προφίλ Χρήστη, εξαιρουμένων των Κλώνων</string>
     <string name="overview_summary_apps_sideloaded_label">Εφαρμογές εγκατεστημένες χειροκίνητα από εξωτερικές πηγές</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Διαγραφή αρχείου καταγραφής;</string>
     <string name="support_debuglog_session_delete_message">Αυτό το αρχείο καταγραφής θα διαγραφεί μόνιμα.</string>
     <string name="support_debuglog_sessions_empty">Κανένα αρχείο καταγραφής</string>
-    <string name="support_debuglog_session_invalid">Ακύρη συνεδρία</string>
     <string name="support_debuglog_session_recording">Εγγραφή…</string>
     <string name="support_debuglog_session_compressing">Γίνεται συμπίεση…</string>
     <string name="support_debuglog_failed_empty_log">Αδειάζοντας αρχείο καταγραφής</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Στάλθηκε το μήνυμα;</string>
     <string name="support_contact_sent_message">Αν απεστείλατε το email, αυτή η συνεδρία μπορεί να καθαριστεί.</string>
     <string name="general_close_action">Κλείσιμο</string>
-    <string name="debug_debuglog_screen_delete_action">Διαγραφή</string>
     <!-- Contact form -->
     <string name="contact_support_label">Επικοινωνία με την υποστήριξη</string>
     <string name="contact_category_label">Κατηγορία</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Δεν βρέθηκε εφαρμογή email σε αυτή τη συσκευή.</string>
     <string name="contact_welcome_message">Διαβάζω κάθε μήνυμα μόνος μου και κάνω ό,τι μπορώ για να απαντήσω. Καθώς χειρίζομαι μόνος μου την ανάπτυξη, την επίλυση σφαλμάτων και την υποστήριξη, μπορεί να χρειαστεί λίγος χρόνος. Ευχαριστώ για την υπομονή σας.</string>
     <string name="contact_footer_message">Το μήνυμά σας θα σταλεί μέσω email. Πληροφορίες συσκευής και ρυθμίσεων επισυνάπτονται αυτόματα. Μπορείτε να επισυνάψετε στιγμιότυπα ή βίντεο. Γράψτε στα αγγλικά αν είναι δυνατόν.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Διατήρηση</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Αρχείο Καταγραφής</string>
     <string name="debug_debuglog_screen_subtitle">Εξαγωγή διαγνωστικών πληροφοριών για ανιχνευτική επίλυση προβλημάτων</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Εύρος παρατήρησης</string>
     <string name="watcher_scope_all">Όλες οι εφαρμογές</string>
     <string name="watcher_scope_non_system">Μόνο μη συστημικές εφαρμογές</string>
-    <string name="watcher_reports_label">Αναφορές αλλαγών αδειών</string>
     <string name="watcher_reports_empty">Δεν εντοπίστηκαν αλλαγές αδειών ακόμη</string>
     <string name="watcher_report_detail_label">Αναφορά Αλλαγών</string>
     <string name="watcher_diff_added_permissions">Νέες άδειες</string>
     <string name="watcher_diff_removed_permissions">Αφαιρεθείσες άδειες</string>
     <string name="watcher_diff_grant_changes">Αλλαγές χορήγησης</string>
-    <string name="watcher_diff_added_declared">Νέες δηλωμένες άδειες</string>
-    <string name="watcher_diff_removed_declared">Αφαιρεθείσες δηλωμένες άδειες</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Εγκατεστήθηκε</string>
     <string name="watcher_event_update">Ενημερώθηκε</string>
     <string name="watcher_event_removed">Αφαιρέθηκε</string>
     <string name="watcher_event_grant_change">Αλλαγή άδειας</string>
     <string name="watcher_mark_all_seen">Σημείωση όλων ως εωραμένων</string>
     <string name="watcher_notification_action_mark_seen">Σημείωση ως εωραμένο</string>
-    <string name="watcher_notification_action_delete">Διαγραφή</string>
     <string name="watcher_notification_body_added">Προστέθηκε: %s</string>
     <string name="watcher_notification_body_removed">Αφαιρέθηκε: %s</string>
     <string name="watcher_notification_body_grant_changed">Αλλαγή χορήγησης: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Κώδικας</string>
     <string name="watcher_detail_installer_label">Πηγή εγκατάστασης</string>
     <string name="watcher_detail_installer_unknown">Άγνωστο</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Άδεια (%d)</item>
-        <item quantity="other">Άδειες (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Τελευταία γνωστή άδεια (%d)</item>
         <item quantity="other">Τελευταίες γνωστές άδειες (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Μόνο εφαρμογές με παρεχόμενη άδεια</string>
     <string name="export_perm_include_summary_label">Συμπερίληψη συνοπτικών αριθμών</string>
     <string name="export_preview_label">Προεπισκόπηση</string>
-    <string name="export_preview_label_of">Προεπισκόπηση (%1$d από %2$d)</string>
     <string name="export_action_label">Εξαγωγή</string>
     <string name="export_progress_label">Εξαγωγή…</string>
     <string name="export_success_message">Η εξαγωγή ολοκληρώθηκε</string>
     <string name="export_error_message">Αποτυχία εξαγωγής</string>
     <string name="export_share_action">Κοινοποίηση</string>
     <string name="export_open_action">Άνοιγμα</string>
-    <string name="export_done_action">Ολοκληρώθηκε</string>
     <string name="export_retry_action">Επανάληψη</string>
     <string name="export_summary_filename">Αρχείο</string>
     <string name="export_summary_size">Μέγεθος</string>

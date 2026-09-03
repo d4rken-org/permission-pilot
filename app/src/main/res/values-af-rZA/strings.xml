@@ -7,14 +7,12 @@
     <string name="label_help">Hulp</string>
     <string name="general_error_label">Fout</string>
     <string name="general_load_error_title">Kon nie data laai nie</string>
-    <string name="general_load_error_hint">Iets het fout gelopen terwyl jou geïnstalleerde toepassings geskandeer is.</string>
     <string name="general_refresh_error_hint">Verfris het gefaal.</string>
     <string name="general_retry_action">Probeer weer</string>
     <string name="general_share_action">Deel</string>
     <string name="general_done_action">Klaar</string>
     <string name="general_open_action">Maak oop</string>
     <string name="general_continue_action">Gaan voort</string>
-    <string name="general_no_action">Nee</string>
     <string name="debug_debuglog_record_action">Opname</string>
     <string name="settings_category_other_label">Ander</string>
     <string name="settings_category_gethelp_label">Kry hulp</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">Algemeen</string>
     <string name="general_settings_desc">Algemene verstelling wat die hele app beïnvloed.</string>
     <string name="general_settings_scan_speed_label">Skandeerspoed</string>
-    <string name="general_settings_scan_speed_desc">Beheer parallelle bewerkings tydens die skandering van programme. Hoër waardes is vinniger maar kan ineenstortings op sommige toestelle veroorsaak.</string>
     <string name="general_settings_scan_speed_auto">Outomaties (aanbeveel)</string>
     <string name="general_settings_scan_speed_1">1 (veiligste)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">Privaatheidbeleid</string>
     <string name="settings_privacy_policy_desc">Verantwoordelike hantering van data.</string>
     <string name="settings_support_label">Ondersteuning</string>
-    <string name="documentation_label">Dokumentasie</string>
     <string name="discord_label">Discord</string>
     <string name="discord_description">\'n Plek om rond te hang en vrae te vra.</string>
     <string name="issue_tracker_label">Probleem volger</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">Vir die ondersteuning van die vertaling van oopbronprojekte.</string>
     <string name="permissions_page_label">Toestemmings</string>
     <string name="apps_page_label">Programme</string>
-    <string name="app_type_system_label">Stelsel App</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">Onbekende toestemming. Dit word deur hierdie app versoek, maar geen ander app verklaar dit nie.</string>
-    <string name="permissions_unknown_description">Onbekende toestemming. Dit word deur apps versoek, maar word nêrens verklaar nie.</string>
     <string name="permissions_app_type_declaring_description">Toestemming word deur hierdie app geskep.</string>
-    <string name="permissions_app_type_requesting_description">App versoek die toestemming.</string>
     <string name="general_filter_action">Filter</string>
     <string name="general_cancel_action">Kanselleer</string>
     <string name="apps_filter_userapps_label">Gebruiker Apps</string>
@@ -67,19 +58,6 @@
     <string name="apps_sort_app_name_label">App naam</string>
     <string name="apps_sort_install_date_label">Installeer datum</string>
     <string name="apps_sort_update_date_label">Laaste opdatering</string>
-    <string name="general_sort_action">Sorteer</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="one">%1$d van %2$d toegestaan.</item>
-        <item quantity="other">%1$d van %2$d toegestaan.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="one">%1$d toestemming aangevra.</item>
-        <item quantity="other">%1$d toestemmings aangevra.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="one">Verklaar %1$d toestemming.</item>
-        <item quantity="other">Verklaar %1$d toestemmings.</item>
-    </plurals>
     <string name="apps_details_installer_label">Installeer bron</string>
     <string name="apps_details_installer_unknown_label">Inligting nie beskikbaar nie</string>
     <string name="apps_details_open_settings_error">Kon nie programme-instellings vir hierdie profiel oopmaak nie</string>
@@ -102,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">Aantal aangevraagde programme</string>
     <string name="permissions_search_list_hint">Soek toestemmings</string>
     <string name="apps_search_list_hint">Soek apps</string>
-    <string name="permissions_details_protection_label">Beskermingsvlak</string>
     <string name="permissions_protection_type_normal_label">Normaal</string>
     <string name="permissions_protection_type_dangerous_label">Gevaarlik</string>
     <string name="permissions_protection_type_signature_label">Handtekening</string>
@@ -127,7 +104,6 @@
         <item>Die fyn druk lees</item>
     </string-array>
     <string name="apps_app_details_label">App Besonderhede</string>
-    <string name="apps_details_shareduserid_label">Apps met Gedeelde Gebruiker ID</string>
     <string name="apps_details_siblings_label">Broers en susters</string>
     <string name="apps_known_installer_gplay_label">Google Play Winkel</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -148,14 +124,10 @@
     <string name="general_collapse_all_action">Vou alles toe</string>
     <string name="general_more_options_action">Meer opsies</string>
     <string name="apps_details_twins_label">Klone</string>
-    <string name="apps_details_twins_descriptions">Geïnstalleer in ander gebruiker profiele.</string>
-    <string name="install_date_label">Installeer datum</string>
     <string name="apps_filter_sharedid_label">Gedeelde Gebruiker ID</string>
     <string name="apps_filter_multipleprofiles_label">Het klone</string>
     <string name="support_debuglog_label">Ontfout log</string>
     <string name="support_debuglog_desc">Neem alles wat die app doen op in \'n teks lêer wat jy kan deel.</string>
-    <string name="updated_at_x">Laaste opdatering: %s</string>
-    <string name="installed_at_x">Eerste geïnstalleer: %s</string>
     <string name="apps_sort_install_source_label">Installeer bron</string>
     <string name="permissions_action_none_msg">Geen aksie beskikbaar vir hierdie toestemming nie</string>
     <string name="permissions_details_open_settings_action">Maak sisteem instellings oop</string>
@@ -181,12 +153,6 @@
     <string name="apps_filter_sort_action">Filter &amp; Sorteer</string>
     <string name="apps_help_tag_icons_title">Toestemming-skyfies</string>
     <string name="apps_help_tag_icons_description">Skyfies wys watter sensitiewe toestemmingskategorieë aan \'n program verleen is</string>
-    <string name="apps_details_description_restrictions_caveat_description">Hierdie app is geïnstalleer in \'n ander gebruiker profiel. Toegekende toestemmings kan slegs bepaal word vir apps wat geïnstalleer is in die huidiglik Aktiewe Profiel, weens Android beperkings.</string>
-    <string name="apps_details_description_uninstalled_caveat">Hierdie app is gedeïnstalleer maar die data is behou. Toestemmingstatus kan nie bepaal word vir gedeïnstalleerde apps nie.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="one">%d toestemming aangevra.</item>
-        <item quantity="other">%d toestemmings aangevra.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="one">%1$d van %2$d toestemmings toegestaan.</item>
         <item quantity="other">%1$d van %2$d toestemmings toegestaan.</item>
@@ -209,8 +175,6 @@
         <item quantity="other">%d manifeste oor om te analiseer…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">Niks ongewoons bespeur nie</string>
-    <string name="apps_details_manifest_unavailable">Manifest nie toeganklik nie</string>
-    <string name="apps_details_manifest_error">Kon nie manifest lees nie</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="one">%d pakketnavorsingsvraag</item>
         <item quantity="other">%d pakketnavorsingsvrae</item>
@@ -230,10 +194,6 @@
     <string name="apps_manifest_viewer_label">Manifest-kyker</string>
     <string name="apps_manifest_viewer_search_hint">Soek in manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Onbekende fout by laai van manifest.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="one">%d treffer</item>
-        <item quantity="other">%d treffers</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d van %2$d</string>
     <string name="apps_manifest_section_uses_permission">Gebruik Toestemming</string>
     <string name="apps_manifest_section_permission">Toestemming</string>
@@ -272,14 +232,6 @@
         <item quantity="one">%d stelsel app</item>
         <item quantity="other">%d stelsel apps</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="one">Gebruiker-programme: Toegestaan aan %1$d van %2$d.</item>
-        <item quantity="other">Gebruiker-programme: Toegestaan aan %1$d van %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="one">Stelsel-programme: Toegestaan aan %1$d van %2$d.</item>
-        <item quantity="other">Stelsel-programme: Toegestaan aan %1$d van %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="one">%d program in ander gebruikerprofiele vra ook hierdie toestemming aan.</item>
         <item quantity="other">%d programme in ander gebruikerprofielp vra ook hierdie toestemming aan.</item>
@@ -289,7 +241,6 @@
         <item quantity="other">%d verwyderinge programme met behoude data vra ook hierdie toestemming aan.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps wat geïnstalleer is in ander gebruiker profiele word uitgesluit van die berekening hierbo weens Android beperkings.</string>
-    <string name="permissions_details_empty_filter_message">Geen apps pas by huidige filters nie. Tik die filter ikoon om aan te pas.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Looptyd</string>
     <string name="permissions_tag_install_time_label">Installasietyd</string>
@@ -385,8 +336,6 @@
     <string name="permission_loader_usage_stats_description">Laat apps toe om statistieke oor data laaier gebruik op die toestel te versamel.</string>
     <string name="permission_premium_sms_services_label">Premium SMS Toegang</string>
     <string name="permission_premium_sms_services_description">Laat apps toe om premium teks boodskap dienste te gebruik. Dit sal jou geld kos.</string>
-    <string name="permission_unlimited_data_access_label">Onbeperkte Data Toegang</string>
-    <string name="permission_unlimited_data_access_description">Laat apps toegang tot onbeperkte data toe. Apps kan data verbruik selfs wanneer Data Bespaarder AAN is.</string>
     <string name="permission_group_calendar_label">Kalender</string>
     <string name="permission_group_calendar_description"><![CDATA[Kalender verwante toestemmings, bv. bekyk & redigeer inskrywings.]]></string>
     <string name="permission_group_files_label">Lêers en Media</string>
@@ -407,8 +356,6 @@
     <string name="permission_group_contacts_description">"Lees en skryf kontakte."</string>
     <string name="permission_group_apps_label">Programme</string>
     <string name="permission_group_apps_description">Spesiale Toegang toestemmings wat eksplisiete gebruiker toestemming vereis.</string>
-    <string name="permission_group_battery_label">Battery</string>
-    <string name="permission_group_battery_description">Battery verwante toestemmings.</string>
     <string name="permission_group_camera_label">Kamera</string>
     <string name="permission_group_camera_description">Kamera verwante toestemmings.</string>
     <string name="permission_group_audio_label">Mikrofoon</string>
@@ -419,12 +366,8 @@
     <string name="permission_legacy_storage_label">Nalatenskap-stoor</string>
     <string name="permission_legacy_storage_description">Laat programme toe om toegang te verkry tot eksterne stoor sonder omvangbeperkings. Dit was die standaardgedrag voor Android 10. Programme met hierdie toegang kan lêers oral op gedeelde stoor lees en skryf.</string>
     <string name="settings_page_label">Instellings</string>
-    <string name="overview_summary_title_label">Opsomming</string>
     <string name="permissions_details_declaring_apps_label">Programme wat verklaar</string>
     <string name="permissions_details_requesting_apps_label">Programme wat aanvra</string>
-    <string name="overview_device_android_version_label">Android weergawe</string>
-    <string name="overview_device_name_label">Toestel</string>
-    <string name="overview_device_android_patch_label">Pleister vlak</string>
     <string name="overview_summary_apps_active_profile_label">Apps in Aktiewe Profiel</string>
     <string name="overview_summary_apps_other_profile_label">Apps in Bestuurde Gebruiker Profiel(e), uitgesluit Klone</string>
     <string name="overview_summary_apps_sideloaded_label">Programme handmatig geïnstalleer vanuit eksterne bronne</string>
@@ -472,7 +415,6 @@
     <string name="support_debuglog_session_delete_title">Foutopsporingslogboek uitvee?</string>
     <string name="support_debuglog_session_delete_message">Hierdie foutopsporingslogboek sal permanent uitgevee word.</string>
     <string name="support_debuglog_sessions_empty">Geen foutopsporingslogboeke nie</string>
-    <string name="support_debuglog_session_invalid">Ongeldige sessie</string>
     <string name="support_debuglog_session_recording">Opname…</string>
     <string name="support_debuglog_session_compressing">Saampers…</string>
     <string name="support_debuglog_failed_empty_log">Leë logboeklêer</string>
@@ -484,7 +426,6 @@
     <string name="support_contact_sent_title">Boodskap gestuur?</string>
     <string name="support_contact_sent_message">As jy die e-pos gestuur het, kan hierdie sessie skoongemaak word.</string>
     <string name="general_close_action">Maak toe</string>
-    <string name="debug_debuglog_screen_delete_action">Skrap</string>
     <!-- Contact form -->
     <string name="contact_support_label">Kontak ondersteuning</string>
     <string name="contact_category_label">Kategorie</string>
@@ -513,8 +454,6 @@
     <string name="contact_no_email_app">Geen e-pos-toepassing gevind op hierdie toestel nie.</string>
     <string name="contact_welcome_message">Ek lees elke boodskap self en doen my bes om te antwoord. Aangesien ek ontwikkeling, foutregstelling en ondersteuning self hanteer, kan dit \'n bietjie tyd neem. Dankie vir jou geduld.</string>
     <string name="contact_footer_message">Jou boodskap sal per e-pos gestuur word. Toestel- en opstelling-inligting word outomaties aangeheg. Jy kan skermkiekies of \'n video aan die e-pos heg. Skryf asseblief in Engels indien moontlik.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">Hou</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Foutopsporingslogboek</string>
     <string name="debug_debuglog_screen_subtitle">Voer foutopsporing-inligting uit vir probleemoplossing</string>
@@ -596,22 +535,17 @@
     <string name="watcher_scope_label">Kykbereik</string>
     <string name="watcher_scope_all">Alle programme</string>
     <string name="watcher_scope_non_system">Slegs nie-stelselsprogramme</string>
-    <string name="watcher_reports_label">Toestemmingsveranderingsverslae</string>
     <string name="watcher_reports_empty">Geen toestemmingsveranderinge nog bespeur nie</string>
     <string name="watcher_report_detail_label">Veranderingsverslag</string>
     <string name="watcher_diff_added_permissions">Nuwe toestemmings</string>
     <string name="watcher_diff_removed_permissions">Verwyderde toestemmings</string>
     <string name="watcher_diff_grant_changes">Toekennwysigings</string>
-    <string name="watcher_diff_added_declared">Nuwe verklaar toestemmings</string>
-    <string name="watcher_diff_removed_declared">Verwyderde verklaar toestemmings</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">Geïnstalleer</string>
     <string name="watcher_event_update">Opgedateer</string>
     <string name="watcher_event_removed">Verwyder</string>
     <string name="watcher_event_grant_change">Toestemming verander</string>
     <string name="watcher_mark_all_seen">Merk alles as gesien</string>
     <string name="watcher_notification_action_mark_seen">Merk gesien</string>
-    <string name="watcher_notification_action_delete">Skrap</string>
     <string name="watcher_notification_body_added">Bygevoeg: %s</string>
     <string name="watcher_notification_body_removed">Verwyder: %s</string>
     <string name="watcher_notification_body_grant_changed">Toekenning verander: %s</string>
@@ -644,10 +578,6 @@
     <string name="watcher_detail_version_code_label">Kode</string>
     <string name="watcher_detail_installer_label">Installasie-bron</string>
     <string name="watcher_detail_installer_unknown">Onbekend</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="one">Toestemmings (%d)</item>
-        <item quantity="other">Toestemmings (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="one">Laaste bekende toestemmings (%d)</item>
         <item quantity="other">Laaste bekende toestemmings (%d)</item>
@@ -726,14 +656,12 @@
     <string name="export_perm_granted_only_label">Slegs toegestane toepassings</string>
     <string name="export_perm_include_summary_label">Sluit opsommingstelling in</string>
     <string name="export_preview_label">Voorskou</string>
-    <string name="export_preview_label_of">Voorskou (%1$d van %2$d)</string>
     <string name="export_action_label">Uitvoer</string>
     <string name="export_progress_label">Besig om uit te voer…</string>
     <string name="export_success_message">Uitvoer voltooi</string>
     <string name="export_error_message">Uitvoer misluk</string>
     <string name="export_share_action">Deel</string>
     <string name="export_open_action">Oop</string>
-    <string name="export_done_action">Klaar</string>
     <string name="export_retry_action">Probeer weer</string>
     <string name="export_summary_filename">Lêer</string>
     <string name="export_summary_size">Grootte</string>

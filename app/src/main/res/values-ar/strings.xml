@@ -7,14 +7,12 @@
     <string name="label_help">مساعدة</string>
     <string name="general_error_label">خطأ</string>
     <string name="general_load_error_title">لم يتمكن من تحميل البيانات</string>
-    <string name="general_load_error_hint">حدث خطأ ما أثناء مسح تطبيقاتك المثبتة.</string>
     <string name="general_refresh_error_hint">فشل التحديث.</string>
     <string name="general_retry_action">إعادة محاولة</string>
     <string name="general_share_action">شارك</string>
     <string name="general_done_action">تم</string>
     <string name="general_open_action">افتح</string>
     <string name="general_continue_action">استمر</string>
-    <string name="general_no_action">لا</string>
     <string name="debug_debuglog_record_action">تسجيل</string>
     <string name="settings_category_other_label">أخرى</string>
     <string name="settings_category_gethelp_label">الحصول على المساعدة</string>
@@ -23,7 +21,6 @@
     <string name="general_settings_label">عام</string>
     <string name="general_settings_desc">تعديلات عامة تؤثر على التطبيق ككل.</string>
     <string name="general_settings_scan_speed_label">سرعة الفحص</string>
-    <string name="general_settings_scan_speed_desc">يتحكم في العمليات المتوازية عند فحص التطبيقات. القيم الأعلى أسرع لكنها قد تسبب أعطالاً على بعض الأجهزة.</string>
     <string name="general_settings_scan_speed_auto">تلقائي (موصى به)</string>
     <string name="general_settings_scan_speed_1">1 (الأكثر أماناً)</string>
     <string name="general_settings_scan_speed_2">2</string>
@@ -36,7 +33,6 @@
     <string name="settings_privacy_policy_label">سياسة الخصوصية</string>
     <string name="settings_privacy_policy_desc">معالجة البيانات بمسؤولية.</string>
     <string name="settings_support_label">الدعم</string>
-    <string name="documentation_label">التوثيق</string>
     <string name="discord_label">ديسكورد</string>
     <string name="discord_description">مكان للتواصل وطرح الأسئلة.</string>
     <string name="issue_tracker_label">متتبع العلل</string>
@@ -47,12 +43,7 @@
     <string name="acks_crowdin_desc">لدعم ترجمة المشاريع مفتوحة المصدر.</string>
     <string name="permissions_page_label">الأذونات</string>
     <string name="apps_page_label">التطبيقات</string>
-    <string name="app_type_system_label">تطبيق نظام</string>
-    <string name="permission_type_aosp_label">AOSP</string>
-    <string name="apps_permission_unknown_description">إذن غير معروف. يطلبه هذا التطبيق ولم يعلن عنه أي تطبيق آخر.</string>
-    <string name="permissions_unknown_description">إذن غير معروف. تطلبه التطبيقات لكن لم يُعلن عنه في أي مكان.</string>
     <string name="permissions_app_type_declaring_description">تم إنشاء الإذن بواسطة هذا التطبيق.</string>
-    <string name="permissions_app_type_requesting_description">التطبيق يطلب هذا الإذن.</string>
     <string name="general_filter_action">تصفية</string>
     <string name="general_cancel_action">إلغاء</string>
     <string name="apps_filter_userapps_label">تطبيقات المستخدم</string>
@@ -67,31 +58,6 @@
     <string name="apps_sort_app_name_label">اسم التطبيق</string>
     <string name="apps_sort_install_date_label">تاريخ التثبيت</string>
     <string name="apps_sort_update_date_label">آخر تحديث</string>
-    <string name="general_sort_action">رتّب</string>
-    <plurals name="apps_permissions_x_of_x_granted">
-        <item quantity="zero">تم منح %1$d من %2$d.</item>
-        <item quantity="one">تم منح %1$d من %2$d.</item>
-        <item quantity="two">تم منح %1$d من %2$d.</item>
-        <item quantity="few">تم منح %1$d من %2$d.</item>
-        <item quantity="many">تم منح %1$d من %2$d.</item>
-        <item quantity="other">تم منح %1$d من %2$d.</item>
-    </plurals>
-    <plurals name="apps_permissions_x_requested">
-        <item quantity="zero">لا توجد أذونات مطلوبة.</item>
-        <item quantity="one">تم طلب %1$d إذن.</item>
-        <item quantity="two">تم طلب %1$d إذنين.</item>
-        <item quantity="few">تم طلب %1$d أذونات.</item>
-        <item quantity="many">تم طلب %1$d إذنًا.</item>
-        <item quantity="other">تم طلب %1$d إذن.</item>
-    </plurals>
-    <plurals name="apps_permissions_declares_x">
-        <item quantity="zero">لا تُعلن عن أي أذونات.</item>
-        <item quantity="one">تُعلن عن %1$d إذن.</item>
-        <item quantity="two">تُعلن عن %1$d إذنين.</item>
-        <item quantity="few">تُعلن عن %1$d أذونات.</item>
-        <item quantity="many">تُعلن عن %1$d إذنًا.</item>
-        <item quantity="other">تُعلن عن %1$d إذن.</item>
-    </plurals>
     <string name="apps_details_installer_label">مصدر التثبيت</string>
     <string name="apps_details_installer_unknown_label">المعلومات غير متوفرة</string>
     <string name="apps_details_open_settings_error">تعذّر فتح إعدادات التطبيق لهذا الملف الشخصي</string>
@@ -114,7 +80,6 @@
     <string name="permissions_sort_apps_requested_label">عدد التطبيقات الطالبة</string>
     <string name="permissions_search_list_hint">ابحث عن الأذونات</string>
     <string name="apps_search_list_hint">ابحث عن التطبيقات</string>
-    <string name="permissions_details_protection_label">مستوى الحماية</string>
     <string name="permissions_protection_type_normal_label">عادي</string>
     <string name="permissions_protection_type_dangerous_label">خطير</string>
     <string name="permissions_protection_type_signature_label">توقيع</string>
@@ -139,7 +104,6 @@
         <item>قراءة الخط الدقيق</item>
     </string-array>
     <string name="apps_app_details_label">تفاصيل التطبيق</string>
-    <string name="apps_details_shareduserid_label">تطبيقات مع معرّف المستخدم المشترك</string>
     <string name="apps_details_siblings_label">تطبيقات مرتبطة</string>
     <string name="apps_known_installer_gplay_label">متجر Google Play</string>
     <string name="apps_known_installer_vivo_label">Vivo V-AppStore</string>
@@ -160,14 +124,10 @@
     <string name="general_collapse_all_action">طي الكل</string>
     <string name="general_more_options_action">المزيد من الخيارات</string>
     <string name="apps_details_twins_label">مستنسخات</string>
-    <string name="apps_details_twins_descriptions">مثبّت في ملفات مستخدمين آخرين.</string>
-    <string name="install_date_label">تاريخ التثبيت</string>
     <string name="apps_filter_sharedid_label">معرّف مستخدم مشترك</string>
     <string name="apps_filter_multipleprofiles_label">يحتوي على نسخ مطابقة</string>
     <string name="support_debuglog_label">سجل التصحيح</string>
     <string name="support_debuglog_desc">سجّل كل شيء يقوم به التطبيق في ملف نصي يمكنك مشاركته.</string>
-    <string name="updated_at_x">آخر تحديث: %s</string>
-    <string name="installed_at_x">ثُبِّت أولاً: %s</string>
     <string name="apps_sort_install_source_label">مصدر التثبيت</string>
     <string name="permissions_action_none_msg">لا يوجد إجراء متاح لهذا الإذن</string>
     <string name="permissions_details_open_settings_action">فتح أعدادات النظام</string>
@@ -193,16 +153,6 @@
     <string name="apps_filter_sort_action">تصفية وترتيب</string>
     <string name="apps_help_tag_icons_title">رقائق الأذونات</string>
     <string name="apps_help_tag_icons_description">تظهر الرقائق فئات الأذونات الحساسة التي تم منحها للتطبيق</string>
-    <string name="apps_details_description_restrictions_caveat_description">ثُبِّت هذا التطبيق في ملف مستخدم آخر. يمكن تحديد الأذونات الممنوحة للتطبيقات في الملف الحالي النشط فقط، بسبب قيود أندرويد.</string>
-    <string name="apps_details_description_uninstalled_caveat">أُزيل هذا التطبيق لكن احتُفظ ببياناته. لا يمكن تحديد حالة الأذونات للتطبيقات المُزالة.</string>
-    <plurals name="apps_details_description_secondary_description">
-        <item quantity="zero">لا توجد أذونات مطلوبة.</item>
-        <item quantity="one">تم طلب %d إذن.</item>
-        <item quantity="two">تم طلب %d إذنين.</item>
-        <item quantity="few">تم طلب %d أذونات.</item>
-        <item quantity="many">تم طلب %d إذنًا.</item>
-        <item quantity="other">تم طلب %d إذن.</item>
-    </plurals>
     <plurals name="apps_details_description_primary_description">
         <item quantity="zero">تم منح %1$d من %2$d أذونات.</item>
         <item quantity="one">تم منح %1$d من %2$d أذونات.</item>
@@ -233,8 +183,6 @@
         <item quantity="other">%d بيان متبقٍ للتحليل…</item>
     </plurals>
     <string name="apps_details_manifest_queries_none">لم يتم اكتشاف شيء غير عادي</string>
-    <string name="apps_details_manifest_unavailable">البيان غير متاح</string>
-    <string name="apps_details_manifest_error">تعذّر قراءة البيان</string>
     <plurals name="apps_details_manifest_packages">
         <item quantity="zero">لا توجد استعلامات حزمة</item>
         <item quantity="one">استعلام حزمة واحد</item>
@@ -266,14 +214,6 @@
     <string name="apps_manifest_viewer_label">عارض البيان</string>
     <string name="apps_manifest_viewer_search_hint">بحث في البيان</string>
     <string name="apps_manifest_viewer_error_unknown">خطأ غير معروف عند تحميل البيان.</string>
-    <plurals name="apps_manifest_viewer_matches">
-        <item quantity="zero">لا توجد تطابقات</item>
-        <item quantity="one">تطابق واحد</item>
-        <item quantity="two">تطابقان</item>
-        <item quantity="few">%d تطابقات</item>
-        <item quantity="many">%d تطابقاً</item>
-        <item quantity="other">%d تطابق</item>
-    </plurals>
     <string name="apps_manifest_search_counter">%1$d من %2$d</string>
     <string name="apps_manifest_section_uses_permission">يستخدم الإذن</string>
     <string name="apps_manifest_section_permission">الإذن</string>
@@ -332,22 +272,6 @@
         <item quantity="many">%d تطبيقات نظام</item>
         <item quantity="other">%d تطبيقات نظام</item>
     </plurals>
-    <plurals name="permissions_details_count_user_apps">
-        <item quantity="zero">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="one">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="two">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="few">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="many">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="other">تطبيقات المستخدم: ممنوح لـ %1$d من %2$d.</item>
-    </plurals>
-    <plurals name="permissions_details_count_system_apps">
-        <item quantity="zero">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="one">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="two">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="few">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="many">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-        <item quantity="other">تطبيقات النظام: ممنوح لـ %1$d من %2$d.</item>
-    </plurals>
     <plurals name="permissions_details_count_other_profile_apps">
         <item quantity="zero">لا توجد تطبيقات في ملفات شخصية أخرى تطلب هذا الإذن.</item>
         <item quantity="one">تطبيق واحد في ملف شخصي آخر يطلب هذا الإذن أيضًا.</item>
@@ -365,7 +289,6 @@
         <item quantity="other">%d تطبيقات غير مثبتة مع بيانات محتجزة تطلب هذا الإذن أيضًا.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">يُستثنى من الحساب التطبيقات المثبّتة في حسابات مستخدمين آخرين بسبب قيود أندرويد.</string>
-    <string name="permissions_details_empty_filter_message">لا توجد تطبيقات تطابق الفلاتر الحالية. اضغط على أيقونة الفلتر للتعديل.</string>
     <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">وقت التشغيل</string>
     <string name="permissions_tag_install_time_label">وقت التثبيت</string>
@@ -465,8 +388,6 @@
     <string name="permission_loader_usage_stats_description">يسمح للتطبيقات بجمع إحصائيات حول استخدام محمّل البيانات على الجهاز.</string>
     <string name="permission_premium_sms_services_label">الوصول إلى رسالة SMS متميزة</string>
     <string name="permission_premium_sms_services_description">يسمح للتطبيقات باستخدام خدمات الرسائل النصية المتميزة. هذا سيكلفك المال.</string>
-    <string name="permission_unlimited_data_access_label">وصول بيانات غير محدود</string>
-    <string name="permission_unlimited_data_access_description">يسمح للتطبيقات بالوصول غير المحدود للبيانات. يمكن للتطبيقات استخدام البيانات حتى في وجود تقييدات حفظ البيانات.</string>
     <string name="permission_group_calendar_label">التقويم</string>
     <string name="permission_group_calendar_description"><![CDATA[صلاحيات مرتبطة بالتقويم، مثل العرض والتعديل.]]></string>
     <string name="permission_group_files_label">الملفات والوسائط</string>
@@ -487,8 +408,6 @@
     <string name="permission_group_contacts_description">"قراءة وكتابة جهات الاتصال."</string>
     <string name="permission_group_apps_label">التطبيقات</string>
     <string name="permission_group_apps_description">أذونات وصول خاصة تتطلب موافقة المستخدم.</string>
-    <string name="permission_group_battery_label">البطارية</string>
-    <string name="permission_group_battery_description">أذونات بطارية.</string>
     <string name="permission_group_camera_label">الكاميرا</string>
     <string name="permission_group_camera_description">أذونات مرتبطة بالكاميرا.</string>
     <string name="permission_group_audio_label">الميكروفون</string>
@@ -499,12 +418,8 @@
     <string name="permission_legacy_storage_label">التخزين القديم</string>
     <string name="permission_legacy_storage_description">يسمح للتطبيقات بالوصول إلى التخزين الخارجي دون قيود التخزين المحدد النطاق. كان هذا السلوك الافتراضي قبل أندرويد 10. التطبيقات ذات هذا الوصول يمكنها قراءة وكتابة الملفات في أي مكان على التخزين المشترك.</string>
     <string name="settings_page_label">الإعدادات</string>
-    <string name="overview_summary_title_label">ملخص</string>
     <string name="permissions_details_declaring_apps_label">التطبيقات المُعلَنة</string>
     <string name="permissions_details_requesting_apps_label">التطبيقات الطالبة</string>
-    <string name="overview_device_android_version_label">إصدار الأندرويد</string>
-    <string name="overview_device_name_label">الجهاز</string>
-    <string name="overview_device_android_patch_label">مستوى التصحيح</string>
     <string name="overview_summary_apps_active_profile_label">تطبيقات في الملف النشط</string>
     <string name="overview_summary_apps_other_profile_label">تطبيقات في ملفات المستخدمين المُدارة، باستثناء النسخ</string>
     <string name="overview_summary_apps_sideloaded_label">تطبيقات مثبتة يدوياً من مصادر خارجية</string>
@@ -556,7 +471,6 @@
     <string name="support_debuglog_session_delete_title">هل تريد حذف سجل التصحيح؟</string>
     <string name="support_debuglog_session_delete_message">سيتم حذف سجل التصحيح هذا نهائياً.</string>
     <string name="support_debuglog_sessions_empty">لا توجد سجلات تصحيح</string>
-    <string name="support_debuglog_session_invalid">جلسة غير صالحة</string>
     <string name="support_debuglog_session_recording">جاري التسجيل…</string>
     <string name="support_debuglog_session_compressing">جاري الضغط…</string>
     <string name="support_debuglog_failed_empty_log">ملف سجل فارغ</string>
@@ -568,7 +482,6 @@
     <string name="support_contact_sent_title">هل تم إرسال الرسالة؟</string>
     <string name="support_contact_sent_message">إذا أرسلت البريد الإلكتروني، يمكن تنظيف هذه الجلسة.</string>
     <string name="general_close_action">إغلاق</string>
-    <string name="debug_debuglog_screen_delete_action">حذف</string>
     <!-- Contact form -->
     <string name="contact_support_label">اتصال بالدعم</string>
     <string name="contact_category_label">الفئة</string>
@@ -601,8 +514,6 @@
     <string name="contact_no_email_app">لا يوجد تطبيق بريد إلكتروني على هذا الجهاز.</string>
     <string name="contact_welcome_message">أقرأ كل رسالة بنفسي وأبذل قصارى جهدي للرد. نظراً لأنني أتولى التطوير وإصلاح الأخطاء والدعم بمفردي، قد يستغرق الأمر بعض الوقت. شكراً على صبرك.</string>
     <string name="contact_footer_message">سيتم إرسال رسالتك عبر البريد الإلكتروني. يتم إرفاق معلومات الجهاز والإعدادات تلقائياً. يمكنك إرفاق لقطات شاشة أو فيديو بالبريد. يرجى الكتابة باللغة الإنجليزية إن أمكن.</string>
-    <!-- RecorderActivity -->
-    <string name="recorder_keep_action">احتفظ</string>
     <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">سجل التصحيح</string>
     <string name="debug_debuglog_screen_subtitle">تصدير معلومات التصحيح لاستكشاف الأخطاء</string>
@@ -696,22 +607,17 @@
     <string name="watcher_scope_label">نطاق المراقبة</string>
     <string name="watcher_scope_all">جميع التطبيقات</string>
     <string name="watcher_scope_non_system">تطبيقات غير النظام فقط</string>
-    <string name="watcher_reports_label">تقارير تغييرات الأذونات</string>
     <string name="watcher_reports_empty">لم يتم اكتشاف تغييرات في الأذونات حتى الآن</string>
     <string name="watcher_report_detail_label">تقرير التغييرات</string>
     <string name="watcher_diff_added_permissions">أذونات جديدة</string>
     <string name="watcher_diff_removed_permissions">أذونات محذوفة</string>
     <string name="watcher_diff_grant_changes">تغييرات المنح</string>
-    <string name="watcher_diff_added_declared">أذونات مُعلَنة جديدة</string>
-    <string name="watcher_diff_removed_declared">أذونات مُعلَنة محذوفة</string>
-    <string name="watcher_diff_grant_change_detail">%1$s: %2$s → %3$s</string>
     <string name="watcher_event_install">مثبت</string>
     <string name="watcher_event_update">محدّث</string>
     <string name="watcher_event_removed">محذوف</string>
     <string name="watcher_event_grant_change">تغيّر الإذن</string>
     <string name="watcher_mark_all_seen">تعليم الكل كمشاهد</string>
     <string name="watcher_notification_action_mark_seen">تعليم كمشاهد</string>
-    <string name="watcher_notification_action_delete">حذف</string>
     <string name="watcher_notification_body_added">مضاف: %s</string>
     <string name="watcher_notification_body_removed">محذوف: %s</string>
     <string name="watcher_notification_body_grant_changed">تغيّر المنح: %s</string>
@@ -756,14 +662,6 @@
     <string name="watcher_detail_version_code_label">الكود</string>
     <string name="watcher_detail_installer_label">مصدر التثبيت</string>
     <string name="watcher_detail_installer_unknown">غير معروف</string>
-    <plurals name="watcher_detail_permissions_header">
-        <item quantity="zero">الأذونات (0)</item>
-        <item quantity="one">الأذونات (%d)</item>
-        <item quantity="two">الأذونات (%d)</item>
-        <item quantity="few">الأذونات (%d)</item>
-        <item quantity="many">الأذونات (%d)</item>
-        <item quantity="other">الأذونات (%d)</item>
-    </plurals>
     <plurals name="watcher_detail_last_permissions_header">
         <item quantity="zero">آخر أذونات معروفة (0)</item>
         <item quantity="one">آخر أذونات معروفة (%d)</item>
@@ -866,14 +764,12 @@
     <string name="export_perm_granted_only_label">التطبيقات الممنوحة فقط</string>
     <string name="export_perm_include_summary_label">تضمين إجماليات ملخصة</string>
     <string name="export_preview_label">معاينة</string>
-    <string name="export_preview_label_of">معاينة (%1$d من %2$d)</string>
     <string name="export_action_label">تصدير</string>
     <string name="export_progress_label">جارٍ التصدير…</string>
     <string name="export_success_message">اكتمل التصدير</string>
     <string name="export_error_message">فشل التصدير</string>
     <string name="export_share_action">مشاركة</string>
     <string name="export_open_action">فتح</string>
-    <string name="export_done_action">أكتمل</string>
     <string name="export_retry_action">إعادة المحاولة</string>
     <string name="export_summary_filename">ملف</string>
     <string name="export_summary_size">الحجم</string>
