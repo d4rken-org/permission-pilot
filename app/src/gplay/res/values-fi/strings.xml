@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Ostettu Pro jo?</string>
     <string name="upgrade_screen_restore_banner_body">Näyttää siltä, että olet päivittänyt Pro-versioon tällä laitteella aiemmin. Palauta ostoksesi avataksesi sen uudelleen.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Sinulla on %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Kertaluonteinen Pro-ostos avaa kaikki Pro-ominaisuudet ikuisesti.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Tilauksesi avaa kaikki Pro-ominaisuudet.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Hallitse tilausta</string>
     <string name="upgrade_screen_owned_iap_title">Elinikäinen Pro</string>
     <string name="upgrade_screen_owned_iap_body">Omistat kertamaksullisen Pro-päivityksen. Ei tilausta, ei uusintoja.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Tilauksesi ei uusiudu, joten voit nyt siirtyä pysyvään kertaostoksena tehtävään Pro-ostoon.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Jos haluat vaihtaa kertaostoon, peruuta ensin tilauksesi Google Playssa. Tämä tarjous avautuu, kun tilaus on asetettu olemaan uusiutumatta.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Tilauspalvelusi on vielä aktiivinen ja uusiutuu. Peruuta se ensin Google Playsta.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Google Play ei pystynyt vahvistamaan ostojasi. Yritä uudelleen.</string>
+    <string name="upgrade_screen_pending_card_title">Maksu odottaa</string>
+    <string name="upgrade_screen_pending_card_body">Google Play käsittelee maksuasi parhaillaan. Pro avataan automaattisesti, kun maksu on käsitelty. Joidenkin maksutapojen käsittely voi kestää pidempään. Ei tarvitse tehdä mitään.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play löysi osteen, jonka maksu on vireillä, ja käsittelee sitä parhaillaan. Pro avataan automaattisesti, kun maksu on käsitelty.</string>
     <string name="upgrade_screen_grace_title">Vahvistetaan ostoasi</string>
     <string name="upgrade_screen_grace_body">Odotetaan Google Playta vahvistamaan uudelleen Pro-ostoasi. Tämä yleensä ratkeaa itsestään.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Tilanne näyttää väärältä?</string>
     <string name="upgrade_screen_restore_status_body">Jos olet ostanut Pro:n mutta sitä ei näy, suorita reaaliaikainen tarkistus Google Playssa.</string>
     <string name="upgrade_screen_restore_success_message">Osto palautettu.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Päivitysvaihtoehdot</string>
     <string name="upgrade_screen_offers_body">Samat ominaisuudet, vain eri hinnoittelumallit.</string>
     <string name="upgrade_screen_offers_or">tai</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Uusiutuu vuosittain. Voit peruuttaa milloin tahansa Google Playssa.</string>
     <string name="upgrade_screen_iap_offer_title">Osta kerran</string>
     <string name="upgrade_screen_iap_offer_body">Yksi maksu, ei uusintoja.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Tilaus on edelleen aktiivinen</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Playta tarkistettiin juuri, mutta Pro-ostoa ei voitu vahvistaa tilissä, jota tämä sovellus käyttää.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Useat tilit voivat hämmentää Google Playta. Sovelluksen asentaminen Google Play -verkkosivuston kautta pakottaa sen liittymään tiettyyn tiliin.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play -synkronointi voi kestää. Kokeile uudelleenkäynnistystä, Google Play -välimuistin tyhjentämistä tai vain odottamista.</string>
     <string name="upgrade_screen_restore_contact_hint">Oletko vielä jumissa? Ota yhteyttä tukeen sähköpostista, jolla ostoksesi tehtiin, ja sisällytä Google Play -tilausnumerosi.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Hanki %1$s</string>
     <string name="upgrade_screen_benefits_title">Päivityksen edut</string>
     <string name="upgrade_screen_thanks_toast">Olet paras! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro on edelleen aktiivinen. Odotetaan Google Playn uudelleenvahvistusta ostoksellesi, kaikki Pro-ominaisuudet pysyvät lukitukselta vapaina väliajalla.</string>
     <string name="upgrade_screen_restore_body">Palauttaminen pyytää Google Playta tarkistamaan uudelleen tämän sovelluksen ostokset nykyiselle tilille. Se ei aloita uutta ostoa.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Play -tarkistus ei valmistunut ajoissa, joten ostotilastasi on edelleen tuntematon. Tilillä ei ole muuttunut mitään.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot ei voi yhdistää Google Playhin. Onko Google Play asennettu ja ajan tasalla? Onko Google-tilisi kirjautunut sisään? Kokeile tyhjentää Google Play -sovelluksen välimuisti ja käynnistä laitteesi uudelleen.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Playta ei voitu avata. Se saattaa puuttua, olla poistettu käytöstä tai rajoitettu tällä laitteella.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play -vika</string>
     <string name="upgrades_gplay_billing_error_description">Google Playssa oli ongelma. Yritäthän myöhemmin uudelleen tai käynnistäthän laite uudelleen.\n\nYksityiskohdat: %s</string>

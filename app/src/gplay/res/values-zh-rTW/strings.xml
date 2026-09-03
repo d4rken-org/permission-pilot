@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">已購買 Pro？</string>
     <string name="upgrade_screen_restore_banner_body">看起來您之前在此裝置上升級至 Pro。復原您的購買以重新解鎖。</string>
     <string name="upgrade_title_suffix">專業版</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">你擁有 %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">您的一次性 Pro 購買解鎖所有 Pro 功能，永久有效。</string>
     <string name="upgrade_screen_owned_hero_sub_body">您的訂閱解鎖所有 Pro 功能。</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">管理訂閱</string>
     <string name="upgrade_screen_owned_iap_title">終身 Pro</string>
     <string name="upgrade_screen_owned_iap_body">您擁有一次性 Pro 升級。無需訂閱，無需更新。</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">你的訂閱不會續訂，現在可以改為購買永久的一次性 Pro 方案。</string>
     <string name="upgrade_screen_owned_iap_locked_note">若要改為一次性購買，請先在 Google Play 中取消你的訂閱。設定為不續訂後即可解鎖此優惠。</string>
     <string name="upgrade_screen_sub_still_renewing_message">您的訂閱仍處於活動狀態且正在續約。請先在 Google Play 中取消訂閱。</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">無法驗證 Google Play 上的購買。請重試。</string>
+    <string name="upgrade_screen_pending_card_title">待付款</string>
+    <string name="upgrade_screen_pending_card_body">Google Play 正在處理付款。付款完成後，Pro 版本會自動解鎖。某些付款方式可能需要較長時間。無需採取任何其他操作。</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play 偵測到一筆待付款購買，正在處理中。付款完成後，Pro 版本會自動解鎖。</string>
     <string name="upgrade_screen_grace_title">正在確認您的購買</string>
     <string name="upgrade_screen_grace_body">等待 Google Play 重新確認您的 Pro 購買。這通常會自動解決。</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">狀態看起來有誤？</string>
     <string name="upgrade_screen_restore_status_body">如果您已購買 Pro 但未顯示，請對 Google Play 執行即時檢查。</string>
     <string name="upgrade_screen_restore_success_message">購買已恢復。</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">升級選項</string>
     <string name="upgrade_screen_offers_body">功能相同，只是定價模式不同。</string>
     <string name="upgrade_screen_offers_or">或</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">每年續訂。可在 Google Play 隨時取消。</string>
     <string name="upgrade_screen_iap_offer_title">一次性購買</string>
     <string name="upgrade_screen_iap_offer_body">一次性付款，無需續訂。</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">訂閱仍然有效</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">剛才檢查了 Google Play，但無法確認此應用程式所用帳戶的 Pro 購買記錄。</string>
     <string name="upgrade_screen_restore_multiaccount_hint">多個帳戶可能會導致 Google Play 混亂。透過 Google Play 網站安裝應用程式會強制將其與特定帳戶關聯。</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play 同步可能需要一段時間。請嘗試重新啟動、清除 Google Play Store 快取或耐心等候。</string>
     <string name="upgrade_screen_restore_contact_hint">仍未解決？請使用進行購買的電子郵件帳戶聯絡支援，並提供您的 Google Play 訂單編號。</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">取得 %1$s</string>
     <string name="upgrade_screen_benefits_title">升級權益</string>
     <string name="upgrade_screen_thanks_toast">您是最棒的！❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro 仍在有效狀態。等待 Google Play 重新確認您的購買，同時所有 Pro 功能保持解鎖狀態。</string>
     <string name="upgrade_screen_restore_body">還原會要求 Google Play 重新檢查該應用程式在目前帳戶的購買。這不會發起新的購買。</string>
     <string name="upgrade_screen_restore_inconclusive_message">與 Google Play 的檢查未能及時完成，因此您的購買狀態仍不明。您帳戶中未有任何變更。</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot 無法連線至 Google Play。請確認 Google Play 已安裝且為最新版本，同時確保已經登入 Google 帳戶。您可以嘗試清除 Google Play 應用程式的快取或重新啟動您的裝置以修正此問題。</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">無法開啟 Google Play。此應用可能未安裝、已停用或在此設備上受到限制。</string>
     <string name="upgrades_gplay_billing_error_label">Google Play 問題</string>
     <string name="upgrades_gplay_billing_error_description">Google Play 發生問題。請稍後再試一次或重新啟動您的裝置。\n\n詳細資訊：%s</string>

@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Ja heu comprat Pro?</string>
     <string name="upgrade_screen_restore_banner_body">Sembla que ja vau actualitzar al Pro en aquest dispositiu abans. Restaureu la vostra compra per tornar-la a desbloquejar.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Teniu %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">La vostra compra única desbloqueja totes les funcions de Pro, per sempre.</string>
     <string name="upgrade_screen_owned_hero_sub_body">La vostra subscripció desbloqueja totes les funcions de Pro.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Gestiona la subscripció</string>
     <string name="upgrade_screen_owned_iap_title">Pro de per vida</string>
     <string name="upgrade_screen_owned_iap_body">Teniu l\'actualització Pro única. Sense subscripcions, sense renovacions.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">La vostra subscripció no es renovarà, així que ara podeu canviar a la compra permanent única per al Pro.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Per canviar a la compra única, primer cancel·leu la vostra subscripció al Google Play. Aquesta oferta es desbloqueja un cop està configurada per no renovar-se.</string>
     <string name="upgrade_screen_sub_still_renewing_message">La vostra subscripció segueix activa i es renova. Cancel·leu-la primer al Google Play.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">No s\'ha pogut verificar les teves compres amb el Google Play. Torna-ho a provar.</string>
+    <string name="upgrade_screen_pending_card_title">Pagament pendent</string>
+    <string name="upgrade_screen_pending_card_body">El Google Play encara està processant el teu pagament. El Pro es desbloqueja automàticament una vegada el pagament es duu a terme. Alguns mètodes de pagament poden trigar una estona. No cal fer res més.</string>
+    <string name="upgrade_screen_pending_dialog_message">El Google Play ha trobat una compra amb un pagament pendent i encara l\'està processant. El Pro es desbloqueja automàticament una vegada que el pagament es duu a terme.</string>
     <string name="upgrade_screen_grace_title">S\'està confirmant la vostra compra</string>
     <string name="upgrade_screen_grace_body">S\'està esperant que el Google Play confirmi novament la vostra compra del Pro. Això normalment es resol per si sol.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">L\'estat sembla incorrecte?</string>
     <string name="upgrade_screen_restore_status_body">Si has comprat la versió Pro però no es mostra, feu una comprovació en temps real al Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Compra restaurada.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Opcions d\'actualització</string>
     <string name="upgrade_screen_offers_body">Les mateixes funcions, només models de preus diferents.</string>
     <string name="upgrade_screen_offers_or">o</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Es renova anualment. Cancel·leu en qualsevol moment al Google Play.</string>
     <string name="upgrade_screen_iap_offer_title">Compra única</string>
     <string name="upgrade_screen_iap_offer_body">Un sol pagament, sense renovacions.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">La subscripció encara està activa</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">S\'acaba de comprovar el Google Play, però no s\'ha pogut confirmar cap compra Pro per al compte que s\'utilitza per a aquesta aplicació.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Tenir diversos comptes pot generar confusió al Google Play. La instal·lació de l\'aplicació a través del lloc web del Google Play obliga a associar-lo amb un compte específic.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">La sincronització del Google Play pot trigar una estona. Proveu de reiniciar, esborreu la memòria cau del Google Play o simplement espereu.</string>
     <string name="upgrade_screen_restore_contact_hint">Encara teniu problemes? Contacteu amb l\'assistència des del correu amb què heu fet la compra i incloeu el número de comanda del Google Play.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Obtingueu %1$s</string>
     <string name="upgrade_screen_benefits_title">Beneficis de la millora</string>
     <string name="upgrade_screen_thanks_toast">Sou el millor! \ufe0f</string>
     <string name="upgrade_screen_grace_body_short">El Pro encara està actiu. Mentrestant, estem esperant que el Google Play torni a confirmar la compra; totes les funcions Pro romandran desbloquejades.</string>
     <string name="upgrade_screen_restore_body">La restauració sol·licita al Google Play que comprovi de nou les compres d\'aquesta aplicació per al compte actual. No inicia cap compra nova.</string>
     <string name="upgrade_screen_restore_inconclusive_message">La comprovació amb el Google Play no ha acabat a temps, així que l\'estat de la vostra compra segueix sent desconegut. Res ha canviat al vostre compte.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">El Permission Pilot no es pot connectar al Google Play. El Google Play està instal·lat i actualitzat? Heu iniciat la sessió al vostre compte de Google? Proveu d\'esborrar la memòria cau de l\'aplicació Google Play i reinicieu el dispositiu.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">No s\'ha pogut obrir el Google Play. Pot ser que no estigui disponible, estigui desactivat o restringit en aquest dispositiu.</string>
     <string name="upgrades_gplay_billing_error_label">Problema del Google Play</string>
     <string name="upgrades_gplay_billing_error_description">S\'ha produït un problema amb el Google Play. Torneu-ho a provar més tard o reinicieu el dispositiu.\n\nDetalls: %s</string>

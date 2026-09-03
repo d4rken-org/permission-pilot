@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Đã mua Pro rồi?</string>
     <string name="upgrade_screen_restore_banner_body">Có vẻ như bạn đã nâng cấp lên Pro trên thiết bị này trước đó. Khôi phục mua hàng của bạn để mở khóa lại.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Bạn đang sở hữu %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Mua hàng Pro một lần của bạn mở khóa mọi tính năng Pro, mãi mãi.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Gói đăng ký của bạn mở khóa mọi tính năng Pro.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Quản lý gói đăng ký</string>
     <string name="upgrade_screen_owned_iap_title">Pro Trọn đời</string>
     <string name="upgrade_screen_owned_iap_body">Bạn sở hữu nâng cấp Pro một lần. Không có gói đăng ký, không có gia hạn.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Gói đăng ký của bạn sẽ không gia hạn, vì vậy bạn có thể chuyển sang mua Pro trả một lần vĩnh viễn ngay bây giờ.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Để chuyển sang mua trả một lần, trước tiên hãy hủy gói đăng ký trong Google Play. Ưu đãi này sẽ mở khóa khi gói đăng ký được đặt không gia hạn.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Gói đăng ký của bạn vẫn còn hoạt động và đang tự động gia hạn. Hãy hủy nó trong Google Play trước.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Không thể xác minh các lần mua hàng trên Google Play. Vui lòng thử lại.</string>
+    <string name="upgrade_screen_pending_card_title">Thanh toán chờ xử lý</string>
+    <string name="upgrade_screen_pending_card_body">Google Play vẫn đang xử lý thanh toán của bạn. Pro sẽ được mở khóa tự động khi thanh toán hoàn tất. Một số phương thức thanh toán có thể mất thời gian. Bạn không cần làm gì thêm.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play phát hiện một lần mua hàng có thanh toán đang chờ xử lý và vẫn đang xử lý nó. Pro sẽ được mở khóa tự động khi thanh toán hoàn tất.</string>
     <string name="upgrade_screen_grace_title">Đang xác nhận lần mua của bạn</string>
     <string name="upgrade_screen_grace_body">Đang chờ Google Play xác nhận lại lần mua Pro của bạn. Điều này thường tự động giải quyết.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Trạng thái có vẻ không đúng?</string>
     <string name="upgrade_screen_restore_status_body">Nếu bạn đã mua Pro nhưng nó không hiển thị, hãy chạy kiểm tra trực tiếp với Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Mua hàng đã được khôi phục.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Tùy chọn nâng cấp</string>
     <string name="upgrade_screen_offers_body">Các tính năng giống nhau, chỉ là các mô hình định giá khác nhau.</string>
     <string name="upgrade_screen_offers_or">hoặc</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Gia hạn hàng năm. Hủy bất kỳ lúc nào trong Google Play.</string>
     <string name="upgrade_screen_iap_offer_title">Mua một lần</string>
     <string name="upgrade_screen_iap_offer_body">Một lần thanh toán, không có gia hạn.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Gói đăng ký vẫn còn hoạt động</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Vừa kiểm tra Google Play, nhưng không thể xác nhận mua Pro cho tài khoản mà ứng dụng đang sử dụng.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Nhiều tài khoản có thể làm Google Play nhầm lẫn. Cài đặt ứng dụng từ trang web Google Play sẽ buộc nó liên kết với một tài khoản cụ thể.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Đồng bộ hóa Google Play có thể mất một lúc. Hãy thử khởi động lại, xóa bộ nhớ đệm Google Play Store hoặc chỉ chờ đợi.</string>
     <string name="upgrade_screen_restore_contact_hint">Vẫn gặp vấn đề? Liên hệ hỗ trợ từ email đã thực hiện mua hàng và kèm theo số đơn hàng Google Play của bạn.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Nhận %1$s</string>
     <string name="upgrade_screen_benefits_title">Lợi ích nâng cấp</string>
     <string name="upgrade_screen_thanks_toast">Bạn là tuyệt nhất! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro vẫn còn hoạt động. Chờ Google Play xác nhận lại lần nữa, tất cả các tính năng Pro vẫn được mở khóa trong thời gian này.</string>
     <string name="upgrade_screen_restore_body">Khôi phục yêu cầu Google Play kiểm tra lại các mua hàng của ứng dụng này cho tài khoản hiện tại. Nó không bắt đầu mua hàng mới.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Kiểm tra với Google Play không hoàn thành kịp thời, vì vậy trạng thái mua hàng của bạn vẫn còn chưa xác định. Không có gì thay đổi trên tài khoản của bạn.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot không thể kết nối với Google Play. Google Play đã được cài đặt và cập nhật chưa? Tài khoản Google của bạn đã đăng nhập chưa? Hãy thử xóa bộ nhớ đệm của ứng dụng Google Play và khởi động lại thiết bị của bạn.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Không thể mở Google Play. Nó có thể bị thiếu, bị vô hiệu hóa hoặc bị hạn chế trên thiết bị này.</string>
     <string name="upgrades_gplay_billing_error_label">Sự cố Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Đã xảy ra sự cố với Google Play. Vui lòng thử lại sau hoặc khởi động lại thiết bị của bạn.\n\nChi tiết: %s</string>

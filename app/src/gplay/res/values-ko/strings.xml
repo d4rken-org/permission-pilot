@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">이미 Pro를 구매했나요?</string>
     <string name="upgrade_screen_restore_banner_body">이 기기에서 이전에 Pro로 업그레이드했던 것 같습니다. 구매를 복구하여 Pro를 다시 사용하세요.</string>
     <string name="upgrade_title_suffix">프로</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">%1$s를 소유했습니다</string>
     <string name="upgrade_screen_owned_hero_iap_body">일회성 Pro 구매로 모든 Pro 기능을 영원히 사용할 수 있습니다.</string>
     <string name="upgrade_screen_owned_hero_sub_body">구독하면 모든 Pro 기능을 사용할 수 있습니다.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">구독 관리</string>
     <string name="upgrade_screen_owned_iap_title">평생 Pro</string>
     <string name="upgrade_screen_owned_iap_body">일회성 Pro 업그레이드를 소유했습니다. 구독 없음, 갱신 없음.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">구독이 갱신되지 않으므로, 이제 일회 결제 Pro로 전환할 수 있습니다.</string>
     <string name="upgrade_screen_owned_iap_locked_note">일회 결제 Pro로 전환하려면 먼저 Google Play에서 구독을 취소하세요. 구독이 갱신되지 않도록 설정되면 이 제안이 활성화됩니다.</string>
     <string name="upgrade_screen_sub_still_renewing_message">구독이 아직 활성 상태이며 갱신 중입니다. 먼저 Google Play에서 취소하세요.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Google Play에서 구매를 확인할 수 없습니다. 다시 시도해주세요.</string>
+    <string name="upgrade_screen_pending_card_title">결제 대기 중</string>
+    <string name="upgrade_screen_pending_card_body">Google Play에서 결제를 처리하고 있습니다. 결제가 완료되면 Pro가 자동으로 잠금 해제됩니다. 결제 방법에 따라 시간이 걸릴 수 있습니다. 추가로 해야 할 일은 없습니다.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play에서 결제 대기 중인 구매를 찾았습니다. 현재 처리 중이며 결제가 완료되면 Pro가 자동으로 잠금 해제됩니다.</string>
     <string name="upgrade_screen_grace_title">구매 확인 중</string>
     <string name="upgrade_screen_grace_body">Google Play에서 Pro 구매를 다시 확인할 때까지 기다리는 중입니다. 일반적으로 자동으로 해결됩니다.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">상태가 잘못된 것 같나요?</string>
     <string name="upgrade_screen_restore_status_body">Pro를 구매했지만 표시되지 않는다면 Google Play에 대해 실시간 확인을 실행하세요.</string>
     <string name="upgrade_screen_restore_success_message">구매가 복구되었습니다.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">업그레이드 옵션</string>
     <string name="upgrade_screen_offers_body">동일한 기능, 다른 가격 모델만 있습니다.</string>
     <string name="upgrade_screen_offers_or">또는</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">매년 갱신됩니다. Google Play에서 언제든지 취소할 수 있습니다.</string>
     <string name="upgrade_screen_iap_offer_title">한 번 구매</string>
     <string name="upgrade_screen_iap_offer_body">일회 결제, 갱신 없음.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">구독이 여전히 활성 상태입니다</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play를 방금 확인했지만, 이 앱에서 사용 중인 계정의 Pro 구매를 확인할 수 없습니다.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">여러 계정이 Google Play를 혼동시킬 수 있습니다. Google Play 웹사이트를 통해 앱을 설치하면 특정 계정과 연결됩니다.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Google Play 동기화는 시간이 걸릴 수 있습니다. 기기를 다시 시작하거나 Google Play 스토어 캐시를 지우거나 잠시 기다려보세요.</string>
     <string name="upgrade_screen_restore_contact_hint">여전히 해결되지 않나요? 구매한 이메일로 지원팀에 문의하고 Google Play 주문 번호를 함께 알려주세요.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$s 얻기</string>
     <string name="upgrade_screen_benefits_title">업그레이드 혜택</string>
     <string name="upgrade_screen_thanks_toast">감사합니다! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro가 여전히 활성화되어 있습니다. Google Play에서 구매를 다시 확인하기를 기다리는 중이며, 그 사이에 모든 Pro 기능이 잠금 해제된 상태로 유지됩니다.</string>
     <string name="upgrade_screen_restore_body">복원은 Google Play에 현재 계정에 대해 이 앱의 구매를 다시 확인하도록 요청합니다. 새로운 구매를 시작하지는 않습니다.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Google Play와의 확인이 시간 내에 완료되지 않아 구매 상태를 여전히 알 수 없습니다. 계정에 변경 사항이 없습니다.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot가 Google Play에 연결할 수 없습니다. Google Play가 설치되어 있고 최신 버전인가요? Google 계정이 로그인되어 있나요? Google Play 앱의 캐시를 지우고 기기를 재부팅해 보세요.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Play를 열 수 없습니다. 이 기기에서 설치되지 않았거나, 비활성화되었거나, 제한되었을 수 있습니다.</string>
     <string name="upgrades_gplay_billing_error_label">Google Play 문제</string>
     <string name="upgrades_gplay_billing_error_description">Google Play에서 문제가 발생했습니다. 나중에 다시 시도하거나 기기를 다시시작 해주세요.\n\n상세정보: %s</string>

@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Už jste si Pro koupili?</string>
     <string name="upgrade_screen_restore_banner_body">Vypadá to, že jste již dříve upgradovali na Pro na tomto zařízení. Obnovte svůj nákup a odemkněte jej znovu.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Máš %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Váš jednorázový nákup Pro odemyká každou funkci Pro navždy.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Vaše předplatné odemyká každou funkci Pro.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Spravovat předplatné</string>
     <string name="upgrade_screen_owned_iap_title">Celoživotní Pro</string>
     <string name="upgrade_screen_owned_iap_body">Vlastníte jednorázový Pro upgrade. Žádné předplatné, žádné obnovení.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Tvé předplatné se neobnoví, takže se teď můžeš přesunout na trvalý jednorázový nákup Pro.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Chceš-li se přesunout na jednorázový nákup, nejdřív zruš tvé předplatné v Google Play. Tato nabídka se odemkne, jakmile bude nastaveno, aby se neobnovila.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Vaše předplatné je stále aktivní a obnovuje se. Nejdřív jej zrušte v Google Play.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Nepodařilo se ověřit tvoje nákupy v Obchodě Play. Zkus to znovu, prosím.</string>
+    <string name="upgrade_screen_pending_card_title">Čekající platba</string>
+    <string name="upgrade_screen_pending_card_body">Obchod Play stále zpracovává tvoji platbu. Pro se automaticky odemkne, jakmile projde. Některé způsoby platby mohou chvíli trvat. Nemusíš nic dalšího dělat.</string>
+    <string name="upgrade_screen_pending_dialog_message">Obchod Play našel nákup se čekající platbou a stále ho zpracovává. Pro se automaticky odemkne, jakmile projde platba.</string>
     <string name="upgrade_screen_grace_title">Potvrzování nákupu</string>
     <string name="upgrade_screen_grace_body">Čekání na opětovné potvrzení nákupu Pro z Google Play. Obvykle se to vyřeší samo.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Stav vypadá špatně?</string>
     <string name="upgrade_screen_restore_status_body">Pokud jste si koupili Pro, ale nezobrazuje se vám, spusťte kontrolu v Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Nákup obnoven.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Možnosti upgradu</string>
     <string name="upgrade_screen_offers_body">Stejné funkce, jen různé cenové modely.</string>
     <string name="upgrade_screen_offers_or">nebo</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Obnovuje se ročně. Zrušit lze kdykoliv v Obchodě Play.</string>
     <string name="upgrade_screen_iap_offer_title">Koupit jednou</string>
     <string name="upgrade_screen_iap_offer_body">Jedna platba, žádné obnovení.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Předplatné je stále aktivní</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Právě byla zkontrolována služba Google Play, ale pro účet používaný v této aplikaci nelze potvrdit nákup Pro verze.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Více účtů může zmást Google Play. Instalace aplikace přes webové stránky Google Play vynucuje její přidružení ke konkrétnímu účtu.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Synchronizace Obchodu Play může chvíli trvat. Zkuste restartovat, vymazat mezipaměť Google Play nebo prostě počkat.</string>
     <string name="upgrade_screen_restore_contact_hint">Stále máte problém? Kontaktujte podporu z e-mailu, který provedl nákup, a připojte vaše číslo objednávky Google Play.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Získat %1$s</string>
     <string name="upgrade_screen_benefits_title">Výhody upgradu</string>
     <string name="upgrade_screen_thanks_toast">Jste nejlepší! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro je stále aktivní. Čekám na Google Play, aby znovu potvrdil váš nákup, všechny funkce Pro zůstávají mezitím odemčeny.</string>
     <string name="upgrade_screen_restore_body">Obnovení požádá Google Play, aby znovu zkontroloval nákupy této aplikace pro aktuální účet. Nezačíná nový nákup.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Kontrola s Obchodem Google Play nebyla dokončena včas, takže stav nákupu zůstává neznámý. Na vašem účtu se nic nezměnilo.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot se nemůže připojit k Obchodu Google Play. Je Obchod Google Play nainstalován a aktualizován? Jste přihlášeni k účtu Google? Zkuste vymazat mezipaměť Obchodu Google Play a restartovat zařízení.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Nešlo otevřít Obchod Play. Možná chybí, je zakázán nebo omezený v tomto zařízení.</string>
     <string name="upgrades_gplay_billing_error_label">Problém s Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Došlo k problému s Google Play. Zkuste to prosím znovu později nebo restartujte zařízení.\n\nPodrobnosti: %s</string>

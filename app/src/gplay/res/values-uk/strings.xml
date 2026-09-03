@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Вже купили Pro?</string>
     <string name="upgrade_screen_restore_banner_body">Схоже, раніше ви оновили цей пристрій до Pro. Відновіть вашу покупку, щоб розблокувати його ще раз.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">У тебе є %1$s</string>
     <string name="upgrade_screen_owned_hero_iap_body">Ваша одноразова покупка Pro розблокує всі функції Pro навічно.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Ваша підписка розблокує всі функції Pro.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Керування підпискою</string>
     <string name="upgrade_screen_owned_iap_title">Безстрокове Pro</string>
     <string name="upgrade_screen_owned_iap_body">Ви маєте одноразове оновлення Pro. Без підписки, без поновлень.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Твоя підписка не продовжуватиметься, тож ти можеш тепер перейти на постійну покупку Pro.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Щоб перейти на постійну покупку, спочатку скасуй підписку в Google Play. Ця пропозиція буде доступна, як тільки встановиш, щоб не продовжувати.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Ваша підписка все ще активна і поновлюється. Спочатку скасуйте її в Google Play.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Не вдалося перевірити твої покупки в Google Play. Спробуй ще раз.</string>
+    <string name="upgrade_screen_pending_card_title">Платіж на розгляді</string>
+    <string name="upgrade_screen_pending_card_body">Google Play все ще обробляє твій платіж. Pro розблокується автоматично, коли платіж пройде. Деякі способи платежу можуть займати більше часу. Більше робити нічого не потрібно.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play знайшов покупку з платіжем на розгляді і все ще обробляє його. Pro розблокується автоматично, коли платіж пройде.</string>
     <string name="upgrade_screen_grace_title">Підтвердження вашої покупки</string>
     <string name="upgrade_screen_grace_body">Очікування повторного підтвердження вашої Pro покупки в Google Play. Зазвичай це розв\'язується само собою.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Статус виглядає невірним?</string>
     <string name="upgrade_screen_restore_status_body">Якщо ви придбали Pro, але це не показується, виконайте пряму перевірку в Google Play.</string>
     <string name="upgrade_screen_restore_success_message">Покупку відновлено.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Варіанти оновлення</string>
     <string name="upgrade_screen_offers_body">Ті ж функції, просто різні моделі ціноутворення.</string>
     <string name="upgrade_screen_offers_or">або</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Поновлюється щороку. Скасуйте будь-коли в Google Play.</string>
     <string name="upgrade_screen_iap_offer_title">Купити один раз</string>
     <string name="upgrade_screen_iap_offer_body">Один платіж, без поновлень.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Підписка все ще активна</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play щойно перевірено, але не вдалося підтвердити покупку Pro для облікового запису, який використовує ця програма.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Кілька акаунтів можуть спричинити проблеми в Google Play. Встановлення програми через веб-сайт Google Play примушує її асоціюватися з конкретним акаунтом.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Синхронізація Google Play може зайняти деякий час. Спробуйте перезавантажити пристрій, очистити кеш Google Play Store або просто почекайте.</string>
     <string name="upgrade_screen_restore_contact_hint">Все ще застрягли? Зв\'яжіться з підтримкою, використовуючи електронну пошту, яка здійснила покупку, та вкажіть номер замовлення Google Play.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">Отримати %1$s</string>
     <string name="upgrade_screen_benefits_title">Переваги оновлення</string>
     <string name="upgrade_screen_thanks_toast">Ви найкращі! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro все ще активна. Очікуємо, поки Google Play повторно підтвердить вашу покупку. Усі функції Pro залишаються розблокованими в цей час.</string>
     <string name="upgrade_screen_restore_body">Відновлення просить Google Play повторно перевірити покупки цього додатку для поточного облікового запису. Це не починає нову покупку.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Перевірка з Google Play не завершилась вчасно, тому статус вашої покупки все ще невідомий. На вашому обліковому записі нічого не змінилось.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot не може підключитися до Google Play. Чи встановлено та оновлено Google Play? Ви ввійшли до свого облікового запису Google? Спробуйте очистити кеш додатку Google Play і перезавантажити пристрій.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Не вдалося відкрити Google Play. Можливо, додаток відсутній, вимкнений або обмежений на цьому пристрої.</string>
     <string name="upgrades_gplay_billing_error_label">Проблема з Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Виникла проблема з Google Play. Будь ласка, спробуйте пізніше або перезавантажте пристрій.\n\nДеталі: %s</string>

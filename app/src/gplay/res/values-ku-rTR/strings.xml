@@ -13,12 +13,6 @@
     <string name="upgrade_screen_restore_banner_title">Jixwe Pro kirî?</string>
     <string name="upgrade_screen_restore_banner_body">Xuya dike ku tu berê li vî amûrî veguhastî Pro. Beşdarkirina xwe venîştin da ku cara dî vê vekin.</string>
     <string name="upgrade_title_suffix">Pro</string>
-    <!-- Ownership / status -->
-    <!-- Hero title on the status screen for users who already own Pro. %1$s is the complete
-         localized tier name, e.g. "Permission Pilot Pro" - never insert the app name or "Pro"
-         yourself. The sentence may be rendered idiomatically ("X is active", "Your X access is
-         active") as long as the placeholder survives. Replaces upgrade_screen_owned_hero_title,
-         which told the user they *were* the tier instead of that they own it. -->
     <string name="upgrade_screen_owned_hero_brand_title">Tu %1$s heye</string>
     <string name="upgrade_screen_owned_hero_iap_body">Kirîna Pro-ya yek-car hemû taybetmendiyên Pro derxîne, sedemzî.</string>
     <string name="upgrade_screen_owned_hero_sub_body">Aboneya te hemû taybetmendiyên Pro derxîne.</string>
@@ -28,18 +22,18 @@
     <string name="upgrade_screen_manage_subscription_action">Aboneya birêve bike</string>
     <string name="upgrade_screen_owned_iap_title">Pro-ya sedemzî</string>
     <string name="upgrade_screen_owned_iap_body">Tu pêbazirandina Pro-ya yek-car heye. Aboneya tune, nû kirin tune.</string>
-    <!-- Switch subscription -> one-time purchase -->
     <string name="upgrade_screen_owned_iap_purchase_note">Abonementiyek te nabe nûve bibe, ji ber vê tu niha dikariyi yekcar Pro kîrî bikî.</string>
     <string name="upgrade_screen_owned_iap_locked_note">Da ku yekcar Pro bikî, berî her tiştî abonementiyek xwe ya Google Play-ê betal bike. Ev pêşkêş gava ku nûve nehatibe danîn vebûye.</string>
     <string name="upgrade_screen_sub_still_renewing_message">Peymanê we hîn jî çalak e û nabe nûkirî. Pêşî ew di Google Play da betal bikin.</string>
-    <!-- Grace (waiting for Play to re-confirm) -->
+    <string name="upgrade_screen_purchase_check_failed_message">Kirînên te bi Google Play re nehat verastkirin. Ji kerema xwe dîsa biceribîne.</string>
+    <string name="upgrade_screen_pending_card_title">Peredan li bendê ye</string>
+    <string name="upgrade_screen_pending_card_body">Google Play hîn jî peredana te dişixule. Gava ku peredan biqede, Pro bixweber vedibe. Hin awayên peredanê dikarin demekê bidin domandin. Tiştek din tune ku tu pêwîst e bikî.</string>
+    <string name="upgrade_screen_pending_dialog_message">Google Play kirînek bi peredana li benda pejirandinê dît û hîn jî wê dişixule. Gava ku peredan biqede, Pro bixweber vedibe.</string>
     <string name="upgrade_screen_grace_title">Beşdareya we tê piştraskirin</string>
     <string name="upgrade_screen_grace_body">Em li bendî ne ku Google Play beşdareya Pro ya we dîsa piştrast bike. Ev bi awayekî xweser çareserî dibe.</string>
-    <!-- Restore -->
     <string name="upgrade_screen_restore_status_title">Rewş xelet xuya dike?</string>
     <string name="upgrade_screen_restore_status_body">Ger we Pro kiriye lê nayê nîşandan, li Google Play kontrollê zindî bike.</string>
     <string name="upgrade_screen_restore_success_message">Kirrê vegerand.</string>
-    <!-- Upgrade options card -->
     <string name="upgrade_screen_offers_title">Vebijarkên nûvekirinê</string>
     <string name="upgrade_screen_offers_body">Taybetmendiyên wekhev, tenê modela berçavkandinê cuda ye.</string>
     <string name="upgrade_screen_offers_or">an</string>
@@ -48,24 +42,18 @@
     <string name="upgrade_screen_subscription_offer_body_no_trial">Salî nûkirin dike. Di her demî de di Google Play de betal bike.</string>
     <string name="upgrade_screen_iap_offer_title">Carek bikire</string>
     <string name="upgrade_screen_iap_offer_body">Yek peymê, nûkirin tune.</string>
-    <!-- Subscription-still-renewing dialog (blocks the switch) -->
     <string name="upgrade_screen_sub_still_renewing_title">Aboneya Hê Aktîf e</string>
-    <!-- Failed-restore troubleshooting dialog -->
     <string name="upgrade_screen_restore_checked_message">Google Play tenê nû hat kontrolkirin, lê kirîya Pro-yê ya ji hesaba ku vê sepê bikar tîne nehat pejirandin.</string>
     <string name="upgrade_screen_restore_multiaccount_hint">Gelek hesab dikarin Google Play-ê têkev bikin. Stkirina sepê ji rûpela malê ya Google Play bê bicih dike ku ew bi hesabeke diyarkirî re têkilî bibe.</string>
     <string name="upgrade_screen_restore_sync_patience_hint">Hemdamîya Google Play dikare demek bigire. Biceribînin ku sîstema nû bikiriş, dîskerê Google Play Store paqij bikiriş, an jî bê derewî sekinê.</string>
     <string name="upgrade_screen_restore_contact_hint">Hîn jî tê êşkirtin? Piştiranê ji e-nameyê ya ku kirînê kiribe bikişîne û jimara fermangeha Google Play-ê ya te cih bikiriş.</string>
-    <!-- Screen title shown while Pro is not active -->
-    <!-- %1$s is the full localized brand ("Permission Pilot Pro", composed from the title prefix + suffix) — translate the sentence around it, keep the placeholder. -->
     <string name="upgrade_screen_title_template">%1$s wergir</string>
     <string name="upgrade_screen_benefits_title">Sûdên pêşbirkî</string>
     <string name="upgrade_screen_thanks_toast">Tu ên çêtirîn! ❤️</string>
     <string name="upgrade_screen_grace_body_short">Pro hîn çalak e. Tê bendewarekirin ku Google Play kirîdanî were pejirandin. Hemû taybetmendiyên Pro ne girtî ne.</string>
     <string name="upgrade_screen_restore_body">Vegerandine ji Google Play dixwaze ku kirîdanên vê sepanê ji bo hesabê niha were kontrol kirin. Ew kirîdarî nû dest pê nakin.</string>
     <string name="upgrade_screen_restore_inconclusive_message">Kontrola Google Play ne qediya. Status kirîdanê te ne tê zanîn. Tiştek li ser hesaba te ne hat guhertin.</string>
-    <!-- Billing error descriptions -->
     <string name="upgrades_gplay_unavailable_error_description">Permission Pilot nikare bi Google Play re peyivîn. Google Play sazkirî û nûce ye? Hesabê Google têketî ye? Cache Google Play paqij bike û cihazê vegerandinê.</string>
-    <!-- Toast shown when the "Google Play" button of an error dialog can't open Google Play's app info, e.g. Google Play is missing or blocked on this device. "Google Play" is a brand name, keep it untranslated. -->
     <string name="upgrades_gplay_not_installed_message">Google Play neyê vekirin. Dibe ku ew tune be, neçalak kirî be an jî li ser vê cîhazbankî sînordarkî be.</string>
     <string name="upgrades_gplay_billing_error_label">Pirsgirêka Google Play</string>
     <string name="upgrades_gplay_billing_error_description">Pirsgirêk bi Google Play re derket. Paşê hewl bide an cihazê vegerandinê.
