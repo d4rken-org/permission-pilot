@@ -42,6 +42,13 @@
 ./gradlew lintFossDebug
 ```
 
+Verify that the gplay flavor is obfuscated and the foss flavor is not:
+
+```bash
+./gradlew assembleFossRelease assembleGplayRelease bundleGplayRelease
+bash tools/r8/check-obfuscation.sh
+```
+
 ## Screenshots
 
 Screenshot generation and Play Store upload is a multi-step procedure — invoke the `/screenshots` skill.
