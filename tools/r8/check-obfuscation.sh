@@ -69,7 +69,7 @@ if [ -z "$BUNDLE" ]; then
     echo "FAIL: no .aab in app/build/outputs/bundle/gplayRelease/ - run bundleGplayRelease first"
     exit 1
 fi
-if unzip -l "$BUNDLE" | grep -qF 'BUNDLE-METADATA/com.android.tools.build.obfuscation/proguard.map'; then
+if [ "$(unzip -l "$BUNDLE" | grep -cF 'BUNDLE-METADATA/com.android.tools.build.obfuscation/proguard.map' || true)" -ge 1 ]; then
     echo "OK: $BUNDLE carries the obfuscation mapping"
 else
     echo "FAIL: $BUNDLE has no BUNDLE-METADATA/com.android.tools.build.obfuscation/proguard.map"
