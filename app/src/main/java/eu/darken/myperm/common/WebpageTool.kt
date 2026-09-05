@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import javax.inject.Inject
 
 @Reusable
@@ -25,9 +26,12 @@ class WebpageTool @Inject constructor(
             context.startActivity(intent)
             true
         } catch (e: Exception) {
-            log(ERROR) { "Failed to launch: ${e.asLog()}" }
+            log(TAG, ERROR) { "Failed to launch: ${e.asLog()}" }
             false
         }
     }
 
+    companion object {
+        private val TAG = logTag("WebpageTool")
+    }
 }

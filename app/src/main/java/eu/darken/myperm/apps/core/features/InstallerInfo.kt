@@ -15,7 +15,10 @@ import eu.darken.myperm.common.IPCFunnel
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.hasApiLevel
+
+private val TAG = logTag("Apps", "InstallerInfo")
 
 data class InstallerInfo(
     val installingPkg: Pkg?,
@@ -90,7 +93,7 @@ private suspend fun PackageInfo.getInstallerInfoLegacy(ipcFunnel: IPCFunnel): In
             ?.let { Pkg.Id(Pkg.Name(it)) }
             ?.let { it.toKnownPkg() ?: it.toContainer() }
     } catch (e: IllegalArgumentException) {
-        log(WARN) { "OS race condition, package ($packageName) was uninstalled?: ${e.asLog()}" }
+        log(TAG, WARN) { "OS race condition, package ($packageName) was uninstalled?: ${e.asLog()}" }
         null
     }
 

@@ -8,6 +8,7 @@ import android.provider.Settings
 import eu.darken.myperm.R
 import eu.darken.myperm.common.debug.logging.Logging.Priority.ERROR
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.error.HasLocalizedError
 import eu.darken.myperm.common.error.LocalizedError
 
@@ -48,10 +49,11 @@ class GplayServiceUnavailableException(cause: Throwable) :
     )
 
     private fun onLaunchFailed(e: Exception) {
-        log(ERROR) { "Can't launch settings intent for Google Play: $e" }
+        log(TAG, ERROR) { "Can't launch settings intent for Google Play: $e" }
     }
 
     companion object {
+        private val TAG = logTag("Upgrade", "Gplay", "ServiceUnavailable")
         private const val GPLAY_PKG = "com.android.vending"
     }
 }

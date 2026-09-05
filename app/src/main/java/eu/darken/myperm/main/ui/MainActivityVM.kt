@@ -77,7 +77,7 @@ class MainActivityVM @Inject constructor(
 
     fun increaseLaunchCount() = launch {
         generalSettings.launchCount.update {
-            log { "LaunchCount was $it" }
+            log(TAG) { "LaunchCount was $it" }
             it + 1
         }
     }
@@ -85,7 +85,7 @@ class MainActivityVM @Inject constructor(
     fun handleIntent(intent: Intent?) {
         val reportId = intent?.getLongExtra(WatcherNotifications.EXTRA_REPORT_ID, -1L) ?: -1L
         if (reportId > 0) {
-            log { "Deep-link to watcher report: $reportId" }
+            log(TAG) { "Deep-link to watcher report: $reportId" }
             launch {
                 deepLinkNav.emit(Nav.Tab.Watcher)
                 deepLinkNav.emit(Nav.Watcher.ReportDetail(reportId))

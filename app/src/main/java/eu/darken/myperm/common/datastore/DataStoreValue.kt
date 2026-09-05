@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import eu.darken.myperm.common.debug.logging.Logging.Priority.VERBOSE
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -17,6 +18,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import java.io.IOException
+
+private val TAG = logTag("DataStore", "Value")
 
 class DataStoreValue<T>(
     private val dataStore: DataStore<Preferences>,
@@ -28,7 +31,7 @@ class DataStoreValue<T>(
     val flow: Flow<T> = dataStore.data
         .catch { e ->
             if (e is IOException) {
-                log(VERBOSE) { "IOException reading DataStore key=${key.name}, emitting defaults" }
+                log(TAG, VERBOSE) { "IOException reading DataStore key=${key.name}, emitting defaults" }
                 emit(androidx.datastore.preferences.core.emptyPreferences())
             } else {
                 throw e
