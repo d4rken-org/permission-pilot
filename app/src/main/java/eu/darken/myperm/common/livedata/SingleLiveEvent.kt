@@ -23,6 +23,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -45,7 +46,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     @MainThread
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         if (hasActiveObservers()) {
-            log(WARN) { "Multiple observers registered but only one will be notified of changes." }
+            log(TAG, WARN) { "Multiple observers registered but only one will be notified of changes." }
         }
 
         // Observe the internal MutableLiveData
@@ -71,5 +72,9 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     @MainThread
     fun call() {
         value = null
+    }
+
+    companion object {
+        private val TAG = logTag("SingleLiveEvent")
     }
 }

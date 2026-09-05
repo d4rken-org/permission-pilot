@@ -10,10 +10,13 @@ import android.os.UserManager
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.asLog
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.permissions.core.Permission
 import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.jvm.jvmErasure
+
+private val TAG = logTag("Apps", "PackageManagerExtensions")
 
 fun PackageManager.getPackageInfo2(
     packageName: String,
@@ -62,6 +65,6 @@ fun UserManager.tryCreateUserHandle(handleId: Int): UserHandle? = try {
         }
         .call(handleId)
 } catch (e: Exception) {
-    log(WARN) { "tryCreateUserHandle($handleId) failed: ${e.asLog()}" }
+    log(TAG, WARN) { "tryCreateUserHandle($handleId) failed: ${e.asLog()}" }
     null
 }

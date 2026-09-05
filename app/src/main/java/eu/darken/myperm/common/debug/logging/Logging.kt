@@ -11,6 +11,8 @@ import java.io.StringWriter
  */
 
 object Logging {
+    private val TAG = logTag("Logging")
+
     enum class Priority(
         val intValue: Int,
         val shortLabel: String
@@ -50,7 +52,7 @@ object Logging {
 
     fun install(logger: Logger) {
         synchronized(internalLoggers) { internalLoggers.add(logger) }
-        log { "Was installed $logger" }
+        log(TAG) { "Was installed $logger" }
     }
 
     fun remove(logger: Logger) {
@@ -58,7 +60,7 @@ object Logging {
         // still installed, and one of those throwing must not be what keeps a dying logger in the
         // list — that is exactly the situation a failed recording start unwinds from.
         try {
-            log { "Removing: $logger" }
+            log(TAG) { "Removing: $logger" }
         } finally {
             synchronized(internalLoggers) { internalLoggers.remove(logger) }
         }
@@ -84,23 +86,8 @@ object Logging {
     }
 
     fun clearAll() {
-        log { "Clearing all loggers" }
+        log(TAG) { "Clearing all loggers" }
         synchronized(internalLoggers) { internalLoggers.clear() }
-    }
-}
-
-inline fun Any.log(
-    priority: Logging.Priority = Logging.Priority.DEBUG,
-    metaData: Map<String, Any>? = null,
-    message: () -> String,
-) {
-    if (Logging.hasReceivers) {
-        Logging.logInternal(
-            tag = logTag(logTagViaCallSite()),
-            priority = priority,
-            metaData = metaData,
-            message = message(),
-        )
     }
 }
 
@@ -126,17 +113,4 @@ fun Throwable.asLog(): String {
     printStackTrace(printWriter)
     printWriter.flush()
     return stringWriter.toString()
-}
-
-@PublishedApi
-internal fun Any.logTagViaCallSite(): String {
-    val javaClass = this::class.java
-    val fullClassName = javaClass.name
-    val outerClassName = fullClassName.substringBefore('$')
-    val simplerOuterClassName = outerClassName.substringAfterLast('.')
-    return if (simplerOuterClassName.isEmpty()) {
-        fullClassName
-    } else {
-        simplerOuterClassName.removeSuffix("Kt")
-    }
 }

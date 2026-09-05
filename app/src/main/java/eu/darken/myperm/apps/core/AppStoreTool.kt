@@ -8,6 +8,7 @@ import eu.darken.myperm.apps.core.features.AppStore
 import eu.darken.myperm.common.WebpageTool
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
+import eu.darken.myperm.common.debug.logging.logTag
 import eu.darken.myperm.common.hasApiLevel
 import javax.inject.Inject
 
@@ -28,23 +29,27 @@ class AppStoreTool @Inject constructor(
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             if (specific != null) {
-                log { "Using resovled app store intent: $specific" }
+                log(TAG) { "Using resovled app store intent: $specific" }
                 context.startActivity(specific)
                 return
             }
         }
         if (installer is AppStore) {
             installer.urlGenerator?.invoke(target.id)?.let {
-                log { "Using urlgenerator from known app store: $it" }
+                log(TAG) { "Using urlgenerator from known app store: $it" }
                 webpageTool.open(it)
                 return
             }
         }
-        log(WARN) { "No known way to open $target in $installer" }
+        log(TAG, WARN) { "No known way to open $target in $installer" }
     }
 
     private fun Intent.resolveToActivity(): Intent? = context.packageManager.resolveActivity(this, 0)?.let { result ->
         Intent(this.action)
             .apply { setClassName(result.activityInfo.packageName, result.activityInfo.name) }
+    }
+
+    companion object {
+        private val TAG = logTag("Apps", "StoreTool")
     }
 }
