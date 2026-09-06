@@ -72,6 +72,7 @@
     <string name="apps_details_installer_label">Install source</string>
     <string name="apps_details_installer_unknown_label">Information not available</string>
     <string name="apps_details_open_settings_error">Could not open app settings for this profile</string>
+    <string name="apps_details_open_settings_unavailable">No system settings page: Android reports this app as not installed for this user.</string>
     <string name="apps_details_open_app_error">Could not open this app</string>
 
     <string name="permissions_filter_manifest_label">AOSP permissions</string>

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Process
 import android.os.UserHandle
 import android.os.UserManager
@@ -18,6 +19,7 @@ import eu.darken.myperm.apps.core.AppRepo
 import eu.darken.myperm.apps.core.PermissionUse
 import eu.darken.myperm.apps.core.Pkg
 import eu.darken.myperm.apps.core.features.UsesPermission
+import eu.darken.myperm.apps.core.getPackageInfo2
 import eu.darken.myperm.apps.core.manifest.ManifestHintRepo
 import eu.darken.myperm.apps.core.manifest.ManifestHintScanner
 import eu.darken.myperm.apps.core.tryCreateUserHandle
@@ -26,6 +28,7 @@ import eu.darken.myperm.common.coroutine.DispatcherProvider
 import eu.darken.myperm.common.debug.logging.Logging.Priority.WARN
 import eu.darken.myperm.common.debug.logging.log
 import eu.darken.myperm.common.debug.logging.logTag
+import eu.darken.myperm.common.hasApiLevel
 import eu.darken.myperm.common.navigation.Nav
 import eu.darken.myperm.common.uix.ViewModel4
 import eu.darken.myperm.common.upgrade.UpgradeRepo
@@ -94,6 +97,26 @@ class AppDetailsViewModel @Inject constructor(
     } catch (e: SecurityException) {
         log(TAG, WARN) { "getActivityList($packageName, $userHandle) failed: $e" }
         emptyList()
+    }
+
+    // startAppDetailsActivity is a void binder call: Settings finishes itself when it cannot
+    // resolve the package, in another process, after this call has already returned. An
+    // unresolvable package can therefore only be caught before the call, never reported after.
+    private fun LauncherApps.canOpenSettingsFor(userHandle: UserHandle): Boolean = when {
+        userHandle == Process.myUserHandle() ->
+            context.packageManager.getPackageInfo2(pkgName.value) != null
+
+        hasApiLevel(Build.VERSION_CODES.O) -> try {
+            getApplicationInfo(pkgName.value, PackageManager.MATCH_DISABLED_COMPONENTS, userHandle) != null
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        } catch (e: SecurityException) {
+            // Profile not inspectable; do not block an action that may still work.
+            log(TAG, WARN) { "getApplicationInfo(${pkgName.value}, $userHandle) denied: $e" }
+            true
+        }
+
+        else -> true
     }
 
     data class PermItem(
@@ -378,15 +401,20 @@ class AppDetailsViewModel @Inject constructor(
         log(TAG) { "onGoSettings for $pkgName (userHandleId=$userHandleId)" }
         val la = launcherApps
         val userHandle = getUserHandle()
-        if (la != null && userHandle != null) {
-            try {
-                la.startAppDetailsActivity(ComponentName(pkgName.value, ""), userHandle, null, null)
-            } catch (e: Exception) {
-                log(TAG) { "startAppDetailsActivity failed: $e" }
-                Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            log(TAG) { "LauncherApps or UserHandle unavailable, falling back to plain intent" }
+        if (la == null || userHandle == null) {
+            log(TAG, WARN) { "LauncherApps or UserHandle unavailable for $pkgName" }
+            Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!la.canOpenSettingsFor(userHandle)) {
+            log(TAG, WARN) { "$pkgName is not installed for $userHandle, not launching settings" }
+            Toast.makeText(context, R.string.apps_details_open_settings_unavailable, Toast.LENGTH_LONG).show()
+            return
+        }
+        try {
+            la.startAppDetailsActivity(ComponentName(pkgName.value, ""), userHandle, null, null)
+        } catch (e: Exception) {
+            log(TAG) { "startAppDetailsActivity failed: $e" }
             Toast.makeText(context, R.string.apps_details_open_settings_error, Toast.LENGTH_SHORT).show()
         }
     }
