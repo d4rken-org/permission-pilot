@@ -1,13 +1,11 @@
 package eu.darken.myperm.apps.core
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Parcelable
 import android.os.Process
 import android.os.UserHandle
-import android.provider.Settings
 import androidx.core.net.toUri
 import eu.darken.myperm.apps.core.known.AKnownPkg
 import kotlinx.parcelize.Parcelize
@@ -57,8 +55,3 @@ fun Pkg.Id.toContainer(): Pkg.Container = Pkg.Container(this)
 fun Pkg.Name.toPackageUri(): Uri = "package:${value}".toUri()
 
 fun Pkg.Name.toNotificationId(): Int = value.hashCode()
-
-fun Pkg.getSettingsIntent(context: Context): Intent =
-    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-        data = packageName.toPackageUri()
-    }
