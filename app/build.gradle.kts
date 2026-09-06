@@ -113,6 +113,16 @@ android {
         }
     }
 
+    packaging {
+        resources {
+            // mockk-agent-android and checkerframework each ship a stray 25-byte MANIFEST.MF at
+            // their jar root, which collides when the androidTest APK merges java resources. Both
+            // contain only "Manifest-Version: 1.0". This pattern is anchored at the archive root,
+            // so checkerframework's real META-INF/MANIFEST.MF is untouched.
+            excludes += "MANIFEST.MF"
+        }
+    }
+
     tasks.withType<Test> {
         useJUnitPlatform()
     }
