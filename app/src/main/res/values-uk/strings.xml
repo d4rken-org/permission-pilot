@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Допомога</string>
     <string name="general_error_label">Помилка</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Джерело встановлення</string>
     <string name="apps_details_installer_unknown_label">Інформація недоступна</string>
     <string name="apps_details_open_settings_error">Не вдалося відкрити налаштування програми для цього профілю</string>
+    <string name="apps_details_open_settings_unavailable">Немає сторінки системних налаштувань: Android повідомляє, що цей додаток не встановлено для цього користувача.</string>
     <string name="apps_details_open_app_error">Не вдалося відкрити цю програму</string>
     <string name="permissions_filter_manifest_label">AOSP дозволи</string>
     <string name="permissions_filter_system_label">Оголошено системною програмою</string>
@@ -168,7 +167,6 @@
     <string name="apps_details_perm_help_special">Спеціальні — Потребує перемикання перемикача в налаштуваннях системи.</string>
     <string name="apps_details_perm_help_install">Встановлення — Надається автоматично під час встановлення програми. Дії користувача не потрібні.</string>
     <string name="apps_details_perm_help_declared">Іконка ⚠ означає, що цей дозвіл створено самою програмою, а не є стандартним дозволом Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Маніфест застосунку</string>
     <string name="apps_details_manifest_queued">У черзі на аналіз…</string>
     <string name="apps_details_manifest_loading">Аналіз маніфесту…</string>
@@ -197,10 +195,8 @@
         <item quantity="many">%d запитів постачальника</item>
         <item quantity="other">%d запитів постачальника</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Може виявити більшість запускаємих додатків</string>
     <string name="apps_details_manifest_hint_excessive">Перевіряє наявність багатьох конкретних застосунків</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Переглядач маніфесту</string>
     <string name="apps_manifest_viewer_search_hint">Пошук у маніфесті</string>
     <string name="apps_manifest_viewer_error_unknown">Невідома помилка при завантаженні маніфесту.</string>
@@ -265,26 +261,21 @@
         <item quantity="other">%d видалених програм зі збереженими даними також запитують цей дозвіл.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Програми, встановлені в інших профілях користувачів, виключені з розрахунку вище через обмеження Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Час виконання</string>
     <string name="permissions_tag_install_time_label">Під час встановлення</string>
     <string name="permissions_tag_special_access_label">Спеціальний доступ</string>
     <string name="permissions_tag_documented_label">Документований</string>
     <string name="permissions_tag_notable_label">Помітний</string>
     <string name="permissions_tag_non_standard_label">Нестандартний</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Використовується</string>
     <string name="permissions_status_unknown_label">Невідомо</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Система</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d ще</item>
         <item quantity="few">+%d ще</item>
         <item quantity="many">+%d ще</item>
         <item quantity="other">+%d ще</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Індикатори дозволів</string>
     <string name="permissions_details_help_section_protection">Тип захисту</string>
     <string name="permissions_details_help_dangerous">Небезпечний — Потребує явного схвалення користувача у часі виконання. Може отримати доступ до конфіденційних даних або функцій пристрою.</string>
@@ -430,7 +421,6 @@
     <string name="debug_debuglog_short_recording_message">Журнал налагодження повинен зфіксувати проблему в момент її виникнення. Розпочніть запис, відтворіть проблему, а потім зупиніть запис.</string>
     <string name="debug_debuglog_short_recording_continue">Продовжити запис</string>
     <string name="debug_debuglog_short_recording_stop">Все одно зупинити</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d журнал налагодження (%2$s)</item>
         <item quantity="few">%1$d журнали налагодження (%2$s)</item>
@@ -454,7 +444,6 @@
     <string name="support_contact_sent_title">Повідомлення надіслано?</string>
     <string name="support_contact_sent_message">Якщо ви надіслали електронний лист, цей сеанс можна очистити.</string>
     <string name="general_close_action">Закрити</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Зв’язатися з підтримкою</string>
     <string name="contact_category_label">Категорія</string>
     <string name="contact_category_question_label">Питання</string>
@@ -484,7 +473,6 @@
     <string name="contact_no_email_app">На цьому пристрої не знайдено жодного додатка електронної пошти.</string>
     <string name="contact_welcome_message">Я особисто читаю кожне повідомлення і намагаюсь відповісти. Оскільки я самостійно займаюсь розробкою, виправленням помилок і підтримкою, це може зайняти деякий час. Дякую за розуміння.</string>
     <string name="contact_footer_message">Ваше повідомлення буде надіслано електронною поштою. Інформація про пристрій і налаштування додається автоматично. До електронного листа можна додати знімки або відео. Будь ласка, пишіть англійською мовою, якщо можливо.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Журнал налагодження</string>
     <string name="debug_debuglog_screen_subtitle">Експортувати інформацію налагодження для усунення неполадок</string>
     <string name="debug_debuglog_screen_sensitive_title">Конфіденційна інформація</string>
@@ -497,13 +485,11 @@
         <item quantity="many">Файли %1$d готові (%2$s)</item>
         <item quantity="other">Файли %1$d готові (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dхв %2$dс</string>
     <string name="debug_debuglog_screen_duration_s">%1$dс</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Питання</string>
     <string name="contact_email_tag_feature">Функція</string>
     <string name="contact_email_tag_bug">Помилка</string>
@@ -512,7 +498,6 @@
     <string name="onboarding_body1">Ця програма допомагає вам навігувати встановленими програмами та виявляти дозволи.</string>
     <string name="onboarding_body2">Permission Pilot збирає інформацію про встановлені програми, щоб дозволити перелічувати ваші програми та перехресно посилатися на їх дозволи під час використання цієї програми.</string>
     <string name="onboarding_body3">Permission Pilot не має реклами і обробляє дані лише локально.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Тема додатку</string>
     <string name="ui_theme_mode_system_label">Системна</string>
     <string name="ui_theme_mode_dark_label">Темна</string>
@@ -529,7 +514,6 @@
     <string name="ui_theme_color_disabled_subtitle">Використовує кольори шпалери</string>
     <string name="upgrade_required_subtitle">Оновіть для розблокування</string>
     <string name="settings_category_appearance_label">Зовнішній вигляд</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Налаштування теми</string>
     <string name="upgrade_benefit_filtering">Розширена фільтрація</string>
     <string name="upgrade_benefit_export">Пакетний експорт даних</string>
@@ -542,9 +526,7 @@
     <string name="general_copy_action">Копіювати</string>
     <string name="general_copied_to_clipboard_msg">Збережено у буфері</string>
     <string name="general_view_details_for_x_action">Переглянути деталі для %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус оновлення та параметри</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Спостерігач</string>
     <string name="watcher_dashboard_feature_title">Спостерігач дозволів</string>
     <string name="watcher_dashboard_feature_description">Отримуйте сповіщення, коли оновлення програми додає нові дозволи або змінює існуючі. Спостерігач дозволів перевіряє ваші програми після кожного оновлення і створює звіт, якщо щось змінилось.</string>
@@ -670,7 +652,6 @@
     <string name="snapshot_sync_channel_name">Синхронізація знімків</string>
     <string name="snapshot_sync_channel_description">Фонова синхронізація даних програми</string>
     <string name="snapshot_sync_notification_title">Синхронізація даних програми…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Вибрати все</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d вибрано</item>
@@ -678,7 +659,6 @@
         <item quantity="many">%d вибрано</item>
         <item quantity="other">%d вибрано</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Експортувати інформацію про додаток</string>
     <string name="export_permission_info_action">Експортувати інформацію про дозвіл</string>
     <plurals name="export_title_apps">

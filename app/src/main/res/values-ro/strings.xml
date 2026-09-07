@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Ajutor</string>
     <string name="general_error_label">Eroare</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Sursa de instalare</string>
     <string name="apps_details_installer_unknown_label">Informație nu este disponibilă</string>
     <string name="apps_details_open_settings_error">Nu s-a putut deschide setările aplicației pentru acest profil</string>
+    <string name="apps_details_open_settings_unavailable">Nicio pagină de setări de sistem: Android raportează că această aplicație nu este instalată pentru acest utilizator.</string>
     <string name="apps_details_open_app_error">Nu s-a putut deschide această aplicație</string>
     <string name="permissions_filter_manifest_label">Permisiuni AOSP</string>
     <string name="permissions_filter_system_label">Declarate de aplicația de sistem</string>
@@ -167,7 +166,6 @@
     <string name="apps_details_perm_help_special">Special — Necesită activarea unui comutator în setările sistemului.</string>
     <string name="apps_details_perm_help_install">Instalare — Acordat automat când aplicația este instalată. Nu este necesară nicio acțiune din partea utilizatorului.</string>
     <string name="apps_details_perm_help_declared">Pictograma ⚠ înseamnă că această permisiune este creată de aplicație, nu este o permisiune Android standard.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifestul aplicației</string>
     <string name="apps_details_manifest_queued">În așteptare pentru analiză…</string>
     <string name="apps_details_manifest_loading">Se analizează manifestul…</string>
@@ -192,10 +190,8 @@
         <item quantity="few">%d interogări furnizor</item>
         <item quantity="other">%d de interogări furnizor</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Poate descoperi cele mai multe aplicații lansabile</string>
     <string name="apps_details_manifest_hint_excessive">Verifică multe aplicații specifice</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Vizualizator de manifest</string>
     <string name="apps_manifest_viewer_search_hint">Caută în manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Eroare necunoscută la încărcarea manifestului.</string>
@@ -253,25 +249,20 @@
         <item quantity="other">%d de aplicații dezinstalate cu date reținute solicită, de asemenea, această permisiune.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplicațiile instalate în alte profiluri de utilizator sunt excluse din calculul de mai sus din cauza restricțiilor Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Runtime</string>
     <string name="permissions_tag_install_time_label">La instalare</string>
     <string name="permissions_tag_special_access_label">Acces special</string>
     <string name="permissions_tag_documented_label">Documentată</string>
     <string name="permissions_tag_notable_label">Notabilă</string>
     <string name="permissions_tag_non_standard_label">Nestandardă</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">În uz</string>
     <string name="permissions_status_unknown_label">Necunoscut</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistem</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d mai mult</item>
         <item quantity="few">+%d mai multe</item>
         <item quantity="other">+%d mai multe</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indicatori de permisiuni</string>
     <string name="permissions_details_help_section_protection">Tip de protecție</string>
     <string name="permissions_details_help_dangerous">Periculoasă — Necesită aprobarea explicită a utilizatorului la runtime. Poate accesa date sensibile sau funcții ale dispozitivului.</string>
@@ -417,7 +408,6 @@
     <string name="debug_debuglog_short_recording_message">Un jurnal de depanare trebuie să captureze problema când aceasta apare. Porneşte înregistrarea, reproduce problema, apoi opreşte înregistrarea.</string>
     <string name="debug_debuglog_short_recording_continue">Continuă înregistrarea</string>
     <string name="debug_debuglog_short_recording_stop">Opreşte oricum</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d jurnal de depanare (%2$s)</item>
         <item quantity="few">%1$d jurnale de depanare (%2$s)</item>
@@ -440,7 +430,6 @@
     <string name="support_contact_sent_title">Mesaj trimis?</string>
     <string name="support_contact_sent_message">Dacă ai trimis e-mailul, această sesiune poate fi închisă.</string>
     <string name="general_close_action">Închide</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Contactează suportul</string>
     <string name="contact_category_label">Categorie</string>
     <string name="contact_category_question_label">Întrebări</string>
@@ -469,7 +458,6 @@
     <string name="contact_no_email_app">Nicio aplicație de e-mail găsită pe acest dispozitiv.</string>
     <string name="contact_welcome_message">Citesc fiecare mesaj personal şi fac tot posibilul să răspund. Deoarece mă ocup singur de dezvoltare, corecții de erori şi suport, poate dura puțin. Mulțumesc pentru răbdare.</string>
     <string name="contact_footer_message">Mesajul tău va fi trimis prin e-mail. Informațiile despre dispozitiv şi configurare sunt ataşate automat. Poți ataşa capturi de ecran sau un video la e-mail. Te rugam să scrii în engleză dacă este posibil.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Jurnal de depanare</string>
     <string name="debug_debuglog_screen_subtitle">Exportă informații de depanare pentru depanare</string>
     <string name="debug_debuglog_screen_sensitive_title">Informații sensibile</string>
@@ -481,13 +469,11 @@
         <item quantity="few">%1$d fișiere gata (%2$s)</item>
         <item quantity="other">%1$d fișiere gata (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Întrebări</string>
     <string name="contact_email_tag_feature">Funcționalitate</string>
     <string name="contact_email_tag_bug">Eroare</string>
@@ -496,7 +482,6 @@
     <string name="onboarding_body1">Această aplicație vă ajută să navigați prin aplicațiile instalate și să descoperiți permisiunile.</string>
     <string name="onboarding_body2">Permission Pilot colectează informații despre aplicațiile instalate pentru a permite listarea aplicațiilor și compararea permisiunilor acestora când utilizați această aplicație.</string>
     <string name="onboarding_body3">Permission Pilot nu are reclame și procesează datele doar local.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Mod temă</string>
     <string name="ui_theme_mode_system_label">Sistem</string>
     <string name="ui_theme_mode_dark_label">Întunecat</string>
@@ -513,7 +498,6 @@
     <string name="ui_theme_color_disabled_subtitle">Foloseşte culorile tapetului</string>
     <string name="upgrade_required_subtitle">Actualizează pentru a debloca</string>
     <string name="settings_category_appearance_label">Aspect</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Personalizare temă</string>
     <string name="upgrade_benefit_filtering">Filtrare avansată</string>
     <string name="upgrade_benefit_export">Export date în lot</string>
@@ -526,9 +510,7 @@
     <string name="general_copy_action">Copiază</string>
     <string name="general_copied_to_clipboard_msg">Copiat în clipboard</string>
     <string name="general_view_details_for_x_action">Vizualizați detaliile pentru %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Status upgrade și opțiuni</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Watcher</string>
     <string name="watcher_dashboard_feature_title">Permission Watcher</string>
     <string name="watcher_dashboard_feature_description">Primeşte notificări când o actualizare a aplicației adaugă permisiuni noi sau modifică unele existente. Permission Watcher verifică aplicațiile după fiecare actualizare şi creează un raport dacă ceva s-a modificat.</string>
@@ -646,14 +628,12 @@
     <string name="snapshot_sync_channel_name">Sincronizare instantaneu</string>
     <string name="snapshot_sync_channel_description">Sincronizare date aplicații în fundal</string>
     <string name="snapshot_sync_notification_title">Sincronizare date aplicații…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Selectare tot</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d selectat</item>
         <item quantity="few">%d selectate</item>
         <item quantity="other">%d selectate</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportă informații despre aplicație</string>
     <string name="export_permission_info_action">Exportă informații despre permisiune</string>
     <plurals name="export_title_apps">

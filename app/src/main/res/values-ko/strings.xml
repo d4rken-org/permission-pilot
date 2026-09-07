@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">도움말</string>
     <string name="general_error_label">오류</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">설치 소스</string>
     <string name="apps_details_installer_unknown_label">정보를 사용할 수 없음</string>
     <string name="apps_details_open_settings_error">이 프로필의 앱 설정을 열 수 없습니다</string>
+    <string name="apps_details_open_settings_unavailable">시스템 설정 페이지 없음: Android에서 이 앱이 이 사용자용으로 설치되지 않은 것으로 보고했어요.</string>
     <string name="apps_details_open_app_error">이 앱을 열 수 없습니다</string>
     <string name="permissions_filter_manifest_label">AOSP 권한</string>
     <string name="permissions_filter_system_label">시스템 앱에 의해 선언됨</string>
@@ -165,7 +164,6 @@
     <string name="apps_details_perm_help_special">특수 — 시스템 설정에서 스위치를 켜야 합니다.</string>
     <string name="apps_details_perm_help_install">설치 — 앱이 설치될 때 자동으로 부여됩니다. 사용자 조작이 필요하지 않습니다.</string>
     <string name="apps_details_perm_help_declared">⚠ 아이콘은 이 권한이 표준 Android 권한이 아닌 앱 자체에서 생성되었음을 의미합니다.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">앱 매니페스트</string>
     <string name="apps_details_manifest_queued">분석 대기 중…</string>
     <string name="apps_details_manifest_loading">매니페스트 분석 중…</string>
@@ -182,10 +180,8 @@
     <plurals name="apps_details_manifest_providers">
         <item quantity="other">%d개의 프로바이더 쿼리</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">대부분의 실행 가능한 앱을 찾을 수 있어요</string>
     <string name="apps_details_manifest_hint_excessive">많은 특정 앱을 확인합니다</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">매니페스트 뷰어</string>
     <string name="apps_manifest_viewer_search_hint">매니페스트에서 검색</string>
     <string name="apps_manifest_viewer_error_unknown">매니페스트 로드 중 알 수 없는 오류</string>
@@ -229,23 +225,18 @@
         <item quantity="other">데이터가 남아 있는 제거된 앱 %d개도 이 권한을 요청합니다.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">다른 사용자 프로필에 설치된 앱은 Android 제한으로 인해 위 계산에서 제외되었습니다.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">런타임</string>
     <string name="permissions_tag_install_time_label">설치 시</string>
     <string name="permissions_tag_special_access_label">특수 접근</string>
     <string name="permissions_tag_documented_label">문서화됨</string>
     <string name="permissions_tag_notable_label">주목할 만한</string>
     <string name="permissions_tag_non_standard_label">비표준</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">사용 중</string>
     <string name="permissions_status_unknown_label">알 수 없음</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">기기 테마 사용</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="other">+%d개 더</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">권한 표시기</string>
     <string name="permissions_details_help_section_protection">보호 유형</string>
     <string name="permissions_details_help_dangerous">위험 — 런타임에서 명시적인 사용자 승인이 필요합니다. 민감한 데이터나 기기 기능에 접근할 수 있습니다.</string>
@@ -391,7 +382,6 @@
     <string name="debug_debuglog_short_recording_message">디버그 로그는 문제가 발생할 때 기록되어야 합니다. 록화를 시작하고 문제를 재현한 다음 록화를 중지하세요.</string>
     <string name="debug_debuglog_short_recording_continue">록화 계속</string>
     <string name="debug_debuglog_short_recording_stop">어쨌든 중지</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="other">디버그 로그 %1$d개 (%2$s)</item>
     </plurals>
@@ -412,7 +402,6 @@
     <string name="support_contact_sent_title">메시지를 보냈나요?</string>
     <string name="support_contact_sent_message">이메일을 보냈다면 이 세션을 정리할 수 있습니다.</string>
     <string name="general_close_action">닫기</string>
-    <!-- Contact form -->
     <string name="contact_support_label">지원 연락하기</string>
     <string name="contact_category_label">카테고리</string>
     <string name="contact_category_question_label">질문</string>
@@ -439,7 +428,6 @@
     <string name="contact_no_email_app">이 기기에서 이메일 앱을 찾을 수 없습니다.</string>
     <string name="contact_welcome_message">모든 메시지를 직접 읽고 최대한 답장하려 노력합니다. 개발, 버그 수정, 지원을 혼자 제처하기 때문에 시간이 조금 걸릴 수 있습니다. 기다려 주셔서 감사합니다.</string>
     <string name="contact_footer_message">메시지는 이메일로 전송됩니다. 기기 및 설정 정보가 자동으로 청부됩니다. 이메일에 스크린샷이나 동영상을 첨부할 수 있습니다. 가능하면 영어로 작성해 주세요.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">디버그 로그</string>
     <string name="debug_debuglog_screen_subtitle">문제 해결을 위한 디버그 정보 내보내기</string>
     <string name="debug_debuglog_screen_sensitive_title">민감한 정보</string>
@@ -449,13 +437,11 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="other">파일 %1$d개 준비 완료 (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$d분 %2$d초</string>
     <string name="debug_debuglog_screen_duration_s">%1$d초</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">질문</string>
     <string name="contact_email_tag_feature">기능</string>
     <string name="contact_email_tag_bug">버그</string>
@@ -464,7 +450,6 @@
     <string name="onboarding_body1">이 앱은 설치된 애플리케이션을 탐색하고 권한을 발견하는 데 도움이 됩니다.</string>
     <string name="onboarding_body2">Permission Pilot은 이 애플리케이션을 사용할 때 앱을 나열하고 해당 권한을 상호 참조할 수 있도록 설치된 애플리케이션 정보를 수집합니다.</string>
     <string name="onboarding_body3">Permission Pilot에는 광고가 없으며 데이터를 로컬에서만 처리합니다.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">테마 모드</string>
     <string name="ui_theme_mode_system_label">기기 테마 사용</string>
     <string name="ui_theme_mode_dark_label">어두운 테마</string>
@@ -481,7 +466,6 @@
     <string name="ui_theme_color_disabled_subtitle">배경화면 색상 사용</string>
     <string name="upgrade_required_subtitle">업그레이드하여 잠금 해제</string>
     <string name="settings_category_appearance_label">모양</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">테마 사용자 지정</string>
     <string name="upgrade_benefit_filtering">고급 필터링</string>
     <string name="upgrade_benefit_export">일괄 데이터 내보내기</string>
@@ -494,9 +478,7 @@
     <string name="general_copy_action">복사</string>
     <string name="general_copied_to_clipboard_msg">클립보드로 복사됨</string>
     <string name="general_view_details_for_x_action">%1$s의 세부정보 보기</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">업그레이드 상태 및 옵션</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">감시자</string>
     <string name="watcher_dashboard_feature_title">권한 감시자</string>
     <string name="watcher_dashboard_feature_description">앱 업데이트로 새 권한이 추가되거나 기존 권한이 변경될 때 알림을 받습니다. 권한 감시자는 각 업데이트 후 앱을 확인하고 변경이 있으면 보고서를 작성합니다.</string>
@@ -598,12 +580,10 @@
     <string name="snapshot_sync_channel_name">스냅샷 동기화</string>
     <string name="snapshot_sync_channel_description">백그라운드 앱 데이터 동기화</string>
     <string name="snapshot_sync_notification_title">앱 데이터 동기화 중…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">모두 선택</string>
     <plurals name="general_x_selected_label">
         <item quantity="other">%d개 선택됨</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">앱 정보 내보내기</string>
     <string name="export_permission_info_action">권한 정보 내보내기</string>
     <plurals name="export_title_apps">

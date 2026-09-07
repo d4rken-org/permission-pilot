@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">सहायता</string>
     <string name="general_error_label">त्रुटि</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">इंस्टॉल स्रोत</string>
     <string name="apps_details_installer_unknown_label">जानकारी उपलब्ध नहीं</string>
     <string name="apps_details_open_settings_error">इस प्रोफ़ाइल के लिए ऐप सेटिंग्स खोली नहीं जा सकी</string>
+    <string name="apps_details_open_settings_unavailable">सिस्टम सेटिंग्स पेज नहीं: Android रिपोर्ट करता है कि यह ऐप इस उपयोगकर्ता के लिए इंस्टॉल नहीं है।</string>
     <string name="apps_details_open_app_error">यह ऐप खोली नहीं जा सकी</string>
     <string name="permissions_filter_manifest_label">AOSP अनुमतियां</string>
     <string name="permissions_filter_system_label">सिस्टम ऐप द्वारा घोषित</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">विशेष — सिस्टम सेटिंग्स में स्विच टॉगल करने की आवश्यकता है।</string>
     <string name="apps_details_perm_help_install">इंस्टॉल — ऐप इंस्टॉल होने पर स्वचालित रूप से दी जाती है। उपयोगकर्ता की कोई कार्रवाई आवश्यक नहीं।</string>
     <string name="apps_details_perm_help_declared">⚠ आइकॉन का अर्थ है कि यह अनुमति स्वयं ऐप द्वारा बनाई गई है, न कि यह कोई मानक Android अनुमति है।</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">ऐप मेनिफेस्ट</string>
     <string name="apps_details_manifest_queued">विश्लेषण के लिए कतार में…</string>
     <string name="apps_details_manifest_loading">मेनिफेस्ट का विश्लेषण हो रहा है…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d प्रोवाइडर क्वेरी</item>
         <item quantity="other">%d प्रोवाइडर क्वेरीज़</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">अधिकांश लॉन्च योग्य ऐप्स खोज सकते हैं</string>
     <string name="apps_details_manifest_hint_excessive">कई विशिष्ट ऐप्स की जाँच करता है</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">मेनिफेस्ट व्यूअर</string>
     <string name="apps_manifest_viewer_search_hint">मेनिफेस्ट में खोजें</string>
     <string name="apps_manifest_viewer_error_unknown">मैनिफेस्ट लोड करने में अज्ञात त्रुटि।</string>
@@ -241,24 +237,19 @@
         <item quantity="other">डेटा रखने वाले %d अनइंस्टॉल ऐप्स भी इस अनुमति का अनुरोध करते हैं।</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android प्रतिबंधों के कारण अन्य उपयोगकर्ता प्रोफ़ाइल में इंस्टॉल किए गए ऐप्स को उपरोक्त गणना से बाहर रखा गया है।</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">रनटाइम</string>
     <string name="permissions_tag_install_time_label">इंस्टॉल समय</string>
     <string name="permissions_tag_special_access_label">विशेष एक्सेस</string>
     <string name="permissions_tag_documented_label">दस्तावेज़ीकृत</string>
     <string name="permissions_tag_notable_label">उल्लेखनीय</string>
     <string name="permissions_tag_non_standard_label">गैर-मानक</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">उपयोग में</string>
     <string name="permissions_status_unknown_label">अज्ञात</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">सिस्टम</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d और</item>
         <item quantity="other">+%d और</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">अनुमति संकेतक</string>
     <string name="permissions_details_help_section_protection">सुरक्षा प्रकार</string>
     <string name="permissions_details_help_dangerous">खतरनाक — रनटाइम पर उपयोगकर्ता की स्पष्ट स्वीकृति आवश्यक है। संवेदनशील डेटा या डिवाइस फ़ीचर एक्सेस कर सकती है।</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">डीबग लॉग को समस्या होने के दौरान उसे कैपचर करना ज़रूरी है। रिकॉर्डिंग शुरू करें, अपनी समस्या दोहराएं, फिर रिकॉर्डिंग बंद करें।</string>
     <string name="debug_debuglog_short_recording_continue">रिकॉर्डिंग जारी रखें</string>
     <string name="debug_debuglog_short_recording_stop">फिर भी रोकें</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d डीबग लॉग (%2$s)</item>
         <item quantity="other">%1$d डीबग लॉग (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">संदेश भेजा?</string>
     <string name="support_contact_sent_message">अगर आपने ईमेल भेजा, तो इस सेशन को साफ़ किया जा सकता है।</string>
     <string name="general_close_action">बंद करें</string>
-    <!-- Contact form -->
     <string name="contact_support_label">सहायता से संपर्क करें</string>
     <string name="contact_category_label">श्रेणी</string>
     <string name="contact_category_question_label">प्रश्न</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">इस डिवाइस पर कोई ईमेल ऐप नहीं मिली।</string>
     <string name="contact_welcome_message">मैं हर संदेश खुद पढ़ता हूं और जवाब देने की पूरी कोशिश करता हूं। चूंकि मैं डेवलपमेंट, बग फ़िक्स और सहायता अकेले संभालता हूं, इसमें कुछ समय लग सकता है। आपके धैर्य के लिए धन्यवाद।</string>
     <string name="contact_footer_message">आपका संदेश ईमेल द्वारा भेजा जाएगा। डिवाइस और सेटअप जानकारी स्वचालित रूप से जोड़ी जाती है। आप ईमेल में स्क्रीनशॉट या वीडियो जोड़ सकते हैं। कृपया संभव हो तो अंग्रेज़ी में लिखें।</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">डीबग लॉग</string>
     <string name="debug_debuglog_screen_subtitle">समस्या निवारण के लिए डीबग जानकारी एक्सपोर्ट करें</string>
     <string name="debug_debuglog_screen_sensitive_title">संवेदनशील जानकारी</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d फ़ाइल तैयार (%2$s)</item>
         <item quantity="other">%1$d फ़ाइलें तैयार (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dम %2$dस</string>
     <string name="debug_debuglog_screen_duration_s">%1$dस</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">प्रश्न</string>
     <string name="contact_email_tag_feature">फ़ीचर</string>
     <string name="contact_email_tag_bug">बग</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">यह ऐप आपको इंस्टॉल किए गए ऐप्स को नेविगेट करने और अनुमतियों की खोज करने में मदद करता है।</string>
     <string name="onboarding_body2">Permission Pilot इंस्टॉल किए गए ऐप्स की जानकारी एकत्र करता है ताकि इस एप्लिकेशन का उपयोग करते समय आपके ऐप्स की सूची और उनकी अनुमतियों को क्रॉस-रेफ़रेंस करना संभव हो।</string>
     <string name="onboarding_body3">Permission Pilot में कोई विज्ञापन नहीं है और यह केवल स्थानीय रूप से डेटा प्रोसेस करता है।</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">थीम मोड</string>
     <string name="ui_theme_mode_system_label">सिस्टम</string>
     <string name="ui_theme_mode_dark_label">डार्क</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">वॉलपेपर रंगों का उपयोग करता है</string>
     <string name="upgrade_required_subtitle">अनलॉक करने के लिए अपग्रेड करें</string>
     <string name="settings_category_appearance_label">दिखावट</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">थीम अनुकूलन</string>
     <string name="upgrade_benefit_filtering">उन्नत फ़िल्टरिंग</string>
     <string name="upgrade_benefit_export">बैच डेटा एक्सपोर्ट</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">कॉपी करें</string>
     <string name="general_copied_to_clipboard_msg">क्लिपबोर्ड पर प्रतिलिपि बनाई गई</string>
     <string name="general_view_details_for_x_action">%1$s के लिए विवरण देखें</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">अपग्रेड की स्थिति और विकल्प</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">वॉचर</string>
     <string name="watcher_dashboard_feature_title">अनुमति वॉचर</string>
     <string name="watcher_dashboard_feature_description">जब कोई ऐप अपडेट नई अनुमतियां जोड़ता है या मौजूदा अनुमतियां बदलता है तो सूचना पाएं। अनुमति वॉचर प्रत्येक अपडेट के बाद आपके ऐप्स जांचता है और कुछ बदलने पर रिपोर्ट बनाता है।</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">स्नैपशॉट सिंक</string>
     <string name="snapshot_sync_channel_description">बैकग्राउंड ऐप डेटा सिंक्रनाइज़ेशन</string>
     <string name="snapshot_sync_notification_title">ऐप डेटा सिंक हो रहा है…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">सभी चुनें</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d चुना गया</item>
         <item quantity="other">%d चुने गए</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">ऐप जानकारी निर्यात करें</string>
     <string name="export_permission_info_action">अनुमति जानकारी निर्यात करें</string>
     <plurals name="export_title_apps">

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Ohje</string>
     <string name="general_error_label">Virhe</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Asennuslähde</string>
     <string name="apps_details_installer_unknown_label">Tieto ei saatavilla</string>
     <string name="apps_details_open_settings_error">Sovelluksen asetuksia ei voitu avata tälle profiilille</string>
+    <string name="apps_details_open_settings_unavailable">Järjestelmäasetuksia ei ole: Android ilmoittaa, että sovellusta ei ole asennettu tälle käyttäjälle.</string>
     <string name="apps_details_open_app_error">Tätä sovellusta ei voitu avata</string>
     <string name="permissions_filter_manifest_label">AOSP-käyttöoikeudet</string>
     <string name="permissions_filter_system_label">Järjestelmäsovelluksen määrittelemä</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Erityinen — Vaatii kytkimen vaihtamista järjestelmäasetuksissa.</string>
     <string name="apps_details_perm_help_install">Asennusaikainen — Myönnetään automaattisesti, kun sovellus asennetaan. Ei vaadi käyttäjän toimia.</string>
     <string name="apps_details_perm_help_declared">⚠-kuvake tarkoittaa, että tämä lupa on sovelluksen itse luoma, eikä se ole standardi Android-lupa.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Sovellusmanifesti</string>
     <string name="apps_details_manifest_queued">Jonossa analyysia varten…</string>
     <string name="apps_details_manifest_loading">Analysoidaan manifesti…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d tarjoajakyselyjä</item>
         <item quantity="other">%d tarjoajakyselyt</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Voi löytää useimmat käynnistettävät sovellukset</string>
     <string name="apps_details_manifest_hint_excessive">Tarkistaa monia tiettyjä sovelluksia</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestin katseluohjelma</string>
     <string name="apps_manifest_viewer_search_hint">Hae manifestista</string>
     <string name="apps_manifest_viewer_error_unknown">Tuntematon virhe manifestin lataamisessa.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d poistettua sovellusta säilynein tiedoin pyyttää myös tätä lupaa.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Muihin käyttäjäprofiileihin asennetut sovellukset on jätetty pois yllä olevasta laskelmasta Androidin rajoitusten vuoksi.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Ajonaikainen</string>
     <string name="permissions_tag_install_time_label">Asennusaikainen</string>
     <string name="permissions_tag_special_access_label">Erityinen käyttöoikeus</string>
     <string name="permissions_tag_documented_label">Dokumentoitu</string>
     <string name="permissions_tag_notable_label">Merkittävä</string>
     <string name="permissions_tag_non_standard_label">Ei-standardi</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Käytössä</string>
     <string name="permissions_status_unknown_label">Tuntematon</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Järjestelmä</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d lisää</item>
         <item quantity="other">+%d lisää</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Lupaindikaattorit</string>
     <string name="permissions_details_help_section_protection">Suojatyyppi</string>
     <string name="permissions_details_help_dangerous">Vaarallinen — Vaatii käyttäjän nimenomaisen hyväksynnän ajon aikana. Voi käyttää arkaluonteisia tietoja tai laitteen toimintoja.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Virheenkorjauslokin on tallennettava ongelma sen tapahtuessa. Aloita tallennus, toista ongelma ja lopeta tallennus.</string>
     <string name="debug_debuglog_short_recording_continue">Jatka tallennusta</string>
     <string name="debug_debuglog_short_recording_stop">Lopeta joka tapauksessa</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d virheenkorjausloki (%2$s)</item>
         <item quantity="other">%1$d virheenkorjauslokia (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Viesti lähetetty?</string>
     <string name="support_contact_sent_message">Jos lähetit sähköpostin, tämä istunto voidaan siivota.</string>
     <string name="general_close_action">Sulje</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Ota yhteyttä tukeen</string>
     <string name="contact_category_label">Luokka</string>
     <string name="contact_category_question_label">Kysymys</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Tällä laitteella ei löydy sähköpostiohjelmaa.</string>
     <string name="contact_welcome_message">Luen jokaisen viestin itse ja teen parhaani vastatakseni. Koska hoidan kehityksen, virheiden korjauksen ja tuen yksin, se voi viedä hieman aikaa. Kiitos kärsivällisyydestäsi.</string>
     <string name="contact_footer_message">Viestisi lähetetään sähköpostitse. Laite- ja asetustiedot liitetään automaattisesti. Voit liittää kuvakaappauksia tai videon sähköpostiin. Kirjoita englanniksi mahdollisuuksien mukaan.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Virheenkorjausloki</string>
     <string name="debug_debuglog_screen_subtitle">Vie virheenkorjaustiedot vianetsintää varten</string>
     <string name="debug_debuglog_screen_sensitive_title">Arkaluonteinen tieto</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d tiedosto valmiina (%2$s)</item>
         <item quantity="other">%1$d tiedostoa valmiina (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Kysymys</string>
     <string name="contact_email_tag_feature">Ominaisuus</string>
     <string name="contact_email_tag_bug">Vika</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Tämä sovellus auttaa navigoimaan asennetuissa sovelluksissa ja löytämään käyttöoikeuksia.</string>
     <string name="onboarding_body2">Permission Pilot kerää asennettujen sovellusten tietoja mahdollistaakseen sovellustesi listaamisen ja niiden käyttöoikeuksien ristiinviittaamisen tätä sovellusta käytettäessä.</string>
     <string name="onboarding_body3">Permission Pilot ei sisällä mainoksia ja käsittelee tietoja vain paikallisesti.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Teematila</string>
     <string name="ui_theme_mode_system_label">Järjestelmä</string>
     <string name="ui_theme_mode_dark_label">Tumma</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Käyttää taustakuvan värejä</string>
     <string name="upgrade_required_subtitle">Päivitä avataksesi</string>
     <string name="settings_category_appearance_label">Ulkoasu</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Teeman mukautus</string>
     <string name="upgrade_benefit_filtering">Kehittynyt suodatus</string>
     <string name="upgrade_benefit_export">Erädatavienti</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopioi</string>
     <string name="general_copied_to_clipboard_msg">Kopioitu leikepöydälle</string>
     <string name="general_view_details_for_x_action">Näytä %1$s:n tiedot</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Päivityksen tila ja vaihtoehdot</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Tarkkailija</string>
     <string name="watcher_dashboard_feature_title">Luvantarkkailija</string>
     <string name="watcher_dashboard_feature_description">Saa ilmoitus, kun sovelluksen päivitys lisää uusia lupia tai muuttaa olemassa olevia. Luvantarkkailija tarkistaa sovelluksesi jokaisen päivityksen jälkeen ja luo raportin, jos jokin muuttui.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Tilannekuvasynkronointi</string>
     <string name="snapshot_sync_channel_description">Sovellustietojen taustasynkronointi</string>
     <string name="snapshot_sync_notification_title">Synkronoidaan sovellustietoja…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Valitse kaikki</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d valittu</item>
         <item quantity="other">%d valittu</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Vie sovelluksen tiedot</string>
     <string name="export_permission_info_action">Vie lupatiedot</string>
     <plurals name="export_title_apps">

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Hulp</string>
     <string name="general_error_label">Fout</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Installeer bron</string>
     <string name="apps_details_installer_unknown_label">Inligting nie beskikbaar nie</string>
     <string name="apps_details_open_settings_error">Kon nie programme-instellings vir hierdie profiel oopmaak nie</string>
+    <string name="apps_details_open_settings_unavailable">Geen stelselinstellings-bladsy nie: Android dui aan dat hierdie app nie vir hierdie gebruiker geïnstalleer is nie.</string>
     <string name="apps_details_open_app_error">Kon nie hierdie program oopmaak nie</string>
     <string name="permissions_filter_manifest_label">AOSP toestemmings</string>
     <string name="permissions_filter_system_label">Verklaar deur stelsel app</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Spesiaal — Vereis die omskakeling van \'n skakelaar in stelselinstellings.</string>
     <string name="apps_details_perm_help_install">Installeer — Word outomaties toegestaan wanneer die program geïnstalleer word. Geen gebruikersaksie nodig nie.</string>
     <string name="apps_details_perm_help_declared">Die ⚠-ikoon beteken dat hierdie toestemming deur die program self geskep is, eerder as \'n standaard Android-toestemming.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">App-manifest</string>
     <string name="apps_details_manifest_queued">In ry vir analise…</string>
     <string name="apps_details_manifest_loading">Manifest word geanaliseer…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d verskaffer-vraag</item>
         <item quantity="other">%d verskaffer-vrae</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Kan meeste laaibare programme ontdek</string>
     <string name="apps_details_manifest_hint_excessive">Soek na baie spesifieke programme</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest-kyker</string>
     <string name="apps_manifest_viewer_search_hint">Soek in manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Onbekende fout by laai van manifest.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d verwyderinge programme met behoude data vra ook hierdie toestemming aan.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apps wat geïnstalleer is in ander gebruiker profiele word uitgesluit van die berekening hierbo weens Android beperkings.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Looptyd</string>
     <string name="permissions_tag_install_time_label">Installasietyd</string>
     <string name="permissions_tag_special_access_label">Spesiale toegang</string>
     <string name="permissions_tag_documented_label">Gedokumenteer</string>
     <string name="permissions_tag_notable_label">Opmerkenswaardig</string>
     <string name="permissions_tag_non_standard_label">Nie-standaard</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">In gebruik</string>
     <string name="permissions_status_unknown_label">Onbekend</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Stelsel</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d meer</item>
         <item quantity="other">+%d meer</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Toestemmingsaanwysers</string>
     <string name="permissions_details_help_section_protection">Beskermingstipe</string>
     <string name="permissions_details_help_dangerous">Gevaarlik — Vereis uitdruklike gebruikergoedkeuring tydens looptyd. Kan toegang tot sensitiewe data of toestelkenmerke kry.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">\'n Foutopsporingslogboek moet die probleem vasvang terwyl dit gebeur. Begin die opname, herhaal jou probleem, en stop dan die opname.</string>
     <string name="debug_debuglog_short_recording_continue">Gaan aan met opname</string>
     <string name="debug_debuglog_short_recording_stop">Stop tog</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d foutopsporingslogboek (%2$s)</item>
         <item quantity="other">%1$d foutopsporingslogboeke (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Boodskap gestuur?</string>
     <string name="support_contact_sent_message">As jy die e-pos gestuur het, kan hierdie sessie skoongemaak word.</string>
     <string name="general_close_action">Maak toe</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontak ondersteuning</string>
     <string name="contact_category_label">Kategorie</string>
     <string name="contact_category_question_label">Vraag</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Geen e-pos-toepassing gevind op hierdie toestel nie.</string>
     <string name="contact_welcome_message">Ek lees elke boodskap self en doen my bes om te antwoord. Aangesien ek ontwikkeling, foutregstelling en ondersteuning self hanteer, kan dit \'n bietjie tyd neem. Dankie vir jou geduld.</string>
     <string name="contact_footer_message">Jou boodskap sal per e-pos gestuur word. Toestel- en opstelling-inligting word outomaties aangeheg. Jy kan skermkiekies of \'n video aan die e-pos heg. Skryf asseblief in Engels indien moontlik.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Foutopsporingslogboek</string>
     <string name="debug_debuglog_screen_subtitle">Voer foutopsporing-inligting uit vir probleemoplossing</string>
     <string name="debug_debuglog_screen_sensitive_title">Sensitiewe inligting</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d lêer gereed (%2$s)</item>
         <item quantity="other">%1$d lêers gereed (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Vraag</string>
     <string name="contact_email_tag_feature">Kenmerk</string>
     <string name="contact_email_tag_bug">Fout</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Hierdie app help jou om deur geïnstalleerde toepassings te navigeer en toestemmings te ontdek.</string>
     <string name="onboarding_body2">Permission Pilot versamel Geïnstalleerde Toepassing inligting om die lys van jou apps en kruis-verwysing van hul toestemmings moontlik te maak wanneer jy hierdie toepassing gebruik.</string>
     <string name="onboarding_body3">Permission Pilot het geen advertensies nie en verwerk slegs data plaaslik.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tema modus</string>
     <string name="ui_theme_mode_system_label">Stelsel</string>
     <string name="ui_theme_mode_dark_label">Donker</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Gebruik muurpapier-kleure</string>
     <string name="upgrade_required_subtitle">Opgradeer om te ontsluit</string>
     <string name="settings_category_appearance_label">Voorkoms</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Tema-aanpassing</string>
     <string name="upgrade_benefit_filtering">Gevorderde filtrering</string>
     <string name="upgrade_benefit_export">Bondel data-uitvoer</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopieer</string>
     <string name="general_copied_to_clipboard_msg">Gekopieer na die Knipbord</string>
     <string name="general_view_details_for_x_action">Bekyk besonderhede vir %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Opgradering-status en opsies</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Watcher</string>
     <string name="watcher_dashboard_feature_title">Toestemmingswatcher</string>
     <string name="watcher_dashboard_feature_description">Kry \'n kennisgewing wanneer \'n program-opgradering nuwe toestemmings byvoeg of bestaande verander. Toestemmingswatcher kontroleer jou programme na elke opgradering en skep \'n verslag as iets verander het.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Momentopname-sinkronisering</string>
     <string name="snapshot_sync_channel_description">Agtergrond-programdata-sinkronisering</string>
     <string name="snapshot_sync_notification_title">Programdata sinkroniseer…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Kies alles</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d gekies</item>
         <item quantity="other">%d gekies</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Uitvoer toepassinginfo</string>
     <string name="export_permission_info_action">Uitvoer toestemminginfo</string>
     <plurals name="export_title_apps">

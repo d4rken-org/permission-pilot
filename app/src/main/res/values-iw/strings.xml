@@ -59,6 +59,7 @@
     <string name="apps_details_installer_label">מקור התקנה</string>
     <string name="apps_details_installer_unknown_label">מידע לא זמין</string>
     <string name="apps_details_open_settings_error">לא ניתן לפתוח את הגדרות האפליקציה עבור פרופיל זה</string>
+    <string name="apps_details_open_settings_unavailable">אין עמוד הגדרות מערכת: Android דיווח שהאפליקציה הזו לא מותקנת עבור משתמש זה.</string>
     <string name="apps_details_open_app_error">לא ניתן לפתוח אפליקציה זו</string>
     <string name="permissions_filter_manifest_label">הרשאות AOSP</string>
     <string name="permissions_filter_system_label">הוצהרו על ידי אפליקציית מערכת</string>

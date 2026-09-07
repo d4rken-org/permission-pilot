@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">ช่วยเหลือ</string>
     <string name="general_error_label">ข้อผิดพลาด</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">แหล่งที่มาของการติดตั้ง</string>
     <string name="apps_details_installer_unknown_label">ข้อมูลไม่พร้อมใช้งาน</string>
     <string name="apps_details_open_settings_error">ไม่สามารถเปิดการตั้งค่าแอปสำหรับโปรไฟล์นี้ได้</string>
+    <string name="apps_details_open_settings_unavailable">ไม่มีหน้าตั้งค่าระบบ: Android รายงานว่าแอปนี้ไม่ได้ติดตั้งสำหรับผู้ใช้นี้</string>
     <string name="apps_details_open_app_error">ไม่สามารถเปิดแอปนี้ได้</string>
     <string name="permissions_filter_manifest_label">สิทธิ์ AOSP</string>
     <string name="permissions_filter_system_label">ประกาศโดยแอประบบ</string>
@@ -165,7 +164,6 @@
     <string name="apps_details_perm_help_special">พิเศษ — ต้องเปิด/ปิดสวิตช์ในการตั้งค่าระบบ</string>
     <string name="apps_details_perm_help_install">ติดตั้ง — อนุญาตโดยอัตโนมัติเมื่อติดตั้งแอป ไม่ต้องดำเนินการใดๆ</string>
     <string name="apps_details_perm_help_declared">ไอคอน ⚠ หมายความว่าสิทธิ์นี้ถูกสร้างโดยแอปเอง ไม่ใช่สิทธิ์มาตรฐานของ Android</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">ไฟล์ Manifest ของแอป</string>
     <string name="apps_details_manifest_queued">อยู่ในคิวรอการวิเคราะห์…</string>
     <string name="apps_details_manifest_loading">กำลังวิเคราะห์ Manifest…</string>
@@ -182,10 +180,8 @@
     <plurals name="apps_details_manifest_providers">
         <item quantity="other">การค้นหา Provider %d รายการ</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">สามารถค้นพบแอปพลิเคชันที่เปิดได้ส่วนใหญ่</string>
     <string name="apps_details_manifest_hint_excessive">ตรวจสอบแอปเฉพาะจำนวนมาก</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ตัวดู Manifest</string>
     <string name="apps_manifest_viewer_search_hint">ค้นหาใน Manifest</string>
     <string name="apps_manifest_viewer_error_unknown">เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุขณะโหลด Manifest</string>
@@ -229,23 +225,18 @@
         <item quantity="other">%d แอปที่ถอนการติดตั้งแล้วแต่ยังเก็บข้อมูลไว้ก็ร้องขอสิทธิ์นี้ด้วย</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">แอปที่ติดตั้งในโปรไฟล์ผู้ใช้อื่นถูกยกเว้นจากการคำนวณข้างต้นเนื่องจากข้อจำกัดของ Android</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">รันไทม์</string>
     <string name="permissions_tag_install_time_label">เวลาติดตั้ง</string>
     <string name="permissions_tag_special_access_label">การเข้าถึงพิเศษ</string>
     <string name="permissions_tag_documented_label">มีเอกสาร</string>
     <string name="permissions_tag_notable_label">โดดเด่น</string>
     <string name="permissions_tag_non_standard_label">ไม่ใช่มาตรฐาน</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">กำลังใช้งาน</string>
     <string name="permissions_status_unknown_label">ไม่ทราบ</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">ระบบ</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="other">+%d เพิ่มเติม</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">ตัวชี้บอกสิทธิ์</string>
     <string name="permissions_details_help_section_protection">ประเภทการป้องกัน</string>
     <string name="permissions_details_help_dangerous">อันตราย — ต้องการอนุมัติจากผู้ใช้อย่างชัดเจนในช่วงรันไทม์ สามารถเข้าถึงข้อมูลส่วนตัวหรือฟีเจอร์ของอุปกรณ์ได้</string>
@@ -391,7 +382,6 @@
     <string name="debug_debuglog_short_recording_message">ล็อกดีบักต้องจับปัญหาขณะที่เกิดขึ้น เริ่มบันทึก ทำซ้ำปัญหา แล้วหยุดการบันทึก</string>
     <string name="debug_debuglog_short_recording_continue">บันทึกต่อ</string>
     <string name="debug_debuglog_short_recording_stop">หยุดเลย</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="other">%1$d ล็อกดีบัก (%2$s)</item>
     </plurals>
@@ -412,7 +402,6 @@
     <string name="support_contact_sent_title">ส่งข้อความแล้ว?</string>
     <string name="support_contact_sent_message">หากส่งอีเมลแล้ว เซสชันนี้สามารถล้างข้อมูลได้</string>
     <string name="general_close_action">ปิด</string>
-    <!-- Contact form -->
     <string name="contact_support_label">ติดต่อฝ่ายสนับสนุน</string>
     <string name="contact_category_label">หมวดหมู่</string>
     <string name="contact_category_question_label">คำถาม</string>
@@ -439,7 +428,6 @@
     <string name="contact_no_email_app">ไม่พบแอปอีเมลบนเครื่องนี้</string>
     <string name="contact_welcome_message">ผมอ่านข้อความทุกข้อความด้วยตัวเองและพยายามตอบกลับเสมอ เนื่องจากผมดูแลการพัฒนา แก้บัก และให้ความช่วยเหลือด้วยตัวเอง อาจใช้เวลานิดหน่อย ขอบคุณความอดทนของคุณ</string>
     <string name="contact_footer_message">ข้อความของคุณจะถูกส่งทางอีเมล แนบข้อมูลอุปกรณ์และการตั้งค่าถูกแนบโดยอัตโนมัติ คุณสามารถแนบภาพหน้าจอหรือวิดีโอในอีเมลได้ โปรดเขียนเป็นภาษาอังกฤษหากเป็นไปได้</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">บันทึกดีบัก</string>
     <string name="debug_debuglog_screen_subtitle">ส่งออกข้อมูลดีบักสำหรับการแก้ไขปัญหา</string>
     <string name="debug_debuglog_screen_sensitive_title">ข้อมูลส่วนตัว</string>
@@ -449,13 +437,11 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="other">%1$d ไฟล์พร้อม (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dน %2$dว</string>
     <string name="debug_debuglog_screen_duration_s">%1$dว</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">คำถาม</string>
     <string name="contact_email_tag_feature">ฟีเจอร์</string>
     <string name="contact_email_tag_bug">บัก</string>
@@ -464,7 +450,6 @@
     <string name="onboarding_body1">แอปนี้ช่วยคุณในการนำทางแอปพลิเคชันที่ติดตั้งและค้นพบสิทธิ์</string>
     <string name="onboarding_body2">Permission Pilot รวบรวมข้อมูลแอปพลิเคชันที่ติดตั้งเพื่อให้สามารถแสดงรายการแอปของคุณและอ้างอิงสิทธิ์ข้ามกันเมื่อใช้แอปพลิเคชันนี้</string>
     <string name="onboarding_body3">Permission Pilot ไม่มีโฆษณาและประมวลผลข้อมูลในเครื่องเท่านั้น</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">โหมดธีม</string>
     <string name="ui_theme_mode_system_label">ระบบ</string>
     <string name="ui_theme_mode_dark_label">มืด</string>
@@ -481,7 +466,6 @@
     <string name="ui_theme_color_disabled_subtitle">ใช้สีของวอลเปเปอร์</string>
     <string name="upgrade_required_subtitle">อัปเกรดเพื่อปลดล็อค</string>
     <string name="settings_category_appearance_label">ลักษณะอินเทอร์เฟซ</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">ปรับแต่งธีม</string>
     <string name="upgrade_benefit_filtering">การกรองขั้นสูง</string>
     <string name="upgrade_benefit_export">การส่งออกข้อมูลแบบเดี่ยว</string>
@@ -494,9 +478,7 @@
     <string name="general_copy_action">คัดลอก</string>
     <string name="general_copied_to_clipboard_msg">คัดลอกไปยังคลิปบอร์ด</string>
     <string name="general_view_details_for_x_action">ดูรายละเอียดสำหรับ %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">สถานะการอัปเกรดและตัวเลือก</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Watcher</string>
     <string name="watcher_dashboard_feature_title">ตัวตรวจจับสิทธิ์</string>
     <string name="watcher_dashboard_feature_description">รับการแจ้งเตือนเมื่อแอปอัปเดตเพิ่มสิทธิ์ใหม่หรือเปลี่ยนสิทธิ์ที่มีอยู่ Permission Watcher ตรวจสอบแอปหลังจากการอัปเดตแต่ละครั้งและสร้างรายงานหากมีสิ่งใดเปลี่ยนแปลง</string>
@@ -598,12 +580,10 @@
     <string name="snapshot_sync_channel_name">การซิงค์สแนปช็อต</string>
     <string name="snapshot_sync_channel_description">การซิงค์ข้อมูลแอปเบื้องหลัง</string>
     <string name="snapshot_sync_notification_title">กำลังซิงค์ข้อมูลแอป…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">เลือกทั้งหมด</string>
     <plurals name="general_x_selected_label">
         <item quantity="other">%d รายการที่เลือก</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">ส่งออกข้อมูลแอป</string>
     <string name="export_permission_info_action">ส่งออกข้อมูลสิทธิ์</string>
     <plurals name="export_title_apps">

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">İcazə Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Kömək</string>
     <string name="general_error_label">Səhv</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Quraşdırma mənbəyi</string>
     <string name="apps_details_installer_unknown_label">Məlumat mövcud deyil</string>
     <string name="apps_details_open_settings_error">Bu profil üçün tətbiq parametrlərini açmaq mümkün olmadı</string>
+    <string name="apps_details_open_settings_unavailable">Sistem ayarları səhifəsi yoxdur: Android bu tətbiqi bu istifadəçi üçün qurulmamış kimi göstərir.</string>
     <string name="apps_details_open_app_error">Bu tətbiqi açmaq mümkün olmadı</string>
     <string name="permissions_filter_manifest_label">AOSP icazələri</string>
     <string name="permissions_filter_system_label">Sistem tətbiqi tərəfindən elan edilib</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Xüsusi — Sistem parametrlərində bir dəyişdiricini açıb-bağlamaq tələb edir.</string>
     <string name="apps_details_perm_help_install">Quraşdırma — Tətbiq quraşdırıldıqda avtomatik olaraq verilir. Heç bir istifadəçi əməliyyatı tələb olunmur.</string>
     <string name="apps_details_perm_help_declared">⚠ ikonu bu icazənin standart Android icazəsi olmaq əvəzinə tətbiq tərəfindən yaradıldığını bildirir.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Tətbiq Manifestası</string>
     <string name="apps_details_manifest_queued">Analiz üçün növbəyə alınıb…</string>
     <string name="apps_details_manifest_loading">Manifesta analiz edilir…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d provayder sorğusu</item>
         <item quantity="other">%d provayder sorğusu</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Əksər başladıla biləcək tətbiqləri kəşf edə bilər</string>
     <string name="apps_details_manifest_hint_excessive">Bir çox xüsusi tətbiqi axtarır</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifesta Baxışı</string>
     <string name="apps_manifest_viewer_search_hint">Manifestada axtar</string>
     <string name="apps_manifest_viewer_error_unknown">Manifest yükləyərkən bilinməyən xəta.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">Məlumatları saxlanılan %d silinmiş tətbiq də bu icazəni tələb edir.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android məhdudiyyətləri səbəbindən quraşdırıldığı üçün yuxarıda göstərilən məlumatlar bəzi istifadəçi profillərindən kənardakı tətbiqləri nəzərə almır.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">İş zamanı</string>
     <string name="permissions_tag_install_time_label">Quraşdırma zamanı</string>
     <string name="permissions_tag_special_access_label">Xüsusi giriş</string>
     <string name="permissions_tag_documented_label">Sənədləşdirilmiş</string>
     <string name="permissions_tag_notable_label">Diqqatçəkən</string>
     <string name="permissions_tag_non_standard_label">Qeyri-standart</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">İstifadədə</string>
     <string name="permissions_status_unknown_label">Naməlum</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistem</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d daha</item>
         <item quantity="other">+%d daha</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">İcazə göstəriciləri</string>
     <string name="permissions_details_help_section_protection">Mühafizə növü</string>
     <string name="permissions_details_help_dangerous">Təhlükəli — İş zamanında açıq istifadəçi təsdiqini tələb edir. Həssas məlumatlara və ya cihaz funksiyalarına giriş əldə edə bilər.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Sazlama jurnalı problemi baş verərkən əks etdirməlidir. Qeydi başladın, probleminizi təkrar edin, sonra qeydi dayandırın.</string>
     <string name="debug_debuglog_short_recording_continue">Qeydi davam etdir</string>
     <string name="debug_debuglog_short_recording_stop">Hər halda dayandır</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d sazlama jurnalı (%2$s)</item>
         <item quantity="other">%1$d sazlama jurnalı (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Məktüb göndərildi?</string>
     <string name="support_contact_sent_message">Əgər e-poçt göndərdinizsə, bu sessiya təmizlənə bilər.</string>
     <string name="general_close_action">Bağla</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Dəstəklə müraiciət et</string>
     <string name="contact_category_label">Kateqoriya</string>
     <string name="contact_category_question_label">Sual</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Bu cihazda e-poçt tətbiqi tapilmadı.</string>
     <string name="contact_welcome_message">Hər məktubu özüm oxuyuram və cav ab verməyə çalışıram. Gəlişdirmə, səhv düzəltmə və dəstəyi tək başima idarə etdiyim üçün bir az vaxt aparır. Səbriniz üçün sağ olun.</string>
     <string name="contact_footer_message">Məktubunuz e-poçt vasitəsilə göndəriləcək. Cihaz və qurasdırma məlumatı avtomatik əlavə edilir. E-poçta ekran görüntüləri və ya video əlavə edə bilərsiniz. Mümkünsə ingilscə yazin.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Sazlama jurnalı</string>
     <string name="debug_debuglog_screen_subtitle">Problemləri həll etmək üçün sazlama məlumatlarını ixrac edin</string>
     <string name="debug_debuglog_screen_sensitive_title">Həssas Məlumat</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d fayl hazırdır (%2$s)</item>
         <item quantity="other">%1$d fayl hazırdır (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dd %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot Sazlama Jurnalı - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Sual</string>
     <string name="contact_email_tag_feature">Xösusiləşdirmə</string>
     <string name="contact_email_tag_bug">Səhv</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Bu tətbiqetmə sizə yüklənmiş tətbiqləri nəzərdən keçirməyə və icazələri aşkar etməyə kömək edir.</string>
     <string name="onboarding_body2">İcazə Pilot yüklənmiş Tətbiq Məlumatlarını toplayır, tətbiqlərinizi siyahıya almaq və istifadə edərkən icazələrini qüsursuz göstərmək üçün istifadə edir.</string>
     <string name="onboarding_body3">İcazə Pilot reklamları yoxdur və məlumatları yalnız yerli olaraq işləyir.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tema modu</string>
     <string name="ui_theme_mode_system_label">Sistem</string>
     <string name="ui_theme_mode_dark_label">Tünd</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Divar kağızı rənglərini istifadə edir</string>
     <string name="upgrade_required_subtitle">Açmaq üçün yüksəlt</string>
     <string name="settings_category_appearance_label">Görünüş</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Tema xösusiətləşdirmə</string>
     <string name="upgrade_benefit_filtering">Qabaqcıl filtrləmə</string>
     <string name="upgrade_benefit_export">Toplu məlumat ixracı</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopyala</string>
     <string name="general_copied_to_clipboard_msg">Lövhəyə kopyalandı</string>
     <string name="general_view_details_for_x_action">%1$s üçün detalları görün</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Yüksəltmə statusu və seçənəkləri</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Nəzarətçi</string>
     <string name="watcher_dashboard_feature_title">İcazə Nəzarətçisi</string>
     <string name="watcher_dashboard_feature_description">Tətbiq yənilməsi yeni icazələr əlavə etdikdə və ya mövcud olanları dəyişdirdikdə bildiriş alın. İcazə Nəzarətçisi hər yənilemədən sonra tətbiqlərinizi yoxlayır və bir şey dəyişdibsiə hesabat hazırlayır.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Snapshot Sinxronizasiyasi</string>
     <string name="snapshot_sync_channel_description">Arxa fonda tətbiq məlumatlarının sinxronizasiyası</string>
     <string name="snapshot_sync_notification_title">Tətbiq məlumatları sinxronlaşdırılır…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Hamısını seç</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d seçilib</item>
         <item quantity="other">%d seçilib</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Tətbiq məlumatını ixrac et</string>
     <string name="export_permission_info_action">İcazə məlumatını ixrac et</string>
     <plurals name="export_title_apps">

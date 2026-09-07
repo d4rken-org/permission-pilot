@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Hjelp</string>
     <string name="general_error_label">Feil</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Installasjonskilde</string>
     <string name="apps_details_installer_unknown_label">Informasjon ikke tilgjengelig</string>
     <string name="apps_details_open_settings_error">Kunne ikke åpne appinnstillinger for denne profilen</string>
+    <string name="apps_details_open_settings_unavailable">Ingen systeminnstillinger: Android rapporterer at denne appen ikke er installert for denne brukeren.</string>
     <string name="apps_details_open_app_error">Kunne ikke åpne denne appen</string>
     <string name="permissions_filter_manifest_label">AOSP-tillatelser</string>
     <string name="permissions_filter_system_label">Erklært av systemapp</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Spesiell — Krever at du slår på en bryter i systeminnstillingene.</string>
     <string name="apps_details_perm_help_install">Installer — Innvilges automatisk når appen installeres. Ingen brukerhandling nødvendig.</string>
     <string name="apps_details_perm_help_declared">⚠-ikonet betyr at denne tillatelsen er opprettet av appen selv, og ikke er en standard Android-tillatelse.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">App-manifest</string>
     <string name="apps_details_manifest_queued">Satt i kø for analyse…</string>
     <string name="apps_details_manifest_loading">Analyserer manifest…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d leverandørforespørsel</item>
         <item quantity="other">%d leverandørforespørsler</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Kan oppdage de fleste startbare apper</string>
     <string name="apps_details_manifest_hint_excessive">Sjekker etter mange spesifikke apper</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestvisning</string>
     <string name="apps_manifest_viewer_search_hint">Søk i manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Ukjent feil under innlasting av manifest.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d avinstallerte apper med beholdte data ber også om denne tillatelsen.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Apper installert i andre brukerprofiler er ekskludert fra beregningen ovenfor på grunn av Android-begrensninger.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Kjøretid</string>
     <string name="permissions_tag_install_time_label">Installasjonstid</string>
     <string name="permissions_tag_special_access_label">Spesialtilgang</string>
     <string name="permissions_tag_documented_label">Dokumentert</string>
     <string name="permissions_tag_notable_label">Bemerkelsesverdig</string>
     <string name="permissions_tag_non_standard_label">Ikke-standard</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">I bruk</string>
     <string name="permissions_status_unknown_label">Ukjent</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">System</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d til</item>
         <item quantity="other">+%d til</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Tillatelsesindikatorene</string>
     <string name="permissions_details_help_section_protection">Beskyttelsestype</string>
     <string name="permissions_details_help_dangerous">Farlig — Krever eksplisitt brukergodkjenning ved kjøretid. Kan få tilgang til sensitive data eller enhetsfunksjoner.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">En feilsøkingslogg må fange problemet mens det skjer. Start opptaket, gjenskap problemet ditt, og stopp deretter opptaket.</string>
     <string name="debug_debuglog_short_recording_continue">Fortsett opptaket</string>
     <string name="debug_debuglog_short_recording_stop">Stopp uansett</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d feilsøkingslogg (%2$s)</item>
         <item quantity="other">%1$d feilsøkingslogger (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Melding sendt?</string>
     <string name="support_contact_sent_message">Hvis du sendte e-posten, kan denne økten ryddes opp.</string>
     <string name="general_close_action">Lukk</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontakt support</string>
     <string name="contact_category_label">Kategori</string>
     <string name="contact_category_question_label">Spørsmål</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Ingen e-postapp funnet på denne enheten.</string>
     <string name="contact_welcome_message">Jeg leser hver melding selv og gjør mitt beste for å svare. Siden jeg håndterer utvikling, feilrettinger og support på egen hånd, kan det ta litt tid. Takk for tålmodigheten.</string>
     <string name="contact_footer_message">Meldingen din vil bli sendt via e-post. Enhets- og oppsettsinformasjon legges ved automatisk. Du kan legge til skjermbilder eller en video i e-posten. Vennligst skriv på engelsk om mulig.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Feilsøkingslogg</string>
     <string name="debug_debuglog_screen_subtitle">Eksporter feilsøkingsinformasjon for feilsøking</string>
     <string name="debug_debuglog_screen_sensitive_title">Sensitiv informasjon</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d fil klar (%2$s)</item>
         <item quantity="other">%1$d filer klar (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Spørsmål</string>
     <string name="contact_email_tag_feature">Funksjon</string>
     <string name="contact_email_tag_bug">Feil</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Denne appen hjelper deg med å navigere installerte applikasjoner og oppdage tillatelser.</string>
     <string name="onboarding_body2">Permission Pilot samler inn informasjon om installerte applikasjoner for å gjøre det mulig å liste appene dine og kryssreferere tillatelsene deres når du bruker denne applikasjonen.</string>
     <string name="onboarding_body3">Permission Pilot har ingen annonser og behandler kun data lokalt.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tema-modus</string>
     <string name="ui_theme_mode_system_label">System</string>
     <string name="ui_theme_mode_dark_label">Mørkt</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Bruker tapetfarger</string>
     <string name="upgrade_required_subtitle">Oppgrader for å låse opp</string>
     <string name="settings_category_appearance_label">Utseende</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Tematilpasning</string>
     <string name="upgrade_benefit_filtering">Avansert filtrering</string>
     <string name="upgrade_benefit_export">Masseeksport av data</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopier</string>
     <string name="general_copied_to_clipboard_msg">Kopiert til utklippstavlen</string>
     <string name="general_view_details_for_x_action">Vis detaljer for %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Oppgraderingsstatus og alternativer</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Vakt</string>
     <string name="watcher_dashboard_feature_title">Tillatelsesovervokat</string>
     <string name="watcher_dashboard_feature_description">Få varsler når en appoppdatering legger til nye tillatelser eller endrer eksisterende. Tillatelsesovervokaten sjekker appene dine etter hver oppdatering og lager en rapport hvis noe har endret seg.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Snapshot-synkronisering</string>
     <string name="snapshot_sync_channel_description">Bakgrunnssynkronisering av appdata</string>
     <string name="snapshot_sync_notification_title">Synkroniserer appdata…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Velg alt</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d valgt</item>
         <item quantity="other">%d valgt</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Eksporter appinfo</string>
     <string name="export_permission_info_action">Eksporter tillatelsesinfo</string>
     <plurals name="export_title_apps">

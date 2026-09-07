@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Hjälp</string>
     <string name="general_error_label">Fel</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Installationskälla</string>
     <string name="apps_details_installer_unknown_label">Information inte tillgänglig</string>
     <string name="apps_details_open_settings_error">Kunde inte öppna appinställningar för den här profilen</string>
+    <string name="apps_details_open_settings_unavailable">Ingen sida för systeminställningar: Android rapporterar att appen inte är installerad för den här användaren.</string>
     <string name="apps_details_open_app_error">Kunde inte öppna den här appen</string>
     <string name="permissions_filter_manifest_label">AOSP-behörigheter</string>
     <string name="permissions_filter_system_label">Deklarerad av systemapp</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Speciell — Kräver att man togglar en brytare i systeminställningarna.</string>
     <string name="apps_details_perm_help_install">Installera — Beviljas automatiskt när appen installeras. Ingen åtgärd krävs av användaren.</string>
     <string name="apps_details_perm_help_declared">Ikonen ⚠ innebär att den här behörigheten skapats av appen själv, snarare än att den är en standard-Android-behörighet.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Appmanifest</string>
     <string name="apps_details_manifest_queued">Köad för analys…</string>
     <string name="apps_details_manifest_loading">Analyserar manifest…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d leverantörsförfrågan</item>
         <item quantity="other">%d leverantörsförfrågningar</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Kan upptäcka de flesta startbara appar</string>
     <string name="apps_details_manifest_hint_excessive">Söker efter många specifika appar</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifestvisare</string>
     <string name="apps_manifest_viewer_search_hint">Sök i manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Okänt fel vid inläsning av manifestet.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d avinstallerade appar med kvarstående data begär också den här behörigheten.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Appar installerade i andra användarprofiler utesluts från beräkningen ovan på grund av Android-begränsningar.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Körtid</string>
     <string name="permissions_tag_install_time_label">Vid installation</string>
     <string name="permissions_tag_special_access_label">Specialbehörighet</string>
     <string name="permissions_tag_documented_label">Dokumenterad</string>
     <string name="permissions_tag_notable_label">Anmärkningsvärd</string>
     <string name="permissions_tag_non_standard_label">Ej standard</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Används</string>
     <string name="permissions_status_unknown_label">Okänd</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">System</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d till</item>
         <item quantity="other">+%d till</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Behörightetsindikationer</string>
     <string name="permissions_details_help_section_protection">Skyddstyp</string>
     <string name="permissions_details_help_dangerous">Farlig — Kräver uttryckligt användargodkännande vid körning. Kan komma åt känslig data eller enhetsfärdigheter.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">En felsökningslogg måste fånga problemet när det sker. Starta inspelningen, återska ditt problem, stoppa sedan inspelningen.</string>
     <string name="debug_debuglog_short_recording_continue">Fortsätt spela in</string>
     <string name="debug_debuglog_short_recording_stop">Stoppa ändå</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d felsökningslogg (%2$s)</item>
         <item quantity="other">%1$d felsökningsloggar (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Meddelande skickat?</string>
     <string name="support_contact_sent_message">Om du skickade e-postmeddelandet kan den här sessionen rensas upp.</string>
     <string name="general_close_action">Stäng</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontakta support</string>
     <string name="contact_category_label">Kategori</string>
     <string name="contact_category_question_label">Fråga</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Ingen e-postapp hittades på den här enheten.</string>
     <string name="contact_welcome_message">Jag läser varje meddelande själv och gör mitt bästa för att svara. Eftersom jag hanterar utveckling, felrättningar och support på egen hand kan det ta lite tid. Tack för tålamodet.</string>
     <string name="contact_footer_message">Ditt meddelande skickas via e-post. Enhets- och konfigurationsinformation bifogas automatiskt. Du kan bifoga skärmdumpar eller en video till e-postmeddelandet. Skriv gärna på engelska om möjligt.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Felsökningslogg</string>
     <string name="debug_debuglog_screen_subtitle">Exportera felsökningsinformation för felsökning</string>
     <string name="debug_debuglog_screen_sensitive_title">Känslig information</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d fil klar (%2$s)</item>
         <item quantity="other">%1$d filer klara (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Fråga</string>
     <string name="contact_email_tag_feature">Funktion</string>
     <string name="contact_email_tag_bug">Fel</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Denna app hjälper dig navigera installerade applikationer och upptäcka behörigheter.</string>
     <string name="onboarding_body2">Permission Pilot samlar in information om installerade applikationer för att möjliggöra listning av dina appar och korsreferering av deras behörigheter när du använder denna applikation.</string>
     <string name="onboarding_body3">Permission Pilot har inga annonser och bearbetar endast data lokalt.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tema-läge</string>
     <string name="ui_theme_mode_system_label">System</string>
     <string name="ui_theme_mode_dark_label">Mörk</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Använder tapetfärger</string>
     <string name="upgrade_required_subtitle">Uppgradera för att låsa upp</string>
     <string name="settings_category_appearance_label">Utseende</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Temeanpassning</string>
     <string name="upgrade_benefit_filtering">Avancerad filtrering</string>
     <string name="upgrade_benefit_export">Batchdataexport</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopiera</string>
     <string name="general_copied_to_clipboard_msg">Kopierat till urklipp</string>
     <string name="general_view_details_for_x_action">Visa detaljer för %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Uppgraderingsstatus och alternativ</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Bevakning</string>
     <string name="watcher_dashboard_feature_title">Behörighetsbevakning</string>
     <string name="watcher_dashboard_feature_description">Få ett meddelande när en appuppdatering lägger till nya behörigheter eller ändrar befintliga. Behörighetsbevakning kontrollerar dina appar efter varje uppdatering och skapar en rapport om något förändrats.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Snapshot-synkronisering</string>
     <string name="snapshot_sync_channel_description">Bakgrundssynkronisering av appdata</string>
     <string name="snapshot_sync_notification_title">Synkroniserar appdata…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Välj alla</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d vald</item>
         <item quantity="other">%d valda</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportera appinfo</string>
     <string name="export_permission_info_action">Exportera behörighetsinformation</string>
     <plurals name="export_title_apps">
