@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Pomoć</string>
     <string name="general_error_label">Greška</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Izvor instalacije</string>
     <string name="apps_details_installer_unknown_label">Informacije nisu dostupne</string>
     <string name="apps_details_open_settings_error">Nije moguće otvoriti postavke aplikacije za ovaj profil</string>
+    <string name="apps_details_open_settings_unavailable">Nema stranice sistemskih postavki: Android prijavljuje ovu aplikaciju kao neinstaliranu za ovoga korisnika.</string>
     <string name="apps_details_open_app_error">Nije moguće otvoriti ovu aplikaciju</string>
     <string name="permissions_filter_manifest_label">AOSP dozvole</string>
     <string name="permissions_filter_system_label">Deklarirane sistemskom aplikacijom</string>
@@ -167,7 +166,6 @@
     <string name="apps_details_perm_help_special">Posebno — Zahtijeva uključivanje prekidača u postavkama sustava.</string>
     <string name="apps_details_perm_help_install">Instalacija — Odobreno automatski kada se aplikacija instalira. Nije potrebna radnja korisnika.</string>
     <string name="apps_details_perm_help_declared">Ikona ⚠ znači da je ovu dozvolu stvorila sama aplikacija, a nije standardna Android dozvola.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest aplikacije</string>
     <string name="apps_details_manifest_queued">U redu za analizu…</string>
     <string name="apps_details_manifest_loading">Analiziranje manifesta…</string>
@@ -192,10 +190,8 @@
         <item quantity="few">%d upita pružatelja</item>
         <item quantity="other">%d upita pružatelja</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Može otkriti većinu pokretljivih aplikacija</string>
     <string name="apps_details_manifest_hint_excessive">Provjerava mnoge određene aplikacije</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Preglednik manifesta</string>
     <string name="apps_manifest_viewer_search_hint">Pretraži u manifestu</string>
     <string name="apps_manifest_viewer_error_unknown">Nepoznata greška pri učitavanju manifesta.</string>
@@ -253,25 +249,20 @@
         <item quantity="other">%d deinstaliranih aplikacija s pohranjenim podacima također traži ovu dozvolu.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacije instalirane u drugim korisničkim profilima su isključene iz gornjeg izračuna zbog ograničenja Androida.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Izvršavano</string>
     <string name="permissions_tag_install_time_label">Pri instalaciji</string>
     <string name="permissions_tag_special_access_label">Poseban pristup</string>
     <string name="permissions_tag_documented_label">Dokumentirano</string>
     <string name="permissions_tag_notable_label">Značajno</string>
     <string name="permissions_tag_non_standard_label">Nestandardno</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">U korištenju</string>
     <string name="permissions_status_unknown_label">Nepoznato</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sustav</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d više</item>
         <item quantity="few">+%d više</item>
         <item quantity="other">+%d više</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Pokazatelji dozvola</string>
     <string name="permissions_details_help_section_protection">Vrsta zaštite</string>
     <string name="permissions_details_help_dangerous">Opasno — Zahtijeva izričito odobrenje korisnika tijekom izvršavanja. Može pristupiti osjetljivim podacima ili značajkama uređaja.</string>
@@ -417,7 +408,6 @@
     <string name="debug_debuglog_short_recording_message">Debug zapisnik mora snimiti problem dok se događa. Pokrenite snimanje, reproducirajte problem, a zatim zaustavite snimanje.</string>
     <string name="debug_debuglog_short_recording_continue">Nastavi snimanje</string>
     <string name="debug_debuglog_short_recording_stop">Svejedno zaustavi</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d debug zapisnik (%2$s)</item>
         <item quantity="few">%1$d debug zapisnika (%2$s)</item>
@@ -440,7 +430,6 @@
     <string name="support_contact_sent_title">Poruka poslana?</string>
     <string name="support_contact_sent_message">Ako ste poslali e-mail, ova sesija može se očistiti.</string>
     <string name="general_close_action">Zatvori</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontaktiraj podršku</string>
     <string name="contact_category_label">Kategorija</string>
     <string name="contact_category_question_label">Pitanje</string>
@@ -469,7 +458,6 @@
     <string name="contact_no_email_app">Na ovom uređaju nije pronađena aplikacija za e-mail.</string>
     <string name="contact_welcome_message">Sam čitam svaku poruku i trudim se odgovoriti. Budući da sam sam zadužen za razvoj, popravke grešaka i podršku, može malo potrajati. Hvala na strpljenju.</string>
     <string name="contact_footer_message">Vaša poruka će biti poslana putem e-maila. Informacije o uređaju i postavkama su automatski priložene. Možete priložiti snimke zaslona ili video uz e-mail. Molimo pišite na engleskom ako je moguće.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Zapisnik za otklanjanje pogrešaka</string>
     <string name="debug_debuglog_screen_subtitle">Izvezi informacije za otklanjanje problema</string>
     <string name="debug_debuglog_screen_sensitive_title">Osjetljive informacije</string>
@@ -481,13 +469,11 @@
         <item quantity="few">%1$d datoteke spremne (%2$s)</item>
         <item quantity="other">%1$d datoteka spremno (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$d min %2$d s</string>
     <string name="debug_debuglog_screen_duration_s">%1$d s</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Pitanje</string>
     <string name="contact_email_tag_feature">Značajka</string>
     <string name="contact_email_tag_bug">Greška</string>
@@ -496,7 +482,6 @@
     <string name="onboarding_body1">Ova aplikacija vam pomaže navigirati instaliranim aplikacijama i otkrivati dozvole.</string>
     <string name="onboarding_body2">Permission Pilot prikuplja podatke o instaliranim aplikacijama kako bi omogućio popisivanje vaših aplikacija i unakrsno upućivanje na njihova dopuštenja prilikom korištenja ove aplikacije.</string>
     <string name="onboarding_body3">Permission Pilot nema oglasa i obrađuje podatke samo lokalno.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Način teme</string>
     <string name="ui_theme_mode_system_label">Sustav</string>
     <string name="ui_theme_mode_dark_label">Tamna</string>
@@ -513,7 +498,6 @@
     <string name="ui_theme_color_disabled_subtitle">Koristi boje pozadine</string>
     <string name="upgrade_required_subtitle">Nadogradite za otključavanje</string>
     <string name="settings_category_appearance_label">Izgled</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Prilagodba teme</string>
     <string name="upgrade_benefit_filtering">Napredno filtriranje</string>
     <string name="upgrade_benefit_export">Grupežni izvoz podataka</string>
@@ -526,9 +510,7 @@
     <string name="general_copy_action">Kopiraj</string>
     <string name="general_copied_to_clipboard_msg">Kopirano u međuspremnik</string>
     <string name="general_view_details_for_x_action">Prikaži detalje za %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Stanje nadogradnje i mogućnosti</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Pratič</string>
     <string name="watcher_dashboard_feature_title">Pratič dozvola</string>
     <string name="watcher_dashboard_feature_description">Dobijte obavijest kada ažuriranje aplikacije doda nove dozvole ili promijeni postojeće. Pratič dozvola provjerava vaše aplikacije nakon svakog ažuriranja i stvara izvješće ako se nešto promijenilo.</string>
@@ -646,14 +628,12 @@
     <string name="snapshot_sync_channel_name">Sinkronizacija snižmaka</string>
     <string name="snapshot_sync_channel_description">Pozadinska sinkronizacija podataka aplikacija</string>
     <string name="snapshot_sync_notification_title">Sinkronizacija podataka aplikacija…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Odaberi sve</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d odabran</item>
         <item quantity="few">%d odabrana</item>
         <item quantity="other">%d odabranih</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Izvezi podatke o aplikaciji</string>
     <string name="export_permission_info_action">Izvezi podatke o dozvoli</string>
     <plurals name="export_title_apps">

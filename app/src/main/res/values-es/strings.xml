@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Piloto de los permisos</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Ayuda</string>
     <string name="general_error_label">Error</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Fuente de instalación</string>
     <string name="apps_details_installer_unknown_label">Información no disponible</string>
     <string name="apps_details_open_settings_error">No se pudieron abrir los ajustes de la aplicación para este perfil</string>
+    <string name="apps_details_open_settings_unavailable">No hay página de configuración del sistema: Android reporta que esta aplicación no está instalada para este usuario.</string>
     <string name="apps_details_open_app_error">No se pudo abrir esta aplicación</string>
     <string name="permissions_filter_manifest_label">Permisos AOSP</string>
     <string name="permissions_filter_system_label">Declarado por la aplicación del sistema</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Especial — Requiere activar un interruptor en los ajustes del sistema.</string>
     <string name="apps_details_perm_help_install">Instalación — Se concede automáticamente al instalar la aplicación. No se requiere ninguna acción del usuario.</string>
     <string name="apps_details_perm_help_declared">El icono ⚠ significa que este permiso es creado por la propia aplicación, en vez de ser un permiso estándar de Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifiesto de la app</string>
     <string name="apps_details_manifest_queued">En cola para análisis…</string>
     <string name="apps_details_manifest_loading">Analizando manifiesto…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d consulta de proveedor</item>
         <item quantity="other">%d consultas de proveedor</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Puede descubrir la mayoría de aplicaciones lanzables</string>
     <string name="apps_details_manifest_hint_excessive">Comprueba muchas apps específicas</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visor de manifiestos</string>
     <string name="apps_manifest_viewer_search_hint">Buscar en el manifiesto</string>
     <string name="apps_manifest_viewer_error_unknown">Error desconocido al cargar el manifiesto.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d aplicaciones desinstaladas con datos retenidos también solicitan este permiso.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Las aplicaciones instaladas en otros perfiles del usuario que están excluidas del cómputo anterior debido a las restricciones de Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Tiempo de ejecución</string>
     <string name="permissions_tag_install_time_label">Durante la instalación</string>
     <string name="permissions_tag_special_access_label">Acceso especial</string>
     <string name="permissions_tag_documented_label">Documentado</string>
     <string name="permissions_tag_notable_label">Notable</string>
     <string name="permissions_tag_non_standard_label">No estándar</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">En uso</string>
     <string name="permissions_status_unknown_label">Desconocido</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistema</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d más</item>
         <item quantity="other">+%d más</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indicadores de permisos</string>
     <string name="permissions_details_help_section_protection">Tipo de protección</string>
     <string name="permissions_details_help_dangerous">Peligroso — Requiere aprobación explícita del usuario en tiempo de ejecución. Puede acceder a datos sensibles o funciones del dispositivo.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Un registro de depuración necesita capturar el problema mientras ocurre. Inicia la grabación, reproduce el problema y luego detiene la grabación.</string>
     <string name="debug_debuglog_short_recording_continue">Continuar grabando</string>
     <string name="debug_debuglog_short_recording_stop">Detener de todas formas</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d registro de depuración (%2$s)</item>
         <item quantity="other">%1$d registros de depuración (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">¿Mensaje enviado?</string>
     <string name="support_contact_sent_message">Si enviaste el correo electrónico, esta sesión puede limpiarse.</string>
     <string name="general_close_action">Cerrar</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Contactar con soporte</string>
     <string name="contact_category_label">Categoría</string>
     <string name="contact_category_question_label">Pregunta</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">No se encontró ninguna aplicación de correo electrónico en este dispositivo.</string>
     <string name="contact_welcome_message">Leo todos los mensajes personalmente y hago todo lo posible por responder. Como me encargo del desarrollo, las correcciones de errores y el soporte por mi cuenta, puede llevar algo de tiempo. Gracias por tu paciencia.</string>
     <string name="contact_footer_message">Tu mensaje se enviará por correo electrónico. La información del dispositivo y la configuración se adjunta automáticamente. Puedes adjuntar capturas de pantalla o un vídeo al correo electrónico. Por favor, escribe en inglés si es posible.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Registro de depuración</string>
     <string name="debug_debuglog_screen_subtitle">Exportar información de depuración para la resolución de problemas</string>
     <string name="debug_debuglog_screen_sensitive_title">Información sensible</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d archivo listo (%2$s)</item>
         <item quantity="other">%1$d archivos listos (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Pregunta</string>
     <string name="contact_email_tag_feature">Función</string>
     <string name="contact_email_tag_bug">Error</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Esta aplicación te ayuda a navegar por las aplicaciones instaladas y descubrir los permisos.</string>
     <string name="onboarding_body2">Piloto de los Permisos recopila información de las aplicaciones instaladas para permitir listar tus apps y cruzar sus permisos al usar esta aplicación.</string>
     <string name="onboarding_body3">Piloto de los Permisos no tiene anuncios y sólo procesa datos localmente.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Modo de tema</string>
     <string name="ui_theme_mode_system_label">Sistema</string>
     <string name="ui_theme_mode_dark_label">Oscuro</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Usa los colores del fondo de pantalla</string>
     <string name="upgrade_required_subtitle">Actualiza para desbloquear</string>
     <string name="settings_category_appearance_label">Apariencia</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Personalización del tema</string>
     <string name="upgrade_benefit_filtering">Filtrado avanzado</string>
     <string name="upgrade_benefit_export">Exportación masiva de datos</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Copiar</string>
     <string name="general_copied_to_clipboard_msg">Copiado en el portapapeles</string>
     <string name="general_view_details_for_x_action">Ver detalles de %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Estado de actualización y opciones</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Watcher</string>
     <string name="watcher_dashboard_feature_title">Permission Watcher</string>
     <string name="watcher_dashboard_feature_description">Recíbe notificaciones cuando una actualización añada nuevos permisos o cambie los existentes. Permission Watcher revisa tus aplicaciones tras cada actualización y crea un informe si algo cambió.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Sincronización de instantáneas</string>
     <string name="snapshot_sync_channel_description">Sincronización de datos de aplicaciones en segundo plano</string>
     <string name="snapshot_sync_notification_title">Sincronizando datos de la aplicación…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Seleccionar todo</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d seleccionado</item>
         <item quantity="other">%d seleccionados</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportar info de la aplicación</string>
     <string name="export_permission_info_action">Exportar info del permiso</string>
     <plurals name="export_title_apps">

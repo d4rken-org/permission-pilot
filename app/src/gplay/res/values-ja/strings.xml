@@ -25,7 +25,10 @@
     <string name="upgrade_screen_owned_iap_purchase_note">サブスクリプションは更新されないため、今すぐ永久ライセンスの買い切りPro購入に切り替えられます。</string>
     <string name="upgrade_screen_owned_iap_locked_note">買い切り購入に切り替えるには、まずGoogle Playでサブスクリプションを解約してください。更新しない設定にすると、この特典が利用できるようになります。</string>
     <string name="upgrade_screen_sub_still_renewing_message">ご契約はまだ有効で更新されています。まず Google Play でキャンセルしてください。</string>
+    <string name="upgrade_screen_purchase_check_failed_message">Googleプレイで購入を確認できませんでした。もう一度お試しください。</string>
     <string name="upgrade_screen_pending_card_title">支払い処理中</string>
+    <string name="upgrade_screen_pending_card_body">Googleプレイがお支払いを処理中です。支払いが完了するとProが自動的に有効になります。お支払い方法によっては時間がかかる場合があります。他にやることはありません。</string>
+    <string name="upgrade_screen_pending_dialog_message">Googleプレイが支払い処理中の購入を見つけました。支払いが完了するとProが自動的に有効になります。</string>
     <string name="upgrade_screen_grace_title">購入を確認中</string>
     <string name="upgrade_screen_grace_body">Google Play が Pro 購入を再確認するのを待っています。これは通常自動的に解決します。</string>
     <string name="upgrade_screen_restore_status_title">ステータスが間違っていますか？</string>

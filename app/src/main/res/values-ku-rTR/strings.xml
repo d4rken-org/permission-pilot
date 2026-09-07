@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Alîkarî</string>
     <string name="general_error_label">Çewtî</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Çavkaniya sazkirinê</string>
     <string name="apps_details_installer_unknown_label">Agahî peyda nîne</string>
     <string name="apps_details_open_settings_error">ناتوانرێت ڕێکخستنەکانی ئەپ بۆ ئەم پرۆفایلە کرانەوە</string>
+    <string name="apps_details_open_settings_unavailable">Rûpela mîhengên pergalê tune ye: Android dibêje ku ev sepan ji bo vî bikarhênerî ne sazkirî ye.</string>
     <string name="apps_details_open_app_error">ناتوانرێت ئەم ئەپە کرانەوە</string>
     <string name="permissions_filter_manifest_label">Destûrên AOSP</string>
     <string name="permissions_filter_system_label">Ji aliyê serlêdana pergalê ve hatiye raghandin</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">تایبەت — پێویستكردنی کۆلیلەکیک لە ڕێکخستنەکانی سیستەم دەوێتەوە.</string>
     <string name="apps_details_perm_help_install">ناوەكردن — بە خۆدیکەوە ڕاز دەکردیکەوە بەرنامەکە ناوەكراو. ناوێشتنی كاریكەس لەزمە نییە.</string>
     <string name="apps_details_perm_help_declared">ئەیکۆنی ⚠ بە ماناییە کە ئەم ئەجازەیە لەلایەک خودی بەرنامەکە دروستھێنراوە، نەک ئەجازەیەکی ئەندرۆیدی ستاندارد.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manîfestoya Sepanê</string>
     <string name="apps_details_manifest_queued">Di rêzê de ji bo analîzkirinê…</string>
     <string name="apps_details_manifest_loading">Manîfesto tê analîzkirin…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d lêpisîrsîna pêşkêşker</item>
         <item quantity="other">%d lêpisîrsînên pêşkêşker</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Dikare piraniya bernameyên vexistinê nas bike</string>
     <string name="apps_details_manifest_hint_excessive">Ji bo gelek sepanên taybetî kontrol dike</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Nêrînerê Manîfestoyê</string>
     <string name="apps_manifest_viewer_search_hint">Di manîfestoyê de bigere</string>
     <string name="apps_manifest_viewer_error_unknown">Çewtiya nenas dema barkirina manifestê.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d بەرنامەی لابراوەكراو كە داتایی بەرجێماودراوەکانیش هەیە ئەم ئەجازەیەش داواتخواز دەکات.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Serlêdanên ku di profîlên bikarhênerên din de hatine sazkirin ji hesabkirina li jor derxistine ji ber sînorkirinên Android-ê.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">دەمینە</string>
     <string name="permissions_tag_install_time_label">کاتی ناوەكردن</string>
     <string name="permissions_tag_special_access_label">دەسترسی تایبەت</string>
     <string name="permissions_tag_documented_label">دۆکیومەنتکراو</string>
     <string name="permissions_tag_notable_label">چاکوونەوە</string>
     <string name="permissions_tag_non_standard_label">نەستاندارد</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">لە کاردا</string>
     <string name="permissions_status_unknown_label">نازان</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">سیستەم</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d zêdetir</item>
         <item quantity="other">+%d zêdetir</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">نوێنەرەکانی ئەجازە</string>
     <string name="permissions_details_help_section_protection">جۆری حەمھێزی</string>
     <string name="permissions_details_help_dangerous">مەترسەك — پێویستکردنی ڕازکردنەوەی ئاشکاری كاربەر لە دەمینە. دەسترسی داتای هەسساس یا خاسیەتەکانی ئامێر هەیە.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">ووستانەکی دیباگ پێویستکردنییە کە کێشەکەی كاتی ڕوودانبەدەت. تۆمارکردن دەستپێکكرە، کێشەکەت دۆبارەکەوە، ۆێگاتە تۆمارکردن ووستبێنە.</string>
     <string name="debug_debuglog_short_recording_continue">دووامەکردنی تۆمارکردن</string>
     <string name="debug_debuglog_short_recording_stop">ووستانەکانی بە ھەر شتێک </string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d ووستانەکی دیباگ (%2$s)</item>
         <item quantity="other">%1$d ووستانەکی دیباگ (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">نامەکە نێردراو؟</string>
     <string name="support_contact_sent_message">ئەگەر ئیمێڵەکەت نێردووتی، ئەم جۆلسەیە دەتوانیت پاکكردرەوە.</string>
     <string name="general_close_action">داخستنەوە</string>
-    <!-- Contact form -->
     <string name="contact_support_label">پێوەندینەکانی کومەک</string>
     <string name="contact_category_label">دەستەکە</string>
     <string name="contact_category_question_label">پرسیار</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">ھیچ بەرنامەی ئیمێڵی لە ئەم ئامێرە نەدێت.</string>
     <string name="contact_welcome_message">هەموو نامەکان خۆیم خوینمەوە و بەستەکەمیش دەکەم وەڵام بدەمەوە. چونکە پێشکەوتوو، دروستکردنەوەکانی كێشەکان و کومەکەکە خۆیم دەكەم، کەمێک کاتیکە دەبێت. سپاس بۆ سەبرتەکەت.</string>
     <string name="contact_footer_message">نامەکەت لەسەر ئیمێڵ نێردراو. زانیاریکانی ئامێر و ژمارەکانی دەستکارکردن بە خۆدیکەوە دەبەستیكرۮن. دەتوانیت سکرێنشۆتیا یا کلیپیک بەڵكەنی ئیمێڵەکە. تۆخمەخواز بە ئەنگلیزی بنوسێت کە بووێتەوە.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">ووستانەکی دیباگ</string>
     <string name="debug_debuglog_screen_subtitle">هەناردنی زانیاریکانی دیباگ بۆ چارەسەرکردن</string>
     <string name="debug_debuglog_screen_sensitive_title">زانیاریکانی هەسساس</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d فەیڵ ئامادە (%2$s)</item>
         <item quantity="other">%1$d فەیڵ ئامادە (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dد %2$dث</string>
     <string name="debug_debuglog_screen_duration_s">%1$dث</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">پرسیار</string>
     <string name="contact_email_tag_feature">خاسیەت</string>
     <string name="contact_email_tag_bug">کێشە</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Ev serlêdan ji we re dibe alîkar ku hûn di nav serlêdanên sazkirî de bigerin û destûran keşf bikin.</string>
     <string name="onboarding_body2">Permission Pilot agahdariya serlêdanên sazkirî berhev dike da ku rêze kirina serlêdanên we û referanskirina destûrên wan dema ku hûn vê serlêdanê bikar tînin gengaz bike.</string>
     <string name="onboarding_body3">Permission Pilot reklam tune ye û tenê bi awayekî herêmî daneyan pêvajo dike.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">شێوەی دیزەین</string>
     <string name="ui_theme_mode_system_label">سیستەم</string>
     <string name="ui_theme_mode_dark_label">تاریک</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">بەکارھێنانی رەنگەکانی چوارمە</string>
     <string name="upgrade_required_subtitle">بەرزترکردن بۆ کردنەوە</string>
     <string name="settings_category_appearance_label">دەردەكەوتن</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">دەسکارکردنی دیزەین</string>
     <string name="upgrade_benefit_filtering">فلتەرکردنی پێشکەوتوو</string>
     <string name="upgrade_benefit_export">هەناردنی دەستەیی داتا</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopî bike</string>
     <string name="general_copied_to_clipboard_msg">Copî kir</string>
     <string name="general_view_details_for_x_action">Hûrguşên %1$s bibîn</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Rewşa Bulaş û Vebijark</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">چاودێر</string>
     <string name="watcher_dashboard_feature_title">چاودێری ئەجازە</string>
     <string name="watcher_dashboard_feature_description">ئاگاداركردنەوە کاتی نوسێنکردنی بەرنامەکەک ئەجازەکانی نوێ زیاد دەکات یا ئەوێشیی لەسەر ئەوێشیی دەکات. چاودێری ئەجازە بەرنامەکانت دەبەنێت پاش ھەر نوسێنکردنی و ڕاپۆڕتێک دروستدەکات ئەگەر هیچ گەڕانیک بووەتەوە.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">ھاوالكردنی سناپشەت</string>
     <string name="snapshot_sync_channel_description">ھاوالكردنی داتای بەرنامەکەک لە پاشا</string>
     <string name="snapshot_sync_notification_title">ھاوالكردنی داتای بەرنامەکە…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Hemûyan hilbijêre</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d hilbijira</item>
         <item quantity="other">%d hilbijiran</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Agahdariya sepanê hinardeke</string>
     <string name="export_permission_info_action">Agahdariya destûrê hinardeke</string>
     <plurals name="export_title_apps">

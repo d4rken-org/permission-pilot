@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Error</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Origen de la instal·lació</string>
     <string name="apps_details_installer_unknown_label">Informació no disponible</string>
     <string name="apps_details_open_settings_error">No s\'han pogut obrir els paràmetres de l\'aplicació per a aquest perfil</string>
+    <string name="apps_details_open_settings_unavailable">No hi ha pàgina de configuració del sistema: Android informa que aquesta aplicació no està instal·lada per a aquest usuari.</string>
     <string name="apps_details_open_app_error">No s\'ha pogut obrir aquesta aplicació</string>
     <string name="permissions_filter_manifest_label">Permisos AOSP</string>
     <string name="permissions_filter_system_label">Declarats per aplicació del sistema</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Especial: cal activar un commutador a la configuració del sistema.</string>
     <string name="apps_details_perm_help_install">Instal·lació: concedits automàticament quan s\'instal·la l\'aplicació. No cal cap acció de l\'usuari.</string>
     <string name="apps_details_perm_help_declared">La icona ⚠ significa que aquest permís ha estat creat per la pròpia aplicació, en comptes de ser un permís estàndard d\'Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest de l\'aplicació</string>
     <string name="apps_details_manifest_queued">En cua per a l’anàlisi…</string>
     <string name="apps_details_manifest_loading">S’està analitzant el manifest…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d consulta de proveïdor</item>
         <item quantity="other">%d consultes de proveïdor</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Pot descobrir la majoria d\'aplicacions executables</string>
     <string name="apps_details_manifest_hint_excessive">Comprova moltes aplicacions específiques</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visualitzador del manifest</string>
     <string name="apps_manifest_viewer_search_hint">Cerca al manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Error desconegut en carregar el manifest.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d aplicacions desinstal·lades amb dades conservades també sol·liciten aquest permís.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Les aplicacions instal·lades en altres perfils d\'usuari s\'exclouen del càlcul anterior a causa de les restriccions d\'Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Temps d\'execució</string>
     <string name="permissions_tag_install_time_label">A la instal·lació</string>
     <string name="permissions_tag_special_access_label">Accés especial</string>
     <string name="permissions_tag_documented_label">Documentat</string>
     <string name="permissions_tag_notable_label">Notable</string>
     <string name="permissions_tag_non_standard_label">No estàndard</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">En ús</string>
     <string name="permissions_status_unknown_label">Desconegut</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistema</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d més</item>
         <item quantity="other">+%d més</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indicadors de permisos</string>
     <string name="permissions_details_help_section_protection">Tipus de protecció</string>
     <string name="permissions_details_help_dangerous">Perillós: cal l\'aprovació explícita de l\'usuari en temps d\'execució. Pot accedir a dades sensibles o funcions del dispositiu.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Un registre de depuració ha de capturar el problema mentre passa. Inicieu l\'enregistrament, reproduïu el problema i atureu l\'enregistrament.</string>
     <string name="debug_debuglog_short_recording_continue">Continua la gravació</string>
     <string name="debug_debuglog_short_recording_stop">Atura-la igualment</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d registre de depuració (%2$s)</item>
         <item quantity="other">%1$d registres de depuració (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">S\'ha enviat el missatge?</string>
     <string name="support_contact_sent_message">Si heu enviat el correu, aquesta sessió es pot netejar.</string>
     <string name="general_close_action">Tanca</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Contacta amb el suport</string>
     <string name="contact_category_label">Categoria</string>
     <string name="contact_category_question_label">Pregunta</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">No s\'ha trobat cap aplicació de correu en aquest dispositiu.</string>
     <string name="contact_welcome_message">Llegeixo tots els missatges personalment i faig tot el possible per respondre. Com que gestiono el desenvolupament, la correcció d\'errors i el suport per compte propi, pot trigar una mica. Gràcies per la vostra paciència.</string>
     <string name="contact_footer_message">El vostre missatge s\'enviarà per correu. La informació del dispositiu i la configuració s\'adjunta automàticament. Podeu adjuntar captures de pantalla o un vídeo al correu. Si és possible, escriviu-ho en anglès.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Registre de depuració</string>
     <string name="debug_debuglog_screen_subtitle">Exporta informació de depuració per a la resolució de problemes</string>
     <string name="debug_debuglog_screen_sensitive_title">Informació confidencial</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d fitxer preparat (%2$s)</item>
         <item quantity="other">%1$d fitxers preparats (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Pregunta</string>
     <string name="contact_email_tag_feature">Funcionalitat</string>
     <string name="contact_email_tag_bug">Error</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Aquesta aplicació us ajuda a navegar per les aplicacions instal·lades i descobrir permisos.</string>
     <string name="onboarding_body2">El Permission Pilot recull informació d\'aplicacions instal·lades per permetre llistar les vostres aplicacions i fer referències creuades dels seus permisos quan utilitzeu aquesta aplicació.</string>
     <string name="onboarding_body3">El Permission Pilot no té publicitat i només processa dades localment.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Mode del tema</string>
     <string name="ui_theme_mode_system_label">Sistema</string>
     <string name="ui_theme_mode_dark_label">Fosc</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Utilitza els colors del fons de pantalla</string>
     <string name="upgrade_required_subtitle">Milloreu per a desbloquejar</string>
     <string name="settings_category_appearance_label">Aparença</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Personalització de temes</string>
     <string name="upgrade_benefit_filtering">Filtratge avançat</string>
     <string name="upgrade_benefit_export">Exportació de dades en lot</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Copia</string>
     <string name="general_copied_to_clipboard_msg">S\'ha copiat al porta-retalls</string>
     <string name="general_view_details_for_x_action">Mostra els detalls de %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Estat de l\'actualització i opcions</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Vigilant</string>
     <string name="watcher_dashboard_feature_title">Vigilant de permisos</string>
     <string name="watcher_dashboard_feature_description">Rebeu una notificació quan una actualització d\'una aplicació afegeixi nous permisos o modifiqui els existents. El vigilant de permisos comprova les vostres aplicacions després de cada actualització i crea un informe si hi ha cap canvi.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Sincronització d\'instantànies</string>
     <string name="snapshot_sync_channel_description">Sincronització de dades de l\'aplicació en segon pla</string>
     <string name="snapshot_sync_notification_title">S\'estan sincronitzant les dades de l\'aplicació…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Selecciona-ho tot</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d seleccionat</item>
         <item quantity="other">%d seleccionats</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exporta informació de l’aplicació</string>
     <string name="export_permission_info_action">Exporta informació del permís</string>
     <plurals name="export_title_apps">

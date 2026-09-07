@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Pomocník</string>
     <string name="general_error_label">Chyba</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Zdroj inštalácie</string>
     <string name="apps_details_installer_unknown_label">Informácie nie sú dostupné</string>
     <string name="apps_details_open_settings_error">Nepodarilo sa otvoriť nastavenia aplikácie pre tento profil</string>
+    <string name="apps_details_open_settings_unavailable">Žiadna stránka systémových nastavení: Android hlási, že táto aplikácia nie je pre tohto používateľa nainštalovaná.</string>
     <string name="apps_details_open_app_error">Nepodarilo sa otvoriť túto aplikáciu</string>
     <string name="permissions_filter_manifest_label">AOSP oprávnenia</string>
     <string name="permissions_filter_system_label">Deklarované systémovou aplikáciou</string>
@@ -168,7 +167,6 @@
     <string name="apps_details_perm_help_special">Špeciálne — Vyžaduje prepnutie prepínača v systémových nastaveniach.</string>
     <string name="apps_details_perm_help_install">Pri inštalácii — Udelené automaticky pri inštalácii aplikácie. Nie je potrebná akcia používateľa.</string>
     <string name="apps_details_perm_help_declared">Ikona ⚠ znamená, že toto oprávnenie vytvorila sama aplikácia, nie je to štandardné oprávnenie Androidu.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest aplikácie</string>
     <string name="apps_details_manifest_queued">V rade na analýzu…</string>
     <string name="apps_details_manifest_loading">Analyzujem manifest…</string>
@@ -197,10 +195,8 @@
         <item quantity="many">%d dotazov na poskytovateľov</item>
         <item quantity="other">%d dopytov na poskytovateľov</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Vie odhaliť väčšinu spustiteľných aplikácií</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétnych aplikácií</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prehľadáč manifestov</string>
     <string name="apps_manifest_viewer_search_hint">Hľadať v manifeste</string>
     <string name="apps_manifest_viewer_error_unknown">Neznáma chyba pri načítavaní manifestu.</string>
@@ -265,26 +261,21 @@
         <item quantity="other">%d odoinštalovaných aplikácií so zachovanými dátami tiež požaduje toto oprávnenie.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikácie nainštalované v iných používateľských profiloch sú z výpočtu vyššie vylúčené kvôli obmedzeniam Androidu.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Za behu</string>
     <string name="permissions_tag_install_time_label">Pri inštalácii</string>
     <string name="permissions_tag_special_access_label">Špeciálny prístup</string>
     <string name="permissions_tag_documented_label">Zdokumentované</string>
     <string name="permissions_tag_notable_label">Pozoruhodné</string>
     <string name="permissions_tag_non_standard_label">Neštandardné</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">V použití</string>
     <string name="permissions_status_unknown_label">Neznáme</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Systém</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d ďalší</item>
         <item quantity="few">+%d ďalších</item>
         <item quantity="many">+%d ďalších</item>
         <item quantity="other">+%d ďalších</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indikátory oprávnení</string>
     <string name="permissions_details_help_section_protection">Typ ochrany</string>
     <string name="permissions_details_help_dangerous">Nebezpečné — Vyžaduje výsl. schválenie používateľa za behu. Môže pristupovať k citlivým dátam alebo funkciám zariadenia.</string>
@@ -430,7 +421,6 @@
     <string name="debug_debuglog_short_recording_message">Ladíaci záznam musí zachytiť problém, keď nastáva. Spustite nahrávanie, zopakujte problém a potom zastavťe nahrávanie.</string>
     <string name="debug_debuglog_short_recording_continue">Pokračovať v nahrávaní</string>
     <string name="debug_debuglog_short_recording_stop">Zastaviť napriek tomu</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d ladíaci záznam (%2$s)</item>
         <item quantity="few">%1$d ladíacie záznamy (%2$s)</item>
@@ -454,7 +444,6 @@
     <string name="support_contact_sent_title">Správa bola odoslaná?</string>
     <string name="support_contact_sent_message">Ak ste odoslali e-mail, toto sedenie možno upratovať.</string>
     <string name="general_close_action">Zavrieť</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontaktovať podporu</string>
     <string name="contact_category_label">Kategória</string>
     <string name="contact_category_question_label">Otázka</string>
@@ -484,7 +473,6 @@
     <string name="contact_no_email_app">Na tomto zariadeni nebola nájdená žiadna e-mailová aplikácia.</string>
     <string name="contact_welcome_message">Každú správu čítám osobne a snažím sa odpovedať čo najlepšie. Keďže sam o sebe mane vyvoj, opravy chyb aj podporu, môže to trochu chílieť. Vd\'aka za trpezlivosť.</string>
     <string name="contact_footer_message">Vaša správa bude odoslaná e-mailom. Informácie o zariadeni a nastavení sú priložené automaticky. K e-mailu môžete priložiť snímky obrazovky alebo video. Ak je to možné, píšte po anglicky.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Režim ladenia</string>
     <string name="debug_debuglog_screen_subtitle">Exportovať ladíacie informácie na diagnostiku</string>
     <string name="debug_debuglog_screen_sensitive_title">Citlivé informácie</string>
@@ -497,13 +485,11 @@
         <item quantity="many">%1$d súbory pripravené (%2$s)</item>
         <item quantity="other">%1$d súbory pripravené (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot Ladíaci záznam - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Otázka</string>
     <string name="contact_email_tag_feature">Funkcia</string>
     <string name="contact_email_tag_bug">Chyba</string>
@@ -512,7 +498,6 @@
     <string name="onboarding_body1">Táto aplikácia vám pomáha prechádzať nainštalovanými aplikáciami a objavovať oprávnenia.</string>
     <string name="onboarding_body2">Permission Pilot zbiera informácie o nainštalovaných aplikáciách, aby umožnil výpis vašich aplikácií a krížové referencovanie ich oprávnení pri používaní tejto aplikácie.</string>
     <string name="onboarding_body3">Permission Pilot nemá reklamy a spracováva údaje len lokálne.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Režim témy</string>
     <string name="ui_theme_mode_system_label">Systém</string>
     <string name="ui_theme_mode_dark_label">Tmavý</string>
@@ -529,7 +514,6 @@
     <string name="ui_theme_color_disabled_subtitle">Používa farby tapety</string>
     <string name="upgrade_required_subtitle">Upgradujte na odomknutie</string>
     <string name="settings_category_appearance_label">Vzhľad</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Prízpôsobenie témy</string>
     <string name="upgrade_benefit_filtering">Pokročilé filtrovanie</string>
     <string name="upgrade_benefit_export">Dávkový export dát</string>
@@ -542,9 +526,7 @@
     <string name="general_copy_action">Kopírovať</string>
     <string name="general_copied_to_clipboard_msg">Skopírované do schránky</string>
     <string name="general_view_details_for_x_action">Zobraziť podrobnosti pre %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Stav upgradu a možnosti</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Sleďovač</string>
     <string name="watcher_dashboard_feature_title">Sleďovač oprávnení</string>
     <string name="watcher_dashboard_feature_description">Dostan\'te upozornenie, keď aktualizovaná aplikácia pridá nové oprávnenia alebo zmeni existujúce. Sleďovač oprávnení kontroluje aplikácie po každej aktualizácii a vytvorí správu, ak sa niečo zmenilo.</string>
@@ -670,7 +652,6 @@
     <string name="snapshot_sync_channel_name">Synchronizácia snímok</string>
     <string name="snapshot_sync_channel_description">Synchronizácia dát aplikácií na pozadí</string>
     <string name="snapshot_sync_notification_title">Synchronizácia dát aplikácií…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Vybrať všetky</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d vybraný</item>
@@ -678,7 +659,6 @@
         <item quantity="many">%d vybraného</item>
         <item quantity="other">%d vybraných</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportovať informácie o aplikácii</string>
     <string name="export_permission_info_action">Exportovať informácie o oprávnení</string>
     <plurals name="export_title_apps">

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">帮助</string>
     <string name="general_error_label">错误</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">安装来源</string>
     <string name="apps_details_installer_unknown_label">缺少信息</string>
     <string name="apps_details_open_settings_error">无法为此配置文件打开应用设置</string>
+    <string name="apps_details_open_settings_unavailable">无系统设置界面：Android 报告此应用对此用户未安装。</string>
     <string name="apps_details_open_app_error">无法打开此应用</string>
     <string name="permissions_filter_manifest_label">AOSP 权限</string>
     <string name="permissions_filter_system_label">由系统应用声明</string>
@@ -165,7 +164,6 @@
     <string name="apps_details_perm_help_special">特殊权限——需要在系统设置中手动打开开关。</string>
     <string name="apps_details_perm_help_install">安装时权限——应用安装时自动授予，无需用户操作。</string>
     <string name="apps_details_perm_help_declared">⚠ 图标表示此权限是由应用自身定义的，而非标准安卓权限。</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">应用清单</string>
     <string name="apps_details_manifest_queued">排队等待分析…</string>
     <string name="apps_details_manifest_loading">正在分析清单…</string>
@@ -182,10 +180,8 @@
     <plurals name="apps_details_manifest_providers">
         <item quantity="other">%d 个提供者查询</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">可发现大多数可启动的应用</string>
     <string name="apps_details_manifest_hint_excessive">检查多个特定应用</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">清单查看器</string>
     <string name="apps_manifest_viewer_search_hint">在清单中搜索</string>
     <string name="apps_manifest_viewer_error_unknown">加载清单时出现未知错误。</string>
@@ -229,23 +225,18 @@
         <item quantity="other">还有 %d 个已卸载且保留数据的应用也请求此权限。</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">由于 Android 限制，上述计算不包括安装在其他用户配置文件中的应用。</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">运行时权限</string>
     <string name="permissions_tag_install_time_label">安装时权限</string>
     <string name="permissions_tag_special_access_label">特殊访问权限</string>
     <string name="permissions_tag_documented_label">已记录</string>
     <string name="permissions_tag_notable_label">值得关注</string>
     <string name="permissions_tag_non_standard_label">非标准</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">使用中</string>
     <string name="permissions_status_unknown_label">未知</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">跟随系统</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="other">+%d 个更多</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">权限指示器</string>
     <string name="permissions_details_help_section_protection">保护级别</string>
     <string name="permissions_details_help_dangerous">危险——运行时需要用户明确授权。可访问敏感数据或设备功能。</string>
@@ -391,7 +382,6 @@
     <string name="debug_debuglog_short_recording_message">调试日志需要在问题发生时进行捕获。开始录制，复现问题，然后停止录制。</string>
     <string name="debug_debuglog_short_recording_continue">继续录制</string>
     <string name="debug_debuglog_short_recording_stop">无论如何停止</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="other">%1$d 条调试日志（%2$s）</item>
     </plurals>
@@ -412,7 +402,6 @@
     <string name="support_contact_sent_title">邮件已发送？</string>
     <string name="support_contact_sent_message">如果您已发送电子邮件，可以清理此会话。</string>
     <string name="general_close_action">关闭</string>
-    <!-- Contact form -->
     <string name="contact_support_label">联系支持</string>
     <string name="contact_category_label">类别</string>
     <string name="contact_category_question_label">问题</string>
@@ -439,7 +428,6 @@
     <string name="contact_no_email_app">此设备上未找到邮件应用。</string>
     <string name="contact_welcome_message">我亲自阅读每一条消息，并尽力回复。由于我独自负责开发、错误修复和支持，回复可能需要一些时间。感谢您的耐心。</string>
     <string name="contact_footer_message">您的消息将通过电子邮件发送。设备和配置信息将自动附上。您可以将截图或视频附加到邮件中。如果可能，请用英语写作。</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">调试日志</string>
     <string name="debug_debuglog_screen_subtitle">导出调试信息以进行故障排查</string>
     <string name="debug_debuglog_screen_sensitive_title">敏感信息</string>
@@ -449,13 +437,11 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="other">%1$d 文件已准备好(%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP：%s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP：…</string>
     <string name="debug_debuglog_screen_duration_ms">%1$d分%2$d秒</string>
     <string name="debug_debuglog_screen_duration_s">%1$d秒</string>
     <string name="support_debuglog_share_subject">Permission Pilot 调试日志 - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">问题</string>
     <string name="contact_email_tag_feature">功能</string>
     <string name="contact_email_tag_bug">错误</string>
@@ -464,7 +450,6 @@
     <string name="onboarding_body1">这款应用可以帮助您浏览已安装的应用程序并发现其权限。</string>
     <string name="onboarding_body2">Permission Pilot 收集已安装应用程序的信息，以便在使用本应用程序时列出您的应用程序并交叉引用其权限。</string>
     <string name="onboarding_body3">Permission Pilot 不含广告，仅在本地处理数据。</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">主题样式</string>
     <string name="ui_theme_mode_system_label">跟随系统</string>
     <string name="ui_theme_mode_dark_label">深色模式</string>
@@ -481,7 +466,6 @@
     <string name="ui_theme_color_disabled_subtitle">使用壁纸颜色</string>
     <string name="upgrade_required_subtitle">升级以解锁</string>
     <string name="settings_category_appearance_label">外观</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">主题自定义</string>
     <string name="upgrade_benefit_filtering">高级筛选</string>
     <string name="upgrade_benefit_export">批量数据导出</string>
@@ -494,9 +478,7 @@
     <string name="general_copy_action">复制</string>
     <string name="general_copied_to_clipboard_msg">已复制到剪切板</string>
     <string name="general_view_details_for_x_action">查看 %1$s 的详情</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">升级状态和选项</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">监控器</string>
     <string name="watcher_dashboard_feature_title">权限监控器</string>
     <string name="watcher_dashboard_feature_description">当应用更新添加新权限或更改现有权限时，您将收到通知。权限监控器会在每次更新后检查应用，如果有任何变化就创建报告。</string>
@@ -598,12 +580,10 @@
     <string name="snapshot_sync_channel_name">快照同步</string>
     <string name="snapshot_sync_channel_description">后台应用数据同步</string>
     <string name="snapshot_sync_notification_title">正在同步应用数据…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">全选</string>
     <plurals name="general_x_selected_label">
         <item quantity="other">已选择 %d 个</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">导出应用信息</string>
     <string name="export_permission_info_action">导出权限信息</string>
     <plurals name="export_title_apps">

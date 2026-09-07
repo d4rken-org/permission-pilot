@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">ፍቃድ ፓይሎት</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">እርዳታ</string>
     <string name="general_error_label">ስህተት</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">ተጫኝ ምንጭ</string>
     <string name="apps_details_installer_unknown_label">መረጃ አለመኖሩ</string>
     <string name="apps_details_open_settings_error">ለዚህ መገለጫ የአፕ ቅንጅቶችን መክፈት አልቻለም</string>
+    <string name="apps_details_open_settings_unavailable">የስርዓት ቅንብሮች ገጽ የለም፡ Android ይህ መተግበሪያ ለዚህ ተጠቃሚ ያልተጫነ ነው ብሎ ይዘግባል።</string>
     <string name="apps_details_open_app_error">ይህን አፕ መክፈት አልቻለም</string>
     <string name="permissions_filter_manifest_label">የAOSP ፈቃዶች</string>
     <string name="permissions_filter_system_label">የስርዓት መተግበሪያ ተገልጾታል</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">ለይያ — በየስርዓት ቅንጅቶች ውስጥ የፍቃድ መቀያሬዕ ያስፈልጋለ።</string>
     <string name="apps_details_perm_help_install">መጫን — አፕ ሲጫን በራስ ይሰተባለ። የተጠቃሚ ኰፐብ ክርክር አይጎተዙም።</string>
     <string name="apps_details_perm_help_declared">የ ⚠ ክቍፈር ይህን ፍቃድ የአፕን ቡዕዘኙ ፍቃድ መሆን እና ነጠና የአንድሮይድ ደረጃዊ ክቍፈር አይደለም ምስቀብ እና ትርጅም ይከትታለ።</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">የመተግበሪያ ማኒፌስት</string>
     <string name="apps_details_manifest_queued">ለትንታኔ ተሰልፏል…</string>
     <string name="apps_details_manifest_loading">ማኒፌስት እየተተነተነ…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d የአቅራቢ ጥያቄ</item>
         <item quantity="other">%d የአቅራቢ ጥያቄዎች</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">አብዛኛው ሊጀመር የሚችሉ መተግበሪያዎችን ማግኘት ይችላል</string>
     <string name="apps_details_manifest_hint_excessive">ለመተግበሪያዎች ካለደ኉ እየ቙ቱን ይነጋባል</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ማኒፌስት ጨያይ</string>
     <string name="apps_manifest_viewer_search_hint">በማኒፌስት አክቅ</string>
     <string name="apps_manifest_viewer_error_unknown">Manifest ሲጫን ያልታወቀ ስህተት</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d መረጃ የቀረ የተሰረዘ አፕዎች ዘተተውንም ይህንን ፍቃድ ይጠይቃሉ።</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">በሌሎች እንቅስቃሴ ላይ የተጫኑ መተግበሪያዎች ስለ Android ውስስነት ከመተግበሪያ ግልጽ ማስታወቂያ ተገናኝተዋል።</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">የርንታይም</string>
     <string name="permissions_tag_install_time_label">በጭነት ጊዜ</string>
     <string name="permissions_tag_special_access_label">ልዩ ፍቃድ</string>
     <string name="permissions_tag_documented_label">ሰነድ የተደረገ</string>
     <string name="permissions_tag_notable_label">ትኩረት የሚስብ</string>
     <string name="permissions_tag_non_standard_label">ደረጃ-ያልሆነ</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">በአጠቃቀም ላይ</string>
     <string name="permissions_status_unknown_label">የማይታወቅ</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">ሲስተም</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d ተጨማሪ</item>
         <item quantity="other">+%d ተጨማሪ</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">የፍቃድ አመላካቾች</string>
     <string name="permissions_details_help_section_protection">የጥበቃ ዓይነት</string>
     <string name="permissions_details_help_dangerous">ዓደተኛ — በርንታይም የተጠቃሚ ናንቒ ይሆናል። ነኰኰ ዳታ ወይም የደሕን ድርግቶች መገለገል ይቻላለ።</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">የዲባግ መረጃ ዋናውን ችግር ሲፈጠር ማቀድ ይኖርበታል። ዘገበትን ይጀምሩ፣ ችግርዎን ያምርቱ፣ ዘገበትን ያቁሙ።</string>
     <string name="debug_debuglog_short_recording_continue">ዘገበትን ይቀጥሉ</string>
     <string name="debug_debuglog_short_recording_stop">እንደዘነም አስቁሙ</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d የዲባግ መረጃ (%2$s)</item>
         <item quantity="other">%1$d የዲባግ መረጃዎች (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">መልእክት ተላኺተዋለ?</string>
     <string name="support_contact_sent_message">ኢሜይሉን ከላካይባት ትርክው ይነዊቡ።</string>
     <string name="general_close_action">ዝጋ</string>
-    <!-- Contact form -->
     <string name="contact_support_label">ድግፍ ኣንጁ</string>
     <string name="contact_category_label">ምድቦ</string>
     <string name="contact_category_question_label">ጥያቄ</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">በዚህ መሳሪያ ላይ የኢሜይል አፕ አልተገኙም።</string>
     <string name="contact_welcome_message">ዘብርኳዉን እናንደም በጸፈረ አታየለሁ። የጕሴት ሸራ, ገታ, አገልግሳይይየ በሜመሚ ለመጀን አንደተቀተሚን ቢረዘተውን ይለለ፣ ነገር ትኧመትቸዎን አመስጋኘ።</string>
     <string name="contact_footer_message">መልእክትው በኢሜይል ይላካለ። የመሳሪያ ወደ ቅንጅት መረጃ በርስ ይታየባለ። ካኴታ ወይም የፋይል መሰቄረትን ለኢሜይሉ ማኴለቅ ይቻ኱። ብካክ እናደዘነም በእንጎለርዝበት ይዘግቡ።</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">ዲባግ መረጃ</string>
     <string name="debug_debuglog_screen_subtitle">ለስህተት የዲባግ መረጃን የዳታ ስርዓት ይጀሜሙ</string>
     <string name="debug_debuglog_screen_sensitive_title">እል የሆነ መረጃ</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d ፋይል ፥ተዛጂ (%2$s)</item>
         <item quantity="other">%1$d ፋይሎች ፥ተዛጂ (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dደእ %2$dʼ</string>
     <string name="debug_debuglog_screen_duration_s">%1$dʼ</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">ጥያቄ</string>
     <string name="contact_email_tag_feature">ባህሪያ</string>
     <string name="contact_email_tag_bug">ስህተት</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">ይህ መተግበሪያ የተጫኙ መተግበሪያዎችን እና ፈቃዶቻቸውን ማወቅና ማሳየት ይረዳል።</string>
     <string name="onboarding_body2">Permission Pilot የተጫኙ መተግበሪያዎች መረጃ ይሰበስባል። ይህ የፈቃዶችን ቅዱስ ዝርዝር ማየት ያስችላል።</string>
     <string name="onboarding_body3">Permission Pilot ማንኛውንም ማስታወቂያ የለውምና ሁሉንም ውሂብ በኪነ ምሁር ይተግበራል።</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">የወጭታ ሁነታ</string>
     <string name="ui_theme_mode_system_label">ሲስተም</string>
     <string name="ui_theme_mode_dark_label">ጥቁር</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">የስዘርዘር ቃለዎችን ይጠቀማለ</string>
     <string name="upgrade_required_subtitle">ለመከፈት አፔቱግሩ</string>
     <string name="settings_category_appearance_label">መለክ</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">የመለክ ስለቷን ተኻነት</string>
     <string name="upgrade_benefit_filtering">ደርጃዊ ማጣሪያ</string>
     <string name="upgrade_benefit_export">የባንክ ዳታ ነግ</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">ቅዳ</string>
     <string name="general_copied_to_clipboard_msg">ወደ ክሊፕቦርድ ተቅዱ</string>
     <string name="general_view_details_for_x_action">ለ%1$s ዝርዝር ይመልከቱ</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">ማሻሻያ ሁኔታ እና ምርጫ</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">ባለቸኛ</string>
     <string name="watcher_dashboard_feature_title">የፍቃድ ባለቸኛ</string>
     <string name="watcher_dashboard_feature_description">አፕ ፍቃድ ብዚት ነጥ ፍቃዶች መጱመር ወይም የተመስረተዋቸውን ዪንዳንድ ምዘረብ። የፍቃድ ባለቸኛ አፕዎችን በእምዋቲዘ ይታኰቡ፣ አንድ ነገር ካለተ፣ ሪፖርት ይሰራለ።</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">የየለከ ሜኪኰበት እክክ</string>
     <string name="snapshot_sync_channel_description">የበስተመለ የአፕ ዳታ ሕረት</string>
     <string name="snapshot_sync_notification_title">የአፕ ዳታን ይብካለ…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">ሁሉንም ምረጥ</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d ተመርጧል</item>
         <item quantity="other">%d ተመርጧል</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">የመተግበሪያ መረጃ ላክ</string>
     <string name="export_permission_info_action">የፍቃድ መረጃ ላክ</string>
     <plurals name="export_title_apps">

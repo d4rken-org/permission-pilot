@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">幫助</string>
     <string name="general_error_label">錯誤</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">安裝來源</string>
     <string name="apps_details_installer_unknown_label">缺少資訊</string>
     <string name="apps_details_open_settings_error">無法開啟此設定檔的應用程式設定</string>
+    <string name="apps_details_open_settings_unavailable">系統設定頁面不可用：Android 報告此應用程式未在此使用者的帳戶中安裝。</string>
     <string name="apps_details_open_app_error">無法開啟此應用程式</string>
     <string name="permissions_filter_manifest_label">AOSP 權限</string>
     <string name="permissions_filter_system_label">由系統應用程式聲明</string>
@@ -165,7 +164,6 @@
     <string name="apps_details_perm_help_special">特殊 — 需要在系統設定中切換開關。</string>
     <string name="apps_details_perm_help_install">安裝 — 安裝應用程式時自動授予，無需使用者操作。</string>
     <string name="apps_details_perm_help_declared">⚠ 圖示表示此權限是由應用程式本身建立，而非標準 Android 權限。</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">應用程式清單</string>
     <string name="apps_details_manifest_queued">排隊等待分析…</string>
     <string name="apps_details_manifest_loading">正在分析清單…</string>
@@ -182,10 +180,8 @@
     <plurals name="apps_details_manifest_providers">
         <item quantity="other">%d 個提供者查詢</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">可以發現大多數可啟動的應用程式</string>
     <string name="apps_details_manifest_hint_excessive">檢查多個特定應用程式</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">清單檢視器</string>
     <string name="apps_manifest_viewer_search_hint">在清單中搜尋</string>
     <string name="apps_manifest_viewer_error_unknown">載入資訊清單時發生未知錯誤。</string>
@@ -229,23 +225,18 @@
         <item quantity="other">另有 %d 個已保留資料的已卸載應用程式也請求此權限。</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">由於 Android 限制，上述計算不包括安裝在其他使用者設定檔案中的應用程式。</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">執行如期</string>
     <string name="permissions_tag_install_time_label">安裝時</string>
     <string name="permissions_tag_special_access_label">特殊存取</string>
     <string name="permissions_tag_documented_label">已記錄</string>
     <string name="permissions_tag_notable_label">值得注意</string>
     <string name="permissions_tag_non_standard_label">非標準</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">使用中</string>
     <string name="permissions_status_unknown_label">未知</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">系統</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="other">+%d 個更多</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">權限指示器</string>
     <string name="permissions_details_help_section_protection">保護類型</string>
     <string name="permissions_details_help_dangerous">危險 — 需要在執行如期明確獲得使用者批准。可存取敬感資料或裝置功能。</string>
@@ -391,7 +382,6 @@
     <string name="debug_debuglog_short_recording_message">除錯記錄需要在問題發生時擷取。開始錄製，復現您的問題，然後停止錄製。</string>
     <string name="debug_debuglog_short_recording_continue">繼續錄製</string>
     <string name="debug_debuglog_short_recording_stop">無論如何停止</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="other">%1$d 個除錯記錄（%2$s）</item>
     </plurals>
@@ -412,7 +402,6 @@
     <string name="support_contact_sent_title">訊息已發送？</string>
     <string name="support_contact_sent_message">如果您已發送電子郵件，可以清理此工作階段。</string>
     <string name="general_close_action">關閉</string>
-    <!-- Contact form -->
     <string name="contact_support_label">聯絡支援</string>
     <string name="contact_category_label">類別</string>
     <string name="contact_category_question_label">問題</string>
@@ -439,7 +428,6 @@
     <string name="contact_no_email_app">此裝置上找不到電子郵件應用程式。</string>
     <string name="contact_welcome_message">我親自閱讀每一封訊息，盡力回覆。由於我獨自負責開發、修復錯誤和支援，可能需要一些時間。感謝您的耐心等待。</string>
     <string name="contact_footer_message">您的訊息將透過電子郵件發送。裝置和設定資訊將自動附上。您可以在電子郵件中附加截圖或影片。如可能請用英文撰寫。</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">偵錯記錄</string>
     <string name="debug_debuglog_screen_subtitle">匯出除錯資訊以便發現關點</string>
     <string name="debug_debuglog_screen_sensitive_title">機密資訊</string>
@@ -449,13 +437,11 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="other">已準備好 %1$d 個檔案（%2$s）</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP：%s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP：…</string>
     <string name="debug_debuglog_screen_duration_ms">%1$d 分 %2$d 秒</string>
     <string name="debug_debuglog_screen_duration_s">%1$d 秒</string>
     <string name="support_debuglog_share_subject">Permission Pilot 除錯記錄 - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">問題</string>
     <string name="contact_email_tag_feature">功能</string>
     <string name="contact_email_tag_bug">錯誤</string>
@@ -464,7 +450,6 @@
     <string name="onboarding_body1">此應用程式讓您方便的查看並管理應用程式權限。</string>
     <string name="onboarding_body2">Permission Pilot 收集應用程式的資訊以在使用時列出權限。</string>
     <string name="onboarding_body3">Permission Pilot 不含廣告，且僅在本地處理數據。</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">主題模式</string>
     <string name="ui_theme_mode_system_label">系統</string>
     <string name="ui_theme_mode_dark_label">深色</string>
@@ -481,7 +466,6 @@
     <string name="ui_theme_color_disabled_subtitle">使用壁紙色彩</string>
     <string name="upgrade_required_subtitle">升級以解鎖</string>
     <string name="settings_category_appearance_label">外觀</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">主題自訂</string>
     <string name="upgrade_benefit_filtering">進階篩選</string>
     <string name="upgrade_benefit_export">批次資料匯出</string>
@@ -494,9 +478,7 @@
     <string name="general_copy_action">複製</string>
     <string name="general_copied_to_clipboard_msg">已複製到剪貼簿</string>
     <string name="general_view_details_for_x_action">檢視 %1$s 的詳細資訊</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">升級狀態與選項</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">監控器</string>
     <string name="watcher_dashboard_feature_title">權限監控器</string>
     <string name="watcher_dashboard_feature_description">當應用程式更新新增權限或變更現有權限時發出通知。權限監控器在每次更新後掃描應用程式，如果有任何變化則生成報告。</string>
@@ -598,12 +580,10 @@
     <string name="snapshot_sync_channel_name">快照同步</string>
     <string name="snapshot_sync_channel_description">背景應用程式資料同步</string>
     <string name="snapshot_sync_notification_title">同步應用程式資料中…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">全部選取</string>
     <plurals name="general_x_selected_label">
         <item quantity="other">%d 個已選取</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">匯出應用程式資訊</string>
     <string name="export_permission_info_action">匯出權限資訊</string>
     <plurals name="export_title_apps">

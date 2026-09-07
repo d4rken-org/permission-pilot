@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Nápověda</string>
     <string name="general_error_label">Chyba</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Zdroj instalace</string>
     <string name="apps_details_installer_unknown_label">Informace nejsou k dispozici</string>
     <string name="apps_details_open_settings_error">Nelze otevřít nastavení aplikace pro tento profil</string>
+    <string name="apps_details_open_settings_unavailable">Žádná stránka nastavení systému: Android hlásí, že tato aplikace není pro tohoto uživatele nainstalována.</string>
     <string name="apps_details_open_app_error">Nelze otevřít tuto aplikaci</string>
     <string name="permissions_filter_manifest_label">AOSP oprávnění</string>
     <string name="permissions_filter_system_label">Deklarováno systémovou aplikací</string>
@@ -168,7 +167,6 @@
     <string name="apps_details_perm_help_special">Speciální — Vyžaduje přepnutí přepínače v systémovém nastavení.</string>
     <string name="apps_details_perm_help_install">Instalace — Uděluje se automaticky při instalaci aplikace. Není potřeba žádná akce uživatele.</string>
     <string name="apps_details_perm_help_declared">Ikona ⚠ znamená, že toto oprávnění vytvořila samotná aplikace, nejedná se tedy o standardní oprávnění systému Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest aplikace</string>
     <string name="apps_details_manifest_queued">Zařazeno do fronty analýzy\u2026</string>
     <string name="apps_details_manifest_loading">Analýza manifestu\u2026</string>
@@ -197,10 +195,8 @@
         <item quantity="many">%d dotazů na poskytovatele</item>
         <item quantity="other">%d dotazů na poskytovatele</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Umí odhalit většinu spustitelných aplikací</string>
     <string name="apps_details_manifest_hint_excessive">Kontroluje mnoho konkrétních aplikací</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Prohlížeč manifestu</string>
     <string name="apps_manifest_viewer_search_hint">Hledat v manifestu</string>
     <string name="apps_manifest_viewer_error_unknown">Neznámá chyba při načítání manifestu.</string>
@@ -265,26 +261,21 @@
         <item quantity="other">%d odinstalovaných aplikací se zachovanými daty také požaduje toto oprávnění.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikace nainstalované v jiných uživatelských profilech jsou z výše uvedených výpočtů vyloučeny kvůli omezením systému Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Doba spuštění</string>
     <string name="permissions_tag_install_time_label">Čas instalace</string>
     <string name="permissions_tag_special_access_label">Speciální přístup</string>
     <string name="permissions_tag_documented_label">Zdokumentováno</string>
     <string name="permissions_tag_notable_label">Pozoruhodné</string>
     <string name="permissions_tag_non_standard_label">Nestandardní</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Používá se</string>
     <string name="permissions_status_unknown_label">Neznámé</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Podle systému</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d další</item>
         <item quantity="few">+%d další</item>
         <item quantity="many">+%d dalších</item>
         <item quantity="other">+%d dalších</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indikátory oprávnění</string>
     <string name="permissions_details_help_section_protection">Typ ochrany</string>
     <string name="permissions_details_help_dangerous">Nebezpečné — Vyžaduje explicitní souhlas uživatele při spuštění. Může přistupovat k citlivým datům nebo funkcím zařízení.</string>
@@ -430,7 +421,6 @@
     <string name="debug_debuglog_short_recording_message">Log ladění musí zachytit problém během jeho výskytu. Spusťte záznam, reprodukujte problém a pak nahrávání zastavte.</string>
     <string name="debug_debuglog_short_recording_continue">Pokračovat v záznamu</string>
     <string name="debug_debuglog_short_recording_stop">Přesto ukončit</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d log ladění (%2$s)</item>
         <item quantity="few">%1$d logy ladění (%2$s)</item>
@@ -454,7 +444,6 @@
     <string name="support_contact_sent_title">Zpráva byla odeslána?</string>
     <string name="support_contact_sent_message">Pokud jste odeslali e-mail, tuto relaci lze vyčistit.</string>
     <string name="general_close_action">Zavřít</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kontaktovat podporu</string>
     <string name="contact_category_label">Kategorie</string>
     <string name="contact_category_question_label">Dotaz</string>
@@ -484,7 +473,6 @@
     <string name="contact_no_email_app">V tomto zařízení nebyla nalezena žádná e-mailová aplikace.</string>
     <string name="contact_welcome_message">Všechny zprávy čtu sám a snažím se na ně co nejlépe odpovídat. Jelikož se sám starám o vývoj, opravy chyb a podporu, může to chvíli trvat. Děkuji za vaši trpělivost.</string>
     <string name="contact_footer_message">Vaše zpráva bude odeslána e-mailem. Informace o zařízení a nastavení jsou přiloženy automaticky. K e-mailu můžete přiložit snímky obrazovky nebo video. Prosím, pište pokud možno anglicky.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Log ladění</string>
     <string name="debug_debuglog_screen_subtitle">Exportovat ladicí informace pro řešení problémů</string>
     <string name="debug_debuglog_screen_sensitive_title">Citlivé informace</string>
@@ -497,13 +485,11 @@
         <item quantity="many">%1$d souborů připraveno (%2$s)</item>
         <item quantity="other">%1$d souborů připraveno (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Dotaz</string>
     <string name="contact_email_tag_feature">Funkce</string>
     <string name="contact_email_tag_bug">Chyba</string>
@@ -512,7 +498,6 @@
     <string name="onboarding_body1">Tato aplikace vám pomáhá procházet nainstalované aplikace a zjišťovat jejich oprávnění.</string>
     <string name="onboarding_body2">Permission Pilot shromažďuje informace o nainstalovaných aplikacích, aby mohl zobrazovat seznam vašich aplikací a porovnávat jejich oprávnění při používání této aplikace.</string>
     <string name="onboarding_body3">Permission Pilot neobsahuje reklamy a zpracovává data pouze lokálně.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Režim motivu</string>
     <string name="ui_theme_mode_system_label">Systémový</string>
     <string name="ui_theme_mode_dark_label">Tmavý</string>
@@ -529,7 +514,6 @@
     <string name="ui_theme_color_disabled_subtitle">Používá barvy tapety</string>
     <string name="upgrade_required_subtitle">Proveďte upgrade pro odemknutí</string>
     <string name="settings_category_appearance_label">Vzhled</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Přizpůsobení motivu</string>
     <string name="upgrade_benefit_filtering">Pokročilé filtrování</string>
     <string name="upgrade_benefit_export">Dávkový export dat</string>
@@ -542,9 +526,7 @@
     <string name="general_copy_action">Kopírovat</string>
     <string name="general_copied_to_clipboard_msg">Zkopírováno do schránky</string>
     <string name="general_view_details_for_x_action">Zobrazit podrobnosti pro %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Stav upgradu a možnosti</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Hlídač</string>
     <string name="watcher_dashboard_feature_title">Hlídač oprávnění</string>
     <string name="watcher_dashboard_feature_description">Obdržíte upozornění, když aktualizace aplikace přidá nová oprávnění nebo změní stávající. Hlídač oprávnění kontroluje vaše aplikace po každé aktualizaci a vytvoří zprávu, pokud se něco změnilo.</string>
@@ -670,7 +652,6 @@
     <string name="snapshot_sync_channel_name">Synchronizace snímků</string>
     <string name="snapshot_sync_channel_description">Synchronizace dat aplikací na pozadí</string>
     <string name="snapshot_sync_notification_title">Synchronizace dat aplikace…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Vybrat vše</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">Vybráno: %d</item>
@@ -678,7 +659,6 @@
         <item quantity="many">Vybráno: %d</item>
         <item quantity="other">Vybráno: %d</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportovat info o aplikaci</string>
     <string name="export_permission_info_action">Exportovat info o oprávnění</string>
     <plurals name="export_title_apps">

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Pilot Uprawnień</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Pomoc</string>
     <string name="general_error_label">Błąd</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Źródło instalacji</string>
     <string name="apps_details_installer_unknown_label">Informacje niedostępne</string>
     <string name="apps_details_open_settings_error">Nie można otworzyć ustawień aplikacji dla tego profilu</string>
+    <string name="apps_details_open_settings_unavailable">Brak strony ustawień systemowych: Android zgłasza, że ta aplikacja nie jest zainstalowana dla tego użytkownika.</string>
     <string name="apps_details_open_app_error">Nie można otworzyć tej aplikacji</string>
     <string name="permissions_filter_manifest_label">Uprawnienia AOSP</string>
     <string name="permissions_filter_system_label">Zadeklarowane przez aplikację systemową</string>
@@ -168,7 +167,6 @@
     <string name="apps_details_perm_help_special">Specjalne — wymaga przełączenia przełącznika w ustawieniach systemowych.</string>
     <string name="apps_details_perm_help_install">Zainstaluj — przyznawane automatycznie po zainstalowaniu aplikacji. Nie wymaga żadnej akcji ze strony użytkownika.</string>
     <string name="apps_details_perm_help_declared">Ikona ⚠ oznacza, że to uprawnienie zostało utworzone przez samą aplikację, a nie jest standardowym uprawnieniem Androida.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest aplikacji</string>
     <string name="apps_details_manifest_queued">W kolejce do analizy\u2026</string>
     <string name="apps_details_manifest_loading">Analizowanie manifestu\u2026</string>
@@ -197,10 +195,8 @@
         <item quantity="many">%d zapytań o dostawcę</item>
         <item quantity="other">%d zapytań o dostawcę</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Może odkryć większość uruchamialnych aplikacji</string>
     <string name="apps_details_manifest_hint_excessive">Sprawdza wiele konkretnych aplikacji</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Przeglądarka manifestu</string>
     <string name="apps_manifest_viewer_search_hint">Szukaj w manifeście</string>
     <string name="apps_manifest_viewer_error_unknown">Nieznany błąd podczas ładowania manifestu.</string>
@@ -265,26 +261,21 @@
         <item quantity="other">%d odinstalowanych aplikacji z zachowanymi danymi również żąda tego uprawnienia.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Aplikacje zainstalowane w innych profilach użytkownika są wykluczone z powyższego obliczenia ze względu na ograniczenia Androida.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Czas działania</string>
     <string name="permissions_tag_install_time_label">Czas instalacji</string>
     <string name="permissions_tag_special_access_label">Dostęp specjalny</string>
     <string name="permissions_tag_documented_label">Udokumentowane</string>
     <string name="permissions_tag_notable_label">Godne uwagi</string>
     <string name="permissions_tag_non_standard_label">Niestandardowe</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">W użyciu</string>
     <string name="permissions_status_unknown_label">Nieznane</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Systemowa</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d więcej</item>
         <item quantity="few">+%d więcej</item>
         <item quantity="many">+%d więcej</item>
         <item quantity="other">+%d więcej</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Wskaźniki uprawnień</string>
     <string name="permissions_details_help_section_protection">Typ ochrony</string>
     <string name="permissions_details_help_dangerous">Niebezpieczne — wymaga wyraźnej zgody użytkownika w czasie wykonywania. Umożliwia dostęp do poufnych danych lub funkcji urządzenia.</string>
@@ -430,7 +421,6 @@
     <string name="debug_debuglog_short_recording_message">Dziennik debugowania musi przechwycić problem w momencie jego wystąpienia. Rozpocznij nagrywanie, odtwarzaj problem, a następnie zatrzymaj nagrywanie.</string>
     <string name="debug_debuglog_short_recording_continue">Kontynuuj nagrywanie</string>
     <string name="debug_debuglog_short_recording_stop">Zatrzymaj mimo to</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d dziennik debugowania (%2$s)</item>
         <item quantity="few">%1$d dzienniki debugowania (%2$s)</item>
@@ -454,7 +444,6 @@
     <string name="support_contact_sent_title">Wiadomość wysłana?</string>
     <string name="support_contact_sent_message">Jeśli wysłano e-mail, ta sesja może zostać wyczyszczona.</string>
     <string name="general_close_action">Zamknij</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Skontaktuj się z pomocą techniczną</string>
     <string name="contact_category_label">Kategoria</string>
     <string name="contact_category_question_label">Pytanie</string>
@@ -484,7 +473,6 @@
     <string name="contact_no_email_app">Nie znaleziono aplikacji do obsługi e-maili na tym urządzeniu.</string>
     <string name="contact_welcome_message">Osobiście czytam każdą wiadomość i staram się odpowiadać. Ponieważ sam zajmuję się rozwojem, naprawianiem błędów i wsparciem, może to chwilę potrwać. Dziękuję za cierpliwość.</string>
     <string name="contact_footer_message">Twoja wiadomość zostanie wysłana e-mailem. Informacje o urządzeniu i konfiguracji są dołączane automatycznie. Możesz dołączyć zrzuty ekranu lub film do e-maila. Proszę pisać po angielsku, jeśli to możliwe.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Dziennik debugowania</string>
     <string name="debug_debuglog_screen_subtitle">Eksportuj informacje diagnostyczne do rozwiązywania problemów</string>
     <string name="debug_debuglog_screen_sensitive_title">Dane wrażliwe</string>
@@ -497,13 +485,11 @@
         <item quantity="many">%1$d plików gotowych (%2$s)</item>
         <item quantity="other">%1$d plików gotowych (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Dziennik debugowania Pilota Uprawnień - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Pytanie</string>
     <string name="contact_email_tag_feature">Funkcja</string>
     <string name="contact_email_tag_bug">Błąd</string>
@@ -512,7 +498,6 @@
     <string name="onboarding_body1">Ta aplikacja pomaga ci nawigować po zainstalowanych aplikacjach i odkrywać uprawnienia.</string>
     <string name="onboarding_body2">Pilot Uprawnień zbiera informacje o zainstalowanych aplikacjach, aby umożliwić wyświetlanie twoich aplikacji i krzyżowe odwoływanie się do ich uprawnień podczas korzystania z tej aplikacji.</string>
     <string name="onboarding_body3">Pilot Uprawnień nie ma reklam i przetwarza dane tylko lokalnie.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tryb motywu</string>
     <string name="ui_theme_mode_system_label">Systemowe</string>
     <string name="ui_theme_mode_dark_label">Ciemny</string>
@@ -529,7 +514,6 @@
     <string name="ui_theme_color_disabled_subtitle">Używaj kolorów tapety</string>
     <string name="upgrade_required_subtitle">Uaktualnij, aby odblokować</string>
     <string name="settings_category_appearance_label">Wygląd</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Personalizacja motywu</string>
     <string name="upgrade_benefit_filtering">Zaawansowane filtrowanie</string>
     <string name="upgrade_benefit_export">Zbiorczy eksport danych</string>
@@ -542,9 +526,7 @@
     <string name="general_copy_action">Kopiuj</string>
     <string name="general_copied_to_clipboard_msg">Skopiowano do schowka</string>
     <string name="general_view_details_for_x_action">Wyświetl szczegóły dla %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Status i opcje aktualizacji</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Obserwator</string>
     <string name="watcher_dashboard_feature_title">Obserwator uprawnień</string>
     <string name="watcher_dashboard_feature_description">Otrzymuj powiadomienia, gdy aktualizacja aplikacji doda nowe uprawnienia lub zmieni istniejące. Obserwator uprawnień sprawdza twoje aplikacje po każdej aktualizacji i tworzy raport, jeśli coś się zmieni.</string>
@@ -670,7 +652,6 @@
     <string name="snapshot_sync_channel_name">Synchronizacja migawek</string>
     <string name="snapshot_sync_channel_description">Synchronizacja danych aplikacji w tle</string>
     <string name="snapshot_sync_notification_title">Synchronizowanie danych aplikacji…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Zaznacz wszystko</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d wybrany</item>
@@ -678,7 +659,6 @@
         <item quantity="many">%d wybranych</item>
         <item quantity="other">%d wybranych</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Eksportuj informacje o aplikacji</string>
     <string name="export_permission_info_action">Eksportuj informacje o uprawnieniu</string>
     <plurals name="export_title_apps">

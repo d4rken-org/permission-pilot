@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">بايلوت الأذونات</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">مساعدة</string>
     <string name="general_error_label">خطأ</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">مصدر التثبيت</string>
     <string name="apps_details_installer_unknown_label">المعلومات غير متوفرة</string>
     <string name="apps_details_open_settings_error">تعذّر فتح إعدادات التطبيق لهذا الملف الشخصي</string>
+    <string name="apps_details_open_settings_unavailable">لا توجد صفحة إعدادات نظام: يُبلغ نظام أندرويد أن هذا التطبيق غير مثبَّت لهذا المستخدم.</string>
     <string name="apps_details_open_app_error">تعذّر فتح هذا التطبيق</string>
     <string name="permissions_filter_manifest_label">أذونات AOSP</string>
     <string name="permissions_filter_system_label">مُعلن بواسطة تطبيق نظام</string>
@@ -170,7 +169,6 @@
     <string name="apps_details_perm_help_special">خاص — يتطلّب تفعيل مفتاح في إعدادات النظام.</string>
     <string name="apps_details_perm_help_install">تثبيت — يُمنح تلقائياً عند تثبيت التطبيق. لا يلزم أي إجراء من المستخدم.</string>
     <string name="apps_details_perm_help_declared">أيقونة ⚠ تعني أن هذا الإذن مُنشأ من قبل التطبيق نفسه، وليس إذناً قياسياً في أندرويد.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">بيان التطبيق</string>
     <string name="apps_details_manifest_queued">في انتظار التحليل…</string>
     <string name="apps_details_manifest_loading">جار تحليل البيان…</string>
@@ -207,10 +205,8 @@
         <item quantity="many">%d استعلاماً للمزود</item>
         <item quantity="other">%d استعلام مزود</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">يمكن اكتشاف معظم التطبيقات القابلة للتشغيل</string>
     <string name="apps_details_manifest_hint_excessive">يتحقق من وجود تطبيقات محددة كثيرة</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">عارض البيان</string>
     <string name="apps_manifest_viewer_search_hint">بحث في البيان</string>
     <string name="apps_manifest_viewer_error_unknown">خطأ غير معروف عند تحميل البيان.</string>
@@ -289,19 +285,15 @@
         <item quantity="other">%d تطبيقات غير مثبتة مع بيانات محتجزة تطلب هذا الإذن أيضًا.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">يُستثنى من الحساب التطبيقات المثبّتة في حسابات مستخدمين آخرين بسبب قيود أندرويد.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">وقت التشغيل</string>
     <string name="permissions_tag_install_time_label">وقت التثبيت</string>
     <string name="permissions_tag_special_access_label">وصول خاص</string>
     <string name="permissions_tag_documented_label">موثق</string>
     <string name="permissions_tag_notable_label">بارز</string>
     <string name="permissions_tag_non_standard_label">غير قياسي</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">قيد الاستخدام</string>
     <string name="permissions_status_unknown_label">غير معروف</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">النظام</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="zero">+%d المزيد</item>
         <item quantity="one">+%d أكثر</item>
@@ -310,7 +302,6 @@
         <item quantity="many">+%d أكثر</item>
         <item quantity="other">+%d أكثر</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">مؤشرات الأذونات</string>
     <string name="permissions_details_help_section_protection">نوع الحماية</string>
     <string name="permissions_details_help_dangerous">خطير — يتطلّب موافقة صريحة من المستخدم في وقت التشغيل. يمكن الوصول إلى بيانات حساسة أو ميزات الجهاز.</string>
@@ -456,7 +447,6 @@
     <string name="debug_debuglog_short_recording_message">يجب على سجل التصحيح أن يلتقط المشكلة أثناء حدوثها. ابدأ التسجيل، أعد إنتاج مشكلتك، ثم أوقف التسجيل.</string>
     <string name="debug_debuglog_short_recording_continue">استمر التسجيل</string>
     <string name="debug_debuglog_short_recording_stop">أوقف على أي حال</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="zero">لا توجد سجلات تصحيح (%2$s)</item>
         <item quantity="one">سجل تصحيح واحد (%2$s)</item>
@@ -482,7 +472,6 @@
     <string name="support_contact_sent_title">هل تم إرسال الرسالة؟</string>
     <string name="support_contact_sent_message">إذا أرسلت البريد الإلكتروني، يمكن تنظيف هذه الجلسة.</string>
     <string name="general_close_action">إغلاق</string>
-    <!-- Contact form -->
     <string name="contact_support_label">اتصال بالدعم</string>
     <string name="contact_category_label">الفئة</string>
     <string name="contact_category_question_label">سؤال</string>
@@ -514,7 +503,6 @@
     <string name="contact_no_email_app">لا يوجد تطبيق بريد إلكتروني على هذا الجهاز.</string>
     <string name="contact_welcome_message">أقرأ كل رسالة بنفسي وأبذل قصارى جهدي للرد. نظراً لأنني أتولى التطوير وإصلاح الأخطاء والدعم بمفردي، قد يستغرق الأمر بعض الوقت. شكراً على صبرك.</string>
     <string name="contact_footer_message">سيتم إرسال رسالتك عبر البريد الإلكتروني. يتم إرفاق معلومات الجهاز والإعدادات تلقائياً. يمكنك إرفاق لقطات شاشة أو فيديو بالبريد. يرجى الكتابة باللغة الإنجليزية إن أمكن.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">سجل التصحيح</string>
     <string name="debug_debuglog_screen_subtitle">تصدير معلومات التصحيح لاستكشاف الأخطاء</string>
     <string name="debug_debuglog_screen_sensitive_title">معلومات حساسة</string>
@@ -529,13 +517,11 @@
         <item quantity="many">%1$d ملف جاهز (%2$s)</item>
         <item quantity="other">%1$d ملف جاهز (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dد %2$dث</string>
     <string name="debug_debuglog_screen_duration_s">%1$dث</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">سؤال</string>
     <string name="contact_email_tag_feature">ميزة</string>
     <string name="contact_email_tag_bug">خطأ</string>
@@ -544,7 +530,6 @@
     <string name="onboarding_body1">يساعدك هذا التطبيق على استعراض التطبيقات المثبتة واكتشاف الأذونات الخاصة بها.</string>
     <string name="onboarding_body2">يجمع بايلوت الأذونات معلومات تطبيقاتك المثبتة لتمكين عرضها ومراجعة أذوناتها عند استخدام التطبيق.</string>
     <string name="onboarding_body3">بايلوت الأذونات خالٍ من الإعلانات ويعالج البيانات محليًا فقط.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">وضع السمة</string>
     <string name="ui_theme_mode_system_label">النظام</string>
     <string name="ui_theme_mode_dark_label">مظلم</string>
@@ -561,7 +546,6 @@
     <string name="ui_theme_color_disabled_subtitle">يستخدم ألوان خلفية الشاشة</string>
     <string name="upgrade_required_subtitle">قم بالترقية لإلغاء القفل</string>
     <string name="settings_category_appearance_label">المظهر</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">تخصيص السمة</string>
     <string name="upgrade_benefit_filtering">تصفية متقدمة</string>
     <string name="upgrade_benefit_export">تصدير بيانات دفعي</string>
@@ -574,9 +558,7 @@
     <string name="general_copy_action">نسخ</string>
     <string name="general_copied_to_clipboard_msg">نسخت إلى الحافظة</string>
     <string name="general_view_details_for_x_action">عرض التفاصيل عن %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">حالة الترقية والخيارات</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">مراقب</string>
     <string name="watcher_dashboard_feature_title">مراقب الأذونات</string>
     <string name="watcher_dashboard_feature_description">احصل على إشعار عند إضافة تحديث تطبيق لأذونات جديدة أو تغيير الموجودة. يتحقق مراقب الأذونات من تطبيقاتك بعد كل تحديث وينشئ تقريراً إذا تغيّر شيء.</string>
@@ -718,7 +700,6 @@
     <string name="snapshot_sync_channel_name">مزامنة اللقطات</string>
     <string name="snapshot_sync_channel_description">مزامنة بيانات التطبيق في الخلفية</string>
     <string name="snapshot_sync_notification_title">جاري مزامنة بيانات التطبيق…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">تحديد الكل</string>
     <plurals name="general_x_selected_label">
         <item quantity="zero">٠ محدد</item>
@@ -728,7 +709,6 @@
         <item quantity="many">%d محدداً</item>
         <item quantity="other">%d محدد</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">تصدير معلومات التطبيق</string>
     <string name="export_permission_info_action">تصدير معلومات الأذونات</string>
     <plurals name="export_title_apps">

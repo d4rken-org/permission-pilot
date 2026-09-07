@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Yardım</string>
     <string name="general_error_label">Hata</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Kurulum kaynağı</string>
     <string name="apps_details_installer_unknown_label">Bilgi mevcut değil</string>
     <string name="apps_details_open_settings_error">Bu profil için uygulama ayarları açılamadı</string>
+    <string name="apps_details_open_settings_unavailable">Sistem ayarları sayfası yok: Android bu uygulamayı bu kullanıcı için yüklenmemiş olarak bildiriyor.</string>
     <string name="apps_details_open_app_error">Bu uygulama açılamadı</string>
     <string name="permissions_filter_manifest_label">AOSP izinleri</string>
     <string name="permissions_filter_system_label">Sistem uygulaması tarafından bildirildi</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Özel — Sistem ayarlarından bir düğme açılmasını gerektirir.</string>
     <string name="apps_details_perm_help_install">Yükleme — Uygulama yüklenirken otomatik olarak verilir. Kullanıcı işlemi gerekmez.</string>
     <string name="apps_details_perm_help_declared">⚠ simgesi, bu iznin standart bir Android izni olmayıp uygulamanın kendisi tarafından oluşturulduğu anlamına gelir.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Uygulama Manifestosu</string>
     <string name="apps_details_manifest_queued">Analiz için sıraya alındı…</string>
     <string name="apps_details_manifest_loading">Manifesto analiz ediliyor…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d sağlayıcı sorgusu</item>
         <item quantity="other">%d sağlayıcı sorgusu</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Çoğu başlatılabilir uygulamayı keşfedebilir</string>
     <string name="apps_details_manifest_hint_excessive">Birçok belirli uygulama arar</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifesto Görüntülleyici</string>
     <string name="apps_manifest_viewer_search_hint">Manifestoda ara</string>
     <string name="apps_manifest_viewer_error_unknown">Manifest yüklenirken bilinmeyen hata oluştu.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">Veri saklayan %d kaldırılmış uygulama da bu izni istiyor.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Diğer kullanıcı profillerinde yüklü uygulamalar Android kısıtlamaları nedeniyle yukarıdaki hesaplamadan çıkarılmıştır.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Çalışma zamanı</string>
     <string name="permissions_tag_install_time_label">Yükleme zamanı</string>
     <string name="permissions_tag_special_access_label">Özel erişim</string>
     <string name="permissions_tag_documented_label">Belgelenmiş</string>
     <string name="permissions_tag_notable_label">Dikkat çekici</string>
     <string name="permissions_tag_non_standard_label">Standart dışı</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Kullanımda</string>
     <string name="permissions_status_unknown_label">Bilinmeyen</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistem</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d tane daha</item>
         <item quantity="other">+%d tane daha</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">İzin göstergeleri</string>
     <string name="permissions_details_help_section_protection">Koruma türü</string>
     <string name="permissions_details_help_dangerous">Tehlikeli — Çalışma zamanında açık kullanıcı onayı gerektirir. Hassas verilere veya cihaz özelliklerine erişebilir.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Bir hata ayıklama kaydının gerçekleşirken sorunu yakalaması gerekir. Kaydı başlatın, sorununuzu yeniden oluşturun, ardından kaydı durdurun.</string>
     <string name="debug_debuglog_short_recording_continue">Kayıta devam et</string>
     <string name="debug_debuglog_short_recording_stop">Yine de durdur</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d hata ayıklama kaydı (%2$s)</item>
         <item quantity="other">%1$d hata ayıklama kaydı (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Mesaj gönderildi mi?</string>
     <string name="support_contact_sent_message">E-postaı gönderdiyseniz, bu oturum temizlenebilir.</string>
     <string name="general_close_action">Kapat</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Destekle İletişim</string>
     <string name="contact_category_label">Kategori</string>
     <string name="contact_category_question_label">Soru</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Bu cihazda e-posta uygulaması bulunamadı.</string>
     <string name="contact_welcome_message">Her mesajı kendim okuyor ve en iyi şekilde yanıtlamaya çalışıyorum. Geliştirmeyi, hata düzeltmeleri ve desteği tek başıma yürüttüğüm için biraz zaman alabilir. Sabrınız için teşekkür ederim.</string>
     <string name="contact_footer_message">Mesajınız e-posta yoluyla gönderilecektir. Cihaz ve kurulum bilgileri otomatik olarak eklenmektedir. E-postaya ekran görüntülerü veya video ekleyebilirsiniz. Mümkünse lütfen İngilizce yazın.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Hata Ayıklama Günlüğü</string>
     <string name="debug_debuglog_screen_subtitle">Sorun giderme için hata ayıklama bilgilerini dışa aktar</string>
     <string name="debug_debuglog_screen_sensitive_title">Hassas Bilgi</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d dosya hazır (%2$s)</item>
         <item quantity="other">%1$d dosya hazır (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dd %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot HataAyıklama Kaydı - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Soru</string>
     <string name="contact_email_tag_feature">Özellik</string>
     <string name="contact_email_tag_bug">Hata</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Bu uygulama, yüklü uygulamalarda gezinmenize ve izinleri keşfetmenize yardımcı olur.</string>
     <string name="onboarding_body2">Permission Pilot, bu uygulamayı kullanırken uygulamalarınızı listelemek ve izinlerini çapraz referanslamak için Yüklü Uygulama bilgilerini toplar.</string>
     <string name="onboarding_body3">Permission Pilot\'ta reklam yoktur ve verileri yalnızca yerel olarak işler.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Tema modu</string>
     <string name="ui_theme_mode_system_label">Sistem</string>
     <string name="ui_theme_mode_dark_label">Koyu</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Duvar kağıdı renklerini kullanır</string>
     <string name="upgrade_required_subtitle">Kilidini açmak için yükselt</string>
     <string name="settings_category_appearance_label">Görünüm</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Tema özelleştirme</string>
     <string name="upgrade_benefit_filtering">Gelişmiş filtreleme</string>
     <string name="upgrade_benefit_export">Toplu veri dışa aktarma</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Kopyala</string>
     <string name="general_copied_to_clipboard_msg">Panoya kopyalandı</string>
     <string name="general_view_details_for_x_action">%1$s için ayrıntıları görüntüle</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Yükseltme durumu ve seçenekleri</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">İzleyici</string>
     <string name="watcher_dashboard_feature_title">İzin İzleyici</string>
     <string name="watcher_dashboard_feature_description">Bir uygulama güncellemesi yeni izinler eklediğinde veya mevcut olanları değiştirdiğinde bildirim alın. İzin İzleyici, her güncellemeden sonra uygulamalarınızı kontrol eder ve bir şey değiştiyse rapor oluşturur.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Anlık Görüntü Senkronizasyonu</string>
     <string name="snapshot_sync_channel_description">Arka planda uygulama veri senkronizasyonu</string>
     <string name="snapshot_sync_notification_title">Uygulama verileri senkronize ediliyor…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Tümünü Seç</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d seçildi</item>
         <item quantity="other">%d seçildi</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Uygulama bilgisini dışa aktar</string>
     <string name="export_permission_info_action">İzin bilgisini dışa aktar</string>
     <plurals name="export_title_apps">

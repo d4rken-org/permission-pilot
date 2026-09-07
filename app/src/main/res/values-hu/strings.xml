@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Segítség</string>
     <string name="general_error_label">Hiba</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Telepítési forrás</string>
     <string name="apps_details_installer_unknown_label">Információ nem érhető el</string>
     <string name="apps_details_open_settings_error">Nem sikerült megnyitni az alkalmazás beállításait ehhez a profilhoz</string>
+    <string name="apps_details_open_settings_unavailable">Nincs rendszerbeállítások oldala: Az Android szerint az alkalmazás nincs telepítve ehhez a felhasználóhoz.</string>
     <string name="apps_details_open_app_error">Nem sikerült megnyitni ezt az alkalmazást</string>
     <string name="permissions_filter_manifest_label">AOSP engedélyek</string>
     <string name="permissions_filter_system_label">Rendszeralkalmazás által deklarálva</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Különleges — A rendszer beállításaiban egy kapcsoló bekapcsolását igényli.</string>
     <string name="apps_details_perm_help_install">Telepítés — Automatikusan engedélyezett, amikor az alkalmazás telepítve van. Nincs szükség felhasználói beavatkozásra.</string>
     <string name="apps_details_perm_help_declared">A ⚠ ikon azt jelzi, hogy ezt az engedélyt maga az alkalmazás hozta létre, nem szabványos Android-engedély.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Alkalmazás-manifest</string>
     <string name="apps_details_manifest_queued">Várakozik az elemzésre…</string>
     <string name="apps_details_manifest_loading">Manifest elemzése…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d szolgáltató lekérdezés</item>
         <item quantity="other">%d szolgáltató lekérdezés</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Felfedezhet a legtöbb indítható alkalmazást</string>
     <string name="apps_details_manifest_hint_excessive">Sok specifikus alkalmazást keres</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Manifest-néző</string>
     <string name="apps_manifest_viewer_search_hint">Keresés a manifestben</string>
     <string name="apps_manifest_viewer_error_unknown">Az alkalmazásjegyzék betöltése során ismeretlen hiba történt.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d eltávolított alkalmazás megőrzött adatokkal szintén kéri ezt az engedélyt.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">A más felhasználói profilokban telepített alkalmazások ki vannak zárva a fenti számításból az Android korlátozásai miatt.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Futtatható</string>
     <string name="permissions_tag_install_time_label">Telepítési idő</string>
     <string name="permissions_tag_special_access_label">Különleges hozzáférés</string>
     <string name="permissions_tag_documented_label">Dokumentumált</string>
     <string name="permissions_tag_notable_label">Figyelemre méltó</string>
     <string name="permissions_tag_non_standard_label">Nem szabványos</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Használatban</string>
     <string name="permissions_status_unknown_label">Ismeretlen</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Rendszer</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d további</item>
         <item quantity="other">+%d további</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Engedélyjelzők</string>
     <string name="permissions_details_help_section_protection">Védelmi típus</string>
     <string name="permissions_details_help_dangerous">Veszélyes — Futtatáskor explicit felhasználói jóváhagyást igényel. Hozzáférhet érzékeny adatokhoz vagy eszközfunkciókhoz.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">A hibakeresési naplónak a probléma felmerülése közben kell rögzítenie azt. Indítsa el a rögzítést, reprodukálja a problémát, majd állítsa le a rögzítést.</string>
     <string name="debug_debuglog_short_recording_continue">További rögzítés</string>
     <string name="debug_debuglog_short_recording_stop">Leállítás mindenképp</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d hibakeresési napló (%2$s)</item>
         <item quantity="other">%1$d hibakeresési napló (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Elküldted az üzenetet?</string>
     <string name="support_contact_sent_message">Ha elküldted az e-mailt, ez a munkamenet megtisztítható.</string>
     <string name="general_close_action">Bezár</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Kapcsolatfelvétel a támogatással</string>
     <string name="contact_category_label">Kategória</string>
     <string name="contact_category_question_label">Kérdés</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Nem található e-mail alkalmazás ezen az eszközön.</string>
     <string name="contact_welcome_message">Minden üzenetet magam olvasok el és megpróbálok válaszolni. Mivel a fejlesztést, hibajavitást és támogatást egymagemnek intézem, kisé időt vehet igénybe. Köszönet a türelmedert.</string>
     <string name="contact_footer_message">Az üzeneted e-mailben kerül elküldésre. Az eszköz- és beállítási információk automatikusan mellékelve vannak. Képeket vagy videót is csatolhatsz az e-mailhez. Ha lehet, angolul írj.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Hibakeresési napló</string>
     <string name="debug_debuglog_screen_subtitle">Hibakeresési információk exportálása hibakereséshez</string>
     <string name="debug_debuglog_screen_sensitive_title">Érzekeny információk</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d fájl kész (%2$s)</item>
         <item quantity="other">%1$d fájl kész (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$d p %2$d mp</string>
     <string name="debug_debuglog_screen_duration_s">%1$d mp</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Kérdés</string>
     <string name="contact_email_tag_feature">Funkció</string>
     <string name="contact_email_tag_bug">Hiba</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Ez az alkalmazás segít eligazodni a telepített alkalmazások között és felfedezni az engedélyeket.</string>
     <string name="onboarding_body2">A Permission Pilot összegyűjti a telepített alkalmazások információit, hogy lehetővé tegye az alkalmazásaid listázását és engedélyeik kereszthivatkozását az alkalmazás használata során.</string>
     <string name="onboarding_body3">A Permission Pilot reklámok nélkül működik, és csak helyileg dolgozza fel az adatokat.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Téma mód</string>
     <string name="ui_theme_mode_system_label">Rendszer</string>
     <string name="ui_theme_mode_dark_label">Sötét</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Háttérkép színeit használja</string>
     <string name="upgrade_required_subtitle">Frissítés a zárolás feloldásához</string>
     <string name="settings_category_appearance_label">Megjelenés</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Téma testreszabása</string>
     <string name="upgrade_benefit_filtering">Fejlett szűrés</string>
     <string name="upgrade_benefit_export">Köteg adatexport</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Másolás</string>
     <string name="general_copied_to_clipboard_msg">Vágólapra másolva</string>
     <string name="general_view_details_for_x_action">Tekintsd meg a részleteket: %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Frissítés állapota és lehetőségei</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Figyelő</string>
     <string name="watcher_dashboard_feature_title">Engedélyfigyelő</string>
     <string name="watcher_dashboard_feature_description">Értesítést kapsz, ha egy alkalmazás frissítése új engedélyeket ad hozzá vagy módosítja a meglévőket. Az Engedélyfigyelő minden frissítés után ellenőrzi az alkalmazásokat, és jelentést készít, ha bármi megváltozott.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Pillanatkép-szinkronizáció</string>
     <string name="snapshot_sync_channel_description">Háttérbeli alkalmazásadatok szinkronizálása</string>
     <string name="snapshot_sync_notification_title">Alkalmazásadatok szinkronizálása…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Összes kijelölése</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d kijelölve</item>
         <item quantity="other">%d kijelölve</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Alkalmazás info exportálása</string>
     <string name="export_permission_info_action">Engedély info exportálása</string>
     <plurals name="export_title_apps">

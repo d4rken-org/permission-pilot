@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Помоћ</string>
     <string name="general_error_label">Грешка</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Извор инсталације</string>
     <string name="apps_details_installer_unknown_label">Информација није доступна</string>
     <string name="apps_details_open_settings_error">Није могуће отворити подешавања апликације за овај профил</string>
+    <string name="apps_details_open_settings_unavailable">Нема системске странице подешавања: Андроид пријављује да апликација није инсталирана за овог корисника.</string>
     <string name="apps_details_open_app_error">Није могуће отворити ову апликацију</string>
     <string name="permissions_filter_manifest_label">AOSP дозволе</string>
     <string name="permissions_filter_system_label">Декларисано од системске апликације</string>
@@ -167,7 +166,6 @@
     <string name="apps_details_perm_help_special">Посебно — Захтева прелаз прекидача у системским подешавањима.</string>
     <string name="apps_details_perm_help_install">Инсталација — Додељује се аутоматски приликом инсталације апликације. Није потребна акција корисника.</string>
     <string name="apps_details_perm_help_declared">Икона ⚠ значи да је ову дозволу креирала сама апликација, а не стандардна Андроид дозвола.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Манифест апликације</string>
     <string name="apps_details_manifest_queued">У реду за анализу…</string>
     <string name="apps_details_manifest_loading">Анализира се манифест…</string>
@@ -192,10 +190,8 @@
         <item quantity="few">%d упита добављача</item>
         <item quantity="other">%d упита добављача</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Може открити већину покретљивих апликација</string>
     <string name="apps_details_manifest_hint_excessive">Проверава много одређених апликација</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Прегледач манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Претражите манифест</string>
     <string name="apps_manifest_viewer_error_unknown">Непозната грешка приликом учитавања манифеста.</string>
@@ -253,25 +249,20 @@
         <item quantity="other">%d деинсталираних апликација са сачуваним подацима такође захтева ову дозволу.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Апликације инсталиране у другим корисничким профилима су искључене из горњег прорачуна због ограничења Андроида.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Извршавање</string>
     <string name="permissions_tag_install_time_label">Време инсталације</string>
     <string name="permissions_tag_special_access_label">Посебан приступ</string>
     <string name="permissions_tag_documented_label">Документовано</string>
     <string name="permissions_tag_notable_label">Истакнуто</string>
     <string name="permissions_tag_non_standard_label">Нестандардно</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">У употреби</string>
     <string name="permissions_status_unknown_label">Непознато</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Систем</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d још</item>
         <item quantity="few">+%d још</item>
         <item quantity="other">+%d још</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Индикатори дозвола</string>
     <string name="permissions_details_help_section_protection">Врста заштите</string>
     <string name="permissions_details_help_dangerous">Опасно — Захтева експлицитно одобрење корисника током извршавања. Може приступати осетљивим подацима или функцијама уређаја.</string>
@@ -417,7 +408,6 @@
     <string name="debug_debuglog_short_recording_message">Дебаг дневник мора забележити проблем током настајања. Покрените снимање, репродукујте проблем, затим зауставите снимање.</string>
     <string name="debug_debuglog_short_recording_continue">Наставите снимање</string>
     <string name="debug_debuglog_short_recording_stop">Свеједно зауставите</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d дневник отклањања грешака (%2$s)</item>
         <item quantity="few">%1$d дневника отклањања грешака (%2$s)</item>
@@ -440,7 +430,6 @@
     <string name="support_contact_sent_title">Порука је послата?</string>
     <string name="support_contact_sent_message">Ако сте послали е-пошту, ова сесија може бити очишћена.</string>
     <string name="general_close_action">Затвори</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Контактирајте подршку</string>
     <string name="contact_category_label">Категорија</string>
     <string name="contact_category_question_label">Питање</string>
@@ -469,7 +458,6 @@
     <string name="contact_no_email_app">Ниједна апликација за е-пошту није понађена на овом уређају.</string>
     <string name="contact_welcome_message">Сам лично читам сваку поруку и трудим се да одговорим. Пошто сам задужен за развој, поправке грешака и подршку, може проћи нешто времена. Хвала на стрпљењу.</string>
     <string name="contact_footer_message">Ваша порука ће бити послата путем е-поште. Информације о уређају и подешавањима се додају аутоматски. Можете приложити снимке или видео. Ако је могуће, пишите на енглеском.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Дебаг дневник</string>
     <string name="debug_debuglog_screen_subtitle">Извезите дебаг информације за отклањање грешака</string>
     <string name="debug_debuglog_screen_sensitive_title">Осетљиве информације</string>
@@ -481,13 +469,11 @@
         <item quantity="few">%1$d датотеке спрене (%2$s)</item>
         <item quantity="other">%1$d датотека спремно (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dм %2$dс</string>
     <string name="debug_debuglog_screen_duration_s">%1$dс</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Питање</string>
     <string name="contact_email_tag_feature">Функција</string>
     <string name="contact_email_tag_bug">Грешка</string>
@@ -496,7 +482,6 @@
     <string name="onboarding_body1">Ова апликација вам помаже да прегледате инсталиране апликације и откријете дозволе.</string>
     <string name="onboarding_body2">Permission Pilot прикупља информације о инсталираним апликацијама да би омогућио приказ ваших апликација и унакрсно упоређивање њихових дозвола при коришћењу ове апликације.</string>
     <string name="onboarding_body3">Permission Pilot нема рекламе и обрађује податке само локално.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Мод теме</string>
     <string name="ui_theme_mode_system_label">Системски</string>
     <string name="ui_theme_mode_dark_label">Таман</string>
@@ -513,7 +498,6 @@
     <string name="ui_theme_color_disabled_subtitle">Користи боје позадине</string>
     <string name="upgrade_required_subtitle">Надоградите да откључате</string>
     <string name="settings_category_appearance_label">Изглед</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Прилагођавање теме</string>
     <string name="upgrade_benefit_filtering">Напредно филтрирање</string>
     <string name="upgrade_benefit_export">Групни извоз података</string>
@@ -526,9 +510,7 @@
     <string name="general_copy_action">Копирај</string>
     <string name="general_copied_to_clipboard_msg">Копирано у исечак</string>
     <string name="general_view_details_for_x_action">Погледај детаље за %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус унапређења и опције</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Надзорник</string>
     <string name="watcher_dashboard_feature_title">Надзорник дозвола</string>
     <string name="watcher_dashboard_feature_description">Будите обавештени када ажурирање апликације дода нове дозволе или промени постојеће. Надзорник дозвола проверава ваше апликације након сваког ажурирања и прави извештај ако се нешто променило.</string>
@@ -646,14 +628,12 @@
     <string name="snapshot_sync_channel_name">Синхронизација снимка</string>
     <string name="snapshot_sync_channel_description">Синхронизација података апликације у позадини</string>
     <string name="snapshot_sync_notification_title">Синхронизација података апликације…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Изабери све</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d изабран</item>
         <item quantity="few">%d изабрана</item>
         <item quantity="other">%d изабраних</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Извези информације о апликацији</string>
     <string name="export_permission_info_action">Извези информације о дозволи</string>
     <plurals name="export_title_apps">

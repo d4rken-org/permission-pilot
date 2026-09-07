@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Помощь</string>
     <string name="general_error_label">Ошибка</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Источник установки</string>
     <string name="apps_details_installer_unknown_label">Информация недоступна</string>
     <string name="apps_details_open_settings_error">Не удалось открыть настройки приложения для этого профиля</string>
+    <string name="apps_details_open_settings_unavailable">Страница системных настроек недоступна: Android сообщает, что это приложение не установлено для этого пользователя.</string>
     <string name="apps_details_open_app_error">Не удалось открыть это приложение</string>
     <string name="permissions_filter_manifest_label">Разрешения AOSP</string>
     <string name="permissions_filter_system_label">Объявленные системным прил.</string>
@@ -168,7 +167,6 @@
     <string name="apps_details_perm_help_special">Специальное — Требует переключения переключателя в системных настройках.</string>
     <string name="apps_details_perm_help_install">Установка — Выдаётся автоматически при установке приложения. Действия пользователя не требуются.</string>
     <string name="apps_details_perm_help_declared">Иконка ⚠ означает, что это разрешение создано самим приложением, а не является стандартным разрешением Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Манифест приложения</string>
     <string name="apps_details_manifest_queued">В очереди на анализ…</string>
     <string name="apps_details_manifest_loading">Анализ манифеста…</string>
@@ -197,10 +195,8 @@
         <item quantity="many">%d запросов провайдеров</item>
         <item quantity="other">%d запросов провайдера</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Может обнаружить большинство запускаемых приложений</string>
     <string name="apps_details_manifest_hint_excessive">Проверяет наличие многих конкретных приложений</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Просмотр манифеста</string>
     <string name="apps_manifest_viewer_search_hint">Поиск в манифесте</string>
     <string name="apps_manifest_viewer_error_unknown">Неизвестная ошибка при загрузке манифеста.</string>
@@ -265,26 +261,21 @@
         <item quantity="other">%d удалённых приложений с сохранёнными данными также запрашивают это разрешение.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Приложения, установленные в других профилях пользователя, исключаются из обработки из-за ограничений Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Режим выполнения</string>
     <string name="permissions_tag_install_time_label">Во время установки</string>
     <string name="permissions_tag_special_access_label">Специальный доступ</string>
     <string name="permissions_tag_documented_label">Документировано</string>
     <string name="permissions_tag_notable_label">Значимое</string>
     <string name="permissions_tag_non_standard_label">Нестандартное</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Используется</string>
     <string name="permissions_status_unknown_label">Неизвестно</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Системная</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d ещё</item>
         <item quantity="few">+%d ещё</item>
         <item quantity="many">+%d ещё</item>
         <item quantity="other">+%d ещё</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Индикаторы разрешений</string>
     <string name="permissions_details_help_section_protection">Тип защиты</string>
     <string name="permissions_details_help_dangerous">Опасное — Требует явного разрешения пользователя во время выполнения. Может получать доступ к конфиденциальным данным или функциям устройства.</string>
@@ -430,7 +421,6 @@
     <string name="debug_debuglog_short_recording_message">Журнал отладки должен зафиксировать проблему в момент её возникновения. Начните запись, воспроизведите проблему, затем остановите запись.</string>
     <string name="debug_debuglog_short_recording_continue">Продолжить запись</string>
     <string name="debug_debuglog_short_recording_stop">Всё равно остановить</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d журнал отладки (%2$s)</item>
         <item quantity="few">%1$d журнала отладки (%2$s)</item>
@@ -454,7 +444,6 @@
     <string name="support_contact_sent_title">Сообщение отправлено?</string>
     <string name="support_contact_sent_message">Если вы отправили электронное письмо, эту сессию можно завершить.</string>
     <string name="general_close_action">Закрыть</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Связаться с поддержкой</string>
     <string name="contact_category_label">Категория</string>
     <string name="contact_category_question_label">Вопрос</string>
@@ -484,7 +473,6 @@
     <string name="contact_no_email_app">Почтовое приложение не найдено на этом устройстве.</string>
     <string name="contact_welcome_message">Я лично читаю каждое сообщение и стараюсь отвечать. Поскольку я сам занимаюсь разработкой, исправлением ошибок и поддержкой, ответ может занять немного времени. Спасибо за терпение.</string>
     <string name="contact_footer_message">Сообщение будет отправлено по электронной почте. Информация об устройстве и настройках прилагается автоматически. Вы можете прикрепить снимки экрана или видео. Пожалуйста, пишите по-английски, если возможно.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Журнал отладки</string>
     <string name="debug_debuglog_screen_subtitle">Экспорт отладочной информации для диагностики</string>
     <string name="debug_debuglog_screen_sensitive_title">Конфиденциальная информация</string>
@@ -497,13 +485,11 @@
         <item quantity="many">Файлов готово: %1$d (%2$s)</item>
         <item quantity="other">Файлов готово: %1$d (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dм %2$dс</string>
     <string name="debug_debuglog_screen_duration_s">%1$dс</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Вопрос</string>
     <string name="contact_email_tag_feature">Функция</string>
     <string name="contact_email_tag_bug">Ошибка</string>
@@ -512,7 +498,6 @@
     <string name="onboarding_body1">Это приложение поможет вам навигировать по установленным приложениям и изучать разрешения.</string>
     <string name="onboarding_body2">Permission Pilot собирает информацию об установленных приложениях, чтобы отображать ваши приложения и сопоставлять их разрешения при использовании данного приложения.</string>
     <string name="onboarding_body3">Permission Pilot не содержит рекламы и обрабатывает данные только локально.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Режим темы</string>
     <string name="ui_theme_mode_system_label">Системная</string>
     <string name="ui_theme_mode_dark_label">Темная</string>
@@ -529,7 +514,6 @@
     <string name="ui_theme_color_disabled_subtitle">Использует цвета обои</string>
     <string name="upgrade_required_subtitle">Обновите для разблокировки</string>
     <string name="settings_category_appearance_label">Внешний вид</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Настройка темы</string>
     <string name="upgrade_benefit_filtering">Расширенная фильтрация</string>
     <string name="upgrade_benefit_export">Пакетный экспорт данных</string>
@@ -542,9 +526,7 @@
     <string name="general_copy_action">Копировать</string>
     <string name="general_copied_to_clipboard_msg">Скопировано в буфер</string>
     <string name="general_view_details_for_x_action">Просмотреть сведения о %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Статус и параметры обновления</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Наблюдатель</string>
     <string name="watcher_dashboard_feature_title">Наблюдатель разрешений</string>
     <string name="watcher_dashboard_feature_description">Получайте уведомления, когда обновление приложения добавляет новые разрешения или изменяет существующие. Наблюдатель разрешений проверяет приложения после каждого обновления и создаёт отчёт, если что-то изменилось.</string>
@@ -670,7 +652,6 @@
     <string name="snapshot_sync_channel_name">Синхронизация снимков</string>
     <string name="snapshot_sync_channel_description">Фоновая синхронизация данных приложений</string>
     <string name="snapshot_sync_notification_title">Синхронизация данных приложений…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Выбрать все</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d выбран</item>
@@ -678,7 +659,6 @@
         <item quantity="many">%d выбрано</item>
         <item quantity="other">%d выбрано</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Экспорт информации о приложении</string>
     <string name="export_permission_info_action">Экспорт информации о разрешении</string>
     <plurals name="export_title_apps">

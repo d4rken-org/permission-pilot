@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Ajuda</string>
     <string name="general_error_label">Erro</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Fonte da instalação</string>
     <string name="apps_details_installer_unknown_label">Informação indisponível</string>
     <string name="apps_details_open_settings_error">Não foi possível abrir as definições da aplicação para este perfil</string>
+    <string name="apps_details_open_settings_unavailable">Sem página de definições do sistema: o Android reporta que esta aplicação não está instalada para este utilizador.</string>
     <string name="apps_details_open_app_error">Não foi possível abrir esta aplicação</string>
     <string name="permissions_filter_manifest_label">Permissões do AOSP</string>
     <string name="permissions_filter_system_label">Declarado pelo app do sistema</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Especial — Requer ativar um interruptor nas definições do sistema.</string>
     <string name="apps_details_perm_help_install">Instalação — Concedida automaticamente quando a aplicação é instalada. Não é necessária qualquer ação do utilizador.</string>
     <string name="apps_details_perm_help_declared">O ícone ⚠ significa que esta permissão foi criada pela própria aplicação, em vez de ser uma permissão Android padrão.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifesto da Aplicação</string>
     <string name="apps_details_manifest_queued">Na fila para análise…</string>
     <string name="apps_details_manifest_loading">A analisar manifesto…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d consulta de fornecedor</item>
         <item quantity="other">%d consultas de fornecedor</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Consegue descobrir a maioria das aplicações lançáveis</string>
     <string name="apps_details_manifest_hint_excessive">Verifica muitas aplicações específicas</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Visualizador de Manifesto</string>
     <string name="apps_manifest_viewer_search_hint">Pesquisar no manifesto</string>
     <string name="apps_manifest_viewer_error_unknown">Erro desconhecido ao carregar o manifesto.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d aplicações desinstaladas com dados retidos também pedem esta permissão.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Os apps instalados em outros perfis de usuário são excluídos do cálculo acima, devido às restrições do Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Tempo de execução</string>
     <string name="permissions_tag_install_time_label">Em tempo de instalação</string>
     <string name="permissions_tag_special_access_label">Acesso especial</string>
     <string name="permissions_tag_documented_label">Documentada</string>
     <string name="permissions_tag_notable_label">Notável</string>
     <string name="permissions_tag_non_standard_label">Não padrão</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Em uso</string>
     <string name="permissions_status_unknown_label">Desconhecido</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Sistema</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d mais</item>
         <item quantity="other">+%d mais</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Indicadores de permissão</string>
     <string name="permissions_details_help_section_protection">Tipo de proteção</string>
     <string name="permissions_details_help_dangerous">Perigosa — Requer aprovação explícita do utilizador em tempo de execução. Pode aceder a dados sensíveis ou funcionalidades do dispositivo.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Um registo de depuração precisa de capturar o problema enquanto acontece. Inicie a gravação, reproduza o problema e depois pare a gravação.</string>
     <string name="debug_debuglog_short_recording_continue">Continuar a gravar</string>
     <string name="debug_debuglog_short_recording_stop">Parar mesmo assim</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d registo de depuração (%2$s)</item>
         <item quantity="other">%1$d registos de depuração (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Mensagem enviada?</string>
     <string name="support_contact_sent_message">Se enviou o e-mail, esta sessão pode ser limpa.</string>
     <string name="general_close_action">Fechar</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Contactar suporte</string>
     <string name="contact_category_label">Categoria</string>
     <string name="contact_category_question_label">Pergunta</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Nenhuma aplicação de e-mail encontrada neste dispositivo.</string>
     <string name="contact_welcome_message">Leio cada mensagem pessoalmente e faço o meu melhor para responder. Como trato do desenvolvimento, correção de erros e suporte sozinho, pode demorar algum tempo. Obrigado pela paciência.</string>
     <string name="contact_footer_message">A sua mensagem será enviada por e-mail. Informações do dispositivo e configuração são anexadas automaticamente. Pode anexar capturas de ecrã ou um vídeo ao e-mail. Se possível, escreva em inglês.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Registo de depuração</string>
     <string name="debug_debuglog_screen_subtitle">Exportar informações de depuração para resolução de problemas</string>
     <string name="debug_debuglog_screen_sensitive_title">Informação sensível</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d arquivo pronto (%2$s)</item>
         <item quantity="other">%1$d arquivos prontos (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dm %2$ds</string>
     <string name="debug_debuglog_screen_duration_s">%1$ds</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Pergunta</string>
     <string name="contact_email_tag_feature">Funcionalidade</string>
     <string name="contact_email_tag_bug">Erro</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Esta aplicação ajuda-o a navegar pelas aplicações instaladas e a descobrir permissões.</string>
     <string name="onboarding_body2">O Permission Pilot recolhe informações sobre Aplicações Instaladas para permitir listar as suas aplicações e fazer referência cruzada das suas permissões ao utilizar esta aplicação.</string>
     <string name="onboarding_body3">O Permission Pilot não tem anúncios e processa dados apenas localmente.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Modo de tema</string>
     <string name="ui_theme_mode_system_label">Sistema</string>
     <string name="ui_theme_mode_dark_label">Escuro</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Usa cores do papel de parede</string>
     <string name="upgrade_required_subtitle">Atualizar para desbloquear</string>
     <string name="settings_category_appearance_label">Aparência</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Personalização do tema</string>
     <string name="upgrade_benefit_filtering">Filtragem avançada</string>
     <string name="upgrade_benefit_export">Exportação de dados em lote</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Copiar</string>
     <string name="general_copied_to_clipboard_msg">Copiado para a área de transferência</string>
     <string name="general_view_details_for_x_action">Ver detalhes de %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Estado e opções da atualização para Pro</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Vigia</string>
     <string name="watcher_dashboard_feature_title">Vigia de permissões</string>
     <string name="watcher_dashboard_feature_description">Receba notificações quando uma atualização de aplicação adiciona novas permissões ou altera as existentes. O Vigia de permissões verifica as suas aplicações após cada atualização e cria um relatório se algo mudou.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Sincronização de instantâneos</string>
     <string name="snapshot_sync_channel_description">Sincronização de dados da aplicação em segundo plano</string>
     <string name="snapshot_sync_notification_title">A sincronizar dados da aplicação…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Selecionar tudo</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d selecionado</item>
         <item quantity="other">%d selecionados</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Exportar informações da aplicação</string>
     <string name="export_permission_info_action">Exportar informações de permissão</string>
     <plurals name="export_title_apps">

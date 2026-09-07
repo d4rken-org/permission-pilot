@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Βοήθεια</string>
     <string name="general_error_label">Σφάλμα</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Πηγή Εγκατάστασης</string>
     <string name="apps_details_installer_unknown_label">Μη διαθέσιμο</string>
     <string name="apps_details_open_settings_error">Δεν ήταν δυνατό το άνοιγμα ρυθμίσεων εφαρμογής για αυτό το προφίλ</string>
+    <string name="apps_details_open_settings_unavailable">Δεν υπάρχει σελίδα ρυθμίσεων συστήματος: το Android αναφέρει ότι αυτή η εφαρμογή δεν είναι εγκατεστημένη για αυτόν τον χρήστη.</string>
     <string name="apps_details_open_app_error">Δεν ήταν δυνατό το άνοιγμα αυτής της εφαρμογής</string>
     <string name="permissions_filter_manifest_label">Άδειες AOSP</string>
     <string name="permissions_filter_system_label">Δηλώθηκε από εφαρμογή συστήματος</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">Ειδική — Απαιτεί ενεργοποίηση διακόπτη στις ρυθμίσεις συστήματος.</string>
     <string name="apps_details_perm_help_install">Εγκατάσταση — Χορηγείται αυτόματα κατά την εγκατάσταση της εφαρμογής. Δεν απαιτείται ενέργεια χρήστη.</string>
     <string name="apps_details_perm_help_declared">Το εικονίδιο ⚠ σημαίνει ότι αυτή η άδεια δημιουργήθηκε από την ίδια την εφαρμογή, αντί να είναι τυπική άδεια Android.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest Εφαρμογής</string>
     <string name="apps_details_manifest_queued">Στην ουρά για ανάλυση…</string>
     <string name="apps_details_manifest_loading">Ανάλυση manifest…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d ερώτημα παρόχου</item>
         <item quantity="other">%d ερωτήματα παρόχου</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Μπορεί να ανακαλύψει τις περισσότερες εκκινήσιμες εφαρμογές</string>
     <string name="apps_details_manifest_hint_excessive">Ελέγχει για πολλές συγκεκριμένες εφαρμογές</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Προβολή Manifest</string>
     <string name="apps_manifest_viewer_search_hint">Αναζήτηση στο manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Άγνωστο σφάλμα κατά τη φόρτωση του manifest.</string>
@@ -241,24 +237,19 @@
         <item quantity="other">%d απεγκατεστημένες εφαρμογές με διατηρημένα δεδομένα ζητούν επίσης αυτήν την άδεια.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Οι εφαρμογές που είναι εγκατεστημένες σε άλλα προφίλ χρηστών εξαιρούνται από τον παραπάνω υπολογισμό λόγω περιορισμών Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Χρόνος εκτέλεσης</string>
     <string name="permissions_tag_install_time_label">Κατά εγκατάσταση</string>
     <string name="permissions_tag_special_access_label">Ειδική πρόσβαση</string>
     <string name="permissions_tag_documented_label">Τεκμηριωμένη</string>
     <string name="permissions_tag_notable_label">Αξιοσημείωτη</string>
     <string name="permissions_tag_non_standard_label">Μη τυπική</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Σε χρήση</string>
     <string name="permissions_status_unknown_label">Άγνωστο</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Σύστημα</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d ακόμα</item>
         <item quantity="other">+%d ακόμα</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Ενδείξεις αδειών</string>
     <string name="permissions_details_help_section_protection">Τύπος προστασίας</string>
     <string name="permissions_details_help_dangerous">Επικίνδυνη — Απαιτεί ρητή έγκριση χρήστη κατά την εκτέλεση. Μπορεί να έχει πρόσβαση σε ευαίσθητα δεδομένα ή λειτουργίες συσκευής.</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">Ένα αρχείο καταγραφής χρειάζεται να καταγράφει το ζήτημα όσο συμβαίνει. Ξεκινήστε την εγγραφή, αναπαράγετε το ζήτημα σας, είτα σταματήστε την εγγραφή.</string>
     <string name="debug_debuglog_short_recording_continue">Συνέχεια εγγραφής</string>
     <string name="debug_debuglog_short_recording_stop">Διακοπή ούτως ή άλλως</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$d αρχείο καταγραφής (%2$s)</item>
         <item quantity="other">%1$d αρχεία καταγραφής (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">Στάλθηκε το μήνυμα;</string>
     <string name="support_contact_sent_message">Αν απεστείλατε το email, αυτή η συνεδρία μπορεί να καθαριστεί.</string>
     <string name="general_close_action">Κλείσιμο</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Επικοινωνία με την υποστήριξη</string>
     <string name="contact_category_label">Κατηγορία</string>
     <string name="contact_category_question_label">Ερώτηση</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">Δεν βρέθηκε εφαρμογή email σε αυτή τη συσκευή.</string>
     <string name="contact_welcome_message">Διαβάζω κάθε μήνυμα μόνος μου και κάνω ό,τι μπορώ για να απαντήσω. Καθώς χειρίζομαι μόνος μου την ανάπτυξη, την επίλυση σφαλμάτων και την υποστήριξη, μπορεί να χρειαστεί λίγος χρόνος. Ευχαριστώ για την υπομονή σας.</string>
     <string name="contact_footer_message">Το μήνυμά σας θα σταλεί μέσω email. Πληροφορίες συσκευής και ρυθμίσεων επισυνάπτονται αυτόματα. Μπορείτε να επισυνάψετε στιγμιότυπα ή βίντεο. Γράψτε στα αγγλικά αν είναι δυνατόν.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Αρχείο Καταγραφής</string>
     <string name="debug_debuglog_screen_subtitle">Εξαγωγή διαγνωστικών πληροφοριών για ανιχνευτική επίλυση προβλημάτων</string>
     <string name="debug_debuglog_screen_sensitive_title">Ευαίσθητες Πληροφορίες</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d αρχείο έτοιμο (%2$s)</item>
         <item quantity="other">%1$d αρχεία έτοιμα (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dλ %2$dδ</string>
     <string name="debug_debuglog_screen_duration_s">%1$dδ</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Ερώτηση</string>
     <string name="contact_email_tag_feature">Χαρακτηριστική</string>
     <string name="contact_email_tag_bug">Σφάλμα</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">Αυτή η εφαρμογή σας βοηθά να πλοηγηθείτε στις εγκατεστημένες εφαρμογές και να ανακαλύψετε τις άδειές τους.</string>
     <string name="onboarding_body2">Το Permission Pilot συλλέγει πληροφορίες για τις εγκατεστημένες εφαρμογές, ώστε να μπορεί να τις εμφανίζει και να συσχετίζει τις άδειές τους κατά τη χρήση της εφαρμογής.</string>
     <string name="onboarding_body3">Το Permission Pilot δεν έχει διαφημίσεις και επεξεργάζεται δεδομένα μόνο τοπικά.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Λειτουργία θέματος</string>
     <string name="ui_theme_mode_system_label">Σύστημα</string>
     <string name="ui_theme_mode_dark_label">Σκοτεινό</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">Χρησιμοποιεί χρώματα ταπετσαρίας</string>
     <string name="upgrade_required_subtitle">Αναβάθμιση για ξεκλείδωμα</string>
     <string name="settings_category_appearance_label">Εμφάνιση</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Προσαρμογή θέματος</string>
     <string name="upgrade_benefit_filtering">Προηγμένο φιλτράρισμα</string>
     <string name="upgrade_benefit_export">Ομαδική εξαγωγή δεδομένων</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">Αντιγραφή</string>
     <string name="general_copied_to_clipboard_msg">Αντιγράφηκε στο πρόχειρο</string>
     <string name="general_view_details_for_x_action">Προβολή λεπτομερειών για %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Κατάσταση αναβάθμισης και επιλογές</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Παρατηρητής</string>
     <string name="watcher_dashboard_feature_title">Παρατηρητής Αδειών</string>
     <string name="watcher_dashboard_feature_description">Λάβετε ειδοποιήσεις όταν μια ενημέρωση εφαρμογής προσθέτει νέες άδειες ή αλλάζει τις υπάρχουσες. Ο Παρατηρητής Αδειών ελέγχει τις εφαρμογές σας μετά από κάθε ενημέρωση και δημιουργεί αναφορά αν άλλαξε κάτι.</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">Συγχρονισμός στιγμιότυπου</string>
     <string name="snapshot_sync_channel_description">Συγχρονισμός δεδομένων εφαρμογής στο παρασκήνιο</string>
     <string name="snapshot_sync_notification_title">Συγχρονισμός δεδομένων εφαρμογής…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Επιλογή όλων</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d επιλεγμένο</item>
         <item quantity="other">%d επιλεγμένα</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Εξαγωγή πληροφοριών εφαρμογής</string>
     <string name="export_permission_info_action">Εξαγωγή πληροφοριών άδειας</string>
     <plurals name="export_title_apps">

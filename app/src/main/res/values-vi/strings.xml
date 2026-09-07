@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">Trợ giúp</string>
     <string name="general_error_label">Lỗi</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">Nguồn cài đặt</string>
     <string name="apps_details_installer_unknown_label">Thông tin không có sẵn</string>
     <string name="apps_details_open_settings_error">Không thể mở cài đặt ứng dụng cho hồ sơ này</string>
+    <string name="apps_details_open_settings_unavailable">Không có trang cài đặt hệ thống: Android báo rằng ứng dụng này không được cài đặt cho người dùng này.</string>
     <string name="apps_details_open_app_error">Không thể mở ứng dụng này</string>
     <string name="permissions_filter_manifest_label">Quyền AOSP</string>
     <string name="permissions_filter_system_label">Được khai báo bởi ứng dụng hệ thống</string>
@@ -165,7 +164,6 @@
     <string name="apps_details_perm_help_special">Đặc biệt — Yêu cầu bật công tắc trong cài đặt hệ thống.</string>
     <string name="apps_details_perm_help_install">Cài đặt — Được cấp tự động khi ứng dụng được cài đặt. Không cần hành động nào của người dùng.</string>
     <string name="apps_details_perm_help_declared">Biểu tượng ⚠ có nghĩa là quyền này do chính ứng dụng tạo ra, không phải là quyền Android tiêu chuẩn.</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">Manifest ứng dụng</string>
     <string name="apps_details_manifest_queued">Đang chờ phân tích…</string>
     <string name="apps_details_manifest_loading">Đang phân tích manifest…</string>
@@ -182,10 +180,8 @@
     <plurals name="apps_details_manifest_providers">
         <item quantity="other">%d truy vấn nhà cung cấp</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">Có thể khám phá hầu hết các ứng dụng</string>
     <string name="apps_details_manifest_hint_excessive">Kiểm tra nhiều ứng dụng cụ thể</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">Trình xem Manifest</string>
     <string name="apps_manifest_viewer_search_hint">Tìm kiếm trong manifest</string>
     <string name="apps_manifest_viewer_error_unknown">Lỗi không rõ khi tải tệp kê khai.</string>
@@ -229,23 +225,18 @@
         <item quantity="other">%d ứng dụng đã gỡ cài đặt có dữ liệu được lưu lại cũng yêu cầu quyền này.</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Ứng dụng được cài đặt trong các hồ sơ người dùng khác bị loại trừ khỏi tính toán trên do hạn chế của Android.</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">Thời gian chạy</string>
     <string name="permissions_tag_install_time_label">Thời điểm cài đặt</string>
     <string name="permissions_tag_special_access_label">Truy cập đặc biệt</string>
     <string name="permissions_tag_documented_label">Đã tài liệu</string>
     <string name="permissions_tag_notable_label">Đáng chú ý</string>
     <string name="permissions_tag_non_standard_label">Không chuẩn</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">Đang sử dụng</string>
     <string name="permissions_status_unknown_label">Không xác định</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">Hệ thống</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="other">+%d thêm</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">Chỉ báo quyền</string>
     <string name="permissions_details_help_section_protection">Loại bảo vệ</string>
     <string name="permissions_details_help_dangerous">Nguy hiểm — Yêu cầu sự chấp thuận rõ ràng của người dùng khi chạy. Có thể truy cập dữ liệu nhạy cảm hoặc tính năng thiết bị.</string>
@@ -391,7 +382,6 @@
     <string name="debug_debuglog_short_recording_message">Nhật ký gỡ lỗi cần ghi lại sự cố trong khi nó xảy ra. Bắt đầu ghi, tái hiện sự cố, sau đó dừng ghi.</string>
     <string name="debug_debuglog_short_recording_continue">Tiếp tục ghi âm</string>
     <string name="debug_debuglog_short_recording_stop">Vẫn dừng lại</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="other">%1$d nhật ký gỡ lỗi (%2$s)</item>
     </plurals>
@@ -412,7 +402,6 @@
     <string name="support_contact_sent_title">Đã gửi tin nhắn?</string>
     <string name="support_contact_sent_message">Nếu bạn đã gửi email, phiên này có thể được dọn sạch.</string>
     <string name="general_close_action">Đóng</string>
-    <!-- Contact form -->
     <string name="contact_support_label">Liên hệ hỗ trợ</string>
     <string name="contact_category_label">Danh mục</string>
     <string name="contact_category_question_label">Câu hỏi</string>
@@ -439,7 +428,6 @@
     <string name="contact_no_email_app">Không tìm thấy ứng dụng email nào trên thiết bị này.</string>
     <string name="contact_welcome_message">Tôi tự đọc mọi tin nhắn và cố gắng trả lời. Vì tôi tự xử lý việc phát triển, sửa lỗi và hỗ trợ, việc này có thể mất một chút thời gian. Cảm ơn sự kiên nhẫn của bạn.</string>
     <string name="contact_footer_message">Tin nhắn của bạn sẽ được gửi qua email. Thông tin về thiết bị và cài đặt được đính kèm tự động. Bạn có thể đính kèm ảnh chụp màn hình hoặc video vào email. Vui lòng viết bằng tiếng Anh nếu có thể.</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">Nhật ký gỡ lỗi</string>
     <string name="debug_debuglog_screen_subtitle">Xuất thông tin gỡ lỗi để khắc phục sự cố</string>
     <string name="debug_debuglog_screen_sensitive_title">Thông tin nhạy cảm</string>
@@ -449,13 +437,11 @@
     <plurals name="debug_debuglog_screen_log_files_ready">
         <item quantity="other">%1$d tệp đã sẵn sàng (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dp %2$dg</string>
     <string name="debug_debuglog_screen_duration_s">%1$dg</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">Câu hỏi</string>
     <string name="contact_email_tag_feature">Tính năng</string>
     <string name="contact_email_tag_bug">Lỗi</string>
@@ -464,7 +450,6 @@
     <string name="onboarding_body1">Ứng dụng này giúp bạn điều hướng các ứng dụng đã cài đặt và khám phá quyền.</string>
     <string name="onboarding_body2">Permission Pilot thu thập thông tin ứng dụng đã cài đặt để cho phép liệt kê ứng dụng của bạn và tham chiếu chéo quyền của chúng khi sử dụng ứng dụng này.</string>
     <string name="onboarding_body3">Permission Pilot không có quảng cáo và chỉ xử lý dữ liệu cục bộ.</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">Giao diện</string>
     <string name="ui_theme_mode_system_label">Hệ thống</string>
     <string name="ui_theme_mode_dark_label">Tối</string>
@@ -481,7 +466,6 @@
     <string name="ui_theme_color_disabled_subtitle">Sử dụng màu hình nền</string>
     <string name="upgrade_required_subtitle">Nâng cấp để mở khóa</string>
     <string name="settings_category_appearance_label">Giao diện</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">Tùy chỉnh giao diện</string>
     <string name="upgrade_benefit_filtering">Lọc nâng cao</string>
     <string name="upgrade_benefit_export">Xuất dữ liệu hàng loạt</string>
@@ -494,9 +478,7 @@
     <string name="general_copy_action">Sao chép</string>
     <string name="general_copied_to_clipboard_msg">Chép vào bộ nhớ tạm</string>
     <string name="general_view_details_for_x_action">Xem chi tiết về %1$s</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">Trạng thái nâng cấp và tùy chọn</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">Bộ theo dõi</string>
     <string name="watcher_dashboard_feature_title">Theo dõi Quyền</string>
     <string name="watcher_dashboard_feature_description">Nhận thông báo khi bản cập nhật ứng dụng thêm quyền mới hoặc thay đổi quyền hiện có. Theo dõi Quyền kiểm tra ứng dụng sau mỗi lần cập nhật và tạo báo cáo nếu có gì thay đổi.</string>
@@ -598,12 +580,10 @@
     <string name="snapshot_sync_channel_name">Đồng bộ ảnh chụp</string>
     <string name="snapshot_sync_channel_description">Đồng bộ dữ liệu ứng dụng nền</string>
     <string name="snapshot_sync_notification_title">Đang đồng bộ dữ liệu ứng dụng…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">Chọn tất cả</string>
     <plurals name="general_x_selected_label">
         <item quantity="other">Đã chọn %d</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">Xuất thông tin ứng dụng</string>
     <string name="export_permission_info_action">Xuất thông tin quyền</string>
     <plurals name="export_title_apps">

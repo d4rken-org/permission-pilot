@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Permission Pilot</string>
-    <!-- Arrangement of the branded app title. %1$s is the app name, %2$s the tier qualifier
-         ("Pro" / "FOSS"). Reorder or repunctuate freely to suit the language. -->
     <string name="app_name_upgraded_template">%1$s %2$s</string>
     <string name="label_help">সাহায্য</string>
     <string name="general_error_label">ত্রুটি</string>
@@ -61,6 +59,7 @@
     <string name="apps_details_installer_label">ইনস্টল উৎস</string>
     <string name="apps_details_installer_unknown_label">তথ্য উপলব্ধ নেই</string>
     <string name="apps_details_open_settings_error">এই প্রোফাইলের জন্য অ্যাপ সেটিংস খুলতে পারেনি</string>
+    <string name="apps_details_open_settings_unavailable">কোনো সিস্টেম সেটিংস পৃষ্ঠা নেই: Android এই অ্যাপটি এই ব্যবহারকারীর জন্য ইনস্টল করা হয়নি বলে রিপোর্ট করে।</string>
     <string name="apps_details_open_app_error">এই অ্যাপটি খুলতে পারেনি</string>
     <string name="permissions_filter_manifest_label">AOSP অনুমতি</string>
     <string name="permissions_filter_system_label">সিস্টেম অ্যাপ দ্বারা ঘোষিত</string>
@@ -166,7 +165,6 @@
     <string name="apps_details_perm_help_special">বিশেষ — সিস্টেম সেটিংসে একটি সুইচ শিফ্ট করতে হবে।</string>
     <string name="apps_details_perm_help_install">ইনস্টল — অ্যাপ ইনস্টল হলে স্বয়ংক্রিয়ভাবে মান্যতা পায়। ব্যবহারকারীর কোনো পদক্ষেপ দরকার নেই।</string>
     <string name="apps_details_perm_help_declared">⚠ আইকনের অর্থ হলো এই অনুমতি স্ট্যান্ডার্ড অ্যান্ড্রয়েড অনুমতি না হয়ে অ্যাপটিই তৈরি করেছে।</string>
-    <!-- Manifest card -->
     <string name="apps_details_manifest_label">অ্যাপ ম্যানিফেস্ট</string>
     <string name="apps_details_manifest_queued">বিশ্লেষণের জন্য অপেক্ষায় আছে…</string>
     <string name="apps_details_manifest_loading">ম্যানিফেস্ট বিশ্লেষণ করা হচ্ছে…</string>
@@ -187,10 +185,8 @@
         <item quantity="one">%d টি প্রোভাইডার কোয়েরি</item>
         <item quantity="other">%d টি প্রোভাইডার কোয়েরি</item>
     </plurals>
-    <!-- Manifest hint flags -->
     <string name="apps_details_manifest_hint_main_query">বেশিরভাগ চালু করা যায় এমন অ্যাপ আবিষ্কার করতে পারে</string>
     <string name="apps_details_manifest_hint_excessive">অনেক নির্দিষ্ট অ্যাপ খোঁজে</string>
-    <!-- Manifest viewer -->
     <string name="apps_manifest_viewer_label">ম্যানিফেস্ট ভিউয়ার</string>
     <string name="apps_manifest_viewer_search_hint">ম্যানিফেস্টে অনুসন্ধান করুন</string>
     <string name="apps_manifest_viewer_error_unknown">ম্যানিফেস্ট লোড করার সময় অজানা ত্রুটি।</string>
@@ -241,24 +237,19 @@
         <item quantity="other">ডেটা সংরক্ষিত রেখে আনইনস্টল করা %dটি অ্যাপও এই অনুমতি অনুরোধ করে।</item>
     </plurals>
     <string name="permissions_details_description_restrictions_caveat_description">Android সীমাবদ্ধতার কারণে অন্য ব্যবহারকারী প্রোফাইলে ইনস্টল করা অ্যাপগুলি উপরের গণনা থেকে বাদ দেওয়া হয়েছে।</string>
-    <!-- Permission tag chip labels -->
     <string name="permissions_tag_runtime_label">রানটাইম</string>
     <string name="permissions_tag_install_time_label">ইনস্টল-কালীন</string>
     <string name="permissions_tag_special_access_label">বিশেষ প্রবেশ</string>
     <string name="permissions_tag_documented_label">নথিভুক্ত</string>
     <string name="permissions_tag_notable_label">উল্লেখযোগ্য</string>
     <string name="permissions_tag_non_standard_label">নন-স্ট্যান্ডার্ড</string>
-    <!-- Grant status labels -->
     <string name="permissions_status_granted_in_use_label">ব্যবহারে</string>
     <string name="permissions_status_unknown_label">অজানা</string>
-    <!-- System badge -->
     <string name="permissions_details_system_badge_label">সিস্টেম</string>
-    <!-- Flag overflow -->
     <plurals name="permissions_details_flags_more_label">
         <item quantity="one">+%d আরও</item>
         <item quantity="other">+%d আরও</item>
     </plurals>
-    <!-- Permission details help dialog -->
     <string name="permissions_details_help_title">অনুমতি সূচক</string>
     <string name="permissions_details_help_section_protection">সুরক্ষা ধরন</string>
     <string name="permissions_details_help_dangerous">বিপজ্জনক — রানটাইমে স্পষ্ট ব্যবহারকারীর অনুমোদন প্রয়োজন। সংবেদনশীল ডেটা বা ডিভাইস ফিচারে প্রবেশ করতে পারে।</string>
@@ -404,7 +395,6 @@
     <string name="debug_debuglog_short_recording_message">ডিবাগ লগকে সমস্যা ঘটার সময় ধরতে হবে। রেকর্ডিং শুরু করুন, সমস্যাটি পুনরায় ঘটান, তারপর রেকর্ডিং বন্ধ করুন।</string>
     <string name="debug_debuglog_short_recording_continue">রেকর্ডিং জারি রাখুন</string>
     <string name="debug_debuglog_short_recording_stop">যেভাবেই হোক বন্ধ করুন</string>
-    <!-- Debug log folder -->
     <plurals name="support_debuglog_folder_summary">
         <item quantity="one">%1$dটি ডিবাগ লগ (%2$s)</item>
         <item quantity="other">%1$dটি ডিবাগ লগ (%2$s)</item>
@@ -426,7 +416,6 @@
     <string name="support_contact_sent_title">বার্তা পাঠানো হয়েছে?</string>
     <string name="support_contact_sent_message">যদি আপনি ইমেইল পাঠিয়ে থাকেন, তাহলে এই সেশনটি পরিষ্কার করা যাবে।</string>
     <string name="general_close_action">বন্ধ করুন</string>
-    <!-- Contact form -->
     <string name="contact_support_label">সাপোর্টের সাথে যোগাযোগ করুন</string>
     <string name="contact_category_label">বিভাগ</string>
     <string name="contact_category_question_label">প্রশ্ন</string>
@@ -454,7 +443,6 @@
     <string name="contact_no_email_app">এই ডিভাইসে কোনো ইমেইল অ্যাপ পাওয়া যায়নি।</string>
     <string name="contact_welcome_message">আমি সব বার্তা নিজেই পড়ি এবং যথাসাধ্য উত্তর দেওয়ার চেষ্টা করি। যেহেতু আমি নিজেই ডিভেলপমেন্ট, বাগ ফিক্স এবং সাপোর্ট সামলাই, অল্প সময় লাগতে পারে। আপনার ধৈর্যের জন্য ধন্যবাদ।</string>
     <string name="contact_footer_message">আপনার বার্তা ইমেইলের মাধ্যমে পাঠানো হবে। ডিভাইস তথ্য স্বয়ংক্রিয়ভাবে যুক্ত হয়। ইমেইলে স্ক্রিনশট বা ভিডিও সংযুক্ত করতে পারেন। সম্ভব হলে ইংরেজিতে লিখুন।</string>
-    <!-- RecorderScreen (Compose) -->
     <string name="debug_debuglog_screen_title">ডিবাগ লগ</string>
     <string name="debug_debuglog_screen_subtitle">সমস্যা সমাধানের জন্য ডিবাগ তথ্য রপ্তানি করুন</string>
     <string name="debug_debuglog_screen_sensitive_title">সংবেদনশীল তথ্য</string>
@@ -465,13 +453,11 @@
         <item quantity="one">%1$d টি ফাইল প্রস্তুত (%2$s)</item>
         <item quantity="other">%1$dটি ফাইল প্রস্তুত (%2$s)</item>
     </plurals>
-    <!-- RecorderScreen format strings -->
     <string name="debug_debuglog_screen_zip_size">ZIP: %s</string>
     <string name="debug_debuglog_screen_zip_pending">ZIP: …</string>
     <string name="debug_debuglog_screen_duration_ms">%1$dমি %2$dসে</string>
     <string name="debug_debuglog_screen_duration_s">%1$dসে</string>
     <string name="support_debuglog_share_subject">Permission Pilot DebugLog - %s</string>
-    <!-- Contact form email tags -->
     <string name="contact_email_tag_question">প্রশ্ন</string>
     <string name="contact_email_tag_feature">ফিচার</string>
     <string name="contact_email_tag_bug">বাগ</string>
@@ -480,7 +466,6 @@
     <string name="onboarding_body1">এই অ্যাপ আপনাকে ইনস্টল করা অ্যাপ্লিকেশনগুলি নেভিগেট করতে এবং অনুমতি আবিষ্কার করতে সাহায্য করে।</string>
     <string name="onboarding_body2">Permission Pilot ইনস্টল করা অ্যাপ্লিকেশনের তথ্য সংগ্রহ করে যাতে এই অ্যাপটি ব্যবহার করার সময় আপনার অ্যাপগুলি তালিকাভুক্ত করা এবং তাদের অনুমতিগুলির ক্রস-রেফারেন্স করা সম্ভব হয়।</string>
     <string name="onboarding_body3">Permission Pilot-এ কোনো বিজ্ঞাপন নেই এবং শুধুমাত্র স্থানীয়ভাবে ডেটা প্রক্রিয়া করে।</string>
-    <!-- Theme settings -->
     <string name="ui_theme_mode_label">থিমের ধরন</string>
     <string name="ui_theme_mode_system_label">সিস্টেম</string>
     <string name="ui_theme_mode_dark_label">গাঢ়</string>
@@ -497,7 +482,6 @@
     <string name="ui_theme_color_disabled_subtitle">ওয়ালপেপারের রং ব্যবহার করে</string>
     <string name="upgrade_required_subtitle">আনলক করতে আপগ্রেড করুন</string>
     <string name="settings_category_appearance_label">নির্বাচনযোগ্য থিম</string>
-    <!-- Upgrade benefit strings (shared by both flavors) -->
     <string name="upgrade_benefit_themes">থিম কাস্টমাইজেশন</string>
     <string name="upgrade_benefit_filtering">উন্নত ফিল্টারিং</string>
     <string name="upgrade_benefit_export">ব্যাচ ডেটা রপ্তানি</string>
@@ -510,9 +494,7 @@
     <string name="general_copy_action">কপি বা অনুলিপি করুন</string>
     <string name="general_copied_to_clipboard_msg">ক্লিপবোর্ডে কপি করা হয়েছে</string>
     <string name="general_view_details_for_x_action">%1$s এর বিবরণ দেখুন</string>
-    <!-- Settings entry that opens the upgrade status/options screen (flavor-neutral) -->
     <string name="settings_upgrade_description">আপগ্রেড স্ট্যাটাস এবং বিকল্পসমূহ</string>
-    <!-- Permission Watcher -->
     <string name="watcher_tab_label">রিপোর্টার</string>
     <string name="watcher_dashboard_feature_title">অনুমতি পর্যবেক্ষক</string>
     <string name="watcher_dashboard_feature_description">কোনো অ্যাপ আপডেট নতুন অনুমতি যোগ করলে বা বিদ্যমান অনুমতি বদলালে নোটিফিকেশন পান। অনুমতি পর্যবেক্ষক প্রতিটি আপডেটের পর অ্যাপগুলো পরীক্ষা করে বিষয় বদলালে রিপোর্ট তৈরি করে।</string>
@@ -622,13 +604,11 @@
     <string name="snapshot_sync_channel_name">স্ন্যাপশট সিন্ক</string>
     <string name="snapshot_sync_channel_description">ব্যাকগ্রাউন্ড অ্যাপ ডেটা সিন্ক্রনাইজেশন</string>
     <string name="snapshot_sync_notification_title">অ্যাপ ডেটা সিন্ক হচ্ছে…</string>
-    <!-- Selection -->
     <string name="general_select_all_action">সব নির্বাচন করুন</string>
     <plurals name="general_x_selected_label">
         <item quantity="one">%d টি নির্বাচিত</item>
         <item quantity="other">%d টি নির্বাচিত</item>
     </plurals>
-    <!-- Export -->
     <string name="export_app_info_action">অ্যাপের তথ্য এক্সপোর্ট করুন</string>
     <string name="export_permission_info_action">অনুমতির তথ্য এক্সপোর্ট করুন</string>
     <plurals name="export_title_apps">
