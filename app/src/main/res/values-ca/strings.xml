@@ -59,7 +59,7 @@
     <string name="apps_details_installer_label">Origen de la instal·lació</string>
     <string name="apps_details_installer_unknown_label">Informació no disponible</string>
     <string name="apps_details_open_settings_error">No s\'han pogut obrir els paràmetres de l\'aplicació per a aquest perfil</string>
-    <string name="apps_details_open_settings_unavailable">No hi ha pàgina de configuració del sistema: Android informa que aquesta aplicació no està instal·lada per a aquest usuari.</string>
+    <string name="apps_details_open_settings_unavailable">No hi ha pàgina de configuració del sistema: l\'Android informa que aquesta aplicació no està instal·lada per a aquest usuari.</string>
     <string name="apps_details_open_app_error">No s\'ha pogut obrir aquesta aplicació</string>
     <string name="permissions_filter_manifest_label">Permisos AOSP</string>
     <string name="permissions_filter_system_label">Declarats per aplicació del sistema</string>
