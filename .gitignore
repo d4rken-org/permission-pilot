@@ -31,3 +31,5 @@ testapp/local.properties
 _site/
 .jekyll-cache/
 vendor/bundle/
+/.pi/*
+!/.pi/settings.json
